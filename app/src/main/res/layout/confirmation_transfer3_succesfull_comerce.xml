@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="@drawable/side_nav_bar"
+    android:padding="15dp" >
+
+
+
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="@string/confirmation_title_successfull"
+        android:textColor="@color/background_color"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        >
+        <ImageView
+            android:id="@+id/sucessfullImageId"
+            android:layout_width="212dp"
+            android:layout_height="92dp"
+            android:gravity="center"
+            android:padding="10dp"
+            android:paddingLeft="500dp"
+            android:src="@drawable/check"
+            android:text="@string/confirmation_title_successfull"
+            android:textColor="@color/background_color"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+
+    </RelativeLayout>
+
+
+
+
+    <TableLayout
+        android:id="@+id/txtTableLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtConfirmationPaymen"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="35dp">
+
+
+        <TableRow>
+            <TextView
+                android:id="@+id/txtPaymentReceiver"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:padding="3dip"
+                android:paddingTop="5dp"
+                android:singleLine="true"
+                android:textColor="@color/white_greyish"
+                android:textColorHint="@color/white_greyish"
+                android:textSize="16sp"
+                android:text="@string/destination_name"/>
+            <TextView
+                android:id="@+id/txtDestinationNameValue_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:padding="3dip"
+                android:singleLine="true"
+                android:textColor="@color/white_greyish"
+                android:textColorHint="@color/white_greyish"
+                android:textSize="16sp"
+                />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:id="@+id/txtIdentificationNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:padding="3dip"
+                android:singleLine="true"
+                android:textColor="@color/white_greyish"
+                android:textColorHint="@color/white_greyish"
+                android:textSize="16sp"
+                android:text="@string/destination_lastName"/>
+            <TextView
+                android:id="@+id/txtDestinationLastNameValue_3"
+
+                android:padding="3dip"
+                android:singleLine="true"
+                android:textColor="@color/white_greyish"
+                android:textColorHint="@color/white_greyish"
+                android:textSize="16sp"
+
+                />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:id="@+id/txtConcept"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:padding="3dip"
+                android:singleLine="true"
+                android:textColor="@color/white_greyish"
+                android:textColorHint="@color/white_greyish"
+                android:textSize="16sp"
+                android:text="@string/destination_phoe"/>
+            <TextView
+                android:id="@+id/txtDestinationPhoneValue_3"
+
+                android:padding="3dip"
+                android:singleLine="true"
+                android:textColor="@color/white_greyish"
+                android:textColorHint="@color/white_greyish"
+                android:textSize="16sp"/>
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:id="@+id/txtAccountNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:padding="3dip"
+                android:singleLine="true"
+                android:textColor="@color/white_greyish"
+                android:textColorHint="@color/white_greyish"
+                android:textSize="16sp"
+                android:text="@string/destination_cuenta"/>
+            <TextView
+                android:id="@+id/txtAccountNumberValue_3"
+                android:padding="3dip"
+                android:singleLine="true"
+                android:textColor="@color/white_greyish"
+                android:textColorHint="@color/white_greyish"
+                android:textSize="16sp"/>
+        </TableRow>
+
+
+        <TableRow>
+            <TextView
+                android:id="@+id/txtAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:padding="3dip"
+                android:singleLine="true"
+                android:textColor="@color/white_greyish"
+                android:textColorHint="@color/white_greyish"
+                android:textSize="16sp"
+                android:text="@string/destination_amount"/>
+            <TextView
+                android:id="@+id/txtAmountValue_3"
+                android:padding="3dip"
+                android:singleLine="true"
+                android:textColor="@color/white_greyish"
+                android:textColorHint="@color/white_greyish"
+                android:textSize="16sp"/>
+        </TableRow>
+
+
+
+
+        <TableRow>
+            <TextView
+                android:id="@+id/txtConcepts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:padding="3dip"
+                android:singleLine="true"
+                android:textColor="@color/white_greyish"
+                android:textColorHint="@color/white_greyish"
+                android:textSize="16sp"
+                android:text="@string/destination_concept"/>
+            <TextView
+                android:id="@+id/txtConceptValue_3"
+                android:padding="3dip"
+                android:singleLine="true"
+                android:textColor="@color/white_greyish"
+                android:textColorHint="@color/white_greyish"
+                android:textSize="16sp"/>
+        </TableRow>
+
+
+        <TableRow>
+            <TextView
+                android:id="@+id/accountSource"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:padding="3dip"
+                android:singleLine="true"
+                android:textColor="@color/white_greyish"
+                android:textColorHint="@color/white_greyish"
+                android:textSize="16sp"
+                android:text="@string/destination_source"/>
+            <TextView
+                android:id="@+id/txtAccountSourceValue_3"
+                android:padding="3dip"
+                android:singleLine="true"
+                android:textColor="@color/white_greyish"
+                android:textColorHint="@color/white_greyish"
+                android:textSize="16sp"/>
+        </TableRow>
+
+
+        <TableRow>
+            <TextView
+                android:id="@+id/transactionDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:padding="3dip"
+                android:singleLine="true"
+                android:textColor="@color/white_greyish"
+                android:textColorHint="@color/white_greyish"
+                android:textSize="16sp"
+                android:text="@string/destination_date_time"/>
+            <TextView
+                android:id="@+id/txtDateTimeValue_3"
+                android:padding="3dip"
+                android:singleLine="true"
+                android:textColor="@color/white_greyish"
+                android:textColorHint="@color/white_greyish"
+                android:textSize="16sp"/>
+        </TableRow>
+
+
+        <TableRow>
+            <TextView
+                android:id="@+id/transactionId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:padding="3dip"
+                android:singleLine="true"
+                android:textColor="@color/white_greyish"
+                android:textColorHint="@color/white_greyish"
+                android:textSize="16sp"
+                android:text="@string/destination_transaction_id"/>
+            <TextView
+                android:id="@+id/txtTransactionId_3"
+                android:padding="3dip"
+                android:singleLine="true"
+                android:textColor="@color/white_greyish"
+                android:textColorHint="@color/white_greyish"
+                android:textSize="16sp"/>
+        </TableRow>
+
+
+
+
+    </TableLayout>
+
+
+    <Button
+        android:id="@+id/btnProcessFinisTransference"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/loginbutton_selector"
+        android:padding="3dp"
+        android:text="@string/process_finished"
+        android:textColor="@color/background_color"
+        android:textSize="17sp"
+        android:textStyle="bold" />
+
+
+
+</LinearLayout>
