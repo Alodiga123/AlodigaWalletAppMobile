@@ -1,0 +1,152 @@
+<resources>
+    <string name="app_name">Alodiga</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">Carroferta Media Group, C.A.</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Cerrar sesión</string>
+    <string name="transaction">Operaciones</string>
+    <string name="menu_buy">Comprar</string>
+    <string name="menu_qr">Mi QR</string>
+    <string name="menu_pay_invoice">Pagar Facturas</string>
+    <string name="menu_change_password">Cambiar Contraseña</string>
+    <string name="menu_answer_security">Preguntas de Seguridad</string>
+    <string name="menu_secret_text">Frase Secreta</string>
+    <string name="menu_pay_comerce">Pago QR Comercios</string>
+    <string name="menu_send_money">Enviar Dinero</string>
+    <string name="menu_convert">Convertir</string>
+    <string name="menu_recharge">Recargar</string>
+    <string name="menu_aoutMoney">Retirar</string>
+    <string name="menu_transfer">Transferir</string>
+    <string name="afiliation">Afiliar</string>
+    <string name="menu_send">Cerrar sesión</string>
+    <string name="email">Introduce E-mail</string>
+    <string name="closebutton">Close Button for Activity</string>
+    <string name="registered_emailid">Por favor ingrese correo electrónico registrado:</string>
+    <string name="register_phone_number_message">Ingrese su número de teléfono:</string>
+    <string name="register_select_country">Seleccione el país:</string>
+    <string name="register_validation_invalid_long">Número de teléfono no puede estar vacio</string>
+    <string name="register_validation_invalid_null_Pin">El código de validación no puede estar vacio</string>
+    <string name="register_validation_invalid_long_Pin">Longitud de código de validación inválido</string>
+    <string name="register_validation_mobile_code_not_match">Código de validación inválido, Intentos faltantes: </string>
+    <string name="register_validation_limit">Demasiados intentos, repita el proceso nuevamente</string>
+    <string name="register_time_finished">Se agoto el tiempo para ingresar código de validación</string>
+    <string name="login">Inicio</string>
+    <string name="submit">ENVIAR</string>
+    <string name="next">SIGUIENTE</string>
+    <string name="back">ATRAS</string>
+    <string name="signUp">REGÍSTRATE</string>
+    <string name="security_question">PREGUNTAS DE SEGURIDAD</string>
+    <string name="transference_title">TRANSFERENCIA</string>
+    <string name="qr_code_title">MI CODIGO QR</string>
+    <string name="confirmation_title">CONFIRMACION</string>
+    <string name="confirmation_title_successfull">TRANSACCION EXITOSA</string>
+    <string name="welcome">BIENVENIDO</string>
+    <string name="process">PROCESAR</string>
+    <string name="process_finished">FINALIZAR</string>
+    <string name="name">Nombre</string>
+    <string name="lastName">Apellido</string>
+    <string name="mobileNumber">Numero Celular</string>
+    <string name="location">Pais</string>
+    <string name="passowrd">Contraseña</string>
+    <string name="already_user">¿Ya tienes cuenta? Entre aquí.</string>
+    <string name="terms_conditions">Al hacer clic en Registrarse, usted acepta todos los Términos y Condiciones.</string>
+    <string name="confirmPassword">Confirme Contraseña</string>
+    <string name="pin">Clave de Operaciones</string>
+    <string name="Respuesta1">Respuesta 1</string>
+    <string name="Respuesta2">Respuesta 2</string>
+    <string name="Respuesta3">Respuesta 3</string>
+    <string name="show_pwd">Ver Contraseña</string>
+    <string name="hide_pwd">Esconder Contraseña</string>
+    <string name="forgot">Olvidó su contraseña?</string>
+    <string name="newUser">¿No eres miembro todavía? Registrate aquí.</string>
+    <string name="password_recent">Contraseña Reciente</string>
+    <string name="password_new">Contraseña Nueva</string>
+    <string name="password_confirm">Confirmar Contraseña</string>
+    <string name="process_change_password">Procesar Cambio</string>
+    <string name="editTextTelephone">N° Celular</string>
+    <string name="editTextIdentification">N° Cedula o RIF</string>
+    <string name="buttonProcesarPago">Procesar Pago</string>
+    <string name="txtIngrese">Ingrese los datos del Beneficiario: </string>
+    <string name="ingrese_monto_en_bs">Monto en Bs.</string>
+    <string name="ingrese_n_token">N° Token</string>
+    <string name="pin_text">Introduzca una clave de 4 digitos</string>
+    <string name="pin_text_received">Introduzca la clave recibida:</string>
+    <string name="counter_time">Tiempo restante:</string>
+
+
+
+    <string name="web_services_response_01">Datos invalidos</string>
+    <string name="web_services_response_03">Password expirado</string>
+    <string name="web_services_response_04">La IP no es de confianza</string>
+    <string name="web_services_response_05">Las credenciales son invalidas</string>
+    <string name="web_services_response_06">Usuario bloqueado</string>
+    <string name="web_services_response_07">Código de validación invalido</string>
+    <string name="web_services_response_08">Número de telefono ya existe, Esta asociado a otra cuenta</string>
+    <string name="web_services_response_09">Envio correo fallido</string>
+    <string name="web_services_response_10">Correo ya existe</string>
+    <string name="web_services_response_11">Datos nulos</string>
+    <string name="web_services_response_12">Primer ingreso</string>
+    <string name="web_services_response_14">EIN ya existe</string>
+    <string name="web_services_response_15">Federal tax ya existe</string>
+    <string name="web_services_response_17">Cuenta bancaria ya existe</string>
+    <string name="web_services_response_18">Generar código</string>
+    <string name="web_services_response_19">Token expirado</string>
+    <string name="web_services_response_20">Solicitud de tarjeta activa</string>
+    <string name="web_services_response_21">Afiliaciones maximas alcanzadas</string>
+    <string name="web_services_response_22">Usuario no tiene telefono</string>
+    <string name="web_services_response_94">Aplicacion no existe</string>
+    <string name="web_services_response_95">Usuario sospechos</string>
+    <string name="web_services_response_96">Usuario pendiente</string>
+    <string name="web_services_response_97">Usuario no existe</string>
+    <string name="web_services_response_98">Error de credenciales</string>
+    <string name="web_services_response_99">Error interno</string>
+    <string name="web_services_response_00">Bienvenido</string>
+
+    <string name="error_not_find_special_caracter">La contraseña debe tener caracteres especiales</string>
+    <string name="error_not_find_number">La contraseña debe tener al menos un numero</string>
+    <string name="error_not_find_lowercase_caracter">La contraseña debe tener minuscula</string>
+    <string name="error_not_find_uppercase_caracter">La contraseña debe tener mayuscula</string>
+    <string name="error_too_short_password">LA contraseña muy corto</string>
+    <string name="error_spaces">La contraseña no debe tener espacios</string>
+    <string name="password_secure">El password debe ser alfanumerico con caracteres especiales y mayuscula</string>
+    <string name="into">Presione aqui para ingresar</string>
+    <string name="welcome_register">¿Gracias por registrarse. Su registro se completo de forma satisfactoria. </string>
+    <string name="transference">Seleccione la moneda a transferir</string>
+    <string name="howtofindtransfer">Como quiere buscar usuario receptor?</string>
+    <string name="howtofindtransferComerce">Escanee el código QR del comercio!</string>
+    <string name="destination_name">Nombre:</string>
+    <string name="destination_lastName">Apellido:</string>
+    <string name="destination_phoe">Numero de Telefono:</string>
+    <string name="destination_cuenta">Numero de cuenta:</string>
+    <string name="destination_concept">Concepto:</string>
+    <string name="destination_amount">Monto:</string>
+    <string name="destination_transaction_id">Transacción:</string>
+    <string name="destination_date_time">Fecha:</string>
+    <string name="destination_source">Cuenta origen:</string>
+    <string name="destination_information">Información de la cuenta destino</string>
+    <string name="destination_information_comple">Complete información de pago </string>
+    <string name="destination_operatión_resum">Resumen de la operación</string>
+    <string name="insuficient_balance">Saldo insuficiente para completar la transacción</string>
+    <string name="destination_qr_code">Escanear Código QR</string>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</resources>

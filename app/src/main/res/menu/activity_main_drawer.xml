@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/menu_qr" />
+        <item
+            android:id="@+id/nav_recharge"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_recharge" />
+        <item
+            android:id="@+id/nav_Withdrawal"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_aoutMoney" />
+
+        <item
+            android:id="@+id/nav_convert"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_convert" />
+
+        <item
+            android:id="@+id/nav_Afiliation"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/afiliation" />
+
+        <item
+            android:id="@+id/nav_transfer"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_transfer" />
+
+
+    </group>
+
+    <item android:title="Adicionales">
+        <menu>
+
+            <item
+                android:id="@+id/nav_pay_qr"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="@string/menu_pay_comerce" />
+            <item
+                android:id="@+id/nav_send_money"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="@string/menu_send_money" />
+
+            <item
+                android:id="@+id/nav_pay_invoice"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="@string/menu_pay_invoice" />
+        </menu>
+    </item>
+
+
+    <item android:title="Seguridad">
+        <menu>
+
+            <item
+                android:id="@+id/nav_change_password"
+                android:icon="@drawable/ic_menu_send"
+                android:title="@string/menu_change_password" />
+            <item
+                android:id="@+id/nav_security_answer"
+                android:icon="@drawable/ic_menu_send"
+                android:title="@string/menu_answer_security" />
+            <item
+                android:id="@+id/nav_secret_frase"
+                android:icon="@drawable/ic_menu_send"
+                android:title="@string/menu_secret_text" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_menu_send"
+                android:title="@string/menu_send" />
+        </menu>
+    </item>
+
+</menu>
