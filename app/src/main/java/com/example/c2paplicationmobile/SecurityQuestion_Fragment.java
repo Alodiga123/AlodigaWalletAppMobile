@@ -85,6 +85,7 @@ public class SecurityQuestion_Fragment extends Fragment implements
 		switch (v.getId()) {
 			case R.id.backToLoginBtn:
 				// Replace Login Fragment on Back Presses
+				Session.clearALL();
 				new LoginActivity().replaceLoginFragment();
 				break;
 
@@ -280,11 +281,11 @@ public class SecurityQuestion_Fragment extends Fragment implements
 						//Toast.makeText(getContext(),"spinnerAnswer2",Toast.LENGTH_SHORT).show();
 						ObjGenericObject object = (ObjGenericObject) spinnerAnswer2.getSelectedItem();
 						ObjGenericObject object2 = (ObjGenericObject) spinnerAnswer1.getSelectedItem();
-						Toast.makeText(getContext(),"id"+object.getId()+"",Toast.LENGTH_SHORT).show();
+						//Toast.makeText(getContext(),"id"+object.getId()+"",Toast.LENGTH_SHORT).show();
 
 
 						List<ObjGenericObject> securityAnswersk = getParseResponse(stringResponse,object.getId(),object2.getId());
-						
+
 						final ObjGenericObject[] objsecurityAnswerk = new ObjGenericObject[securityAnswersk.size()];
 						for(int j = 0;j<securityAnswersk.size();j++){
 							objsecurityAnswerk[j] = new ObjGenericObject(securityAnswersk.get(j).getName(),securityAnswersk.get(j).getId());
