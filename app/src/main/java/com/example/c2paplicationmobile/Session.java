@@ -26,6 +26,8 @@ public  class Session {
     private static String getDestinationAmount = "";
     private static String usuarioDestionId = "";
     private static String mobileCodeSms;
+    private static Integer moneySelected = 0 ;
+
 
     public static String getMobileCodeSms() {
         return mobileCodeSms;
@@ -58,8 +60,6 @@ public  class Session {
     public static void setGetDestinationAmount(String getDestinationAmount) {
         Session.getDestinationAmount = getDestinationAmount;
     }
-
-    private static Integer moneySelected = 0 ;
 
     public static Integer getMoneySelected() {
         return moneySelected;
@@ -173,5 +173,25 @@ public  class Session {
         DestinationNameValue = destinationNameValue;
     }
 
+    public static void clearALL(){
+        Session.userId = null;
+        Session.username = null;
+        Session.email = null;
+        Session.phoneNumber = null;
+        Session.country = null;
+        Session.accountNumber = null;
+        Session.alocoinsBalance = null;
+        Session.alodigaBalance = null;
+        Session.HealthCareCoinsBalance = null;
+        Session.destinationAccountNumber = null;
+        Session.destinationPhoneValue = null;
+        Session.destinationLastNameValue = null;
+        Session.DestinationNameValue = null;
+        Session.destinationConcept = null;
+        Session.getDestinationAmount = null;
+        Session.usuarioDestionId = null;
+        Session.mobileCodeSms= null;
+        Session.moneySelected = 0;
+    }
 
 }
