@@ -17,9 +17,7 @@
         android:text="@string/security_question"
         android:textColor="@color/background_color"
         android:textSize="25sp"
-        android:textStyle="bold" />
-
-
+        android:textStyle="bold"   />
 
     <TextView
         android:layout_width="fill_parent"
@@ -43,7 +41,6 @@
         android:drawablePadding="8dp"
         android:gravity="center_vertical"
         android:inputType="phone"
-        android:padding="10dp"
         android:singleLine="true"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
@@ -81,7 +78,6 @@
         android:drawablePadding="8dp"
         android:gravity="center_vertical"
         android:inputType="phone"
-        android:padding="10dp"
         android:singleLine="true"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
@@ -120,7 +116,6 @@
         android:drawablePadding="8dp"
         android:gravity="center_vertical"
         android:inputType="phone"
-        android:padding="10dp"
         android:singleLine="true"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
@@ -148,6 +143,7 @@
         android:layout_width="fill_parent"
         android:layout_height="1px"
         android:background="@color/white_greyish" />
+
 
     <RelativeLayout
         android:layout_width="fill_parent"
