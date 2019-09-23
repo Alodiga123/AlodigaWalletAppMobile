@@ -74,6 +74,8 @@
     <string name="pin_text">Introduzca una clave de 4 digitos</string>
     <string name="pin_text_received">Introduzca la clave recibida:</string>
     <string name="counter_time">Tiempo restante:</string>
+    <string name="security_question_info">Por favor ingrese las preguntas de seguridad</string>
+    <string name="invalid_all_question">Todos los campos son requeridos</string>
 
 
 
