@@ -1,53 +1,31 @@
 package com.example.c2paplicationmobile;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
-import android.content.Intent;
-import android.content.res.ColorStateList;
-import android.content.res.XmlResourceParser;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.SystemClock;
-import android.text.InputType;
-import android.text.method.HideReturnsTransformationMethod;
-import android.text.method.PasswordTransformationMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.Chronometer;
-import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import org.ksoap2.serialization.SoapObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class SecurityQuestion_Fragment extends Fragment implements
 		OnClickListener {
 	private static View view;
 	private static EditText edtAnswer1, edtAnswer2,edtAnswer3;
 	private static TextView textAnswer1,textAnswer2,textAnswer3 ;
+	private static String getedtAnswer1, getedtAnswer2, getedtAnswer3;
 	private static TextView submit, back;
 	private static Spinner spinnerAnswer1;
 	private static Spinner spinnerAnswer2;
@@ -56,6 +34,8 @@ public class SecurityQuestion_Fragment extends Fragment implements
 	private String responsetxt = "";
 	private boolean serviceStatus;
 	private SecurityQuestion_Fragment.UserGetSecurityAnswerTask mAuthTask = null;
+	//private SecurityQuestion_Fragment.UserSendAnswerTask AnswerTask = null;
+
 	private ObjGenericObject select1;
 	private ObjGenericObject select2;
 	static ProgressDialogAlodiga progressDialogAlodiga;
@@ -90,16 +70,7 @@ public class SecurityQuestion_Fragment extends Fragment implements
 		edtAnswer2 = (EditText) view.findViewById(R.id.edtAnswer2);
 		edtAnswer3 = (EditText) view.findViewById(R.id.edtAnswer3);
 
-
-		Toast.makeText(getContext(),"antes",Toast.LENGTH_SHORT).show();
-
-
-
-
-
-
-
-
+		//Toast.makeText(getContext(),"antes",Toast.LENGTH_SHORT).show();
 	}
 
 
@@ -123,10 +94,34 @@ public class SecurityQuestion_Fragment extends Fragment implements
 		}
 	}
 
+
+/*	public void sendAnswer(){
+		progressDialogAlodiga = new ProgressDialogAlodiga(getContext(),"cargando..");
+		progressDialogAlodiga.show();
+		AnswerTask = new UserSendAnswerTask();
+		AnswerTask.execute((Void) null);
+
+	}*/
+
 	private void submitButtonTask() {
+		getedtAnswer1 = edtAnswer1.getText().toString();
+		getedtAnswer2 = edtAnswer2.getText().toString();
+		getedtAnswer3 = edtAnswer3.getText().toString();
 
+		// Check if all strings are null or not
+		if (getedtAnswer1.equals("") || getedtAnswer1.length() == 0
+				|| getedtAnswer2.equals("") || getedtAnswer2.length() == 0
+				|| getedtAnswer3.equals("") || getedtAnswer3.length() == 0
+		) {
+			new CustomToast().Show_Toast(getActivity(), view, getString(R.string.invalid_all_question));
 
-	}
+			// Else do signup or do your stuff
+		}else {
+			new CustomToast().Show_Toast(getActivity(), view, getString(R.string.web_services_response_00));
+			//sendAnswer();
+		}
+
+}
 
 
 	public class UserGetSecurityAnswerTask extends AsyncTask<Void, Void, Boolean> {
@@ -256,11 +251,11 @@ public class SecurityQuestion_Fragment extends Fragment implements
 
 				spinnerAnswer1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 					public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-						Toast.makeText(getContext(),"spinnerAnswer1",Toast.LENGTH_SHORT).show();
+						//Toast.makeText(getContext(),"spinnerAnswer1",Toast.LENGTH_SHORT).show();
 
 						ObjGenericObject object = (ObjGenericObject) spinnerAnswer1.getSelectedItem();
 
-						Toast.makeText(getContext(),"id"+object.getId()+"",Toast.LENGTH_SHORT).show();
+						//Toast.makeText(getContext(),"id"+object.getId()+"",Toast.LENGTH_SHORT).show();
 
 						List<ObjGenericObject> securityAnswersk = getParseResponse(stringResponse,object.getId());
 
@@ -282,15 +277,14 @@ public class SecurityQuestion_Fragment extends Fragment implements
 				spinnerAnswer2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 					public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-						Toast.makeText(getContext(),"spinnerAnswer2",Toast.LENGTH_SHORT).show();
+						//Toast.makeText(getContext(),"spinnerAnswer2",Toast.LENGTH_SHORT).show();
 						ObjGenericObject object = (ObjGenericObject) spinnerAnswer2.getSelectedItem();
 						ObjGenericObject object2 = (ObjGenericObject) spinnerAnswer1.getSelectedItem();
 						Toast.makeText(getContext(),"id"+object.getId()+"",Toast.LENGTH_SHORT).show();
 
 
 						List<ObjGenericObject> securityAnswersk = getParseResponse(stringResponse,object.getId(),object2.getId());
-
-
+						
 						final ObjGenericObject[] objsecurityAnswerk = new ObjGenericObject[securityAnswersk.size()];
 						for(int j = 0;j<securityAnswersk.size();j++){
 							objsecurityAnswerk[j] = new ObjGenericObject(securityAnswersk.get(j).getName(),securityAnswersk.get(j).getId());
@@ -298,11 +292,6 @@ public class SecurityQuestion_Fragment extends Fragment implements
 						SpinAdapterSecurityAnswer spinAdapterSecurityAnswer2;
 						spinAdapterSecurityAnswer2 = new SpinAdapterSecurityAnswer(getContext(), android.R.layout.simple_spinner_item, objsecurityAnswerk);
 						spinnerAnswer3.setAdapter(spinAdapterSecurityAnswer2);
-
-
-
-
-
 
 					}
 					public void onNothingSelected(AdapterView<?> adapterView) {
@@ -391,6 +380,145 @@ public class SecurityQuestion_Fragment extends Fragment implements
 		return (v.split("pregunta=").length);
 	}
 
+
+
+
+/*	public class UserSendAnswerTask extends AsyncTask<Void, Void, Boolean> {
+
+		@Override
+		protected Boolean doInBackground(Void... params) {
+
+			WebService webService = new WebService();
+			Utils utils = new Utils();
+			SoapObject response;
+			try {
+				String responseCode;
+				String responseMessage = "";
+
+
+				HashMap<String,String > map = new HashMap<String,String>();
+				map.put("usuarioApi",Constants.WEB_SERVICES_USUARIOWS);
+				map.put("passwordApi",Constants.WEB_SERVICES_PASSWORDWS);
+				//map.put("movil",processPhone(phone));
+
+
+				response = webService.invokeGetAutoConfigString(map,Constants.WEB_SERVICES_METHOD_NAME_SEND_CODE_SMS);
+				responseCode = response.getProperty("codigoRespuesta").toString();
+				responseMessage = response.getProperty("mensajeRespuesta").toString();
+
+
+				if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO))
+				{
+
+					//movilCode = response.getProperty("datosRespuesta").toString();
+					responsetxt = getString(R.string.web_services_response_00);
+					serviceStatus = true;
+					return serviceStatus;
+
+				}
+				else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_DATOS_INVALIDOS))
+				{
+					responsetxt = getString(R.string.web_services_response_01);
+					serviceStatus = false;
+
+				} else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CONTRASENIA_EXPIRADA))
+				{
+					responsetxt = getString(R.string.web_services_response_03);
+					serviceStatus = false;
+				}
+				else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_IP_NO_CONFIANZA))
+				{
+					responsetxt = getString(R.string.web_services_response_04);
+					serviceStatus = false;
+				}
+				else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CREDENCIALES_INVALIDAS))
+				{
+					responsetxt = getString(R.string.web_services_response_05);
+					serviceStatus = false;
+				}
+				else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_BLOQUEADO))
+				{
+					responsetxt = getString(R.string.web_services_response_06);
+					serviceStatus = false;
+				}
+				else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_NUMERO_TELEFONO_YA_EXISTE))
+				{
+					responsetxt = getString(R.string.web_services_response_08);
+					serviceStatus = false;
+				}
+				else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_PRIMER_INGRESO))
+				{
+					responsetxt = getString(R.string.web_services_response_12);
+					serviceStatus = false;
+				}
+				else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_SOSPECHOSO))
+				{
+					responsetxt = getString(R.string.web_services_response_95);
+					serviceStatus = false;
+				}else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_PENDIENTE))
+				{
+					responsetxt = getString(R.string.web_services_response_96);
+					serviceStatus = false;
+				}else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_NO_EXISTE))
+				{
+					responsetxt = getString(R.string.web_services_response_97);
+					serviceStatus = false;
+				}else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_CREDENCIALES))
+				{
+					responsetxt = getString(R.string.web_services_response_98);
+					serviceStatus = false;
+				}else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_INTERNO))
+				{
+					responsetxt = getString(R.string.web_services_response_99);
+					serviceStatus = false;
+				}
+				//progressDialogAlodiga.dismiss();
+			} catch (IllegalArgumentException e)
+			{
+				e.printStackTrace();
+				System.err.println(e);
+				return false;
+			} catch (Exception e)
+			{
+				e.printStackTrace();
+				System.err.println(e);
+				return false;
+			}
+			return serviceStatus;
+
+		}
+
+		@Override
+		protected void onPostExecute(final Boolean success) {
+			mAuthTask = null;
+			//showProgress(false);
+			if (success) {
+				//Session.setMobileCodeSms(movilCode);
+				//Session.setPhoneNumber(getMobileNumber);
+				getFragmentManager()
+						.beginTransaction()
+						.setCustomAnimations(R.anim.left_enter, R.anim.right_out)
+						//.replace(R.id.frameContainer, new Welcome_Fragment(),
+						.replace(R.id.frameContainer, new RegisterStep2_Fragment(),
+
+								//Utils.Welcome_Fragment).commit();
+								Utils.register_step2_Fragment).commit();
+
+				//new CustomToast().Show_Toast(getActivity(), view,
+				//		responsetxt);
+
+			} else {
+				new CustomToast().Show_Toast(getActivity(), view,
+						responsetxt);
+			}
+			progressDialogAlodiga.dismiss();
+		}
+
+		@Override
+		protected void onCancelled() {
+			mAuthTask = null;
+		}
+	}*/
 
 
 
