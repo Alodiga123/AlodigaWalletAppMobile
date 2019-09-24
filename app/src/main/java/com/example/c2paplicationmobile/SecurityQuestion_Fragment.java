@@ -11,7 +11,6 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -125,9 +124,20 @@ public class SecurityQuestion_Fragment extends Fragment implements
 
 			// Else do signup or do your stuff
 		}else {
-			new CustomToast().Show_Toast(getActivity(), view, getString(R.string.web_services_response_00));
+			//new CustomToast().Show_Toast(getActivity(), view, getString(R.string.web_services_response_00));
 
+			/*Intent intent = new Intent(getActivity(), Welcome_Secure_Fragment.class);
+			getActivity().startActivity(intent);*/
 			sendAnswer();
+
+			/*getFragmentManager()
+					.beginTransaction()
+					.setCustomAnimations(R.anim.left_enter, R.anim.right_out)
+					//.replace(R.id.frameContainer, new Welcome_Fragment(),
+					.replace(R.id.frameContainer, new Welcome_Secure_Fragment(),
+
+							//Utils.Welcome_Fragment).commit();
+							Utils.Welcome_Secure_Fragment).commit();*/
 		}
 
 }
@@ -497,8 +507,17 @@ public class SecurityQuestion_Fragment extends Fragment implements
 				//Session.setMobileCodeSms(movilCode);
 				//Session.setPhoneNumber(getMobileNumber);
 
-				Intent intent = new Intent(getActivity(),MainActivity.class);
-				getActivity().startActivity(intent);
+				/*Intent intent = new Intent(getActivity(), MainActivity.class);
+				getActivity().startActivity(intent);*/
+				getFragmentManager()
+						.beginTransaction()
+						.setCustomAnimations(R.anim.left_enter, R.anim.right_out)
+						//.replace(R.id.frameContainer, new Welcome_Fragment(),
+						.replace(R.id.frameContainer, new Welcome_Secure_Fragment(),
+
+								//Utils.Welcome_Fragment).commit();
+								Utils.Welcome_Secure_Fragment).commit();
+
 
 				//new CustomToast().Show_Toast(getActivity(), view,
 				//		responsetxt);
