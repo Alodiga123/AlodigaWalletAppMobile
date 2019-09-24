@@ -106,9 +106,12 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 			signUp.setTextColor(csl);
 		} catch (Exception e) {
 		}
-
-		emailid.setText("antonioarcangelgomez@gmail.com");
-		password.setText("Kg0m3z$11");
+		/*emailid.setText("antonioarcangelgomez@gmail.com");
+		password.setText("Kg0m3z$11");*/
+		/*emailid.setText("moisegrat12@gmail.com");
+		password.setText("Danye852#");*/
+		emailid.setText("adira0411@gmail.com");
+		password.setText("Alodiga456&");
 	}
 
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
@@ -336,6 +339,16 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 				}
 				else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_PRIMER_INGRESO))
 				{
+
+					String res =  response.getProperty("datosRespuesta").toString();
+					nameSession = getValueFromResponseJson("nombre",res) + " "+getValueFromResponseJson("apellido",res);
+					phoneNumberSession = getValueFromResponseJson("movil",res);
+					emailSession = getValueFromResponseJson("email",res);
+					alodigaBalanceSession = getValueFromResponseJson("saldoAlodiga",res);
+					accountNumberSession = getValueFromResponseJson("numeroCuenta",res);
+					alocoinsBalanceSesssion = getValueFromResponseJson("saldoAlocoins",res);
+					healthCareCoinsBalanceSession = getValueFromResponseJson("saldoHealthCareCoins",res);
+					userId = getValueFromResponseJson("UsuarioID",res);
 					responsetxt = getString(R.string.web_services_response_12);
 					isFirstAccess = true;
 					serviceStatus = false;
@@ -395,6 +408,16 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 				Intent intent = new Intent(getActivity(),MainActivity.class);
 				getActivity().startActivity(intent);
 			} else  if(isFirstAccess){
+
+				Session.setUsername(nameSession);
+				Session.setPhoneNumber(phoneNumberSession);
+				Session.setEmail(emailSession);
+				Session.setAlodigaBalance(alodigaBalanceSession);
+				Session.setAccountNumber(accountNumberSession);
+				Session.setAlocoinsBalance(alocoinsBalanceSesssion);
+				Session.setUserId(userId);
+				Session.setHealthCareCoinsBalance(healthCareCoinsBalanceSession);
+
 				fragmentManager
 						.beginTransaction()
 						.setCustomAnimations(R.anim.right_enter, R.anim.left_out)
