@@ -117,7 +117,7 @@
     <string name="error_not_find_number">La contraseña debe tener al menos un numero</string>
     <string name="error_not_find_lowercase_caracter">La contraseña debe tener minuscula</string>
     <string name="error_not_find_uppercase_caracter">La contraseña debe tener mayuscula</string>
-    <string name="error_too_short_password">LA contraseña muy corto</string>
+    <string name="error_too_short_password">La contraseña muy corto</string>
     <string name="error_spaces">La contraseña no debe tener espacios</string>
     <string name="password_secure">El password debe ser alfanumerico con caracteres especiales y mayuscula</string>
     <string name="into">Presione aqui para ingresar</string>
@@ -139,6 +139,8 @@
     <string name="destination_operatión_resum">Resumen de la operación</string>
     <string name="insuficient_balance">Saldo insuficiente para completar la transacción</string>
     <string name="destination_qr_code">Escanear Código QR</string>
+    <string name="welcome_secure_answer">Las preguntas de seguridad han sido registradas satisfactoriamente </string>
+
 
 
 
