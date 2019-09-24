@@ -105,6 +105,7 @@ public class  Constants {
     public static final String WEB_SERVICES_METHOD_NAME_SEND_CODE_SMS = "generarCodigoMovilSMS";
     public static final String WEB_SERVICES_METHOD_NAME_LOGIN_APP_MOBILE = "loginAplicacionMovil";
     public static final String WEB_SERVICES_METHOD_NAME_SECRET_AMSWER = "getPreguntasSecretas";
+    public static final String WEB_SERVICES_METHOD_NAME_SEND_SECRET_AMSWER = "setPreguntasSecretasUsuarioAplicacionMovil";
 
 
 
