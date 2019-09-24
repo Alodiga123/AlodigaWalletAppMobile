@@ -1,5 +1,6 @@
 package com.example.c2paplicationmobile;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -34,12 +35,12 @@ public class SecurityQuestion_Fragment extends Fragment implements
 	private String responsetxt = "";
 	private boolean serviceStatus;
 	private SecurityQuestion_Fragment.UserGetSecurityAnswerTask mAuthTask = null;
-	//private SecurityQuestion_Fragment.UserSendAnswerTask AnswerTask = null;
-
+	private SecurityQuestion_Fragment.UserSendAnswerTask AnswerTask = null;
+	private String selec_spinnerAnswer1,selec_spinnerAnswer2,selec_spinnerAnswer3;
 	private ObjGenericObject select1;
 	private ObjGenericObject select2;
 	static ProgressDialogAlodiga progressDialogAlodiga;
-
+	private ObjGenericObject object_select,object2_select ,object3_select;
 
 
 
@@ -61,6 +62,8 @@ public class SecurityQuestion_Fragment extends Fragment implements
 		mAuthTask.execute((Void) null);
 		submit = (TextView) view.findViewById(R.id.step1_next_button);
 		back = (TextView) view.findViewById(R.id.backToLoginBtn);
+
+
 
 		spinnerAnswer1 = (Spinner) view.findViewById(R.id.spinnerAnswer1);
 		spinnerAnswer2 = (Spinner) view.findViewById(R.id.spinnerAnswer2);
@@ -96,18 +99,22 @@ public class SecurityQuestion_Fragment extends Fragment implements
 	}
 
 
-/*	public void sendAnswer(){
+	public void sendAnswer(){
 		progressDialogAlodiga = new ProgressDialogAlodiga(getContext(),"cargando..");
 		progressDialogAlodiga.show();
 		AnswerTask = new UserSendAnswerTask();
 		AnswerTask.execute((Void) null);
 
-	}*/
+	}
 
 	private void submitButtonTask() {
 		getedtAnswer1 = edtAnswer1.getText().toString();
 		getedtAnswer2 = edtAnswer2.getText().toString();
 		getedtAnswer3 = edtAnswer3.getText().toString();
+
+		object_select = (ObjGenericObject) spinnerAnswer1.getSelectedItem();
+		object2_select = (ObjGenericObject) spinnerAnswer2.getSelectedItem();
+		object3_select = (ObjGenericObject) spinnerAnswer3.getSelectedItem();
 
 		// Check if all strings are null or not
 		if (getedtAnswer1.equals("") || getedtAnswer1.length() == 0
@@ -119,7 +126,8 @@ public class SecurityQuestion_Fragment extends Fragment implements
 			// Else do signup or do your stuff
 		}else {
 			new CustomToast().Show_Toast(getActivity(), view, getString(R.string.web_services_response_00));
-			//sendAnswer();
+
+			sendAnswer();
 		}
 
 }
@@ -301,20 +309,6 @@ public class SecurityQuestion_Fragment extends Fragment implements
 				});
 
 
-
-
-
-
-
-			/*	getFragmentManager()
-						.beginTransaction()
-						.setCustomAnimations(R.anim.left_enter, R.anim.right_out)
-						//.replace(R.id.frameContainer, new Welcome_Fragment(),
-						.replace(R.id.frameContainer, new RegisterStep2_Fragment(),
-
-								//Utils.Welcome_Fragment).commit();
-								Utils.register_step2_Fragment).commit();*/
-
 			} else {
 				new CustomToast().Show_Toast(getActivity(), view,
 						responsetxt);
@@ -384,7 +378,7 @@ public class SecurityQuestion_Fragment extends Fragment implements
 
 
 
-/*	public class UserSendAnswerTask extends AsyncTask<Void, Void, Boolean> {
+	public class UserSendAnswerTask extends AsyncTask<Void, Void, Boolean> {
 
 		@Override
 		protected Boolean doInBackground(Void... params) {
@@ -397,13 +391,19 @@ public class SecurityQuestion_Fragment extends Fragment implements
 				String responseMessage = "";
 
 
+
 				HashMap<String,String > map = new HashMap<String,String>();
 				map.put("usuarioApi",Constants.WEB_SERVICES_USUARIOWS);
 				map.put("passwordApi",Constants.WEB_SERVICES_PASSWORDWS);
-				//map.put("movil",processPhone(phone));
+				map.put("usuarioId",Session.getUserId());
+				map.put("preguntaId1",object_select.getId());
+				map.put("repuestaId1",getedtAnswer1);
+				map.put("preguntaId2",object2_select.getId());
+				map.put("repuestaId2",getedtAnswer2);
+				map.put("preguntaId3",object3_select.getId());
+				map.put("repuestaId3",getedtAnswer2);
 
-
-				response = webService.invokeGetAutoConfigString(map,Constants.WEB_SERVICES_METHOD_NAME_SEND_CODE_SMS);
+				response = webService.invokeGetAutoConfigString(map,Constants.WEB_SERVICES_METHOD_NAME_SEND_SECRET_AMSWER);
 				responseCode = response.getProperty("codigoRespuesta").toString();
 				responseMessage = response.getProperty("mensajeRespuesta").toString();
 
@@ -491,19 +491,14 @@ public class SecurityQuestion_Fragment extends Fragment implements
 
 		@Override
 		protected void onPostExecute(final Boolean success) {
-			mAuthTask = null;
+			AnswerTask = null;
 			//showProgress(false);
 			if (success) {
 				//Session.setMobileCodeSms(movilCode);
 				//Session.setPhoneNumber(getMobileNumber);
-				getFragmentManager()
-						.beginTransaction()
-						.setCustomAnimations(R.anim.left_enter, R.anim.right_out)
-						//.replace(R.id.frameContainer, new Welcome_Fragment(),
-						.replace(R.id.frameContainer, new RegisterStep2_Fragment(),
 
-								//Utils.Welcome_Fragment).commit();
-								Utils.register_step2_Fragment).commit();
+				Intent intent = new Intent(getActivity(),MainActivity.class);
+				getActivity().startActivity(intent);
 
 				//new CustomToast().Show_Toast(getActivity(), view,
 				//		responsetxt);
@@ -517,9 +512,9 @@ public class SecurityQuestion_Fragment extends Fragment implements
 
 		@Override
 		protected void onCancelled() {
-			mAuthTask = null;
+			AnswerTask = null;
 		}
-	}*/
+	}
 
 
 
