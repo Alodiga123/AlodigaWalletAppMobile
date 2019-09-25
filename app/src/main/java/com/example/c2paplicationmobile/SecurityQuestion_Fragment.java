@@ -411,7 +411,7 @@ public class SecurityQuestion_Fragment extends Fragment implements
 				map.put("preguntaId2",object2_select.getId());
 				map.put("repuestaId2",getedtAnswer2);
 				map.put("preguntaId3",object3_select.getId());
-				map.put("repuestaId3",getedtAnswer2);
+				map.put("repuestaId3",getedtAnswer3);
 
 				response = webService.invokeGetAutoConfigString(map,Constants.WEB_SERVICES_METHOD_NAME_SEND_SECRET_AMSWER);
 				responseCode = response.getProperty("codigoRespuesta").toString();
