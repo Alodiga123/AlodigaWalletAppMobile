@@ -296,7 +296,7 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 				responseCode = response.getProperty("codigoRespuesta").toString();
 				responseMessage = response.getProperty("mensajeRespuesta").toString();
 
-				if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO))
+				if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO) || responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_PRIMER_INGRESO))
 				{
 					 String res =  response.getProperty("datosRespuesta").toString();
 					 nameSession = getValueFromResponseJson("nombre",res) + " "+getValueFromResponseJson("apellido",res);
@@ -308,9 +308,16 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 					 healthCareCoinsBalanceSession = getValueFromResponseJson("saldoHealthCareCoins",res);
 					 userId = getValueFromResponseJson("UsuarioID",res);
 
-					responsetxt = getString(R.string.web_services_response_00);
-					serviceStatus = true;
-					return serviceStatus;
+					if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)){
+						responsetxt = getString(R.string.web_services_response_00);
+						serviceStatus = true;
+						return serviceStatus;}else
+					{
+						responsetxt = getString(R.string.web_services_response_12);
+						isFirstAccess = true;
+						serviceStatus = false;
+					}
+
 				}
 				else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_DATOS_INVALIDOS))
 				{
@@ -337,22 +344,7 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 					responsetxt = getString(R.string.web_services_response_06);
 					serviceStatus = false;
 				}
-				else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_PRIMER_INGRESO))
-				{
 
-					String res =  response.getProperty("datosRespuesta").toString();
-					nameSession = getValueFromResponseJson("nombre",res) + " "+getValueFromResponseJson("apellido",res);
-					phoneNumberSession = getValueFromResponseJson("movil",res);
-					emailSession = getValueFromResponseJson("email",res);
-					alodigaBalanceSession = getValueFromResponseJson("saldoAlodiga",res);
-					accountNumberSession = getValueFromResponseJson("numeroCuenta",res);
-					alocoinsBalanceSesssion = getValueFromResponseJson("saldoAlocoins",res);
-					healthCareCoinsBalanceSession = getValueFromResponseJson("saldoHealthCareCoins",res);
-					userId = getValueFromResponseJson("UsuarioID",res);
-					responsetxt = getString(R.string.web_services_response_12);
-					isFirstAccess = true;
-					serviceStatus = false;
-				}
 				else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_SOSPECHOSO))
 				{
 					responsetxt = getString(R.string.web_services_response_95);
