@@ -41,6 +41,7 @@
     <string name="transference_title">TRANSFERENCIA</string>
     <string name="qr_code_title">MI CODIGO QR</string>
     <string name="confirmation_title">CONFIRMACION</string>
+    <string name="last_operation_title">ULTIMOS MOVIMIENTOS</string>
     <string name="confirmation_title_successfull">TRANSACCION EXITOSA</string>
     <string name="welcome">BIENVENIDO</string>
     <string name="process">PROCESAR</string>
@@ -144,6 +145,7 @@
 
 
 
+    <string name="they_are_not_transactions">No hay operaciones disponibles</string>
 
 
 

@@ -46,11 +46,14 @@
                 android:id="@+id/nav_send_money"
                 android:icon="@drawable/ic_menu_slideshow"
                 android:title="@string/menu_send_money" />
-
             <item
                 android:id="@+id/nav_pay_invoice"
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="@string/menu_pay_invoice" />
+            <item
+                android:id="@+id/nav_last_activity"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="@string/menu_last_activity" />
         </menu>
     </item>
 
