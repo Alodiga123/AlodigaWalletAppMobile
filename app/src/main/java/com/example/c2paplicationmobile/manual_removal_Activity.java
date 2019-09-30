@@ -11,7 +11,7 @@ import org.ksoap2.serialization.SoapObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Recharge_notification_Activity extends AppCompatActivity {
+public class manual_removal_Activity extends AppCompatActivity {
 
     private Spinner spinnerbank;
     private static String stringResponse = "";
@@ -30,7 +30,7 @@ public class Recharge_notification_Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.recharge_layout);
+        setContentView(R.layout.manual_removal_layout);
         progressDialogAlodiga = new ProgressDialogAlodiga(this,"cargando..");
         progressDialogAlodiga.show();
 
@@ -198,11 +198,11 @@ public class Recharge_notification_Activity extends AppCompatActivity {
 
         for(int i=3; i<banks.getPropertyCount(); i++)
     {
-        SoapObject obj= (SoapObject) banks.getProperty(i);
-        String propiedad=banks.getProperty(i).toString();
+        SoapObject obj = (SoapObject) banks.getProperty(i);
+        String propiedad = banks.getProperty(i).toString();
         ObjBank bank= new ObjBank(obj.getProperty("id").toString(),obj.getProperty("name").toString());
         //Listbank.add(bank);
-        obj2[i-3]=bank;
+        obj2[i-3] = bank;
     }
 
     return obj2;
