@@ -14,20 +14,31 @@ import java.util.Map;
 
 public class WebService {
 
-	public static SoapObject invokeGetAutoConfigString(HashMap<String,String> map, String webMethName) {
+	public static SoapObject invokeGetAutoConfigString(HashMap<String,String> map, String webMethName,String namespace) {
 		SoapObject response = null;
 		// Create request
-		SoapObject request = new SoapObject(Constants.CONSTANT_NAMESPACE, webMethName);
+		SoapObject request;
+
+	 				if (namespace==Constants.ALODIGA)
+	 					request = new SoapObject(Constants.CONSTANT_NAMESPACE_QA_ALODIGA, webMethName);
+					else
+						request = new SoapObject(Constants.CONSTANT_NAMESPACE_QA_REGISTRO_UNIFICADO, webMethName);
+
+
+
+
 		// Property which holds input parameters
+		if (!map.isEmpty()){
 		for (Map.Entry<String, String> entry : map.entrySet()) {
 			PropertyInfo propInfo = new PropertyInfo();
 			propInfo.name=entry.getKey();
 			propInfo.type= PropertyInfo.STRING_CLASS;
 			request.addProperty(propInfo, entry.getValue());
 		}
+		}
 		SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
 		envelope.setOutputSoapObject(request);
-		String url = Utils.getUrl().trim();
+		String url = Utils.getUrl(namespace).trim();
 		HttpTransportSE androidHttpTransport = new HttpTransportSE(url);
 		try {
 			androidHttpTransport.call("", envelope);
