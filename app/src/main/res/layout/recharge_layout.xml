@@ -44,24 +44,28 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            android:padding="10dp"
             android:background="@android:color/transparent"
             android:gravity="center_vertical"
             android:inputType="phone"
             android:singleLine="true"
             android:textColor="@color/white"
-            android:textColorHint="@color/white"
+            android:textColorHint="@color/white_greyish"
             android:textSize="16sp" />
 
         <View
             android:layout_width="fill_parent"
             android:layout_height="2px"
-            android:background="@color/white_greyish" />
-
+            android:background="@color/white" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:background="@color/white" />
 
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
+            android:padding="11dp"
             android:text="@string/recharge_id"
             android:textColor="@color/white_greyish"
             android:textSize="16sp" />
@@ -83,8 +87,12 @@
 
         <View
             android:layout_width="fill_parent"
-            android:layout_height="2px"
-            android:background="@color/white_greyish" />
+            android:layout_height="1px"
+            android:background="@color/white" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:background="@color/white" />
 
 
 
@@ -106,18 +114,21 @@
             android:gravity="center_vertical"
             android:hint="@string/amount"
             android:inputType="textCapWords"
-            android:maxLength="35"
-            android:padding="10dp"
+            android:padding="12dp"
             android:singleLine="true"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
             android:textSize="16sp" />
 
+
         <View
             android:layout_width="fill_parent"
             android:layout_height="1px"
-            android:background="@color/white_greyish" />
-
+            android:background="@color/white" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:background="@color/white" />
 
         <Button
             android:id="@+id/signFind"
@@ -125,7 +136,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:background="@drawable/loginbutton_selector"
-            android:padding="3dp"
+            android:padding="12dp"
             android:text="@string/buttonProcesarRecarga"
             android:textColor="@color/background_color"
             android:textSize="17sp"
