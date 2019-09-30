@@ -149,9 +149,19 @@ public class Utils {
 		toast.show();
 	}
 
-	public static String getUrl(){
+	/*public static String getUrl(){
 		return Constants.CONSTANT_IS_PRODUCTION ?  Constants.CONSTANT_SECURE_URL : Constants.CONSTANT_URL_PROD ;
+	}*/
+	public static String getUrl(String namespace){
+
+	if(Constants.ALODIGA==namespace)
+		return Constants.CONSTANT_IS_PRODUCTION ?  Constants.CONSTANT_URL_PROD: Constants.CONSTANT_URL_QA_ALODIGA;
+	else
+		return Constants.CONSTANT_IS_PRODUCTION ? Constants.CONSTANT_URL_PROD:  Constants.CONSTANT_URL_QA_REGISTRO_UNIFICADO;
+
 	}
+
+
 
 	public static String processPetition(SoapObject request, String url) throws Exception
 	{
