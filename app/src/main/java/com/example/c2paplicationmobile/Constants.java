@@ -16,6 +16,12 @@ public class  Constants {
     public static final String  CONSTANT_SECURE_URL = "http://192.168.3.20:8080/RegistroUnificado/APIRegistroUnificadoService";
 
 
+
+   //Alodiga Eallet
+    public static final String  CONSTANT_URL_PROD_ALODIGA_WALLET = "http://192.168.3.20:8080/AlodigaWallet/APIAlodigaWalletService";
+    public static final String  CONSTANT_SECURE_URL_ALODIGA_WALLET = "http://192.168.3.20:8080/AlodigaWallet/APIAlodigaWalletService";
+
+
     //QA
     //public static final String  CONSTANT_IP = "201.249.236.187";
     //public static final String  CONSTANT_URL_PROD = "http://201.249.236.187:8080/P2PWSServicesProviderService/P2PWSServicesProvider";
@@ -37,6 +43,12 @@ public class  Constants {
      */
     public static final String CONSTANT_URL_QA = "http://192.168.3.20:8080/RegistroUnificado/APIRegistroUnificadoService";
     public static final String CONSTANT_NAMESPACE = "http://ws.alodiga.ericsson.com/";
+
+    /**
+     * Alodiga WAllet
+     */
+    public static final String CONSTANT_URL_QA_ALODIGA_WALLET  = "http://192.168.3.20:8080/AlodigaWallet/APIAlodigaWalletService";
+    public static final String CONSTANT_NAMESPACE_ALODIGA_WALLET = "http://ws.wallet.alodiga.com/";
 
     public static final String CONSTANT_SEPARATOR = ":";
     public static final String CONSTANT_PORT = "8080";
@@ -105,10 +117,12 @@ public class  Constants {
     public static final String WEB_SERVICES_METHOD_NAME_SEND_CODE_SMS = "generarCodigoMovilSMS";
     public static final String WEB_SERVICES_METHOD_NAME_LOGIN_APP_MOBILE = "loginAplicacionMovil";
     public static final String WEB_SERVICES_METHOD_NAME_SECRET_AMSWER = "getPreguntasSecretas";
+    public static final String WEB_SERVICES_METHOD_NAME_GET_TRANSACTION_LIST = "getTransactionsByUserIdApp";
     public static final String WEB_SERVICES_METHOD_NAME_SEND_SECRET_AMSWER = "setPreguntasSecretasUsuarioAplicacionMovil";
+    public static final String WEB_SERVICES_METHOD_NAME_LIST_RESPONSE = "TransactionListResponse";
 
 
-
+    public static final Integer MAX_RESULT_BY_TRANSACTION_OPERATION = 10;
 
 
 }
