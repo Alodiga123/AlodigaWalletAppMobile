@@ -214,6 +214,9 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_transfer) {
             Intent show = new Intent(MainActivity.this, Payment_Activity.class);
             startActivity(show);
+        } else if (id == R.id.nav_last_activity) {
+            Intent show = new Intent(MainActivity.this, ActivityTransactionExecuted.class);
+            startActivity(show);
         }
         else if (id == R.id.nav_pay_qr) {
             Intent show = new Intent(MainActivity.this, Payment_Activity_Comerce.class);
