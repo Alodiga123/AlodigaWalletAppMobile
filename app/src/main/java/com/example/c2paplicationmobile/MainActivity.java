@@ -209,7 +209,7 @@ public class MainActivity extends AppCompatActivity
             Intent show = new Intent(MainActivity.this, Change_Password_Activity.class);
             startActivity(show);
         } else if (id == R.id.nav_recharge) {
-            Intent show = new Intent(MainActivity.this, List_Transaction_Activity.class);
+            Intent show = new Intent(MainActivity.this, Recharge_notification_Activity.class);
             startActivity(show);
         } else if (id == R.id.nav_transfer) {
             Intent show = new Intent(MainActivity.this, Payment_Activity.class);
