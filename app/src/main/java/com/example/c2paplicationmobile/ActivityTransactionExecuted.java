@@ -276,8 +276,6 @@ public  class ActivityTransactionExecuted extends AppCompatActivity implements O
                 objTransaction.setTransactionType(response.split("transactionType=")[i].split(";")[0]);
                 objTransaction.setCreateionDate(response.split("creationDate=")[i].split(";")[0]);
                 objTransaction.setTax(response.split("totalTax=")[i].split(";")[0]);
-                //objTransaction.setUserDestination(response.split("userDestination=")[i].split(";")[0]);
-
 
                 transactions.add(objTransaction);
             }
