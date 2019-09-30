@@ -10,12 +10,12 @@ import android.widget.TextView;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 
-public class SpinAdapterBank extends ArrayAdapter<ObjGenericObject> {
+public class SpinAdapterBank extends ArrayAdapter<ObjBank> {
 
 private Context context;
-private ObjGenericObject[] values;
+private ObjBank[] values;
 
-public SpinAdapterBank(@NonNull Context context, @LayoutRes int resource, @NonNull ObjGenericObject[] values) {
+public SpinAdapterBank(@NonNull Context context, @LayoutRes int resource, @NonNull ObjBank[] values) {
         super(context, resource, values);
 
         this.context = context;
@@ -26,7 +26,7 @@ public int getCount(){
         return values.length;
         }
 
-public ObjGenericObject getItem(int position){ return values[position]; }
+public ObjBank getItem(int position){ return values[position]; }
 
 public long getItemId(int position){
         return position;
@@ -39,7 +39,7 @@ public View getView(int position, View convertView, ViewGroup parent) {
         label.setHint("Banco");
         label.setTextSize(16);
 
-        label.setPadding(25,5,5,0);
+        label.setPadding(10,5,5,0);
         // Then you can get the current item using the values array (Users array) and the current position
         // You can NOW reference each method you has created in your bean object (User class)
         label.setText(values[position].getName());
@@ -53,7 +53,7 @@ public View getDropDownView(int position,
 
         TextView label = new TextView(context);
         label.setTextColor(Color.BLACK);
-        label.setPadding(25, 5, 5,5);
+        label.setPadding(10, 5, 5,5);
         label.setHint("Banco");
         //label.setTextSize(15);
         // label.setBackgroundColor(Color.parseColor("#F5F6CE"));

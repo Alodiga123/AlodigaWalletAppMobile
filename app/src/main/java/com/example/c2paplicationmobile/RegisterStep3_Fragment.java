@@ -268,7 +268,7 @@ public class RegisterStep3_Fragment extends Fragment implements OnClickListener 
 				map.put("link","AloCash App Android");
 				map.put("pin",pin);
 
-				response = webService.invokeGetAutoConfigString(map,Constants.WEB_SERVICES_METHOD_NAME_SAVE_USER);
+				response = webService.invokeGetAutoConfigString(map,Constants.WEB_SERVICES_METHOD_NAME_SAVE_USER,Constants.REGISTRO_UNIFICADO);
 				responseCode = response.getProperty("codigoRespuesta").toString();
 				responseMessage = response.getProperty("mensajeRespuesta").toString();
 

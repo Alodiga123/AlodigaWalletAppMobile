@@ -8,12 +8,12 @@
 
     <TextView
         android:id="@+id/textbox"
-        android:layout_width="375dp"
-        android:layout_height="114dp"
+        android:layout_width="364dp"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="top|center"
         android:hint="Type to text"
-        android:text="@string/menu_recharge"
+        android:text="@string/menu_aoutMoney"
         android:textColor="@color/background_color"
         android:textSize="25sp"
         android:textStyle="bold"
@@ -23,12 +23,75 @@
     <LinearLayout
         android:id="@+id/login_layout"
         android:layout_width="wrap_content"
-        android:layout_height="412dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="30dp"
         android:orientation="vertical">
 
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/pais_info"
+            android:textColor="@color/white_greyish"
+            android:textSize="16sp" />
+
+        <Spinner
+            android:id="@+id/spinner_pais"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:padding="10dp"
+            android:background="@android:color/transparent"
+            android:gravity="center_vertical"
+            android:inputType="phone"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white_greyish"
+            android:textSize="16sp" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2px"
+            android:background="@color/white" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:background="@color/white" />
+
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/producto_info"
+            android:textColor="@color/white_greyish"
+            android:textSize="16sp"
+            />
+
+        <Spinner
+            android:id="@+id/producto_info"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:padding="10dp"
+            android:background="@android:color/transparent"
+            android:gravity="center_vertical"
+            android:inputType="phone"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white_greyish"
+            android:textSize="16sp" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2px"
+            android:background="@color/white" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:background="@color/white" />
 
         <TextView
             android:layout_width="fill_parent"
@@ -44,24 +107,28 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            android:padding="10dp"
             android:background="@android:color/transparent"
             android:gravity="center_vertical"
             android:inputType="phone"
             android:singleLine="true"
             android:textColor="@color/white"
-            android:textColorHint="@color/white"
+            android:textColorHint="@color/white_greyish"
             android:textSize="16sp" />
 
         <View
             android:layout_width="fill_parent"
             android:layout_height="2px"
-            android:background="@color/white_greyish" />
-
+            android:background="@color/white" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:background="@color/white" />
 
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
+            android:padding="11dp"
             android:text="@string/recharge_id"
             android:textColor="@color/white_greyish"
             android:textSize="16sp" />
@@ -74,7 +141,7 @@
             android:background="@android:color/transparent"
             android:gravity="center_vertical"
             android:hint="@string/rechargeCOD"
-            android:inputType="textCapWords"
+            android:inputType="number"
             android:padding="10dp"
             android:singleLine="true"
             android:textColor="@color/white"
@@ -83,8 +150,12 @@
 
         <View
             android:layout_width="fill_parent"
-            android:layout_height="2px"
-            android:background="@color/white_greyish" />
+            android:layout_height="1px"
+            android:background="@color/white" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:background="@color/white" />
 
 
 
@@ -105,19 +176,22 @@
             android:drawablePadding="0dp"
             android:gravity="center_vertical"
             android:hint="@string/amount"
-            android:inputType="textCapWords"
-            android:maxLength="35"
-            android:padding="10dp"
+            android:inputType="numberDecimal"
+            android:padding="12dp"
             android:singleLine="true"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
             android:textSize="16sp" />
 
+
         <View
             android:layout_width="fill_parent"
             android:layout_height="1px"
-            android:background="@color/white_greyish" />
-
+            android:background="@color/white" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:background="@color/white" />
 
         <Button
             android:id="@+id/signFind"
@@ -125,8 +199,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:background="@drawable/loginbutton_selector"
-            android:padding="3dp"
-            android:text="@string/buttonProcesarRecarga"
+            android:padding="12dp"
+            android:text="@string/buttonProcesarRetiro"
             android:textColor="@color/background_color"
             android:textSize="17sp"
             android:textStyle="bold" />

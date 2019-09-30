@@ -102,7 +102,7 @@ public  class ActivityTransactionExecuted extends AppCompatActivity implements O
                 map.put("userId",Session.getUserId());
                 map.put("maxResult",Constants.MAX_RESULT_BY_TRANSACTION_OPERATION.toString());
 
-                response = webService.invokeGetAutoConfigStringAlodigaWallet(map,Constants.WEB_SERVICES_METHOD_NAME_GET_TRANSACTION_LIST);
+                response = webService.invokeGetAutoConfigString(map,Constants.WEB_SERVICES_METHOD_NAME_GET_TRANSACTION_LIST,Constants.ALODIGA);
                 stringResponse = response.toString();
                 responseCode = response.getProperty("codigoRespuesta").toString();
                 datosRespuesta = response.getProperty("datosRespuesta").toString();

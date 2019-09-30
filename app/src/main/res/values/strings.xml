@@ -10,6 +10,7 @@
     <string name="menu_buy">Comprar</string>
     <string name="menu_qr">Mi QR</string>
     <string name="menu_pay_invoice">Pagar Facturas</string>
+    <string name="menu_last_activity">Ultimos Movimientos</string>
     <string name="menu_change_password">Cambiar Contraseña</string>
     <string name="menu_answer_security">Preguntas de Seguridad</string>
     <string name="menu_secret_text">Frase Secreta</string>
@@ -17,7 +18,7 @@
     <string name="menu_send_money">Enviar Dinero</string>
     <string name="menu_convert">Convertir</string>
     <string name="menu_recharge">Recargar</string>
-    <string name="menu_aoutMoney">Retirar</string>
+    <string name="menu_aoutMoney">Retiro Manual</string>
     <string name="menu_transfer">Transferir</string>
     <string name="afiliation">Afiliar</string>
     <string name="menu_send">Cerrar sesión</string>
@@ -78,11 +79,13 @@
     <string name="security_question_info">Por favor ingrese las preguntas de seguridad</string>
     <string name="invalid_all_question">Todos los campos son requeridos</string>
     <string name="bank_info">Seleccione el banco:</string>
-    <string name="recharge_id">Ingrese el identificador de la recarga:</string>
+    <string name="pais_info">Seleccione el pais:</string>
+    <string name="producto_info">Seleccione el producto:</string>
+    <string name="recharge_id">Ingrese el identificador del retiro:</string>
     <string name="rechargeCOD">Identificador</string>
     <string name="amount_info">Ingrese el monto:</string>
     <string name="amount">Monto</string>
-    <string name="buttonProcesarRecarga">Procesar Recarga</string>
+    <string name="buttonProcesarRetiro">Procesar Retiro</string>
 
 
 
