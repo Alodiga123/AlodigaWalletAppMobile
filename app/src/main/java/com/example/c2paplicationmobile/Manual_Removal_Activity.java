@@ -11,7 +11,7 @@ import org.ksoap2.serialization.SoapObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class manual_removal_Activity extends AppCompatActivity {
+public class Manual_Removal_Activity extends AppCompatActivity {
 
     private Spinner spinnerbank;
     private static String stringResponse = "";
