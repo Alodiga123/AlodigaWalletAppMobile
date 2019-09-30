@@ -91,11 +91,6 @@
             android:name=".Manual_Removal_Activity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity
-            android:name=".Welcome_Secure_Fragment"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-
         <activity android:name=".TransferQrActivity" />
 
     </application>
