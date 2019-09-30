@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="@drawable/side_nav_bar"
+    android:padding="15dp" >
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="@string/last_operation_title"
+        android:textColor="@color/background_color"
+        android:textSize="25sp"
+        android:textStyle="bold"/>
+
+    <ListView
+        android:id="@+id/custom_list"
+        android:layout_width="fill_parent"
+        android:paddingTop="50dp"
+        android:layout_height="wrap_content"
+        android:dividerHeight="1dp"/>
+
+    <TextView
+        android:id="@+id/textViewEmpty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_gravity="center_vertical"
+        android:text="No hay transacciones disponibles"
+        />
+</LinearLayout>
