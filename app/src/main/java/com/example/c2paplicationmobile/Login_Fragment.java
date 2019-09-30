@@ -292,7 +292,7 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 				map.put("email",mEmail);
 				map.put("credencial",mPassword);
 				map.put("ip","192.168.3.45");
-				response = webService.invokeGetAutoConfigString(map,Constants.WEB_SERVICES_METHOD_NAME_LOGIN_APP_MOBILE);
+				response = webService.invokeGetAutoConfigString(map,Constants.WEB_SERVICES_METHOD_NAME_LOGIN_APP_MOBILE,Constants.REGISTRO_UNIFICADO);
 				responseCode = response.getProperty("codigoRespuesta").toString();
 				responseMessage = response.getProperty("mensajeRespuesta").toString();
 

@@ -4,10 +4,8 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -174,7 +172,7 @@ public class Confirmation2_Activity extends AppCompatActivity {
 					map.put("usuarioApi",Constants.WEB_SERVICES_USUARIOWS);
 					map.put("passwordApi",Constants.WEB_SERVICES_PASSWORDWS);
 					map.put("saldoAlodiga",amount);
-					response = webService.invokeGetAutoConfigString(map,methodName);
+					response = webService.invokeGetAutoConfigString(map,methodName,Constants.REGISTRO_UNIFICADO);
 					responseCode = response.getProperty("codigoRespuesta").toString();
 					responseMessage = response.getProperty("mensajeRespuesta").toString();
 
@@ -188,7 +186,7 @@ public class Confirmation2_Activity extends AppCompatActivity {
 						map2.put("passwordApi",Constants.WEB_SERVICES_PASSWORDWS);
 						map2.put("email",Session.getEmail());
 						String methodName2 = "getUsuarioporemail";
-						response2 = webService.invokeGetAutoConfigString(map2,methodName2);
+						response2 = webService.invokeGetAutoConfigString(map2,methodName2,Constants.REGISTRO_UNIFICADO);
 						responseCode2 = response2.getProperty("codigoRespuesta").toString();
 
 						if(responseCode2.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO))

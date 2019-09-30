@@ -1,7 +1,5 @@
 package com.example.c2paplicationmobile;
 
-import android.content.res.ColorStateList;
-import android.content.res.XmlResourceParser;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,7 +10,6 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -21,8 +18,6 @@ import org.ksoap2.serialization.SoapObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class RegisterStep1_Fragment extends Fragment implements
 		OnClickListener {
@@ -223,7 +218,7 @@ public class RegisterStep1_Fragment extends Fragment implements
 				map.put("movil",processPhone(phone));
 
 
-				response = webService.invokeGetAutoConfigString(map,Constants.WEB_SERVICES_METHOD_NAME_SEND_CODE_SMS);
+				response = webService.invokeGetAutoConfigString(map,Constants.WEB_SERVICES_METHOD_NAME_SEND_CODE_SMS,Constants.REGISTRO_UNIFICADO);
 				responseCode = response.getProperty("codigoRespuesta").toString();
 				responseMessage = response.getProperty("mensajeRespuesta").toString();
 

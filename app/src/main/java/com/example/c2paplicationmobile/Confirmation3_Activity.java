@@ -176,7 +176,7 @@ public class Confirmation3_Activity extends AppCompatActivity {
 					map.put("usuarioApi",Constants.WEB_SERVICES_USUARIOWS);
 					map.put("passwordApi",Constants.WEB_SERVICES_PASSWORDWS);
 					map.put("saldoAlodiga",amount);
-					response = webService.invokeGetAutoConfigString(map,methodName);
+					response = webService.invokeGetAutoConfigString(map,methodName,Constants.REGISTRO_UNIFICADO);
 					responseCode = response.getProperty("codigoRespuesta").toString();
 					responseMessage = response.getProperty("mensajeRespuesta").toString();
 

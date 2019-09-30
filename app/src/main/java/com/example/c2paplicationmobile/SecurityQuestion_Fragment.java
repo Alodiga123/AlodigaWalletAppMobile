@@ -161,7 +161,7 @@ public class SecurityQuestion_Fragment extends Fragment implements
 				map.put("passwordApi",Constants.WEB_SERVICES_PASSWORDWS);
 				map.put("IdIdioma","4");
 
-				response = webService.invokeGetAutoConfigString(map,Constants.WEB_SERVICES_METHOD_NAME_SECRET_AMSWER);
+				response = webService.invokeGetAutoConfigString(map,Constants.WEB_SERVICES_METHOD_NAME_SECRET_AMSWER,Constants.REGISTRO_UNIFICADO);
 				stringResponse = response.toString();
 				responseCode = response.getProperty("codigoRespuesta").toString();
 				datosRespuesta = response.getProperty("datosRespuesta").toString();
@@ -413,7 +413,7 @@ public class SecurityQuestion_Fragment extends Fragment implements
 				map.put("preguntaId3",object3_select.getId());
 				map.put("repuestaId3",getedtAnswer3);
 
-				response = webService.invokeGetAutoConfigString(map,Constants.WEB_SERVICES_METHOD_NAME_SEND_SECRET_AMSWER);
+				response = webService.invokeGetAutoConfigString(map,Constants.WEB_SERVICES_METHOD_NAME_SEND_SECRET_AMSWER,Constants.REGISTRO_UNIFICADO);
 				responseCode = response.getProperty("codigoRespuesta").toString();
 				responseMessage = response.getProperty("mensajeRespuesta").toString();
 

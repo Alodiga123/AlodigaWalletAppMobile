@@ -109,7 +109,7 @@ public class TransferQrActivityComerce extends AppCompatActivity implements ZXin
                 map.put("email",phoneOrEmail);
                 String methodName = "getUsuarioporemail";
 
-                response = webService.invokeGetAutoConfigString(map,methodName);
+                response = webService.invokeGetAutoConfigString(map,methodName,Constants.REGISTRO_UNIFICADO);
                 responseCode = response.getProperty("codigoRespuesta").toString();
                 //Activar las preguntas de seguridad
 
