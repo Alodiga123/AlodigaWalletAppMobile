@@ -95,8 +95,23 @@
             android:name=".Welcome_Secure_Fragment"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity
+            android:name=".LastResumenActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".ActivityDetalles"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".ActivityTransactionExecuted"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
 
         <activity android:name=".TransferQrActivity" />
+
+
 
     </application>
 
