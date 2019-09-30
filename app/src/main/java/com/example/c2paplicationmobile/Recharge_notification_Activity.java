@@ -171,7 +171,7 @@ public class Recharge_notification_Activity extends AppCompatActivity {
             //showProgress(false);
             if (success) {
 
-                ObjCountry[] objBank = getListBank(response);
+                ObjBank[] objBank = getListBank(response);
                 SpinAdapterBank SpinAdapterBank;
                 SpinAdapterBank = new SpinAdapterBank(getApplicationContext(), android.R.layout.simple_spinner_item, objBank);
                 spinnerbank.setAdapter(SpinAdapterBank);
@@ -190,17 +190,17 @@ public class Recharge_notification_Activity extends AppCompatActivity {
     }
 
 
-    protected ObjCountry[] getListBank (SoapObject banks){
+    protected ObjBank[] getListBank (SoapObject banks){
 
     //List<ObjGenericObject> Listbank = new ArrayList();
     ArrayList<ObjGenericObject> List1 = new ArrayList<>();
-        ObjCountry[] obj2 = new ObjCountry[banks.getPropertyCount()-3];
+        ObjBank[] obj2 = new ObjBank[banks.getPropertyCount()-3];
 
         for(int i=3; i<banks.getPropertyCount(); i++)
     {
         SoapObject obj= (SoapObject) banks.getProperty(i);
         String propiedad=banks.getProperty(i).toString();
-        ObjCountry bank= new ObjCountry(obj.getProperty("id").toString(),obj.getProperty("name").toString());
+        ObjBank bank= new ObjBank(obj.getProperty("id").toString(),obj.getProperty("name").toString());
         //Listbank.add(bank);
         obj2[i-3]=bank;
     }
