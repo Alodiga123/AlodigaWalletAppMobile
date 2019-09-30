@@ -77,11 +77,13 @@
     <string name="security_question_info">Por favor ingrese las preguntas de seguridad</string>
     <string name="invalid_all_question">Todos los campos son requeridos</string>
     <string name="bank_info">Seleccione el banco:</string>
+    <string name="pais_info">Seleccione el pais:</string>
+    <string name="producto_info">Seleccione el producto:</string>
     <string name="recharge_id">Ingrese el identificador del retiro:</string>
     <string name="rechargeCOD">Identificador</string>
     <string name="amount_info">Ingrese el monto:</string>
     <string name="amount">Monto</string>
-    <string name="buttonProcesarRecarga">Procesar Recarga</string>
+    <string name="buttonProcesarRetiro">Procesar Retiro</string>
 
 
 
