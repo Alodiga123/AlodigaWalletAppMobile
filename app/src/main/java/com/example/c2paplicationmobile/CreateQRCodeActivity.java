@@ -51,7 +51,7 @@ public class CreateQRCodeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_generate_qr_code);
         iv = (ImageView) findViewById(R.id.iv);
         try {
-            Bitmap bitmap = encodeAsBitmap(Session.getEmail());
+            Bitmap bitmap = encodeAsBitmap(Session.getEmail()+";"+Session.getPhoneNumber());
             iv.setImageBitmap(bitmap);
         } catch (WriterException e) {
             e.printStackTrace();
