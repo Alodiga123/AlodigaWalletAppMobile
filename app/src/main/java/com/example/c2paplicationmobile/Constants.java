@@ -35,8 +35,17 @@ public class  Constants {
     /**
      * Data de QA
      */
-    public static final String CONSTANT_URL_QA = "http://192.168.3.20:8080/RegistroUnificado/APIRegistroUnificadoService";
-    public static final String CONSTANT_NAMESPACE = "http://ws.alodiga.ericsson.com/";
+    public static final String CONSTANT_URL_QA_REGISTRO_UNIFICADO = "http://192.168.3.20:8080/RegistroUnificado/APIRegistroUnificadoService";
+    public static final String CONSTANT_NAMESPACE_QA_REGISTRO_UNIFICADO = "http://ws.alodiga.ericsson.com/";
+    public static final String REGISTRO_UNIFICADO= "RegistroUnificado";
+
+
+    /**
+     *
+     */
+    public static final String CONSTANT_URL_QA_ALODIGA = "http://192.168.3.20:8080/AlodigaWallet/APIAlodigaWalletService";
+    public static final String CONSTANT_NAMESPACE_QA_ALODIGA = "http://ws.wallet.alodiga.com/";
+    public static final String ALODIGA = "AlodigaWallet";
 
     public static final String CONSTANT_SEPARATOR = ":";
     public static final String CONSTANT_PORT = "8080";
@@ -106,6 +115,8 @@ public class  Constants {
     public static final String WEB_SERVICES_METHOD_NAME_LOGIN_APP_MOBILE = "loginAplicacionMovil";
     public static final String WEB_SERVICES_METHOD_NAME_SECRET_AMSWER = "getPreguntasSecretas";
     public static final String WEB_SERVICES_METHOD_NAME_SEND_SECRET_AMSWER = "setPreguntasSecretasUsuarioAplicacionMovil";
+    public static final String WEB_SERVICES_METHOD_NAME_GET_BANK = "getBankApp";
+
 
 
 
