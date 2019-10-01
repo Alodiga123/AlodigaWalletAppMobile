@@ -129,8 +129,13 @@ public class  Constants {
     public static final String WEB_SERVICES_METHOD_NAME_GET_TRANSACTION_LIST = "getTransactionsByUserIdApp";
     public static final String WEB_SERVICES_METHOD_NAME_SEND_SECRET_AMSWER = "setPreguntasSecretasUsuarioAplicacionMovil";
 
-    public static final String WEB_SERVICES_METHOD_NAME_GET_BANK = "getBankApp";
-    public static final Integer MAX_RESULT_BY_TRANSACTION_OPERATION = 10;
+    public static final String WEB_SERVICES_METHOD_NAME_GET_BANK = "getBankByCountryApp";
+    public static final String WEB_SERVICES_METHOD_NAME_GET_COUNTRIES = "getCountries";
+    public static final String WEB_SERVICES_METHOD_NAME_GET_PRODUCT = "getProductsByBankId";
+
+
+ public static final Integer MAX_RESULT_BY_TRANSACTION_OPERATION = 10;
+
 
 
 
