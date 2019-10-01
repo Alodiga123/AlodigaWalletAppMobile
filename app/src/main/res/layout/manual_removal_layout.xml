@@ -8,8 +8,8 @@
 
     <TextView
         android:id="@+id/textbox"
-        android:layout_width="364dp"
-        android:layout_height="wrap_content"
+        android:layout_width="377dp"
+        android:layout_height="76dp"
         android:layout_weight="1"
         android:gravity="top|center"
         android:hint="Type to text"
@@ -60,39 +60,6 @@
             android:layout_height="1px"
             android:background="@color/white" />
 
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="@string/producto_info"
-            android:textColor="@color/white_greyish"
-            android:textSize="16sp"
-            />
-
-        <Spinner
-            android:id="@+id/producto_info"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:padding="10dp"
-            android:background="@android:color/transparent"
-            android:gravity="center_vertical"
-            android:inputType="phone"
-            android:singleLine="true"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white_greyish"
-            android:textSize="16sp" />
-
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="2px"
-            android:background="@color/white" />
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1px"
-            android:background="@color/white" />
-
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -115,7 +82,38 @@
             android:textColor="@color/white"
             android:textColorHint="@color/white_greyish"
             android:textSize="16sp" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2px"
+            android:background="@color/white" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:background="@color/white" />
 
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/producto_info"
+            android:textColor="@color/white_greyish"
+            android:textSize="16sp"
+            />
+
+        <Spinner
+            android:id="@+id/spinnerproducto"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:padding="10dp"
+            android:background="@android:color/transparent"
+            android:gravity="center_vertical"
+            android:inputType="phone"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white_greyish"
+            android:textSize="16sp" />
         <View
             android:layout_width="fill_parent"
             android:layout_height="2px"
