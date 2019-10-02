@@ -3,34 +3,28 @@ package com.example.c2paplicationmobile;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.view.GravityCompat;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-
 import android.view.MenuItem;
-
 import com.google.android.material.navigation.NavigationView;
-
 import androidx.drawerlayout.widget.DrawerLayout;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.Menu;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
     private Button btnPaymet;
     private Button btnViewTransaction;
     private Button btnChangePassword;
@@ -61,16 +55,20 @@ public class MainActivity extends AppCompatActivity
         //mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        mProductList = new ArrayList<Money>();
+
+        for(ObjUserHasProduct objUserHasProduct : Session.getObjUserHasProducts()){
+            mProductList.add(new Money(objUserHasProduct.getName(),R.drawable.dolarsimbol,Session.getAccountNumber(), "Alodiga ", "USD "+ Session.getAlodigaBalance()));
+        }
 
 
         //Populate the products
-
-        mProductList = new ArrayList<Money>();
-        mProductList.add(new Money("Dolares",R.drawable.dolarsimbol,Session.getAccountNumber(), "Alodiga ", "USD "+ Session.getAlodigaBalance()));
+        //mProductList = new ArrayList<Money>();
+        /*mProductList.add(new Money("Dolaressssss",R.drawable.dolarsimbol,Session.getAccountNumber(), "Alodiga ", "USD "+ Session.getAlodigaBalance()));
         mProductList.add(new Money("Alocoins",R.drawable.alocoinlogo,"001035497978", "Alodiga", "AC " +Session.getAlocoinsBalance()));
         mProductList.add(new Money("Tarjeta",R.drawable.cardalodiga,"5412474313455121", "Alodiga", "ACD " +Session.getHealthCareCoinsBalance()));
-        mProductList.add(new Money("Bolivares",R.drawable.bolivarsimbol,"0105****3626", "Alodiga", "BS 2"));
-        mProductList.add(new Money("Monero",R.drawable.monero,"XMR", "Cripto", "XMR 0.63"));
+        mProductList.add(new Money("Bolivares",R.drawable.bolivarsimbol,"0105****3626", "Alodiga", "BS " +Session.getAlodigaBalance()));
+        mProductList.add(new Money("Monero",R.drawable.monero,"XMR", "Cripto", "XMR " +Session.getAlocoinsBalance()));*/
 
         //set adapter to recyclerview
         mAdapter = new MoneyProductAdapter(mProductList,this);

@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import java.util.ArrayList;
+
 public  class Session {
 
 
@@ -27,7 +29,15 @@ public  class Session {
     private static String usuarioDestionId = "";
     private static String mobileCodeSms;
     private static Integer moneySelected = 0 ;
+    private static ArrayList<ObjUserHasProduct> objUserHasProducts;
 
+    public static ArrayList<ObjUserHasProduct> getObjUserHasProducts() {
+        return objUserHasProducts;
+    }
+
+    public static void setObjUserHasProducts(ArrayList<ObjUserHasProduct> objUserHasProducts) {
+        Session.objUserHasProducts = objUserHasProducts;
+    }
 
     public static String getMobileCodeSms() {
         return mobileCodeSms;
