@@ -16,6 +16,10 @@ public class Money {
         this.productQty = productQty;
     }
 
+    public Money() {
+
+    }
+
     public String getProductQty() {
         return productQty;
     }
