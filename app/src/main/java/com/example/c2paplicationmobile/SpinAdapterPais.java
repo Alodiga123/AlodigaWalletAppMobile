@@ -10,12 +10,12 @@ import android.widget.TextView;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 
-public class SpinAdapterBank extends ArrayAdapter<ObjGenericObject> {
+public class SpinAdapterPais extends ArrayAdapter<ObjGenericObject> {
 
 private Context context;
 private ObjGenericObject[] values;
 
-public SpinAdapterBank(@NonNull Context context, @LayoutRes int resource, @NonNull ObjGenericObject[] values) {
+public SpinAdapterPais(@NonNull Context context, @LayoutRes int resource, @NonNull ObjGenericObject[] values) {
         super(context, resource, values);
 
         this.context = context;
@@ -36,7 +36,7 @@ public View getView(int position, View convertView, ViewGroup parent) {
         // I created a dynamic TextView here, but you can reference your own  custom layout for each spinner item
         TextView label = new TextView(context);
         label.setTextColor(Color.WHITE);
-        label.setHint("Banco");
+        label.setHint("Producto");
         label.setTextSize(16);
 
         label.setPadding(10,5,5,0);
@@ -54,7 +54,7 @@ public View getDropDownView(int position,
         TextView label = new TextView(context);
         label.setTextColor(Color.BLACK);
         label.setPadding(10, 5, 5,5);
-        label.setHint("Banco");
+        label.setHint("Producto");
         //label.setTextSize(15);
         // label.setBackgroundColor(Color.parseColor("#F5F6CE"));
 
