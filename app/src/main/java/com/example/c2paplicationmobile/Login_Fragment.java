@@ -33,7 +33,9 @@ import androidx.fragment.app.FragmentManager;
 
 import org.ksoap2.serialization.SoapObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -57,7 +59,7 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 	private static FragmentManager fragmentManager;
 	private UserLoginTask mAuthTask = null;
 
-
+	ArrayList<ObjUserHasProduct> userHasProducts =  new ArrayList<ObjUserHasProduct>();
 	String nameSession = "";
 	String lastNameSession = "";
 	String phoneNumberSession = "";
@@ -108,10 +110,10 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 		}
 		/*emailid.setText("antonioarcangelgomez@gmail.com");
 		password.setText("Kg0m3z$11");*/
-		/*emailid.setText("moisegrat12@gmail.com");
-		password.setText("Danye852#");*/
-		emailid.setText("adira0411@gmail.com");
-		password.setText("Alodiga456&");
+		emailid.setText("moisegrat12@gmail.com");
+		password.setText("Danye852#");
+		/*emailid.setText("adira0411@gmail.com");
+		password.setText("Alodiga456&");*/
 	}
 
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
@@ -307,6 +309,10 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 					 alocoinsBalanceSesssion = getValueFromResponseJson("saldoAlocoins",res);
 					 healthCareCoinsBalanceSession = getValueFromResponseJson("saldoHealthCareCoins",res);
 					 userId = getValueFromResponseJson("UsuarioID",res);
+					 String elementGet = "nombreProducto=";
+					 userHasProducts = getElementsProduct(elementGet,res);
+
+
 
 					if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)){
 						responsetxt = getString(R.string.web_services_response_00);
@@ -389,27 +395,11 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 			if (success) {
 				emailid.setText("");
 				password.setText("");
-				Session.setUsername(nameSession);
-				Session.setPhoneNumber(phoneNumberSession);
-				Session.setEmail(emailSession);
-				Session.setAlodigaBalance(alodigaBalanceSession);
-				Session.setAccountNumber(accountNumberSession);
-				Session.setAlocoinsBalance(alocoinsBalanceSesssion);
-				Session.setUserId(userId);
-				Session.setHealthCareCoinsBalance(healthCareCoinsBalanceSession);
+				setElementInitialSession(nameSession,phoneNumberSession,emailSession,alodigaBalanceSession,accountNumberSession,alocoinsBalanceSesssion,userId,healthCareCoinsBalanceSession,userHasProducts);
 				Intent intent = new Intent(getActivity(),MainActivity.class);
 				getActivity().startActivity(intent);
 			} else  if(isFirstAccess){
-
-				Session.setUsername(nameSession);
-				Session.setPhoneNumber(phoneNumberSession);
-				Session.setEmail(emailSession);
-				Session.setAlodigaBalance(alodigaBalanceSession);
-				Session.setAccountNumber(accountNumberSession);
-				Session.setAlocoinsBalance(alocoinsBalanceSesssion);
-				Session.setUserId(userId);
-				Session.setHealthCareCoinsBalance(healthCareCoinsBalanceSession);
-
+				setElementInitialSession(nameSession,phoneNumberSession,emailSession,alodigaBalanceSession,accountNumberSession,alocoinsBalanceSesssion,userId,healthCareCoinsBalanceSession,userHasProducts);
 				fragmentManager
 						.beginTransaction()
 						.setCustomAnimations(R.anim.right_enter, R.anim.left_out)
@@ -428,11 +418,40 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 			mAuthTask = null;
 			showProgress(false);
 		}
+
+
+		private  void setElementInitialSession(String nameSession,String phoneNumberSession,String emailSession,String alodigaBalanceSession, String accountNumberSession,String alocoinsBalanceSesssion,String userId, String healthCareCoinsBalanceSession,ArrayList<ObjUserHasProduct> objUserHasProducts){
+
+			Session.setObjUserHasProducts(objUserHasProducts);
+			Session.setUsername(nameSession);
+			Session.setPhoneNumber(phoneNumberSession);
+			Session.setEmail(emailSession);
+			Session.setAlodigaBalance(alodigaBalanceSession);
+			Session.setAccountNumber(accountNumberSession);
+			Session.setAlocoinsBalance(alocoinsBalanceSesssion);
+			Session.setUserId(userId);
+			Session.setHealthCareCoinsBalance(healthCareCoinsBalanceSession);
+		}
 	}
 
 
+	private static ArrayList<ObjUserHasProduct>  getElementsProduct(String elementGet, String response){
+		ArrayList<ObjUserHasProduct> objUserHasProducts = new ArrayList<ObjUserHasProduct>();
+
+		for(int i = 1 ;i<getLenghtFromResponseJson(elementGet, response);i++){
+
+			ObjUserHasProduct objUserHasProduct = new ObjUserHasProduct(response.split(elementGet)[i].split(";")[0]);
+			objUserHasProducts.add(objUserHasProduct);
+		}
+		return objUserHasProducts;
+	}
+
 	private static String getValueFromResponseJson(String v, String response){
 		return (response.split(v+"=")[1].split(";")[0]);
+	}
+
+	private static Integer getLenghtFromResponseJson(String v, String response){
+		return (response.split(v).length);
 	}
 
 }
