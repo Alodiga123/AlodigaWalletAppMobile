@@ -310,6 +310,7 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 					 healthCareCoinsBalanceSession = getValueFromResponseJson("saldoHealthCareCoins",res);
 					 userId = getValueFromResponseJson("UsuarioID",res);
 					 String elementGet = "nombreProducto=";
+					 String elementSaldo = "saldo";
 					 userHasProducts = getElementsProduct(elementGet,res);
 
 
@@ -443,6 +444,7 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 			ObjUserHasProduct objUserHasProduct = new ObjUserHasProduct(response.split(elementGet)[i].split(";")[0]);
 			objUserHasProducts.add(objUserHasProduct);
 		}
+
 		return objUserHasProducts;
 	}
 
