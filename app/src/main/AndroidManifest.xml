@@ -99,6 +99,14 @@
             android:name=".Welcome_removal_Activity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity
+            android:name=".Payment_comerce_code_Activity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".fail_code_Activity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
         <activity android:name=".TransferQrActivity" />
 
 
