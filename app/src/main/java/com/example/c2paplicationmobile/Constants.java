@@ -132,9 +132,12 @@ public class  Constants {
     public static final String WEB_SERVICES_METHOD_NAME_GET_BANK = "getBankByCountryApp";
     public static final String WEB_SERVICES_METHOD_NAME_GET_COUNTRIES = "getCountriesHasBank";
     public static final String WEB_SERVICES_METHOD_NAME_GET_PRODUCT = "getProductsByBankId";
+    public static final String WEB_SERVICES_METHOD_NAME_PAYMENT_COMERCE = "savePaymentShop";
+
 
 
  public static final Integer MAX_RESULT_BY_TRANSACTION_OPERATION = 10;
+    public static final String CONCEPT_TRANSACTION="paymentshop";
 
 
 
