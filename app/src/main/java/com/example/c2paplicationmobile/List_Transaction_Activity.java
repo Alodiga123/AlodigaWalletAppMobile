@@ -1,21 +1,25 @@
 package com.example.c2paplicationmobile;
 
-import android.os.AsyncTask;
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.Selection;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
+import androidx.fragment.app.FragmentManager;
 import org.ksoap2.serialization.SoapObject;
-
 import java.util.HashMap;
 
-public class List_Transaction_Activity extends AppCompatActivity {
 
-
+public class List_Transaction_Activity extends AppCompatActivity  {
+    private static FragmentManager fragmentManager;
+    private EditText edtAmount,edtCOD;
+    private Button signFind;
     private static String stringResponse = "";
     private String responsetxt = "";
     private boolean serviceStatus;
@@ -24,8 +28,6 @@ public class List_Transaction_Activity extends AppCompatActivity {
     static ObjGenericObject[] listSpinner_pais = new ObjGenericObject[0];
     static ObjGenericObject[] listSpinner_producto = new ObjGenericObject[0];
     static ObjGenericObject[] listSpinner_banco = new ObjGenericObject[0];
-
-
     static ProgressDialogAlodiga progressDialogAlodiga;
 
     @Override
@@ -35,13 +37,17 @@ public class List_Transaction_Activity extends AppCompatActivity {
         final Spinner  spinner_pais = (Spinner) findViewById(R.id.spinner_pais);
         final Spinner  spinnerbank = (Spinner) findViewById(R.id.spinnerbank);
         final Spinner  spinnerproducto = (Spinner) findViewById(R.id.spinnerproducto);
+        edtAmount= findViewById(R.id.edtAmount);
+        signFind = (Button) findViewById(R.id.signFind);
+        edtCOD= findViewById(R.id.edtCOD);
 
         spinnerbank.setEnabled(false);
         spinnerproducto.setEnabled(false);
 
-        //progressDialogAlodiga = new ProgressDialogAlodiga(this,"cargando..");
-        //progressDialogAlodiga.show();
+        progressDialogAlodiga = new ProgressDialogAlodiga(this,"cargando..");
+        progressDialogAlodiga.show();
 
+        //Spinner Pais
         new Thread(new Runnable() {
             public void run() {
                 try{
@@ -55,7 +61,6 @@ public class List_Transaction_Activity extends AppCompatActivity {
                     serviceAnswer(responseCode);
 
                     if (serviceStatus){
-
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -63,34 +68,33 @@ public class List_Transaction_Activity extends AppCompatActivity {
                                 SpinAdapterPais spinAdapterPais;
                                 spinAdapterPais = new SpinAdapterPais(getApplicationContext(), android.R.layout.simple_spinner_item, listSpinner_pais);
                                 spinner_pais.setAdapter(spinAdapterPais);
-
                             }
-                        });}else {
-
+                        });
+                    }else {
                         new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                                 responsetxt);
                     }
-
                 }catch(Exception e)
                 {
                     e.printStackTrace();
                 }
-
             }
         }).start();
 
 
+        //Spinner Bank
         spinner_pais.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
                 spinnerbank.setEnabled(true);
+                spinnerbank.setAdapter(null);
+                spinnerproducto.setAdapter(null);
+
                 final ObjGenericObject pais = (ObjGenericObject) spinner_pais.getSelectedItem();
-                Toast.makeText(getApplicationContext(),"id" + pais.getId() ,Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(),"id" + pais.getId() ,Toast.LENGTH_SHORT).show();
 
                 new Thread(new Runnable() {
                     public void run() {
                         try{
-
                             String responseCode = null;
                             WebService webService = new WebService();
                             HashMap<String, String> map = new HashMap<String, String>();
@@ -111,7 +115,6 @@ public class List_Transaction_Activity extends AppCompatActivity {
                                         spinnerbank.setAdapter(spinAdapterBank);
                                     }
                                 });
-
                             }else{
                                 new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                                         responsetxt);
@@ -121,7 +124,6 @@ public class List_Transaction_Activity extends AppCompatActivity {
                         {
                             e.printStackTrace();
                         }
-
                     }
                 }).start();
             }
@@ -131,18 +133,17 @@ public class List_Transaction_Activity extends AppCompatActivity {
             }
         });
 
-
+        //Spinner Producto
         spinnerbank.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
                 spinnerproducto.setEnabled(true);
                 final ObjGenericObject bank = (ObjGenericObject) spinnerbank.getSelectedItem();
-                Toast.makeText(getApplicationContext(),"id" + bank.getId() ,Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(),"id" + bank.getId() ,Toast.LENGTH_SHORT).show();
 
                 new Thread(new Runnable() {
                     public void run() {
                         try{
-
                             String responseCode = null;
                             WebService webService = new WebService();
                             HashMap<String, String> map = new HashMap<String, String>();
@@ -154,8 +155,6 @@ public class List_Transaction_Activity extends AppCompatActivity {
                             serviceAnswer(responseCode);
 
                             if (serviceStatus){
-
-
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
@@ -168,15 +167,10 @@ public class List_Transaction_Activity extends AppCompatActivity {
                                 new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                                         responsetxt);
                             }
-
-
-
-
                         }catch(Exception e)
                         {
                             e.printStackTrace();
                         }
-
                     }
                 }).start();
             }
@@ -186,8 +180,57 @@ public class List_Transaction_Activity extends AppCompatActivity {
             }
         });
 
-    }
+        progressDialogAlodiga.dismiss();
 
+        //Seteo de decimales al campo de monto
+        edtAmount.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(!s.toString().matches("^\\ (\\d{1,3}(\\,\\d{3})*|(\\d+))(\\.\\d{2})?$"))
+                {
+                    String userInput= ""+s.toString().replaceAll("[^\\d]", "");
+                    StringBuilder cashAmountBuilder = new StringBuilder(userInput);
+
+                    while (cashAmountBuilder.length() > 3 && cashAmountBuilder.charAt(0) == '0') {
+                        cashAmountBuilder.deleteCharAt(0);
+                    }
+                    while (cashAmountBuilder.length() < 3) {
+                        cashAmountBuilder.insert(0, '0');
+                    }
+                    cashAmountBuilder.insert(cashAmountBuilder.length()-2, '.');
+                    cashAmountBuilder.insert(0, ' ');
+
+                    edtAmount.setText(cashAmountBuilder.toString());
+                    // keeps the cursor always to the right
+                    Selection.setSelection(edtAmount.getText(), cashAmountBuilder.toString().length());
+                }
+            }
+        });
+
+
+        signFind.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                String getcuenta= edtCOD.getText().toString();
+                String getmonto=  edtAmount.getText().toString();
+
+                if (getcuenta.equals("") || getcuenta.length() == 0) {
+                    new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
+                            getString(R.string.recharge_id_invalid));
+
+                }else if (getmonto.equals("") || getmonto.length() == 0) {
+                    new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
+                            getString(R.string.amount_info_invalid));
+                }else {
+                    Intent show;
+                    show = new Intent(getApplicationContext(), Welcome_removal_Activity.class);
+                    startActivity(show);
+                }
+            }
+        });
+    }
 
 
     protected ObjGenericObject[] getListGeneric (SoapObject response){
@@ -213,7 +256,6 @@ public class List_Transaction_Activity extends AppCompatActivity {
             responsetxt = getString(R.string.web_services_response_00);
             serviceStatus = true;
             //return serviceStatus;
-
         }
         else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_DATOS_INVALIDOS))
         {
@@ -271,83 +313,5 @@ public class List_Transaction_Activity extends AppCompatActivity {
             responsetxt = getString(R.string.web_services_response_99);
             serviceStatus = false;
         }
-
     }
-
-
-
-
-
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-/*package com.example.c2paplicationmobile;
-
-import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-public class List_Transaction_Activity extends AppCompatActivity {
-
-    private TextView textMovimient;
-    private ListView listViewMovimient;
-
-    private String names[] ={
-            "SE01	Sistema de gestión de transportes",
-            "SE07	Estatus de las ordenes de transporte",
-            "SE09	Órdenes de transporte Workbench",
-            "SE10	Órdenes de transporte Customizong",
-            "SE11	Mantenimiento del diccionario de datos",
-            "SE12	Visualización del diccionario de datos",
-            "SE13	Mantenimiento de tablas",
-            "SE14	Diccionario de datos, utilidad para bases de datos",
-            "SE15	Sistema del repositorio",
-            "SE16	Visor de datos (Datos Browser)",
-            "SE17	Visor de tablas",
-            "SE30	Análisis de tiempos de ejecución",
-            "SE32	Mantenimiento de elementos de texto.",
-            "SE35	Mantenimiento de módulos de diálogo"};
-
-    private String numbers[] = {"23571113", "17192329",
-            "31374143", "47535961", "67714859",
-            "73798389", "97101103", "107109113",
-            "127131137", "139149151", "157163167",
-            "173587524", "179181191", "193197199"};
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recharge);
-        //setContentView(R.layout.activity_list__transaction__es);
-
-
-
-        //ArrayAdapter <String> adapter = new ArrayAdapter<String>(this, R.layout.list_item_view, names);
-     //   listViewMovimient.setAdapter(adapter);
-
-    //    listViewMovimient.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-  //          @Override
-   //         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-   //             textMovimient.setText("Número de Movimiento: "+numbers[i]+ " del "+ listViewMovimient.getItemAtPosition(i));
-    //        }
-  //      });
-
-
-    }
-}*/
