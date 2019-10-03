@@ -3,6 +3,9 @@ package com.example.c2paplicationmobile;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.Selection;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -91,13 +94,43 @@ public class Confirmation1_Activity extends AppCompatActivity {
 					Session.setDestinationConcept(conceptValue.getText().toString());
 					Session.setGetDestinationAmount(amountValue.getText().toString());
 
-					Intent i = new Intent(Confirmation1_Activity.this, Confirmation2_Activity.class);
+					//Intent i = new Intent(Confirmation1_Activity.this, Confirmation2_Activity.class);
+					//startActivity(i);
+					Intent i = new Intent(Confirmation1_Activity.this, Payment_comerce_code_Activity.class);
 					startActivity(i);
 					finish();
 				}
 			}
 		});
 
+
+        amountValue.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(!s.toString().matches("^\\ (\\d{1,3}(\\,\\d{3})*|(\\d+))(\\.\\d{2})?$"))
+                {
+                    String userInput= ""+s.toString().replaceAll("[^\\d]", "");
+                    StringBuilder cashAmountBuilder = new StringBuilder(userInput);
+
+                    while (cashAmountBuilder.length() > 3 && cashAmountBuilder.charAt(0) == '0') {
+                        cashAmountBuilder.deleteCharAt(0);
+                    }
+                    while (cashAmountBuilder.length() < 3) {
+                        cashAmountBuilder.insert(0, '0');
+                    }
+                    cashAmountBuilder.insert(cashAmountBuilder.length()-2, '.');
+                    cashAmountBuilder.insert(0, ' ');
+
+                    amountValue.setText(cashAmountBuilder.toString());
+                    // keeps the cursor always to the right
+                    Selection.setSelection(amountValue.getText(), cashAmountBuilder.toString().length());
+
+                }
+
+            }
+        });
 	}
 
 
