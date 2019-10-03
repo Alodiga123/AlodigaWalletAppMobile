@@ -54,6 +54,7 @@ public class Utils {
 
 	public static final String Welcome_Fragment = "Welcome_Fragment";
 	public static final String Welcome_Secure_Fragment = "Welcome_Secure_Fragment";
+	public static final String Welcome_Manual_Removal_Fragment = "Welcome_Manual_Removal_Fragment";
 	public static final String register_step1_Fragment = "RegisterStep1_Fragment";
 	public static final String register_step2_Fragment = "RegisterStep2_Fragment";
 	public static final String register_step3_Fragment = "RegisterStep3_Fragment";

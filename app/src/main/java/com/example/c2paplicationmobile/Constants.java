@@ -130,7 +130,7 @@ public class  Constants {
     public static final String WEB_SERVICES_METHOD_NAME_SEND_SECRET_AMSWER = "setPreguntasSecretasUsuarioAplicacionMovil";
 
     public static final String WEB_SERVICES_METHOD_NAME_GET_BANK = "getBankByCountryApp";
-    public static final String WEB_SERVICES_METHOD_NAME_GET_COUNTRIES = "getCountries";
+    public static final String WEB_SERVICES_METHOD_NAME_GET_COUNTRIES = "getCountriesHasBank";
     public static final String WEB_SERVICES_METHOD_NAME_GET_PRODUCT = "getProductsByBankId";
 
 

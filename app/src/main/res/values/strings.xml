@@ -36,6 +36,7 @@
     <string name="login">Inicio</string>
     <string name="submit">ENVIAR</string>
     <string name="next">SIGUIENTE</string>
+    <string name="Finalize">FINALIZAR</string>
     <string name="back">ATRAS</string>
     <string name="signUp">REGÍSTRATE</string>
     <string name="security_question">PREGUNTAS DE SEGURIDAD</string>
@@ -81,9 +82,11 @@
     <string name="bank_info">Seleccione el banco:</string>
     <string name="pais_info">Seleccione el pais:</string>
     <string name="producto_info">Seleccione el producto:</string>
-    <string name="recharge_id">Ingrese el identificador del retiro:</string>
-    <string name="rechargeCOD">Identificador</string>
+    <string name="recharge_id">Ingrese la cuenta:</string>
+    <string name="recharge_id_invalid">El identificador del retiro no puede estar vacio</string>
+    <string name="rechargeCOD">Cuenta</string>
     <string name="amount_info">Ingrese el monto:</string>
+    <string name="amount_info_invalid">El monto no puede estar vacio</string>
     <string name="amount">Monto</string>
     <string name="buttonProcesarRetiro">Procesar Retiro</string>
     <string name="buttonProcessRecharge">Procesar la Transferencia</string>
@@ -147,6 +150,7 @@
     <string name="insuficient_balance">Saldo insuficiente para completar la transacción</string>
     <string name="destination_qr_code">Escanear Código QR</string>
     <string name="welcome_secure_answer">Las preguntas de seguridad han sido registradas satisfactoriamente </string>
+    <string name="welcome_secure_manual_removal">El retiro realizado satisfactoriamente. Una vez el proveedor de servicios lo haga efectivo sera notificado. </string>
 
 
 

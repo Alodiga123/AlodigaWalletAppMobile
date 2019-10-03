@@ -95,6 +95,10 @@
             android:name=".ActivityTransactionExecuted"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity
+            android:name=".Welcome_removal_Activity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
         <activity android:name=".TransferQrActivity" />
 
 

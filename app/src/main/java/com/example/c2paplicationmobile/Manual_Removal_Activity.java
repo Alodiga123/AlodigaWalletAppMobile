@@ -1,21 +1,38 @@
 package com.example.c2paplicationmobile;
 
+import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.Selection;
+import android.text.TextWatcher;
+import android.text.method.DigitsKeyListener;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import org.ksoap2.serialization.SoapObject;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
 
-public class Manual_Removal_Activity extends AppCompatActivity {
-
-
+public class Manual_Removal_Activity extends AppCompatActivity  {
+    private static FragmentManager fragmentManager;
+    private EditText edtAmount,edtCOD;
+    private Button signFind;
     private static String stringResponse = "";
     private String responsetxt = "";
     private boolean serviceStatus;
@@ -24,7 +41,6 @@ public class Manual_Removal_Activity extends AppCompatActivity {
     static ObjGenericObject[] listSpinner_pais = new ObjGenericObject[0];
     static ObjGenericObject[] listSpinner_producto = new ObjGenericObject[0];
     static ObjGenericObject[] listSpinner_banco = new ObjGenericObject[0];
-
 
     static ProgressDialogAlodiga progressDialogAlodiga;
 
@@ -35,13 +51,17 @@ public class Manual_Removal_Activity extends AppCompatActivity {
         final Spinner  spinner_pais = (Spinner) findViewById(R.id.spinner_pais);
         final Spinner  spinnerbank = (Spinner) findViewById(R.id.spinnerbank);
         final Spinner  spinnerproducto = (Spinner) findViewById(R.id.spinnerproducto);
+        edtAmount= findViewById(R.id.edtAmount);
+        signFind = (Button) findViewById(R.id.signFind);
+        edtCOD= findViewById(R.id.edtCOD);
 
         spinnerbank.setEnabled(false);
         spinnerproducto.setEnabled(false);
 
-        //progressDialogAlodiga = new ProgressDialogAlodiga(this,"cargando..");
-        //progressDialogAlodiga.show();
+        progressDialogAlodiga = new ProgressDialogAlodiga(this,"cargando..");
+        progressDialogAlodiga.show();
 
+        //Spinner Pais
         new Thread(new Runnable() {
             public void run() {
                 try{
@@ -80,12 +100,15 @@ public class Manual_Removal_Activity extends AppCompatActivity {
         }).start();
 
 
+        //Spinner Bank
         spinner_pais.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
                 spinnerbank.setEnabled(true);
+                spinnerbank.setAdapter(null);
+                spinnerproducto.setAdapter(null);
+
                 final ObjGenericObject pais = (ObjGenericObject) spinner_pais.getSelectedItem();
-                Toast.makeText(getApplicationContext(),"id" + pais.getId() ,Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(),"id" + pais.getId() ,Toast.LENGTH_SHORT).show();
 
                     new Thread(new Runnable() {
                     public void run() {
@@ -131,13 +154,13 @@ public class Manual_Removal_Activity extends AppCompatActivity {
             }
         });
 
-
+        //Spinner Producto
         spinnerbank.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
                 spinnerproducto.setEnabled(true);
                 final ObjGenericObject bank = (ObjGenericObject) spinnerbank.getSelectedItem();
-                Toast.makeText(getApplicationContext(),"id" + bank.getId() ,Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(),"id" + bank.getId() ,Toast.LENGTH_SHORT).show();
 
                 new Thread(new Runnable() {
                     public void run() {
@@ -185,6 +208,65 @@ public class Manual_Removal_Activity extends AppCompatActivity {
                 return;
             }
         });
+
+        progressDialogAlodiga.dismiss();
+
+        //Seteo de decimales al campo de monto
+        edtAmount.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(!s.toString().matches("^\\ (\\d{1,3}(\\,\\d{3})*|(\\d+))(\\.\\d{2})?$"))
+                {
+                    String userInput= ""+s.toString().replaceAll("[^\\d]", "");
+                    StringBuilder cashAmountBuilder = new StringBuilder(userInput);
+
+                    while (cashAmountBuilder.length() > 3 && cashAmountBuilder.charAt(0) == '0') {
+                        cashAmountBuilder.deleteCharAt(0);
+                    }
+                    while (cashAmountBuilder.length() < 3) {
+                        cashAmountBuilder.insert(0, '0');
+                    }
+                    cashAmountBuilder.insert(cashAmountBuilder.length()-2, '.');
+                    cashAmountBuilder.insert(0, ' ');
+
+                    edtAmount.setText(cashAmountBuilder.toString());
+                    // keeps the cursor always to the right
+                    Selection.setSelection(edtAmount.getText(), cashAmountBuilder.toString().length());
+
+                }
+
+            }
+        });
+
+        signFind.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                String getcuenta= edtCOD.getText().toString();
+                String getmonto=  edtAmount.getText().toString();
+
+
+                if (getcuenta.equals("") || getcuenta.length() == 0) {
+                    new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
+                            getString(R.string.recharge_id_invalid));
+
+                }else if (getmonto.equals("") || getmonto.length() == 0) {
+                    new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
+                            getString(R.string.amount_info_invalid));
+                }else {
+                   // new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
+                     //       "todo funciona");
+                    Intent show;
+                    show = new Intent(getApplicationContext(), Welcome_removal_Activity.class);
+                    startActivity(show);
+
+
+                }
+
+            }
+        });
+
 
     }
 
@@ -273,13 +355,6 @@ public void serviceAnswer(String responseCode ){
     }
 
 }
-
-
-
-
-
-
-
 
 }
 
