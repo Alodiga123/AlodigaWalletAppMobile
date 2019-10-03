@@ -41,6 +41,7 @@
     <string name="signUp">REGÍSTRATE</string>
     <string name="security_question">PREGUNTAS DE SEGURIDAD</string>
     <string name="transference_title">TRANSFERENCIA</string>
+    <string name="payment_comerce_title">PAGO QR COMERCIOS</string>
     <string name="qr_code_title">MI CODIGO QR</string>
     <string name="confirmation_title">CONFIRMACION</string>
     <string name="last_operation_title">ULTIMOS MOVIMIENTOS</string>
@@ -57,6 +58,7 @@
     <string name="terms_conditions">Al hacer clic en Registrarse, usted acepta todos los Términos y Condiciones.</string>
     <string name="confirmPassword">Confirme Contraseña</string>
     <string name="pin">Clave de Operaciones</string>
+    <string name="pin_info">Introduzca la Clave de Operaciones</string>
     <string name="Respuesta1">Respuesta 1</string>
     <string name="Respuesta2">Respuesta 2</string>
     <string name="Respuesta3">Respuesta 3</string>
@@ -134,13 +136,13 @@
     <string name="howtofindtransferComerce">Escanee el código QR del comercio!</string>
     <string name="destination_name">Nombre:</string>
     <string name="destination_lastName">Apellido:</string>
-    <string name="destination_phoe">Numero de Telefono:</string>
-    <string name="destination_cuenta">Numero de cuenta:</string>
-    <string name="destination_concept">Concepto:</string>
-    <string name="destination_amount">Monto:</string>
+    <string name="destination_phoe">Telefono:</string>
+    <string name="destination_cuenta">Destino:</string>
+    <string name="destination_concept">Concepto</string>
+    <string name="destination_amount">Monto</string>
     <string name="destination_transaction_id">Transacción:</string>
     <string name="destination_date_time">Fecha:</string>
-    <string name="destination_source">Cuenta origen:</string>
+    <string name="destination_source">Origen:</string>
     <string name="destination_information">Información de la cuenta destino</string>
     <string name="destination_information_comple">Complete información de pago </string>
     <string name="destination_operatión_resum">Resumen de la operación</string>
@@ -148,6 +150,7 @@
     <string name="destination_qr_code">Escanear Código QR</string>
     <string name="welcome_secure_answer">Las preguntas de seguridad han sido registradas satisfactoriamente </string>
     <string name="welcome_secure_manual_removal">El retiro realizado satisfactoriamente. Una vez el proveedor de servicios lo haga efectivo sera notificado. </string>
+    <string name="fail_code_info">La Clave de Operaciones ha sido bloqueada temporalmente.</string>
 
 
 
