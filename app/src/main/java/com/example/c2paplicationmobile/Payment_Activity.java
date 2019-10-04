@@ -34,7 +34,8 @@ public class Payment_Activity extends AppCompatActivity {
     private  String destinationLastNameValue = "";
     private  String destinationNameValue = "";
     private  String destinationIdValue = "";
-    private Integer currencySelected = 0;
+    private ObjUserHasProduct currencySelected;
+    private ArrayList<ObjUserHasProduct> list_product;
 
 
     @Override
@@ -50,17 +51,20 @@ public class Payment_Activity extends AppCompatActivity {
 
 
 
-        String[] optionsID = {"Alocoin","Saldo Alodiga", "HealthCareCoin"};
+        /*String[] optionsID = {"Alocoin","Saldo Alodiga", "HealthCareCoin"};
         String[] optionsBank = {" ","Provincial","Mercantil", "Banesco", "Bicentenario", "Banco de Venezuela", "Banco del Tesoro", "Banco Caroní","Banco Sofitasa", "Banpro", "Banco Fondo Común", "Banfoandes", "Banco Occidental de Descuento", "Banco Venezolano de Crédito", "Banco Exterior", "Banco Plaza", "Citibank", "Banplus"};
-        String[] optionsTelephone = {" ","0416", "0426", "0412","0414", "0424"};
+        String[] optionsTelephone = {" ","0416", "0426", "0412","0414", "0424"};*/
 
-
+        list_product = Session.getObjUserHasProducts();
+        final ObjTransferMoney[] objTransferMoney = new ObjTransferMoney[list_product.size()];
+        for(int i=0;i<list_product.size();i++){
+            objTransferMoney[i] = new ObjTransferMoney(list_product.get(i).getId(),list_product.get(i).getName().trim()+" "+ list_product.get(i).getSymbol().trim()+ " - "+list_product.get(i).getCurrentBalance() );
+        }
         //Llena tipos de cuenta
-        List<ObjTransferMoney> countries = new ArrayList<ObjTransferMoney>();
-        ObjTransferMoney[] objTransferMoney = new ObjTransferMoney[3];
-        objTransferMoney[0] = new ObjTransferMoney("0","Saldo Alodiga USD "+ Session.getAlodigaBalance());
+        //List<ObjTransferMoney> countries = new ArrayList<ObjTransferMoney>();
+        /*objTransferMoney[0] = new ObjTransferMoney("0","Saldo Alodiga USD "+ Session.getAlodigaBalance());
         objTransferMoney[1] = new ObjTransferMoney("1","Saldo Alocoins ALC "+ Session.getAlocoinsBalance());
-        objTransferMoney[2] = new ObjTransferMoney("2","Saldo Tarjeta Prepagada CC "+Session.getHealthCareCoinsBalance());
+        objTransferMoney[2] = new ObjTransferMoney("2","Saldo Tarjeta Prepagada CC "+Session.getHealthCareCoinsBalance());*/
         SpinAdapterTransferMoney spinAdapterTransferMoney;
         spinAdapterTransferMoney = new SpinAdapterTransferMoney(this.getApplicationContext(), android.R.layout.simple_spinner_item, objTransferMoney);
         spinnerIdentification.setAdapter(spinAdapterTransferMoney);
@@ -69,13 +73,15 @@ public class Payment_Activity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 ObjTransferMoney objTransferMoney1;
                 objTransferMoney1 = (ObjTransferMoney) spinnerIdentification.getSelectedItem();
-                if(objTransferMoney1.getId().equals("0")){
+                currencySelected =new ObjUserHasProduct(objTransferMoney1.getId(),objTransferMoney1.getName());
+                Session.setMoneySelected(currencySelected);
+                /*if(objTransferMoney1.getId().equals("0")){
                     currencySelected = 0;
                 }else if (objTransferMoney1.getId().equals("1")){
                     currencySelected = 1;
                 }else if (objTransferMoney1.getId().equals("2")){
                     currencySelected = 2;
-                }
+                }*/
             }
 
             @Override
