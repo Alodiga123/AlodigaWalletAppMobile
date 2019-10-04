@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity
         mProductList = new ArrayList<Money>();
 
         for(ObjUserHasProduct objUserHasProduct : Session.getObjUserHasProducts()){
-            mProductList.add(new Money(objUserHasProduct.getName(),R.drawable.dolarsimbol,Session.getAccountNumber(), "Alodiga ", "USD "+ objUserHasProduct.getCurrentBalance()));
+            mProductList.add(new Money(objUserHasProduct.getName(),R.drawable.dolarsimbol,Session.getAccountNumber(), "Alodiga ",objUserHasProduct.getSymbol()+" "+ objUserHasProduct.getCurrentBalance()));
         }
 
 
