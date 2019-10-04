@@ -10,23 +10,37 @@ public class ObjUserHasProduct {
     private String name;
     private String imageSource;
     private Float currentBalance;
+    private String symbol;
 
     public ObjUserHasProduct(String name) {
         this.name = name;
     }
 
-
-    public ObjUserHasProduct(String id, String name, String imageSource) {
-        this.id = id;
+    public ObjUserHasProduct(String id,String name) {
         this.name = name;
-        this.imageSource = imageSource;
+        this.id = id;
     }
 
-    public ObjUserHasProduct(String id, String name, String imageSource, Float currentBalance) {
+
+    public ObjUserHasProduct(String id, String name, Float currentBalance) {
+        this.id = id;
+        this.name = name;
+        this.currentBalance = currentBalance;
+    }
+
+    public ObjUserHasProduct(String id, String name, Float currentBalance, String symbol) {
+        this.id = id;
+        this.name = name;
+        this.symbol = symbol;
+        this.currentBalance = currentBalance;
+    }
+
+    public ObjUserHasProduct(String id, String name, Float currentBalance, String symbol, String imageSource) {
         this.id = id;
         this.name = name;
         this.imageSource = imageSource;
         this.currentBalance = currentBalance;
+        this.symbol = symbol;
     }
 
     public String getName() {
@@ -59,5 +73,13 @@ public class ObjUserHasProduct {
 
     public void setCurrentBalance(Float currentBalance) {
         this.currentBalance = currentBalance;
+    }
+
+    public String getSymbol() {
+        return symbol;
+    }
+
+    public void setSymbol(String symbol) {
+        this.symbol = symbol;
     }
 }

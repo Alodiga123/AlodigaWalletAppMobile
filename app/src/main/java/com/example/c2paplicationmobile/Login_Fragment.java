@@ -31,13 +31,19 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.alodiga.security.encryption.S3cur1ty3Cryt3r;
+
 import org.ksoap2.serialization.SoapObject;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.crypto.IllegalBlockSizeException;
 
 public class Login_Fragment extends Fragment implements OnClickListener {
 	private static View view;
@@ -235,15 +241,20 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 	private void checkValidation() {
 		// Get email id and password
 		 getEmailId = emailid.getText().toString();
-		 getPassword = password.getText().toString();
+		 //getPassword = password.getText().toString();
 
+		 getPassword= Utils.aloDesencript(password.getText().toString());
 		// Check patter for email id
 		Pattern p = Pattern.compile(Utils.regEx);
 
 		Matcher m = p.matcher(getEmailId);
 
 		// Check for both field is empty or not
-		if (getEmailId.equals("") || getEmailId.length() == 0
+
+		if (getPassword.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_INTERNO)){
+			new CustomToast().Show_Toast(getActivity(), view,
+					getString(R.string.web_services_response_99));
+		}else if (getEmailId.equals("") || getEmailId.length() == 0
 				|| getPassword.equals("") || getPassword.length() == 0) {
 			loginLayout.startAnimation(shakeAnimation);
 			new CustomToast().Show_Toast(getActivity(), view,
@@ -455,5 +466,7 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 	private static Integer getLenghtFromResponseJson(String v, String response){
 		return (response.split(v).length);
 	}
+
+
 
 }

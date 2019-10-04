@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="10dp"
-        android:text="@string/transference_title"
+        android:text="@string/payment_comerce_title"
         android:textColor="@color/background_color"
         android:textSize="25sp"
         android:textStyle="bold" />
@@ -21,7 +21,7 @@
 
     <TableLayout
         android:id="@+id/txtTableLayout"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/txtConfirmationPaymen"
         android:layout_centerHorizontal="true"
@@ -45,7 +45,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:padding="3dip"
+                android:padding="2dip"
                 android:paddingTop="5dp"
                 android:singleLine="true"
                 android:textColor="@color/white_greyish"
@@ -57,7 +57,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:padding="3dip"
+                android:padding="2dip"
                 android:singleLine="true"
                 android:textColor="@color/white_greyish"
                 android:textColorHint="@color/white_greyish"
@@ -133,25 +133,31 @@
         </TableRow>
 
 
-        <TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="43dp">
+
             <TextView
                 android:id="@+id/accountSource"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
                 android:padding="3dip"
                 android:singleLine="true"
+                android:text="@string/destination_source"
                 android:textColor="@color/white_greyish"
                 android:textColorHint="@color/white_greyish"
                 android:textSize="16sp"
-                android:text="@string/destination_source"/>
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/txtAccountSourceValue"
                 android:padding="3dip"
                 android:singleLine="true"
                 android:textColor="@color/white_greyish"
                 android:textColorHint="@color/white_greyish"
-                android:textSize="16sp"/>
+                android:textSize="16sp"
+                />
+
         </TableRow>
 
 
@@ -217,7 +223,7 @@
         android:layout_marginTop="15dp"
         android:background="@drawable/loginbutton_selector"
         android:padding="3dp"
-        android:text="@string/process"
+        android:text="@string/next"
         android:textColor="@color/background_color"
         android:textSize="17sp"
         android:textStyle="bold" />

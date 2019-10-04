@@ -29,6 +29,7 @@ public  class Session {
     private static String usuarioDestionId = "";
     private static String mobileCodeSms;
     private static Integer moneySelected = 0 ;
+    private static Integer codeOperation= 0;
     private static ArrayList<ObjUserHasProduct> objUserHasProducts;
 
     public static ArrayList<ObjUserHasProduct> getObjUserHasProducts() {
@@ -181,6 +182,14 @@ public  class Session {
 
     public static void setDestinationNameValue(String destinationNameValue) {
         DestinationNameValue = destinationNameValue;
+    }
+
+    public static Integer getCodeOperation() {
+        return codeOperation;
+    }
+
+    public static void setCodeOperation(Integer codeOperation) {
+        Session.codeOperation = codeOperation;
     }
 
     public static void clearALL(){

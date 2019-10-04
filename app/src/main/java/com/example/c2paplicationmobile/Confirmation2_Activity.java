@@ -3,6 +3,9 @@ package com.example.c2paplicationmobile;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.Selection;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -94,19 +97,176 @@ public class Confirmation2_Activity extends AppCompatActivity {
 			}
 		});
 
+
+
+
 	}
 
 	public void procesar(){
 
 
 
-
-		mAuthTask = new ProcessOperationTransferenceTask(Session.getUserId(),Session.getUsuarioDestionId(),Session.getGetDestinationAmount(),Session.getDestinationConcept());
+		mAuthTask = new ProcessOperationTransferenceTask("1",Session.getEmail(),"1".toString(),Session.getGetDestinationAmount(),Session.getDestinationConcept(),"1",Session.getUsuarioDestionId());
 		mAuthTask.execute((Void) null);
+		//mAuthTask = new ProcessOperationTransferenceTask(Session.getUserId(),Session.getUsuarioDestionId(),Session.getGetDestinationAmount(),Session.getDestinationConcept());
+		//mAuthTask.execute((Void) null);
 
 	}
-
 	public class ProcessOperationTransferenceTask extends AsyncTask<Void, Void, Boolean> {
+
+
+		private String cryptogramShop, emailUser, productId, amountPayment,
+				conceptTransaction, cryptogramUser, idUserDestination;
+
+		public ProcessOperationTransferenceTask(String cryptogramShop_, String emailUser_, String productId_, String amountPayment_, String conceptTransaction_, String cryptogramUser_, String idUserDestination_) {
+			this.cryptogramShop = cryptogramShop_; //nulo
+			this.emailUser = emailUser_; //email
+			this.productId = productId_; // idproductos
+			this.amountPayment = amountPayment_; //monto
+			this.conceptTransaction = conceptTransaction_; //paymentshop
+			this.cryptogramUser = cryptogramUser_; // nulo
+			this.idUserDestination = idUserDestination_; //destino
+		}
+
+		@Override
+		protected Boolean doInBackground(Void... params) {
+
+			WebService webService = new WebService();
+			Utils utils = new Utils();
+			SoapObject response;
+			try {
+
+				boolean availableBalance = true;
+				String responseCode;
+				String responseMessage = "";
+
+
+				if(availableBalance){
+					HashMap<String,String > map = new HashMap<String,String>();
+					map.put("cryptogramShop",cryptogramShop);
+					map.put("emailUser",emailUser);
+					map.put("productId",productId);
+					map.put("amountPayment",amountPayment);
+					map.put("conceptTransaction",conceptTransaction);
+					map.put("cryptogramUser",cryptogramUser);
+					map.put("idUserDestination",idUserDestination);
+
+					response = webService.invokeGetAutoConfigString(map,Constants.WEB_SERVICES_METHOD_NAME_PAYMENT_COMERCE,Constants.ALODIGA);
+					responseCode = response.getProperty("codigoRespuesta").toString();
+					responseMessage = response.getProperty("mensajeRespuesta").toString();
+
+					if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO))
+					{
+
+						serviceStatus = true;
+					}
+					else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_DATOS_INVALIDOS))
+					{
+						responsetxt = getString(R.string.web_services_response_01);
+						serviceStatus = false;
+
+					} else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CONTRASENIA_EXPIRADA))
+					{
+						responsetxt = getString(R.string.web_services_response_03);
+						serviceStatus = false;
+					}
+					else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_IP_NO_CONFIANZA))
+					{
+						responsetxt = getString(R.string.web_services_response_04);
+						serviceStatus = false;
+					}
+					else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CREDENCIALES_INVALIDAS))
+					{
+						responsetxt = getString(R.string.web_services_response_05);
+						serviceStatus = false;
+					}
+					else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_BLOQUEADO))
+					{
+						responsetxt = getString(R.string.web_services_response_06);
+						serviceStatus = false;
+					}
+					else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_NUMERO_TELEFONO_YA_EXISTE))
+					{
+						responsetxt = getString(R.string.web_services_response_08);
+						serviceStatus = false;
+					}
+					else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_PRIMER_INGRESO))
+					{
+						responsetxt = getString(R.string.web_services_response_12);
+						serviceStatus = false;
+					}
+					else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_SOSPECHOSO))
+					{
+						responsetxt = getString(R.string.web_services_response_95);
+						serviceStatus = false;
+					}else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_PENDIENTE))
+					{
+						responsetxt = getString(R.string.web_services_response_96);
+						serviceStatus = false;
+					}else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_NO_EXISTE))
+					{
+						responsetxt = getString(R.string.web_services_response_97);
+						serviceStatus = false;
+					}else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_CREDENCIALES))
+					{
+						responsetxt = getString(R.string.web_services_response_98);
+						serviceStatus = false;
+					}else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_INTERNO))
+					{
+						responsetxt = getString(R.string.web_services_response_99);
+						serviceStatus = false;
+					}
+				}else{
+					responsetxt = getString(R.string.insuficient_balance);
+					serviceStatus = false;
+				}
+				//progressDialogAlodiga.dismiss();
+			} catch (IllegalArgumentException e)
+			{
+				e.printStackTrace();
+				System.err.println(e);
+				return false;
+			} catch (Exception e)
+			{
+				e.printStackTrace();
+				System.err.println(e);
+				return false;
+			}
+			return serviceStatus;
+
+		}
+
+		@Override
+		protected void onPreExecute() {
+			progressDialogAlodiga.show();
+		}
+
+		@Override
+		protected void onPostExecute(final Boolean success) {
+			mAuthTask = null;
+			//showProgress(false);
+			if (success) {
+				new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
+						"La mando bien ....");
+
+			} else {
+
+
+				new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
+						responsetxt);
+
+			}
+			progressDialogAlodiga.dismiss();
+		}
+
+		@Override
+		protected void onCancelled() {
+			mAuthTask = null;
+		}
+	}
+
+
+	/*public class ProcessOperationTransferenceTask extends AsyncTask<Void, Void, Boolean> {
 
 		private final String userId1;
 		private final String userId2;
@@ -312,6 +472,6 @@ public class Confirmation2_Activity extends AppCompatActivity {
 	private static String getValueFromResponseJson(String v, String response){
 		return (response.split(v+"=")[1].split(";")[0]);
 	}
-
+*/
 
 }
