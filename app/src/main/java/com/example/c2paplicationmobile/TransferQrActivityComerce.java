@@ -26,7 +26,7 @@ public class TransferQrActivityComerce extends AppCompatActivity implements ZXin
     private  String destinationPhoneValue = "";
     private  String destinationLastNameValue = "";
     private  String destinationNameValue = "";
-    private Integer selectedMoney = 0;
+    private ObjUserHasProduct selectedMoney;
 
 
     private  String destinationIdValue = "";
