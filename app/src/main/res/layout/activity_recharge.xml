@@ -8,10 +8,10 @@
     <LinearLayout
         android:id="@+id/login_layout"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="500dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="30dp"
         android:orientation="vertical">
 
         <TextView
@@ -21,7 +21,7 @@
             android:padding="10dp"
             android:text="@string/recharge_title"
             android:textColor="@color/background_color"
-            android:textSize="25sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <TextView
@@ -30,7 +30,7 @@
             android:padding="8dp"
             android:text="@string/pais_info"
             android:textColor="@color/white_greyish"
-            android:textSize="15sp" />
+            android:textSize="14sp" />
         <Spinner
             android:id="@+id/spinner_pais"
             android:layout_width="fill_parent"
@@ -43,15 +43,12 @@
             android:singleLine="true"
             android:textColor="@color/white"
             android:textColorHint="@color/white_greyish"
-            android:textSize="15sp" />
+            android:textSize="10sp" />
         <View
             android:layout_width="fill_parent"
-            android:layout_height="1px"
+            android:layout_height="2px"
             android:background="@color/white" />
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1px"
-            android:background="@color/white" />
+
 
         <TextView
             android:layout_width="fill_parent"
@@ -59,7 +56,7 @@
             android:padding="10dp"
             android:text="@string/bank_info"
             android:textColor="@color/white_greyish"
-            android:textSize="16sp"/>
+            android:textSize="14sp"/>
         <Spinner
             android:id="@+id/spinnerbank"
             android:layout_width="fill_parent"
@@ -72,14 +69,10 @@
             android:singleLine="true"
             android:textColor="@color/white"
             android:textColorHint="@color/white_greyish"
-            android:textSize="16sp" />
+            android:textSize="10sp" />
         <View
             android:layout_width="fill_parent"
             android:layout_height="2px"
-            android:background="@color/white" />
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1px"
             android:background="@color/white" />
 
 
@@ -89,7 +82,7 @@
             android:padding="10dp"
             android:text="@string/producto_info"
             android:textColor="@color/white_greyish"
-            android:textSize="16sp"/>
+            android:textSize="14sp"/>
         <Spinner
             android:id="@+id/spinnerproducto"
             android:layout_width="fill_parent"
@@ -102,14 +95,10 @@
             android:singleLine="true"
             android:textColor="@color/white"
             android:textColorHint="@color/white_greyish"
-            android:textSize="16sp" />
+            android:textSize="10sp" />
         <View
             android:layout_width="fill_parent"
             android:layout_height="2px"
-            android:background="@color/white" />
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1px"
             android:background="@color/white" />
 
 
@@ -119,7 +108,7 @@
             android:padding="11dp"
             android:text="@string/id_recharge"
             android:textColor="@color/white_greyish"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
         <EditText
             android:id="@+id/edtCOD"
             android:layout_width="fill_parent"
@@ -133,14 +122,10 @@
             android:singleLine="true"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
-            android:textSize="16sp" />
+            android:textSize="10sp" />
         <View
             android:layout_width="fill_parent"
-            android:layout_height="1px"
-            android:background="@color/white" />
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1px"
+            android:layout_height="2px"
             android:background="@color/white" />
 
 
@@ -150,7 +135,7 @@
             android:padding="10dp"
             android:text="@string/amount_info"
             android:textColor="@color/white_greyish"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
         <EditText
             android:id="@+id/edtAmount"
             android:layout_width="fill_parent"
@@ -165,14 +150,10 @@
             android:singleLine="true"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
-            android:textSize="16sp" />
+            android:textSize="12sp" />
         <View
             android:layout_width="fill_parent"
-            android:layout_height="1px"
-            android:background="@color/white" />
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1px"
+            android:layout_height="2px"
             android:background="@color/white" />
 
 
@@ -185,7 +166,7 @@
             android:padding="12dp"
             android:text="@string/buttonProcessRecharge"
             android:textColor="@color/background_color"
-            android:textSize="17sp"
+            android:textSize="14sp"
             android:textStyle="bold" />
     </LinearLayout>
 </RelativeLayout>
