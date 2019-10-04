@@ -9,7 +9,7 @@ public class ObjUserHasProduct {
     private String id;
     private String name;
     private String imageSource;
-    private Float currentBalance;
+    private String currentBalance;
     private String symbol;
 
     public ObjUserHasProduct(String name) {
@@ -22,20 +22,20 @@ public class ObjUserHasProduct {
     }
 
 
-    public ObjUserHasProduct(String id, String name, Float currentBalance) {
+    public ObjUserHasProduct(String id, String name, String currentBalance) {
         this.id = id;
         this.name = name;
         this.currentBalance = currentBalance;
     }
 
-    public ObjUserHasProduct(String id, String name, Float currentBalance, String symbol) {
+    public ObjUserHasProduct(String id, String name, String currentBalance, String symbol) {
         this.id = id;
         this.name = name;
         this.symbol = symbol;
         this.currentBalance = currentBalance;
     }
 
-    public ObjUserHasProduct(String id, String name, Float currentBalance, String symbol, String imageSource) {
+    public ObjUserHasProduct(String id, String name, String currentBalance, String symbol, String imageSource) {
         this.id = id;
         this.name = name;
         this.imageSource = imageSource;
@@ -67,11 +67,11 @@ public class ObjUserHasProduct {
         this.imageSource = imageSource;
     }
 
-    public Float getCurrentBalance() {
+    public String getCurrentBalance() {
         return currentBalance;
     }
 
-    public void setCurrentBalance(Float currentBalance) {
+    public void setCurrentBalance(String currentBalance) {
         this.currentBalance = currentBalance;
     }
 
