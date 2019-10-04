@@ -136,8 +136,13 @@ public class  Constants {
 
 
 
- public static final Integer MAX_RESULT_BY_TRANSACTION_OPERATION = 10;
+    public static final Integer MAX_RESULT_BY_TRANSACTION_OPERATION = 10;
     public static final String CONCEPT_TRANSACTION="paymentshop";
+
+    public static final String KEY_ENCRIPT_DESENCRIPT="1nt3r4xt3l3ph0ny";
+    public static final String K2_ENCRIPT_DESENCRIPT="DESede";
+    public static final String VECTOR_ENCRIPT_DESENCRIPT="0123456789ABCDEF";
+
 
 
 
