@@ -107,6 +107,10 @@
             android:name=".fail_code_Activity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity
+            android:name=".Recharge_Activity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
         <activity android:name=".TransferQrActivity" />
 
 
