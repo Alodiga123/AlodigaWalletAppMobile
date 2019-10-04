@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public  class Session {
 
@@ -28,8 +29,8 @@ public  class Session {
     private static String getDestinationAmount = "";
     private static String usuarioDestionId = "";
     private static String mobileCodeSms;
-    private static Integer moneySelected = 0 ;
-    private static Integer codeOperation= 0;
+    private static ObjUserHasProduct  moneySelected;
+    private static String codeOperation;
     private static ArrayList<ObjUserHasProduct> objUserHasProducts;
 
     public static ArrayList<ObjUserHasProduct> getObjUserHasProducts() {
@@ -72,11 +73,11 @@ public  class Session {
         Session.getDestinationAmount = getDestinationAmount;
     }
 
-    public static Integer getMoneySelected() {
+    public static ObjUserHasProduct getMoneySelected() {
         return moneySelected;
     }
 
-    public static void setMoneySelected(Integer moneySelected) {
+    public static void setMoneySelected(ObjUserHasProduct moneySelected) {
         Session.moneySelected = moneySelected;
     }
 
@@ -184,11 +185,11 @@ public  class Session {
         DestinationNameValue = destinationNameValue;
     }
 
-    public static Integer getCodeOperation() {
+    public static String getCodeOperation() {
         return codeOperation;
     }
 
-    public static void setCodeOperation(Integer codeOperation) {
+    public static void setCodeOperation(String codeOperation) {
         Session.codeOperation = codeOperation;
     }
 
@@ -210,7 +211,8 @@ public  class Session {
         Session.getDestinationAmount = null;
         Session.usuarioDestionId = null;
         Session.mobileCodeSms= null;
-        Session.moneySelected = 0;
+        Session.moneySelected = null;
+        Session.codeOperation= null;
     }
 
 }
