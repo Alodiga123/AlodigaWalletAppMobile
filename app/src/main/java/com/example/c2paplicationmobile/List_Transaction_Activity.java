@@ -218,14 +218,14 @@ public class List_Transaction_Activity extends AppCompatActivity  {
 
                 if (getcuenta.equals("") || getcuenta.length() == 0) {
                     new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
-                            getString(R.string.recharge_id_invalid));
+                            getString(R.string.id_recharge_invalid));
 
                 }else if (getmonto.equals("") || getmonto.length() == 0) {
                     new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                             getString(R.string.amount_info_invalid));
                 }else {
                     Intent show;
-                    show = new Intent(getApplicationContext(), Welcome_removal_Activity.class);
+                    show = new Intent(getApplicationContext(), Recharge_Activity.class);
                     startActivity(show);
                 }
             }
