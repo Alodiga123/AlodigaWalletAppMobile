@@ -452,15 +452,13 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 	private static ArrayList<ObjUserHasProduct>  getElementsProduct(String elementGet, String response){
 		ArrayList<ObjUserHasProduct> objUserHasProducts = new ArrayList<ObjUserHasProduct>();
 		String elementgetId = "id=";
-		String elementGetProducto = "nombreProducto=";
-		String elementGetS = "saldoActual=";
-		String elementGetSi = "simbolo=";
+		String elementGetName = "nombreProducto=";
+		String elementGetCurrentBalance = "saldoActual=";
+		String elementGetSymbol = "simbolo=";
 		String litaProd = "respuestaListadoProductos=" ;
 
 		for(int i = 1 ;i<getLenghtFromResponseJson(litaProd, response);i++){
-
-
-			ObjUserHasProduct objUserHasProduct = new ObjUserHasProduct(response.split(elementgetId)[i].split(";")[0],response.split(elementGetProducto)[i].split(";")[0],response.split(elementGetS)[i].split(";")[0],response.split(elementGetSi)[i].split(";")[0]);
+			ObjUserHasProduct objUserHasProduct = new ObjUserHasProduct(response.split(elementgetId)[i].split(";")[0],response.split(elementGetName)[i].split(";")[0],response.split(elementGetCurrentBalance)[i].split(";")[0],response.split(elementGetSymbol)[i].split(";")[0]);
 			objUserHasProducts.add(objUserHasProduct);
 		}
 
