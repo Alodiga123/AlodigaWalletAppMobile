@@ -14,6 +14,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 
 //import org.apache.commons.codec.binary.Base64;
+import com.alodiga.security.encryption.S3cur1ty3Cryt3r;
+import com.alodiga.security.exception.KeyLongException;
+
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
@@ -32,6 +35,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
+import java.util.logging.Level;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.crypto.BadPaddingException;
@@ -240,5 +244,72 @@ public class Utils {
 				Settings.Secure.ANDROID_ID);
 	}
 
+
+	public static String aloDesencript(String clave){
+		try {
+			clave = S3cur1ty3Cryt3r.aloDesencript(clave,Constants.KEY_ENCRIPT_DESENCRIPT, null, Constants.K2_ENCRIPT_DESENCRIPT, Constants.VECTOR_ENCRIPT_DESENCRIPT);
+			//credencial = Utils.MD5(credencial);
+			//System.out.println("MD5......................+ :"+ clave);
+		} catch (NoSuchAlgorithmException ex) {
+			java.util.logging.Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+			ex.printStackTrace();
+			return Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_INTERNO;
+		} catch (IllegalBlockSizeException ex) {
+			java.util.logging.Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+			ex.printStackTrace();
+			return Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_INTERNO;
+		} catch (NoSuchPaddingException ex) {
+			java.util.logging.Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+			ex.printStackTrace();
+			return Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_INTERNO;
+		} catch (BadPaddingException ex) {
+			java.util.logging.Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+			ex.printStackTrace();
+			return Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_INTERNO;
+		} catch (KeyLongException ex) {
+			java.util.logging.Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+			ex.printStackTrace();
+			return Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_INTERNO;
+		} catch (Exception ex) {
+			java.util.logging.Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+			ex.printStackTrace();
+			return Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_INTERNO;
+		}
+		return clave;
+	}
+
+
+	public static String aloEncrpter(String clave){
+		try {
+			clave = S3cur1ty3Cryt3r.aloEncrpter(clave,Constants.KEY_ENCRIPT_DESENCRIPT, null, Constants.K2_ENCRIPT_DESENCRIPT, Constants.VECTOR_ENCRIPT_DESENCRIPT);
+			//credencial = Utils.MD5(credencial);
+			//System.out.println("MD5......................+ :"+ clave);
+		} catch (NoSuchAlgorithmException ex) {
+			java.util.logging.Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+			ex.printStackTrace();
+			return Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_INTERNO;
+		} catch (IllegalBlockSizeException ex) {
+			java.util.logging.Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+			ex.printStackTrace();
+			return Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_INTERNO;
+		} catch (NoSuchPaddingException ex) {
+			java.util.logging.Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+			ex.printStackTrace();
+			return Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_INTERNO;
+		} catch (BadPaddingException ex) {
+			java.util.logging.Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+			ex.printStackTrace();
+			return Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_INTERNO;
+		} catch (KeyLongException ex) {
+			java.util.logging.Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+			ex.printStackTrace();
+			return Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_INTERNO;
+		} catch (Exception ex) {
+			java.util.logging.Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+			ex.printStackTrace();
+			return Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_INTERNO;
+		}
+		return clave;
+	}
 	
 }
