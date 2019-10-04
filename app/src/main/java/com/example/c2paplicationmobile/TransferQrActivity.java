@@ -30,7 +30,7 @@ public class TransferQrActivity extends AppCompatActivity implements ZXingScanne
     private  String destinationPhoneValue = "";
     private  String destinationLastNameValue = "";
     private  String destinationNameValue = "";
-    private Integer selectedMoney = 0;
+    private String selectedMoney = "";
 
 
     private  String destinationIdValue = "";
@@ -211,7 +211,7 @@ public class TransferQrActivity extends AppCompatActivity implements ZXingScanne
             if (success) {
                 //llama activities
                 //llama activities
-                selectedMoney = Session.getMoneySelected();
+                selectedMoney = Session.getMoneySelected().getId();
                 Session.setDestinationAccountNumber(destinationAccountNumber);
                 Session.setDestinationLastNameValue(destinationLastNameValue);
                 Session.setDestinationPhoneValue(destinationPhoneValue);

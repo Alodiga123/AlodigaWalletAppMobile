@@ -71,8 +71,10 @@ public class Confirmation1_Activity extends AppCompatActivity {
 		destinationPhoneValue.setText(Session.getDestinationPhoneValue());
 		destinationLastNameValue.setText(Session.getDestinationLastNameValue());
 		destinationNameValue.setText(Session.getDestinationNameValue());
+		//String hola=Session.getMoneySelected().getName();
+        txtAccountSourceValue.setText(Session.getMoneySelected().getName());
 
-		switch (Session.getMoneySelected()) {
+		/*switch (Session.getMoneySelected()) {
 			case 0:
 				txtAccountSourceValue.setText("Saldo Alodiga / USD "+ Session.getAlodigaBalance());
 				break;
@@ -82,7 +84,7 @@ public class Confirmation1_Activity extends AppCompatActivity {
 			case 2:
 				txtAccountSourceValue.setText("Tarjeta Alodiga / USD "+ Session.getHealthCareCoinsBalance());
 				break;
-		}
+		}*/
 
 
 
@@ -96,6 +98,7 @@ public class Confirmation1_Activity extends AppCompatActivity {
 
 					//Intent i = new Intent(Confirmation1_Activity.this, Confirmation2_Activity.class);
 					//startActivity(i);
+
 					Intent i = new Intent(Confirmation1_Activity.this, Payment_comerce_code_Activity.class);
 					startActivity(i);
 					finish();

@@ -10,13 +10,22 @@
     <TextView
         android:id="@+id/title"
         android:layout_width="fill_parent"
-        android:layout_height="177dp"
+        android:layout_height="118dp"
         android:gravity="top|center"
         android:padding="10dp"
         android:text="@string/payment_comerce_title"
         android:textColor="@color/background_color"
         android:textSize="25sp"
         android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvintentos"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:textColor="@color/white_greyish"
+        android:textSize="17sp"
+        android:gravity="center"/>
 
 
     <TextView
@@ -50,35 +59,6 @@
         android:layout_height="1px"
         android:background="@color/white_greyish" />
 
-    <!--<RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp" >
-
-        <TextView
-            android:id="@+id/backToLoginBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-
-            android:padding="5dp"
-            android:text="@string/back"
-            android:textColor="@color/white"
-            android:textSize="15sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/step1_next_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:gravity="right"
-            android:padding="5dp"
-            android:text="@string/next"
-            android:textColor="@color/white"
-            android:textSize="15sp"
-            android:textStyle="bold" />
-    </RelativeLayout>-->
     <Button
     android:id="@+id/step1_next_button"
     android:layout_width="fill_parent"

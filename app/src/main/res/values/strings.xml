@@ -95,6 +95,7 @@
     <string name="buttonProcessRecharge">Procesar la Transferencia</string>
     <string name="recharge_title">RECARGAS POR TRANSFERENCIAS</string>
     <string name="id_recharge">Ingrese el identificador de la recarga:</string>
+    <string name="info_fail_code">La Clave de Operaciones no es valida. Numero de intentos restantes: </string>
 
 
 

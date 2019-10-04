@@ -75,9 +75,10 @@ public class Confirmation2_Activity extends AppCompatActivity {
 		destinationNameValue.setText(Session.getDestinationNameValue());
 		conceptValue.setText(Session.getDestinationConcept());
 		amountValue.setText(Session.getGetDestinationAmount());
+		txtAccountSourceValue.setText(Session.getMoneySelected().getName());
 
 
-		switch (Session.getMoneySelected()) {
+		/*switch (Session.getMoneySelected()) {
 			case 0:
 				txtAccountSourceValue.setText("Saldo Alodiga / USD "+ Session.getAlodigaBalance());
 				break;
@@ -87,7 +88,7 @@ public class Confirmation2_Activity extends AppCompatActivity {
 			case 2:
 				txtAccountSourceValue.setText("Tarjeta Alodiga / USD "+ Session.getHealthCareCoinsBalance());
 				break;
-		}
+		}*/
 
 
 		progressDialogAlodiga = new ProgressDialogAlodiga(this, "Cargando..");
@@ -106,7 +107,7 @@ public class Confirmation2_Activity extends AppCompatActivity {
 
 
 
-		mAuthTask = new ProcessOperationTransferenceTask("1",Session.getEmail(),"1".toString(),Session.getGetDestinationAmount(),Session.getDestinationConcept(),"1",Session.getUsuarioDestionId());
+		mAuthTask = new ProcessOperationTransferenceTask("1",Session.getEmail(),Session.getMoneySelected().getId(),Session.getGetDestinationAmount(),Session.getDestinationConcept(),"1",Session.getUsuarioDestionId());
 		mAuthTask.execute((Void) null);
 		//mAuthTask = new ProcessOperationTransferenceTask(Session.getUserId(),Session.getUsuarioDestionId(),Session.getGetDestinationAmount(),Session.getDestinationConcept());
 		//mAuthTask.execute((Void) null);

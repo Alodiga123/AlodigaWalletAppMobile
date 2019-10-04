@@ -58,17 +58,18 @@ public class Confirmation1_Activity_Comerce extends AppCompatActivity {
 		destinationLastNameValue.setText(Session.getDestinationLastNameValue());
 		destinationNameValue.setText(Session.getDestinationNameValue());
 
-		switch (Session.getMoneySelected()) {
-			case 0:
+		txtAccountSourceValue.setText(Session.getMoneySelected().getName());
+		/*switch (Session.getMoneySelected()) {
+			case "0":
 				txtAccountSourceValue.setText("Saldo Alodiga / USD "+ Session.getAlodigaBalance());
 				break;
-			case 1:
+			case "1":
 				txtAccountSourceValue.setText("Saldo Alocoins / ALC "+ Session.getAlocoinsBalance());
 				break;
-			case 2:
+			case "2":
 				txtAccountSourceValue.setText("Tarjeta Alodiga / USD "+ Session.getHealthCareCoinsBalance());
 				break;
-		}
+		}*/
 
 
 

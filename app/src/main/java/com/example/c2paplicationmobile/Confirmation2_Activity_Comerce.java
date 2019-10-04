@@ -74,8 +74,9 @@ public class Confirmation2_Activity_Comerce extends AppCompatActivity {
 		conceptValue.setText(Session.getDestinationConcept());
 		amountValue.setText(Session.getGetDestinationAmount());
 
+		txtAccountSourceValue.setText(Session.getMoneySelected().getName());
 
-		switch (Session.getMoneySelected()) {
+		/*switch (Session.getMoneySelected()) {
 			case 0:
 				txtAccountSourceValue.setText("Saldo Alodiga / USD "+ Session.getAlodigaBalance());
 				break;
@@ -85,7 +86,7 @@ public class Confirmation2_Activity_Comerce extends AppCompatActivity {
 			case 2:
 				txtAccountSourceValue.setText("Tarjeta Alodiga / USD "+ Session.getHealthCareCoinsBalance());
 				break;
-		}
+		}*/
 
 
 		progressDialogAlodiga = new ProgressDialogAlodiga(this, "Cargando..");
@@ -137,9 +138,9 @@ public class Confirmation2_Activity_Comerce extends AppCompatActivity {
 				String responseMessage = "";
 				String methodName = "";
 
-				switch (Session.getMoneySelected()) {
+				/*switch (Session.getMoneySelected().getId()) {
 
-					case 0:
+					case "0":
 
 						if(Float.valueOf(amount)>Float.valueOf(Session.getAlodigaBalance())){
 							availableBalance = false;
@@ -147,14 +148,14 @@ public class Confirmation2_Activity_Comerce extends AppCompatActivity {
 						methodName = "transferirSaldoAlodiga";
 						break;
 
-					case 1:
+					case "1":
 
 						if(Float.valueOf(amount)>Float.valueOf(Session.getAlocoinsBalance())){
 							availableBalance = false;
 						}
 						methodName = "transferirAlocoins";
 						break;
-					case 2:
+					case "2":
 						if(Float.valueOf(amount)>Float.valueOf(Session.getHealthCareCoinsBalance())){
 							availableBalance = false;
 						}
@@ -163,7 +164,7 @@ public class Confirmation2_Activity_Comerce extends AppCompatActivity {
 
 					default:
 						break;
-				}
+				}*/
 
 
 				if(availableBalance){
