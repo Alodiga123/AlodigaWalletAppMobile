@@ -61,7 +61,7 @@
                 android:singleLine="true"
                 android:textColor="@color/white_greyish"
                 android:textColorHint="@color/white_greyish"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 />
         </TableRow>
 
@@ -84,7 +84,7 @@
                 android:singleLine="true"
                 android:textColor="@color/white_greyish"
                 android:textColorHint="@color/white_greyish"
-                android:textSize="16sp"
+                android:textSize="14sp"
 
                 />
         </TableRow>
@@ -108,7 +108,7 @@
                 android:singleLine="true"
                 android:textColor="@color/white_greyish"
                 android:textColorHint="@color/white_greyish"
-                android:textSize="16sp"/>
+                android:textSize="14sp"/>
         </TableRow>
 
         <TableRow>
@@ -129,7 +129,7 @@
                 android:singleLine="true"
                 android:textColor="@color/white_greyish"
                 android:textColorHint="@color/white_greyish"
-                android:textSize="16sp"/>
+                android:textSize="14sp"/>
         </TableRow>
 
 
@@ -151,7 +151,7 @@
                 android:singleLine="true"
                 android:textColor="@color/white_greyish"
                 android:textColorHint="@color/white_greyish"
-                android:textSize="16sp"/>
+                android:textSize="14sp"/>
         </TableRow>
 
 
@@ -175,7 +175,7 @@
                 android:singleLine="true"
                 android:textColor="@color/white_greyish"
                 android:textColorHint="@color/white_greyish"
-                android:textSize="16sp"/>
+                android:textSize="14sp"/>
         </TableRow>
 
         <TableRow>
@@ -196,7 +196,7 @@
                 android:singleLine="true"
                 android:textColor="@color/white_greyish"
                 android:textColorHint="@color/white_greyish"
-                android:textSize="16sp"/>
+                android:textSize="14sp"/>
         </TableRow>
 
 
