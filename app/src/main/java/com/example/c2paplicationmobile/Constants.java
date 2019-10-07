@@ -133,10 +133,12 @@ public class  Constants {
     public static final String WEB_SERVICES_METHOD_NAME_GET_COUNTRIES = "getCountriesHasBank";
     public static final String WEB_SERVICES_METHOD_NAME_GET_PRODUCT = "getProductsByBankId";
     public static final String WEB_SERVICES_METHOD_NAME_PAYMENT_COMERCE = "savePaymentShop";
+ public static final String WEB_SERVICES_METHOD_NAME_VALID_CODE = "validarPin";
 
 
 
-    public static final Integer MAX_RESULT_BY_TRANSACTION_OPERATION = 10;
+
+ public static final Integer MAX_RESULT_BY_TRANSACTION_OPERATION = 10;
     public static final String CONCEPT_TRANSACTION="paymentshop";
 
     public static final String KEY_ENCRIPT_DESENCRIPT="1nt3r4xt3l3ph0ny";
