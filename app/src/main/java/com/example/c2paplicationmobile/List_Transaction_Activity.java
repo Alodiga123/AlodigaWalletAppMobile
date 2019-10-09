@@ -55,6 +55,7 @@ public class List_Transaction_Activity extends AppCompatActivity  {
                     String responseCode = null;
                     WebService webService = new WebService();
                     HashMap<String, String> map = new HashMap<String, String>();
+                    map.put("userId",Session.getUserId());
                     response = webService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_NAME_GET_COUNTRIES, Constants.ALODIGA);
                     stringResponse = response.toString();
                     responseCode = response.getProperty("codigoRespuesta").toString();
@@ -140,15 +141,16 @@ public class List_Transaction_Activity extends AppCompatActivity  {
 
                 spinnerproducto.setEnabled(true);
                 final ObjGenericObject bank = (ObjGenericObject) spinnerbank.getSelectedItem();
-                //Toast.makeText(getApplicationContext(),"id" + bank.getId() ,Toast.LENGTH_SHORT).show();
 
                 new Thread(new Runnable() {
                     public void run() {
                         try{
+
                             String responseCode = null;
                             WebService webService = new WebService();
                             HashMap<String, String> map = new HashMap<String, String>();
-                            map.put("BankId",bank.getId());
+                            map.put("bankId",bank.getId());
+                            map.put("userId",Session.getUserId().trim());
                             response = webService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_NAME_GET_PRODUCT, Constants.ALODIGA);
                             stringResponse = response.toString();
                             responseCode = response.getProperty("codigoRespuesta").toString();
@@ -172,6 +174,7 @@ public class List_Transaction_Activity extends AppCompatActivity  {
                         {
                             e.printStackTrace();
                         }
+
                     }
                 }).start();
             }
