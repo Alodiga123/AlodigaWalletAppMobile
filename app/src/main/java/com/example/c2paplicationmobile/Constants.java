@@ -114,6 +114,10 @@ public class  Constants {
     public static final String WEB_SERVICES_RESPONSE_CODE_SOLICITUD_TARJETA_ACTIVA = "20";
     public static final String WEB_SERVICES_RESPONSE_CODE_AFILIACIONES_MAXIMAS_ALCANZADAS = "21";
     public static final String WEB_SERVICES_RESPONSE_CODE_USER_NOT_HAS_PHONE_NUMBER = "22";
+    public static final String WEB_SERVICES_RESPONSE_CODE_TRANSACTION_AMOUNT_LIMIT = "30";
+    public static final String WEB_SERVICES_RESPONSE_CODE_TRANSACTION_MAX_NUMBER_BY_ACCOUNT = "31";
+    public static final String WEB_SERVICES_RESPONSE_CODE_TRANSACTION_MAX_NUMBER_BY_CUSTOMER = "32";
+    public static final String WEB_SERVICES_RESPONSE_CODE_USER_HAS_NOT_BALANCE= "33";
     public static final String WEB_SERVICES_RESPONSE_CODE_APLICACION_NO_EXISTE = "94";
     public static final String WEB_SERVICES_RESPONSE_CODE_USUARIO_SOSPECHOSO = "95";
     public static final String WEB_SERVICES_RESPONSE_CODE_USUARIO_PENDIENTE = "96";
@@ -122,7 +126,9 @@ public class  Constants {
     public static final String WEB_SERVICES_RESPONSE_CODE_ERROR_INTERNO = "99";
 
 
-    public static final String WEB_SERVICES_METHOD_NAME_SAVE_USER = "guardarUsuarioAplicacionMovil";
+
+
+ public static final String WEB_SERVICES_METHOD_NAME_SAVE_USER = "guardarUsuarioAplicacionMovil";
     public static final String WEB_SERVICES_METHOD_NAME_SEND_CODE_SMS = "generarCodigoMovilSMS";
     public static final String WEB_SERVICES_METHOD_NAME_LOGIN_APP_MOBILE = "loginAplicacionMovil";
     public static final String WEB_SERVICES_METHOD_NAME_SECRET_AMSWER = "getPreguntasSecretas";
@@ -133,7 +139,13 @@ public class  Constants {
     public static final String WEB_SERVICES_METHOD_NAME_GET_COUNTRIES = "getCountriesHasBank";
     public static final String WEB_SERVICES_METHOD_NAME_GET_PRODUCT = "getProductsByBankId";
     public static final String WEB_SERVICES_METHOD_NAME_PAYMENT_COMERCE = "savePaymentShop";
- public static final String WEB_SERVICES_METHOD_NAME_VALID_CODE = "validarPin";
+    public static final String WEB_SERVICES_METHOD_NAME_VALID_CODE = "validarPin";
+    public static final String WEB_SERVICES_METHOD_NAME_UPDATE_PRODUCT = "listadoProductosPorUsuario";
+    public static final String WEB_SERVICES_METHOD_NAME_REMOVAL_MANUAL = "ManualWithdrawals";
+
+
+
+
 
 
 
