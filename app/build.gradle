@@ -27,7 +27,8 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'androidx.cardview:cardview:1.0.0'
-    implementation files('/home/jmatapro/Descargas/ksoap2-android-full-2.1.2.jar')
     implementation files('libs/EncryptionAlodigaSecurity.jar')
+    implementation files('libs/commons-codec-1.10.jar')
+    implementation files('libs/ksoap2-android-full-2.1.2.jar')
 
 }
