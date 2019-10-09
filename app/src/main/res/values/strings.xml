@@ -91,7 +91,7 @@
     <string name="id_recharge_invalid">El identificador de la transferencia no puede estar vacio</string>
     <string name="rechargeCOD">Cuenta</string>
     <string name="amount_info">Ingrese el monto:</string>
-    <string name="descrip_info">Ingrese la Descripcion:</string>
+    <string name="descrip_info">Ingrese la descripcion:</string>
     <string name="amount_info_invalid">El monto no puede estar vacio</string>
     <string name="amount">Monto</string>
     <string name="descrip">Descripcion</string>
