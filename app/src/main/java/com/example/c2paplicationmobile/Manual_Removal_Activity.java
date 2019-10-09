@@ -312,7 +312,7 @@ public class Manual_Removal_Activity extends AppCompatActivity  {
         {
             SoapObject obj = (SoapObject) response.getProperty(i);
             String propiedad = response.getProperty(i).toString();
-            ObjTransferMoney object = new ObjTransferMoney(obj.getProperty("id").toString(),obj.getProperty("name").toString() +" - " +obj.getProperty("currentBalance").toString(),obj.getProperty("currentBalance").toString() );
+            ObjTransferMoney object = new ObjTransferMoney(obj.getProperty("id").toString(),obj.getProperty("name").toString() + " "+obj.getProperty("symbol").toString()+" - " +obj.getProperty("currentBalance").toString(),obj.getProperty("currentBalance").toString() );
 
             obj2[i-3] = object;
         }
