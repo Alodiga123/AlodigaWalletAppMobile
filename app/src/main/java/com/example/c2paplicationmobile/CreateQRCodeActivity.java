@@ -25,6 +25,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CreateQRCodeActivity extends AppCompatActivity {
 
@@ -51,7 +53,8 @@ public class CreateQRCodeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_generate_qr_code);
         iv = (ImageView) findViewById(R.id.iv);
         try {
-            Bitmap bitmap = encodeAsBitmap(Session.getEmail()+";"+Session.getPhoneNumber());
+            AlodigaCryptographyUtils obj = new AlodigaCryptographyUtils();
+            Bitmap bitmap = encodeAsBitmap(obj.encrypt(Session.getEmail()+";"+Session.getPhoneNumber()+";"+Session.getUserId(),"alodigaPruebadellave"));
             iv.setImageBitmap(bitmap);
         } catch (WriterException e) {
             e.printStackTrace();
@@ -61,7 +64,6 @@ public class CreateQRCodeActivity extends AppCompatActivity {
         int height = 500;
         LinearLayout.LayoutParams parms = new LinearLayout.LayoutParams(width,height);
         iv.setLayoutParams(parms);
-
     }
 
     Bitmap encodeAsBitmap(String str) throws WriterException {
