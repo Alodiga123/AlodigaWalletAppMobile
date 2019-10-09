@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import org.ksoap2.serialization.SoapObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Confirmation2_Activity extends AppCompatActivity {
@@ -46,6 +47,8 @@ public class Confirmation2_Activity extends AppCompatActivity {
 	private String balancePrepaidCard = "";
 	private String balanceAlocoins = "";
 	private String balanceAlodiga = "";
+	SoapObject response;
+
 
 
 
@@ -133,7 +136,7 @@ public class Confirmation2_Activity extends AppCompatActivity {
 
 			WebService webService = new WebService();
 			Utils utils = new Utils();
-			SoapObject response;
+
 			try {
 
 				boolean availableBalance = true;
@@ -194,15 +197,35 @@ public class Confirmation2_Activity extends AppCompatActivity {
 					{
 						responsetxt = getString(R.string.web_services_response_12);
 						serviceStatus = false;
-					}
-					else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_SOSPECHOSO))
+					}else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_TRANSACTION_AMOUNT_LIMIT))
+					{
+						responsetxt = getString(R.string.web_services_response_30);
+						serviceStatus = false;
+					} else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_TRANSACTION_MAX_NUMBER_BY_ACCOUNT))
+					{
+						responsetxt = getString(R.string.web_services_response_31);
+						serviceStatus = false;
+
+					}else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_TRANSACTION_MAX_NUMBER_BY_CUSTOMER))
+					{
+						responsetxt = getString(R.string.web_services_response_32);
+						serviceStatus = false;
+
+					}else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USER_HAS_NOT_BALANCE))
+					{
+						responsetxt = getString(R.string.web_services_response_33);
+						serviceStatus = false;
+
+					} else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_SOSPECHOSO))
 					{
 						responsetxt = getString(R.string.web_services_response_95);
 						serviceStatus = false;
+
 					}else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_PENDIENTE))
 					{
 						responsetxt = getString(R.string.web_services_response_96);
 						serviceStatus = false;
+
 					}else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_NO_EXISTE))
 					{
 						responsetxt = getString(R.string.web_services_response_97);
@@ -247,14 +270,12 @@ public class Confirmation2_Activity extends AppCompatActivity {
 		@Override
 		protected void onPostExecute(final Boolean success) {
 			mAuthTask = null;
-			//showProgress(false);
 			if (success) {
-				//new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
-				//		"La mando bien ....");
+
                 Session.setAlocoinsBalance(balanceAlocoins);
                 Session.setHealthCareCoinsBalance(balancePrepaidCard);
                 Session.setAlodigaBalance(balanceAlodiga);
-
+				Session.setObjUserHasProducts(getListProduct(response));
                 Intent i = new Intent(Confirmation2_Activity.this, Confirmation3_Activity.class);
                 startActivity(i);
                 finish();
@@ -485,5 +506,21 @@ public class Confirmation2_Activity extends AppCompatActivity {
 		return (response.split(v+"=")[1].split(";")[0]);
 	}
 */
+
+	protected ArrayList<ObjUserHasProduct>  getListProduct (SoapObject response){
+		//ObjUserHasProduct[] obj2_aux= new ObjUserHasProduct[response.getPropertyCount()-3];
+		//ObjUserHasProduct[] obj2 = new ObjUserHasProduct[response.getPropertyCount()-3];
+		ArrayList<ObjUserHasProduct> obj2= new ArrayList<>();
+		for(int i=3; i<response.getPropertyCount(); i++)
+		{
+			SoapObject obj = (SoapObject) response.getProperty(i);
+			String propiedad = response.getProperty(i).toString();
+			ObjUserHasProduct object = new ObjUserHasProduct(obj.getProperty("id").toString(),obj.getProperty("name").toString(),obj.getProperty("currentBalance").toString(),obj.getProperty("symbol").toString());
+			obj2.add(object);
+			//obj2[i-3] = object;
+		}
+
+		return obj2;
+	}
 
 }
