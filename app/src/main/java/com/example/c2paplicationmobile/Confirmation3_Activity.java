@@ -81,7 +81,8 @@ public class Confirmation3_Activity extends AppCompatActivity {
 		amountValue.setText(Session.getGetDestinationAmount());
 		txtTransactionId_3.setText(String.valueOf(new Date().getTime()));
 		txtDateTimeValue_3.setText(new Timestamp(new Date().getTime()).toGMTString());
-		txtAccountSourceValue.setText(Session.getMoneySelected().getName());
+		txtAccountSourceValue.setText(Session.getMoneySelected().getName().split("-")[0]);
+
 
 
 
@@ -109,13 +110,7 @@ public class Confirmation3_Activity extends AppCompatActivity {
 		mAuthTask.execute((Void) null);
 
 	}
-	/*public void UserProduct(){
-		progressDialogAlodiga = new ProgressDialogAlodiga(this,"cargando..");
-		progressDialogAlodiga.show();
-		mAuthTask = new UserProductTask();
-		mAuthTask.execute((Void) null);
 
-	}*/
 
 	public class UserProductTask extends AsyncTask<Void, Void, Boolean> {
 
@@ -262,122 +257,6 @@ public class Confirmation3_Activity extends AppCompatActivity {
 			mAuthTask = null;
 		}
 	}
-/*	public class UserProductTask extends AsyncTask<Void, Void, Boolean> {
-
-
-
-		@Override
-		protected Boolean doInBackground(Void... params) {
-
-			WebService webService = new WebService();
-			Utils utils = new Utils();
-			SoapObject response;
-			try {
-
-				String responseCode;
-				String responseMessage = "";
-
-				HashMap <String,String > map = new HashMap<String,String>();
-				map.put("usuarioApi",Constants.WEB_SERVICES_USUARIOWS);
-				map.put("passwordApi",Constants.WEB_SERVICES_PASSWORDWS);
-				map.put("usuarioId",Session.getUserId().trim());
-
-				response = webService.invokeGetAutoConfigString(map,Constants.WEB_SERVICES_METHOD_NAME_UPDATE_PRODUCT,Constants.REGISTRO_UNIFICADO);
-				responseCode = response.getProperty("codigoRespuesta").toString();
-				responseMessage = response.getProperty("mensajeRespuesta").toString();
-
-				if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO))
-				{
-					String res =  response.getProperty("datosRespuesta").toString();
-					userHasProducts = getElementsProduct("",res);
-				}
-				else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_DATOS_INVALIDOS))
-				{
-					responsetxt = getString(R.string.web_services_response_01);
-					serviceStatus = false;
-
-				} else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CONTRASENIA_EXPIRADA))
-				{
-					responsetxt = getString(R.string.web_services_response_03);
-					serviceStatus = false;
-				}
-				else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_IP_NO_CONFIANZA))
-				{
-					responsetxt = getString(R.string.web_services_response_04);
-					serviceStatus = false;
-				}
-				else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CREDENCIALES_INVALIDAS))
-				{
-					responsetxt = getString(R.string.web_services_response_05);
-					serviceStatus = false;
-				}
-				else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_BLOQUEADO))
-				{
-					responsetxt = getString(R.string.web_services_response_06);
-					serviceStatus = false;
-				}
-
-				else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_SOSPECHOSO))
-				{
-					responsetxt = getString(R.string.web_services_response_95);
-					serviceStatus = false;
-				}else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_PENDIENTE))
-				{
-					responsetxt = getString(R.string.web_services_response_96);
-					serviceStatus = false;
-				}else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_NO_EXISTE))
-				{
-					responsetxt = getString(R.string.web_services_response_97);
-					serviceStatus = false;
-				}else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_CREDENCIALES))
-				{
-					responsetxt = getString(R.string.web_services_response_98);
-					serviceStatus = false;
-				}else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_INTERNO))
-				{
-					responsetxt = getString(R.string.web_services_response_99);
-					serviceStatus = false;
-				}
-				//progressDialogAlodiga.dismiss();
-			} catch (IllegalArgumentException e)
-			{
-
-				e.printStackTrace();
-				System.err.println(e);
-				return false;
-			} catch (Exception e)
-			{
-				e.printStackTrace();
-				System.err.println(e);
-				return false;
-			}
-			return serviceStatus;
-
-		}
-
-		@Override
-		protected void onPostExecute(final Boolean success) {
-			mAuthTask = null;
-			//showProgress(false);
-			if (success) {
-
-				Session.setObjUserHasProducts(userHasProducts);
-
-			} else  {
-				new CustomToast().Show_Toast(getApplicationContext(), view,
-						responsetxt);
-			}
-			progressDialogAlodiga.dismiss();
-		}
-
-		@Override
-		protected void onCancelled() {
-			mAuthTask = null;
-			//showProgress(false);
-		}
-
-	}
-*/
 
 	private  ArrayList<ObjUserHasProduct>  getElementsProduct(String elementGet, String response){
 		ArrayList<ObjUserHasProduct> objUserHasProducts = new ArrayList<ObjUserHasProduct>();
