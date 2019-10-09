@@ -18,7 +18,7 @@ import java.util.HashMap;
 
 public class List_Transaction_Activity extends AppCompatActivity  {
     private static FragmentManager fragmentManager;
-    private EditText edtAmount,edtCOD;
+    private EditText edtAmount,edtCOD,edttrans;
     private Button signFind;
     private static String stringResponse = "";
     private String responsetxt = "";
@@ -40,6 +40,7 @@ public class List_Transaction_Activity extends AppCompatActivity  {
         edtAmount= findViewById(R.id.edtAmount);
         signFind = (Button) findViewById(R.id.signFind);
         edtCOD= findViewById(R.id.edtCOD);
+        edttrans= findViewById(R.id.edttrans);
 
         spinnerbank.setEnabled(false);
         spinnerproducto.setEnabled(false);
@@ -215,6 +216,7 @@ public class List_Transaction_Activity extends AppCompatActivity  {
 
                 String getcuenta= edtCOD.getText().toString();
                 String getmonto=  edtAmount.getText().toString();
+                String gettransaction=  edttrans.getText().toString();
 
                 if (getcuenta.equals("") || getcuenta.length() == 0) {
                     new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
@@ -223,6 +225,9 @@ public class List_Transaction_Activity extends AppCompatActivity  {
                 }else if (getmonto.equals("") || getmonto.length() == 0) {
                     new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                             getString(R.string.amount_info_invalid));
+                }else if (gettransaction.equals("") || gettransaction.length() == 0) {
+                    new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
+                            getString(R.string.info_transaction));
                 }else {
                     Intent show;
                     show = new Intent(getApplicationContext(), Recharge_Activity.class);

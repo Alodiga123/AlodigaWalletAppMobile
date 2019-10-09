@@ -41,6 +41,7 @@
     <string name="signUp">REGÍSTRATE</string>
     <string name="security_question">PREGUNTAS DE SEGURIDAD</string>
     <string name="transference_title">TRANSFERENCIA</string>
+    <string name="my_qr_title">MI QR</string>
     <string name="payment_comerce_title">PAGO QR COMERCIOS</string>
     <string name="qr_code_title">MI CODIGO QR</string>
     <string name="confirmation_title">CONFIRMACION</string>
@@ -88,13 +89,16 @@
     <string name="recharge_id_invalid">El identificador del retiro no puede estar vacio</string>
     <string name="id_recharge_invalid">El identificador de la transferencia no puede estar vacio</string>
     <string name="rechargeCOD">Cuenta</string>
+    <string name="transaction_concept">Concepto de la transferencia</string>
     <string name="amount_info">Ingrese el monto:</string>
     <string name="amount_info_invalid">El monto no puede estar vacio</string>
+    <string name="info_transaction">El concepto de la transferencia no puede estar vacio</string>
     <string name="amount">Monto</string>
     <string name="buttonProcesarRetiro">Procesar Retiro</string>
     <string name="buttonProcessRecharge">Procesar la Transferencia</string>
     <string name="recharge_title">RECARGAS POR TRANSFERENCIAS</string>
     <string name="id_recharge">Ingrese el identificador de la recarga:</string>
+    <string name="id_transfer">Ingrese el identificador de la transferencia:</string>
     <string name="info_fail_code">La Clave de Operaciones no es valida. Numero de intentos restantes: </string>
 
 
