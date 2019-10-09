@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity
 
         //Populate the products
         //mProductList = new ArrayList<Money>();
-        /*mProductList.add(new Money("Dolaressssss",R.drawable.dolarsimbol,Session.getAccountNumber(), "Alodiga ", "USD "+ Session.getAlodigaBalance()));
+        /*mProductList.add(new Money("Dolares",R.drawable.dolarsimbol,Session.getAccountNumber(), "Alodiga ", "USD "+ Session.getAlodigaBalance()));
         mProductList.add(new Money("Alocoins",R.drawable.alocoinlogo,"001035497978", "Alodiga", "AC " +Session.getAlocoinsBalance()));
         mProductList.add(new Money("Tarjeta",R.drawable.cardalodiga,"5412474313455121", "Alodiga", "ACD " +Session.getHealthCareCoinsBalance()));
         mProductList.add(new Money("Bolivares",R.drawable.bolivarsimbol,"0105****3626", "Alodiga", "BS " +Session.getAlodigaBalance()));
