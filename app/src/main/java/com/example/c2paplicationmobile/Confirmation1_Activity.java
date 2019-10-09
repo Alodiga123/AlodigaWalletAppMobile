@@ -98,10 +98,18 @@ public class Confirmation1_Activity extends AppCompatActivity {
 
 					//Intent i = new Intent(Confirmation1_Activity.this, Confirmation2_Activity.class);
 					//startActivity(i);
-
+					//String saldo_a= Session.getMoneySelected().getCurrentBalance();
+					//String monto_=amountValue.getText().toString().trim();
+					//float saldo = Float.parseFloat(Session.getMoneySelected().getCurrentBalance().trim());
+					//float montodebitar=	Float.parseFloat(amountValue.getText().toString().trim());
+                    if (Float.parseFloat(Session.getMoneySelected().getCurrentBalance().trim()) < Float.parseFloat(amountValue.getText().toString().trim())){
+                        new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
+                                getString(R.string.insuficient_balance));
+                    }else{
 					Intent i = new Intent(Confirmation1_Activity.this, Payment_comerce_code_Activity.class);
 					startActivity(i);
 					finish();
+                    }
 				}
 			}
 		});

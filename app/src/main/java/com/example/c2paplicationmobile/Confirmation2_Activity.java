@@ -109,8 +109,7 @@ public class Confirmation2_Activity extends AppCompatActivity {
 
 		mAuthTask = new ProcessOperationTransferenceTask("1",Session.getEmail(),Session.getMoneySelected().getId(),Session.getGetDestinationAmount(),Session.getDestinationConcept(),"1",Session.getUsuarioDestionId());
 		mAuthTask.execute((Void) null);
-		//mAuthTask = new ProcessOperationTransferenceTask(Session.getUserId(),Session.getUsuarioDestionId(),Session.getGetDestinationAmount(),Session.getDestinationConcept());
-		//mAuthTask.execute((Void) null);
+
 
 	}
 	public class ProcessOperationTransferenceTask extends AsyncTask<Void, Void, Boolean> {
@@ -216,6 +215,9 @@ public class Confirmation2_Activity extends AppCompatActivity {
 					{
 						responsetxt = getString(R.string.web_services_response_99);
 						serviceStatus = false;
+					}else{
+						responsetxt = responseMessage;
+						serviceStatus = false;
 					}
 				}else{
 					responsetxt = getString(R.string.insuficient_balance);
@@ -247,8 +249,17 @@ public class Confirmation2_Activity extends AppCompatActivity {
 			mAuthTask = null;
 			//showProgress(false);
 			if (success) {
-				new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
-						"La mando bien ....");
+				//new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
+				//		"La mando bien ....");
+                Session.setAlocoinsBalance(balanceAlocoins);
+                Session.setHealthCareCoinsBalance(balancePrepaidCard);
+                Session.setAlodigaBalance(balanceAlodiga);
+
+                Intent i = new Intent(Confirmation2_Activity.this, Confirmation3_Activity.class);
+                startActivity(i);
+                finish();
+
+
 
 			} else {
 

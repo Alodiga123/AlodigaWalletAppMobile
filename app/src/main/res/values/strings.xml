@@ -86,14 +86,18 @@
     <string name="pais_info">Seleccione el pais:</string>
     <string name="producto_info">Seleccione el producto:</string>
     <string name="recharge_id">Ingrese la cuenta:</string>
-    <string name="recharge_id_invalid">El identificador del retiro no puede estar vacio</string>
+    <string name="recharge_id_invalid">La cuenta no puede estar vacia</string>
+    <string name="recharge_descrip_invalid">La descripcion no puede estar vacia</string>
+    <string name="recharge_id_invalid_long">La longitud de la cuenta es de 20 digitos</string>
     <string name="id_recharge_invalid">El identificador de la transferencia no puede estar vacio</string>
     <string name="rechargeCOD">Cuenta</string>
     <string name="transaction_concept">Concepto de la transferencia</string>
     <string name="amount_info">Ingrese el monto:</string>
+    <string name="descrip_info">Ingrese la Descripcion:</string>
     <string name="amount_info_invalid">El monto no puede estar vacio</string>
     <string name="info_transaction">El concepto de la transferencia no puede estar vacio</string>
     <string name="amount">Monto</string>
+    <string name="descrip">Descripcion</string>
     <string name="buttonProcesarRetiro">Procesar Retiro</string>
     <string name="buttonProcessRecharge">Procesar la Transferencia</string>
     <string name="recharge_title">RECARGAS POR TRANSFERENCIAS</string>
@@ -123,6 +127,10 @@
     <string name="web_services_response_20">Solicitud de tarjeta activa</string>
     <string name="web_services_response_21">Afiliaciones maximas alcanzadas</string>
     <string name="web_services_response_22">Usuario no tiene telefono</string>
+    <string name="web_services_response_30">Ha excedido el monto maximo.</string>
+    <string name="web_services_response_31">Ha excedido el numero maximo de transacciones por producto</string>
+    <string name="web_services_response_32">Ha excedido el numero maximo de transacciones por dia</string>
+    <string name="web_services_response_33">Saldo insuficiente para completar la transaccion</string>
     <string name="web_services_response_94">Aplicacion no existe</string>
     <string name="web_services_response_95">Usuario sospechos</string>
     <string name="web_services_response_96">Usuario pendiente</string>
@@ -158,7 +166,7 @@
     <string name="insuficient_balance">Saldo insuficiente para completar la transacción</string>
     <string name="destination_qr_code">Escanear Código QR</string>
     <string name="welcome_secure_answer">Las preguntas de seguridad han sido registradas satisfactoriamente </string>
-    <string name="welcome_secure_manual_removal">El retiro realizado satisfactoriamente. Una vez el proveedor de servicios lo haga efectivo sera notificado. </string>
+    <string name="welcome_secure_manual_removal">El registro del retiro se ha realizado satisfactoriamente. Una vez el proveedor de servicios lo haga efectivo sera notificado. </string>
     <string name="welcome_secure_manual_recharge">La Recarga fue realizada satisfactoriamente. Una vez que se valide le sera notificado. </string>
     <string name="fail_code_info">La Clave de Operaciones ha sido bloqueada temporalmente.</string>
 

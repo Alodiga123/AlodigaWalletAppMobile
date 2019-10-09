@@ -10,12 +10,12 @@ import android.widget.TextView;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 
-public class SpinAdapterProduct extends ArrayAdapter<ObjGenericObject> {
+public class SpinAdapterProduct extends ArrayAdapter<ObjTransferMoney> {
 
 private Context context;
-private ObjGenericObject[] values;
+private ObjTransferMoney[] values;
 
-public SpinAdapterProduct(@NonNull Context context, @LayoutRes int resource, @NonNull ObjGenericObject[] values) {
+public SpinAdapterProduct(@NonNull Context context, @LayoutRes int resource, @NonNull ObjTransferMoney[] values) {
         super(context, resource, values);
 
         this.context = context;
@@ -26,7 +26,7 @@ public int getCount(){
         return values.length;
         }
 
-public ObjGenericObject getItem(int position){ return values[position]; }
+public ObjTransferMoney getItem(int position){ return values[position]; }
 
 public long getItemId(int position){
         return position;

@@ -61,7 +61,7 @@ public class Payment_Activity_Comerce extends AppCompatActivity {
         list_product = Session.getObjUserHasProducts();
         final ObjTransferMoney[] objTransferMoney = new ObjTransferMoney[list_product.size()];
         for(int i=0;i<list_product.size();i++){
-            objTransferMoney[i] = new ObjTransferMoney(list_product.get(i).getId(),list_product.get(i).getName().trim()+" "+ list_product.get(i).getSymbol().trim()+ " - "+list_product.get(i).getCurrentBalance() );
+            objTransferMoney[i] = new ObjTransferMoney(list_product.get(i).getId(),list_product.get(i).getName().trim()+" "+ list_product.get(i).getSymbol().trim()+ " - "+list_product.get(i).getCurrentBalance() ,list_product.get(i).getCurrentBalance());
         }
         //Llena tipos de cuenta
         List<ObjTransferMoney> countries = new ArrayList<ObjTransferMoney>();
@@ -78,7 +78,7 @@ public class Payment_Activity_Comerce extends AppCompatActivity {
                 ObjTransferMoney objTransferMoney1;
                 objTransferMoney1 = (ObjTransferMoney) spinnerIdentification.getSelectedItem();
 
-                currencySelected =new ObjUserHasProduct(objTransferMoney1.getId(),objTransferMoney1.getName());
+                currencySelected =new ObjUserHasProduct(objTransferMoney1.getId(),objTransferMoney1.getName(),objTransferMoney1.getCurrency());
                 Session.setMoneySelected(currencySelected);
                 /*if(objTransferMoney1.getId().equals("0")){
                     currencySelected = 0;

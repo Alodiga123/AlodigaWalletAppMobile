@@ -26,7 +26,7 @@ public class List_Transaction_Activity extends AppCompatActivity  {
     String datosRespuesta = "";
     static SoapObject response;
     static ObjGenericObject[] listSpinner_pais = new ObjGenericObject[0];
-    static ObjGenericObject[] listSpinner_producto = new ObjGenericObject[0];
+    static ObjTransferMoney[] listSpinner_producto = new ObjTransferMoney[0];
     static ObjGenericObject[] listSpinner_banco = new ObjGenericObject[0];
     static ProgressDialogAlodiga progressDialogAlodiga;
 
@@ -159,7 +159,7 @@ public class List_Transaction_Activity extends AppCompatActivity  {
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        listSpinner_producto = getListGeneric(response);
+                                        listSpinner_producto = getListProduct(response);
                                         SpinAdapterProduct spinAdapterProduct;
                                         spinAdapterProduct = new SpinAdapterProduct(getApplicationContext(), android.R.layout.simple_spinner_item, listSpinner_producto);
                                         spinnerproducto.setAdapter(spinAdapterProduct);
@@ -254,8 +254,25 @@ public class List_Transaction_Activity extends AppCompatActivity  {
         return obj2;
     }
 
+    protected ObjTransferMoney[] getListProduct (SoapObject response){
 
-    public void serviceAnswer(String responseCode ){
+        ObjTransferMoney[] obj2 = new ObjTransferMoney[response.getPropertyCount()-3];
+
+        for(int i=3; i<response.getPropertyCount(); i++)
+        {
+            SoapObject obj = (SoapObject) response.getProperty(i);
+            String propiedad = response.getProperty(i).toString();
+            ObjTransferMoney object = new ObjTransferMoney(obj.getProperty("id").toString(),obj.getProperty("name").toString() +" - " +obj.getProperty("currentBalance").toString(),obj.getProperty("currentBalance").toString() );
+
+            obj2[i-3] = object;
+        }
+
+        return obj2;
+    }
+
+
+
+        public void serviceAnswer(String responseCode ){
         if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO))
         {
             responsetxt = getString(R.string.web_services_response_00);
@@ -319,4 +336,6 @@ public class List_Transaction_Activity extends AppCompatActivity  {
             serviceStatus = false;
         }
     }
+
+
 }

@@ -31,7 +31,7 @@ import java.util.Locale;
 
 public class Manual_Removal_Activity extends AppCompatActivity  {
     private static FragmentManager fragmentManager;
-    private EditText edtAmount,edtCOD;
+    private EditText edtAmount,edtCOD,edtdescript;
     private Button signFind;
     private static String stringResponse = "";
     private String responsetxt = "";
@@ -39,21 +39,27 @@ public class Manual_Removal_Activity extends AppCompatActivity  {
     String datosRespuesta = "";
     static SoapObject response;
     static ObjGenericObject[] listSpinner_pais = new ObjGenericObject[0];
-    static ObjGenericObject[] listSpinner_producto = new ObjGenericObject[0];
+    static ObjTransferMoney[] listSpinner_producto = new ObjTransferMoney[0];
     static ObjGenericObject[] listSpinner_banco = new ObjGenericObject[0];
-
+    UserRemovalTask mAuthTask;
+    ObjGenericObject getbank;
+    ObjTransferMoney getproduct;
+    String getaccountBank, getDescrip, getAmount;
+    Spinner  spinner_pais,spinnerbank,spinnerproducto;
     static ProgressDialogAlodiga progressDialogAlodiga;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.manual_removal_layout);
-        final Spinner  spinner_pais = (Spinner) findViewById(R.id.spinner_pais);
-        final Spinner  spinnerbank = (Spinner) findViewById(R.id.spinnerbank);
-        final Spinner  spinnerproducto = (Spinner) findViewById(R.id.spinnerproducto);
+        spinner_pais = (Spinner) findViewById(R.id.spinner_pais);
+        spinnerbank = (Spinner) findViewById(R.id.spinnerbank);
+        spinnerproducto = (Spinner) findViewById(R.id.spinnerproducto);
         edtAmount= findViewById(R.id.edtAmount);
         signFind = (Button) findViewById(R.id.signFind);
         edtCOD= findViewById(R.id.edtCOD);
+        edtdescript= findViewById(R.id.edtdescript);
+
 
         spinnerbank.setEnabled(false);
         spinnerproducto.setEnabled(false);
@@ -68,6 +74,7 @@ public class Manual_Removal_Activity extends AppCompatActivity  {
                     String responseCode = null;
                     WebService webService = new WebService();
                     HashMap<String, String> map = new HashMap<String, String>();
+                    map.put("userId",Session.getUserId());
                     response = webService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_NAME_GET_COUNTRIES, Constants.ALODIGA);
                     stringResponse = response.toString();
                     responseCode = response.getProperty("codigoRespuesta").toString();
@@ -169,7 +176,8 @@ public class Manual_Removal_Activity extends AppCompatActivity  {
                             String responseCode = null;
                             WebService webService = new WebService();
                             HashMap<String, String> map = new HashMap<String, String>();
-                            map.put("BankId",bank.getId());
+                            map.put("bankId",bank.getId().trim());
+                            map.put("userId",Session.getUserId().trim());
                             response = webService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_NAME_GET_PRODUCT, Constants.ALODIGA);
                             stringResponse = response.toString();
                             responseCode = response.getProperty("codigoRespuesta").toString();
@@ -182,7 +190,7 @@ public class Manual_Removal_Activity extends AppCompatActivity  {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    listSpinner_producto = getListGeneric(response);
+                                    listSpinner_producto = getListProduct(response);
                                     SpinAdapterProduct spinAdapterProduct;
                                     spinAdapterProduct = new SpinAdapterProduct(getApplicationContext(), android.R.layout.simple_spinner_item, listSpinner_producto);
                                     spinnerproducto.setAdapter(spinAdapterProduct);
@@ -243,29 +251,37 @@ public class Manual_Removal_Activity extends AppCompatActivity  {
         signFind.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                String getcuenta= edtCOD.getText().toString();
-                String getmonto=  edtAmount.getText().toString();
+                String getcuenta = edtCOD.getText().toString();
+                String getmonto = edtAmount.getText().toString();
+                String getdescrip = edtdescript.getText().toString();
+                getproduct = (ObjTransferMoney) spinnerproducto.getSelectedItem();
 
 
                 if (getcuenta.equals("") || getcuenta.length() == 0) {
                     new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                             getString(R.string.recharge_id_invalid));
-
+                /*} /*else if (getcuenta.length() != 20) {
+                        new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
+                                getString(R.string.recharge_id_invalid_long));*/
                 }else if (getmonto.equals("") || getmonto.length() == 0) {
                     new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                             getString(R.string.amount_info_invalid));
+                }else if (Float.parseFloat(getproduct.getCurrency().trim()) < Float.parseFloat(getmonto.trim())){
+                    new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
+                            getString(R.string.insuficient_balance));
+                }else if (getdescrip.equals("") || getdescrip.length() == 0){
+                    new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
+                            getString(R.string.recharge_descrip_invalid));
                 }else {
-                   // new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
-                     //       "todo funciona");
-                    Intent show;
-                    show = new Intent(getApplicationContext(), Welcome_removal_Activity.class);
-                    startActivity(show);
-
-
+                    RemovalTask();
                 }
 
             }
         });
+
+
+
+
 
 
     }
@@ -286,6 +302,184 @@ public class Manual_Removal_Activity extends AppCompatActivity  {
         }
 
         return obj2;
+    }
+
+    protected ObjTransferMoney[] getListProduct (SoapObject response){
+
+        ObjTransferMoney[] obj2 = new ObjTransferMoney[response.getPropertyCount()-3];
+
+        for(int i=3; i<response.getPropertyCount(); i++)
+        {
+            SoapObject obj = (SoapObject) response.getProperty(i);
+            String propiedad = response.getProperty(i).toString();
+            ObjTransferMoney object = new ObjTransferMoney(obj.getProperty("id").toString(),obj.getProperty("name").toString() +" - " +obj.getProperty("currentBalance").toString(),obj.getProperty("currentBalance").toString() );
+
+            obj2[i-3] = object;
+        }
+
+        return obj2;
+    }
+
+    public void RemovalTask(){
+        progressDialogAlodiga = new ProgressDialogAlodiga(this,"cargando..");
+        progressDialogAlodiga.show();
+        mAuthTask = new UserRemovalTask();
+        mAuthTask.execute((Void) null);
+
+    }
+
+    public class UserRemovalTask extends AsyncTask<Void, Void, Boolean> {
+
+        @Override
+        protected Boolean doInBackground(Void... params) {
+
+            WebService webService = new WebService();
+            Utils utils = new Utils();
+            SoapObject response;
+
+            getbank = (ObjGenericObject) spinnerbank.getSelectedItem();
+            getproduct = (ObjTransferMoney) spinnerproducto.getSelectedItem();
+            getaccountBank= edtCOD.getText().toString();
+            getDescrip= edtdescript.getText().toString();
+            getAmount= edtAmount.getText().toString();
+
+            try {
+                String responseCode;
+                String responseMessage = "";
+
+                HashMap<String,String > map = new HashMap<String,String>();
+                map.put("bankId",getbank.getId());
+                map.put("emailUser",Session.getEmail());
+                map.put("accountBank",getaccountBank);
+                map.put("amountWithdrawal",getAmount);
+                map.put("productId",getproduct.getId());
+                map.put("conceptTransaction",getDescrip);
+
+
+                response = webService.invokeGetAutoConfigString(map,Constants.WEB_SERVICES_METHOD_NAME_REMOVAL_MANUAL,Constants.ALODIGA);
+                responseCode = response.getProperty("codigoRespuesta").toString();
+                responseMessage = response.getProperty("mensajeRespuesta").toString();
+
+
+                if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO))
+                {
+
+                    responsetxt = getString(R.string.web_services_response_00);
+                    serviceStatus = true;
+                    return serviceStatus;
+
+                }
+                else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_DATOS_INVALIDOS))
+                {
+                    responsetxt = getString(R.string.web_services_response_01);
+                    serviceStatus = false;
+
+                } else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CONTRASENIA_EXPIRADA))
+                {
+                    responsetxt = getString(R.string.web_services_response_03);
+                    serviceStatus = false;
+                }
+                else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_IP_NO_CONFIANZA))
+                {
+                    responsetxt = getString(R.string.web_services_response_04);
+                    serviceStatus = false;
+                }
+                else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CREDENCIALES_INVALIDAS))
+                {
+                    responsetxt = getString(R.string.web_services_response_05);
+                    serviceStatus = false;
+                }
+                else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_BLOQUEADO))
+                {
+                    responsetxt = getString(R.string.web_services_response_06);
+                    serviceStatus = false;
+                }
+                else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_NUMERO_TELEFONO_YA_EXISTE))
+                {
+                    responsetxt = getString(R.string.web_services_response_08);
+                    serviceStatus = false;
+                }
+                else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_PRIMER_INGRESO))
+                {
+                    responsetxt = getString(R.string.web_services_response_12);
+                    serviceStatus = false;
+                }else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_TRANSACTION_AMOUNT_LIMIT))
+                {
+                    responsetxt = getString(R.string.web_services_response_30);
+                    serviceStatus = false;
+                }else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_TRANSACTION_MAX_NUMBER_BY_ACCOUNT))
+                {
+                    responsetxt = getString(R.string.web_services_response_31);
+                    serviceStatus = false;
+                }else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_TRANSACTION_MAX_NUMBER_BY_CUSTOMER))
+                {
+                    responsetxt = getString(R.string.web_services_response_32);
+                    serviceStatus = false;
+                }else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USER_HAS_NOT_BALANCE))
+                {
+                    responsetxt = getString(R.string.web_services_response_33);
+                    serviceStatus = false;
+                }else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_SOSPECHOSO))
+                {
+                    responsetxt = getString(R.string.web_services_response_95);
+                    serviceStatus = false;
+                }else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_PENDIENTE))
+                {
+                    responsetxt = getString(R.string.web_services_response_96);
+                    serviceStatus = false;
+                }else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_NO_EXISTE))
+                {
+                    responsetxt = getString(R.string.web_services_response_97);
+                    serviceStatus = false;
+                }else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_CREDENCIALES))
+                {
+                    responsetxt = getString(R.string.web_services_response_98);
+                    serviceStatus = false;
+                }else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_INTERNO)) {
+                    responsetxt = getString(R.string.web_services_response_99);
+                    serviceStatus = false;
+                }else{
+                    responsetxt = responseMessage;
+                    serviceStatus = false;
+                }
+                //progressDialogAlodiga.dismiss();
+            } catch (IllegalArgumentException e)
+            {
+                responsetxt = getString(R.string.web_services_response_99);
+                e.printStackTrace();
+                System.err.println(e);
+                return false;
+            } catch (Exception e)
+            {
+                responsetxt = getString(R.string.web_services_response_99);
+                e.printStackTrace();
+                System.err.println(e);
+                return false;
+            }
+            return serviceStatus;
+
+        }
+
+        @Override
+        protected void onPostExecute(final Boolean success) {
+            mAuthTask = null;
+            //showProgress(false);
+            if (success) {
+                Intent show;
+                show = new Intent(getApplicationContext(), Welcome_removal_Activity.class);
+                startActivity(show);
+
+            } else {
+                new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
+                        responsetxt);
+            }
+            progressDialogAlodiga.dismiss();
+        }
+
+        @Override
+        protected void onCancelled() {
+            mAuthTask = null;
+        }
     }
 
 

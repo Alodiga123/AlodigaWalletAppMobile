@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import org.ksoap2.serialization.SoapObject;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -45,11 +46,11 @@ public class Confirmation3_Activity extends AppCompatActivity {
 	private String getTxtDestinationLastNameValue = "";
 	private String getTxtDestinationNameValue = "";
 	private Integer caseFindMoneyType = 0;
+	private UserProductTask mAuthTask = null;
+	ArrayList<ObjUserHasProduct> userHasProducts =  new ArrayList<ObjUserHasProduct>();
 
 
 
-
-	private ProcessOperationTransferenceTask mAuthTask = null;
 
 	public Confirmation3_Activity() {
 
@@ -59,6 +60,8 @@ public class Confirmation3_Activity extends AppCompatActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.confirmation_transfer3_succesfull);
+
+
 
 		amountValue =  findViewById(R.id.txtAmountValue_3);
 		conceptValue =  findViewById(R.id.txtConceptValue_3);
@@ -81,20 +84,11 @@ public class Confirmation3_Activity extends AppCompatActivity {
 		txtAccountSourceValue.setText(Session.getMoneySelected().getName());
 
 
-		/*switch (Session.getMoneySelected()) {
-			case 0:
-				txtAccountSourceValue.setText("Saldo Alodiga / USD "+ Session.getAlodigaBalance());
-				break;
-			case 1:
-				txtAccountSourceValue.setText("Saldo Alocoins / ALC "+ Session.getAlocoinsBalance());
-				break;
-			case 2:
-				txtAccountSourceValue.setText("Tarjeta Alodiga / USD "+ Session.getHealthCareCoinsBalance());
-				break;
-		}*/
+
 		progressDialogAlodiga = new ProgressDialogAlodiga(this, "Cargando..");
 		btnProcessFinisTransference.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
+				//updateProduct();
 				Intent i = new Intent(Confirmation3_Activity.this, MainActivity.class);
 				i.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 				startActivity(i);
@@ -106,29 +100,171 @@ public class Confirmation3_Activity extends AppCompatActivity {
 		});
 	}
 
-	public void procesar(){
 
-		mAuthTask = new ProcessOperationTransferenceTask(Session.getUserId(),Session.getUsuarioDestionId(),Session.getGetDestinationAmount(),Session.getDestinationConcept());
+	public void updateProduct(){
+
+		progressDialogAlodiga = new ProgressDialogAlodiga(this,"cargando..");
+		progressDialogAlodiga.show();
+		mAuthTask = new UserProductTask();
 		mAuthTask.execute((Void) null);
 
 	}
+	/*public void UserProduct(){
+		progressDialogAlodiga = new ProgressDialogAlodiga(this,"cargando..");
+		progressDialogAlodiga.show();
+		mAuthTask = new UserProductTask();
+		mAuthTask.execute((Void) null);
 
-	public class ProcessOperationTransferenceTask extends AsyncTask<Void, Void, Boolean> {
+	}*/
 
-		private final String userId1;
-		private final String userId2;
-		private final String amount;
-		private final String concept;
+	public class UserProductTask extends AsyncTask<Void, Void, Boolean> {
+
+		@Override
+		protected Boolean doInBackground(Void... params) {
+
+			WebService webService = new WebService();
+			Utils utils = new Utils();
+			SoapObject response;
 
 
+			try {
+				String responseCode;
+				String responseMessage = "";
 
-			ProcessOperationTransferenceTask(String userId1_, String userId2_, String amount_, String concept_) {
-			userId1 = userId1_;
-			userId2 = userId2_;
-			amount = amount_;
-			concept = concept_;
+				HashMap<String,String > map = new HashMap<String,String>();
+				map.put("usuarioApi",Constants.WEB_SERVICES_USUARIOWS);
+				map.put("passwordApi",Constants.WEB_SERVICES_PASSWORDWS);
+				map.put("usuarioId",Session.getUserId());
+
+
+				response = webService.invokeGetAutoConfigString(map,Constants.WEB_SERVICES_METHOD_NAME_UPDATE_PRODUCT,Constants.REGISTRO_UNIFICADO);
+				responseCode = response.getProperty("codigoRespuesta").toString();
+				responseMessage = response.getProperty("mensajeRespuesta").toString();
+
+
+				if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO))
+				{
+
+					responsetxt = getString(R.string.web_services_response_00);
+					serviceStatus = true;
+					return serviceStatus;
+
+				}
+				else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_DATOS_INVALIDOS))
+				{
+					responsetxt = getString(R.string.web_services_response_01);
+					serviceStatus = false;
+
+				} else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CONTRASENIA_EXPIRADA))
+				{
+					responsetxt = getString(R.string.web_services_response_03);
+					serviceStatus = false;
+				}
+				else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_IP_NO_CONFIANZA))
+				{
+					responsetxt = getString(R.string.web_services_response_04);
+					serviceStatus = false;
+				}
+				else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CREDENCIALES_INVALIDAS))
+				{
+					responsetxt = getString(R.string.web_services_response_05);
+					serviceStatus = false;
+				}
+				else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_BLOQUEADO))
+				{
+					responsetxt = getString(R.string.web_services_response_06);
+					serviceStatus = false;
+				}
+				else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_NUMERO_TELEFONO_YA_EXISTE))
+				{
+					responsetxt = getString(R.string.web_services_response_08);
+					serviceStatus = false;
+				}
+				else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_PRIMER_INGRESO))
+				{
+					responsetxt = getString(R.string.web_services_response_12);
+					serviceStatus = false;
+				}else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_TRANSACTION_AMOUNT_LIMIT))
+				{
+					responsetxt = getString(R.string.web_services_response_30);
+					serviceStatus = false;
+				}else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_TRANSACTION_MAX_NUMBER_BY_ACCOUNT))
+				{
+					responsetxt = getString(R.string.web_services_response_31);
+					serviceStatus = false;
+				}else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_TRANSACTION_MAX_NUMBER_BY_CUSTOMER))
+				{
+					responsetxt = getString(R.string.web_services_response_32);
+					serviceStatus = false;
+				}else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USER_HAS_NOT_BALANCE))
+				{
+					responsetxt = getString(R.string.web_services_response_33);
+					serviceStatus = false;
+				}else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_SOSPECHOSO))
+				{
+					responsetxt = getString(R.string.web_services_response_95);
+					serviceStatus = false;
+				}else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_PENDIENTE))
+				{
+					responsetxt = getString(R.string.web_services_response_96);
+					serviceStatus = false;
+				}else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_NO_EXISTE))
+				{
+					responsetxt = getString(R.string.web_services_response_97);
+					serviceStatus = false;
+				}else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_CREDENCIALES))
+				{
+					responsetxt = getString(R.string.web_services_response_98);
+					serviceStatus = false;
+				}else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_INTERNO)) {
+					responsetxt = getString(R.string.web_services_response_99);
+					serviceStatus = false;
+				}else{
+					responsetxt = responseMessage;
+					serviceStatus = false;
+				}
+				//progressDialogAlodiga.dismiss();
+			} catch (IllegalArgumentException e)
+			{
+				responsetxt = getString(R.string.web_services_response_99);
+				e.printStackTrace();
+				System.err.println(e);
+				return false;
+			} catch (Exception e)
+			{
+				responsetxt = getString(R.string.web_services_response_99);
+				e.printStackTrace();
+				System.err.println(e);
+				return false;
+			}
+			return serviceStatus;
 
 		}
+
+		@Override
+		protected void onPostExecute(final Boolean success) {
+			mAuthTask = null;
+			//showProgress(false);
+			if (success) {
+				Intent show;
+				show = new Intent(getApplicationContext(), Welcome_removal_Activity.class);
+				startActivity(show);
+
+			} else {
+				new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
+						responsetxt);
+			}
+			progressDialogAlodiga.dismiss();
+		}
+
+		@Override
+		protected void onCancelled() {
+			mAuthTask = null;
+		}
+	}
+/*	public class UserProductTask extends AsyncTask<Void, Void, Boolean> {
+
+
 
 		@Override
 		protected Boolean doInBackground(Void... params) {
@@ -138,119 +274,74 @@ public class Confirmation3_Activity extends AppCompatActivity {
 			SoapObject response;
 			try {
 
-				boolean availableBalance = true;
 				String responseCode;
 				String responseMessage = "";
-				String methodName = "";
 
-				/*switch (Session.getMoneySelected().getId()) {
+				HashMap <String,String > map = new HashMap<String,String>();
+				map.put("usuarioApi",Constants.WEB_SERVICES_USUARIOWS);
+				map.put("passwordApi",Constants.WEB_SERVICES_PASSWORDWS);
+				map.put("usuarioId",Session.getUserId().trim());
 
-					case "0":
+				response = webService.invokeGetAutoConfigString(map,Constants.WEB_SERVICES_METHOD_NAME_UPDATE_PRODUCT,Constants.REGISTRO_UNIFICADO);
+				responseCode = response.getProperty("codigoRespuesta").toString();
+				responseMessage = response.getProperty("mensajeRespuesta").toString();
 
-						if(Float.valueOf(amount)>Float.valueOf(Session.getAlodigaBalance())){
-							availableBalance = false;
-						}
-						methodName = "transferirSaldoAlodiga";
-						break;
+				if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO))
+				{
+					String res =  response.getProperty("datosRespuesta").toString();
+					userHasProducts = getElementsProduct("",res);
+				}
+				else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_DATOS_INVALIDOS))
+				{
+					responsetxt = getString(R.string.web_services_response_01);
+					serviceStatus = false;
 
-					case "1":
+				} else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CONTRASENIA_EXPIRADA))
+				{
+					responsetxt = getString(R.string.web_services_response_03);
+					serviceStatus = false;
+				}
+				else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_IP_NO_CONFIANZA))
+				{
+					responsetxt = getString(R.string.web_services_response_04);
+					serviceStatus = false;
+				}
+				else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CREDENCIALES_INVALIDAS))
+				{
+					responsetxt = getString(R.string.web_services_response_05);
+					serviceStatus = false;
+				}
+				else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_BLOQUEADO))
+				{
+					responsetxt = getString(R.string.web_services_response_06);
+					serviceStatus = false;
+				}
 
-						if(Float.valueOf(amount)>Float.valueOf(Session.getAlocoinsBalance())){
-							availableBalance = false;
-						}
-						methodName = "transferirAlocoins";
-						break;
-					case "2":
-						if(Float.valueOf(amount)>Float.valueOf(Session.getHealthCareCoinsBalance())){
-							availableBalance = false;
-						}
-						methodName = "transferirSaldoHealthCareCoins";
-						break;
-
-					default:
-						break;
-				}*/
-
-
-				if(availableBalance){
-					HashMap<String,String > map = new HashMap<String,String>();
-					map.put("usuarioId1",userId1);
-					map.put("usuarioId2",userId2);
-					map.put("usuarioApi",Constants.WEB_SERVICES_USUARIOWS);
-					map.put("passwordApi",Constants.WEB_SERVICES_PASSWORDWS);
-					map.put("saldoAlodiga",amount);
-					response = webService.invokeGetAutoConfigString(map,methodName,Constants.REGISTRO_UNIFICADO);
-					responseCode = response.getProperty("codigoRespuesta").toString();
-					responseMessage = response.getProperty("mensajeRespuesta").toString();
-
-					if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO))
-					{
-
-						serviceStatus = true;
-					}
-					else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_DATOS_INVALIDOS))
-					{
-						responsetxt = getString(R.string.web_services_response_01);
-						serviceStatus = false;
-
-					} else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CONTRASENIA_EXPIRADA))
-					{
-						responsetxt = getString(R.string.web_services_response_03);
-						serviceStatus = false;
-					}
-					else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_IP_NO_CONFIANZA))
-					{
-						responsetxt = getString(R.string.web_services_response_04);
-						serviceStatus = false;
-					}
-					else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CREDENCIALES_INVALIDAS))
-					{
-						responsetxt = getString(R.string.web_services_response_05);
-						serviceStatus = false;
-					}
-					else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_BLOQUEADO))
-					{
-						responsetxt = getString(R.string.web_services_response_06);
-						serviceStatus = false;
-					}
-					else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_NUMERO_TELEFONO_YA_EXISTE))
-					{
-						responsetxt = getString(R.string.web_services_response_08);
-						serviceStatus = false;
-					}
-					else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_PRIMER_INGRESO))
-					{
-						responsetxt = getString(R.string.web_services_response_12);
-						serviceStatus = false;
-					}
-					else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_SOSPECHOSO))
-					{
-						responsetxt = getString(R.string.web_services_response_95);
-						serviceStatus = false;
-					}else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_PENDIENTE))
-					{
-						responsetxt = getString(R.string.web_services_response_96);
-						serviceStatus = false;
-					}else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_NO_EXISTE))
-					{
-						responsetxt = getString(R.string.web_services_response_97);
-						serviceStatus = false;
-					}else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_CREDENCIALES))
-					{
-						responsetxt = getString(R.string.web_services_response_98);
-						serviceStatus = false;
-					}else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_INTERNO))
-					{
-						responsetxt = getString(R.string.web_services_response_99);
-						serviceStatus = false;
-					}
-				}else{
-					responsetxt = getString(R.string.insuficient_balance);
+				else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_SOSPECHOSO))
+				{
+					responsetxt = getString(R.string.web_services_response_95);
+					serviceStatus = false;
+				}else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_PENDIENTE))
+				{
+					responsetxt = getString(R.string.web_services_response_96);
+					serviceStatus = false;
+				}else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_NO_EXISTE))
+				{
+					responsetxt = getString(R.string.web_services_response_97);
+					serviceStatus = false;
+				}else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_CREDENCIALES))
+				{
+					responsetxt = getString(R.string.web_services_response_98);
+					serviceStatus = false;
+				}else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_INTERNO))
+				{
+					responsetxt = getString(R.string.web_services_response_99);
 					serviceStatus = false;
 				}
 				//progressDialogAlodiga.dismiss();
 			} catch (IllegalArgumentException e)
 			{
+
 				e.printStackTrace();
 				System.err.println(e);
 				return false;
@@ -265,24 +356,16 @@ public class Confirmation3_Activity extends AppCompatActivity {
 		}
 
 		@Override
-		protected void onPreExecute() {
-			progressDialogAlodiga.show();
-		}
-
-		@Override
 		protected void onPostExecute(final Boolean success) {
 			mAuthTask = null;
 			//showProgress(false);
 			if (success) {
-				new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
-						"La mando bien ....");
 
-			} else {
+				Session.setObjUserHasProducts(userHasProducts);
 
-
-				new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
+			} else  {
+				new CustomToast().Show_Toast(getApplicationContext(), view,
 						responsetxt);
-
 			}
 			progressDialogAlodiga.dismiss();
 		}
@@ -290,8 +373,33 @@ public class Confirmation3_Activity extends AppCompatActivity {
 		@Override
 		protected void onCancelled() {
 			mAuthTask = null;
+			//showProgress(false);
 		}
+
+	}
+*/
+
+	private  ArrayList<ObjUserHasProduct>  getElementsProduct(String elementGet, String response){
+		ArrayList<ObjUserHasProduct> objUserHasProducts = new ArrayList<ObjUserHasProduct>();
+		String elementgetId = "id=";
+		String elementGetName = "nombreProducto=";
+		String elementGetCurrentBalance = "saldoActual=";
+		String elementGetSymbol = "simbolo=";
+		String litaProd = "respuestaListadoProductos=" ;
+
+		for(int i = 1 ;i<getLenghtFromResponseJson(litaProd, response);i++){
+			ObjUserHasProduct objUserHasProduct = new ObjUserHasProduct(response.split(elementgetId)[i].split(";")[0],response.split(elementGetName)[i].split(";")[0],response.split(elementGetCurrentBalance)[i].split(";")[0],response.split(elementGetSymbol)[i].split(";")[0]);
+			objUserHasProducts.add(objUserHasProduct);
+		}
+
+		return objUserHasProducts;
 	}
 
+	private  String getValueFromResponseJson(String v, String response){
+		return (response.split(v+"=")[1].split(";")[0]);
+	}
 
+	private  Integer getLenghtFromResponseJson(String v, String response){
+		return (response.split(v).length);
+	}
 }

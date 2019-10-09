@@ -8,11 +8,26 @@ public class ObjTransferMoney {
 
     private  String id;
     private String name;
+    private String currency;
 
 
     public ObjTransferMoney(String id, String name) {
         this.id = id;
         this.name = name;
+    }
+
+    public ObjTransferMoney(String id, String name, String currency) {
+        this.id = id;
+        this.name = name;
+        this.currency = currency;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
     }
 
     public String getName() {
