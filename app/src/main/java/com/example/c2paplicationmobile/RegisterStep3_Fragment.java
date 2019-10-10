@@ -63,6 +63,8 @@ public class RegisterStep3_Fragment extends Fragment implements OnClickListener 
 		lastName = (EditText) view.findViewById(R.id.lastName);
 		emailId = (EditText) view.findViewById(R.id.userEmailId);
 		password = (EditText) view.findViewById(R.id.password);
+
+
 		pinNumber = (EditText) view.findViewById(R.id.edtPin);
 		confirmPassword = (EditText) view.findViewById(R.id.confirmPassword);
 		signUpButton = (Button) view.findViewById(R.id.signUpBtn);
@@ -207,6 +209,12 @@ public class RegisterStep3_Fragment extends Fragment implements OnClickListener 
 	public void registrar(){
 		progressDialogAlodiga = new ProgressDialogAlodiga(getContext(),"cargando..");
 		progressDialogAlodiga.show();
+
+		//cifrando pin y credencial
+		getPassword = Utils.aloDesencript(getPassword.toString());
+		getPinNumber = Utils.aloDesencript(getPinNumber.toString());
+
+
 		mAuthTask = new UserRegisterTask(getname,getLastName,getEmailId,Session.getPhoneNumber(),getPassword,getPinNumber,Session.getMobileCodeSms());
 		mAuthTask.execute((Void) null);
 
@@ -280,6 +288,11 @@ public class RegisterStep3_Fragment extends Fragment implements OnClickListener 
 					responsetxt = getString(R.string.web_services_response_00);
 					serviceStatus = true;
 					return serviceStatus;
+				}
+				if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CORREO_YA_EXISTE))
+				{
+					responsetxt = getString(R.string.web_services_response_10);
+					serviceStatus = false;
 				}
 				else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_DATOS_INVALIDOS))
 				{

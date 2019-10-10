@@ -116,8 +116,8 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 		}
 		/*emailid.setText("antonioarcangelgomez@gmail.com");
 		password.setText("Kg0m3z$11");*/
-		emailid.setText("moisegrat12@gmail.com");
-		password.setText("123456");
+		emailid.setText("kerwin2821@gmail.com");
+		password.setText("Kg0m3z$11");
 		/*emailid.setText("adira0411@gmail.com");
 		password.setText("Alodiga456&");*/
 	}
@@ -326,13 +326,12 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 					 String elementGetSi = "simbolo=";*/
 					 userHasProducts = getElementsProduct("",res);
 
-
-
 					if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)){
 						responsetxt = getString(R.string.web_services_response_00);
 						serviceStatus = true;
-						return serviceStatus;}else
-					{
+						return serviceStatus;
+					}
+					else {
 						responsetxt = getString(R.string.web_services_response_12);
 						isFirstAccess = true;
 						serviceStatus = false;
