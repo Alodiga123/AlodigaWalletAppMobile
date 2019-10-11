@@ -111,7 +111,33 @@
             android:name=".Recharge_Activity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name=".TransferQrActivity" />
+        <activity
+            android:name=".Transference_Confirmation1_Activity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
+        <activity
+            android:name=".Payment_transference_code_Activity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
+        <activity
+            android:name=".Transference_Confirmation2_Activity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".Transference_Confirmation3_Activity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".TransferenceQrActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity android:name=".ComerceQrActivity" />
+        <activity
+            android:name=".ActivityFailConnection_Splash"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
 
 
 
