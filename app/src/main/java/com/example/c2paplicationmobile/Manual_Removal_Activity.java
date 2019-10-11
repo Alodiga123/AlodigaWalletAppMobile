@@ -44,7 +44,7 @@ public class Manual_Removal_Activity extends AppCompatActivity  {
     UserRemovalTask mAuthTask;
     ObjGenericObject getbank;
     ObjTransferMoney getproduct;
-    String getaccountBank, getDescrip, getAmount;
+    String getaccountBank, getDescrip, getAmountRecharge;
     Spinner  spinner_pais,spinnerbank,spinnerproducto;
     static ProgressDialogAlodiga progressDialogAlodiga;
 
@@ -341,7 +341,7 @@ public class Manual_Removal_Activity extends AppCompatActivity  {
             getproduct = (ObjTransferMoney) spinnerproducto.getSelectedItem();
             getaccountBank= edtCOD.getText().toString();
             getDescrip= edtdescript.getText().toString();
-            getAmount= edtAmount.getText().toString();
+            getAmountRecharge= edtAmount.getText().toString();
 
             try {
                 String responseCode;
@@ -351,7 +351,7 @@ public class Manual_Removal_Activity extends AppCompatActivity  {
                 map.put("bankId",getbank.getId());
                 map.put("emailUser",Session.getEmail());
                 map.put("accountBank",getaccountBank);
-                map.put("amountWithdrawal",getAmount);
+                map.put("amountRecharge",getAmountRecharge);
                 map.put("productId",getproduct.getId());
                 map.put("conceptTransaction",getDescrip);
 
