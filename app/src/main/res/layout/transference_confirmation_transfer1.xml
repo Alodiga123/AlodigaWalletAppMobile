@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="@drawable/side_nav_bar"
+    android:padding="15dp" >
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="@string/transference_title"
+        android:textColor="@color/background_color"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+
+
+    <TableLayout
+        android:id="@+id/txtTableLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtConfirmationPaymen"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="35dp">
+
+        <TextView
+            android:id="@+id/select"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textStyle="bold"
+
+            android:text="@string/destination_information"
+            android:textColor="@color/white_greyish"
+            android:textSize="19sp" />
+
+
+        <TableRow>
+            <TextView
+                android:id="@+id/txtPaymentReceiver"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:padding="2dip"
+                android:paddingTop="5dp"
+                android:singleLine="true"
+                android:textColor="@color/white_greyish"
+                android:textColorHint="@color/white_greyish"
+                android:textSize="16sp"
+                android:text="@string/destination_name"/>
+            <TextView
+                android:id="@+id/txtDestinationNameValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:padding="2dip"
+                android:singleLine="true"
+                android:textColor="@color/white_greyish"
+                android:textColorHint="@color/white_greyish"
+                android:textSize="14sp"
+                />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:id="@+id/txtIdentificationNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:padding="3dip"
+                android:singleLine="true"
+                android:textColor="@color/white_greyish"
+                android:textColorHint="@color/white_greyish"
+                android:textSize="16sp"
+                android:text="@string/destination_lastName"/>
+            <TextView
+                android:id="@+id/txtDestinationLastNameValue"
+
+                android:padding="3dip"
+                android:singleLine="true"
+                android:textColor="@color/white_greyish"
+                android:textColorHint="@color/white_greyish"
+                android:textSize="14sp"
+
+                />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:id="@+id/txtConcept"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:padding="3dip"
+                android:singleLine="true"
+                android:textColor="@color/white_greyish"
+                android:textColorHint="@color/white_greyish"
+                android:textSize="16sp"
+                android:text="@string/destination_phoe"/>
+            <TextView
+                android:id="@+id/txtDestinationPhoneValue"
+
+                android:padding="3dip"
+                android:singleLine="true"
+                android:textColor="@color/white_greyish"
+                android:textColorHint="@color/white_greyish"
+                android:textSize="14sp"/>
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:id="@+id/txtAccountNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:padding="3dip"
+                android:singleLine="true"
+                android:textColor="@color/white_greyish"
+                android:textColorHint="@color/white_greyish"
+                android:textSize="16sp"
+                android:text="@string/destination_cuenta"/>
+            <TextView
+                android:id="@+id/txtAccountNumberValue"
+                android:padding="3dip"
+                android:singleLine="true"
+                android:textColor="@color/white_greyish"
+                android:textColorHint="@color/white_greyish"
+                android:textSize="14sp"/>
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="43dp">
+
+            <TextView
+                android:id="@+id/accountSource"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="3dip"
+                android:singleLine="true"
+                android:text="@string/destination_source"
+                android:textColor="@color/white_greyish"
+                android:textColorHint="@color/white_greyish"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtAccountSourceValue"
+                android:padding="3dip"
+                android:singleLine="true"
+                android:textColor="@color/white_greyish"
+                android:textColorHint="@color/white_greyish"
+                android:textSize="14sp"
+                />
+
+        </TableRow>
+
+
+
+
+    </TableLayout>
+
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="30dp" />
+
+
+    <TextView
+        android:id="@+id/select2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="@string/destination_information_comple"
+        android:textColor="@color/white_greyish"
+        android:gravity="center_vertical"
+        android:textSize="19sp" />
+
+
+
+    <EditText
+        android:id="@+id/txtAmountValue"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:paddingTop="20dp"
+        android:background="@android:color/transparent"
+        android:drawableLeft="@drawable/moneyicon"
+        android:drawablePadding="8dp"
+        android:gravity="center_vertical"
+        android:inputType="numberDecimal"
+        android:padding="10dp"
+        android:singleLine="true"
+        android:textColor="@color/white_greyish"
+        android:textColorHint="@color/white_greyish"
+        android:hint="@string/destination_amount"
+        android:textSize="16sp" />
+    <EditText
+        android:id="@+id/txtConceptValue"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@android:color/transparent"
+        android:drawablePadding="8dp"
+        android:gravity="center_vertical"
+        android:drawableLeft="@drawable/email"
+        android:hint="@string/destination_concept"
+        android:inputType="text"
+        android:padding="10dp"
+        android:singleLine="true"
+        android:textColor="@color/white_greyish"
+        android:textColorHint="@color/white_greyish"
+        android:textSize="16sp" />
+    <Button
+        android:id="@+id/btnProcessConfirmation1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/loginbutton_selector"
+        android:padding="3dp"
+        android:text="@string/next"
+        android:textColor="@color/background_color"
+        android:textSize="17sp"
+        android:textStyle="bold" />
+
+
+
+</LinearLayout>
