@@ -31,7 +31,7 @@ public class MessageReceiver extends BroadcastReceiver{
                     String phoneNumber = currentMessage.getDisplayOriginatingAddress();
                     String senderNum = phoneNumber;
                     try{
-                        if (senderNum.contains("4455")) {
+                        //if (senderNum.contains("4455")) {
                             Object[] pdus = (Object[]) bundle.get("pdus");
                             msgs = new SmsMessage[pdus.length];
 
@@ -45,7 +45,7 @@ public class MessageReceiver extends BroadcastReceiver{
 
                                 Toast.makeText(context, "clave: " + cod, Toast.LENGTH_LONG).show();
                             }
-                        }
+                        //}
                     }catch (Exception e){
                         e.printStackTrace();
                     }
