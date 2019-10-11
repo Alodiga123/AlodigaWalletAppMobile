@@ -74,7 +74,7 @@ public class ComerceQrActivity extends AppCompatActivity implements ZXingScanner
 
         try {
 
-            String  text = obj.decrypt(rawResult.getText().trim(),"alodigaPruebadellave");
+            String  text = obj.decrypt(rawResult.getText().trim(),Constants.KEY_ENCRIPT_DESENCRIPT_QR);
             Toast.makeText( getApplicationContext(), text,Toast.LENGTH_SHORT).show();
             mScannerView.resumeCameraPreview(this);
             //Toast.makeText( getApplicationContext(), text.split(";")[0],Toast.LENGTH_LONG).show();
