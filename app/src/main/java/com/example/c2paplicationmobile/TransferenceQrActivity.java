@@ -3,7 +3,6 @@ package com.example.c2paplicationmobile;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-
 import android.util.Log;
 import android.widget.Toast;
 
@@ -16,12 +15,9 @@ import org.ksoap2.serialization.SoapObject;
 import java.util.HashMap;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
-import static android.Manifest.permission.CAMERA;
 
 
-
-
-public class TransferQrActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
+public class TransferenceQrActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
 
     private static final int REQUEST_CAMERA = 1;
     private ZXingScannerView mScannerView;
@@ -39,7 +35,7 @@ public class TransferQrActivity extends AppCompatActivity implements ZXingScanne
     private Integer caseFind = 0;
     private String responsetxt = "";
     private boolean serviceStatus;
-    private TransferQrActivity.FindUserTask mAuthTask = null;
+    private TransferenceQrActivity.FindUserTask mAuthTask = null;
 
     @Override
     public void onCreate(Bundle state) {
@@ -69,9 +65,9 @@ public class TransferQrActivity extends AppCompatActivity implements ZXingScanne
         mScannerView.stopCamera();
 
 
-     //   Intent i = new Intent(PagarActivity.this, CustomerConfirmActivity.class);
-      //  startActivity(i);
-       // finish();
+        //   Intent i = new Intent(PagarActivity.this, CustomerConfirmActivity.class);
+        //  startActivity(i);
+        // finish();
 
 
 
@@ -79,7 +75,7 @@ public class TransferQrActivity extends AppCompatActivity implements ZXingScanne
         Toast.makeText( getApplicationContext(), "Escaneo Exitoso",Toast.LENGTH_LONG).show();
         Log.i("QRCode", rawResult.getText());
         mScannerView.resumeCameraPreview(this);
-        mAuthTask = new TransferQrActivity.FindUserTask(rawResult.getText().toString());
+        mAuthTask = new TransferenceQrActivity.FindUserTask(rawResult.getText().toString());
         mAuthTask.execute((Void) null);
 
     }
@@ -217,7 +213,7 @@ public class TransferQrActivity extends AppCompatActivity implements ZXingScanne
                 Session.setDestinationPhoneValue(destinationPhoneValue);
                 Session.setDestinationNameValue(destinationNameValue);
                 Session.setUsuarioDestionId(destinationIdValue);
-                Intent i = new Intent(TransferQrActivity.this, Confirmation1_Activity.class);
+                Intent i = new Intent(TransferenceQrActivity.this, Transference_Confirmation1_Activity.class);
                 startActivity(i);
                 finish();
             } else {
@@ -240,6 +236,11 @@ public class TransferQrActivity extends AppCompatActivity implements ZXingScanne
 
 
 }
+
+
+
+
+
 
 
 

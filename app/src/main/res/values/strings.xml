@@ -17,7 +17,7 @@
     <string name="menu_pay_comerce">Pago QR Comercios</string>
     <string name="menu_send_money">Enviar Dinero</string>
     <string name="menu_convert">Convertir</string>
-    <string name="menu_recharge">Recargar</string>
+    <string name="menu_recharge">Recarga Manual</string>
     <string name="menu_aoutMoney">Retiro Manual</string>
     <string name="menu_transfer">Transferir</string>
     <string name="afiliation">Afiliar</string>
@@ -45,11 +45,13 @@
     <string name="payment_comerce_title">PAGO QR COMERCIOS</string>
     <string name="qr_code_title">MI CODIGO QR</string>
     <string name="confirmation_title">CONFIRMACION</string>
+    <string name="confirmation_title_">CONFIRMACION.</string>
     <string name="last_operation_title">ULTIMOS MOVIMIENTOS</string>
     <string name="confirmation_title_successfull">TRANSACCION EXITOSA</string>
     <string name="welcome">BIENVENIDO</string>
     <string name="process">PROCESAR</string>
     <string name="process_finished">FINALIZAR</string>
+    <string name="process_finished_share">COMPARTIR</string>
     <string name="name">Nombre</string>
     <string name="lastName">Apellido</string>
     <string name="mobileNumber">Numero Celular</string>
@@ -104,6 +106,8 @@
     <string name="id_recharge">Ingrese el identificador de la recarga:</string>
     <string name="id_transfer">Concepto de la transferencia:</string>
     <string name="info_fail_code">La Clave de Operaciones no es valida. Numero de intentos restantes: </string>
+    <string name="connection_error">No es posible establecer una conexion, Compruebe su conexion a internet</string>
+    <string name="action_reintent">Intentar de nuevo</string>
 
 
 

@@ -52,22 +52,23 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
         atg = AnimationUtils.loadAnimation(this, R.anim.atg);
         atgtwo = AnimationUtils.loadAnimation(this, R.anim.atgtwo);
         atgthree = AnimationUtils.loadAnimation(this, R.anim.atgthree);
-
-
         //getting the recyclerview from xml
         mRecyclerView = (RecyclerView) findViewById(R.id.idRecyclerView);
         //mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-
         mProductList = new ArrayList<Money>();
 
         for(ObjUserHasProduct objUserHasProduct : Session.getObjUserHasProducts()){
-            mProductList.add(new Money(objUserHasProduct.getName(),R.drawable.dolarsimbol,Session.getAccountNumber(), "Alodiga ",objUserHasProduct.getSymbol()+" "+ objUserHasProduct.getCurrentBalance()));
+            if(objUserHasProduct.getSymbol().equals("AL")){
+                mProductList.add(new Money(objUserHasProduct.getName(),R.drawable.alocoinlogo,Session.getAccountNumber(), "Alodiga ",objUserHasProduct.getSymbol()+" "+ objUserHasProduct.getCurrentBalance()));
+            }else if(objUserHasProduct.getSymbol().equals("SA")){
+                mProductList.add(new Money(objUserHasProduct.getName(),R.drawable.dolarsimbol,Session.getAccountNumber(), "Alodiga ",objUserHasProduct.getSymbol()+" "+ objUserHasProduct.getCurrentBalance()));
+            }else if(objUserHasProduct.getSymbol().equals("TP")){
+                mProductList.add(new Money(objUserHasProduct.getName(),R.drawable.cardalodiga,Session.getAccountNumber(), "Alodiga ",objUserHasProduct.getSymbol()+" "+ objUserHasProduct.getCurrentBalance()));
+            }
         }
 
 
@@ -187,7 +188,7 @@ public class MainActivity extends AppCompatActivity
             dialogo1.setCancelable(false);
             dialogo1.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialogo1, int id) {
-
+                    Session.clearALL();
                     Intent show = new Intent(MainActivity.this, LoginActivity.class);
                     finish();
                     startActivity(show);
@@ -234,6 +235,30 @@ public class MainActivity extends AppCompatActivity
             Intent show = new Intent(MainActivity.this, Payment_Activity_Comerce.class);
             startActivity(show);
         }
+
+        else if (id == R.id.nav_close_session) {
+            AlertDialog.Builder dialogo1 = new AlertDialog.Builder(this);
+            dialogo1.setTitle("Cerrar Sesion");
+            dialogo1.setMessage("¿ Esta Seguro que desea cerrar la sesion?");
+            dialogo1.setCancelable(false);
+            dialogo1.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialogo1, int id) {
+                    Session.clearALL();
+                    Intent show = new Intent(MainActivity.this, LoginActivity.class);
+                    finish();
+                    startActivity(show);
+
+                }
+            });
+            dialogo1.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialogo1, int id) {
+                    //cancelar();
+                }
+            });
+            dialogo1.show();
+        }
+
+
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

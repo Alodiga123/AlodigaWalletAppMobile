@@ -2,6 +2,9 @@ package com.example.c2paplicationmobile;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.Selection;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -12,10 +15,12 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Confirmation1_Activity_Comerce extends AppCompatActivity {
+public class Transference_Confirmation1_Activity extends AppCompatActivity {
 	private static View view;
 	private static EditText amountValue, conceptValue;
+
 	private static TextView txtAccountSourceValue, acountNumberValue,destinationPhoneValue,destinationLastNameValue,destinationNameValue;
+
 	private static TextView login;
 	private static Button btnProcessConfirmation1;
 	private static CheckBox terms_conditions;
@@ -34,14 +39,14 @@ public class Confirmation1_Activity_Comerce extends AppCompatActivity {
 	private Integer caseFindMoneyType = 0;
 
 
-	public Confirmation1_Activity_Comerce() {
+	public Transference_Confirmation1_Activity() {
 
 	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.confirmation_transfer1_comerce);
+		setContentView(R.layout.transference_confirmation_transfer1);
 
 		amountValue = (EditText) findViewById(R.id.txtAmountValue);
 		conceptValue = (EditText) findViewById(R.id.txtConceptValue);
@@ -51,20 +56,24 @@ public class Confirmation1_Activity_Comerce extends AppCompatActivity {
 		destinationNameValue = findViewById(R.id.txtDestinationNameValue);
 		txtAccountSourceValue = findViewById(R.id.txtAccountSourceValue);
 		btnProcessConfirmation1 = findViewById(R.id.btnProcessConfirmation1);
+
+
+
 		acountNumberValue.setText(Session.getDestinationAccountNumber());
 		destinationPhoneValue.setText(Session.getDestinationPhoneValue());
 		destinationLastNameValue.setText(Session.getDestinationLastNameValue());
 		destinationNameValue.setText(Session.getDestinationNameValue());
+		//String hola=Session.getMoneySelected().getName();
+        txtAccountSourceValue.setText(Session.getMoneySelected().getName());
 
-		txtAccountSourceValue.setText(Session.getMoneySelected().getName());
 		/*switch (Session.getMoneySelected()) {
-			case "0":
+			case 0:
 				txtAccountSourceValue.setText("Saldo Alodiga / USD "+ Session.getAlodigaBalance());
 				break;
-			case "1":
+			case 1:
 				txtAccountSourceValue.setText("Saldo Alocoins / ALC "+ Session.getAlocoinsBalance());
 				break;
-			case "2":
+			case 2:
 				txtAccountSourceValue.setText("Tarjeta Alodiga / USD "+ Session.getHealthCareCoinsBalance());
 				break;
 		}*/
@@ -79,13 +88,52 @@ public class Confirmation1_Activity_Comerce extends AppCompatActivity {
 					Session.setDestinationConcept(conceptValue.getText().toString());
 					Session.setGetDestinationAmount(amountValue.getText().toString());
 
-					Intent i = new Intent(Confirmation1_Activity_Comerce.this, Confirmation2_Activity_Comerce.class);
+					//Intent i = new Intent(Confirmation1_Activity.this, Confirmation2_Activity.class);
+					//startActivity(i);
+					//String saldo_a= Session.getMoneySelected().getCurrentBalance();
+					//String monto_=amountValue.getText().toString().trim();
+					//float saldo = Float.parseFloat(Session.getMoneySelected().getCurrentBalance().trim());
+					//float montodebitar=	Float.parseFloat(amountValue.getText().toString().trim());
+                    if (Float.parseFloat(Session.getMoneySelected().getCurrentBalance().trim()) < Float.parseFloat(amountValue.getText().toString().trim())){
+                        new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
+                                getString(R.string.insuficient_balance));
+                    }else{
+					Intent i = new Intent(Transference_Confirmation1_Activity.this, Payment_transference_code_Activity.class);
 					startActivity(i);
 					finish();
+                    }
 				}
 			}
 		});
 
+
+        amountValue.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(!s.toString().matches("^\\ (\\d{1,3}(\\,\\d{3})*|(\\d+))(\\.\\d{2})?$"))
+                {
+                    String userInput= ""+s.toString().replaceAll("[^\\d]", "");
+                    StringBuilder cashAmountBuilder = new StringBuilder(userInput);
+
+                    while (cashAmountBuilder.length() > 3 && cashAmountBuilder.charAt(0) == '0') {
+                        cashAmountBuilder.deleteCharAt(0);
+                    }
+                    while (cashAmountBuilder.length() < 3) {
+                        cashAmountBuilder.insert(0, '0');
+                    }
+                    cashAmountBuilder.insert(cashAmountBuilder.length()-2, '.');
+                    cashAmountBuilder.insert(0, ' ');
+
+                    amountValue.setText(cashAmountBuilder.toString());
+                    // keeps the cursor always to the right
+                    Selection.setSelection(amountValue.getText(), cashAmountBuilder.toString().length());
+
+                }
+
+            }
+        });
 	}
 
 

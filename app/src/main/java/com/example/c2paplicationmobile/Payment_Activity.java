@@ -14,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import org.ksoap2.serialization.SoapObject;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -148,7 +147,7 @@ public class Payment_Activity extends AppCompatActivity {
 
                     if(caseFind.equals(2)){
                         Session.setMoneySelected(currencySelected);
-                        Intent i = new Intent(Payment_Activity.this, TransferQrActivity.class);
+                        Intent i = new Intent(Payment_Activity.this, TransferenceQrActivity.class);
                         startActivity(i);
                         finish();
 
@@ -354,7 +353,7 @@ public class Payment_Activity extends AppCompatActivity {
                 Session.setDestinationPhoneValue(destinationPhoneValue);
                 Session.setDestinationNameValue(destinationNameValue);
                 Session.setUsuarioDestionId(destinationIdValue);
-                Intent i = new Intent(Payment_Activity.this, Confirmation1_Activity.class);
+                Intent i = new Intent(Payment_Activity.this, Transference_Confirmation1_Activity.class);
                 startActivity(i);
                 finish();
 
