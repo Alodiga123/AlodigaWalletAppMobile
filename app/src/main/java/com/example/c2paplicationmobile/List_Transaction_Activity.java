@@ -1,6 +1,7 @@
 package com.example.c2paplicationmobile;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.Selection;
@@ -28,15 +29,20 @@ public class List_Transaction_Activity extends AppCompatActivity  {
     static ObjGenericObject[] listSpinner_pais = new ObjGenericObject[0];
     static ObjTransferMoney[] listSpinner_producto = new ObjTransferMoney[0];
     static ObjGenericObject[] listSpinner_banco = new ObjGenericObject[0];
+    UserRemovalTask mAuthTask;
+    ObjGenericObject getbank;
+    ObjTransferMoney getproduct;
+    String getNumberOperation, getTrans, getAmountRechange;
+    Spinner  spinner_pais,spinnerbank,spinnerproducto;
     static ProgressDialogAlodiga progressDialogAlodiga;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recharge);
-        final Spinner  spinner_pais = (Spinner) findViewById(R.id.spinner_pais);
-        final Spinner  spinnerbank = (Spinner) findViewById(R.id.spinnerbank);
-        final Spinner  spinnerproducto = (Spinner) findViewById(R.id.spinnerproducto);
+        spinner_pais = (Spinner) findViewById(R.id.spinner_pais);
+        spinnerbank = (Spinner) findViewById(R.id.spinnerbank);
+        spinnerproducto = (Spinner) findViewById(R.id.spinnerproducto);
         edtAmount= findViewById(R.id.edtAmount);
         signFind = (Button) findViewById(R.id.signFind);
         edtCOD= findViewById(R.id.edtCOD);
@@ -48,7 +54,7 @@ public class List_Transaction_Activity extends AppCompatActivity  {
         progressDialogAlodiga = new ProgressDialogAlodiga(this,"cargando..");
         progressDialogAlodiga.show();
 
-        //Spinner Pais
+        //Spinner Country
         new Thread(new Runnable() {
             public void run() {
                 try{
@@ -76,8 +82,7 @@ public class List_Transaction_Activity extends AppCompatActivity  {
                         new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                                 responsetxt);
                     }
-                }catch(Exception e)
-                {
+                }catch(Exception e){
                     e.printStackTrace();
                 }
             }
@@ -92,7 +97,6 @@ public class List_Transaction_Activity extends AppCompatActivity  {
                 spinnerproducto.setAdapter(null);
 
                 final ObjGenericObject pais = (ObjGenericObject) spinner_pais.getSelectedItem();
-                //Toast.makeText(getApplicationContext(),"id" + pais.getId() ,Toast.LENGTH_SHORT).show();
 
                 new Thread(new Runnable() {
                     public void run() {
@@ -117,13 +121,12 @@ public class List_Transaction_Activity extends AppCompatActivity  {
                                         spinnerbank.setAdapter(spinAdapterBank);
                                     }
                                 });
+
                             }else{
                                 new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                                         responsetxt);
                             }
-
-                        }catch(Exception e)
-                        {
+                        }catch(Exception e){
                             e.printStackTrace();
                         }
                     }
@@ -135,7 +138,7 @@ public class List_Transaction_Activity extends AppCompatActivity  {
             }
         });
 
-        //Spinner Producto
+        //Spinner Product
         spinnerbank.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
@@ -145,7 +148,6 @@ public class List_Transaction_Activity extends AppCompatActivity  {
                 new Thread(new Runnable() {
                     public void run() {
                         try{
-
                             String responseCode = null;
                             WebService webService = new WebService();
                             HashMap<String, String> map = new HashMap<String, String>();
@@ -166,12 +168,12 @@ public class List_Transaction_Activity extends AppCompatActivity  {
                                         spinAdapterProduct = new SpinAdapterProduct(getApplicationContext(), android.R.layout.simple_spinner_item, listSpinner_producto);
                                         spinnerproducto.setAdapter(spinAdapterProduct);
                                     }
-                                });}else{
+                                });
+                            }else{
                                 new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                                         responsetxt);
                             }
-                        }catch(Exception e)
-                        {
+                        }catch(Exception e){
                             e.printStackTrace();
                         }
 
@@ -186,14 +188,13 @@ public class List_Transaction_Activity extends AppCompatActivity  {
 
         progressDialogAlodiga.dismiss();
 
-        //Seteo de decimales al campo de monto
+        //Formato de decimal al monto
         edtAmount.addTextChangedListener(new TextWatcher() {
             public void afterTextChanged(Editable s) {}
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(!s.toString().matches("^\\ (\\d{1,3}(\\,\\d{3})*|(\\d+))(\\.\\d{2})?$"))
-                {
+                if(!s.toString().matches("^\\ (\\d{1,3}(\\,\\d{3})*|(\\d+))(\\.\\d{2})?$")){
                     String userInput= ""+s.toString().replaceAll("[^\\d]", "");
                     StringBuilder cashAmountBuilder = new StringBuilder(userInput);
 
@@ -213,28 +214,24 @@ public class List_Transaction_Activity extends AppCompatActivity  {
             }
         });
 
-
+        //Validar campos
         signFind.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                String getcuenta= edtCOD.getText().toString();
-                String getmonto=  edtAmount.getText().toString();
+                String getcuenta = edtCOD.getText().toString();
+                String getmonto =  edtAmount.getText().toString();
                 String gettransaction=  edttrans.getText().toString();
 
-                if (getcuenta.equals("") || getcuenta.length() == 0) {
-                    new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
-                            getString(R.string.id_recharge_invalid));
-
+                if (gettransaction.equals("") || gettransaction.length() == 0) {
+                    new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(), getString(R.string.info_transaction));
+                }else if (getcuenta.equals("") || getcuenta.length() == 0) {
+                    new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(), getString(R.string.recharge_id_invalid));
                 }else if (getmonto.equals("") || getmonto.length() == 0) {
-                    new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
-                            getString(R.string.amount_info_invalid));
+                    new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(), getString(R.string.amount_info_invalid));
                 }else if (gettransaction.equals("") || gettransaction.length() == 0) {
-                    new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
-                            getString(R.string.info_transaction));
+                    new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(), getString(R.string.info_transaction));
                 }else {
-                    Intent show;
-                    show = new Intent(getApplicationContext(), Recharge_Activity.class);
-                    startActivity(show);
+                    RemovalTask();
                 }
             }
         });
@@ -245,12 +242,10 @@ public class List_Transaction_Activity extends AppCompatActivity  {
 
         ObjGenericObject[] obj2 = new ObjGenericObject[response.getPropertyCount()-3];
 
-        for(int i=3; i<response.getPropertyCount(); i++)
-        {
+        for(int i=3; i<response.getPropertyCount(); i++) {
             SoapObject obj = (SoapObject) response.getProperty(i);
             String propiedad = response.getProperty(i).toString();
             ObjGenericObject object = new ObjGenericObject(obj.getProperty("name").toString(),obj.getProperty("id").toString());
-
             obj2[i-3] = object;
         }
 
@@ -261,12 +256,10 @@ public class List_Transaction_Activity extends AppCompatActivity  {
 
         ObjTransferMoney[] obj2 = new ObjTransferMoney[response.getPropertyCount()-3];
 
-        for(int i=3; i<response.getPropertyCount(); i++)
-        {
+        for(int i=3; i<response.getPropertyCount(); i++) {
             SoapObject obj = (SoapObject) response.getProperty(i);
             String propiedad = response.getProperty(i).toString();
             ObjTransferMoney object = new ObjTransferMoney(obj.getProperty("id").toString(),obj.getProperty("name").toString() +" - " +obj.getProperty("currentBalance").toString(),obj.getProperty("currentBalance").toString() );
-
             obj2[i-3] = object;
         }
 
@@ -274,71 +267,187 @@ public class List_Transaction_Activity extends AppCompatActivity  {
     }
 
 
+    public void RemovalTask(){
+        progressDialogAlodiga = new ProgressDialogAlodiga(this,"cargando..");
+        progressDialogAlodiga.show();
+        mAuthTask = new List_Transaction_Activity.UserRemovalTask();
+        mAuthTask.execute((Void) null);
 
-        public void serviceAnswer(String responseCode ){
-        if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO))
-        {
-            responsetxt = getString(R.string.web_services_response_00);
-            serviceStatus = true;
-            //return serviceStatus;
-        }
-        else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_DATOS_INVALIDOS))
-        {
-            responsetxt = getString(R.string.web_services_response_01);
-            serviceStatus = false;
+    }
 
-        } else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CONTRASENIA_EXPIRADA))
-        {
-            responsetxt = getString(R.string.web_services_response_03);
-            serviceStatus = false;
+
+    public class UserRemovalTask extends AsyncTask<Void, Void, Boolean> {
+
+        @Override
+        protected Boolean doInBackground(Void... params) {
+
+            WebService webService = new WebService();
+            Utils utils = new Utils();
+            SoapObject response;
+
+            getbank = (ObjGenericObject) spinnerbank.getSelectedItem();
+            getNumberOperation= edtCOD.getText().toString();
+            getAmountRechange= edtAmount.getText().toString();
+            getproduct = (ObjTransferMoney) spinnerproducto.getSelectedItem();
+            getTrans= edttrans.getText().toString();
+
+
+            try {
+                String responseCode;
+                String responseMessage = "";
+
+                HashMap<String,String > map = new HashMap<String,String>();
+                map.put("bankId",getbank.getId());
+                map.put("emailUser",Session.getEmail());
+                map.put("accountBank",getNumberOperation);
+                map.put("amountWithdrawal",getAmountRechange);
+                map.put("productId",getproduct.getId());
+                map.put("conceptTransaction",getTrans);
+
+                response = webService.invokeGetAutoConfigString(map,Constants.WEB_SERVICES_METHOD_NAME_RECHARGE,Constants.ALODIGA);
+                responseCode = response.getProperty("codigoRespuesta").toString();
+                responseMessage = response.getProperty("mensajeRespuesta").toString();
+
+
+                if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)){
+                    responsetxt = getString(R.string.web_services_response_00);
+                    serviceStatus = true;
+                    return serviceStatus;
+
+                }else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_DATOS_INVALIDOS)){
+                    responsetxt = getString(R.string.web_services_response_01);
+                    serviceStatus = false;
+                }else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CONTRASENIA_EXPIRADA)){
+                    responsetxt = getString(R.string.web_services_response_03);
+                    serviceStatus = false;
+                }else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_IP_NO_CONFIANZA)){
+                    responsetxt = getString(R.string.web_services_response_04);
+                    serviceStatus = false;
+                }else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CREDENCIALES_INVALIDAS)){
+                    responsetxt = getString(R.string.web_services_response_05);
+                    serviceStatus = false;
+                }else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_BLOQUEADO)){
+                    responsetxt = getString(R.string.web_services_response_06);
+                    serviceStatus = false;
+                }else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_NUMERO_TELEFONO_YA_EXISTE)){
+                    responsetxt = getString(R.string.web_services_response_08);
+                    serviceStatus = false;
+                }else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_PRIMER_INGRESO)){
+                    responsetxt = getString(R.string.web_services_response_12);
+                    serviceStatus = false;
+                }else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_TRANSACTION_AMOUNT_LIMIT)){
+                    responsetxt = getString(R.string.web_services_response_30);
+                    serviceStatus = false;
+                }else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_TRANSACTION_MAX_NUMBER_BY_ACCOUNT)){
+                    responsetxt = getString(R.string.web_services_response_31);
+                    serviceStatus = false;
+                }else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_TRANSACTION_MAX_NUMBER_BY_CUSTOMER)){
+                    responsetxt = getString(R.string.web_services_response_32);
+                    serviceStatus = false;
+                }else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USER_HAS_NOT_BALANCE)){
+                    responsetxt = getString(R.string.web_services_response_33);
+                    serviceStatus = false;
+                }else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_SOSPECHOSO)){
+                    responsetxt = getString(R.string.web_services_response_95);
+                    serviceStatus = false;
+                }else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_PENDIENTE)){
+                    responsetxt = getString(R.string.web_services_response_96);
+                    serviceStatus = false;
+                }else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_NO_EXISTE)){
+                    responsetxt = getString(R.string.web_services_response_97);
+                    serviceStatus = false;
+                }else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_CREDENCIALES)){
+                    responsetxt = getString(R.string.web_services_response_98);
+                    serviceStatus = false;
+                }else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_INTERNO)) {
+                    responsetxt = getString(R.string.web_services_response_99);
+                    serviceStatus = false;
+                }else{
+                    responsetxt = responseMessage;
+                    serviceStatus = false;
+                }
+
+            } catch (IllegalArgumentException e){
+                responsetxt = getString(R.string.web_services_response_99);
+                e.printStackTrace();
+                System.err.println(e);
+
+                return false;
+
+            } catch (Exception e){
+                responsetxt = getString(R.string.web_services_response_99);
+                e.printStackTrace();
+                System.err.println(e);
+
+                return false;
+            }
+
+            return serviceStatus;
         }
-        else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_IP_NO_CONFIANZA))
-        {
-            responsetxt = getString(R.string.web_services_response_04);
-            serviceStatus = false;
+
+        @Override
+        protected void onPostExecute(final Boolean success) {
+            mAuthTask = null;
+            //showProgress(false);
+            if (success) {
+                Intent show;
+                show = new Intent(getApplicationContext(), Recharge_Activity.class);
+                startActivity(show);
+            } else {
+                new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
+                        responsetxt);
+            }
+            progressDialogAlodiga.dismiss();
         }
-        else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CREDENCIALES_INVALIDAS))
-        {
-            responsetxt = getString(R.string.web_services_response_05);
-            serviceStatus = false;
-        }
-        else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_BLOQUEADO))
-        {
-            responsetxt = getString(R.string.web_services_response_06);
-            serviceStatus = false;
-        }
-        else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_NUMERO_TELEFONO_YA_EXISTE))
-        {
-            responsetxt = getString(R.string.web_services_response_08);
-            serviceStatus = false;
-        }
-        else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_PRIMER_INGRESO))
-        {
-            responsetxt = getString(R.string.web_services_response_12);
-            serviceStatus = false;
-        }
-        else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_SOSPECHOSO))
-        {
-            responsetxt = getString(R.string.web_services_response_95);
-            serviceStatus = false;
-        }else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_PENDIENTE))
-        {
-            responsetxt = getString(R.string.web_services_response_96);
-            serviceStatus = false;
-        }else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_NO_EXISTE))
-        {
-            responsetxt = getString(R.string.web_services_response_97);
-            serviceStatus = false;
-        }else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_CREDENCIALES))
-        {
-            responsetxt = getString(R.string.web_services_response_98);
-            serviceStatus = false;
-        }else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_INTERNO))
-        {
-            responsetxt = getString(R.string.web_services_response_99);
-            serviceStatus = false;
+
+        @Override
+        protected void onCancelled() {
+            mAuthTask = null;
         }
     }
 
 
+    public void serviceAnswer(String responseCode ){
+        if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)){
+            responsetxt = getString(R.string.web_services_response_00);
+            serviceStatus = true;
+            //return serviceStatus;
+        }else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_DATOS_INVALIDOS)){
+            responsetxt = getString(R.string.web_services_response_01);
+            serviceStatus = false;
+        }else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CONTRASENIA_EXPIRADA)){
+            responsetxt = getString(R.string.web_services_response_03);
+            serviceStatus = false;
+        }else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_IP_NO_CONFIANZA)){
+            responsetxt = getString(R.string.web_services_response_04);
+            serviceStatus = false;
+        }else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CREDENCIALES_INVALIDAS)){
+            responsetxt = getString(R.string.web_services_response_05);
+            serviceStatus = false;
+        }else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_BLOQUEADO)){
+            responsetxt = getString(R.string.web_services_response_06);
+            serviceStatus = false;
+        }else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_NUMERO_TELEFONO_YA_EXISTE)){
+            responsetxt = getString(R.string.web_services_response_08);
+            serviceStatus = false;
+        }else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_PRIMER_INGRESO)){
+            responsetxt = getString(R.string.web_services_response_12);
+            serviceStatus = false;
+        }else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_SOSPECHOSO)){
+            responsetxt = getString(R.string.web_services_response_95);
+            serviceStatus = false;
+        }else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_PENDIENTE)){
+            responsetxt = getString(R.string.web_services_response_96);
+            serviceStatus = false;
+        }else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_NO_EXISTE)){
+            responsetxt = getString(R.string.web_services_response_97);
+            serviceStatus = false;
+        }else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_CREDENCIALES)){
+            responsetxt = getString(R.string.web_services_response_98);
+            serviceStatus = false;
+        }else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_INTERNO)){
+            responsetxt = getString(R.string.web_services_response_99);
+            serviceStatus = false;
+        }
+    }
 }
