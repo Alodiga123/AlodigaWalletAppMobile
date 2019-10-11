@@ -62,22 +62,34 @@ public class ComerceQrActivity extends AppCompatActivity implements ZXingScanner
 
     @Override
     public void handleResult(Result rawResult) {
-        Toast.makeText( getApplicationContext(), "Escaneo Exitoso",Toast.LENGTH_LONG).show();
+      //  Toast.makeText( getApplicationContext(), "Escaneo Exitoso",Toast.LENGTH_LONG).show();
         mScannerView.stopCamera();
-
-
      //   Intent i = new Intent(PagarActivity.this, CustomerConfirmActivity.class);
       //  startActivity(i);
        // finish();
-
-
-
-
-        Toast.makeText( getApplicationContext(), "Escaneo Exitoso",Toast.LENGTH_LONG).show();
+       // Toast.makeText( getApplicationContext(), "Escaneo Exitoso",Toast.LENGTH_LONG).show();
         Log.i("QRCode", rawResult.getText());
-        mScannerView.resumeCameraPreview(this);
-        mAuthTask = new ComerceQrActivity.FindUserTask(rawResult.getText().toString());
+        //String text="";
+        AlodigaCryptographyUtils obj = new AlodigaCryptographyUtils();
+
+        try {
+
+            String  text = obj.decrypt(rawResult.getText().trim(),"alodigaPruebadellave");
+            Toast.makeText( getApplicationContext(), text,Toast.LENGTH_SHORT).show();
+            mScannerView.resumeCameraPreview(this);
+            //Toast.makeText( getApplicationContext(), text.split(";")[0],Toast.LENGTH_LONG).show();
+
+            //mAuthTask = new ComerceQrActivity.FindUserTask(rawResult.getText().toString());
+
+            mAuthTask = new ComerceQrActivity.FindUserTask(text.split(";")[0]);
+
         mAuthTask.execute((Void) null);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+
 
     }
 
