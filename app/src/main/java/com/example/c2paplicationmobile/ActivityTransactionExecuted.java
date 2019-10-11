@@ -172,10 +172,10 @@ public  class ActivityTransactionExecuted extends AppCompatActivity implements O
                     responsetxt = "";
                     serviceStatus = false;
                 }else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USER_NOT_HAS_TRANSACTIONS)){
-                    responsetxt = "La no posee movimientos asociados";
+                    responsetxt = datosRespuesta;
                     serviceStatus = false;
                 }else if (responseCode.isEmpty()){
-                    Toast.makeText(context, "La no posee movimientos asociados", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "La cuenta no posee movimientos asociados", Toast.LENGTH_LONG).show();
                 }else{
                     responsetxt = datosRespuesta;
                     serviceStatus = false;
