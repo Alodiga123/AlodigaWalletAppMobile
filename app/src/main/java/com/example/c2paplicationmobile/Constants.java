@@ -11,15 +11,20 @@ public class  Constants {
 
 
     /*PRODUCCION*/
-    public static final String  CONSTANT_IP = "192.168.3.20";
-    public static final String  CONSTANT_URL_PROD = "http://192.168.3.20:8080/RegistroUnificado/APIRegistroUnificadoService";
-    public static final String  CONSTANT_SECURE_URL = "http://192.168.3.20:8080/RegistroUnificado/APIRegistroUnificadoService";
+    //public static final String  CONSTANT_IP = "192.168.3.20";
+    public static final String  CONSTANT_IP = "192.168.3.140";
+    public static final String  CONSTANT_URL_PROD = "http://192.168.3.140:8080/RegistroUnificado/APIRegistroUnificadoService";
+    //public static final String  CONSTANT_URL_PROD = "http://192.168.3.20:8080/RegistroUnificado/APIRegistroUnificadoService";
+    //public static final String  CONSTANT_SECURE_URL = "http://192.168.3.20:8080/RegistroUnificado/APIRegistroUnificadoService";
+    public static final String  CONSTANT_SECURE_URL = "http://192.168.3.140:8080/RegistroUnificado/APIRegistroUnificadoService";
 
 
 
    //Alodiga Eallet
-    public static final String  CONSTANT_URL_PROD_ALODIGA_WALLET = "http://192.168.3.20:8080/AlodigaWallet/APIAlodigaWalletService";
-    public static final String  CONSTANT_SECURE_URL_ALODIGA_WALLET = "http://192.168.3.20:8080/AlodigaWallet/APIAlodigaWalletService";
+    //public static final String  CONSTANT_URL_PROD_ALODIGA_WALLET = "http://192.168.3.20:8080/AlodigaWallet/APIAlodigaWalletService";
+    public static final String  CONSTANT_URL_PROD_ALODIGA_WALLET = "http://192.168.3.140:8080/AlodigaWallet/APIAlodigaWalletService";
+    public static final String  CONSTANT_SECURE_URL_ALODIGA_WALLET = "http://192.168.3.140:8080/AlodigaWallet/APIAlodigaWalletService";
+    //public static final String  CONSTANT_SECURE_URL_ALODIGA_WALLET = "http://192.168.3.20:8080/AlodigaWallet/APIAlodigaWalletService";
 
 
     //QA
@@ -41,7 +46,8 @@ public class  Constants {
     /**
      * Data de QA
      */
-    public static final String CONSTANT_URL_QA_REGISTRO_UNIFICADO = "http://192.168.3.20:8080/RegistroUnificado/APIRegistroUnificadoService";
+    //public static final String CONSTANT_URL_QA_REGISTRO_UNIFICADO = "http://192.168.3.20:8080/RegistroUnificado/APIRegistroUnificadoService";
+    public static final String CONSTANT_URL_QA_REGISTRO_UNIFICADO = "http://192.168.3.140:8080/RegistroUnificado/APIRegistroUnificadoService";
     public static final String CONSTANT_NAMESPACE_QA_REGISTRO_UNIFICADO = "http://ws.alodiga.ericsson.com/";
     public static final String REGISTRO_UNIFICADO= "RegistroUnificado";
 
@@ -49,14 +55,16 @@ public class  Constants {
     /**
      *
      */
-    public static final String CONSTANT_URL_QA_ALODIGA = "http://192.168.3.20:8080/AlodigaWallet/APIAlodigaWalletService";
+    //public static final String CONSTANT_URL_QA_ALODIGA = "http://192.168.3.20:8080/AlodigaWallet/APIAlodigaWalletService";
+    public static final String CONSTANT_URL_QA_ALODIGA = "http://192.168.3.140:8080/AlodigaWallet/APIAlodigaWalletService";
     public static final String CONSTANT_NAMESPACE_QA_ALODIGA = "http://ws.wallet.alodiga.com/";
     public static final String ALODIGA = "AlodigaWallet";
 
     /**
      * Alodiga WAllet
      */
-    public static final String CONSTANT_URL_QA_ALODIGA_WALLET  = "http://192.168.3.20:8080/AlodigaWallet/APIAlodigaWalletService";
+    //public static final String CONSTANT_URL_QA_ALODIGA_WALLET  = "http://192.168.3.20:8080/AlodigaWallet/APIAlodigaWalletService";
+    public static final String CONSTANT_URL_QA_ALODIGA_WALLET  = "http://192.168.3.140:8080/AlodigaWallet/APIAlodigaWalletService";
     public static final String CONSTANT_NAMESPACE_ALODIGA_WALLET = "http://ws.wallet.alodiga.com/";
 
     public static final String CONSTANT_SEPARATOR = ":";
@@ -114,6 +122,7 @@ public class  Constants {
     public static final String WEB_SERVICES_RESPONSE_CODE_SOLICITUD_TARJETA_ACTIVA = "20";
     public static final String WEB_SERVICES_RESPONSE_CODE_AFILIACIONES_MAXIMAS_ALCANZADAS = "21";
     public static final String WEB_SERVICES_RESPONSE_CODE_USER_NOT_HAS_PHONE_NUMBER = "22";
+    public static final String WEB_SERVICES_RESPONSE_CODE_USER_NOT_HAS_TRANSACTIONS = "24";
     public static final String WEB_SERVICES_RESPONSE_CODE_TRANSACTION_AMOUNT_LIMIT = "30";
     public static final String WEB_SERVICES_RESPONSE_CODE_TRANSACTION_MAX_NUMBER_BY_ACCOUNT = "31";
     public static final String WEB_SERVICES_RESPONSE_CODE_TRANSACTION_MAX_NUMBER_BY_CUSTOMER = "32";
@@ -142,6 +151,7 @@ public class  Constants {
     public static final String WEB_SERVICES_METHOD_NAME_VALID_CODE = "validarPin";
     public static final String WEB_SERVICES_METHOD_NAME_UPDATE_PRODUCT = "listadoProductosPorUsuario";
     public static final String WEB_SERVICES_METHOD_NAME_REMOVAL_MANUAL = "ManualWithdrawals";
+    public static final String WEB_SERVICES_METHOD_NAME_RECHARGE = "ManualRecharge";
 
 
 
