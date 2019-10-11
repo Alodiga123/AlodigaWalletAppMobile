@@ -172,10 +172,11 @@ public  class ActivityTransactionExecuted extends AppCompatActivity implements O
                     responsetxt = "";
                     serviceStatus = false;
                 }else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USER_NOT_HAS_TRANSACTIONS)){
-                    responsetxt = "La no posee movimientos asociados";
+                    Toast.makeText(context, "La cuenta no posee movimientos asociados", Toast.LENGTH_LONG).show();
+                    responsetxt = datosRespuesta;
                     serviceStatus = false;
                 }else if (responseCode.isEmpty()){
-                    Toast.makeText(context, "La no posee movimientos asociados", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "La cuenta no posee movimientos asociados", Toast.LENGTH_LONG).show();
                 }else{
                     responsetxt = datosRespuesta;
                     serviceStatus = false;
@@ -210,7 +211,15 @@ public  class ActivityTransactionExecuted extends AppCompatActivity implements O
 
         @Override
         protected void onPostExecute(Boolean result)
+
+
         {
+
+           /* if (result) {
+
+            } else {
+
+            }*/
             ArrayList<ObjTransaction> transactions = new ArrayList<ObjTransaction>();
 
             transactions = getParseResponse(stringResponse);
@@ -253,15 +262,6 @@ public  class ActivityTransactionExecuted extends AppCompatActivity implements O
                                 +"\n"
                                 +"Comision: "+((ObjTransaction)newsData.getObject()).getCommision()
                                 +"\n");
-/****************/
-
-                        Intent sendIntent = new Intent();
-                        sendIntent.setAction(Intent.ACTION_SEND);
-                        sendIntent.putExtra(Intent.EXTRA_TEXT, "Enviar a:");
-                        sendIntent.setType("text/plain");
-                        //startActivity(sendIntent);
-
-/**************/
                         alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
@@ -316,17 +316,5 @@ public  class ActivityTransactionExecuted extends AppCompatActivity implements O
             return results;
         }
     }
-
-    protected void backReturn() {
-
-        Intent i = new Intent(ActivityTransactionExecuted.this, MainActivity.class);
-        startActivity(i);
-        finish();
-    }
-
-
-
-
-
 }
 

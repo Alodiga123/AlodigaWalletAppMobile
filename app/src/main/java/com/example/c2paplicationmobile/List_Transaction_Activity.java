@@ -32,7 +32,7 @@ public class List_Transaction_Activity extends AppCompatActivity  {
     UserRemovalTask mAuthTask;
     ObjGenericObject getbank;
     ObjTransferMoney getproduct;
-    String getNumberOperation, getTrans, getAmountRechange;
+    String getNumberOperation, getTrans, getAmountRecharge;
     Spinner  spinner_pais,spinnerbank,spinnerproducto;
     static ProgressDialogAlodiga progressDialogAlodiga;
 
@@ -287,7 +287,7 @@ public class List_Transaction_Activity extends AppCompatActivity  {
 
             getbank = (ObjGenericObject) spinnerbank.getSelectedItem();
             getNumberOperation= edtCOD.getText().toString();
-            getAmountRechange= edtAmount.getText().toString();
+            getAmountRecharge= edtAmount.getText().toString();
             getproduct = (ObjTransferMoney) spinnerproducto.getSelectedItem();
             getTrans= edttrans.getText().toString();
 
@@ -299,10 +299,20 @@ public class List_Transaction_Activity extends AppCompatActivity  {
                 HashMap<String,String > map = new HashMap<String,String>();
                 map.put("bankId",getbank.getId());
                 map.put("emailUser",Session.getEmail());
-                map.put("accountBank",getNumberOperation);
-                map.put("amountWithdrawal",getAmountRechange);
+                map.put("referenceNumberOperation",getNumberOperation);
+                map.put("amountRecharge",getAmountRecharge);
                 map.put("productId",getproduct.getId());
                 map.put("conceptTransaction",getTrans);
+
+                /*
+                 @WebParam(name = "bankId") Long bankId,
+                @WebParam(name = "emailUser") String emailUser,
+                @WebParam(name = "referenceNumberOperation") String referenceNumberOperation,
+                @WebParam(name = "amountRecharge") Float amountRecharge,
+                @WebParam(name = "productId") Long productId,
+                @WebParam(name = "conceptTransaction") String conceptTransaction) {
+                return operations.ManualRecharge(bankId, emailUser, referenceNumberOperation, amountRecharge,
+                 */
 
                 response = webService.invokeGetAutoConfigString(map,Constants.WEB_SERVICES_METHOD_NAME_RECHARGE,Constants.ALODIGA);
                 responseCode = response.getProperty("codigoRespuesta").toString();
