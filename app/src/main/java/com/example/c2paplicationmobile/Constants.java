@@ -139,6 +139,7 @@ public class  Constants {
     public static final String WEB_SERVICES_METHOD_NAME_GET_COUNTRIES = "getCountriesHasBank";
     public static final String WEB_SERVICES_METHOD_NAME_GET_PRODUCT = "getProductsByBankId";
     public static final String WEB_SERVICES_METHOD_NAME_PAYMENT_COMERCE = "savePaymentShop";
+    public static final String WEB_SERVICES_METHOD_NAME_TRANSFERENCE = "saveTransferBetweenAccount";
     public static final String WEB_SERVICES_METHOD_NAME_VALID_CODE = "validarPin";
     public static final String WEB_SERVICES_METHOD_NAME_UPDATE_PRODUCT = "listadoProductosPorUsuario";
     public static final String WEB_SERVICES_METHOD_NAME_REMOVAL_MANUAL = "ManualWithdrawals";
