@@ -143,12 +143,12 @@ public class Transference_Confirmation2_Activity extends AppCompatActivity {
 
 				if(availableBalance){
 					HashMap<String,String > map = new HashMap<String,String>();
-					map.put("cryptogramShop",cryptogramShop);
+					map.put("cryptogramUserSource",cryptogramShop);
 					map.put("emailUser",emailUser);
 					map.put("productId",productId);
-					map.put("amountPayment",amountPayment);
+					map.put("amountTransfer",amountPayment);
 					map.put("conceptTransaction",conceptTransaction);
-					map.put("cryptogramUser",cryptogramUser);
+					map.put("cryptogramUserDestination",cryptogramUser);
 					map.put("idUserDestination",idUserDestination);
 
 					response = webService.invokeGetAutoConfigString(map,Constants.WEB_SERVICES_METHOD_NAME_TRANSFERENCE,Constants.ALODIGA);
