@@ -151,8 +151,8 @@ public class  Constants {
     public static final String WEB_SERVICES_METHOD_NAME_TRANSFERENCE = "saveTransferBetweenAccount";
     public static final String WEB_SERVICES_METHOD_NAME_VALID_CODE = "validarPin";
     public static final String WEB_SERVICES_METHOD_NAME_UPDATE_PRODUCT = "listadoProductosPorUsuario";
-    public static final String WEB_SERVICES_METHOD_NAME_REMOVAL_MANUAL = "ManualWithdrawals";
-    public static final String WEB_SERVICES_METHOD_NAME_RECHARGE = "ManualRecharge";
+    public static final String WEB_SERVICES_METHOD_NAME_REMOVAL_MANUAL = "manualWithdrawals";
+    public static final String WEB_SERVICES_METHOD_NAME_RECHARGE = "manualRecharge";
 
 
 
