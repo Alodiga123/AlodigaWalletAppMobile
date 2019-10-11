@@ -1,67 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@drawable/side_nav_bar"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="100dp"
-    android:paddingLeft="50dp"
-    android:paddingRight="50dp"
-    android:weightSum="1"
-    android:orientation="vertical"
-    android:padding="15dp" >
+    android:layout_alignParentTop="true"
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="20dp"
-        android:text="@string/my_qr_title"
-        android:textColor="@color/background_color"
-        android:textSize="25sp"
-        android:textStyle="bold" />
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="30dp" />
+    android:padding="1dp"
+    android:background="@drawable/side_nav_bar">
 
     <LinearLayout
+        android:background="@drawable/side_nav_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:paddingTop="100dp"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:paddingBottom="200dp"
         android:weightSum="1"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="20dp">
 
         <TextView
-            android:id="@+id/inf_qr"
+            android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/welcome_qr_code"
-            android:textColor="@color/white_greyish"
-            android:textSize="18sp"
+            android:padding="30dp"
+            android:text="@string/my_qr_title"
+            android:textColor="@color/background_color"
+            android:textSize="25sp"
             android:textStyle="bold" />
         <Space
             android:layout_width="match_parent"
             android:layout_height="30dp" />
 
-        <TextView
-            android:id="@+id/select"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/destination_qr_code"
-            android:textColor="@color/white_greyish"
-            android:textSize="19sp"
             android:gravity="center"
-            android:textStyle="bold" />
+            android:weightSum="1"
+            android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/iv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="20dp"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/check" />
+            <TextView
+                android:id="@+id/inf_qr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/welcome_qr_code"
+                android:textColor="@color/white_greyish"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="30dp" />
+
+            <TextView
+                android:id="@+id/select"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/destination_qr_code"
+                android:textColor="@color/white_greyish"
+                android:textSize="19sp"
+                android:gravity="center"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/iv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/check" />
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
-
+</RelativeLayout>
 
