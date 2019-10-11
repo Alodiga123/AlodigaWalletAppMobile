@@ -210,31 +210,24 @@ public  class ActivityTransactionExecuted extends AppCompatActivity implements O
         }
 
         @Override
-        protected void onPostExecute(Boolean result)
-
-
+        protected void onPostExecute(final Boolean result)
         {
+            //if(result){
+                ArrayList<ObjTransaction> transactions = new ArrayList<ObjTransaction>();
 
-           /* if (result) {
+                transactions = getParseResponse(stringResponse);
+                ArrayList<NewsItem> image_details = new ArrayList<NewsItem>();
+                for(ObjTransaction t : transactions){
 
-            } else {
+                    NewsItem item = new NewsItem();
+                    item.setDate(t.getCreateionDate());
+                    item.setHeadline(t.getAmount());
+                    item.setReporterName(t.getTax());
+                    item.setObject(t);
+                    item.setNegative(false);
+                    image_details.add(item);
 
-            }*/
-            ArrayList<ObjTransaction> transactions = new ArrayList<ObjTransaction>();
-
-            transactions = getParseResponse(stringResponse);
-            ArrayList<NewsItem> image_details = new ArrayList<NewsItem>();
-            for(ObjTransaction t : transactions){
-
-                NewsItem item = new NewsItem();
-                item.setDate(t.getCreateionDate());
-                item.setHeadline(t.getAmount());
-                item.setReporterName(t.getTax());
-                item.setObject(t);
-                item.setNegative(false);
-                image_details.add(item);
-
-            }
+                }
                 textViewEmpty.setVisibility(View.INVISIBLE);
                 lv1.setAdapter(new CustomListAdapter(this.context, image_details));
                 lv1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -272,8 +265,11 @@ public  class ActivityTransactionExecuted extends AppCompatActivity implements O
                     }
                 });
                 progressDialogAlodiga.dismiss();
-
-
+            /*}else{
+                Toast.makeText(context, "La cuenta no posee movimientos asociados", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(ActivityTransactionExecuted.this, MainActivity.class);
+                startActivity(intent);
+            }*/
         }
 
         private ArrayList<ObjTransaction> getParseResponse (String response) {
