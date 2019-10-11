@@ -12,25 +12,41 @@
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:padding="10dp"
+        android:padding="20dp"
         android:text="@string/my_qr_title"
         android:textColor="@color/background_color"
         android:textSize="25sp"
         android:textStyle="bold" />
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="30dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:weightSum="1"
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/inf_qr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/welcome_qr_code"
+            android:textColor="@color/white_greyish"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
+
+        <TextView
             android:id="@+id/select"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/destination_qr_code"
             android:textColor="@color/white_greyish"
@@ -40,8 +56,9 @@
 
         <ImageView
             android:id="@+id/iv"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
             android:layout_marginTop="20dp"
             android:src="@drawable/check" />
     </LinearLayout>

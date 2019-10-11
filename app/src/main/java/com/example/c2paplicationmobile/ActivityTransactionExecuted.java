@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.text.Html;
 import android.view.View;
 import android.widget.AdapterView;
@@ -23,6 +24,7 @@ import org.ksoap2.serialization.SoapObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.lang.NullPointerException;
 
 
 public  class ActivityTransactionExecuted extends AppCompatActivity implements OnItemSelectedListener{
@@ -169,15 +171,23 @@ public  class ActivityTransactionExecuted extends AppCompatActivity implements O
                 {
                     responsetxt = "";
                     serviceStatus = false;
+                }else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USER_NOT_HAS_TRANSACTIONS)){
+                    responsetxt = "La no posee movimientos asociados";
+                    serviceStatus = false;
+                }else if (responseCode.isEmpty()){
+                    Toast.makeText(context, "La no posee movimientos asociados", Toast.LENGTH_LONG).show();
+                }else{
+                    responsetxt = datosRespuesta;
+                    serviceStatus = false;
                 }
                 //progressDialogAlodiga.dismiss();
-            } catch (IllegalArgumentException e)
-            {
+            } catch (IllegalArgumentException e){
                 e.printStackTrace();
                 System.err.println(e);
                 return false;
-            } catch (Exception e)
-            {
+            } catch (NullPointerException e){
+                Toast.makeText(context, "La no posee movimientos asociados", Toast.LENGTH_LONG).show();
+            } catch (Exception e){
                 e.printStackTrace();
                 System.err.println(e);
                 return false;
@@ -305,6 +315,13 @@ public  class ActivityTransactionExecuted extends AppCompatActivity implements O
             }
             return results;
         }
+    }
+
+    protected void backReturn() {
+
+        Intent i = new Intent(ActivityTransactionExecuted.this, MainActivity.class);
+        startActivity(i);
+        finish();
     }
 
 
