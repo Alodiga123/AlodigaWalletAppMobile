@@ -93,8 +93,8 @@
     <string name="rechargeCOD">Numero de transferencia</string>
     <string name="transaction_concept">Concepto de la transferencia</string>
     <string name="amount_info">Ingrese el monto:</string>
-    <string name="descrip_info">Ingrese la Descripcion:</string>
-    <string name="amount_info_invalid">El monto de la transferencia no puede estar vacio</string>
+    <string name="descrip_info">Ingrese la descripcion:</string>
+    <string name="amount_info_invalid">El monto no puede estar vacio</string>
     <string name="info_transaction">El concepto de la transferencia no puede estar vacio</string>
     <string name="amount">Monto</string>
     <string name="descrip">Descripcion</string>
@@ -138,6 +138,7 @@
     <string name="web_services_response_98">Error de credenciales</string>
     <string name="web_services_response_99">Error interno</string>
     <string name="web_services_response_00">Bienvenido</string>
+
 
     <string name="error_not_find_special_caracter">La contraseña debe tener caracteres especiales</string>
     <string name="error_not_find_number">La contraseña debe tener al menos un numero</string>
