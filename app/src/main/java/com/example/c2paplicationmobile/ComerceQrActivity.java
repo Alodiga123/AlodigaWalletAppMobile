@@ -3,6 +3,7 @@ package com.example.c2paplicationmobile;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+
 import android.util.Log;
 import android.widget.Toast;
 
@@ -17,7 +18,7 @@ import java.util.HashMap;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 
-public class TransferQrActivityComerce extends AppCompatActivity implements ZXingScannerView.ResultHandler {
+public class ComerceQrActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
 
     private static final int REQUEST_CAMERA = 1;
     private ZXingScannerView mScannerView;
@@ -26,7 +27,7 @@ public class TransferQrActivityComerce extends AppCompatActivity implements ZXin
     private  String destinationPhoneValue = "";
     private  String destinationLastNameValue = "";
     private  String destinationNameValue = "";
-    private ObjUserHasProduct selectedMoney;
+    private String selectedMoney = "";
 
 
     private  String destinationIdValue = "";
@@ -35,7 +36,7 @@ public class TransferQrActivityComerce extends AppCompatActivity implements ZXin
     private Integer caseFind = 0;
     private String responsetxt = "";
     private boolean serviceStatus;
-    private TransferQrActivityComerce.FindUserTask mAuthTask = null;
+    private ComerceQrActivity.FindUserTask mAuthTask = null;
 
     @Override
     public void onCreate(Bundle state) {
@@ -75,7 +76,7 @@ public class TransferQrActivityComerce extends AppCompatActivity implements ZXin
         Toast.makeText( getApplicationContext(), "Escaneo Exitoso",Toast.LENGTH_LONG).show();
         Log.i("QRCode", rawResult.getText());
         mScannerView.resumeCameraPreview(this);
-        mAuthTask = new TransferQrActivityComerce.FindUserTask(rawResult.getText().toString());
+        mAuthTask = new ComerceQrActivity.FindUserTask(rawResult.getText().toString());
         mAuthTask.execute((Void) null);
 
     }
@@ -207,13 +208,13 @@ public class TransferQrActivityComerce extends AppCompatActivity implements ZXin
             if (success) {
                 //llama activities
                 //llama activities
-                selectedMoney = Session.getMoneySelected();
+                selectedMoney = Session.getMoneySelected().getId();
                 Session.setDestinationAccountNumber(destinationAccountNumber);
                 Session.setDestinationLastNameValue(destinationLastNameValue);
                 Session.setDestinationPhoneValue(destinationPhoneValue);
                 Session.setDestinationNameValue(destinationNameValue);
                 Session.setUsuarioDestionId(destinationIdValue);
-                Intent i = new Intent(TransferQrActivityComerce.this, Confirmation1_Activity_Comerce.class);
+                Intent i = new Intent(ComerceQrActivity.this, Confirmation1_Activity.class);
                 startActivity(i);
                 finish();
             } else {

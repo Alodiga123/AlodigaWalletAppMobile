@@ -15,9 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class Confirmation1_Activity_Comerce extends AppCompatActivity {
 	private static View view;
 	private static EditText amountValue, conceptValue;
-
 	private static TextView txtAccountSourceValue, acountNumberValue,destinationPhoneValue,destinationLastNameValue,destinationNameValue;
-
 	private static TextView login;
 	private static Button btnProcessConfirmation1;
 	private static CheckBox terms_conditions;

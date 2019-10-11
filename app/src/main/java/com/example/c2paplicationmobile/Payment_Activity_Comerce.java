@@ -3,7 +3,6 @@ package com.example.c2paplicationmobile;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.text.InputType;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -121,7 +120,7 @@ public class Payment_Activity_Comerce extends AppCompatActivity {
 
                     if(caseFind.equals(2)){
                         Session.setMoneySelected(currencySelected);
-                        Intent i = new Intent(Payment_Activity_Comerce.this, TransferQrActivity.class);
+                        Intent i = new Intent(Payment_Activity_Comerce.this, ComerceQrActivity.class);
                         startActivity(i);
                         finish();
 

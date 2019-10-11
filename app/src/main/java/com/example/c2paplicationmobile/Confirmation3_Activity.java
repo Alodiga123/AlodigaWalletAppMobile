@@ -31,6 +31,7 @@ public class Confirmation3_Activity extends AppCompatActivity {
 
 	private static TextView login;
 	private static Button btnProcessFinisTransference;
+	private static Button btnShareInformation;
 	private static CheckBox terms_conditions;
 	private static Spinner spinnerCountry;
 
@@ -70,6 +71,7 @@ public class Confirmation3_Activity extends AppCompatActivity {
 		destinationLastNameValue = findViewById(R.id.txtDestinationLastNameValue_3);
 		destinationNameValue = findViewById(R.id.txtDestinationNameValue_3);
 		btnProcessFinisTransference = findViewById(R.id.btnProcessFinisTransference);
+		btnShareInformation = findViewById(R.id.btnShareInformation);
 		txtAccountSourceValue = findViewById(R.id.txtAccountSourceValue_3);
 		txtTransactionId_3 = findViewById(R.id.txtTransactionId_3);
 		txtDateTimeValue_3 = findViewById(R.id.txtDateTimeValue_3);
@@ -86,6 +88,20 @@ public class Confirmation3_Activity extends AppCompatActivity {
 
 
 
+		btnShareInformation.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				//updateProduct();
+				Intent intent = new Intent(Intent.ACTION_SEND);
+				intent.setType("text/plain");
+				intent.putExtra(Intent.EXTRA_TEXT, "TRANSACCION EXITOSA / AlodigaWallet \n"+ "Nombre: "+Session.getDestinationNameValue()+ " "+ Session.getDestinationLastNameValue() +
+						"\n"+"Número de transacción: "+String.valueOf(new Date().getTime())+"\n"+"Telefono: "+Session.getDestinationPhoneValue()+"\n"+"Concepto: "+ Session.getDestinationConcept()+"\n"+
+						"Moneda: "+ Session.getMoneySelected().getName().split("-")[0]+"\n"+"Fecha: "+ new Timestamp(new Date().getTime()).toGMTString() );
+				startActivity(Intent.createChooser(intent, "Share with"));
+			}
+		});
+
+
+
 		progressDialogAlodiga = new ProgressDialogAlodiga(this, "Cargando..");
 		btnProcessFinisTransference.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
@@ -94,11 +110,11 @@ public class Confirmation3_Activity extends AppCompatActivity {
 				i.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 				startActivity(i);
 				finish();
-
-
-
 			}
 		});
+
+
+
 	}
 
 
