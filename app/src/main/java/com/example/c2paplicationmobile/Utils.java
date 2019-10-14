@@ -14,8 +14,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 
 //import org.apache.commons.codec.binary.Base64;
-import com.alodiga.security.encryption.S3cur1ty3Cryt3r;
-import com.alodiga.security.exception.KeyLongException;
+
+import com.example.c2paplicationmobile.encript.KeyLongException;
+import com.example.c2paplicationmobile.encript.S3cur1ty3Cryt3r;
 
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.SoapObject;
