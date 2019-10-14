@@ -54,7 +54,7 @@ public class CreateQRCodeActivity extends AppCompatActivity {
         iv = (ImageView) findViewById(R.id.iv);
         try {
             AlodigaCryptographyUtils obj = new AlodigaCryptographyUtils();
-            Bitmap bitmap = encodeAsBitmap(obj.encrypt(Session.getEmail()+";"+Session.getPhoneNumber()+";"+Session.getUserId(),"alodigaPruebadellave"));
+            Bitmap bitmap = encodeAsBitmap(obj.encrypt(Session.getEmail()+";"+Session.getPhoneNumber()+";"+Session.getUserId(),Constants.KEY_ENCRIPT_DESENCRIPT_QR));
             iv.setImageBitmap(bitmap);
         } catch (WriterException e) {
             e.printStackTrace();
