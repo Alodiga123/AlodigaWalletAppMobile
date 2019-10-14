@@ -6,24 +6,31 @@ package com.example.c2paplicationmobile;
 
 public class  Constants {
 
+    //IP PUBLICA
+    public static String IPDAT="200.73.192.179";
+
+    //LOCAL
+    //public static String IPDAT="192.168.3.140";
+
+
     /*Data de Produccion*/
     public static final boolean CONSTANT_IS_PRODUCTION = false;
 
 
     /*PRODUCCION*/
     //public static final String  CONSTANT_IP = "192.168.3.20";
-    public static final String  CONSTANT_IP = "192.168.3.140";
-    public static final String  CONSTANT_URL_PROD = "http://192.168.3.140:8080/RegistroUnificado/APIRegistroUnificadoService";
+    public static final String  CONSTANT_IP = IPDAT;
+    public static final String  CONSTANT_URL_PROD = "http://"+IPDAT+":8080/RegistroUnificado/APIRegistroUnificadoService";
     //public static final String  CONSTANT_URL_PROD = "http://192.168.3.20:8080/RegistroUnificado/APIRegistroUnificadoService";
     //public static final String  CONSTANT_SECURE_URL = "http://192.168.3.20:8080/RegistroUnificado/APIRegistroUnificadoService";
-    public static final String  CONSTANT_SECURE_URL = "http://192.168.3.140:8080/RegistroUnificado/APIRegistroUnificadoService";
+    public static final String  CONSTANT_SECURE_URL = "http://"+IPDAT+":8080/RegistroUnificado/APIRegistroUnificadoService";
 
 
 
    //Alodiga Eallet
     //public static final String  CONSTANT_URL_PROD_ALODIGA_WALLET = "http://192.168.3.20:8080/AlodigaWallet/APIAlodigaWalletService";
-    public static final String  CONSTANT_URL_PROD_ALODIGA_WALLET = "http://192.168.3.140:8080/AlodigaWallet/APIAlodigaWalletService";
-    public static final String  CONSTANT_SECURE_URL_ALODIGA_WALLET = "http://192.168.3.140:8080/AlodigaWallet/APIAlodigaWalletService";
+    public static final String  CONSTANT_URL_PROD_ALODIGA_WALLET = "http://"+IPDAT+":8080/AlodigaWallet/APIAlodigaWalletService";
+    public static final String  CONSTANT_SECURE_URL_ALODIGA_WALLET = "http://"+IPDAT+":8080/AlodigaWallet/APIAlodigaWalletService";
     //public static final String  CONSTANT_SECURE_URL_ALODIGA_WALLET = "http://192.168.3.20:8080/AlodigaWallet/APIAlodigaWalletService";
 
 
@@ -47,7 +54,7 @@ public class  Constants {
      * Data de QA
      */
     //public static final String CONSTANT_URL_QA_REGISTRO_UNIFICADO = "http://192.168.3.20:8080/RegistroUnificado/APIRegistroUnificadoService";
-    public static final String CONSTANT_URL_QA_REGISTRO_UNIFICADO = "http://192.168.3.140:8080/RegistroUnificado/APIRegistroUnificadoService";
+    public static final String CONSTANT_URL_QA_REGISTRO_UNIFICADO = "http://"+IPDAT+":8080/RegistroUnificado/APIRegistroUnificadoService";
     public static final String CONSTANT_NAMESPACE_QA_REGISTRO_UNIFICADO = "http://ws.alodiga.ericsson.com/";
     public static final String REGISTRO_UNIFICADO= "RegistroUnificado";
 
@@ -56,7 +63,7 @@ public class  Constants {
      *
      */
     //public static final String CONSTANT_URL_QA_ALODIGA = "http://192.168.3.20:8080/AlodigaWallet/APIAlodigaWalletService";
-    public static final String CONSTANT_URL_QA_ALODIGA = "http://192.168.3.140:8080/AlodigaWallet/APIAlodigaWalletService";
+    public static final String CONSTANT_URL_QA_ALODIGA = "http://"+IPDAT+":8080/AlodigaWallet/APIAlodigaWalletService";
     public static final String CONSTANT_NAMESPACE_QA_ALODIGA = "http://ws.wallet.alodiga.com/";
     public static final String ALODIGA = "AlodigaWallet";
 
@@ -64,7 +71,7 @@ public class  Constants {
      * Alodiga WAllet
      */
     //public static final String CONSTANT_URL_QA_ALODIGA_WALLET  = "http://192.168.3.20:8080/AlodigaWallet/APIAlodigaWalletService";
-    public static final String CONSTANT_URL_QA_ALODIGA_WALLET  = "http://192.168.3.140:8080/AlodigaWallet/APIAlodigaWalletService";
+    public static final String CONSTANT_URL_QA_ALODIGA_WALLET  = "http://"+IPDAT+":8080/AlodigaWallet/APIAlodigaWalletService";
     public static final String CONSTANT_NAMESPACE_ALODIGA_WALLET = "http://ws.wallet.alodiga.com/";
 
     public static final String CONSTANT_SEPARATOR = ":";
@@ -133,17 +140,12 @@ public class  Constants {
     public static final String WEB_SERVICES_RESPONSE_CODE_USUARIO_NO_EXISTE = "97";
     public static final String WEB_SERVICES_RESPONSE_CODE_ERROR_CREDENCIALES = "98";
     public static final String WEB_SERVICES_RESPONSE_CODE_ERROR_INTERNO = "99";
-
-
-
-
- public static final String WEB_SERVICES_METHOD_NAME_SAVE_USER = "guardarUsuarioAplicacionMovil";
+    public static final String WEB_SERVICES_METHOD_NAME_SAVE_USER = "guardarUsuarioAplicacionMovil";
     public static final String WEB_SERVICES_METHOD_NAME_SEND_CODE_SMS = "generarCodigoMovilSMS";
     public static final String WEB_SERVICES_METHOD_NAME_LOGIN_APP_MOBILE = "loginAplicacionMovil";
     public static final String WEB_SERVICES_METHOD_NAME_SECRET_AMSWER = "getPreguntasSecretas";
     public static final String WEB_SERVICES_METHOD_NAME_GET_TRANSACTION_LIST = "getTransactionsByUserIdApp";
     public static final String WEB_SERVICES_METHOD_NAME_SEND_SECRET_AMSWER = "setPreguntasSecretasUsuarioAplicacionMovil";
-
     public static final String WEB_SERVICES_METHOD_NAME_GET_BANK = "getBankByCountryApp";
     public static final String WEB_SERVICES_METHOD_NAME_GET_COUNTRIES = "getCountriesHasBank";
     public static final String WEB_SERVICES_METHOD_NAME_GET_PRODUCT = "getProductsByBankId";
@@ -153,28 +155,11 @@ public class  Constants {
     public static final String WEB_SERVICES_METHOD_NAME_UPDATE_PRODUCT = "listadoProductosPorUsuario";
     public static final String WEB_SERVICES_METHOD_NAME_REMOVAL_MANUAL = "manualWithdrawals";
     public static final String WEB_SERVICES_METHOD_NAME_RECHARGE = "manualRecharge";
-
-
-
-
-
-
-
-
-
-
- public static final Integer MAX_RESULT_BY_TRANSACTION_OPERATION = 10;
+    public static final Integer MAX_RESULT_BY_TRANSACTION_OPERATION = 10;
     public static final String CONCEPT_TRANSACTION="paymentshop";
-
     public static final String KEY_ENCRIPT_DESENCRIPT="1nt3r4xt3l3ph0ny";
     public static final String K2_ENCRIPT_DESENCRIPT="DESede";
     public static final String VECTOR_ENCRIPT_DESENCRIPT="0123456789ABCDEF";
     public static final String KEY_ENCRIPT_DESENCRIPT_QR="alodigaPruebadellave";
-
-
-
-
-
-
 
 }
