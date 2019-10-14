@@ -85,6 +85,10 @@ public class ComerceQrActivity extends AppCompatActivity implements ZXingScanner
 
         mAuthTask.execute((Void) null);
         }catch (Exception e){
+            Toast.makeText( getApplicationContext(), getString(R.string.app_error_general),Toast.LENGTH_LONG).show();
+            Intent i = new Intent(ComerceQrActivity.this, MainActivity.class);
+            startActivity(i);
+            finish();
             e.printStackTrace();
         }
 

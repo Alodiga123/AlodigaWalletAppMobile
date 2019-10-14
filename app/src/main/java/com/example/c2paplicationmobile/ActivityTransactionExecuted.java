@@ -2,6 +2,7 @@ package com.example.c2paplicationmobile;
 
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -21,7 +22,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import org.ksoap2.serialization.SoapObject;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.lang.NullPointerException;
@@ -58,6 +61,7 @@ public  class ActivityTransactionExecuted extends AppCompatActivity implements O
         lv1 = (ListView) findViewById(R.id.custom_list);
         textViewEmpty = (TextView) findViewById(R.id.textViewEmpty);
         progressDialogAlodiga = new ProgressDialogAlodiga(this,"cargando..");
+        progressDialogAlodiga.show();
         ActivityTransactionExcecuteIsCounting = true;
         TransferOfFunds transferOfFunds = new TransferOfFunds(this);
         transferOfFunds.execute();
@@ -73,7 +77,7 @@ public  class ActivityTransactionExecuted extends AppCompatActivity implements O
     }
 
 
-    public static class TransferOfFunds  extends AsyncTask<Void, Integer, Boolean>
+    public  class TransferOfFunds  extends AsyncTask<Void, Integer, Boolean>
     {
         private boolean serviceStatus;
         private boolean isEmpty = false;
@@ -82,6 +86,7 @@ public  class ActivityTransactionExecuted extends AppCompatActivity implements O
         private Context context;
         private String stringResponse;
         private String responsetxt;
+        private String  showAlert;
 
         public TransferOfFunds(Context context) {
             this.context = context;
@@ -107,7 +112,7 @@ public  class ActivityTransactionExecuted extends AppCompatActivity implements O
                 response = webService.invokeGetAutoConfigString(map,Constants.WEB_SERVICES_METHOD_NAME_GET_TRANSACTION_LIST,Constants.ALODIGA);
                 stringResponse = response.toString();
                 responseCode = response.getProperty("codigoRespuesta").toString();
-                datosRespuesta = response.getProperty("datosRespuesta").toString();
+               // datosRespuesta = response.getProperty("transactions").toString();
 
                 if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO))
                 {
@@ -121,74 +126,45 @@ public  class ActivityTransactionExecuted extends AppCompatActivity implements O
                     responsetxt = "Datos Invalidos";
                     serviceStatus = false;
 
-                } else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CONTRASENIA_EXPIRADA))
-                {
-                    responsetxt = "Contraseña Expirada";
-                    serviceStatus = false;
-                }
-                else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_IP_NO_CONFIANZA))
-                {
-                    responsetxt = "La IP no es de confianza";
-                    serviceStatus = false;
-                }
-                else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CREDENCIALES_INVALIDAS))
-                {
-                    responsetxt = "Las credenciales son invalidas";
-                    serviceStatus = false;
                 }
                 else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_BLOQUEADO))
                 {
                     responsetxt = "Usuario bloqueado";
                     serviceStatus = false;
                 }
-                else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_NUMERO_TELEFONO_YA_EXISTE))
+                else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_NO_EXISTE))
                 {
-                    responsetxt = "";
-                    serviceStatus = false;
-                }
-                else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_PRIMER_INGRESO))
-                {
-                    responsetxt = "";
-                    serviceStatus = false;
-                }
-                else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_SOSPECHOSO))
-                {
-                    responsetxt = "";
-                    serviceStatus = false;
-                }else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_PENDIENTE))
-                {
-                    responsetxt = "";
-                    serviceStatus = false;
-                }else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_NO_EXISTE))
-                {
-                    responsetxt = "";
+                    responsetxt = "Error generar";
                     serviceStatus = false;
                 }else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_CREDENCIALES))
                 {
-                    responsetxt = "";
+                    responsetxt = "Error de credenciales";
                     serviceStatus = false;
                 }else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_INTERNO))
                 {
-                    responsetxt = "";
+                    responsetxt = "Error Interno";
                     serviceStatus = false;
                 }else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USER_NOT_HAS_TRANSACTIONS)){
-                    Toast.makeText(context, "La cuenta no posee movimientos asociados", Toast.LENGTH_LONG).show();
-                    responsetxt = datosRespuesta;
+
+                    responsetxt = "La cuenta no posee movimientos asociados";
                     serviceStatus = false;
-                }else if (responseCode.isEmpty()){
-                    Toast.makeText(context, "La cuenta no posee movimientos asociados", Toast.LENGTH_LONG).show();
                 }else{
                     responsetxt = datosRespuesta;
                     serviceStatus = false;
                 }
                 //progressDialogAlodiga.dismiss();
             } catch (IllegalArgumentException e){
+                responsetxt = "Error generar";
                 e.printStackTrace();
                 System.err.println(e);
                 return false;
             } catch (NullPointerException e){
-                Toast.makeText(context, "La no posee movimientos asociados", Toast.LENGTH_LONG).show();
+                responsetxt = "Error generar";
+                e.printStackTrace();
+                System.err.println(e);
+                return false;
             } catch (Exception e){
+                responsetxt = "Error generar";
                 e.printStackTrace();
                 System.err.println(e);
                 return false;
@@ -206,25 +182,49 @@ public  class ActivityTransactionExecuted extends AppCompatActivity implements O
         @Override
         protected void onPreExecute()
         {
-            progressDialogAlodiga.show();
+//            progressDialogAlodiga.show();
         }
 
         @Override
         protected void onPostExecute(final Boolean result)
         {
-            //if(result){
+            if(result){
                 ArrayList<ObjTransaction> transactions = new ArrayList<ObjTransaction>();
 
                 transactions = getParseResponse(stringResponse);
                 ArrayList<NewsItem> image_details = new ArrayList<NewsItem>();
                 for(ObjTransaction t : transactions){
 
+
                     NewsItem item = new NewsItem();
-                    item.setDate(t.getCreateionDate());
-                    item.setHeadline(t.getAmount());
-                    item.setReporterName(t.getTax());
+                    item.setDate(t.getAmount());
+
+                    String tt = "" ;
+
+                    if(t.getTransactionType().equals("1")){
+                        t.setTransactionType("Recarga de Producto");
+                        item.setNegative(true);
+                    }
+                    else if(t.getTransactionType().equals("2")){
+                        t.setTransactionType("Pago en Comercio");
+                        item.setNegative(false);
+                    }else if(t.getTransactionType().equals("3")){
+                        t.setTransactionType("Transferencia de producto");
+                        item.setNegative(false);
+                    }
+                    else if(t.getTransactionType().equals("4")){
+                        t.setTransactionType("Intercambio de producto");
+                        item.setNegative(false);
+                    } else if(t.getTransactionType().equals("5")){
+                        t.setTransactionType("Retiro Manual");
+                        item.setNegative(false);
+                    }else if(t.getTransactionType().equals("6")){
+                        t.setTransactionType("Recarga Manual");
+                        item.setNegative(true);
+                    }
+                    item.setHeadline(t.getTransactionType());
+                    item.setReporterName(t.getUserDestination() + "/");
                     item.setObject(t);
-                    item.setNegative(false);
                     image_details.add(item);
 
                 }
@@ -235,41 +235,61 @@ public  class ActivityTransactionExecuted extends AppCompatActivity implements O
                     public void onItemClick(AdapterView<?> a, View v, int position, long id) {
                         Object o = lv1.getItemAtPosition(position);
                         NewsItem newsData = (NewsItem) o;
+
+
+
+                        String transactionType = "";
+
+
                         AlertDialog alertDialog = new AlertDialog.Builder(context).create();
                         alertDialog.setTitle(Html.fromHtml("Detalle Transaccion"));
-                        alertDialog.setMessage((newsData.isNegative()?"Saliente":"Entrante")
+                        showAlert = (newsData.isNegative()?"Entrante":"Saliente") +"\n"+"Monto: " + ((ObjTransaction)newsData.getObject()).getAmount()
+                                +"\n"+"Numero de Transacción: " + ((ObjTransaction)newsData.getObject()).getTransactionId()
                                 +"\n"
-                                +"Transaccion: "+((ObjTransaction)newsData.getObject()).getTransactionId()
+                                +"Tipo de Transacción: " + ((ObjTransaction)newsData.getObject()).getTransactionType()
                                 +"\n"
-                                +"Monto: " + ((ObjTransaction)newsData.getObject()).getAmount()
+                                +"Fecha Transacción: " + ((ObjTransaction)newsData.getObject()).getCreateionDate()
                                 +"\n"
-                                +(newsData.isNegative()?"Al numero: ":"Desde el numero: ")+((ObjTransaction)newsData.getObject()).getProductName()
-                                +"\n"
-                                +"Tipo de Transaccion: " + ((ObjTransaction)newsData.getObject()).getTransactionType()
-                                +"\n"
-                                +"Fecha Transaccion: " + ((ObjTransaction)newsData.getObject()).getCreateionDate()
-                                +"\n"
-                                +"Destinatatio: " + ((ObjTransaction)newsData.getObject()).getUserDestination()
-                                +"\n"
-                                +"Impuesto: " + ((ObjTransaction)newsData.getObject()).getTax()
-                                +"\n"
-                                +"Comision: "+((ObjTransaction)newsData.getObject()).getCommision()
-                                +"\n");
-                        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        dialog.dismiss();
-                                    }
-                                });
+                                +"Destino: " + ((ObjTransaction)newsData.getObject()).getUserDestination()
+                                +"\n";
+                        alertDialog.setMessage(showAlert);
+                        alertDialog.setButton(Dialog.BUTTON_POSITIVE,"OK",new DialogInterface.OnClickListener(){
+
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });   alertDialog.setButton(Dialog.BUTTON_NEGATIVE,"COMPARTIR",new DialogInterface.OnClickListener(){
+
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                //updateProduct();
+                                Intent intent = new Intent(Intent.ACTION_SEND);
+                                intent.setType("text/plain");
+                                intent.putExtra(Intent.EXTRA_TEXT,showAlert);
+                                startActivity(Intent.createChooser(intent, "Share with"));
+
+
+
+
+                            }
+                        });
                         alertDialog.show();
+
                     }
                 });
                 progressDialogAlodiga.dismiss();
-            /*}else{
-                Toast.makeText(context, "La cuenta no posee movimientos asociados", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(ActivityTransactionExecuted.this, MainActivity.class);
-                startActivity(intent);
-            }*/
+
+
+            }
+
+            else{
+                Toast.makeText(context, responsetxt, Toast.LENGTH_LONG).show();
+                Intent i = new Intent(this.context, MainActivity.class);
+                startActivity(i);
+                finish();
+            }
         }
 
         private ArrayList<ObjTransaction> getParseResponse (String response) {
@@ -281,15 +301,17 @@ public  class ActivityTransactionExecuted extends AppCompatActivity implements O
                 objTransaction.setAmount(response.split("amount=")[i].split(";")[0]);
                 objTransaction.setTransactionType(response.split("transactionType=")[i].split(";")[0]);
                 objTransaction.setCreateionDate(response.split("creationDate=")[i].split(";")[0]);
-                objTransaction.setTax(response.split("totalTax=")[i].split(";")[0]);
-
+                objTransaction.setUserDestination(response.split("destinationUser=")[i].split(";")[0]);
+                objTransaction.setConcept(response.split("concept=")[i].split(";")[0]);
+                objTransaction.setTransactionId(response.split("id=")[i].split(";")[0]);
+               // objTransaction.setTax(response.split("totalTax=")[i].split(";")[0]);
                 transactions.add(objTransaction);
             }
             return  transactions;
         }
 
 
-        private static int getLenghtFromResponseJson(String v){
+        private  int getLenghtFromResponseJson(String v){
             return (v.split("transactions=anyType").length);
         }
 
@@ -305,7 +327,7 @@ public  class ActivityTransactionExecuted extends AppCompatActivity implements O
                     newsData.setNegative(false);
                     newsData.setReporterName(register[4]);
                 }
-                newsData.setHeadline(register[3]+"/"+register[5]);
+                newsData.setHeadline(register[3]);
                 newsData.setDate(register[2]);
                 results.add(newsData);
             }

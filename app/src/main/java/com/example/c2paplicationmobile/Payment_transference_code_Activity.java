@@ -42,6 +42,7 @@ public class Payment_transference_code_Activity extends AppCompatActivity {
                             getString(R.string.pin_text));
                 } else if(cout>=3){
                     Intent i = new Intent(Payment_transference_code_Activity.this, fail_code_Activity.class);
+                    finish();
                     startActivity(i);
                 }
                 else{

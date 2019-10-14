@@ -52,7 +52,7 @@
         android:drawablePadding="8dp"
         android:gravity="center_vertical"
         android:hint="@string/pin"
-        android:inputType="numberPassword"
+        android:inputType="number"
         android:padding="10dp"
         android:maxLength="6"
         android:singleLine="true"

@@ -1,5 +1,8 @@
 package com.example.c2paplicationmobile;
 
+import android.content.ContentResolver;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -18,6 +21,8 @@ import androidx.fragment.app.Fragment;
 import org.ksoap2.serialization.SoapObject;
 
 import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class RegisterStep2_Fragment extends Fragment implements
 		OnClickListener {
@@ -29,6 +34,7 @@ public class RegisterStep2_Fragment extends Fragment implements
 	private String getMobileCode = "";
 	private ObjCountry objCountry;
 	private Integer restCountIntent = 3;
+	public static final String OTP_REGEX = "[0-9]{1,6}";
 
 	long countUp;
 	long startTime = 1000;
@@ -46,6 +52,37 @@ public class RegisterStep2_Fragment extends Fragment implements
 				false);
 		initViews();
 		setListeners();
+
+
+		SmsReceiver.bindListener(new SmsReceiver.SmsListener() {
+			@Override
+			public void messageReceived(String messageText) {
+
+				//From the received text string you may do string operations to get the required OTP
+				//It depends on your SMS format
+
+				// If your OTP is six digits number, you may use the below code
+
+				Pattern pattern = Pattern.compile(OTP_REGEX);
+				Matcher matcher = pattern.matcher(messageText);
+				String otp = "";
+				while (matcher.find())
+				{
+					otp = matcher.group();
+				}
+
+
+				edtMobileCode.setText(otp);
+			}
+		});
+
+
+
+
+
+
+
+
 		return view;
 	}
 
@@ -130,6 +167,7 @@ public class RegisterStep2_Fragment extends Fragment implements
 			//checkSecurityCode();
 		}
 	}
+
 
 
 

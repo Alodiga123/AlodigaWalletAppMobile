@@ -68,15 +68,24 @@ public class TransferenceQrActivity extends AppCompatActivity implements ZXingSc
         //   Intent i = new Intent(PagarActivity.this, CustomerConfirmActivity.class);
         //  startActivity(i);
         // finish();
-
-
-
-
-        Toast.makeText( getApplicationContext(), "Escaneo Exitoso",Toast.LENGTH_LONG).show();
+        // Toast.makeText( getApplicationContext(), "Escaneo Exitoso",Toast.LENGTH_LONG).show();
         Log.i("QRCode", rawResult.getText());
-        mScannerView.resumeCameraPreview(this);
-        mAuthTask = new TransferenceQrActivity.FindUserTask(rawResult.getText().toString());
-        mAuthTask.execute((Void) null);
+        //String text="";
+        AlodigaCryptographyUtils obj = new AlodigaCryptographyUtils();
+            try {
+                String  text = obj.decrypt(rawResult.getText().trim(),Constants.KEY_ENCRIPT_DESENCRIPT_QR);
+                Log.i("QRCode", rawResult.getText());
+                mScannerView.resumeCameraPreview(this);
+                mAuthTask = new TransferenceQrActivity.FindUserTask(text.split(";")[0]);
+                mAuthTask.execute((Void) null);
+            }catch (Exception e){
+                Toast.makeText( getApplicationContext(), getString(R.string.app_error_general),Toast.LENGTH_LONG).show();
+                Intent i = new Intent(TransferenceQrActivity.this, MainActivity.class);
+                startActivity(i);
+                finish();
+                e.printStackTrace();
+            }
+
 
     }
 

@@ -43,6 +43,7 @@ public class Payment_comerce_code_Activity extends AppCompatActivity {
                             getString(R.string.pin_text));
                 } else if(cout>=3){
                     Intent i = new Intent(Payment_comerce_code_Activity.this, fail_code_Activity.class);
+                    finish();
                     startActivity(i);
                 }
                 else{

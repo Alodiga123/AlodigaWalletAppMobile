@@ -16,12 +16,11 @@
             android:id="@+id/nav_Withdrawal"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_aoutMoney" />
-
         <item
             android:id="@+id/nav_convert"
             android:icon="@drawable/ic_menu_slideshow"
+            android:enabled="false"
             android:title="@string/menu_convert" />
-
         <item
             android:id="@+id/nav_transfer"
             android:icon="@drawable/ic_menu_slideshow"

@@ -139,7 +139,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:padding="8dp"
-            android:text="@string/recharge_id"
+            android:text="@string/external_account_number"
             android:textColor="@color/white_greyish"
             android:textSize="16sp" />
 
@@ -150,7 +150,7 @@
             android:layout_marginTop="5dp"
             android:background="@android:color/transparent"
             android:gravity="center_vertical"
-            android:hint="@string/rechargeCOD"
+            android:hint="@string/external_account_number_destination"
             android:inputType="number"
             android:padding="8dp"
             android:singleLine="true"
@@ -247,10 +247,6 @@
 
 
     </LinearLayout>
-
-
-
-
 </RelativeLayout>
 
 </ScrollView>

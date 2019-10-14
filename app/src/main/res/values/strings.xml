@@ -88,6 +88,8 @@
     <string name="pais_info">Seleccione el pais:</string>
     <string name="producto_info">Seleccione el producto:</string>
     <string name="recharge_id">Ingrese el numero de la transferencia:</string>
+    <string name="external_account_number">Número de cuenta</string>
+    <string name="external_account_number_destination">Cuenta de destino de los fondos</string>
     <string name="recharge_id_invalid">La cuenta no puede estar vacia</string>
     <string name="recharge_descrip_invalid">La descripcion no puede estar vacia</string>
     <string name="recharge_id_invalid_long">La longitud de la cuenta es de 20 digitos</string>
@@ -102,7 +104,7 @@
     <string name="descrip">Descripcion</string>
     <string name="buttonProcesarRetiro">Procesar Retiro</string>
     <string name="buttonProcessRecharge">Procesar la Transferencia</string>
-    <string name="recharge_title">RECARGAS POR TRANSFERENCIAS</string>
+    <string name="recharge_title">RECARGA</string>
     <string name="id_recharge">Ingrese el identificador de la recarga:</string>
     <string name="id_transfer">Concepto de la transferencia:</string>
     <string name="info_fail_code">La Clave de Operaciones no es valida. Numero de intentos restantes: </string>
@@ -180,7 +182,7 @@
 
 
     <string name="they_are_not_transactions">No hay operaciones disponibles</string>
-
+    <string name="app_error_general">Error leyendo el código QR</string>
 
 
 

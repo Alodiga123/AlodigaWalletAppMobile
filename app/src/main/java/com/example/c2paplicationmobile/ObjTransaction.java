@@ -12,8 +12,16 @@ public class ObjTransaction {
     private String tax;
     private String commision;
     private String userDestination;
+    private String concept;
 
 
+    public String getConcept() {
+        return concept;
+    }
+
+    public void setConcept(String concept) {
+        this.concept = concept;
+    }
 
     public String getTransactionId() {
         return transactionId;

@@ -351,7 +351,7 @@ public class Manual_Removal_Activity extends AppCompatActivity  {
                 map.put("bankId",getbank.getId());
                 map.put("emailUser",Session.getEmail());
                 map.put("accountBank",getaccountBank);
-                map.put("amountRecharge",getAmountRecharge);
+                map.put("amountWithdrawal",getAmountRecharge);
                 map.put("productId",getproduct.getId());
                 map.put("conceptTransaction",getDescrip);
 

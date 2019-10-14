@@ -46,22 +46,45 @@ public class CustomListAdapter extends BaseAdapter {
             convertView = layoutInflater.inflate(R.layout.list_row_layout, null);
             holder = new ViewHolder();
             TextView tHeadlineView = (TextView) convertView.findViewById(R.id.title);
+            tHeadlineView.setTextSize(2);
             holder.headlineView = tHeadlineView ;
             holder.reportedDateView = (TextView) convertView.findViewById(R.id.date);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
+
+
+
         TextView tReporterNameView = (TextView) convertView.findViewById(R.id.reporter);
-        if(listData.get(position).isNegative()){
-            tReporterNameView.setTextColor(Color.WHITE);
-        }else{
-            tReporterNameView.setTextColor(Color.WHITE);
-        }
+        tReporterNameView.setTextSize(10);
+
+
+
         holder.reporterNameView = tReporterNameView;
+
         holder.headlineView.setText(listData.get(position).getHeadline());
+
+        holder.headlineView.setTextSize(18);
         holder.reporterNameView.setText("Bs " + listData.get(position).getReporterName());
-        holder.reportedDateView.setText(listData.get(position).getDate());
+
+
+
+        TextView tdateView = (TextView) convertView.findViewById(R.id.date);
+        if(listData.get(position).isNegative()){
+
+            tdateView.setTextColor(Color.WHITE);
+        }else{
+            tdateView.setTextColor(Color.RED);
+
+
+
+        }
+        tdateView.setText(listData.get(position).getDate());
+        holder.reportedDateView = tdateView;
+
+
+
         return convertView;
     }
 

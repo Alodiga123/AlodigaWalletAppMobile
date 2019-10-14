@@ -18,6 +18,7 @@ public class fail_code_Activity extends AppCompatActivity {
         step1_next_button= findViewById(R.id.step1_next_button);
         step1_next_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                    finish();
                     Intent i = new Intent(fail_code_Activity.this, MainActivity.class);
                     startActivity(i);
             }
