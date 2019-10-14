@@ -19,6 +19,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:theme="@style/AppTheme">
         <activity
             android:name=".ActivitySplash"
@@ -39,118 +41,119 @@
              android:theme="@style/AppTheme.NoActionBar">
          </activity>
 
-         <activity
-             android:name=".List_Transaction_Activity"
-             android:theme="@style/AppTheme.NoActionBar">
-         </activity>
+            <activity
+                android:name=".List_Transaction_Activity"
+                android:theme="@style/AppTheme.NoActionBar">
+            </activity>
 
-        <activity
-            android:name=".Confirmation1_Activity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-        <activity
-            android:name=".Confirmation2_Activity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+           <activity
+               android:name=".Confirmation1_Activity"
+               android:theme="@style/AppTheme.NoActionBar">
+           </activity>
+           <activity
+               android:name=".Confirmation2_Activity"
+               android:theme="@style/AppTheme.NoActionBar">
+           </activity>
 
-        <activity
-            android:name=".Confirmation3_Activity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-         <activity
-             android:name=".Payment_Activity"
-             android:theme="@style/AppTheme.NoActionBar">
-         </activity>
-         <activity
-             android:name=".Change_Password_Activity"
-             android:theme="@style/AppTheme.NoActionBar">
-         </activity>
-        <activity
-            android:name=".CreateQRCodeActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+           <activity
+               android:name=".Confirmation3_Activity"
+               android:theme="@style/AppTheme.NoActionBar">
+           </activity>
+            <activity
+                android:name=".Payment_Activity"
+                android:theme="@style/AppTheme.NoActionBar">
+            </activity>
+            <activity
+                android:name=".Change_Password_Activity"
+                android:theme="@style/AppTheme.NoActionBar">
+            </activity>
+           <activity
+               android:name=".CreateQRCodeActivity"
+               android:theme="@style/AppTheme.NoActionBar">
+           </activity>
 
-        <activity
-            android:name=".Confirmation1_Activity_Comerce"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-        <activity
-            android:name=".Confirmation2_Activity_Comerce"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-        <activity
-            android:name=".Confirmation3_Activity_Comerce"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-        <activity
-            android:name=".Payment_Activity_Comerce"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-        <activity
-            android:name=".CreateQRCodeActivityComerce"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-        <activity
-            android:name=".Manual_Removal_Activity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-        <activity
-            android:name=".ActivityTransactionExecuted"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-        <activity
-            android:name=".Welcome_removal_Activity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-        <activity
-            android:name=".Payment_comerce_code_Activity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-        <activity
-            android:name=".fail_code_Activity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-        <activity
-            android:name=".Recharge_Activity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-        <activity
-            android:name=".Transference_Confirmation1_Activity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+           <activity
+               android:name=".Confirmation1_Activity_Comerce"
+               android:theme="@style/AppTheme.NoActionBar">
+           </activity>
+           <activity
+               android:name=".Confirmation2_Activity_Comerce"
+               android:theme="@style/AppTheme.NoActionBar">
+           </activity>
+           <activity
+               android:name=".Confirmation3_Activity_Comerce"
+               android:theme="@style/AppTheme.NoActionBar">
+           </activity>
+           <activity
+               android:name=".Payment_Activity_Comerce"
+               android:theme="@style/AppTheme.NoActionBar">
+           </activity>
+           <activity
+               android:name=".CreateQRCodeActivityComerce"
+               android:theme="@style/AppTheme.NoActionBar">
+           </activity>
+           <activity
+               android:name=".Manual_Removal_Activity"
+               android:theme="@style/AppTheme.NoActionBar">
+           </activity>
+           <activity
+               android:name=".ActivityTransactionExecuted"
+               android:theme="@style/AppTheme.NoActionBar">
+           </activity>
+           <activity
+               android:name=".Welcome_removal_Activity"
+               android:theme="@style/AppTheme.NoActionBar">
+           </activity>
+           <activity
+               android:name=".Payment_comerce_code_Activity"
+               android:theme="@style/AppTheme.NoActionBar">
+           </activity>
+           <activity
+               android:name=".fail_code_Activity"
+               android:theme="@style/AppTheme.NoActionBar">
+           </activity>
+           <activity
+               android:name=".Recharge_Activity"
+               android:theme="@style/AppTheme.NoActionBar">
+           </activity>
+           <activity
+               android:name=".Transference_Confirmation1_Activity"
+               android:theme="@style/AppTheme.NoActionBar">
+           </activity>
 
-        <activity
-            android:name=".Payment_transference_code_Activity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+           <activity
+               android:name=".Payment_transference_code_Activity"
+               android:theme="@style/AppTheme.NoActionBar">
+           </activity>
 
-        <activity
-            android:name=".Transference_Confirmation2_Activity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-        <activity
-            android:name=".Transference_Confirmation3_Activity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-        <activity
-            android:name=".TransferenceQrActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-        <activity android:name=".ComerceQrActivity" />
-        <activity
-            android:name=".ActivityFailConnection_Splash"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+           <activity
+               android:name=".Transference_Confirmation2_Activity"
+               android:theme="@style/AppTheme.NoActionBar">
+           </activity>
+           <activity
+               android:name=".Transference_Confirmation3_Activity"
+               android:theme="@style/AppTheme.NoActionBar">
+           </activity>
+           <activity
+               android:name=".TransferenceQrActivity"
+               android:theme="@style/AppTheme.NoActionBar">
 
-        <receiver android:name=".SmsReceiver">
-            <intent-filter>
-                <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
-            </intent-filter>
-        </receiver>
+           </activity>
+           <activity android:name=".ComerceQrActivity" />
+           <activity
+               android:name=".ActivityFailConnection_Splash"
+               android:theme="@style/AppTheme.NoActionBar">
+           </activity>
 
-
-    </application>
+           <receiver android:name=".SmsReceiver">
+               <intent-filter>
+                   <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
+               </intent-filter>
+           </receiver>
 
 
+       </application>
 
- </manifest>
+
+
+    </manifest>
