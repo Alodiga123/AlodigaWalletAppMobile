@@ -30,9 +30,6 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-
-import com.alodiga.security.encryption.S3cur1ty3Cryt3r;
-
 import org.ksoap2.serialization.SoapObject;
 
 import java.security.NoSuchAlgorithmException;
@@ -116,10 +113,13 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 		}
 		/*emailid.setText("antonioarcangelgomez@gmail.com");
 		password.setText("Kg0m3z$11");*/
-		emailid.setText("kerwin2821@gmail.com");
-		password.setText("Kg0m3z$11");
+		/*emailid.setText("kerwin2821@gmail.com");
+		password.setText("Kg0m3z$11");*/
 		/*emailid.setText("adira0411@gmail.com");
 		password.setText("Alodiga456&");*/
+		emailid.setText("moisegrat12@gmail.com");
+		password.setText("123456");
+
 	}
 
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
