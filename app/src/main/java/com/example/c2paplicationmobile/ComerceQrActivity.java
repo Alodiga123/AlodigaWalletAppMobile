@@ -81,11 +81,28 @@ public class ComerceQrActivity extends AppCompatActivity implements ZXingScanner
 
             //mAuthTask = new ComerceQrActivity.FindUserTask(rawResult.getText().toString());
 
-            mAuthTask = new ComerceQrActivity.FindUserTask(text.split(";")[0]);
+            //Validar que no se pueda pagar a si mismo.
+            String emailFind = text.split(";")[0];
 
-        mAuthTask.execute((Void) null);
+            if(emailFind.equals(Session.getEmail())){
+                Intent i = new Intent(ComerceQrActivity.this, Payment_Activity_Comerce.class);
+                startActivity(i);
+                finish();
+               // Toast.makeText( getApplicationContext(), getString(R.string.app_operation_not_permited),Toast.LENGTH_LONG).show();
+                new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
+                        getString(R.string.app_operation_not_permited));
+            }else{
+                mAuthTask = new ComerceQrActivity.FindUserTask(emailFind);
+                mAuthTask.execute((Void) null);
+            }
+
+
+
+
         }catch (Exception e){
-            Toast.makeText( getApplicationContext(), getString(R.string.app_error_general),Toast.LENGTH_LONG).show();
+            //Toast.makeText( getApplicationContext(), getString(R.string.app_error_general),Toast.LENGTH_LONG).show();
+            new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
+                    getString(R.string.app_error_general));
             Intent i = new Intent(ComerceQrActivity.this, MainActivity.class);
             startActivity(i);
             finish();
