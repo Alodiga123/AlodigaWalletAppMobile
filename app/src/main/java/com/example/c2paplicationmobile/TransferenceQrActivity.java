@@ -76,10 +76,25 @@ public class TransferenceQrActivity extends AppCompatActivity implements ZXingSc
                 String  text = obj.decrypt(rawResult.getText().trim(),Constants.KEY_ENCRIPT_DESENCRIPT_QR);
                 Log.i("QRCode", rawResult.getText());
                 mScannerView.resumeCameraPreview(this);
-                mAuthTask = new TransferenceQrActivity.FindUserTask(text.split(";")[0]);
-                mAuthTask.execute((Void) null);
+
+
+                String emailFind = text.split(";")[0];
+                if(emailFind.equals(Session.getEmail())){
+                    Intent i = new Intent(TransferenceQrActivity.this, Payment_Activity.class);
+                    startActivity(i);
+                    finish();
+                    //Toast.makeText( getApplicationContext(), getString(R.string.app_operation_not_permited),Toast.LENGTH_LONG).show();
+                    new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
+                            getString(R.string.app_operation_not_permited));
+                }else{
+                    mAuthTask = new TransferenceQrActivity.FindUserTask(emailFind);
+                    mAuthTask.execute((Void) null);
+                }
+
             }catch (Exception e){
-                Toast.makeText( getApplicationContext(), getString(R.string.app_error_general),Toast.LENGTH_LONG).show();
+                //Toast.makeText( getApplicationContext(), getString(R.string.app_error_general),Toast.LENGTH_LONG).show();
+                new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
+                        getString(R.string.app_error_general));
                 Intent i = new Intent(TransferenceQrActivity.this, MainActivity.class);
                 startActivity(i);
                 finish();
