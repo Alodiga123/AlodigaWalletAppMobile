@@ -153,15 +153,27 @@ public class Payment_Activity extends AppCompatActivity {
 
 
                     }else{
-                        mAuthTask = new FindUserTask(userEmailIdTransfer.getText().toString());
-                        mAuthTask.execute((Void) null);
+
+                        if (caseFind.equals(0)){
+                            if (userEmailIdTransfer.getText().toString().trim().equals(Session.getEmail())){
+                                new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
+                                        getString(R.string.app_operation_not_permited));
+                                        return;
+                            }
+                        }else if(caseFind.equals(1)){
+                            if (userEmailIdTransfer.getText().toString().trim().equals(Session.getPhoneNumber())){
+                                new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
+                                        getString(R.string.app_operation_not_permited));
+                                        return;
+                            }
+
+                        }
+                            mAuthTask = new FindUserTask(userEmailIdTransfer.getText().toString());
+                            mAuthTask.execute((Void) null);
                     }
                 }
             }
         });
-
-
-
     }
 
 
@@ -194,14 +206,6 @@ public class Payment_Activity extends AppCompatActivity {
 
     }
 
-
-
-    public void Process(View View){
-
-        Toast toast1 = Toast.makeText(getApplicationContext(), "Procesado...", Toast.LENGTH_SHORT);
-        toast1.show();
-
-    }
 
     public class FindUserTask extends AsyncTask<Void, Void, Boolean> {
         private final String phoneOrEmail;
