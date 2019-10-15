@@ -242,6 +242,9 @@ public class Confirmation3_Activity_Comerce extends AppCompatActivity {
 					{
 						responsetxt = getString(R.string.web_services_response_99);
 						serviceStatus = false;
+					}else{
+						responsetxt = getString(R.string.web_services_response_99);
+						serviceStatus = false;
 					}
 				}else{
 					responsetxt = getString(R.string.insuficient_balance);

@@ -154,6 +154,8 @@ public class SecurityQuestion_Fragment extends Fragment implements
 			try {
 				String responseCode;
 				String datosRespuesta = "";
+				String responseMessage = "";
+
 
 
 				HashMap<String,String > map = new HashMap<String,String>();
@@ -228,12 +230,16 @@ public class SecurityQuestion_Fragment extends Fragment implements
 				{
 					responsetxt = getString(R.string.web_services_response_99);
 					serviceStatus = false;
+				}else{
+					responsetxt = getString(R.string.web_services_response_99);
+					serviceStatus = false;
 				}
 				//progressDialogAlodiga.dismiss();
 			} catch (IllegalArgumentException e)
 			{
 
-
+				responsetxt = getString(R.string.web_services_response_99);
+				serviceStatus = false;
 				e.printStackTrace();
 				System.err.println(e);
 				return false;

@@ -149,22 +149,25 @@ public  class ActivityTransactionExecuted extends AppCompatActivity implements O
                     responsetxt = "La cuenta no posee movimientos asociados";
                     serviceStatus = false;
                 }else{
-                    responsetxt = datosRespuesta;
+                    responsetxt = getString(R.string.web_services_response_99);
                     serviceStatus = false;
                 }
                 //progressDialogAlodiga.dismiss();
             } catch (IllegalArgumentException e){
-                responsetxt = "Error generar";
+                responsetxt = getString(R.string.web_services_response_99);
+                serviceStatus = false;
                 e.printStackTrace();
                 System.err.println(e);
                 return false;
             } catch (NullPointerException e){
-                responsetxt = "Error generar";
+                responsetxt = getString(R.string.web_services_response_99);
+                serviceStatus = false;
                 e.printStackTrace();
                 System.err.println(e);
                 return false;
             } catch (Exception e){
-                responsetxt = "Error generar";
+                responsetxt = getString(R.string.web_services_response_99);
+                serviceStatus = false;
                 e.printStackTrace();
                 System.err.println(e);
                 return false;

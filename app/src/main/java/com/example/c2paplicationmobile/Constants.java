@@ -7,10 +7,13 @@ package com.example.c2paplicationmobile;
 public class  Constants {
 
     //IP PUBLICA
-    public static String IPDAT="200.73.192.179";
+    //public static String IPDAT="200.73.192.179";
 
     //LOCAL
-    //public static String IPDAT="192.168.3.140";
+    public static String IPDAT="192.168.3.140";
+
+   //LOCAL moises
+  // public static String IPDAT="192.168.3.20";
 
 
     /*Data de Produccion*/

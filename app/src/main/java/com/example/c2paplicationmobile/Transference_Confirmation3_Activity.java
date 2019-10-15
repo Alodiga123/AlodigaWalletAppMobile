@@ -238,12 +238,14 @@ public class Transference_Confirmation3_Activity extends AppCompatActivity {
 			} catch (IllegalArgumentException e)
 			{
 				responsetxt = getString(R.string.web_services_response_99);
+				serviceStatus = false;
 				e.printStackTrace();
 				System.err.println(e);
 				return false;
 			} catch (Exception e)
 			{
 				responsetxt = getString(R.string.web_services_response_99);
+				serviceStatus = false;
 				e.printStackTrace();
 				System.err.println(e);
 				return false;

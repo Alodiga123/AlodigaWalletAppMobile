@@ -439,19 +439,21 @@ public class Manual_Removal_Activity extends AppCompatActivity  {
                     responsetxt = getString(R.string.web_services_response_99);
                     serviceStatus = false;
                 }else{
-                    responsetxt = responseMessage;
+                    responsetxt = getString(R.string.web_services_response_99);
                     serviceStatus = false;
                 }
                 //progressDialogAlodiga.dismiss();
             } catch (IllegalArgumentException e)
             {
                 responsetxt = getString(R.string.web_services_response_99);
+                serviceStatus = false;
                 e.printStackTrace();
                 System.err.println(e);
                 return false;
             } catch (Exception e)
             {
                 responsetxt = getString(R.string.web_services_response_99);
+                serviceStatus = false;
                 e.printStackTrace();
                 System.err.println(e);
                 return false;
