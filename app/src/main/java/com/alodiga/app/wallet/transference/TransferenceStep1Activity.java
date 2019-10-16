@@ -31,7 +31,7 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Payment_Activity extends AppCompatActivity {
+public class TransferenceStep1Activity extends AppCompatActivity {
 
     private Spinner spinnerIdentification, spinnerTypeFind;
     private EditText userEmailIdTransfer, mobileNumberTransfer,getPhoneOrEmail, editTextTelephone;
@@ -40,7 +40,7 @@ public class Payment_Activity extends AppCompatActivity {
     private String responsetxt = "";
     private boolean serviceStatus;
     private ProgressDialogAlodiga progressDialogAlodiga;
-    private Payment_Activity.FindUserTask mAuthTask = null;
+    private TransferenceStep1Activity.FindUserTask mAuthTask = null;
     private Integer caseFind = 0;
     private  String destinationAccountNumber = "";
     private  String destinationPhoneValue = "";
@@ -161,7 +161,7 @@ public class Payment_Activity extends AppCompatActivity {
 
                     if(caseFind.equals(2)){
                         Session.setMoneySelected(currencySelected);
-                        Intent i = new Intent(Payment_Activity.this, TransferenceQrActivity.class);
+                        Intent i = new Intent(TransferenceStep1Activity.this, TransferenceStep2QrActivity.class);
                         startActivity(i);
                         finish();
 
@@ -378,7 +378,7 @@ public class Payment_Activity extends AppCompatActivity {
                 Session.setDestinationPhoneValue(destinationPhoneValue);
                 Session.setDestinationNameValue(destinationNameValue);
                 Session.setUsuarioDestionId(destinationIdValue);
-                Intent i = new Intent(Payment_Activity.this, Transference_Confirmation1_Activity.class);
+                Intent i = new Intent(TransferenceStep1Activity.this, TransferenceStep3Activity.class);
                 startActivity(i);
                 finish();
 

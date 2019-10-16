@@ -31,7 +31,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
-public class Transference_Confirmation3_Activity extends AppCompatActivity {
+public class TransferenceStep6Activity extends AppCompatActivity {
 	private static View view;
 	private static TextView amountValue, conceptValue;
 
@@ -65,7 +65,7 @@ public class Transference_Confirmation3_Activity extends AppCompatActivity {
 
 
 
-	public Transference_Confirmation3_Activity() {
+	public TransferenceStep6Activity() {
 
 	}
 
@@ -117,7 +117,7 @@ public class Transference_Confirmation3_Activity extends AppCompatActivity {
 		btnProcessFinisTransference.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				//updateProduct();
-				Intent i = new Intent(Transference_Confirmation3_Activity.this, MainActivity.class);
+				Intent i = new Intent(TransferenceStep6Activity.this, MainActivity.class);
 				i.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 				startActivity(i);
 				finish();

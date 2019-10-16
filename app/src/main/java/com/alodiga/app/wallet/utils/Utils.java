@@ -60,7 +60,7 @@ public class Utils {
 	public static final String Welcome_Manual_Removal_Fragment = "Welcome_Manual_Removal_Fragment";
 	public static final String register_step1_Fragment = "RegisterStep1Fragment";
 	public static final String register_step2_Fragment = "RegisterStep2Fragment";
-	public static final String register_step3_Fragment = "RegisterStep3_Fragment";
+	public static final String register_step3_Fragment = "RegisterStep3Fragment";
 	public static final String SignUp_Fragment = "SignUp_Fragment";
 	public static final String Register_step_1 = "register_step1_layout";
 	public static final String Confirmation_Fragment = "Confirmation_Fragment";

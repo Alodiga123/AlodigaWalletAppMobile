@@ -157,7 +157,7 @@ public class RegisterStep2Fragment extends Fragment implements
 						.beginTransaction()
 						.setCustomAnimations(R.anim.left_enter, R.anim.right_out)
 						//.replace(R.id.frameContainer, new RegisterStep4WelcomeFragment(),
-						.replace(R.id.frameContainer, new RegisterStep3_Fragment(),
+						.replace(R.id.frameContainer, new RegisterStep3Fragment(),
 
 								//Utils.RegisterStep4WelcomeFragment).commit();
 								Utils.register_step3_Fragment).commit();

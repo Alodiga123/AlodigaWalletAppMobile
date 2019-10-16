@@ -21,7 +21,7 @@ import com.alodiga.app.wallet.model.ObjCountry;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.Session;
 
-public class Transference_Confirmation1_Activity extends AppCompatActivity {
+public class TransferenceStep3Activity extends AppCompatActivity {
 	private static View view;
 	private static EditText amountValue, conceptValue;
 
@@ -45,7 +45,7 @@ public class Transference_Confirmation1_Activity extends AppCompatActivity {
 	private Integer caseFindMoneyType = 0;
 
 
-	public Transference_Confirmation1_Activity() {
+	public TransferenceStep3Activity() {
 
 	}
 
@@ -104,7 +104,7 @@ public class Transference_Confirmation1_Activity extends AppCompatActivity {
                         new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                                 getString(R.string.insuficient_balance));
                     }else{
-					Intent i = new Intent(Transference_Confirmation1_Activity.this, Payment_transference_code_Activity.class);
+					Intent i = new Intent(TransferenceStep3Activity.this, TransferenceStep4codeActivity.class);
 					startActivity(i);
 					finish();
                     }

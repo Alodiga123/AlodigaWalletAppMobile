@@ -22,7 +22,7 @@ import org.ksoap2.serialization.SoapObject;
 
 import java.util.HashMap;
 
-public class Payment_transference_code_Activity extends AppCompatActivity {
+public class TransferenceStep4codeActivity extends AppCompatActivity {
     private TextView backToLoginBtn, step1_next_button,tvintentos;
     private EditText edtMobileCode;
     static int cout=1;
@@ -50,7 +50,7 @@ public class Payment_transference_code_Activity extends AppCompatActivity {
                     new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                             getString(R.string.pin_text));
                 } else if(cout>=3){
-                    Intent i = new Intent(Payment_transference_code_Activity.this, FailCodeOperationActivity.class);
+                    Intent i = new Intent(TransferenceStep4codeActivity.this, FailCodeOperationActivity.class);
                     finish();
                     startActivity(i);
                 }
@@ -192,10 +192,10 @@ public class Payment_transference_code_Activity extends AppCompatActivity {
 
                 if(cout<=3){
                     Session.setCodeOperation(edtMobileCode.getText().toString());
-                    Intent i = new Intent(Payment_transference_code_Activity.this, Transference_Confirmation2_Activity.class);
+                    Intent i = new Intent(TransferenceStep4codeActivity.this, TransferenceStep5Activity.class);
                     startActivity(i);
                 }else{
-                    Intent i = new Intent(Payment_transference_code_Activity.this, FailCodeOperationActivity.class);
+                    Intent i = new Intent(TransferenceStep4codeActivity.this, FailCodeOperationActivity.class);
                     startActivity(i);
                 }
 
@@ -208,7 +208,7 @@ public class Payment_transference_code_Activity extends AppCompatActivity {
                 cout=cout+1;
 
                 if (cout_aux==0){
-                    Intent i = new Intent(Payment_transference_code_Activity.this, FailCodeOperationActivity.class);
+                    Intent i = new Intent(TransferenceStep4codeActivity.this, FailCodeOperationActivity.class);
                     startActivity(i);
                 }
             }

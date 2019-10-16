@@ -1,10 +1,10 @@
-package com.alodiga.app.wallet.paymentComerce;
+package com.alodiga.app.wallet.transference;
 
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -26,7 +26,7 @@ import java.util.HashMap;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 
-public class PaymentComerceStep2Activity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
+public class TransferenceStep2QrActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
 
     private static final int REQUEST_CAMERA = 1;
     private ZXingScannerView mScannerView;
@@ -44,7 +44,7 @@ public class PaymentComerceStep2Activity extends AppCompatActivity implements ZX
     private Integer caseFind = 0;
     private String responsetxt = "";
     private boolean serviceStatus;
-    private PaymentComerceStep2Activity.FindUserTask mAuthTask = null;
+    private TransferenceStep2QrActivity.FindUserTask mAuthTask = null;
 
     @Override
     public void onCreate(Bundle state) {
@@ -70,54 +70,45 @@ public class PaymentComerceStep2Activity extends AppCompatActivity implements ZX
 
     @Override
     public void handleResult(Result rawResult) {
-      //  Toast.makeText( getApplicationContext(), "Escaneo Exitoso",Toast.LENGTH_LONG).show();
+        Toast.makeText( getApplicationContext(), "Escaneo Exitoso",Toast.LENGTH_LONG).show();
         mScannerView.stopCamera();
-     //   Intent i = new Intent(PagarActivity.this, CustomerConfirmActivity.class);
-      //  startActivity(i);
-       // finish();
-       // Toast.makeText( getApplicationContext(), "Escaneo Exitoso",Toast.LENGTH_LONG).show();
+
+
+        //   Intent i = new Intent(PagarActivity.this, CustomerConfirmActivity.class);
+        //  startActivity(i);
+        // finish();
+        // Toast.makeText( getApplicationContext(), "Escaneo Exitoso",Toast.LENGTH_LONG).show();
         Log.i("QRCode", rawResult.getText());
         //String text="";
         AlodigaCryptographyUtils obj = new AlodigaCryptographyUtils();
+            try {
+                String  text = obj.decrypt(rawResult.getText().trim(), Constants.KEY_ENCRIPT_DESENCRIPT_QR);
+                Log.i("QRCode", rawResult.getText());
+                mScannerView.resumeCameraPreview(this);
 
-        try {
 
-            String  text = obj.decrypt(rawResult.getText().trim(), Constants.KEY_ENCRIPT_DESENCRIPT_QR);
-            //Toast.makeText( getApplicationContext(), text,Toast.LENGTH_SHORT).show();
-            mScannerView.resumeCameraPreview(this);
-            //Toast.makeText( getApplicationContext(), text.split(";")[0],Toast.LENGTH_LONG).show();
+                String emailFind = text.split(";")[0];
+                if(emailFind.equals(Session.getEmail())){
+                    Intent i = new Intent(TransferenceStep2QrActivity.this, TransferenceStep1Activity.class);
+                    startActivity(i);
+                    finish();
+                    //Toast.makeText( getApplicationContext(), getString(R.string.app_operation_not_permited),Toast.LENGTH_LONG).show();
+                    new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
+                            getString(R.string.app_operation_not_permited));
+                }else{
+                    mAuthTask = new TransferenceStep2QrActivity.FindUserTask(emailFind);
+                    mAuthTask.execute((Void) null);
+                }
 
-            //mAuthTask = new PaymentComerceStep2Activity.FindUserTask(rawResult.getText().toString());
-
-            //Validar que no se pueda pagar a si mismo.
-            String emailFind = text.split(";")[0];
-
-            if(emailFind.equals(Session.getEmail())){
-                Intent i = new Intent(PaymentComerceStep2Activity.this, PaymentComerceStep1Activity.class);
+            }catch (Exception e){
+                //Toast.makeText( getApplicationContext(), getString(R.string.app_error_general),Toast.LENGTH_LONG).show();
+                new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
+                        getString(R.string.app_error_general));
+                Intent i = new Intent(TransferenceStep2QrActivity.this, MainActivity.class);
                 startActivity(i);
                 finish();
-               // Toast.makeText( getApplicationContext(), getString(R.string.app_operation_not_permited),Toast.LENGTH_LONG).show();
-                new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
-                        getString(R.string.app_operation_not_permited));
-            }else{
-                mAuthTask = new PaymentComerceStep2Activity.FindUserTask(emailFind);
-                mAuthTask.execute((Void) null);
+                e.printStackTrace();
             }
-
-
-
-
-        }catch (Exception e){
-            //Toast.makeText( getApplicationContext(), getString(R.string.app_error_general),Toast.LENGTH_LONG).show();
-            new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
-                    getString(R.string.app_error_general));
-            Intent i = new Intent(PaymentComerceStep2Activity.this, MainActivity.class);
-            startActivity(i);
-            finish();
-            e.printStackTrace();
-        }
-
-
 
 
     }
@@ -262,7 +253,7 @@ public class PaymentComerceStep2Activity extends AppCompatActivity implements ZX
                 Session.setDestinationPhoneValue(destinationPhoneValue);
                 Session.setDestinationNameValue(destinationNameValue);
                 Session.setUsuarioDestionId(destinationIdValue);
-                Intent i = new Intent(PaymentComerceStep2Activity.this, PaymentComerceStep3Activity.class);
+                Intent i = new Intent(TransferenceStep2QrActivity.this, TransferenceStep3Activity.class);
                 startActivity(i);
                 finish();
             } else {
@@ -285,6 +276,11 @@ public class PaymentComerceStep2Activity extends AppCompatActivity implements ZX
 
 
 }
+
+
+
+
+
 
 
 

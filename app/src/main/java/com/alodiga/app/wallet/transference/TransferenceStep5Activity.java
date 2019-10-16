@@ -26,7 +26,7 @@ import org.ksoap2.serialization.SoapObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Transference_Confirmation2_Activity extends AppCompatActivity {
+public class TransferenceStep5Activity extends AppCompatActivity {
 	private static View view;
 	private static TextView amountValue, conceptValue;
 
@@ -62,7 +62,7 @@ public class Transference_Confirmation2_Activity extends AppCompatActivity {
 
 	private ProcessOperationTransferenceTask mAuthTask = null;
 
-	public Transference_Confirmation2_Activity() {
+	public TransferenceStep5Activity() {
 
 	}
 
@@ -287,7 +287,7 @@ public class Transference_Confirmation2_Activity extends AppCompatActivity {
                 Session.setHealthCareCoinsBalance(balancePrepaidCard);
                 Session.setAlodigaBalance(balanceAlodiga);
 				Session.setObjUserHasProducts(getListProduct(response));
-                Intent i = new Intent(Transference_Confirmation2_Activity.this, Transference_Confirmation3_Activity.class);
+                Intent i = new Intent(TransferenceStep5Activity.this, TransferenceStep6Activity.class);
                 startActivity(i);
                 finish();
 

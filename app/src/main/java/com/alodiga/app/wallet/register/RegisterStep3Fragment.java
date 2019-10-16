@@ -28,7 +28,7 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class RegisterStep3_Fragment extends Fragment implements OnClickListener {
+public class RegisterStep3Fragment extends Fragment implements OnClickListener {
 	private static View view;
 	private static EditText name, lastName,emailId, mobileNumber, location,
 			password, confirmPassword,pinNumber;
@@ -45,9 +45,9 @@ public class RegisterStep3_Fragment extends Fragment implements OnClickListener 
 	private String getPassword = "";
 	private String getConfirmPassword = "";
 
-	private RegisterStep3_Fragment.UserRegisterTask mAuthTask = null;
+	private RegisterStep3Fragment.UserRegisterTask mAuthTask = null;
 
-	public RegisterStep3_Fragment() {
+	public RegisterStep3Fragment() {
 	}
 
 	@Override

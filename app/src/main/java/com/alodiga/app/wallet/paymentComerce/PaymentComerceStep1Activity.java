@@ -133,7 +133,7 @@ public class PaymentComerceStep1Activity extends AppCompatActivity {
 
                     if(caseFind.equals(2)){
                         Session.setMoneySelected(currencySelected);
-                        Intent i = new Intent(PaymentComerceStep1Activity.this, PaymentComerceStep2Activity.class);
+                        Intent i = new Intent(PaymentComerceStep1Activity.this, PaymentComerceStep2QrActivity.class);
                         startActivity(i);
                         finish();
 

@@ -18,7 +18,7 @@ import com.alodiga.app.wallet.QR.CreateQRCodeActivity;
 import com.alodiga.app.wallet.manualRecharge.ManualRechargeStep1Activity;
 import com.alodiga.app.wallet.manualRemoval.ManualRemovalStep1Activity;
 import com.alodiga.app.wallet.model.ObjMoney;
-import com.alodiga.app.wallet.transference.Payment_Activity;
+import com.alodiga.app.wallet.transference.TransferenceStep1Activity;
 import com.alodiga.app.wallet.paymentComerce.PaymentComerceStep1Activity;
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.adapters.AdapterMoneyProduct;
@@ -237,7 +237,7 @@ public class MainActivity extends AppCompatActivity
             Intent show = new Intent(MainActivity.this, ManualRemovalStep1Activity.class);
             startActivity(show);
         } else if (id == R.id.nav_transfer) {
-            Intent show = new Intent(MainActivity.this, Payment_Activity.class);
+            Intent show = new Intent(MainActivity.this, TransferenceStep1Activity.class);
             startActivity(show);
         } else if (id == R.id.nav_last_activity) {
             Intent show = new Intent(MainActivity.this, ListTransactionExecutedActivity.class);
