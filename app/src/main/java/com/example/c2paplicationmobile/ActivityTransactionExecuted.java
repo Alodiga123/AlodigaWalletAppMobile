@@ -246,7 +246,7 @@ public  class ActivityTransactionExecuted extends AppCompatActivity implements O
 
                         AlertDialog alertDialog = new AlertDialog.Builder(context).create();
                         alertDialog.setTitle(Html.fromHtml("Detalle Transaccion"));
-                        showAlert = (newsData.isNegative()?"Entrante":"Saliente") +"\n"+"Monto: " + ((ObjTransaction)newsData.getObject()).getAmount()
+                        showAlert = "Monto: " + ((ObjTransaction)newsData.getObject()).getAmount()
                                 +"\n"+"Numero de Transacción: " + ((ObjTransaction)newsData.getObject()).getTransactionId()
                                 +"\n"
                                 +"Tipo de Transacción: " + ((ObjTransaction)newsData.getObject()).getTransactionType()

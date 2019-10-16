@@ -71,15 +71,7 @@ public class CustomListAdapter extends BaseAdapter {
 
 
         TextView tdateView = (TextView) convertView.findViewById(R.id.date);
-        if(listData.get(position).isNegative()){
 
-            tdateView.setTextColor(Color.WHITE);
-        }else{
-            tdateView.setTextColor(Color.RED);
-
-
-
-        }
         tdateView.setText(listData.get(position).getDate());
         holder.reportedDateView = tdateView;
 
