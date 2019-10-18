@@ -16,7 +16,7 @@ public class ObjUserHasProduct {
         this.name = name;
     }
 
-    public ObjUserHasProduct(String id,String name) {
+    public ObjUserHasProduct(String id, String name) {
         this.name = name;
         this.id = id;
     }

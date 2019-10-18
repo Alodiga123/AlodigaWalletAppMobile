@@ -17,7 +17,7 @@ public class ManualRechargeStep2WelcomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recharge_layout);
-        submit = (TextView) findViewById(R.id.step1_next_button);
+        submit = findViewById(R.id.step1_next_button);
 
         submit.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

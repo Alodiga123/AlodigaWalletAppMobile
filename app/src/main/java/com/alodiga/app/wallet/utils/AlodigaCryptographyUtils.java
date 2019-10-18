@@ -1,15 +1,16 @@
 package com.alodiga.app.wallet.utils;
 
+import org.apache.commons.codec.binary.Base64;
+
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.util.Arrays;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
-import org.apache.commons.codec.binary.Base64;
 
 /**
- *
  * @author kerwin
  */
 public class AlodigaCryptographyUtils {
@@ -18,14 +19,14 @@ public class AlodigaCryptographyUtils {
         String base64EncryptedString = "";
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
-            byte[] digestOfPassword = md.digest(secretKey.getBytes("utf-8"));
+            byte[] digestOfPassword = md.digest(secretKey.getBytes(StandardCharsets.UTF_8));
             byte[] keyBytes = Arrays.copyOf(digestOfPassword, 24);
 
             SecretKey key = new SecretKeySpec(keyBytes, "DESede");
             Cipher cipher = Cipher.getInstance("DESede");
             cipher.init(Cipher.ENCRYPT_MODE, key);
 
-            byte[] plainTextBytes = texto.getBytes("utf-8");
+            byte[] plainTextBytes = texto.getBytes(StandardCharsets.UTF_8);
             byte[] buf = cipher.doFinal(plainTextBytes);
             byte[] base64Bytes = Base64.encodeBase64(buf);
             base64EncryptedString = new String(base64Bytes);
@@ -39,9 +40,9 @@ public class AlodigaCryptographyUtils {
     public static String decrypt(String textoEncriptado, String secretKey) throws Exception {
         String base64EncryptedString = "";
         try {
-            byte[] message = Base64.decodeBase64(textoEncriptado.getBytes("utf-8"));
+            byte[] message = Base64.decodeBase64(textoEncriptado.getBytes(StandardCharsets.UTF_8));
             MessageDigest md = MessageDigest.getInstance("MD5");
-            byte[] digestOfPassword = md.digest(secretKey.getBytes("utf-8"));
+            byte[] digestOfPassword = md.digest(secretKey.getBytes(StandardCharsets.UTF_8));
             byte[] keyBytes = Arrays.copyOf(digestOfPassword, 24);
             SecretKey key = new SecretKeySpec(keyBytes, "DESede");
 
@@ -50,7 +51,7 @@ public class AlodigaCryptographyUtils {
 
             byte[] plainText = decipher.doFinal(message);
 
-            base64EncryptedString = new String(plainText, "UTF-8");
+            base64EncryptedString = new String(plainText, StandardCharsets.UTF_8);
 
         } catch (Exception ex) {
             ex.printStackTrace();

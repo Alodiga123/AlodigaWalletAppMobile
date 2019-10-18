@@ -4,36 +4,22 @@ package com.alodiga.app.wallet.utils;
  * Created by Kerwin on 18/09/17.
  */
 
-public class  Constants {
+public class Constants {
 
     //IP PUBLICA
-   // public static String IPDAT="200.73.192.179";
-
-    //LOCAL
-    public static String IPDAT="192.168.3.140";
-
-   //LOCAL moises
-  // public static String IPDAT="192.168.3.20";
-
+    // public static String IPDAT="200.73.192.179";
 
     /*Data de Produccion*/
     public static final boolean CONSTANT_IS_PRODUCTION = false;
 
-
-    /*PRODUCCION*/
-    //public static final String  CONSTANT_IP = "192.168.3.20";
-    public static final String  CONSTANT_IP = IPDAT;
-    public static final String  CONSTANT_URL_PROD = "http://"+IPDAT+":8080/RegistroUnificado/APIRegistroUnificadoService";
-    //public static final String  CONSTANT_URL_PROD = "http://192.168.3.20:8080/RegistroUnificado/APIRegistroUnificadoService";
-    //public static final String  CONSTANT_SECURE_URL = "http://192.168.3.20:8080/RegistroUnificado/APIRegistroUnificadoService";
-    public static final String  CONSTANT_SECURE_URL = "http://"+IPDAT+":8080/RegistroUnificado/APIRegistroUnificadoService";
-
-
-
-   //Alodiga Eallet
-    //public static final String  CONSTANT_URL_PROD_ALODIGA_WALLET = "http://192.168.3.20:8080/AlodigaWallet/APIAlodigaWalletService";
-    public static final String  CONSTANT_URL_PROD_ALODIGA_WALLET = "http://"+IPDAT+":8080/AlodigaWallet/APIAlodigaWalletService";
-    public static final String  CONSTANT_SECURE_URL_ALODIGA_WALLET = "http://"+IPDAT+":8080/AlodigaWallet/APIAlodigaWalletService";
+    //LOCAL moises
+    // public static String IPDAT="192.168.3.20";
+    public static final String RESUM_OPERATION_PHONE = "getResumOperationByPhoneNumberSender";
+    public static final String RESUM_CLOSE_SESSION = "appCloseSession";
+    public static final String RESUM_LAST_TRANSACTION = "getLastOperationByPhoneNumber";
+    public static final boolean CONSTANT_IS_SECURE_PORT = false;
+    public static final String CONSTANT_SECURE_PORT = "8181";
+    public static final String CONSTANT_NAMESPACE_QA_REGISTRO_UNIFICADO = "http://ws.alodiga.ericsson.com/";
     //public static final String  CONSTANT_SECURE_URL_ALODIGA_WALLET = "http://192.168.3.20:8080/AlodigaWallet/APIAlodigaWalletService";
 
 
@@ -41,46 +27,13 @@ public class  Constants {
     //public static final String  CONSTANT_IP = "201.249.236.187";
     //public static final String  CONSTANT_URL_PROD = "http://201.249.236.187:8080/P2PWSServicesProviderService/P2PWSServicesProvider";
     //public static final String  CONSTANT_SECURE_URL = "https://201.249.236.187:8181/P2PWSServicesProviderService/P2PWSServicesProvider";
-
-
-
-    public static final String  RESUM_OPERATION_PHONE = "getResumOperationByPhoneNumberSender";
-    public static final String  RESUM_CLOSE_SESSION = "appCloseSession";
-    public static final String  RESUM_LAST_TRANSACTION = "getLastOperationByPhoneNumber";
-
-
-
-    public static final boolean CONSTANT_IS_SECURE_PORT = false;
-    public static final String  CONSTANT_SECURE_PORT = "8181";
-
-    /**
-     * Data de QA
-     */
-    //public static final String CONSTANT_URL_QA_REGISTRO_UNIFICADO = "http://192.168.3.20:8080/RegistroUnificado/APIRegistroUnificadoService";
-    public static final String CONSTANT_URL_QA_REGISTRO_UNIFICADO = "http://"+IPDAT+":8080/RegistroUnificado/APIRegistroUnificadoService";
-    public static final String CONSTANT_NAMESPACE_QA_REGISTRO_UNIFICADO = "http://ws.alodiga.ericsson.com/";
-    public static final String REGISTRO_UNIFICADO= "RegistroUnificado";
-
-
-    /**
-     *
-     */
-    //public static final String CONSTANT_URL_QA_ALODIGA = "http://192.168.3.20:8080/AlodigaWallet/APIAlodigaWalletService";
-    public static final String CONSTANT_URL_QA_ALODIGA = "http://"+IPDAT+":8080/AlodigaWallet/APIAlodigaWalletService";
+    public static final String REGISTRO_UNIFICADO = "RegistroUnificado";
     public static final String CONSTANT_NAMESPACE_QA_ALODIGA = "http://ws.wallet.alodiga.com/";
     public static final String ALODIGA = "AlodigaWallet";
-
-    /**
-     * Alodiga WAllet
-     */
-    //public static final String CONSTANT_URL_QA_ALODIGA_WALLET  = "http://192.168.3.20:8080/AlodigaWallet/APIAlodigaWalletService";
-    public static final String CONSTANT_URL_QA_ALODIGA_WALLET  = "http://"+IPDAT+":8080/AlodigaWallet/APIAlodigaWalletService";
     public static final String CONSTANT_NAMESPACE_ALODIGA_WALLET = "http://ws.wallet.alodiga.com/";
-
     public static final String CONSTANT_SEPARATOR = ":";
     public static final String CONSTANT_PORT = "8080";
     public static final String CI_SEPARATOR = "-";
-
     /**
      * Nombre de los metodos utilizados para llamar a un Web Service
      */
@@ -89,7 +42,6 @@ public class  Constants {
     public static final String METHOD_GET_FAVORITES_BY_PHONE_NUMBERS = "getFavoritesByPhoneNumber";
     public static final String METHOD_PROCESS_PAYMENT_P2P = "processP2PTransaction";
     public static final String METHOD_SEND_CUSTOMER_TOKEN = "sendCustomerToken";
-
     /**
      * Categoria de Servicios
      */
@@ -100,15 +52,11 @@ public class  Constants {
     public static final String CONSTANT_NATIONAL_CURRENCY = "Bs. ";
     public static final String CONSTANT_CHARACTER_SEPARATOR = ";";
     public static final Integer ID_IDIOMA_ES = 4;
-
     /**
      * Tiempo de inactividad
      */
     public static final String WEB_SERVICES_USUARIOWS = "usuarioWS";
     public static final String WEB_SERVICES_PASSWORDWS = "passwordWS";
-
-
-
     public static final long SECONDS = 180; //In seconds
     public static final long STARTIME = SECONDS * 1000; //In miliseconds
     public static final long INTERVAL = 1000;
@@ -120,10 +68,10 @@ public class  Constants {
     public static final String WEB_SERVICES_RESPONSE_CODE_USUARIO_BLOQUEADO = "06";
     public static final String WEB_SERVICES_RESPONSE_CODE_CODIGO_VALIDACION_INVALIDO = "07";
     public static final String WEB_SERVICES_RESPONSE_CODE_NUMERO_TELEFONO_YA_EXISTE = "08";
-    public static final String WEB_SERVICES_RESPONSE_CODE_ENVIO_CORREO_FALLIDO= "09";
-    public static final String WEB_SERVICES_RESPONSE_CODE_CORREO_YA_EXISTE= "10";
+    public static final String WEB_SERVICES_RESPONSE_CODE_ENVIO_CORREO_FALLIDO = "09";
+    public static final String WEB_SERVICES_RESPONSE_CODE_CORREO_YA_EXISTE = "10";
     public static final String WEB_SERVICES_RESPONSE_CODE_DATOS_NULOS = "11";
-    public static final String WEB_SERVICES_RESPONSE_CODE_PRIMER_INGRESO= "12";
+    public static final String WEB_SERVICES_RESPONSE_CODE_PRIMER_INGRESO = "12";
     public static final String WEB_SERVICES_RESPONSE_CODE_EIN_YA_EXISTE = "14";
     public static final String WEB_SERVICES_RESPONSE_CODE_FEDERAL_TAX_YA_EXISTE = "15";
     public static final String WEB_SERVICES_RESPONSE_CODE_CUENTA_BANCARIA_YA_EXISTE = "17";
@@ -136,7 +84,7 @@ public class  Constants {
     public static final String WEB_SERVICES_RESPONSE_CODE_TRANSACTION_AMOUNT_LIMIT = "30";
     public static final String WEB_SERVICES_RESPONSE_CODE_TRANSACTION_MAX_NUMBER_BY_ACCOUNT = "31";
     public static final String WEB_SERVICES_RESPONSE_CODE_TRANSACTION_MAX_NUMBER_BY_CUSTOMER = "32";
-    public static final String WEB_SERVICES_RESPONSE_CODE_USER_HAS_NOT_BALANCE= "33";
+    public static final String WEB_SERVICES_RESPONSE_CODE_USER_HAS_NOT_BALANCE = "33";
     public static final String WEB_SERVICES_RESPONSE_CODE_APLICACION_NO_EXISTE = "94";
     public static final String WEB_SERVICES_RESPONSE_CODE_USUARIO_SOSPECHOSO = "95";
     public static final String WEB_SERVICES_RESPONSE_CODE_USUARIO_PENDIENTE = "96";
@@ -159,10 +107,38 @@ public class  Constants {
     public static final String WEB_SERVICES_METHOD_NAME_REMOVAL_MANUAL = "manualWithdrawals";
     public static final String WEB_SERVICES_METHOD_NAME_RECHARGE = "manualRecharge";
     public static final Integer MAX_RESULT_BY_TRANSACTION_OPERATION = 10;
-    public static final String CONCEPT_TRANSACTION="paymentshop";
-    public static final String KEY_ENCRIPT_DESENCRIPT="1nt3r4xt3l3ph0ny";
-    public static final String K2_ENCRIPT_DESENCRIPT="DESede";
-    public static final String VECTOR_ENCRIPT_DESENCRIPT="0123456789ABCDEF";
-    public static final String KEY_ENCRIPT_DESENCRIPT_QR="alodigaPruebadellave";
+    public static final String CONCEPT_TRANSACTION = "paymentshop";
+    public static final String KEY_ENCRIPT_DESENCRIPT = "1nt3r4xt3l3ph0ny";
+    public static final String K2_ENCRIPT_DESENCRIPT = "DESede";
+    public static final String VECTOR_ENCRIPT_DESENCRIPT = "0123456789ABCDEF";
+    public static final String KEY_ENCRIPT_DESENCRIPT_QR = "alodigaPruebadellave";
+    //LOCAL
+    public static String IPDAT = "192.168.3.140";
+    /*PRODUCCION*/
+    //public static final String  CONSTANT_IP = "192.168.3.20";
+    public static final String CONSTANT_IP = IPDAT;
+    public static final String CONSTANT_URL_PROD = "http://" + IPDAT + ":8080/RegistroUnificado/APIRegistroUnificadoService";
+    //public static final String  CONSTANT_URL_PROD = "http://192.168.3.20:8080/RegistroUnificado/APIRegistroUnificadoService";
+    //public static final String  CONSTANT_SECURE_URL = "http://192.168.3.20:8080/RegistroUnificado/APIRegistroUnificadoService";
+    public static final String CONSTANT_SECURE_URL = "http://" + IPDAT + ":8080/RegistroUnificado/APIRegistroUnificadoService";
+    //Alodiga Eallet
+    //public static final String  CONSTANT_URL_PROD_ALODIGA_WALLET = "http://192.168.3.20:8080/AlodigaWallet/APIAlodigaWalletService";
+    public static final String CONSTANT_URL_PROD_ALODIGA_WALLET = "http://" + IPDAT + ":8080/AlodigaWallet/APIAlodigaWalletService";
+    public static final String CONSTANT_SECURE_URL_ALODIGA_WALLET = "http://" + IPDAT + ":8080/AlodigaWallet/APIAlodigaWalletService";
+    /**
+     * Data de QA
+     */
+    //public static final String CONSTANT_URL_QA_REGISTRO_UNIFICADO = "http://192.168.3.20:8080/RegistroUnificado/APIRegistroUnificadoService";
+    public static final String CONSTANT_URL_QA_REGISTRO_UNIFICADO = "http://" + IPDAT + ":8080/RegistroUnificado/APIRegistroUnificadoService";
+    /**
+     *
+     */
+    //public static final String CONSTANT_URL_QA_ALODIGA = "http://192.168.3.20:8080/AlodigaWallet/APIAlodigaWalletService";
+    public static final String CONSTANT_URL_QA_ALODIGA = "http://" + IPDAT + ":8080/AlodigaWallet/APIAlodigaWalletService";
+    /**
+     * Alodiga WAllet
+     */
+    //public static final String CONSTANT_URL_QA_ALODIGA_WALLET  = "http://192.168.3.20:8080/AlodigaWallet/APIAlodigaWalletService";
+    public static final String CONSTANT_URL_QA_ALODIGA_WALLET = "http://" + IPDAT + ":8080/AlodigaWallet/APIAlodigaWalletService";
 
 }

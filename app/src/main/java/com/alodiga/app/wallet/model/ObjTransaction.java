@@ -1,7 +1,6 @@
 package com.alodiga.app.wallet.model;
 
 
-
 public class ObjTransaction {
 
     private String transactionId;

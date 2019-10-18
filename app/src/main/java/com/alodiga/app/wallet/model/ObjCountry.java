@@ -6,7 +6,7 @@ package com.alodiga.app.wallet.model;
 
 public class ObjCountry {
 
-    private  String id;
+    private String id;
     private String name;
 
     public ObjCountry(String id, String name) {

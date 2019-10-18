@@ -1,7 +1,6 @@
 package com.alodiga.app.wallet.utils;
 
 import android.os.Bundle;
-
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -37,7 +36,7 @@ public class PackageAct extends AppCompatActivity {
         packageRange.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if(progress == 35){
+                if (progress == 35) {
                     pagetitle.setText("Starter Guy");
                     pagesubtitle.setText("The simply text be dummies too good and easier");
                     packagePlace.setImageResource(R.drawable.icstarter);
@@ -46,8 +45,7 @@ public class PackageAct extends AppCompatActivity {
                     packagePlace.startAnimation(packageimg);
                     pagetitle.startAnimation(atg);
                     pagesubtitle.startAnimation(atg);
-                }
-                else if(progress == 75){
+                } else if (progress == 75) {
                     pagetitle.setText("Business Player");
                     pagesubtitle.setText("The simply text be dummies too good and easier");
                     packagePlace.setImageResource(R.drawable.icbusinessplayer);
@@ -56,8 +54,7 @@ public class PackageAct extends AppCompatActivity {
                     packagePlace.startAnimation(packageimg);
                     pagetitle.startAnimation(atg);
                     pagesubtitle.startAnimation(atg);
-                }
-                else if(progress == 100){
+                } else if (progress == 100) {
                     pagetitle.setText("Legend of VIP");
                     pagesubtitle.setText("The simply text be dummies too good and easier");
                     packagePlace.setImageResource(R.drawable.icvip);

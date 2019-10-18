@@ -6,7 +6,7 @@ package com.alodiga.app.wallet.model;
 
 public class ObjHowToTranssfer {
 
-    private  String id;
+    private String id;
     private String name;
 
 

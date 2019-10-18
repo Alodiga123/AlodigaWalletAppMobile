@@ -7,8 +7,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.alodiga.app.wallet.model.ObjNewsItem;
 import com.alodiga.app.R;
+import com.alodiga.app.wallet.model.ObjNewsItem;
 
 import java.util.ArrayList;
 
@@ -47,20 +47,18 @@ public class AdapterCustomList extends BaseAdapter {
         if (convertView == null) {
             convertView = layoutInflater.inflate(R.layout.list_row_layout, null);
             holder = new ViewHolder();
-            TextView tHeadlineView = (TextView) convertView.findViewById(R.id.title);
+            TextView tHeadlineView = convertView.findViewById(R.id.title);
             tHeadlineView.setTextSize(2);
-            holder.headlineView = tHeadlineView ;
-            holder.reportedDateView = (TextView) convertView.findViewById(R.id.date);
+            holder.headlineView = tHeadlineView;
+            holder.reportedDateView = convertView.findViewById(R.id.date);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
 
 
-
-        TextView tReporterNameView = (TextView) convertView.findViewById(R.id.reporter);
+        TextView tReporterNameView = convertView.findViewById(R.id.reporter);
         tReporterNameView.setTextSize(10);
-
 
 
         holder.reporterNameView = tReporterNameView;
@@ -71,13 +69,10 @@ public class AdapterCustomList extends BaseAdapter {
         holder.reporterNameView.setText("Bs " + listData.get(position).getReporterName());
 
 
-
-        TextView tdateView = (TextView) convertView.findViewById(R.id.date);
+        TextView tdateView = convertView.findViewById(R.id.date);
 
         tdateView.setText(listData.get(position).getDate());
         holder.reportedDateView = tdateView;
-
-
 
         return convertView;
     }

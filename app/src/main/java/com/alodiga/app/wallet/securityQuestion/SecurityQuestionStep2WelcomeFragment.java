@@ -9,16 +9,15 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
-import com.alodiga.app.wallet.main.MainActivity;
 import com.alodiga.app.R;
-import com.alodiga.app.wallet.utils.Session;
 import com.alodiga.app.wallet.login.LoginActivity;
+import com.alodiga.app.wallet.main.MainActivity;
+import com.alodiga.app.wallet.utils.Session;
 
 public class SecurityQuestionStep2WelcomeFragment extends Fragment implements
         View.OnClickListener {
     private static TextView submit, back;
     private static View view;
-
 
 
     @Override
@@ -38,12 +37,12 @@ public class SecurityQuestionStep2WelcomeFragment extends Fragment implements
     }*/
 
     private void initViews() {
-        submit = (TextView) view.findViewById(R.id.step1_next_button);
-        back = (TextView) view.findViewById(R.id.backToLoginBtn);
+        submit = view.findViewById(R.id.step1_next_button);
+        back = view.findViewById(R.id.backToLoginBtn);
 
     }
 
-  private void setListeners() {
+    private void setListeners() {
         back.setOnClickListener(this);
         submit.setOnClickListener(this);
     }

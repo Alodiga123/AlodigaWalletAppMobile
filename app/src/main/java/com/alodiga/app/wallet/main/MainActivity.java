@@ -6,38 +6,37 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-
-import androidx.appcompat.app.AlertDialog;
-import androidx.core.view.GravityCompat;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import android.view.MenuItem;
-
-import com.alodiga.app.wallet.listTransactionExecuted.ListTransactionExecutedActivity;
-import com.alodiga.app.wallet.changePassword.ChangePasswordActivity;
-import com.alodiga.app.wallet.QR.CreateQRCodeActivity;
-import com.alodiga.app.wallet.manualRecharge.ManualRechargeStep1Activity;
-import com.alodiga.app.wallet.manualRemoval.ManualRemovalStep1Activity;
-import com.alodiga.app.wallet.model.ObjMoney;
-import com.alodiga.app.wallet.transference.TransferenceStep1Activity;
-import com.alodiga.app.wallet.paymentComerce.PaymentComerceStep1Activity;
-import com.alodiga.app.R;
-import com.alodiga.app.wallet.adapters.AdapterMoneyProduct;
-import com.alodiga.app.wallet.login.LoginActivity;
-import com.alodiga.app.wallet.model.ObjUserHasProduct;
-import com.alodiga.app.wallet.utils.Session;
-import com.google.android.material.navigation.NavigationView;
-
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.alodiga.app.R;
+import com.alodiga.app.wallet.QR.CreateQRCodeActivity;
+import com.alodiga.app.wallet.adapters.AdapterMoneyProduct;
+import com.alodiga.app.wallet.changePassword.ChangePasswordActivity;
+import com.alodiga.app.wallet.listTransactionExecuted.ListTransactionExecutedActivity;
+import com.alodiga.app.wallet.login.LoginActivity;
+import com.alodiga.app.wallet.manualRecharge.ManualRechargeStep1Activity;
+import com.alodiga.app.wallet.manualRemoval.ManualRemovalStep1Activity;
+import com.alodiga.app.wallet.model.ObjMoney;
+import com.alodiga.app.wallet.model.ObjUserHasProduct;
+import com.alodiga.app.wallet.paymentComerce.PaymentComerceStep1Activity;
+import com.alodiga.app.wallet.transference.TransferenceStep1Activity;
+import com.alodiga.app.wallet.utils.Session;
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,16 +45,15 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    Animation atg, atgtwo, atgthree;
+    ImageView imageView3;
+    TextView nameuser, phoneuser, emailuser, pagetitle, pagesubtitle;
     private Button btnPaymet;
     private Button btnViewTransaction;
     private Button btnChangePassword;
-    Animation atg, atgtwo, atgthree;
     private RecyclerView mRecyclerView;
     private AdapterMoneyProduct mAdapter;
-    ImageView imageView3;
     private List<ObjMoney> mProductList;
-    TextView nameuser, phoneuser,emailuser,pagetitle, pagesubtitle;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,18 +66,18 @@ public class MainActivity extends AppCompatActivity
         atgtwo = AnimationUtils.loadAnimation(this, R.anim.atgtwo);
         atgthree = AnimationUtils.loadAnimation(this, R.anim.atgthree);
         //getting the recyclerview from xml
-        mRecyclerView = (RecyclerView) findViewById(R.id.idRecyclerView);
+        mRecyclerView = findViewById(R.id.idRecyclerView);
         //mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mProductList = new ArrayList<ObjMoney>();
 
-        for(ObjUserHasProduct objUserHasProduct : Session.getObjUserHasProducts()){
-            if(objUserHasProduct.getSymbol().equals("AL")){
-                mProductList.add(new ObjMoney(objUserHasProduct.getName(),R.drawable.alocoinlogo,Session.getAccountNumber(), "Alodiga ",objUserHasProduct.getSymbol()+" "+ objUserHasProduct.getCurrentBalance()));
-            }else if(objUserHasProduct.getSymbol().equals("SA")){
-                mProductList.add(new ObjMoney(objUserHasProduct.getName(),R.drawable.dolarsimbol,Session.getAccountNumber(), "Alodiga ",objUserHasProduct.getSymbol()+" "+ objUserHasProduct.getCurrentBalance()));
-            }else if(objUserHasProduct.getSymbol().equals("TP")){
-                mProductList.add(new ObjMoney(objUserHasProduct.getName(),R.drawable.cardalodiga,Session.getAccountNumber(), "Alodiga ",objUserHasProduct.getSymbol()+" "+ objUserHasProduct.getCurrentBalance()));
+        for (ObjUserHasProduct objUserHasProduct : Session.getObjUserHasProducts()) {
+            if (objUserHasProduct.getSymbol().equals("AL")) {
+                mProductList.add(new ObjMoney(objUserHasProduct.getName(), R.drawable.alocoinlogo, Session.getAccountNumber(), "Alodiga ", objUserHasProduct.getSymbol() + " " + objUserHasProduct.getCurrentBalance()));
+            } else if (objUserHasProduct.getSymbol().equals("SA")) {
+                mProductList.add(new ObjMoney(objUserHasProduct.getName(), R.drawable.dolarsimbol, Session.getAccountNumber(), "Alodiga ", objUserHasProduct.getSymbol() + " " + objUserHasProduct.getCurrentBalance()));
+            } else if (objUserHasProduct.getSymbol().equals("TP")) {
+                mProductList.add(new ObjMoney(objUserHasProduct.getName(), R.drawable.cardalodiga, Session.getAccountNumber(), "Alodiga ", objUserHasProduct.getSymbol() + " " + objUserHasProduct.getCurrentBalance()));
             }
         }
 
@@ -93,9 +91,8 @@ public class MainActivity extends AppCompatActivity
         mProductList.add(new ObjMoney("Monero",R.drawable.monero,"XMR", "Cripto", "XMR " +Session.getAlocoinsBalance()));*/
 
         //set adapter to recyclerview
-        mAdapter = new AdapterMoneyProduct(mProductList,this);
+        mAdapter = new AdapterMoneyProduct(mProductList, this);
         mRecyclerView.setAdapter(mAdapter);
-
 
 
         emailuser = findViewById(R.id.emailuser);
@@ -103,14 +100,10 @@ public class MainActivity extends AppCompatActivity
         phoneuser = findViewById(R.id.phoneuser);
 
 
-
-
         //insertValueSession
         emailuser.setText(Session.getEmail());
         nameuser.setText(Session.getUsername());
         phoneuser.setText(Session.getPhoneNumber());
-
-
 
 
         imageView3 = findViewById(R.id.imageView2);
@@ -146,14 +139,14 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.RECEIVE_SMS) != PackageManager.PERMISSION_GRANTED){
-            requestPermissions(new String[]{Manifest.permission.RECEIVE_SMS},1000);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.RECEIVE_SMS) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.RECEIVE_SMS}, 1000);
         }
 
     }
 
     @Override
-    public void onBackPressed(){
+    public void onBackPressed() {
         AlertDialog.Builder dialogo1 = new AlertDialog.Builder(this);
         dialogo1.setTitle("Cerrar Sesion");
         dialogo1.setMessage("¿ Esta Seguro que desea cerrar la sesion?");
@@ -174,7 +167,6 @@ public class MainActivity extends AppCompatActivity
         });
         dialogo1.show();
     }
-
 
 
     @Override
@@ -242,13 +234,10 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_last_activity) {
             Intent show = new Intent(MainActivity.this, ListTransactionExecutedActivity.class);
             startActivity(show);
-        }
-        else if (id == R.id.nav_pay_qr) {
+        } else if (id == R.id.nav_pay_qr) {
             Intent show = new Intent(MainActivity.this, PaymentComerceStep1Activity.class);
             startActivity(show);
-        }
-
-        else if (id == R.id.nav_close_session) {
+        } else if (id == R.id.nav_close_session) {
             AlertDialog.Builder dialogo1 = new AlertDialog.Builder(this);
             dialogo1.setTitle("Cerrar Sesion");
             dialogo1.setMessage("¿ Esta Seguro que desea cerrar la sesion?");
@@ -269,7 +258,6 @@ public class MainActivity extends AppCompatActivity
             });
             dialogo1.show();
         }
-
 
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

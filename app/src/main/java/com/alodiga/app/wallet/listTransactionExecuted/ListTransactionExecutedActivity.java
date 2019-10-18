@@ -19,13 +19,13 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.alodiga.app.wallet.model.ObjNewsItem;
-import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.adapters.AdapterCustomList;
 import com.alodiga.app.wallet.main.MainActivity;
+import com.alodiga.app.wallet.model.ObjNewsItem;
 import com.alodiga.app.wallet.model.ObjTransaction;
 import com.alodiga.app.wallet.utils.Constants;
+import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
 import com.alodiga.app.wallet.utils.Session;
 import com.alodiga.app.wallet.utils.Utils;
 import com.alodiga.app.wallet.utils.WebService;
@@ -34,12 +34,15 @@ import org.ksoap2.serialization.SoapObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.lang.NullPointerException;
 
 
-public  class ListTransactionExecutedActivity extends AppCompatActivity implements OnItemSelectedListener{
+public class ListTransactionExecutedActivity extends AppCompatActivity implements OnItemSelectedListener {
 
 
+    static ProgressDialogAlodiga progressDialogAlodiga;
+    static ArrayList<ObjNewsItem> image_details;
+    static TextView textViewEmpty;
+    static ListView lv1;
     private String idTransaction = "";
     private String productCurrencyId = "";
     private String paymentTypeId = "";
@@ -52,12 +55,6 @@ public  class ListTransactionExecutedActivity extends AppCompatActivity implemen
     private boolean serviceStatus;
     private String stringResponse = "";
     private String destinationUser = "";
-
-    static ProgressDialogAlodiga progressDialogAlodiga;
-    static ArrayList<ObjNewsItem> image_details;
-    static TextView textViewEmpty;
-    static ListView lv1;
-
     private boolean ActivityTransactionExcecuteIsCounting = true;
 
 
@@ -65,9 +62,9 @@ public  class ListTransactionExecutedActivity extends AppCompatActivity implemen
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction_executed);
-        lv1 = (ListView) findViewById(R.id.custom_list);
-        textViewEmpty = (TextView) findViewById(R.id.textViewEmpty);
-        progressDialogAlodiga = new ProgressDialogAlodiga(this,"cargando..");
+        lv1 = findViewById(R.id.custom_list);
+        textViewEmpty = findViewById(R.id.textViewEmpty);
+        progressDialogAlodiga = new ProgressDialogAlodiga(this, "cargando..");
         progressDialogAlodiga.show();
         ActivityTransactionExcecuteIsCounting = true;
         TransferOfFunds transferOfFunds = new TransferOfFunds(this);
@@ -84,8 +81,7 @@ public  class ListTransactionExecutedActivity extends AppCompatActivity implemen
     }
 
 
-    public  class TransferOfFunds  extends AsyncTask<Void, Integer, Boolean>
-    {
+    public class TransferOfFunds extends AsyncTask<Void, Integer, Boolean> {
         private boolean serviceStatus;
         private boolean isEmpty = false;
         private boolean isGeneralError = false;
@@ -93,15 +89,14 @@ public  class ListTransactionExecutedActivity extends AppCompatActivity implemen
         private Context context;
         private String stringResponse;
         private String responsetxt;
-        private String  showAlert;
+        private String showAlert;
 
         public TransferOfFunds(Context context) {
             this.context = context;
         }
 
         @Override
-        protected Boolean doInBackground(Void... params)
-        {
+        protected Boolean doInBackground(Void... params) {
             WebService webService = new WebService();
             Utils utils = new Utils();
             SoapObject response;
@@ -110,69 +105,60 @@ public  class ListTransactionExecutedActivity extends AppCompatActivity implemen
                 String datosRespuesta = "";
 
 
-                HashMap<String,String > map = new HashMap<String,String>();
+                HashMap<String, String> map = new HashMap<String, String>();
                 //map.put("usuarioApi",Constants.WEB_SERVICES_USUARIOWS);
                 //map.put("passwordApi",Constants.WEB_SERVICES_PASSWORDWS);
                 map.put("userId", Session.getUserId());
                 map.put("maxResult", Constants.MAX_RESULT_BY_TRANSACTION_OPERATION.toString());
 
-                response = webService.invokeGetAutoConfigString(map,Constants.WEB_SERVICES_METHOD_NAME_GET_TRANSACTION_LIST,Constants.ALODIGA);
+                response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_NAME_GET_TRANSACTION_LIST, Constants.ALODIGA);
                 stringResponse = response.toString();
                 responseCode = response.getProperty("codigoRespuesta").toString();
-               // datosRespuesta = response.getProperty("transactions").toString();
+                // datosRespuesta = response.getProperty("transactions").toString();
 
-                if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO))
-                {
+                if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
                     responsetxt = "";
                     serviceStatus = true;
                     return serviceStatus;
 
-                }
-                else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_DATOS_INVALIDOS))
-                {
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_DATOS_INVALIDOS)) {
                     responsetxt = "Datos Invalidos";
                     serviceStatus = false;
 
-                }
-                else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_BLOQUEADO))
-                {
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_BLOQUEADO)) {
                     responsetxt = "Usuario bloqueado";
                     serviceStatus = false;
-                }
-                else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_NO_EXISTE))
-                {
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_NO_EXISTE)) {
                     responsetxt = "Error generar";
                     serviceStatus = false;
-                }else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_CREDENCIALES))
-                {
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_CREDENCIALES)) {
                     responsetxt = "Error de credenciales";
                     serviceStatus = false;
-                }else if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_INTERNO))
-                {
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_INTERNO)) {
                     responsetxt = "Error Interno";
                     serviceStatus = false;
-                }else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USER_NOT_HAS_TRANSACTIONS)){
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USER_NOT_HAS_TRANSACTIONS)) {
 
                     responsetxt = "La cuenta no posee movimientos asociados";
                     serviceStatus = false;
-                }else{
+                } else {
                     responsetxt = getString(R.string.web_services_response_99);
                     serviceStatus = false;
                 }
                 //progressDialogAlodiga.dismiss();
-            } catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 responsetxt = getString(R.string.web_services_response_99);
                 serviceStatus = false;
                 e.printStackTrace();
                 System.err.println(e);
                 return false;
-            } catch (NullPointerException e){
+            } catch (NullPointerException e) {
                 responsetxt = getString(R.string.web_services_response_99);
                 serviceStatus = false;
                 e.printStackTrace();
                 System.err.println(e);
                 return false;
-            } catch (Exception e){
+            } catch (Exception e) {
                 responsetxt = getString(R.string.web_services_response_99);
                 serviceStatus = false;
                 e.printStackTrace();
@@ -183,52 +169,47 @@ public  class ListTransactionExecutedActivity extends AppCompatActivity implemen
         }
 
         @Override
-        protected void onProgressUpdate(Integer... values)
-        {
+        protected void onProgressUpdate(Integer... values) {
             int progreso = values[0].intValue();
             progressDialogAlodiga.setProgress(progreso);
         }
 
         @Override
-        protected void onPreExecute()
-        {
+        protected void onPreExecute() {
 //            progressDialogAlodiga.show();
         }
 
         @Override
-        protected void onPostExecute(final Boolean result)
-        {
-            if(result){
+        protected void onPostExecute(final Boolean result) {
+            if (result) {
                 ArrayList<ObjTransaction> transactions = new ArrayList<ObjTransaction>();
 
                 transactions = getParseResponse(stringResponse);
                 ArrayList<ObjNewsItem> image_details = new ArrayList<ObjNewsItem>();
-                for(ObjTransaction t : transactions){
+                for (ObjTransaction t : transactions) {
 
 
                     ObjNewsItem item = new ObjNewsItem();
                     item.setDate(t.getAmount());
 
-                    String tt = "" ;
+                    String tt = "";
 
-                    if(t.getTransactionType().equals("1")){
+                    if (t.getTransactionType().equals("1")) {
                         t.setTransactionType("Recarga de Producto");
                         item.setNegative(true);
-                    }
-                    else if(t.getTransactionType().equals("2")){
+                    } else if (t.getTransactionType().equals("2")) {
                         t.setTransactionType("Pago en Comercio");
                         item.setNegative(false);
-                    }else if(t.getTransactionType().equals("3")){
+                    } else if (t.getTransactionType().equals("3")) {
                         t.setTransactionType("Transferencia de producto");
                         item.setNegative(false);
-                    }
-                    else if(t.getTransactionType().equals("4")){
+                    } else if (t.getTransactionType().equals("4")) {
                         t.setTransactionType("Intercambio de producto");
                         item.setNegative(false);
-                    } else if(t.getTransactionType().equals("5")){
+                    } else if (t.getTransactionType().equals("5")) {
                         t.setTransactionType("Retiro Manual");
                         item.setNegative(false);
-                    }else if(t.getTransactionType().equals("6")){
+                    } else if (t.getTransactionType().equals("6")) {
                         t.setTransactionType("Recarga Manual");
                         item.setNegative(true);
                     }
@@ -247,29 +228,29 @@ public  class ListTransactionExecutedActivity extends AppCompatActivity implemen
                         ObjNewsItem newsData = (ObjNewsItem) o;
 
 
-
                         String transactionType = "";
 
 
                         AlertDialog alertDialog = new AlertDialog.Builder(context).create();
                         alertDialog.setTitle(Html.fromHtml("Detalle Transaccion"));
-                        showAlert = "Monto: " + ((ObjTransaction)newsData.getObject()).getAmount()
-                                +"\n"+"Numero de Transacción: " + ((ObjTransaction)newsData.getObject()).getTransactionId()
-                                +"\n"
-                                +"Tipo de Transacción: " + ((ObjTransaction)newsData.getObject()).getTransactionType()
-                                +"\n"
-                                +"Fecha Transacción: " + ((ObjTransaction)newsData.getObject()).getCreateionDate()
-                                +"\n"
-                                +"Destino: " + ((ObjTransaction)newsData.getObject()).getUserDestination()
-                                +"\n";
+                        showAlert = "Monto: " + ((ObjTransaction) newsData.getObject()).getAmount()
+                                + "\n" + "Numero de Transacción: " + ((ObjTransaction) newsData.getObject()).getTransactionId()
+                                + "\n"
+                                + "Tipo de Transacción: " + ((ObjTransaction) newsData.getObject()).getTransactionType()
+                                + "\n"
+                                + "Fecha Transacción: " + ((ObjTransaction) newsData.getObject()).getCreateionDate()
+                                + "\n"
+                                + "Destino: " + ((ObjTransaction) newsData.getObject()).getUserDestination()
+                                + "\n";
                         alertDialog.setMessage(showAlert);
-                        alertDialog.setButton(Dialog.BUTTON_POSITIVE,"OK",new DialogInterface.OnClickListener(){
+                        alertDialog.setButton(Dialog.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
 
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.cancel();
                             }
-                        });   alertDialog.setButton(Dialog.BUTTON_NEGATIVE,"COMPARTIR",new DialogInterface.OnClickListener(){
+                        });
+                        alertDialog.setButton(Dialog.BUTTON_NEGATIVE, "COMPARTIR", new DialogInterface.OnClickListener() {
 
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -277,10 +258,8 @@ public  class ListTransactionExecutedActivity extends AppCompatActivity implemen
                                 //updateProduct();
                                 Intent intent = new Intent(Intent.ACTION_SEND);
                                 intent.setType("text/plain");
-                                intent.putExtra(Intent.EXTRA_TEXT,showAlert);
+                                intent.putExtra(Intent.EXTRA_TEXT, showAlert);
                                 startActivity(Intent.createChooser(intent, "Share with"));
-
-
 
 
                             }
@@ -292,9 +271,7 @@ public  class ListTransactionExecutedActivity extends AppCompatActivity implemen
                 progressDialogAlodiga.dismiss();
 
 
-            }
-
-            else{
+            } else {
                 Toast.makeText(context, responsetxt, Toast.LENGTH_LONG).show();
                 Intent i = new Intent(this.context, MainActivity.class);
                 startActivity(i);
@@ -302,7 +279,7 @@ public  class ListTransactionExecutedActivity extends AppCompatActivity implemen
             }
         }
 
-        private ArrayList<ObjTransaction> getParseResponse (String response) {
+        private ArrayList<ObjTransaction> getParseResponse(String response) {
 
             ArrayList<ObjTransaction> transactions = new ArrayList<ObjTransaction>();
             for (int i = 1; i < getLenghtFromResponseJson(response); i++) {
@@ -314,26 +291,26 @@ public  class ListTransactionExecutedActivity extends AppCompatActivity implemen
                 objTransaction.setUserDestination(response.split("destinationUser=")[i].split(";")[0]);
                 objTransaction.setConcept(response.split("concept=")[i].split(";")[0]);
                 objTransaction.setTransactionId(response.split("id=")[i].split(";")[0]);
-               // objTransaction.setTax(response.split("totalTax=")[i].split(";")[0]);
+                // objTransaction.setTax(response.split("totalTax=")[i].split(";")[0]);
                 transactions.add(objTransaction);
             }
-            return  transactions;
+            return transactions;
         }
 
 
-        private  int getLenghtFromResponseJson(String v){
+        private int getLenghtFromResponseJson(String v) {
             return (v.split("transactions=anyType").length);
         }
 
         private ArrayList<ObjNewsItem> getListData(String[] var) {
             ArrayList<ObjNewsItem> results = new ArrayList<ObjNewsItem>();
-            for(int i=0;i<var.length;i++){
-                String [] register = var[i].split("/");
+            for (int i = 0; i < var.length; i++) {
+                String[] register = var[i].split("/");
                 ObjNewsItem newsData = new ObjNewsItem();
-                if(register[0].equals("-")){
+                if (register[0].equals("-")) {
                     newsData.setNegative(true);
-                    newsData.setReporterName("-"+register[4]);
-                }else{
+                    newsData.setReporterName("-" + register[4]);
+                } else {
                     newsData.setNegative(false);
                     newsData.setReporterName(register[4]);
                 }

@@ -1,6 +1,7 @@
 package com.alodiga.app.wallet.splash;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
@@ -8,17 +9,18 @@ import android.os.CountDownTimer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.alodiga.app.wallet.login.LoginActivity;
 import com.alodiga.app.R;
+import com.alodiga.app.wallet.login.LoginActivity;
 
 
 public class SplashActivity extends AppCompatActivity {
     Dialog dialog = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_screen);
-        ConnectivityManager conMgr = (ConnectivityManager) getSystemService(this.CONNECTIVITY_SERVICE);
+        ConnectivityManager conMgr = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
 
         if (conMgr.getActiveNetworkInfo() == null
                 || !conMgr.getActiveNetworkInfo().isAvailable()
@@ -37,6 +39,7 @@ public class SplashActivity extends AppCompatActivity {
             public void onTick(long millisUntilFinished) {
                 //nothing
             }
+
             public void onFinish() {
                 Intent i = new Intent(SplashActivity.this, LoginActivity.class);
                 startActivity(i);

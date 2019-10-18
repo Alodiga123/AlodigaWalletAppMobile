@@ -1,7 +1,6 @@
 package com.alodiga.app.wallet.encript;
 
 
-
 public class KeyLongException extends Exception {
 
     private static final long serialVersionUID = 1L;

@@ -4,7 +4,7 @@ import com.alodiga.app.wallet.model.ObjUserHasProduct;
 
 import java.util.ArrayList;
 
-public  class Session {
+public class Session {
 
 
     private static String userId = "";
@@ -190,7 +190,7 @@ public  class Session {
         Session.codeOperation = codeOperation;
     }
 
-    public static void clearALL(){
+    public static void clearALL() {
         Session.userId = null;
         Session.username = null;
         Session.email = null;
@@ -207,9 +207,9 @@ public  class Session {
         Session.destinationConcept = null;
         Session.getDestinationAmount = null;
         Session.usuarioDestionId = null;
-        Session.mobileCodeSms= null;
+        Session.mobileCodeSms = null;
         Session.moneySelected = null;
-        Session.codeOperation= null;
+        Session.codeOperation = null;
     }
 
 }

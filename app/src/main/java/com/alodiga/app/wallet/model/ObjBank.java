@@ -3,7 +3,7 @@ package com.alodiga.app.wallet.model;
 
 public class ObjBank {
 
-    private  String id;
+    private String id;
     private String name;
 
     public ObjBank(String id, String name) {

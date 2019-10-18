@@ -28,7 +28,6 @@ public class LoginActivity extends AppCompatActivity {
         }
 
 
-
     }
 
     // Replace Login Fragment with animation

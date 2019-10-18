@@ -8,7 +8,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alodiga.app.R;
@@ -16,9 +15,9 @@ import com.alodiga.app.wallet.model.ObjMoney;
 
 import java.util.List;
 
-public class AdapterMoneyProduct extends RecyclerView.Adapter<AdapterMoneyProduct.GroceryProductViewHolder>{
-    private List<ObjMoney> grocderyItemList;
+public class AdapterMoneyProduct extends RecyclerView.Adapter<AdapterMoneyProduct.GroceryProductViewHolder> {
     Context context;
+    private List<ObjMoney> grocderyItemList;
 
     public AdapterMoneyProduct(List<ObjMoney> grocderyItemList, Context context) {
         this.grocderyItemList = grocderyItemList;
@@ -45,7 +44,7 @@ public class AdapterMoneyProduct extends RecyclerView.Adapter<AdapterMoneyProduc
         holder.imageProductImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String productName = grocderyItemList.get(position).getProductName().toString();
+                String productName = grocderyItemList.get(position).getProductName();
                 Toast.makeText(context, productName + " is selected", Toast.LENGTH_SHORT).show();
             }
         });
@@ -62,10 +61,11 @@ public class AdapterMoneyProduct extends RecyclerView.Adapter<AdapterMoneyProduc
         TextView txtProductPrice;
         TextView txtProductWeight;
         TextView txtProductQty;
+
         public GroceryProductViewHolder(View view) {
             super(view);
-            imageProductImage=view.findViewById(R.id.idProductImage);
-            txtProductName=view.findViewById(R.id.idProductName);
+            imageProductImage = view.findViewById(R.id.idProductImage);
+            txtProductName = view.findViewById(R.id.idProductName);
             txtProductPrice = view.findViewById(R.id.idProductPrice);
             txtProductWeight = view.findViewById(R.id.idProductWeight);
             txtProductQty = view.findViewById(R.id.idProductQty);

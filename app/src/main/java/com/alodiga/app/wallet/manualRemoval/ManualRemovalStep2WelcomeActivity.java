@@ -17,7 +17,7 @@ public class ManualRemovalStep2WelcomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.welcome_manual_removal_layout);
-        submit = (TextView) findViewById(R.id.step1_next_button);
+        submit = findViewById(R.id.step1_next_button);
 
         submit.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

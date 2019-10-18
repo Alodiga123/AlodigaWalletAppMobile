@@ -6,10 +6,10 @@ package com.alodiga.app.wallet.model;
 
 public class ObjGenericObject {
 
-    private  String id;
+    private String id;
     private String name;
 
-    public ObjGenericObject(String name,String id) {
+    public ObjGenericObject(String name, String id) {
         this.name = name;
         this.id = id;
     }

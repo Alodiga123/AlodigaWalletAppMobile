@@ -4,7 +4,6 @@ import android.graphics.Bitmap;
 import android.media.MediaScannerConnection;
 import android.os.Bundle;
 import android.os.Environment;
-
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,8 +12,8 @@ import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.alodiga.app.wallet.utils.AlodigaCryptographyUtils;
 import com.alodiga.app.R;
+import com.alodiga.app.wallet.utils.AlodigaCryptographyUtils;
 import com.alodiga.app.wallet.utils.Constants;
 import com.alodiga.app.wallet.utils.Session;
 import com.google.zxing.BarcodeFormat;
@@ -30,31 +29,28 @@ import java.util.Calendar;
 
 public class CreateQRCodeActivity extends AppCompatActivity {
 
-    public final static int QRcodeWidth = 500 ;
-    private static final String IMAGE_DIRECTORY = "/QRcodeDemonuts";
-    Bitmap bitmap ;
-    private EditText etqr;
-
-
-    private ImageView iv;
-    private Button btn;
-    String URLWebService;
-    Integer doubledValue =0;
-    String doubledValue1 ="";
+    public final static int QRcodeWidth = 500;
     public final static int WHITE = 0xFFFFFFFF;
     public final static int BLACK = 0xFF000000;
     public final static int WIDTH = 500;
     public final static int HEIGHT = 500;
-
+    private static final String IMAGE_DIRECTORY = "/QRcodeDemonuts";
+    Bitmap bitmap;
+    String URLWebService;
+    Integer doubledValue = 0;
+    String doubledValue1 = "";
+    private EditText etqr;
+    private ImageView iv;
+    private Button btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_generate_qr_code);
-        iv = (ImageView) findViewById(R.id.iv);
+        iv = findViewById(R.id.iv);
         try {
             AlodigaCryptographyUtils obj = new AlodigaCryptographyUtils();
-            Bitmap bitmap = encodeAsBitmap(obj.encrypt(Session.getEmail()+";"+Session.getPhoneNumber()+";"+Session.getUserId(), Constants.KEY_ENCRIPT_DESENCRIPT_QR));
+            Bitmap bitmap = encodeAsBitmap(AlodigaCryptographyUtils.encrypt(Session.getEmail() + ";" + Session.getPhoneNumber() + ";" + Session.getUserId(), Constants.KEY_ENCRIPT_DESENCRIPT_QR));
             iv.setImageBitmap(bitmap);
         } catch (WriterException e) {
             e.printStackTrace();
@@ -62,7 +58,7 @@ public class CreateQRCodeActivity extends AppCompatActivity {
 
         int width = 500;
         int height = 500;
-        LinearLayout.LayoutParams parms = new LinearLayout.LayoutParams(width,height);
+        LinearLayout.LayoutParams parms = new LinearLayout.LayoutParams(width, height);
         iv.setLayoutParams(parms);
     }
 
@@ -89,6 +85,7 @@ public class CreateQRCodeActivity extends AppCompatActivity {
         bitmap.setPixels(pixels, 0, width, 0, 0, width, height);
         return bitmap;
     }
+
     public String saveImage(Bitmap myBitmap) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         myBitmap.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
@@ -119,12 +116,13 @@ public class CreateQRCodeActivity extends AppCompatActivity {
         return "";
 
     }
+
     private Bitmap TextToImageEncode(String Value) throws WriterException {
         BitMatrix bitMatrix;
         try {
             bitMatrix = new MultiFormatWriter().encode(
                     Value,
-                    BarcodeFormat.DATA_MATRIX.QR_CODE,
+                    BarcodeFormat.QR_CODE,
                     QRcodeWidth, QRcodeWidth, null
             );
 
@@ -144,7 +142,7 @@ public class CreateQRCodeActivity extends AppCompatActivity {
             for (int x = 0; x < bitMatrixWidth; x++) {
 
                 pixels[offset + x] = bitMatrix.get(x, y) ?
-                        getResources().getColor(R.color.black):getResources().getColor(R.color.white);
+                        getResources().getColor(R.color.black) : getResources().getColor(R.color.white);
             }
         }
         Bitmap bitmap = Bitmap.createBitmap(bitMatrixWidth, bitMatrixHeight, Bitmap.Config.ARGB_4444);
