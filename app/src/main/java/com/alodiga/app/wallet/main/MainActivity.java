@@ -148,10 +148,10 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onBackPressed() {
         AlertDialog.Builder dialogo1 = new AlertDialog.Builder(this);
-        dialogo1.setTitle("Cerrar Sesion");
-        dialogo1.setMessage("¿ Esta Seguro que desea cerrar la sesion?");
+        dialogo1.setTitle(getString(R.string.close_session));
+        dialogo1.setMessage(getString(R.string.close_session_answer));
         dialogo1.setCancelable(false);
-        dialogo1.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+        dialogo1.setPositiveButton(getString(R.string.confirm), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialogo1, int id) {
 
                 Intent show = new Intent(MainActivity.this, LoginActivity.class);
@@ -160,7 +160,7 @@ public class MainActivity extends AppCompatActivity
 
             }
         });
-        dialogo1.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+        dialogo1.setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialogo1, int id) {
                 //cancelar();
             }
@@ -187,10 +187,10 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.action_settings) {
 
             AlertDialog.Builder dialogo1 = new AlertDialog.Builder(this);
-            dialogo1.setTitle("Cerrar Sesion");
-            dialogo1.setMessage("¿ Esta Seguro que desea cerrar la sesion?");
+            dialogo1.setTitle(R.string.close_session);
+            dialogo1.setMessage(R.string.close_session_answer);
             dialogo1.setCancelable(false);
-            dialogo1.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+            dialogo1.setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialogo1, int id) {
                     Session.clearALL();
                     Intent show = new Intent(MainActivity.this, LoginActivity.class);
@@ -199,7 +199,7 @@ public class MainActivity extends AppCompatActivity
 
                 }
             });
-            dialogo1.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            dialogo1.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialogo1, int id) {
                     //cancelar();
                 }
@@ -239,10 +239,10 @@ public class MainActivity extends AppCompatActivity
             startActivity(show);
         } else if (id == R.id.nav_close_session) {
             AlertDialog.Builder dialogo1 = new AlertDialog.Builder(this);
-            dialogo1.setTitle("Cerrar Sesion");
-            dialogo1.setMessage("¿ Esta Seguro que desea cerrar la sesion?");
+            dialogo1.setTitle(R.string.close_session);
+            dialogo1.setMessage(R.string.close_session_answer);
             dialogo1.setCancelable(false);
-            dialogo1.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+            dialogo1.setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialogo1, int id) {
                     Session.clearALL();
                     Intent show = new Intent(MainActivity.this, LoginActivity.class);
@@ -251,7 +251,7 @@ public class MainActivity extends AppCompatActivity
 
                 }
             });
-            dialogo1.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            dialogo1.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialogo1, int id) {
                     //cancelar();
                 }

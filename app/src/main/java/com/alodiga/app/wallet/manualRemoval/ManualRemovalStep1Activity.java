@@ -67,7 +67,7 @@ public class ManualRemovalStep1Activity extends AppCompatActivity {
         spinnerbank.setEnabled(false);
         spinnerproducto.setEnabled(false);
 
-        progressDialogAlodiga = new ProgressDialogAlodiga(this, "cargando..");
+        progressDialogAlodiga = new ProgressDialogAlodiga(this, getString(R.string.loading));
         progressDialogAlodiga.show();
 
         //Spinner Pais
@@ -316,7 +316,7 @@ public class ManualRemovalStep1Activity extends AppCompatActivity {
     }
 
     public void RemovalTask() {
-        progressDialogAlodiga = new ProgressDialogAlodiga(this, "cargando..");
+        progressDialogAlodiga = new ProgressDialogAlodiga(this, getString(R.string.loading));
         progressDialogAlodiga.show();
         mAuthTask = new UserRemovalTask();
         mAuthTask.execute((Void) null);

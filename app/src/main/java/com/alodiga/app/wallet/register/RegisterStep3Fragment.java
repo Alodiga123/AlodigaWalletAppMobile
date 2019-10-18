@@ -167,28 +167,28 @@ public class RegisterStep3Fragment extends Fragment implements OnClickListener {
                 || getConfirmPassword.length() == 0)
 
             new CustomToast().Show_Toast(getActivity(), view,
-                    "Todos los campos son requeridos.");
+                    getString(R.string.invalid_all_question));
 
             // Check if email id valid or not
         else if (!m.find())
             new CustomToast().Show_Toast(getActivity(), view,
-                    "El email es invalido.");
+                    getString(R.string.email_invalid));
 
             // Check if both password should be equal
         else if (!getConfirmPassword.equals(getPassword))
             new CustomToast().Show_Toast(getActivity(), view,
-                    "Las contraseñas deben ser iguales");
+                    getString(R.string.password_eq));
 
             // Make sure user should check Terms and Conditions checkbox
         else if (!terms_conditions.isChecked())
             new CustomToast().Show_Toast(getActivity(), view,
-                    "Debe aceptar terminos y condiciones.");
+                    getString(R.string.acept_ter));
             // Validate Country
 
 
         else if (getPinNumber.length() < 4)
             new CustomToast().Show_Toast(getActivity(), view,
-                    "Clave de operaciones es invalida, debe tener 4 digitos");
+                    getString(R.string.pin_invalid));
 
 
             ////////////Validaciones Especiales de Password//////////////////
@@ -207,7 +207,7 @@ public class RegisterStep3Fragment extends Fragment implements OnClickListener {
     }
 
     public void registrar() {
-        progressDialogAlodiga = new ProgressDialogAlodiga(getContext(), "cargando..");
+        progressDialogAlodiga = new ProgressDialogAlodiga(getContext(), getString(R.string.loading));
         progressDialogAlodiga.show();
 
         //cifrando pin y credencial

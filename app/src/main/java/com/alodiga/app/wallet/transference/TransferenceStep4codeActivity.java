@@ -54,7 +54,7 @@ public class TransferenceStep4codeActivity extends AppCompatActivity {
                     finish();
                     startActivity(i);
                 } else {
-                    progressDialogAlodiga = new ProgressDialogAlodiga(getApplicationContext(), "Cargando..");
+                    progressDialogAlodiga = new ProgressDialogAlodiga(getApplicationContext(), getString(R.string.loading));
                     mAuthTask = new UserGetCodeTask(Utils.aloDesencript(getCode));
                     mAuthTask.execute((Void) null);
                 }

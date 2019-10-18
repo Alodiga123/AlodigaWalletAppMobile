@@ -112,9 +112,9 @@ public class TransferenceStep1Activity extends AppCompatActivity {
 
 
         ObjHowToTranssfer[] objHowToTranssfers = new ObjHowToTranssfer[3];
-        objHowToTranssfers[0] = new ObjHowToTranssfer("0", "Por email");
-        objHowToTranssfers[1] = new ObjHowToTranssfer("1", "Por número celular");
-        objHowToTranssfers[2] = new ObjHowToTranssfer("2", "Por Codigo QR");
+        objHowToTranssfers[0] = new ObjHowToTranssfer("0", getString(R.string.forEmail));
+        objHowToTranssfers[1] = new ObjHowToTranssfer("1", getString(R.string.forPhone));
+        objHowToTranssfers[2] = new ObjHowToTranssfer("2", getString(R.string.forQr));
         SpinAdapterHowToTransfer spinAdapterHowToTransfer = new SpinAdapterHowToTransfer(this.getApplicationContext(), android.R.layout.simple_spinner_item, objHowToTranssfers);
         spinnerTypeFind.setAdapter(spinAdapterHowToTransfer);
 
@@ -125,27 +125,27 @@ public class TransferenceStep1Activity extends AppCompatActivity {
                 ObjHowToTranssfer objHowToTranssfer;
                 objHowToTranssfer = (ObjHowToTranssfer) spinnerTypeFind.getSelectedItem();
                 if (objHowToTranssfer.getId().equals("0")) {
-                    userEmailIdTransfer.setHint("Introduce E-mail");
+                    userEmailIdTransfer.setHint(getString(R.string.email));
                     userEmailIdTransfer.setInputType(InputType.TYPE_CLASS_TEXT);
                     viewQ.setVisibility(View.VISIBLE);
                     userEmailIdTransfer.setVisibility(View.VISIBLE);
-                    signFind.setText("Buscar");
+                    signFind.setText(getString(R.string.search));
                     userEmailIdTransfer.setText("");
                     caseFind = 0;
                 } else if (objHowToTranssfer.getId().equals("1")) {
                     userEmailIdTransfer.setInputType(InputType.TYPE_CLASS_NUMBER);
-                    userEmailIdTransfer.setHint("Numero Celular");
+                    userEmailIdTransfer.setHint(getString(R.string.mobileNumber));
                     userEmailIdTransfer.setVisibility(View.VISIBLE);
                     userEmailIdTransfer.setText("");
                     caseFind = 1;
                     viewQ.setVisibility(View.VISIBLE);
-                    signFind.setText("Buscar");
+                    signFind.setText(R.string.search);
                 } else if (objHowToTranssfer.getId().equals("2")) {
                     caseFind = 2;
                     userEmailIdTransfer.setText("");
                     userEmailIdTransfer.setVisibility(View.INVISIBLE);
                     viewQ.setVisibility(View.INVISIBLE);
-                    signFind.setText("Scanear QR");
+                    signFind.setText(getString(R.string.scanQr));
                 }
             }
 
@@ -202,18 +202,18 @@ public class TransferenceStep1Activity extends AppCompatActivity {
         // Check if all strings are null or not
         if (userEmailIdTransfer.equals("")) {
             new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
-                    "Todos los campos son requeridos.");
+                    getString(R.string.invalid_all_question));
             return false;
         }
         // Check if email id valid or not
         else if ((caseFind == 0) && (!m.find())) {
 
             new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
-                    "El email es invalido.");
+                    getString(R.string.email_invalid));
             return false;
         } else if ((caseFind == 1) && (userEmailIdTransfer.length() <= 11)) {
             new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
-                    "La longitud del telefono en invalida");
+                    getString(R.string.invalid_phone));
             return false;
         }
         return true;

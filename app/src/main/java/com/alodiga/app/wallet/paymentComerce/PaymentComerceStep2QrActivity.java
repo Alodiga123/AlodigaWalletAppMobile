@@ -52,7 +52,7 @@ public class PaymentComerceStep2QrActivity extends AppCompatActivity implements 
     @Override
     public void onCreate(Bundle state) {
         super.onCreate(state);
-        progressDialogAlodiga = new ProgressDialogAlodiga(this, "Cargando..");
+        progressDialogAlodiga = new ProgressDialogAlodiga(this, getString(R.string.loading));
         mScannerView = new ZXingScannerView(this);
         setContentView(mScannerView);
     }

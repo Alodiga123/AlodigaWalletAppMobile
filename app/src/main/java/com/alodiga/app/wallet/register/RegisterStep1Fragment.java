@@ -165,11 +165,11 @@ public class RegisterStep1Fragment extends Fragment implements
             // Validate Country
         else if (objCountry.getId().equals("0"))
             new CustomToast().Show_Toast(getActivity(), view,
-                    "Debe seleccionar un Pais");
+                    getString(R.string.select_location));
 
         else if (getMobileNumber.length() <= 11)
             new CustomToast().Show_Toast(getActivity(), view,
-                    "La longitud del telefono en invalida");
+                    getString(R.string.invalid_phone));
 
         else {
             sendSmsSecurityCode();
@@ -178,7 +178,7 @@ public class RegisterStep1Fragment extends Fragment implements
 
 
     public void sendSmsSecurityCode() {
-        progressDialogAlodiga = new ProgressDialogAlodiga(getContext(), "cargando..");
+        progressDialogAlodiga = new ProgressDialogAlodiga(getContext(), getString(R.string.loading));
         progressDialogAlodiga.show();
         mAuthTask = new UserSendSmsTask(getMobileNumber);
         mAuthTask.execute((Void) null);

@@ -29,19 +29,10 @@ import java.util.Calendar;
 
 public class CreateQRCodeActivity extends AppCompatActivity {
 
-    public final static int QRcodeWidth = 500;
-    public final static int WHITE = 0xFFFFFFFF;
-    public final static int BLACK = 0xFF000000;
-    public final static int WIDTH = 500;
-    public final static int HEIGHT = 500;
-    private static final String IMAGE_DIRECTORY = "/QRcodeDemonuts";
-    Bitmap bitmap;
-    String URLWebService;
-    Integer doubledValue = 0;
-    String doubledValue1 = "";
-    private EditText etqr;
+
+
     private ImageView iv;
-    private Button btn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +56,7 @@ public class CreateQRCodeActivity extends AppCompatActivity {
     Bitmap encodeAsBitmap(String str) throws WriterException {
         BitMatrix result;
         try {
-            result = new MultiFormatWriter().encode(str, BarcodeFormat.QR_CODE, WIDTH, HEIGHT, null);
+            result = new MultiFormatWriter().encode(str, BarcodeFormat.QR_CODE, Constants.WIDTH, Constants.HEIGHT, null);
         } catch (IllegalArgumentException iae) {
             // Unsupported format
             return null;
@@ -77,7 +68,7 @@ public class CreateQRCodeActivity extends AppCompatActivity {
         for (int y = 0; y < height; y++) {
             int offset = y * width;
             for (int x = 0; x < width; x++) {
-                pixels[offset + x] = result.get(x, y) ? BLACK : WHITE;
+                pixels[offset + x] = result.get(x, y) ? Constants.BLACK : Constants.WHITE;
             }
         }
 
@@ -90,23 +81,23 @@ public class CreateQRCodeActivity extends AppCompatActivity {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         myBitmap.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
         File wallpaperDirectory = new File(
-                Environment.getExternalStorageDirectory() + IMAGE_DIRECTORY);
+                Environment.getExternalStorageDirectory() + Constants.IMAGE_DIRECTORY);
         // have the object build the directory structure, if needed.
 
         if (!wallpaperDirectory.exists()) {
-            Log.d("dirrrrrr", "" + wallpaperDirectory.mkdirs());
+            Log.d(Constants.DIR, "" + wallpaperDirectory.mkdirs());
             wallpaperDirectory.mkdirs();
         }
 
         try {
             File f = new File(wallpaperDirectory, Calendar.getInstance()
-                    .getTimeInMillis() + ".jpg");
+                    .getTimeInMillis() + Constants.JPG);
             f.createNewFile();   //give read write permission
             FileOutputStream fo = new FileOutputStream(f);
             fo.write(bytes.toByteArray());
             MediaScannerConnection.scanFile(this,
                     new String[]{f.getPath()},
-                    new String[]{"image/jpeg"}, null);
+                    new String[]{Constants.IMAGE_JPG}, null);
             fo.close();
             Log.d("TAG", "File Saved::--->" + f.getAbsolutePath());
             return f.getAbsolutePath();
@@ -123,7 +114,7 @@ public class CreateQRCodeActivity extends AppCompatActivity {
             bitMatrix = new MultiFormatWriter().encode(
                     Value,
                     BarcodeFormat.QR_CODE,
-                    QRcodeWidth, QRcodeWidth, null
+                    Constants.QRcodeWidth, Constants.QRcodeWidth, null
             );
 
         } catch (IllegalArgumentException Illegalargumentexception) {

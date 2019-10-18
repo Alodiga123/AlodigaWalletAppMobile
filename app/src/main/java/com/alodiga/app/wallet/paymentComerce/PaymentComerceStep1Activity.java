@@ -114,9 +114,9 @@ public class PaymentComerceStep1Activity extends AppCompatActivity {
 
 
         ObjHowToTranssfer[] objHowToTranssfers = new ObjHowToTranssfer[3];
-        objHowToTranssfers[0] = new ObjHowToTranssfer("0", "Por email");
-        objHowToTranssfers[1] = new ObjHowToTranssfer("1", "Por número celular");
-        objHowToTranssfers[2] = new ObjHowToTranssfer("2", "Por Codigo QR");
+        objHowToTranssfers[0] = new ObjHowToTranssfer("0", getString(R.string.forEmail));
+        objHowToTranssfers[1] = new ObjHowToTranssfer("1", getString(R.string.forPhone));
+        objHowToTranssfers[2] = new ObjHowToTranssfer("2", getString(R.string.forQr));
         SpinAdapterHowToTransfer spinAdapterHowToTransfer = new SpinAdapterHowToTransfer(this.getApplicationContext(), android.R.layout.simple_spinner_item, objHowToTranssfers);
 
 
@@ -124,10 +124,10 @@ public class PaymentComerceStep1Activity extends AppCompatActivity {
         userEmailIdTransfer.setText("");
         userEmailIdTransfer.setVisibility(View.INVISIBLE);
         viewQ.setVisibility(View.INVISIBLE);
-        signFind.setText("Scanear QR");
+        signFind.setText(getString(R.string.scanQr));
 
 
-        progressDialogAlodiga = new ProgressDialogAlodiga(this, "Cargando..");
+        progressDialogAlodiga = new ProgressDialogAlodiga(this, getString(R.string.loading));
         signFind.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
@@ -160,28 +160,21 @@ public class PaymentComerceStep1Activity extends AppCompatActivity {
         // Check if all strings are null or not
         if (userEmailIdTransfer.equals("")) {
             new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
-                    "Todos los campos son requeridos.");
+                    getString(R.string.invalid_all_question));
             return false;
         }
         // Check if email id valid or not
         else if ((caseFind == 0) && (!m.find())) {
 
             new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
-                    "El email es invalido.");
+                    getString(R.string.email_invalid));
             return false;
         } else if ((caseFind == 1) && (userEmailIdTransfer.length() <= 11)) {
             new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
-                    "La longitud del telefono en invalida");
+                    getString(R.string.invalid_phone));
             return false;
         }
         return true;
-
-    }
-
-    public void Process(View View) {
-
-        Toast toast1 = Toast.makeText(getApplicationContext(), "Procesado...", Toast.LENGTH_SHORT);
-        toast1.show();
 
     }
 

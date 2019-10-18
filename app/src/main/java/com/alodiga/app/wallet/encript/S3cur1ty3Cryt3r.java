@@ -6,6 +6,8 @@ package com.alodiga.app.wallet.encript;
  * and open the template in the editor.
  */
 
+import com.alodiga.app.wallet.utils.Constants;
+
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
@@ -28,7 +30,7 @@ public class S3cur1ty3Cryt3r {
         //TODO Incorporar Salting al key
         ParseInt encryptString = new ParseInt();
         if (!validLenght(key)) {
-            throw new KeyLongException("Invalid Key long");
+            throw new KeyLongException(Constants.INVALID_KEY_LONG);
         }
         String criter = "";
         String keyEn = key;
@@ -59,7 +61,7 @@ public class S3cur1ty3Cryt3r {
         try {
             ParseInt encryptString = new ParseInt();
             if (!validLenght(key)) {
-                throw new KeyLongException("Invalid Key long");
+                throw new KeyLongException(Constants.INVALID_KEY_LONG);
             }
             String keyEn = key;
             pass = ParseInt.DesEncrypter(srgs, key, k2);
@@ -80,12 +82,12 @@ public class S3cur1ty3Cryt3r {
     public static void main(String[] args) {
 
 
-        String value = "maria,d,tercerparametro,p";
+        //String value = "maria,d,tercerparametro,p";
         String enc;
         try {
-            enc = aloDesencript(value, "1nt3r4xt3l3ph0ny", value, "DESede", "0123456789ABCDEF");
+            enc = aloDesencript(Constants.VALUE_KEY, Constants.KEY_ENCRIPT_DESENCRIPT, Constants.VALUE_KEY, Constants.K2_ENCRIPT_DESENCRIPT, Constants.VECTOR_ENCRIPT_DESENCRIPT);
             System.out.println(enc);
-            String desc = aloEncrpter("", "1nt3r4xt3l3ph0ny", null, "DESede", "0123456789ABCDEF");
+            String desc = aloEncrpter("", Constants.KEY_ENCRIPT_DESENCRIPT, null, Constants.K2_ENCRIPT_DESENCRIPT, Constants.VECTOR_ENCRIPT_DESENCRIPT);
             System.out.println(desc);
         } catch (InvalidKeyException ex) {
             Logger.getLogger(S3cur1ty3Cryt3r.class.getName()).log(Level.SEVERE, null, ex);

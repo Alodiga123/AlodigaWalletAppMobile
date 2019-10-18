@@ -10,7 +10,9 @@ import android.widget.TextView;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 
+import com.alodiga.app.R;
 import com.alodiga.app.wallet.model.ObjGenericObject;
+import com.alodiga.app.wallet.utils.Constants;
 
 public class SpinAdapterSecurityAnswer extends ArrayAdapter<ObjGenericObject> {
 
@@ -40,7 +42,7 @@ public class SpinAdapterSecurityAnswer extends ArrayAdapter<ObjGenericObject> {
         // I created a dynamic TextView here, but you can reference your own  custom layout for each spinner item
         TextView label = new TextView(context);
         label.setTextColor(Color.WHITE);
-        label.setHint("Pais");
+        label.setHint(Constants.ANSWER);
         label.setTextSize(16);
 
         label.setPadding(10, 5, 5, 0);
@@ -58,7 +60,7 @@ public class SpinAdapterSecurityAnswer extends ArrayAdapter<ObjGenericObject> {
         TextView label = new TextView(context);
         label.setTextColor(Color.BLACK);
         label.setPadding(10, 5, 5, 5);
-        label.setHint("Pregunta de Seguridad");
+        label.setHint(Constants.ANSWER);
         //label.setTextSize(15);
         // label.setBackgroundColor(Color.parseColor("#F5F6CE"));
 

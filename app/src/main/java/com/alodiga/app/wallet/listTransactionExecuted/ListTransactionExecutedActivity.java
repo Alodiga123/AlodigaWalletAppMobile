@@ -64,7 +64,7 @@ public class ListTransactionExecutedActivity extends AppCompatActivity implement
         setContentView(R.layout.activity_transaction_executed);
         lv1 = findViewById(R.id.custom_list);
         textViewEmpty = findViewById(R.id.textViewEmpty);
-        progressDialogAlodiga = new ProgressDialogAlodiga(this, "cargando..");
+        progressDialogAlodiga = new ProgressDialogAlodiga(this, getString(R.string.loading));
         progressDialogAlodiga.show();
         ActivityTransactionExcecuteIsCounting = true;
         TransferOfFunds transferOfFunds = new TransferOfFunds(this);
@@ -122,24 +122,41 @@ public class ListTransactionExecutedActivity extends AppCompatActivity implement
                     return serviceStatus;
 
                 } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_DATOS_INVALIDOS)) {
-                    responsetxt = "Datos Invalidos";
+                    responsetxt = getString(R.string.web_services_response_01);
                     serviceStatus = false;
 
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CONTRASENIA_EXPIRADA)) {
+                    responsetxt = getString(R.string.web_services_response_03);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_IP_NO_CONFIANZA)) {
+                    responsetxt = getString(R.string.web_services_response_04);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CREDENCIALES_INVALIDAS)) {
+                    responsetxt = getString(R.string.web_services_response_05);
+                    serviceStatus = false;
                 } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_BLOQUEADO)) {
-                    responsetxt = "Usuario bloqueado";
+                    responsetxt = getString(R.string.web_services_response_06);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_NUMERO_TELEFONO_YA_EXISTE)) {
+                    responsetxt = getString(R.string.web_services_response_08);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_PRIMER_INGRESO)) {
+                    responsetxt = getString(R.string.web_services_response_12);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_SOSPECHOSO)) {
+                    responsetxt = getString(R.string.web_services_response_95);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_PENDIENTE)) {
+                    responsetxt = getString(R.string.web_services_response_96);
                     serviceStatus = false;
                 } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_NO_EXISTE)) {
-                    responsetxt = "Error generar";
+                    responsetxt = getString(R.string.web_services_response_97);
                     serviceStatus = false;
                 } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_CREDENCIALES)) {
-                    responsetxt = "Error de credenciales";
+                    responsetxt = getString(R.string.web_services_response_98);
                     serviceStatus = false;
                 } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_INTERNO)) {
-                    responsetxt = "Error Interno";
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USER_NOT_HAS_TRANSACTIONS)) {
-
-                    responsetxt = "La cuenta no posee movimientos asociados";
+                    responsetxt = getString(R.string.web_services_response_99);
                     serviceStatus = false;
                 } else {
                     responsetxt = getString(R.string.web_services_response_99);

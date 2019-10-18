@@ -23,24 +23,10 @@ import com.alodiga.app.wallet.utils.Session;
 
 public class TransferenceStep3Activity extends AppCompatActivity {
     static ProgressDialogAlodiga progressDialogAlodiga;
-    private static View view;
     private static EditText amountValue, conceptValue;
     private static TextView txtAccountSourceValue, acountNumberValue, destinationPhoneValue, destinationLastNameValue, destinationNameValue;
-    private static TextView login;
     private static Button btnProcessConfirmation1;
-    private static CheckBox terms_conditions;
-    private static Spinner spinnerCountry;
-    private ObjCountry objCountry;
-    private String responsetxt = "";
-    private boolean serviceStatus;
-    private String getAmountValue = "";
-    private String getconceptValue = "";
 
-    private String getTxtAccountNumberValue = "";
-    private String getTxtDestinationPhoneValue = "";
-    private String getTxtDestinationLastNameValue = "";
-    private String getTxtDestinationNameValue = "";
-    private Integer caseFindMoneyType = 0;
 
 
     public TransferenceStep3Activity() {
@@ -69,18 +55,6 @@ public class TransferenceStep3Activity extends AppCompatActivity {
         //String hola=Session.getMoneySelected().getName();
         txtAccountSourceValue.setText(Session.getMoneySelected().getName());
 
-		/*switch (Session.getMoneySelected()) {
-			case 0:
-				txtAccountSourceValue.setText("Saldo Alodiga / USD "+ Session.getAlodigaBalance());
-				break;
-			case 1:
-				txtAccountSourceValue.setText("Saldo Alocoins / ALC "+ Session.getAlocoinsBalance());
-				break;
-			case 2:
-				txtAccountSourceValue.setText("Tarjeta Alodiga / USD "+ Session.getHealthCareCoinsBalance());
-				break;
-		}*/
-
 
         btnProcessConfirmation1.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
@@ -88,12 +62,6 @@ public class TransferenceStep3Activity extends AppCompatActivity {
                     Session.setDestinationConcept(conceptValue.getText().toString());
                     Session.setGetDestinationAmount(amountValue.getText().toString());
 
-                    //Intent i = new Intent(PaymentComerceStep3Activity.this, PaymentComerceStep5Activity.class);
-                    //startActivity(i);
-                    //String saldo_a= Session.getMoneySelected().getCurrentBalance();
-                    //String monto_=amountValue.getText().toString().trim();
-                    //float saldo = Float.parseFloat(Session.getMoneySelected().getCurrentBalance().trim());
-                    //float montodebitar=	Float.parseFloat(amountValue.getText().toString().trim());
                     if (Float.parseFloat(Session.getMoneySelected().getCurrentBalance().trim()) < Float.parseFloat(amountValue.getText().toString().trim())) {
                         new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                                 getString(R.string.insuficient_balance));
@@ -143,34 +111,24 @@ public class TransferenceStep3Activity extends AppCompatActivity {
         // Check if all strings are null or not
         if (conceptValue.getText().toString().equals("")) {
             new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
-                    "El campo concepto es requerido");
+                    getString(R.string.concept_req));
 
             return false;
         }
         if (amountValue.getText().toString().equals("")) {
             new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
-                    "El campo monto es requerido");
+                    getString(R.string.amount_info_invalid));
             return false;
         }
         if (Float.valueOf(amountValue.getText().toString()) <= 0) {
             new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
-                    "El monto es invalido");
+                    getString(R.string.amount_req));
             return false;
         }
         return true;
     }
 
 
-    public void procesar() {
-
-        progressDialogAlodiga = new ProgressDialogAlodiga(getApplicationContext(), "cargando..");
-        progressDialogAlodiga.show();
-
-
-        //	mAuthTask = new ProcessOperationTransferenceTask(,getLastName,getEmailId,objCountry.getId(),getMobileNumber,getPassword);
-        //	mAuthTask.execute((Void) null);
-
-    }
 
 
 }

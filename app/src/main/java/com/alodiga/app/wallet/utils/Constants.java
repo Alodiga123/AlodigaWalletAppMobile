@@ -109,9 +109,11 @@ public class Constants {
     public static final Integer MAX_RESULT_BY_TRANSACTION_OPERATION = 10;
     public static final String CONCEPT_TRANSACTION = "paymentshop";
     public static final String KEY_ENCRIPT_DESENCRIPT = "1nt3r4xt3l3ph0ny";
+    public static final String SECRET_KEY = "1nt3r4xt3l3ph0nyDBWE";
     public static final String K2_ENCRIPT_DESENCRIPT = "DESede";
     public static final String VECTOR_ENCRIPT_DESENCRIPT = "0123456789ABCDEF";
     public static final String KEY_ENCRIPT_DESENCRIPT_QR = "alodigaPruebadellave";
+    public static final String VALUE_KEY = "maria,d,tercerparametro,p";
     //LOCAL
     public static String IPDAT = "192.168.3.140";
     /*PRODUCCION*/
@@ -141,4 +143,29 @@ public class Constants {
     //public static final String CONSTANT_URL_QA_ALODIGA_WALLET  = "http://192.168.3.20:8080/AlodigaWallet/APIAlodigaWalletService";
     public static final String CONSTANT_URL_QA_ALODIGA_WALLET = "http://" + IPDAT + ":8080/AlodigaWallet/APIAlodigaWalletService";
 
+
+    public static final String MD5 ="MD5";
+    public static final String INVALID_KEY_LONG="Longitud de clave invalida";
+
+    // Definición del tipo de algoritmo a utilizar (AES, DES, RSA)
+    public final static String ALG = "AES";
+    // Definición del modo de cifrado a utilizar
+    public final static String CI = "AES/CBC/PKCS5Padding";
+
+
+    public static final String IS_SELECTED=" is selected";
+    public static final String BANK= "Banco";
+    public static final String MONEY="Moneda";
+    public static final String PRODUCT= "Producto";
+    public static final String ANSWER= "Pregunta de Seguridad";
+    public static final String LOCATION= "Pais";
+    public static final String IMAGE_DIRECTORY = "/QRcodeDemonuts";
+    public static final String JPG =".jpg";
+    public static final String IMAGE_JPG="image/jpeg";
+    public static final String DIR= "dirrrrrr";
+    public final static int QRcodeWidth = 500;
+    public final static int WHITE = 0xFFFFFFFF;
+    public final static int BLACK = 0xFF000000;
+    public final static int WIDTH = 500;
+    public final static int HEIGHT = 500;
 }

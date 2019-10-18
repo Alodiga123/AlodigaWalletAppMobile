@@ -18,12 +18,12 @@ public class AlodigaCryptographyUtils {
     public static String encrypt(String texto, String secretKey) {
         String base64EncryptedString = "";
         try {
-            MessageDigest md = MessageDigest.getInstance("MD5");
+            MessageDigest md = MessageDigest.getInstance(Constants.MD5);
             byte[] digestOfPassword = md.digest(secretKey.getBytes(StandardCharsets.UTF_8));
             byte[] keyBytes = Arrays.copyOf(digestOfPassword, 24);
 
-            SecretKey key = new SecretKeySpec(keyBytes, "DESede");
-            Cipher cipher = Cipher.getInstance("DESede");
+            SecretKey key = new SecretKeySpec(keyBytes, Constants.K2_ENCRIPT_DESENCRIPT);
+            Cipher cipher = Cipher.getInstance(Constants.K2_ENCRIPT_DESENCRIPT);
             cipher.init(Cipher.ENCRYPT_MODE, key);
 
             byte[] plainTextBytes = texto.getBytes(StandardCharsets.UTF_8);
@@ -41,12 +41,12 @@ public class AlodigaCryptographyUtils {
         String base64EncryptedString = "";
         try {
             byte[] message = Base64.decodeBase64(textoEncriptado.getBytes(StandardCharsets.UTF_8));
-            MessageDigest md = MessageDigest.getInstance("MD5");
+            MessageDigest md = MessageDigest.getInstance(Constants.MD5);
             byte[] digestOfPassword = md.digest(secretKey.getBytes(StandardCharsets.UTF_8));
             byte[] keyBytes = Arrays.copyOf(digestOfPassword, 24);
-            SecretKey key = new SecretKeySpec(keyBytes, "DESede");
+            SecretKey key = new SecretKeySpec(keyBytes, Constants.K2_ENCRIPT_DESENCRIPT);
 
-            Cipher decipher = Cipher.getInstance("DESede");
+            Cipher decipher = Cipher.getInstance(Constants.K2_ENCRIPT_DESENCRIPT);
             decipher.init(Cipher.DECRYPT_MODE, key);
 
             byte[] plainText = decipher.doFinal(message);

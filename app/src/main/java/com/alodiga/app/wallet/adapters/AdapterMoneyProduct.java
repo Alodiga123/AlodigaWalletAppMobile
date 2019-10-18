@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.model.ObjMoney;
+import com.alodiga.app.wallet.utils.Constants;
 
 import java.util.List;
 
@@ -45,7 +46,7 @@ public class AdapterMoneyProduct extends RecyclerView.Adapter<AdapterMoneyProduc
             @Override
             public void onClick(View v) {
                 String productName = grocderyItemList.get(position).getProductName();
-                Toast.makeText(context, productName + " is selected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, productName + Constants.IS_SELECTED, Toast.LENGTH_SHORT).show();
             }
         });
     }

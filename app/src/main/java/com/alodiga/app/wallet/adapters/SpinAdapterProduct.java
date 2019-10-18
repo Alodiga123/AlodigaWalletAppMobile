@@ -10,7 +10,9 @@ import android.widget.TextView;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 
+import com.alodiga.app.R;
 import com.alodiga.app.wallet.model.ObjTransferMoney;
+import com.alodiga.app.wallet.utils.Constants;
 
 public class SpinAdapterProduct extends ArrayAdapter<ObjTransferMoney> {
 
@@ -40,7 +42,7 @@ public class SpinAdapterProduct extends ArrayAdapter<ObjTransferMoney> {
         // I created a dynamic TextView here, but you can reference your own  custom layout for each spinner item
         TextView label = new TextView(context);
         label.setTextColor(Color.WHITE);
-        label.setHint("Producto");
+        label.setHint(Constants.PRODUCT);
         label.setTextSize(16);
 
         label.setPadding(10, 5, 5, 0);
@@ -58,7 +60,7 @@ public class SpinAdapterProduct extends ArrayAdapter<ObjTransferMoney> {
         TextView label = new TextView(context);
         label.setTextColor(Color.BLACK);
         label.setPadding(10, 5, 5, 5);
-        label.setHint("Producto");
+        label.setHint(Constants.PRODUCT);
         //label.setTextSize(15);
         // label.setBackgroundColor(Color.parseColor("#F5F6CE"));
 

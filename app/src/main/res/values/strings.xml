@@ -23,6 +23,9 @@
     <string name="afiliation">Afiliar</string>
     <string name="menu_send">Cerrar sesión</string>
     <string name="email">Introduce E-mail</string>
+    <string name="email_invalid">E-mail no es valido</string>
+    <string name="email_send">Se ha enviado un E-mail.</string>
+    <string name="enter_both_credentials">Ingrese ambas credenciales.</string>
     <string name="closebutton">Close Button for Activity</string>
     <string name="registered_emailid">Por favor ingrese correo electrónico registrado:</string>
     <string name="register_phone_number_message">Ingrese su número de teléfono:</string>
@@ -61,6 +64,9 @@
     <string name="terms_conditions">Al hacer clic en Registrarse, usted acepta todos los Términos y Condiciones.</string>
     <string name="confirmPassword">Confirme Contraseña</string>
     <string name="pin">Clave de Operaciones</string>
+    <string name="pin_invalid">Clave de operaciones es invalida, debe tener 4 digitos</string>
+
+
     <string name="pin_info">Introduzca la Clave de Operaciones</string>
     <string name="Respuesta1">Respuesta 1</string>
     <string name="Respuesta2">Respuesta 2</string>
@@ -72,6 +78,11 @@
     <string name="password_recent">Contraseña Reciente</string>
     <string name="password_new">Contraseña Nueva</string>
     <string name="password_confirm">Confirmar Contraseña</string>
+    <string name="password_eq">Las contraseñas deben ser iguales</string>
+    <string name="acept_ter"> Debe aceptar terminos y condiciones.</string>
+
+
+
     <string name="process_change_password">Procesar Cambio</string>
     <string name="editTextTelephone">N° Teléfono</string>
     <string name="editTextIdentification">N° Cedula o RIF</string>
@@ -110,8 +121,6 @@
     <string name="info_fail_code">La Clave de Operaciones no es valida. Numero de intentos restantes: </string>
     <string name="connection_error">No es posible establecer una conexion. Compruebe su conexion a internet</string>
     <string name="action_reintent">Intentar de nuevo</string>
-
-
 
 
     <string name="web_services_response_01">Datos invalidos</string>
@@ -175,10 +184,9 @@
     <string name="welcome_secure_answer">Las preguntas de seguridad han sido registradas satisfactoriamente </string>
     <string name="welcome_qr_code">Utiliza este código QR para realizar los pagos de manera mas facil</string>
     <string name="welcome_secure_manual_removal">El registro del retiro se ha realizado satisfactoriamente. Una vez el proveedor de servicios lo haga efectivo sera notificado </string>
+    <string name="welcome_payment_comerce">El pago se ha realizado satisfactoriamente. </string>
     <string name="welcome_secure_manual_recharge">La recarga fue realizada satisfactoriamente. Una vez que se valide le sera notificado </string>
     <string name="fail_code_info">La Clave de Operaciones ha sido bloqueada temporalmente.</string>
-
-
 
 
     <string name="they_are_not_transactions">No hay operaciones disponibles</string>
@@ -186,6 +194,35 @@
 
 
     <string name="app_operation_not_permited">Operación no permitida. El usuario de destino debe ser diferente al actual</string>
+
+
+    <string name="BS">Bs </string>
+    <string name="is_selected"> is selected</string>
+    <string name="bank">Banco</string>
+    <string name="money">Moneda</string>
+    <string name="product">Producto</string>
+    <string name="answer">Pregunta de Seguridad</string>
+    <string name="loading">cargando..</string>
+    <string name="close_session">Cerrar Sesion</string>
+    <string name="close_session_answer">¿Esta Seguro que desea cerrar la sesion?</string>
+    <string name="confirm">Confirmar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="invalid_phone">La longitud del telefono en invalida"</string>
+    <string name="forEmail">Por email</string>
+    <string name="forPhone">Por número Teléfono</string>
+    <string name="forQr">Por Codigo QR</string>
+    <string name="scanQr">Escanear QR</string>
+    <string name="concept_req">El campo concepto es requerido</string>
+    <string name="amount_req">El monto es invalido</string>
+    <string name="search">Buscar</string>
+    <string name="select_location">Debe seleccionar un Pais</string>
+    <string name="scan_fine">Escaneo Exitoso</string>
+
+
+
+
+
+
 
 
 

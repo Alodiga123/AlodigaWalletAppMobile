@@ -66,7 +66,7 @@ public class AdapterCustomList extends BaseAdapter {
         holder.headlineView.setText(listData.get(position).getHeadline());
 
         holder.headlineView.setTextSize(18);
-        holder.reporterNameView.setText("Bs " + listData.get(position).getReporterName());
+        holder.reporterNameView.setText(listData.get(position).getReporterName());
 
 
         TextView tdateView = convertView.findViewById(R.id.date);

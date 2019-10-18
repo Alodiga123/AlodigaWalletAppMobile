@@ -98,14 +98,14 @@ public class Utils {
      * @return encrypted parameter
      */
     public static String cryptoKey(String text) {
-        String secretKey = "1nt3r4xt3l3ph0nyDBWE";
+       // String secretKey = "1nt3r4xt3l3ph0nyDBWE";
         String base64EncryptedString = "";
         try {
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            byte[] digestOfPassword = md.digest(secretKey.getBytes(StandardCharsets.UTF_8));
+            MessageDigest md = MessageDigest.getInstance(Constants.MD5);
+            byte[] digestOfPassword = md.digest(Constants.SECRET_KEY.getBytes(StandardCharsets.UTF_8));
             byte[] keyBytes = Arrays.copyOf(digestOfPassword, 24);
-            SecretKey key = new SecretKeySpec(keyBytes, "DESede");
-            Cipher cipher = Cipher.getInstance("DESede");
+            SecretKey key = new SecretKeySpec(keyBytes, Constants.K2_ENCRIPT_DESENCRIPT);
+            Cipher cipher = Cipher.getInstance(Constants.K2_ENCRIPT_DESENCRIPT);
             cipher.init(Cipher.ENCRYPT_MODE, key);
             byte[] plainTextBytes = text.getBytes(StandardCharsets.UTF_8);
             byte[] buf = cipher.doFinal(plainTextBytes);

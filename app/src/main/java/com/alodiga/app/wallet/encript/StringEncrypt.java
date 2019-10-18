@@ -5,6 +5,8 @@
  */
 package com.alodiga.app.wallet.encript;
 
+import com.alodiga.app.wallet.utils.Constants;
+
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
@@ -17,15 +19,9 @@ import static org.apache.commons.codec.binary.Base64.encodeBase64;
  */
 public class StringEncrypt {
 
-    // Definición del tipo de algoritmo a utilizar (AES, DES, RSA)
-    private final static String alg = "AES";
-    // Definición del modo de cifrado a utilizar
-    private final static String cI = "AES/CBC/PKCS5Padding";
-
-
     public static String encrypt(String key, String iv, String cleartext) throws Exception {
-        Cipher cipher = Cipher.getInstance(cI);
-        SecretKeySpec skeySpec = new SecretKeySpec(key.getBytes(), alg);
+        Cipher cipher = Cipher.getInstance(Constants.CI);
+        SecretKeySpec skeySpec = new SecretKeySpec(key.getBytes(), Constants.ALG);
         IvParameterSpec ivParameterSpec = new IvParameterSpec(iv.getBytes());
         cipher.init(Cipher.ENCRYPT_MODE, skeySpec, ivParameterSpec);
         byte[] encrypted = cipher.doFinal(cleartext.getBytes());
@@ -33,8 +29,8 @@ public class StringEncrypt {
     }
 
     public static String decrypt(String key, String iv, String encrypted) throws Exception {
-        Cipher cipher = Cipher.getInstance(cI);
-        SecretKeySpec skeySpec = new SecretKeySpec(key.getBytes(), alg);
+        Cipher cipher = Cipher.getInstance(Constants.CI);
+        SecretKeySpec skeySpec = new SecretKeySpec(key.getBytes(), Constants.ALG);
         IvParameterSpec ivParameterSpec = new IvParameterSpec(iv.getBytes());
         byte[] enc = decodeBase64(encrypted);
         cipher.init(Cipher.DECRYPT_MODE, skeySpec, ivParameterSpec);

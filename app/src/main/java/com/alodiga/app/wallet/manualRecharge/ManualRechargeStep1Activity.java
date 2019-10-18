@@ -67,7 +67,7 @@ public class ManualRechargeStep1Activity extends AppCompatActivity {
         spinnerbank.setEnabled(false);
         spinnerproducto.setEnabled(false);
 
-        progressDialogAlodiga = new ProgressDialogAlodiga(this, "cargando..");
+        progressDialogAlodiga = new ProgressDialogAlodiga(this, getString(R.string.loading));
         progressDialogAlodiga.show();
 
         //Spinner Country
@@ -287,7 +287,7 @@ public class ManualRechargeStep1Activity extends AppCompatActivity {
 
 
     public void RemovalTask() {
-        progressDialogAlodiga = new ProgressDialogAlodiga(this, "cargando..");
+        progressDialogAlodiga = new ProgressDialogAlodiga(this, getString(R.string.loading));
         progressDialogAlodiga.show();
         mAuthTask = new ManualRechargeStep1Activity.UserRemovalTask();
         mAuthTask.execute((Void) null);

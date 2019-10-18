@@ -53,7 +53,7 @@ public class TransferenceStep2QrActivity extends AppCompatActivity implements ZX
     @Override
     public void onCreate(Bundle state) {
         super.onCreate(state);
-        progressDialogAlodiga = new ProgressDialogAlodiga(this, "Cargando..");
+        progressDialogAlodiga = new ProgressDialogAlodiga(this, getString(R.string.loading));
         mScannerView = new ZXingScannerView(this);
         setContentView(mScannerView);
     }
@@ -74,7 +74,7 @@ public class TransferenceStep2QrActivity extends AppCompatActivity implements ZX
 
     @Override
     public void handleResult(Result rawResult) {
-        Toast.makeText(getApplicationContext(), "Escaneo Exitoso", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), getString(R.string.scan_fine), Toast.LENGTH_LONG).show();
         mScannerView.stopCamera();
 
 

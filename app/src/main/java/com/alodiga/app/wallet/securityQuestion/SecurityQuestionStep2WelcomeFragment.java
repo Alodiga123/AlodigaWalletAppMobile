@@ -28,13 +28,6 @@ public class SecurityQuestionStep2WelcomeFragment extends Fragment implements
         setListeners();
         return view;
     }
-    /*@Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.welcome_secure_answer_layout);
-        initViews();
-        setListeners();
-    }*/
 
     private void initViews() {
         submit = view.findViewById(R.id.step1_next_button);

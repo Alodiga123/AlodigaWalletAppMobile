@@ -5,6 +5,8 @@
  */
 package com.alodiga.app.wallet.encript;
 
+import com.alodiga.app.wallet.utils.Constants;
+
 import org.apache.commons.codec.binary.Base64;
 
 import java.nio.charset.StandardCharsets;
@@ -24,7 +26,7 @@ public class ParseInt {
         String secretKey = ke; //llave para encriptar datos
         String base64EncryptedString = "";
         try {
-            MessageDigest md = MessageDigest.getInstance("MD5");
+            MessageDigest md = MessageDigest.getInstance(Constants.MD5);
             byte[] digestOfPassword = md.digest(secretKey.getBytes(StandardCharsets.UTF_8));
             byte[] keyBytes = Arrays.copyOf(digestOfPassword, 24);
             SecretKey key = new SecretKeySpec(keyBytes, t2);
@@ -44,7 +46,7 @@ public class ParseInt {
         String base64EncryptedString = "";
         try {
             byte[] message = Base64.decodeBase64(textoEncriptado.getBytes(StandardCharsets.UTF_8));
-            MessageDigest md = MessageDigest.getInstance("MD5");
+            MessageDigest md = MessageDigest.getInstance(Constants.MD5);
             byte[] digestOfPassword = md.digest(secretKey.getBytes(StandardCharsets.UTF_8));
             byte[] keyBytes = Arrays.copyOf(digestOfPassword, 24);
             SecretKey key = new SecretKeySpec(keyBytes, k2);

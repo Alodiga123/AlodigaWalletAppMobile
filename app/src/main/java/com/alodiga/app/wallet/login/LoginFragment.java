@@ -247,13 +247,6 @@ public class LoginFragment extends Fragment implements OnClickListener {
                 break;
             case R.id.createAccount:
 
-                // Replace signup frgament with animation
-			/*fragmentManager
-					.beginTransaction()
-					.setCustomAnimations(R.anim.right_enter, R.anim.left_out)
-					.replace(R.id.frameContainer, new SignUp_Fragment(),
-							Utils.SignUp_Fragment).commit();*/
-
                 fragmentManager
                         .beginTransaction()
                         .setCustomAnimations(R.anim.right_enter, R.anim.left_out)
@@ -287,13 +280,13 @@ public class LoginFragment extends Fragment implements OnClickListener {
                 || getPassword.equals("") || getPassword.length() == 0) {
             loginLayout.startAnimation(shakeAnimation);
             new CustomToast().Show_Toast(getActivity(), view,
-                    "Enter both credentials.");
+                    getString(R.string.enter_both_credentials));
 
         }
         // Check if email id is valid or not
         else if (!m.find())
             new CustomToast().Show_Toast(getActivity(), view,
-                    "Your Email Id is Invalid.");
+                    getString(R.string.email_invalid));
             // Else do login and do your stuff
         else entrar();
 
@@ -301,7 +294,7 @@ public class LoginFragment extends Fragment implements OnClickListener {
 
     public void entrar() {
 
-        progressDialogAlodiga = new ProgressDialogAlodiga(getContext(), "cargando..");
+        progressDialogAlodiga = new ProgressDialogAlodiga(getContext(), getString(R.string.loading));
         progressDialogAlodiga.show();
         mAuthTask = new UserLoginTask(getEmailId, getPassword);
         mAuthTask.execute((Void) null);

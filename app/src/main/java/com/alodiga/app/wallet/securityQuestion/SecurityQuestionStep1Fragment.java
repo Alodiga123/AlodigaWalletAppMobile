@@ -46,7 +46,6 @@ public class SecurityQuestionStep1Fragment extends Fragment implements
     private boolean serviceStatus;
     private SecurityQuestionStep1Fragment.UserGetSecurityAnswerTask mAuthTask = null;
     private SecurityQuestionStep1Fragment.UserSendAnswerTask AnswerTask = null;
-    private String selec_spinnerAnswer1, selec_spinnerAnswer2, selec_spinnerAnswer3;
     private ObjGenericObject select1;
     private ObjGenericObject select2;
     private ObjGenericObject object_select, object2_select, object3_select;
@@ -60,7 +59,7 @@ public class SecurityQuestionStep1Fragment extends Fragment implements
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.security_questions_layout, container,
                 false);
-        progressDialogAlodiga = new ProgressDialogAlodiga(getContext(), "cargando..");
+        progressDialogAlodiga = new ProgressDialogAlodiga(getContext(), getString(R.string.loading));
         progressDialogAlodiga.show();
         initViews();
         setListeners();
@@ -108,7 +107,7 @@ public class SecurityQuestionStep1Fragment extends Fragment implements
     }
 
     public void sendAnswer() {
-        progressDialogAlodiga = new ProgressDialogAlodiga(getContext(), "cargando..");
+        progressDialogAlodiga = new ProgressDialogAlodiga(getContext(), getString(R.string.loading));
         progressDialogAlodiga.show();
         AnswerTask = new UserSendAnswerTask();
         AnswerTask.execute((Void) null);

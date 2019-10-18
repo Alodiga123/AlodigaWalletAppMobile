@@ -88,7 +88,7 @@ public class ForgotPassword_Fragment extends Fragment implements
 
     }
 
-    private void submitButtonTask() {
+    public void submitButtonTask() {
         String getEmailId = emailId.getText().toString();
 
         // Pattern for email id validation
@@ -100,17 +100,16 @@ public class ForgotPassword_Fragment extends Fragment implements
         // First check if email id is not null else show error toast
         if (getEmailId.equals("") || getEmailId.length() == 0)
 
-            new CustomToast().Show_Toast(getActivity(), view,
-                    "Please enter your Email Id.");
+            new CustomToast().Show_Toast(getActivity(), view,getString(R.string.email));
 
             // Check if email id is valid or not
         else if (!m.find())
             new CustomToast().Show_Toast(getActivity(), view,
-                    "Your Email Id is Invalid.");
+                    getString(R.string.email_invalid));
 
             // Else submit email id and fetch passwod or do your stuff
         else
-            Toast.makeText(getActivity(), "Se ha enviado un correo.",
+            Toast.makeText(getActivity(), getString(R.string.email_send),
                     Toast.LENGTH_SHORT).show();
     }
 }

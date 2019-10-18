@@ -32,29 +32,13 @@ import java.util.Date;
 import java.util.HashMap;
 
 public class TransferenceStep6Activity extends AppCompatActivity {
-    private static View view;
     private static TextView amountValue, conceptValue;
-
-
     private static TextView txtTransactionId_3, txtAccountSourceValue, txtDateTimeValue_3, acountNumberValue, destinationPhoneValue, destinationLastNameValue, destinationNameValue, txtAmountValue, txtConceptValue;
-
-    private static TextView login;
     private static Button btnProcessFinisTransference;
     private static Button btnShareInformation;
-    private static CheckBox terms_conditions;
-    private static Spinner spinnerCountry;
-    ArrayList<ObjUserHasProduct> userHasProducts = new ArrayList<ObjUserHasProduct>();
     private ProgressDialogAlodiga progressDialogAlodiga;
-    private ObjCountry objCountry;
     private String responsetxt = "";
     private boolean serviceStatus;
-    private String getAmountValue = "";
-    private String getconceptValue = "";
-    private String getTxtAccountNumberValue = "";
-    private String getTxtDestinationPhoneValue = "";
-    private String getTxtDestinationLastNameValue = "";
-    private String getTxtDestinationNameValue = "";
-    private Integer caseFindMoneyType = 0;
     private UserProductTask mAuthTask = null;
 
 
@@ -102,7 +86,7 @@ public class TransferenceStep6Activity extends AppCompatActivity {
             }
         });
 
-        progressDialogAlodiga = new ProgressDialogAlodiga(this, "Cargando..");
+        progressDialogAlodiga = new ProgressDialogAlodiga(this, getString(R.string.loading));
         btnProcessFinisTransference.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
                 //updateProduct();
@@ -119,7 +103,7 @@ public class TransferenceStep6Activity extends AppCompatActivity {
 
     public void updateProduct() {
 
-        progressDialogAlodiga = new ProgressDialogAlodiga(this, "cargando..");
+        progressDialogAlodiga = new ProgressDialogAlodiga(this, getString(R.string.loading));
         progressDialogAlodiga.show();
         mAuthTask = new UserProductTask();
         mAuthTask.execute((Void) null);
