@@ -25,6 +25,10 @@
             android:id="@+id/nav_transfer"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_transfer" />
+        <item
+            android:id="@+id/nav_topup"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_recharge_n_i" />
     </group>
 
     <item android:title="Adicionales">
