@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:fillViewport="true"
+    android:overScrollMode="never"
+    android:scrollbars="none" >
+
+<RelativeLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/side_nav_bar"
+   >
+
+
+    <LinearLayout
+        android:id="@+id/login_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:orientation="vertical"
+        android:padding="15dp"
+
+        >
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top|center"
+            android:padding="10dp"
+            android:text="@string/topup_title"
+            android:textColor="@color/background_color"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/operator_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:padding="10dp"
+            android:text="@string/operator_text"
+            android:textColor="@color/white_greyish"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/operator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:padding="10dp"
+            android:textColor="@color/white_greyish"
+            android:textSize="16sp" />
+
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:background="@color/white_greyish" />
+
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:background="@color/white_greyish" />
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/login_layout">
+
+            <TextView
+                android:id="@+id/product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:padding="10dp"
+                android:text="@string/producto_info"
+                android:textColor="@color/white_greyish"
+                android:textSize="16sp" />
+
+            <Spinner
+                android:layout_below="@+id/product"
+                android:id="@+id/spinnerProduct"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@android:color/transparent"
+                android:drawablePadding="8dp"
+                android:hint="@string/location"
+                android:padding="10dp"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/range"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:text="@string/product_spinner"
+                android:textColor="@color/white_greyish"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/number"
+                android:layout_below="@+id/range"
+
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@android:color/transparent"
+                android:drawableLeft="@drawable/moneyicon"
+                android:drawablePadding="8dp"
+                android:gravity="center_vertical"
+                android:inputType="numberDecimal"
+                android:padding="10dp"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="16sp" />
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/next"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/login_layout"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/loginbutton_selector"
+            android:padding="10dp"
+            android:text="@string/buy"
+            android:textColor="@color/background_color"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+
+</RelativeLayout>
+
+</ScrollView>
