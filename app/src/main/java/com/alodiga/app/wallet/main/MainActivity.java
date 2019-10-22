@@ -34,6 +34,7 @@ import com.alodiga.app.wallet.manualRemoval.ManualRemovalStep1Activity;
 import com.alodiga.app.wallet.model.ObjMoney;
 import com.alodiga.app.wallet.model.ObjUserHasProduct;
 import com.alodiga.app.wallet.paymentComerce.PaymentComerceStep1Activity;
+import com.alodiga.app.wallet.topup.TopupStep1Activity;
 import com.alodiga.app.wallet.transference.TransferenceStep1Activity;
 import com.alodiga.app.wallet.utils.Session;
 import com.google.android.material.navigation.NavigationView;
@@ -236,6 +237,9 @@ public class MainActivity extends AppCompatActivity
             startActivity(show);
         } else if (id == R.id.nav_pay_qr) {
             Intent show = new Intent(MainActivity.this, PaymentComerceStep1Activity.class);
+            startActivity(show);
+        } else if (id == R.id.nav_topup) {
+            Intent show = new Intent(MainActivity.this, TopupStep1Activity.class);
             startActivity(show);
         } else if (id == R.id.nav_close_session) {
             AlertDialog.Builder dialogo1 = new AlertDialog.Builder(this);
