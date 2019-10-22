@@ -13,7 +13,8 @@ public class Constants {
     public static final boolean CONSTANT_IS_PRODUCTION = false;
 
     //LOCAL moises
-    // public static String IPDAT="192.168.3.20";
+    public static String IPDAT="192.168.3.20";
+
     public static final String RESUM_OPERATION_PHONE = "getResumOperationByPhoneNumberSender";
     public static final String RESUM_CLOSE_SESSION = "appCloseSession";
     public static final String RESUM_LAST_TRANSACTION = "getLastOperationByPhoneNumber";
@@ -99,6 +100,9 @@ public class Constants {
     public static final String WEB_SERVICES_METHOD_NAME_SEND_SECRET_AMSWER = "setPreguntasSecretasUsuarioAplicacionMovil";
     public static final String WEB_SERVICES_METHOD_NAME_GET_BANK = "getBankByCountryApp";
     public static final String WEB_SERVICES_METHOD_NAME_GET_COUNTRIES = "getCountriesHasBank";
+    public static final String WEB_SERVICES_METHOD_NAME_GET_LANGUAJE_TOPUP = "getLanguage";
+    public static final String WEB_SERVICES_METHOD_NAME_GET_COUNTRIES_TOPUP = "getTopUpCountries";
+    public static final String WEB_SERVICES_METHOD_NAME_GET_LIST_TOPUP = "topUpList";
     public static final String WEB_SERVICES_METHOD_NAME_GET_PRODUCT = "getProductsByBankId";
     public static final String WEB_SERVICES_METHOD_NAME_PAYMENT_COMERCE = "savePaymentShop";
     public static final String WEB_SERVICES_METHOD_NAME_TRANSFERENCE = "saveTransferBetweenAccount";
@@ -115,7 +119,7 @@ public class Constants {
     public static final String KEY_ENCRIPT_DESENCRIPT_QR = "alodigaPruebadellave";
     public static final String VALUE_KEY = "maria,d,tercerparametro,p";
     //LOCAL
-    public static String IPDAT = "192.168.3.140";
+    //public static String IPDAT = "192.168.3.140";
     /*PRODUCCION*/
     //public static final String  CONSTANT_IP = "192.168.3.20";
     public static final String CONSTANT_IP = IPDAT;
@@ -168,4 +172,8 @@ public class Constants {
     public final static int BLACK = 0xFF000000;
     public final static int WIDTH = 500;
     public final static int HEIGHT = 500;
+    public final static String TOPUP_DF = "DF";
+    public final static String TOPUP_OR = "OR";
+
+
 }
