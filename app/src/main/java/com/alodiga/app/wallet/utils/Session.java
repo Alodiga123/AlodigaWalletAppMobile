@@ -1,6 +1,8 @@
 package com.alodiga.app.wallet.utils;
 
+import com.alodiga.app.wallet.model.ObjTopUpInfos;
 import com.alodiga.app.wallet.model.ObjUserHasProduct;
+import com.alodiga.app.wallet.model.ObjtopUpInfos_IsOpenRange;
 
 import java.util.ArrayList;
 
@@ -29,6 +31,15 @@ public class Session {
     private static ObjUserHasProduct moneySelected;
     private static String codeOperation;
     private static ArrayList<ObjUserHasProduct> objUserHasProducts;
+    private static String numberDestinationTopup;
+    private static String phonenumberTopup;
+    private static String languajeTopup;
+    private static String countryTopup;
+    private static String typeTopup;
+    private static String operatorTopup;
+    private static ObjtopUpInfos_IsOpenRange objIsOpenRangeTopup;
+    private static ObjTopUpInfos[] datosDenominacionFijaTopup;
+    private static String DestinationAmountTopup;
 
     public static ArrayList<ObjUserHasProduct> getObjUserHasProducts() {
         return objUserHasProducts;
@@ -190,6 +201,78 @@ public class Session {
         Session.codeOperation = codeOperation;
     }
 
+    public static String getNumberDestinationTopup() {
+        return numberDestinationTopup;
+    }
+
+    public static void setNumberDestinationTopup(String numberDestinationTopup) {
+        Session.numberDestinationTopup = numberDestinationTopup;
+    }
+
+    public static String getPhonenumberTopup() {
+        return phonenumberTopup;
+    }
+
+    public static void setPhonenumberTopup(String phonenumberTopup) {
+        Session.phonenumberTopup = phonenumberTopup;
+    }
+
+    public static String getLanguajeTopup() {
+        return languajeTopup;
+    }
+
+    public static void setLanguajeTopup(String languajeTopup) {
+        Session.languajeTopup = languajeTopup;
+    }
+
+    public static String getCountryTopup() {
+        return countryTopup;
+    }
+
+    public static void setCountryTopup(String countryTopup) {
+        Session.countryTopup = countryTopup;
+    }
+
+    public static String getTypeTopup() {
+        return typeTopup;
+    }
+
+    public static void setTypeTopup(String typeTopup) {
+        Session.typeTopup = typeTopup;
+    }
+
+    public static String getOperatorTopup() {
+        return operatorTopup;
+    }
+
+    public static void setOperatorTopup(String operatorTopup) {
+        Session.operatorTopup = operatorTopup;
+    }
+
+    public static ObjtopUpInfos_IsOpenRange getObjIsOpenRangeTopup() {
+        return objIsOpenRangeTopup;
+    }
+
+    public static void setObjIsOpenRangeTopup(ObjtopUpInfos_IsOpenRange objIsOpenRangeTopup) {
+        Session.objIsOpenRangeTopup = objIsOpenRangeTopup;
+    }
+
+    public static ObjTopUpInfos[] getDatosDenominacionFijaTopup() {
+        return datosDenominacionFijaTopup;
+    }
+
+    public static void setDatosDenominacionFijaTopup(ObjTopUpInfos[] datosDenominacionFijaTopup) {
+        Session.datosDenominacionFijaTopup = datosDenominacionFijaTopup;
+    }
+
+    public static String getDestinationAmountTopup() {
+        return DestinationAmountTopup;
+    }
+
+    public static void setDestinationAmountTopup(String destinationAmountTopup) {
+        DestinationAmountTopup = destinationAmountTopup;
+    }
+
     public static void clearALL() {
         Session.userId = null;
         Session.username = null;
@@ -210,6 +293,16 @@ public class Session {
         Session.mobileCodeSms = null;
         Session.moneySelected = null;
         Session.codeOperation = null;
+        Session.numberDestinationTopup= null;
+        Session.phonenumberTopup= null;
+        Session.languajeTopup= null;
+        Session.countryTopup= null;
+        Session.typeTopup= null;
+        Session.objUserHasProducts.clear();
+        Session.operatorTopup=null;
+        Session.objIsOpenRangeTopup = null;
+        Session.datosDenominacionFijaTopup= null;
+        Session.DestinationAmountTopup= null;
     }
 
 }
