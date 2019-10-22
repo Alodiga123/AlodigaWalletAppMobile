@@ -20,6 +20,7 @@
     <string name="menu_recharge">Recarga Manual</string>
     <string name="menu_aoutMoney">Retiro Manual</string>
     <string name="menu_transfer">Transferir</string>
+    <string name="menu_recharge_n_i">TopUp</string>
     <string name="afiliation">Afiliar</string>
     <string name="menu_send">Cerrar sesión</string>
     <string name="email">Introduce E-mail</string>
@@ -29,6 +30,8 @@
     <string name="closebutton">Close Button for Activity</string>
     <string name="registered_emailid">Por favor ingrese correo electrónico registrado:</string>
     <string name="register_phone_number_message">Ingrese su número de teléfono:</string>
+    <string name="register_phone_number_message_dest">Número de teléfono (Destino):</string>
+    <string name="register_phone_number_message_rem">Su número de teléfono (Remitente):</string>
     <string name="register_select_country">Seleccione el país:</string>
     <string name="register_validation_invalid_long">Número de teléfono no puede estar vacio</string>
     <string name="register_validation_invalid_null_Pin">El código de validación no puede estar vacio</string>
@@ -36,12 +39,22 @@
     <string name="register_validation_mobile_code_not_match">Código de validación inválido, Numero de intentos restantes: </string>
     <string name="register_validation_limit">Demasiados intentos, repita el proceso nuevamente</string>
     <string name="register_time_finished">Se agoto el tiempo para ingresar código de validación</string>
+    <string name="operator_text">Operadora:</string>
+    <string name="product_spinner">Ingrese cualquier cantidad de</string>
+    <string name="number_trans">Número de transacción: </string>
+    <string name="dolar">$</string>
+    <string name="dolar_a">$ a </string>
+    <string name="increment"> con incrementos de </string>
+
+
+
     <string name="login">Inicio</string>
     <string name="submit">ENVIAR</string>
     <string name="next">SIGUIENTE</string>
     <string name="Finalize">FINALIZAR</string>
     <string name="back">ATRAS</string>
     <string name="signUp">REGÍSTRATE</string>
+    <string name="topup_title">RECARGAS DE MOVILES NACIONALES E INTERNACIONALES</string>
     <string name="security_question">PREGUNTAS DE SEGURIDAD</string>
     <string name="transference_title">TRANSFERENCIA</string>
     <string name="my_qr_title">MI QR</string>
@@ -51,6 +64,7 @@
     <string name="confirmation_title_">CONFIRMACION.</string>
     <string name="last_operation_title">ULTIMOS MOVIMIENTOS</string>
     <string name="confirmation_title_successfull">TRANSACCION EXITOSA</string>
+    <string name="confirmation_title_successfull_Alodiga"> TRANSACCION EXITOSA / AlodigaWallet</string>
     <string name="welcome">BIENVENIDO</string>
     <string name="process">PROCESAR</string>
     <string name="process_finished">FINALIZAR</string>
@@ -59,6 +73,7 @@
     <string name="lastName">Apellido</string>
     <string name="mobileNumber">Numero de Teléfono</string>
     <string name="location">Pais</string>
+    <string name="location_">Pais:</string>
     <string name="passowrd">Contraseña</string>
     <string name="already_user">¿Ya tienes cuenta? Entre aquí.</string>
     <string name="terms_conditions">Al hacer clic en Registrarse, usted acepta todos los Términos y Condiciones.</string>
@@ -80,7 +95,7 @@
     <string name="password_confirm">Confirmar Contraseña</string>
     <string name="password_eq">Las contraseñas deben ser iguales</string>
     <string name="acept_ter"> Debe aceptar terminos y condiciones.</string>
-
+    <string name="share_with">Share with</string>
 
 
     <string name="process_change_password">Procesar Cambio</string>
@@ -115,6 +130,8 @@
     <string name="descrip">Descripción</string>
     <string name="buttonProcesarRetiro">Procesar Retiro</string>
     <string name="buttonProcessRecharge">Procesar Transferencia</string>
+    <string name="find">BUSCAR</string>
+    <string name="buy">COMPRAR</string>
     <string name="recharge_title">RECARGA</string>
     <string name="id_recharge">Ingrese el identificador de la recarga:</string>
     <string name="id_transfer">Concepto de la transferencia:</string>
@@ -171,8 +188,8 @@
     <string name="destination_lastName">Apellido:</string>
     <string name="destination_phoe">Teléfono:</string>
     <string name="destination_cuenta">Destino:</string>
-    <string name="destination_concept">Concepto</string>
-    <string name="destination_amount">Monto</string>
+    <string name="destination_concept">Concepto:</string>
+    <string name="destination_amount">Monto:</string>
     <string name="destination_transaction_id">Transacción:</string>
     <string name="destination_date_time">Fecha:</string>
     <string name="destination_source">Origen:</string>
@@ -207,7 +224,7 @@
     <string name="close_session_answer">¿Esta Seguro que desea cerrar la sesion?</string>
     <string name="confirm">Confirmar</string>
     <string name="cancel">Cancelar</string>
-    <string name="invalid_phone">La longitud del telefono en invalida"</string>
+    <string name="invalid_phone">La longitud del teléfono en invalida"</string>
     <string name="forEmail">Por email</string>
     <string name="forPhone">Por número Teléfono</string>
     <string name="forQr">Por Codigo QR</string>
@@ -217,6 +234,7 @@
     <string name="search">Buscar</string>
     <string name="select_location">Debe seleccionar un Pais</string>
     <string name="scan_fine">Escaneo Exitoso</string>
+    <string name="select_language">Seleccione el idioma:</string>
 
 
 
