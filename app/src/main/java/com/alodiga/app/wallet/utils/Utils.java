@@ -305,4 +305,10 @@ public class Utils {
         return clave;
     }
 
+
+    public static String processPhone(String phone) {
+        if (phone != null && phone.charAt(0) == '+')
+            phone = phone.substring(1);
+        return phone;
+    }
 }
