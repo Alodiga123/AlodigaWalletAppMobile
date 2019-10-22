@@ -79,10 +79,10 @@ public class TransferenceStep6Activity extends AppCompatActivity {
                 //updateProduct();
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
-                intent.putExtra(Intent.EXTRA_TEXT, "TRANSACCION EXITOSA / AlodigaWallet \n" + "Nombre: " + Session.getDestinationNameValue() + " " + Session.getDestinationLastNameValue() +
-                        "\n" + "Número de transacción: " + new Date().getTime() + "\n" + "Telefono: " + Session.getDestinationPhoneValue() + "\n" + "Concepto: " + Session.getDestinationConcept() + "\n" +
-                        "Moneda: " + Session.getMoneySelected().getName().split("-")[0] + "\n" + "Fecha: " + new Timestamp(new Date().getTime()).toGMTString());
-                startActivity(Intent.createChooser(intent, "Share with"));
+                intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.confirmation_title_successfull_Alodiga)+" \n" + getString(R.string.destination_name)+" "+ Session.getDestinationNameValue() + " " + Session.getDestinationLastNameValue() +
+                        "\n" + getString(R.string.number_trans)+"" + new Date().getTime() + "\n" + getString(R.string.destination_phoe)+" " + Session.getDestinationPhoneValue() + "\n" + getString(R.string.destination_concept)+" " + Session.getDestinationConcept() + "\n" +
+                        getString(R.string.money)+" " + Session.getMoneySelected().getName().split("-")[0] + "\n" + getString(R.string.destination_date_time)+" " + new Timestamp(new Date().getTime()).toGMTString());
+                startActivity(Intent.createChooser(intent, getString(R.string.share_with)));
             }
         });
 
