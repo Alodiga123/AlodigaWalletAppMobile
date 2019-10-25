@@ -98,13 +98,13 @@ public class TopupStep1Activity extends AppCompatActivity  {
         spinnerCountry.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 ObjGenericObject obj = (ObjGenericObject) spinnerCountry.getSelectedItem();
-                //mobileNumberRegister.setText("+" + obj.getId());
-                //mobileNumberRegisterR.setText("+" + obj.getId());
+                mobileNumberRegister.setText("+" + obj.getId());
+                mobileNumberRegisterR.setText("+" + obj.getId());
 
 
                 //openrange
-                mobileNumberRegister.setText("+5353693280");
-                mobileNumberRegisterR.setText("+93789113612");
+                //mobileNumberRegister.setText("+5353693280");
+                //mobileNumberRegisterR.setText("+93789113612");
 
                 //denominacion fija
                 //mobileNumberRegister.setText("+542612594080");
