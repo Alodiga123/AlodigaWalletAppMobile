@@ -48,8 +48,7 @@ public class TopupStep2Activity extends AppCompatActivity  {
     private ProcessTopup2 mAuthTask = null;
     private Button next;
     private static Spinner spinnerProduct, spinnerProductPago;
-    //static ObjUserHasProduct[] listSpinner_product = new ObjUserHasProduct[0];
-    //ArrayList<ObjUserHasProduct> listSpinner_product = new ArrayList<>();
+
 
 
     //private ObjCountry objCountry;
@@ -193,9 +192,7 @@ public class TopupStep2Activity extends AppCompatActivity  {
                     }else{
                         Session.setDestinationAmountTopup(number_st);
                         entrar(true, productselect.getId());
-                       /* Intent show;
-                        show = new Intent(getApplicationContext(), TopupStep3Activity.class);
-                        startActivity(show);*/
+
                     }
                 }
 
@@ -387,8 +384,10 @@ public class TopupStep2Activity extends AppCompatActivity  {
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
             if (success) {
-                String pru= response.getProperty("transactionId").toString();
-                Session.setOperationTopup(pru);
+
+                Session.setOperationTopup(response.getProperty("idTransaction").toString());
+                Session.setObjUserHasProducts(getListProductGeneric(response));
+
 
                 Intent show;
                 show = new Intent(getApplicationContext(), TopupStep3Activity.class);
@@ -502,6 +501,20 @@ public class TopupStep2Activity extends AppCompatActivity  {
         return obj2;
     }
 
+    protected ArrayList<ObjUserHasProduct> getListProductGeneric(SoapObject response) {
+        //ObjUserHasProduct[] obj2_aux= new ObjUserHasProduct[response.getPropertyCount()-3];
+        //ObjUserHasProduct[] obj2 = new ObjUserHasProduct[response.getPropertyCount()-3];
+        ArrayList<ObjUserHasProduct> obj2 = new ArrayList<>();
+        for (int i = 3; i < response.getPropertyCount(); i++) {
+            SoapObject obj = (SoapObject) response.getProperty(i);
+            String propiedad = response.getProperty(i).toString();
+            ObjUserHasProduct object = new ObjUserHasProduct(obj.getProperty("id").toString(), obj.getProperty("name").toString(), obj.getProperty("currentBalance").toString(), obj.getProperty("symbol").toString());
+            obj2.add(object);
+            //obj2[i-3] = object;
+        }
+
+        return obj2;
+    }
 
 
 }

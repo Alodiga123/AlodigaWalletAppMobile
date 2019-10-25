@@ -100,6 +100,8 @@ public class TopupStep1Activity extends AppCompatActivity  {
                 ObjGenericObject obj = (ObjGenericObject) spinnerCountry.getSelectedItem();
                 //mobileNumberRegister.setText("+" + obj.getId());
                 //mobileNumberRegisterR.setText("+" + obj.getId());
+
+
                 //openrange
                 mobileNumberRegister.setText("+5353693280");
                 mobileNumberRegisterR.setText("+93789113612");
@@ -168,13 +170,7 @@ public class TopupStep1Activity extends AppCompatActivity  {
                     Session.setNumberDestinationTopup(getmobileNumberRegister);
                     Session.setLanguajeTopup(getlanguaje.getId());
                     Session.setCountryTopup(getcountry.getName());
-                    /*Session.setTypeTopup("2");
-                    Intent show;
-                    show = new Intent(getApplicationContext(), TopupStep2Activity.class);
-                    startActivity(show);*/
 
-                    //mAuthTask = new ProcessTopup(Session.getPhonenumberTopup(),Session.getNumberDestinationTopup());
-                    //mAuthTask.execute((Void) null);
                     entrar();
                 }
 
