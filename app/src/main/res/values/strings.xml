@@ -31,7 +31,9 @@
     <string name="registered_emailid">Por favor ingrese correo electrónico registrado:</string>
     <string name="register_phone_number_message">Ingrese su número de teléfono:</string>
     <string name="register_phone_number_message_dest">Número de teléfono (Destino):</string>
+    <string name="register_phone_number_message_dest_">Teléfono (Destino):</string>
     <string name="register_phone_number_message_rem">Su número de teléfono (Remitente):</string>
+    <string name="register_phone_number_message_rem_">Teléfono (Remitente):</string>
     <string name="register_select_country">Seleccione el país:</string>
     <string name="register_validation_invalid_long">Número de teléfono no puede estar vacio</string>
     <string name="register_validation_invalid_null_Pin">El código de validación no puede estar vacio</string>
@@ -112,7 +114,9 @@
     <string name="invalid_all_question">Todos los campos son requeridos</string>
     <string name="bank_info">Seleccione el banco:</string>
     <string name="pais_info">Seleccione el pais:</string>
-    <string name="producto_info">Seleccione el producto:</string>
+    <string name="producto_info">Seleccione el producto a recargar:</string>
+    <string name="productoPago_info">Seleccione el producto a debitar:</string>
+
     <string name="recharge_id">Ingrese el número de la transferencia:</string>
     <string name="external_account_number">Número de cuenta:</string>
     <string name="external_account_number_destination">Cuenta de destino de los fondos</string>
@@ -170,6 +174,10 @@
     <string name="web_services_response_98">Error de credenciales</string>
     <string name="web_services_response_99">Error interno</string>
     <string name="web_services_response_00">Bienvenido</string>
+    <string name="web_services_response_101">MSISDN de destino fuera de rango</string>
+    <string name="web_services_response_204">Destino no es prepago</string>
+    <string name="web_services_response_205">Error transacción TopUp</string>
+    <string name="web_services_response_301">Denominación no disponible. Intente nuevamente con otra denominación.</string>
 
 
     <string name="error_not_find_special_caracter">La contraseña debe tener caracteres especiales</string>

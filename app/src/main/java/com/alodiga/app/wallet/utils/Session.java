@@ -40,6 +40,8 @@ public class Session {
     private static ObjtopUpInfos_IsOpenRange objIsOpenRangeTopup;
     private static ObjTopUpInfos[] datosDenominacionFijaTopup;
     private static String DestinationAmountTopup;
+    private static String operationTopup;
+
 
     public static ArrayList<ObjUserHasProduct> getObjUserHasProducts() {
         return objUserHasProducts;
@@ -273,6 +275,14 @@ public class Session {
         DestinationAmountTopup = destinationAmountTopup;
     }
 
+    public static String getOperationTopup() {
+        return operationTopup;
+    }
+
+    public static void setOperationTopup(String operationTopup) {
+        Session.operationTopup = operationTopup;
+    }
+
     public static void clearALL() {
         Session.userId = null;
         Session.username = null;
@@ -303,6 +313,7 @@ public class Session {
         Session.objIsOpenRangeTopup = null;
         Session.datosDenominacionFijaTopup= null;
         Session.DestinationAmountTopup= null;
+        Session.operationTopup=null;
     }
 
 }

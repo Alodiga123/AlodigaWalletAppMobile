@@ -73,8 +73,7 @@
                 android:textSize="15sp"
                 android:text="@string/location_"/>
             <TextView
-                android:id="@+id/txtDestinationLastNameValue_3"
-
+                android:id="@+id/txtcountry"
                 android:padding="2dip"
                 android:singleLine="true"
                 android:textColor="@color/white_greyish"
@@ -118,9 +117,9 @@
                 android:textColor="@color/white_greyish"
                 android:textColorHint="@color/white_greyish"
                 android:textSize="15sp"
-                android:text="@string/register_phone_number_message_rem"/>
+                android:text="@string/register_phone_number_message_rem_"/>
             <TextView
-                android:id="@+id/txtDestinationPhoneValue_3"
+                android:id="@+id/txtRemitente"
 
                 android:padding="2dip"
                 android:singleLine="true"
@@ -140,9 +139,9 @@
                 android:textColor="@color/white_greyish"
                 android:textColorHint="@color/white_greyish"
                 android:textSize="15sp"
-                android:text="@string/register_phone_number_message_dest"/>
+                android:text="@string/register_phone_number_message_dest_"/>
             <TextView
-                android:id="@+id/txtAccountNumberValue_3"
+                android:id="@+id/txtDestino"
                 android:padding="2dip"
                 android:singleLine="true"
                 android:textColor="@color/white_greyish"
@@ -153,7 +152,7 @@
 
         <TableRow>
             <TextView
-                android:id="@+id/txtAmount"
+                android:id="@+id/txtAmount_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
@@ -164,7 +163,7 @@
                 android:textSize="15sp"
                 android:text="@string/destination_amount"/>
             <TextView
-                android:id="@+id/txtAmountValue_3"
+                android:id="@+id/txtAmount"
                 android:padding="3dip"
                 android:singleLine="true"
                 android:textColor="@color/white_greyish"
@@ -188,7 +187,7 @@
                 android:textSize="15sp"
                 android:text="@string/destination_date_time"/>
             <TextView
-                android:id="@+id/txtDateTimeValue_3"
+                android:id="@+id/txtDateTime"
                 android:padding="2dip"
                 android:singleLine="true"
                 android:textColor="@color/white_greyish"

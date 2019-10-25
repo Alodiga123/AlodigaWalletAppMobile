@@ -35,7 +35,39 @@
             android:textSize="25sp"
             android:textStyle="bold" />
 
+        <TextView
+            android:id="@+id/productPago_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:padding="10dp"
+            android:text="@string/productoPago_info"
+            android:textColor="@color/white_greyish"
+            android:textSize="16sp" />
 
+        <Spinner
+            android:id="@+id/spinnerProductPago"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@android:color/transparent"
+            android:drawablePadding="8dp"
+            android:hint="@string/location"
+            android:padding="10dp"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="16sp" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:background="@color/white_greyish" />
+
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:background="@color/white_greyish" />
         <TextView
             android:id="@+id/operator_text"
             android:layout_width="wrap_content"

@@ -92,6 +92,10 @@ public class Constants {
     public static final String WEB_SERVICES_RESPONSE_CODE_USUARIO_NO_EXISTE = "97";
     public static final String WEB_SERVICES_RESPONSE_CODE_ERROR_CREDENCIALES = "98";
     public static final String WEB_SERVICES_RESPONSE_CODE_ERROR_INTERNO = "99";
+    public static final String WEB_SERVICES_RESPONSE_CODE_DESTINATION_MSISDN_OUT_OF_RANGE = "101";
+    public static final String WEB_SERVICES_RESPONSE_CODE_DESTINATION_NOT_PREPAID = "204";
+    public static final String WEB_SERVICES_RESPONSE_CODE_ERROR_TRANSACTION_TOP_UP = "205";
+    public static final String WEB_SERVICES_RESPONSE_CODE_DENOMINATION_NOT_AVAILABLE = "301";
     public static final String WEB_SERVICES_METHOD_NAME_SAVE_USER = "guardarUsuarioAplicacionMovil";
     public static final String WEB_SERVICES_METHOD_NAME_SEND_CODE_SMS = "generarCodigoMovilSMS";
     public static final String WEB_SERVICES_METHOD_NAME_LOGIN_APP_MOBILE = "loginAplicacionMovil";
@@ -101,8 +105,10 @@ public class Constants {
     public static final String WEB_SERVICES_METHOD_NAME_GET_BANK = "getBankByCountryApp";
     public static final String WEB_SERVICES_METHOD_NAME_GET_COUNTRIES = "getCountriesHasBank";
     public static final String WEB_SERVICES_METHOD_NAME_GET_LANGUAJE_TOPUP = "getLanguage";
+    public static final String WEB_SERVICES_METHOD_NAME_GET_PRODUCT_TOPUP = "getProductsPayTopUpByUserId";
     public static final String WEB_SERVICES_METHOD_NAME_GET_COUNTRIES_TOPUP = "getTopUpCountries";
     public static final String WEB_SERVICES_METHOD_NAME_GET_LIST_TOPUP = "topUpList";
+    public static final String WEB_SERVICES_METHOD_NAME_SAVE_TOPUP = "saveRechargeTopUp";
     public static final String WEB_SERVICES_METHOD_NAME_GET_PRODUCT = "getProductsByBankId";
     public static final String WEB_SERVICES_METHOD_NAME_PAYMENT_COMERCE = "savePaymentShop";
     public static final String WEB_SERVICES_METHOD_NAME_TRANSFERENCE = "saveTransferBetweenAccount";
@@ -174,6 +180,8 @@ public class Constants {
     public final static int HEIGHT = 500;
     public final static String TOPUP_DF = "DF";
     public final static String TOPUP_OR = "OR";
+    public final static String TOPUP_PRODUCT_ID = "7";
+
 
 
 }
