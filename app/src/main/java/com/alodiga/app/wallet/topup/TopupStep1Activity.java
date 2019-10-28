@@ -158,9 +158,10 @@ public class TopupStep1Activity extends AppCompatActivity  {
                 getmobileNumberRegisterR=mobileNumberRegisterR.getText().toString();
                 getcountry= (ObjGenericObject) spinnerCountry.getSelectedItem();
                 getlanguaje= (ObjGenericObject) spinnerIdioma.getSelectedItem();
+                ObjGenericObject obj = (ObjGenericObject) spinnerCountry.getSelectedItem();
 
-                if(getmobileNumberRegister.length()==0 || getmobileNumberRegister.equals("")
-                        || getmobileNumberRegisterR.length()==0 || getmobileNumberRegisterR.equals("")) {
+                if(getmobileNumberRegister.length()==0 || getmobileNumberRegister.equals("") || getmobileNumberRegister.equals("+"+obj.getId())
+                        || getmobileNumberRegisterR.length()==0 || getmobileNumberRegisterR.equals("") || getmobileNumberRegisterR.equals("+"+obj.getId())) {
 
 
                     new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
@@ -279,7 +280,7 @@ public class TopupStep1Activity extends AppCompatActivity  {
                         responsetxt = getString(R.string.web_services_response_99);
                         serviceStatus = false;
                     } else {
-                        responsetxt = getString(R.string.web_services_response_99);
+                        responsetxt = responseMessage;
                         serviceStatus = false;
                     }
                 } else {
