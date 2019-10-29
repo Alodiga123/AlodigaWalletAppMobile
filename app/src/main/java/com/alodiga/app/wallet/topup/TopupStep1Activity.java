@@ -33,11 +33,11 @@ public class TopupStep1Activity extends AppCompatActivity  {
 
     private Button next;
     private String responsetxt = "";
-    static SoapObject response;
+    SoapObject response;
     private static String stringResponse = "";
     String datosRespuesta = "";
-    static ObjGenericObject[] listSpinner_pais = new ObjGenericObject[0];
-    static ObjGenericObject[] listSpinner_languaje = new ObjGenericObject[0];
+    ObjGenericObject[] listSpinner_pais = new ObjGenericObject[0];
+    ObjGenericObject[] listSpinner_languaje = new ObjGenericObject[0];
     String getmobileNumberRegister, getmobileNumberRegisterR;
     ObjGenericObject getcountry,getlanguaje;
     static ProgressDialogAlodiga progressDialogAlodiga;
@@ -61,23 +61,24 @@ public class TopupStep1Activity extends AppCompatActivity  {
 
         //Spinner Country
         new Thread(new Runnable() {
+            SoapObject response1;
             public void run() {
                 try {
                     String responseCode = null;
                     WebService webService = new WebService();
                     HashMap<String, String> map = new HashMap<String, String>();
                     //map.put("userId", Session.getUserId());
-                    response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_NAME_GET_COUNTRIES_TOPUP, Constants.ALODIGA);
-                    stringResponse = response.toString();
-                    responseCode = response.getProperty("codigoRespuesta").toString();
-                    datosRespuesta = response.getProperty("mensajeRespuesta").toString();
+                    response1 = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_NAME_GET_COUNTRIES_TOPUP, Constants.ALODIGA);
+                    stringResponse = response1.toString();
+                    responseCode = response1.getProperty("codigoRespuesta").toString();
+                    datosRespuesta = response1.getProperty("mensajeRespuesta").toString();
                     serviceAnswer(responseCode);
 
                     if (serviceStatus) {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                listSpinner_pais = getListGeneric(response, true);
+                                listSpinner_pais = getListGeneric(response1, true);
                                 SpinAdapterPais spinAdapterPais;
                                 spinAdapterPais = new SpinAdapterPais(getApplicationContext(), android.R.layout.simple_spinner_item, listSpinner_pais);
                                 spinnerCountry.setAdapter(spinAdapterPais);
@@ -117,25 +118,26 @@ public class TopupStep1Activity extends AppCompatActivity  {
         });
 
 
-        //Spinner Languaje
+//Spinner Languaje
         new Thread(new Runnable() {
+            SoapObject response2;
             public void run() {
                 try {
                     String responseCode = null;
                     WebService webService = new WebService();
                     HashMap<String, String> map = new HashMap<String, String>();
                     map.put("userId", Session.getUserId());
-                    response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_NAME_GET_LANGUAJE_TOPUP, Constants.ALODIGA);
-                    stringResponse = response.toString();
-                    responseCode = response.getProperty("codigoRespuesta").toString();
-                    datosRespuesta = response.getProperty("mensajeRespuesta").toString();
+                    response2 = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_NAME_GET_LANGUAJE_TOPUP, Constants.ALODIGA);
+                    stringResponse = response2.toString();
+                    responseCode = response2.getProperty("codigoRespuesta").toString();
+                    datosRespuesta = response2.getProperty("mensajeRespuesta").toString();
                     serviceAnswer(responseCode);
 
                     if (serviceStatus) {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                listSpinner_languaje = getListGeneric(response,false);
+                                listSpinner_languaje = getListGeneric(response2,false);
                                 SpinAdapterGeneric spinAdapterLanguaje;
                                 spinAdapterLanguaje = new SpinAdapterGeneric(getApplicationContext(), android.R.layout.simple_spinner_item, listSpinner_languaje);
                                 spinnerIdioma.setAdapter(spinAdapterLanguaje);
