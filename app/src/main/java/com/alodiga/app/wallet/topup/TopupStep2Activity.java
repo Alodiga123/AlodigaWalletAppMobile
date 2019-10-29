@@ -34,7 +34,6 @@ import org.ksoap2.serialization.SoapObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static com.alodiga.app.wallet.topup.TopupStep1Activity.listSpinner_languaje;
 
 
 public class TopupStep2Activity extends AppCompatActivity  {
