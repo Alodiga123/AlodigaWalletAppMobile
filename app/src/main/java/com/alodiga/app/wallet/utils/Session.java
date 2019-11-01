@@ -1,5 +1,6 @@
 package com.alodiga.app.wallet.utils;
 
+import com.alodiga.app.wallet.model.ObjExchange;
 import com.alodiga.app.wallet.model.ObjTopUpInfos;
 import com.alodiga.app.wallet.model.ObjUserHasProduct;
 import com.alodiga.app.wallet.model.ObjtopUpInfos_IsOpenRange;
@@ -41,6 +42,8 @@ public class Session {
     private static ObjTopUpInfos[] datosDenominacionFijaTopup;
     private static String DestinationAmountTopup;
     private static String operationTopup;
+    private static ObjExchange exchange;
+    private static String operationExchange;
 
 
     public static ArrayList<ObjUserHasProduct> getObjUserHasProducts() {
@@ -283,6 +286,22 @@ public class Session {
         Session.operationTopup = operationTopup;
     }
 
+    public static ObjExchange getExchange() {
+        return exchange;
+    }
+
+    public static void setExchange(ObjExchange exchange) {
+        Session.exchange = exchange;
+    }
+
+    public static String getOperationExchange() {
+        return operationExchange;
+    }
+
+    public static void setOperationExchange(String operationExchange) {
+        Session.operationExchange = operationExchange;
+    }
+
     public static void clearALL() {
         Session.userId = null;
         Session.username = null;
@@ -314,6 +333,8 @@ public class Session {
         Session.datosDenominacionFijaTopup= null;
         Session.DestinationAmountTopup= null;
         Session.operationTopup=null;
+        Session.exchange= null;
+        Session.operationExchange = null;
     }
 
 }

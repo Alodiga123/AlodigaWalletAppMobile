@@ -109,6 +109,12 @@ public class Constants {
     public static final String WEB_SERVICES_METHOD_NAME_GET_COUNTRIES_TOPUP = "getTopUpCountries";
     public static final String WEB_SERVICES_METHOD_NAME_GET_LIST_TOPUP = "topUpList";
     public static final String WEB_SERVICES_METHOD_NAME_SAVE_TOPUP = "saveRechargeTopUp";
+    public static final String WEB_SERVICES_METHOD_NAME_GET_PRODUCT_EXCHANGE = "getProductsIsExchangeProductUserId";
+    public static final String WEB_SERVICES_METHOD_NAME_GET_PREVIEW_EXCHANGE = "previewExchangeProduct";
+    public static final String WEB_SERVICES_METHOD_NAME_GET_EXCHANGE = "exchangeProduct";
+
+
+
     public static final String WEB_SERVICES_METHOD_NAME_GET_PRODUCT = "getProductsByBankId";
     public static final String WEB_SERVICES_METHOD_NAME_PAYMENT_COMERCE = "savePaymentShop";
     public static final String WEB_SERVICES_METHOD_NAME_TRANSFERENCE = "saveTransferBetweenAccount";

@@ -9,6 +9,8 @@ public class ObjTransferMoney {
     private String id;
     private String name;
     private String currency;
+    private String symbol;
+
 
 
     public ObjTransferMoney(String id, String name) {
@@ -20,6 +22,13 @@ public class ObjTransferMoney {
         this.id = id;
         this.name = name;
         this.currency = currency;
+    }
+
+    public ObjTransferMoney(String id, String name, String currency, String symbol) {
+        this.id = id;
+        this.name = name;
+        this.currency = currency;
+        this.symbol = symbol;
     }
 
     public String getCurrency() {
@@ -44,5 +53,13 @@ public class ObjTransferMoney {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getSymbol() {
+        return symbol;
+    }
+
+    public void setSymbol(String symbol) {
+        this.symbol = symbol;
     }
 }
