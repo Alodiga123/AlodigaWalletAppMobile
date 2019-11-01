@@ -42,11 +42,25 @@
     <string name="register_validation_limit">Demasiados intentos, repita el proceso nuevamente</string>
     <string name="register_time_finished">Se agoto el tiempo para ingresar código de validación</string>
     <string name="operator_text">Operadora:</string>
+
     <string name="product_spinner">Ingrese cualquier cantidad de</string>
     <string name="number_trans">Número de transacción: </string>
     <string name="dolar">$</string>
     <string name="dolar_a">$ a </string>
     <string name="increment"> con incrementos de </string>
+    <string name="chip_info">Incluir comisión en monto</string>
+    <string name="debitTotal">Total a debitar:</string>
+    <string name="percentageRate">Tasa comisión:</string>
+    <string name="destinationA">Monto convertido:</string>
+    <string name="includeM">Comisión en monto:</string>
+    <string name="yes">Si</string>
+    <string name="no">No</string>
+    <string name="a_ini">Monto a convertir:</string>
+    <string name="percentage">%</string>
+
+
+
+
 
 
 
@@ -57,6 +71,7 @@
     <string name="back">ATRAS</string>
     <string name="signUp">REGÍSTRATE</string>
     <string name="topup_title">RECARGAS DE MOVILES NACIONALES E INTERNACIONALES</string>
+    <string name="exchange_title">CONVERTIR</string>
     <string name="security_question">PREGUNTAS DE SEGURIDAD</string>
     <string name="transference_title">TRANSFERENCIA</string>
     <string name="my_qr_title">MI QR</string>
@@ -74,8 +89,11 @@
     <string name="name">Nombre</string>
     <string name="lastName">Apellido</string>
     <string name="mobileNumber">Numero de Teléfono</string>
+    <string name="table_title_exchange">Detalle</string>
+    <string name="table_title_exchange_rate">Tasa de Cambio</string>
     <string name="location">Pais</string>
     <string name="location_">Pais:</string>
+    <string name="commission">Comisión:</string>
     <string name="passowrd">Contraseña</string>
     <string name="already_user">¿Ya tienes cuenta? Entre aquí.</string>
     <string name="terms_conditions">Al hacer clic en Registrarse, usted acepta todos los Términos y Condiciones.</string>
@@ -115,6 +133,9 @@
     <string name="bank_info">Seleccione el banco:</string>
     <string name="pais_info">Seleccione el pais:</string>
     <string name="producto_info">Seleccione el producto a recargar:</string>
+    <string name="exchange_product_sourse">Seleccione el producto origen:</string>
+    <string name="exchange_product_destination">Seleccione el producto destino:</string>
+
     <string name="productoPago_info">Seleccione el producto a debitar:</string>
 
     <string name="recharge_id">Ingrese el número de la transferencia:</string>
