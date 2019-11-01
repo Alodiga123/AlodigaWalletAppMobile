@@ -27,6 +27,7 @@ import com.alodiga.app.R;
 import com.alodiga.app.wallet.QR.CreateQRCodeActivity;
 import com.alodiga.app.wallet.adapters.AdapterMoneyProduct;
 import com.alodiga.app.wallet.changePassword.ChangePasswordActivity;
+import com.alodiga.app.wallet.exchange.ExchangeStep1Activity;
 import com.alodiga.app.wallet.listTransactionExecuted.ListTransactionExecutedActivity;
 import com.alodiga.app.wallet.login.LoginActivity;
 import com.alodiga.app.wallet.manualRecharge.ManualRechargeStep1Activity;
@@ -241,6 +242,11 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_topup) {
             Intent show = new Intent(MainActivity.this, TopupStep1Activity.class);
             startActivity(show);
+
+        }else if (id == R.id.nav_convert) {
+            Intent show = new Intent(MainActivity.this, ExchangeStep1Activity.class);
+            startActivity(show);
+
         } else if (id == R.id.nav_close_session) {
             AlertDialog.Builder dialogo1 = new AlertDialog.Builder(this);
             dialogo1.setTitle(R.string.close_session);
