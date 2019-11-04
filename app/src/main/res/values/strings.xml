@@ -57,6 +57,26 @@
     <string name="no">No</string>
     <string name="a_ini">Monto a convertir:</string>
     <string name="percentage">%</string>
+    <string name="change_password">Cambiar contraseña</string>
+    <string name="validate_password_change_capital_letter">La contraseña debe tener al menos una letra mayúscula.</string>
+    <string name="validate_password_change_lowercase_letter">La contraseña debe tener al menos una letra minúscula.</string>
+    <string name="validate_password_change_number">La contraseña debe tener al menos un número.</string>
+    <string name="validate_password_change_special_character">La contraseña debe tener al menos uno de los siguientes caracteres. \n # ? ! @ $ % ^ &amp; * - </string>
+    <string name="validate_password_change_number_characters">La contraseña debe tener al menos 8 caracteres.</string>
+    <string name="toast_different_passwords">Las contraseñas no coinciden. Inténtalo de nuevo.</string>
+    <string name="required_fields">Uno o más campos están vacíos.</string>
+    <string name="invalid_password">Contraseña inválida</string>
+    <string name="terminal_old_password">Contraseña anterior no encontrada</string>
+    <string name="terminal_repeat">La contraseña no puede ser la misma</string>
+    <string name="change_succesfful">Cambio de contraseña exitoso </string>
+    <string name="change_pasword_success">Cambio de contraseña</string>
+    <string name="security_level">"Nivel de Seguridad"</string>
+    <string name="new_password">Nueva Contraseña</string>
+    <string name="repeat_password">Repita la Nueva Contraseña</string>
+    <string name="change">Cambiar</string>
+    <string name="information">"Información: "</string>
+    <string name="close_password_recommendation">La contraseña debe ser alfanumérica, Debe tener al menos una mayúscula, caracteres especiales y una longuitud de 8 caracteres</string>
+    <string name="currentPassword">Contraseña Actual</string>
 
 
 

@@ -26,7 +26,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.QR.CreateQRCodeActivity;
 import com.alodiga.app.wallet.adapters.AdapterMoneyProduct;
-import com.alodiga.app.wallet.changePassword.ChangePasswordActivity;
 import com.alodiga.app.wallet.exchange.ExchangeStep1Activity;
 import com.alodiga.app.wallet.listTransactionExecuted.ListTransactionExecutedActivity;
 import com.alodiga.app.wallet.login.LoginActivity;
@@ -34,6 +33,7 @@ import com.alodiga.app.wallet.manualRecharge.ManualRechargeStep1Activity;
 import com.alodiga.app.wallet.manualRemoval.ManualRemovalStep1Activity;
 import com.alodiga.app.wallet.model.ObjMoney;
 import com.alodiga.app.wallet.model.ObjUserHasProduct;
+import com.alodiga.app.wallet.password.ChangePasswordStep1Activity;
 import com.alodiga.app.wallet.paymentComerce.PaymentComerceStep1Activity;
 import com.alodiga.app.wallet.topup.TopupStep1Activity;
 import com.alodiga.app.wallet.transference.TransferenceStep1Activity;
@@ -221,9 +221,6 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_home) {
             Intent show = new Intent(MainActivity.this, CreateQRCodeActivity.class);
             startActivity(show);
-        } else if (id == R.id.nav_pay_invoice) {
-            Intent show = new Intent(MainActivity.this, ChangePasswordActivity.class);
-            startActivity(show);
         } else if (id == R.id.nav_recharge) {
             Intent show = new Intent(MainActivity.this, ManualRechargeStep1Activity.class);
             startActivity(show);
@@ -235,6 +232,9 @@ public class MainActivity extends AppCompatActivity
             startActivity(show);
         } else if (id == R.id.nav_last_activity) {
             Intent show = new Intent(MainActivity.this, ListTransactionExecutedActivity.class);
+            startActivity(show);
+        }else if (id == R.id.nav_change_password) {
+            Intent show = new Intent(MainActivity.this, ChangePasswordStep1Activity.class);
             startActivity(show);
         } else if (id == R.id.nav_pay_qr) {
             Intent show = new Intent(MainActivity.this, PaymentComerceStep1Activity.class);

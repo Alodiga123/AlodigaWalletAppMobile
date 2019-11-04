@@ -34,6 +34,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.logging.Level;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -311,4 +313,92 @@ public class Utils {
             phone = phone.substring(1);
         return phone;
     }
+
+    public static int progressBar(String newPassword)
+    {
+        Pattern capitalLetter = Pattern.compile(CAPITAL_LETTER);
+        Matcher capLet = capitalLetter.matcher(newPassword);
+        Pattern lowerLetter = Pattern.compile(LOWERCASE_LETTER);
+        Matcher lowLet = lowerLetter.matcher(newPassword);
+        Pattern number = Pattern.compile(NUMBER);
+        Matcher nb = number.matcher(newPassword);
+        Pattern specialCharacter = Pattern.compile(SPECIAL_CHARACTER);
+        Matcher spChar = specialCharacter.matcher(newPassword);
+        Pattern numberCharacters = Pattern.compile(NUMBER_OF_CHARACTERS);
+        Matcher nmbChar = numberCharacters.matcher(newPassword);
+        int progressIndicator = 0;
+
+        boolean[]var = new boolean[]{false,false,false,false,false,false};
+
+        if(!newPassword.equals(""))
+        {
+            if(capLet.lookingAt())
+            {
+                var[0]= true;
+            }
+            if(lowLet.lookingAt())
+            {
+                var[1]= true;
+            }
+            if(nb.lookingAt())
+            {
+                var[2]= true;
+            }
+            if(spChar.lookingAt())
+            {
+                var[3]= true;
+            }
+            if(nmbChar.lookingAt())
+            {
+                var[4]= true;
+            }
+            for(int i = 0; i< var.length ; i++)
+            {
+                if(var[i]==true)
+                {
+                    progressIndicator += 10;
+                }
+            }
+            return progressIndicator;
+        }else
+        {
+            return 0;
+        }
+    }
+
+    public static int validatePassword(@NonNull String newPassword, @NonNull String confirmPassword)
+    {
+        Pattern capitalLetter = Pattern.compile(CAPITAL_LETTER);
+        Matcher capLet = capitalLetter.matcher(newPassword);
+        Pattern lowerLetter = Pattern.compile(LOWERCASE_LETTER);
+        Matcher lowLet = lowerLetter.matcher(newPassword);
+        Pattern number = Pattern.compile(NUMBER);
+        Matcher nb = number.matcher(newPassword);
+        Pattern specialCharacter = Pattern.compile(SPECIAL_CHARACTER);
+        Matcher spChar = specialCharacter.matcher(newPassword);
+        Pattern numberCharacters = Pattern.compile(NUMBER_OF_CHARACTERS);
+        Matcher nmbChar = numberCharacters.matcher(newPassword);
+
+        if(!capLet.lookingAt())
+        {
+            return R.string.validate_password_change_capital_letter;
+        }else if(!lowLet.lookingAt())
+        {
+            return R.string.validate_password_change_lowercase_letter;
+        }else if(!nb.lookingAt())
+        {
+            return R.string.validate_password_change_number;
+        }else if(!spChar.lookingAt())
+        {
+            return R.string.validate_password_change_special_character;
+        }else if(!nmbChar.lookingAt())
+        {
+            return R.string.validate_password_change_number_characters;
+        }else if(!newPassword.equals(confirmPassword))
+        {
+            return R.string.toast_different_passwords;
+        }
+        return 0;
+    }
+
 }
