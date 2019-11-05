@@ -44,6 +44,7 @@ public class Session {
     private static String operationTopup;
     private static ObjExchange exchange;
     private static String operationExchange;
+    private static String forgotData;
 
 
     public static ArrayList<ObjUserHasProduct> getObjUserHasProducts() {
@@ -300,6 +301,14 @@ public class Session {
 
     public static void setOperationExchange(String operationExchange) {
         Session.operationExchange = operationExchange;
+    }
+
+    public static String getForgotData() {
+        return forgotData;
+    }
+
+    public static void setForgotData(String forgotData) {
+        Session.forgotData = forgotData;
     }
 
     public static void clearALL() {

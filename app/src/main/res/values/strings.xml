@@ -24,11 +24,14 @@
     <string name="afiliation">Afiliar</string>
     <string name="menu_send">Cerrar sesión</string>
     <string name="email">Introduce E-mail</string>
+    <string name="emailorPhone">E-mail o teléfono</string>
+
     <string name="email_invalid">E-mail no es valido</string>
     <string name="email_send">Se ha enviado un E-mail.</string>
     <string name="enter_both_credentials">Ingrese ambas credenciales.</string>
     <string name="closebutton">Close Button for Activity</string>
     <string name="registered_emailid">Por favor ingrese correo electrónico registrado:</string>
+    <string name="registered_emailidorphone">Por favor ingrese el correo electrónico o teléfono registrado:</string>
     <string name="register_phone_number_message">Ingrese su número de teléfono:</string>
     <string name="register_phone_number_message_dest">Número de teléfono (Destino):</string>
     <string name="register_phone_number_message_dest_">Teléfono (Destino):</string>
@@ -69,6 +72,9 @@
     <string name="terminal_old_password">Contraseña anterior no encontrada</string>
     <string name="terminal_repeat">La contraseña no puede ser la misma</string>
     <string name="change_succesfful">Cambio de contraseña exitoso </string>
+    <string name="forgot_succesfful">Recuperación de contraseña exitosa </string>
+    <string name="change_password_info">CAMBIAR CONTRASEÑA</string>
+    <string name="forgot_password_info">RECUPERAR CONTRASEÑA</string>
     <string name="change_pasword_success">Cambio de contraseña</string>
     <string name="security_level">"Nivel de Seguridad"</string>
     <string name="new_password">Nueva Contraseña</string>

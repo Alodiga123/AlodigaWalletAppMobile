@@ -98,6 +98,7 @@ public class Constants {
     public static final String WEB_SERVICES_RESPONSE_CODE_DENOMINATION_NOT_AVAILABLE = "301";
     public static final String WEB_SERVICES_METHOD_NAME_SAVE_USER = "guardarUsuarioAplicacionMovil";
     public static final String WEB_SERVICES_METHOD_NAME_SEND_CODE_SMS = "generarCodigoMovilSMS";
+    public static final String WEB_SERVICES_METHOD_NAME_SEND_CODE_SMS_MOVIL = "generarCodigoMovilSMSAplicacionMovil";
     public static final String WEB_SERVICES_METHOD_NAME_LOGIN_APP_MOBILE = "loginAplicacionMovil";
     public static final String WEB_SERVICES_METHOD_NAME_SECRET_AMSWER = "getPreguntasSecretas";
     public static final String WEB_SERVICES_METHOD_NAME_GET_TRANSACTION_LIST = "getTransactionsByUserIdApp";
@@ -113,6 +114,7 @@ public class Constants {
     public static final String WEB_SERVICES_METHOD_NAME_GET_PREVIEW_EXCHANGE = "previewExchangeProduct";
     public static final String WEB_SERVICES_METHOD_NAME_GET_EXCHANGE = "exchangeProduct";
     public static final String WEB_SERVICES_METHOD_CHANGE_PASSWORD = "cambiarCredencialAplicacionMovil";
+    public static final String WEB_SERVICES_METHOD_CHANGE_PASSWORD_FORGOT = "cambiarCredencialAplicacionMovilEmailOrPhone";
 
 
 

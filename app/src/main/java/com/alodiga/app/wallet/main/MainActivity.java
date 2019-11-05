@@ -33,7 +33,7 @@ import com.alodiga.app.wallet.manualRecharge.ManualRechargeStep1Activity;
 import com.alodiga.app.wallet.manualRemoval.ManualRemovalStep1Activity;
 import com.alodiga.app.wallet.model.ObjMoney;
 import com.alodiga.app.wallet.model.ObjUserHasProduct;
-import com.alodiga.app.wallet.password.ChangePasswordStep1Activity;
+import com.alodiga.app.wallet.changePassword.ChangePasswordStep1Activity;
 import com.alodiga.app.wallet.paymentComerce.PaymentComerceStep1Activity;
 import com.alodiga.app.wallet.topup.TopupStep1Activity;
 import com.alodiga.app.wallet.transference.TransferenceStep1Activity;

@@ -65,7 +65,10 @@ public class Utils {
     public static final String SignUp_Fragment = "SignUp_Fragment";
     public static final String Register_step_1 = "register_step1_layout";
     public static final String Confirmation_Fragment = "Confirmation_Fragment";
-    public static final String ForgotPassword_Fragment = "ForgotPassword_Fragment";
+    public static final String ForgotPassword_Fragment = "ForgotPasswordStep1Fragment";
+    public static final String ForgotPasswordStep2_Fragment = "ForgotPasswordStep2Fragment";
+    public static final String ForgotPasswordStep1_Fragment = "ForgotPasswordStep1Fragment";
+
 
     /**
      * CAPITAL_LETTER: Constant used to detect the existence of a capital letter in a text string
@@ -399,6 +402,19 @@ public class Utils {
             return R.string.toast_different_passwords;
         }
         return 0;
+    }
+
+    public static boolean isNumeric(String cadena){
+        try {
+            Integer.parseInt(cadena);
+            return true;
+        } catch (NumberFormatException nfe){
+            return false;
+        }
+    }
+
+    public static boolean isNumeric_(String str) {
+        return (str.matches("[+-]?\\d*(\\.\\d+)?") && str.equals("")==false);
     }
 
 }
