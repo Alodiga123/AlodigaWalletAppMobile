@@ -53,16 +53,6 @@
                 android:icon="@drawable/ic_menu_send"
                 android:title="@string/menu_change_password" />
             <item
-                android:id="@+id/nav_security_answer"
-                android:icon="@drawable/ic_menu_send"
-                android:enabled="false"
-                android:title="@string/menu_answer_security" />
-            <item
-                android:id="@+id/nav_secret_frase"
-                android:icon="@drawable/ic_menu_send"
-                android:enabled="false"
-                android:title="@string/menu_secret_text" />
-            <item
                 android:id="@+id/nav_close_session"
                 android:icon="@drawable/ic_menu_send"
                 android:title="@string/menu_send" />
