@@ -1,4 +1,4 @@
-package com.alodiga.app.wallet.password;
+package com.alodiga.app.wallet.changePassword;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -69,7 +69,6 @@ public class ChangePasswordStep1Activity extends AppCompatActivity {
 
         change.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(), "Prueba exitosa");
                 evchangePassword();
             }
         });
@@ -89,36 +88,26 @@ public class ChangePasswordStep1Activity extends AppCompatActivity {
     public void evchangePassword()
     {
         edtNewPassword  = (EditText) findViewById(R.id.editTextNewPassword);
-        //edtCurrentPassword  = (EditText) findViewById(R.id.editTextCurrentPassword);
         edtConfirmPassword  = (EditText) findViewById(R.id.editTextConfirmPassword);
-       // currentPassword = edtCurrentPassword.getText().toString();
         newPassword     = edtNewPassword.getText().toString();
         confirmPassword = edtConfirmPassword.getText().toString();
 
-        if(/*!currentPassword.trim().equals("") && */!newPassword.trim().equals("") && !confirmPassword.trim().equals(""))
+        if(!newPassword.trim().equals("") && !confirmPassword.trim().equals(""))
         {
             messageForToast= Utils.validatePassword(newPassword, confirmPassword);
 
             if(messageForToast != 0)
             {
-               // Utils.createToast(getApplicationContext(), messageForToast);
                 new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                         getString(messageForToast));
             }else
             {
-
-               /* new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
-                        "Todo bien");
-                Intent intent = getIntent();
-                Intent newFormsi2 = new Intent(getApplicationContext(), ChangePasswordStep2Activity.class);
-                startActivity(newFormsi2);*/
                 entrar(Utils.aloDesencript(newPassword.trim()));
             }
         }else
         {
             new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                     getString(R.string.invalid_all_question));
-           // Utils.createToast(getApplicationContext(), R.string.required_fields);
         }
     }
 
@@ -231,7 +220,6 @@ public class ChangePasswordStep1Activity extends AppCompatActivity {
                     responsetxt = getString(R.string.insuficient_balance);
                     serviceStatus = false;
                 }
-                //progressDialogAlodiga.dismiss();
             } catch (IllegalArgumentException e) {
                 responsetxt = getString(R.string.web_services_response_99);
                 serviceStatus = false;
