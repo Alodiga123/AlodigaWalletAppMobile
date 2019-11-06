@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -33,7 +34,7 @@ public class ForgotPasswordStep1Fragment extends Fragment implements
     private static View view;
 
     private static EditText emailId;
-    private static TextView submit, back;
+    private static Button submit, back;
     String movilCode;
     private String responsetxt = "";
     private boolean serviceStatus;
@@ -67,8 +68,8 @@ public class ForgotPasswordStep1Fragment extends Fragment implements
             ColorStateList csl = ColorStateList.createFromXml(getResources(),
                     xrp);
 
-            back.setTextColor(csl);
-            submit.setTextColor(csl);
+           // back.setTextColor(csl);
+           // submit.setTextColor(csl);
 
         } catch (Exception e) {
         }
@@ -161,7 +162,7 @@ public class ForgotPasswordStep1Fragment extends Fragment implements
                     map.put("email", data);
 
                 }else {
-                    map.put("movil", data);
+                    map.put("movil", Utils.processPhone(data));
                 }
 
                 response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_NAME_SEND_CODE_SMS_MOVIL, Constants.REGISTRO_UNIFICADO);

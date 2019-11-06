@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -35,7 +36,7 @@ public class ForgotPasswordStep2Fragment extends Fragment implements
     static ProgressDialogAlodiga progressDialogAlodiga;
     private static View view;
     private static EditText phoneNumber, edtMobileCode;
-    private static TextView submit, back;
+    private static Button submit, back;
     Chronometer cmTimer;
     long countUp;
     long startTime = 1000;
@@ -134,6 +135,7 @@ public class ForgotPasswordStep2Fragment extends Fragment implements
                 break;
         }
     }
+
 
     private void submitButtonTask() {
 
