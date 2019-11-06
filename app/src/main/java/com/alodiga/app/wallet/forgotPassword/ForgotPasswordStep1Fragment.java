@@ -114,10 +114,10 @@ public class ForgotPasswordStep1Fragment extends Fragment implements
             new CustomToast().Show_Toast(getActivity(), view, getString(R.string.invalid_all_question));
         }else if (m.find()) {
             sendSmsSecurityCode(getEmailId,true);
-            new CustomToast().Show_Toast(getActivity(), view, "es correo");
+           // new CustomToast().Show_Toast(getActivity(), view, "es correo");
 
         }else if(Utils.isNumeric_(getEmailId)){
-            new CustomToast().Show_Toast(getActivity(), view, "es numero");
+           // new CustomToast().Show_Toast(getActivity(), view, "es numero");
 
             sendSmsSecurityCode(getEmailId, false);
 
