@@ -414,7 +414,7 @@ public class Utils {
     }
 
     public static boolean isNumeric_(String str) {
-        return (str.matches("[+-]?\\d*(\\.\\d+)?") && str.equals("")==false);
+        return (str.matches("[+]?\\d*") && str.equals("")==false);
     }
 
 }
