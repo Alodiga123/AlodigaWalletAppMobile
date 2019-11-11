@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fillViewport="true"
+    android:overScrollMode="never"
+    android:scrollbars="none" >
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    android:padding="15dp" >
+    android:padding="15dp"
+    android:background="@drawable/side_nav_bar">
 
     <TextView
         android:layout_width="fill_parent"
@@ -194,3 +202,4 @@
         android:textSize="15sp" />
 
 </LinearLayout>
+</ScrollView>

@@ -1,19 +1,41 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fillViewport="true"
+    android:overScrollMode="never"
+    android:scrollbars="none" >
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:padding="1dp" >
+    android:padding="1dp"
+    android:background="@drawable/side_nav_bar">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent" android:layout_height="fill_parent" android:orientation="vertical">
-        <LinearLayout android:id="@+id/linearLayout1" android:layout_width="fill_parent"            android:layout_height="wrap_content" android:orientation="vertical">
-            <View android:layout_height="1dp" android:layout_width="45dp" />
-            <ImageView android:layout_height="fill_parent"
-                android:src="@drawable/img_app_logo"
-                android:scaleType="fitCenter"
+        android:id="@+id/image"
+        android:layout_width="410dp"
+        android:layout_height="193dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="45dp"
+                android:layout_height="1dp" />
+
+            <ImageView
+                android:id="@id/image"
+                android:layout_width="fill_parent"
+                android:layout_height="167dp"
                 android:layout_gravity="top"
-                android:layout_width="fill_parent"></ImageView>
+                android:scaleType="fitCenter"
+                android:src="@drawable/img_app_logo"></ImageView>
         </LinearLayout>
     </LinearLayout>
 
@@ -25,7 +47,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:layout_below="@+id/image">
 
         <ProgressBar
             android:id="@+id/login_progress"
@@ -36,14 +59,7 @@
             android:layout_marginBottom="8dp"
             android:visibility="gone" />
 
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:padding="10dp"
-            android:textColor="@color/white_greyish"
-            android:textSize="25sp"
-            android:textStyle="bold" />
+
 
         <EditText
             android:id="@+id/login_emailid"
@@ -97,7 +113,8 @@
                 android:layout_weight="1"
                 android:text="@string/show_pwd"
                 android:textColor="@color/white"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:buttonTint="@color/white"/>
 
             <TextView
                 android:id="@+id/forgot_password"
@@ -138,3 +155,5 @@
         android:textSize="15sp" />
 
 </RelativeLayout>
+
+</ScrollView>
