@@ -31,7 +31,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.alodiga.app.R;
-import com.alodiga.app.wallet.forgotPassword.ForgotPassword_Fragment;
+import com.alodiga.app.wallet.forgotPassword.ForgotPasswordStep1Fragment;
 import com.alodiga.app.wallet.main.MainActivity;
 import com.alodiga.app.wallet.model.ObjUserHasProduct;
 import com.alodiga.app.wallet.register.RegisterStep1Fragment;
@@ -148,7 +148,7 @@ public class LoginFragment extends Fragment implements OnClickListener {
         //emailid.setText("adira0411@gmail.com");
         //password.setText("123456");
         emailid.setText("moisegrat12@gmail.com");
-        password.setText("123456");
+        password.setText("Alodi12-");
 
     }
 
@@ -242,7 +242,7 @@ public class LoginFragment extends Fragment implements OnClickListener {
                         .beginTransaction()
                         .setCustomAnimations(R.anim.right_enter, R.anim.left_out)
                         .replace(R.id.frameContainer,
-                                new ForgotPassword_Fragment(),
+                                new ForgotPasswordStep1Fragment(),
                                 Utils.ForgotPassword_Fragment).commit();
                 break;
             case R.id.createAccount:

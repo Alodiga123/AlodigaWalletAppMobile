@@ -187,7 +187,7 @@
     <string name="id_recharge">Ingrese el identificador de la recarga:</string>
     <string name="id_transfer">Concepto de la transferencia:</string>
     <string name="info_fail_code">La Clave de Operaciones no es valida. Numero de intentos restantes: </string>
-    <string name="connection_error">No es posible establecer una conexion. Compruebe su conexion a internet</string>
+    <string name="connection_error">No es posible establecer una conexion. Compruebe su conexión a internet</string>
     <string name="action_reintent">Intentar de nuevo</string>
 
 
@@ -254,7 +254,7 @@
     <string name="insuficient_balance">Saldo insuficiente para completar la transacción</string>
     <string name="destination_qr_code">Escanee el código QR</string>
     <string name="welcome_secure_answer">Las preguntas de seguridad han sido registradas satisfactoriamente </string>
-    <string name="welcome_qr_code">Utiliza este código QR para realizar los pagos de manera mas facil</string>
+    <string name="welcome_qr_code">Utiliza este código QR para realizar los pagos de manera más fácil</string>
     <string name="welcome_secure_manual_removal">El registro del retiro se ha realizado satisfactoriamente. Una vez el proveedor de servicios lo haga efectivo sera notificado </string>
     <string name="welcome_payment_comerce">El pago se ha realizado satisfactoriamente. </string>
     <string name="welcome_secure_manual_recharge">La recarga fue realizada satisfactoriamente. Una vez que se valide le sera notificado </string>
