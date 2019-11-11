@@ -11,9 +11,11 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.changePassword.ChangePasswordStep2Activity;
+import com.alodiga.app.wallet.login.LoginFragment;
 import com.alodiga.app.wallet.main.MainActivity;
 import com.alodiga.app.wallet.utils.Constants;
 import com.alodiga.app.wallet.utils.CustomToast;
@@ -38,6 +40,7 @@ public class ForgotPasswordStep3Activity extends AppCompatActivity {
     SoapObject response;
     static ProgressDialogAlodiga progressDialogAlodiga;
     ProcessTask mAuthTask;
+    private static FragmentManager fragmentManager;
 
 
 
@@ -45,6 +48,8 @@ public class ForgotPasswordStep3Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.forgotpassword_step3_layout);
+        fragmentManager = getSupportFragmentManager();
+
         progressBar = (ProgressBar) findViewById(R.id.progressBarPassword);
         change= findViewById(R.id.change);
         edtNewPassword = (EditText) findViewById(R.id.editTextNewPassword);
@@ -76,14 +81,15 @@ public class ForgotPasswordStep3Activity extends AppCompatActivity {
 
     }
 
-    @Override
-    public void onBackPressed() {
+
+    /*public void onBackPressed() {
         super.onBackPressed();
-        Intent pasIntent = getIntent();
-        Intent i = new Intent(ForgotPasswordStep3Activity.this, MainActivity.class);
-        startActivity(i);
-        finish();
-    }
+        fragmentManager
+                .beginTransaction()
+                .setCustomAnimations(R.anim.left_enter, R.anim.right_out)
+                .replace(R.id.frameContainer, new ForgotPasswordStep2Fragment(),
+                        Utils.ForgotPasswordStep2_Fragment).commit();
+    }*/
 
 
     public void evchangePassword()

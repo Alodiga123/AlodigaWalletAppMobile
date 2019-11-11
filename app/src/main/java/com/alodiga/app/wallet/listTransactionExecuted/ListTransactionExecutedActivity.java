@@ -229,6 +229,9 @@ public class ListTransactionExecutedActivity extends AppCompatActivity implement
                     } else if (t.getTransactionType().equals("6")) {
                         t.setTransactionType("Recarga Manual");
                         item.setNegative(true);
+                    } else if (t.getTransactionType().equals("7")) {
+                        t.setTransactionType("TopUp");
+                        item.setNegative(true);
                     }
                     item.setHeadline(t.getTransactionType());
                     item.setReporterName(t.getUserDestination() + "/");

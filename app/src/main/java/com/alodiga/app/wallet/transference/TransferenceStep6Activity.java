@@ -51,27 +51,38 @@ public class TransferenceStep6Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.transference_confirmation_transfer3_succesfull);
 
-
-        amountValue = findViewById(R.id.txtAmountValue_3);
-        conceptValue = findViewById(R.id.txtConceptValue_3);
-        acountNumberValue = findViewById(R.id.txtAccountNumberValue_3);
-        destinationPhoneValue = findViewById(R.id.txtDestinationPhoneValue_3);
-        destinationLastNameValue = findViewById(R.id.txtDestinationLastNameValue_3);
+        //nombre
         destinationNameValue = findViewById(R.id.txtDestinationNameValue_3);
+        //apellido
+        destinationLastNameValue = findViewById(R.id.txtDestinationLastNameValue_3);
+        //telefono
+        destinationPhoneValue = findViewById(R.id.txtDestinationPhoneValue_3);
+        //Destino
+        acountNumberValue = findViewById(R.id.txtAccountNumberValue_3);
+        //Monto
+        amountValue = findViewById(R.id.txtAmountValue_3);
+        //concepto
+        conceptValue = findViewById(R.id.txtConceptValue_3);
+        //Origen
+        txtAccountSourceValue = findViewById(R.id.txtAccountSourceValue_3);
+        //fecha
+        txtDateTimeValue_3 = findViewById(R.id.txtDateTimeValue_3);
+        //transaccion
+        txtTransactionId_3 = findViewById(R.id.txtTransactionId_3);
+
         btnProcessFinisTransference = findViewById(R.id.btnProcessFinisTransference);
         btnShareInformation = findViewById(R.id.btnShareInformationTransference);
-        txtAccountSourceValue = findViewById(R.id.txtAccountSourceValue_3);
-        txtTransactionId_3 = findViewById(R.id.txtTransactionId_3);
-        txtDateTimeValue_3 = findViewById(R.id.txtDateTimeValue_3);
-        acountNumberValue.setText(Session.getDestinationAccountNumber());
-        destinationPhoneValue.setText(Session.getDestinationPhoneValue());
-        destinationLastNameValue.setText(Session.getDestinationLastNameValue());
+
         destinationNameValue.setText(Session.getDestinationNameValue());
-        conceptValue.setText(Session.getDestinationConcept());
+        destinationLastNameValue.setText(Session.getDestinationLastNameValue());
+        destinationPhoneValue.setText(Session.getDestinationPhoneValue());
+        acountNumberValue.setText(Session.getDestinationAccountNumber());
         amountValue.setText(Session.getGetDestinationAmount());
-        txtTransactionId_3.setText(String.valueOf(new Date().getTime()));
-        txtDateTimeValue_3.setText(new Timestamp(new Date().getTime()).toGMTString());
+        conceptValue.setText(Session.getDestinationConcept());
         txtAccountSourceValue.setText(Session.getMoneySelected().getName().split("-")[0]);
+        txtDateTimeValue_3.setText(new Timestamp(new Date().getTime()).toGMTString());
+        txtTransactionId_3.setText(String.valueOf(new Date().getTime()));
+
 
 
         btnShareInformation.setOnClickListener(new OnClickListener() {
@@ -79,9 +90,15 @@ public class TransferenceStep6Activity extends AppCompatActivity {
                 //updateProduct();
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
-                intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.confirmation_title_successfull_Alodiga)+" \n" + getString(R.string.destination_name)+" "+ Session.getDestinationNameValue() + " " + Session.getDestinationLastNameValue() +
-                        "\n" + getString(R.string.number_trans)+"" + new Date().getTime() + "\n" + getString(R.string.destination_phoe)+" " + Session.getDestinationPhoneValue() + "\n" + getString(R.string.destination_concept)+" " + Session.getDestinationConcept() + "\n" +
-                        getString(R.string.money)+" " + Session.getMoneySelected().getName().split("-")[0] + "\n" + getString(R.string.destination_date_time)+" " + new Timestamp(new Date().getTime()).toGMTString());
+                intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.confirmation_title_successfull_Alodiga)+
+                        "\n" + getString(R.string.destination_name)+" "+ Session.getDestinationNameValue() + " " + Session.getDestinationLastNameValue() +
+                        "\n" + getString(R.string.destination_phoe)+" " + Session.getDestinationPhoneValue() +
+                        "\n" + getString(R.string.destination_cuenta)+" " + Session.getDestinationAccountNumber() +
+                        "\n" + getString(R.string.destination_amount)+" " + Session.getGetDestinationAmount() +
+                        "\n" + getString(R.string.destination_concept)+" " + Session.getDestinationConcept() +
+                        "\n" + getString(R.string.destination_source)+" " + Session.getMoneySelected().getName().split("-")[0] +
+                        "\n" + getString(R.string.destination_date_time)+" " + new Timestamp(new Date().getTime()).toGMTString() +
+                        "\n" + getString(R.string.number_trans)+" " + new Date().getTime());
                 startActivity(Intent.createChooser(intent, getString(R.string.share_with)));
             }
         });

@@ -60,8 +60,13 @@ public class TopupStep3Activity extends AppCompatActivity {
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
                 intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.confirmation_title_successfull_Alodiga) + " \n" +
-                        "\n" + getString(R.string.number_trans) + Session.getOperationTopup() + "\n" + getString(R.string.operator_text) + " " + Session.getOperatorTopup() + "\n" + getString(R.string.register_phone_number_message_dest) + " " + Session.getNumberDestinationTopup() + "\n" + getString(R.string.register_phone_number_message_rem) + " " + Session.getPhonenumberTopup() + "\n" +
-                        getString(R.string.location) + " " + Session.getCountryTopup() + "\n" + getString(R.string.destination_date_time) + " " + new Timestamp(new Date().getTime()).toGMTString());
+                        "\n" + getString(R.string.number_trans) + Session.getOperationTopup() +
+                        "\n" + getString(R.string.operator_text) + " " + Session.getOperatorTopup() +
+                        "\n" + getString(R.string.register_phone_number_message_dest) + " " + Session.getNumberDestinationTopup() +
+                        "\n" + getString(R.string.register_phone_number_message_rem) + " " + Session.getPhonenumberTopup() +
+                        "\n" + getString(R.string.destination_amount) + " " + Session.getDestinationAmountTopup() +
+                        "\n" + getString(R.string.location) + " " + Session.getCountryTopup() +
+                        "\n" + getString(R.string.destination_date_time) + " " + new Timestamp(new Date().getTime()).toGMTString());
                 startActivity(Intent.createChooser(intent, getString(R.string.share_with)));
             }
         });
