@@ -170,9 +170,13 @@ public class PaymentComerceStep4codeActivity extends AppCompatActivity {
                     Session.setCodeOperation(edtMobileCode.getText().toString());
                     Intent i = new Intent(PaymentComerceStep4codeActivity.this, PaymentComerceStep5Activity.class);
                     startActivity(i);
+                    finish();
+
+
                 } else {
                     Intent i = new Intent(PaymentComerceStep4codeActivity.this, FailCodeOperationActivity.class);
                     startActivity(i);
+                    finish();
                 }
 
 
@@ -185,6 +189,7 @@ public class PaymentComerceStep4codeActivity extends AppCompatActivity {
                 if (cout_aux == 0) {
                     Intent i = new Intent(PaymentComerceStep4codeActivity.this, FailCodeOperationActivity.class);
                     startActivity(i);
+                    finish();
                 }
             }
             progressDialogAlodiga.dismiss();

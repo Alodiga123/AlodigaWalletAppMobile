@@ -170,9 +170,11 @@ public class TransferenceStep4codeActivity extends AppCompatActivity {
                     Session.setCodeOperation(edtMobileCode.getText().toString());
                     Intent i = new Intent(TransferenceStep4codeActivity.this, TransferenceStep5Activity.class);
                     startActivity(i);
+                    finish();
                 } else {
                     Intent i = new Intent(TransferenceStep4codeActivity.this, FailCodeOperationActivity.class);
                     startActivity(i);
+                    finish();
                 }
 
 
@@ -185,6 +187,7 @@ public class TransferenceStep4codeActivity extends AppCompatActivity {
                 if (cout_aux == 0) {
                     Intent i = new Intent(TransferenceStep4codeActivity.this, FailCodeOperationActivity.class);
                     startActivity(i);
+                    finish();
                 }
             }
             progressDialogAlodiga.dismiss();

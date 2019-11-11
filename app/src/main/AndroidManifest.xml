@@ -83,7 +83,7 @@
            <activity
                android:name="com.alodiga.app.wallet.listTransactionExecuted.ListTransactionExecutedActivity"
                android:theme="@style/AppTheme.NoActionBar"
-               android:screenOrientation="portrait">
+               android:screenOrientation="sensorPortrait">
            </activity>
            <activity
                android:name="com.alodiga.app.wallet.manualRemoval.ManualRemovalStep2WelcomeActivity"
