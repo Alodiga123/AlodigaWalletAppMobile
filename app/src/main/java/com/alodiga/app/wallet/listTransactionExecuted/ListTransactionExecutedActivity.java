@@ -25,6 +25,7 @@ import com.alodiga.app.wallet.main.MainActivity;
 import com.alodiga.app.wallet.model.ObjNewsItem;
 import com.alodiga.app.wallet.model.ObjTransaction;
 import com.alodiga.app.wallet.utils.Constants;
+import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
 import com.alodiga.app.wallet.utils.Session;
 import com.alodiga.app.wallet.utils.Utils;
@@ -142,6 +143,9 @@ public class ListTransactionExecutedActivity extends AppCompatActivity implement
                     serviceStatus = false;
                 } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_PRIMER_INGRESO)) {
                     responsetxt = getString(R.string.web_services_response_12);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USER_NOT_HAS_TRANSACTIONS)) {
+                    responsetxt = getString(R.string.web_services_response_24);
                     serviceStatus = false;
                 } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_SOSPECHOSO)) {
                     responsetxt = getString(R.string.web_services_response_95);
@@ -292,7 +296,9 @@ public class ListTransactionExecutedActivity extends AppCompatActivity implement
 
 
             } else {
-                Toast.makeText(context, responsetxt, Toast.LENGTH_LONG).show();
+                new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
+                        responsetxt);
+                //Toast.makeText(context, responsetxt, Toast.LENGTH_LONG).show();
                 Intent i = new Intent(this.context, MainActivity.class);
                 startActivity(i);
                 finish();
