@@ -175,7 +175,9 @@
         android:layout_marginTop="7dp"
         android:text="@string/terms_conditions"
         android:textColor="@color/white"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        android:buttonTint="@color/white"
+        />
 
     <Button
         android:id="@+id/signUpBtn"

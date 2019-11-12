@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -17,7 +18,7 @@ public class RegisterStep4WelcomeFragment extends Fragment implements OnClickLis
     private static View view;
 
     private static TextView TextWelcome;
-    private static TextView login;
+    private static Button login;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

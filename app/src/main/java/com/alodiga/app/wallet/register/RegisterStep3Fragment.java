@@ -152,10 +152,11 @@ public class RegisterStep3Fragment extends Fragment implements OnClickListener {
         getConfirmPassword = confirmPassword.getText().toString();
         getPinNumber = pinNumber.getText().toString();
 
-
         // Pattern match for email id
         Pattern p = Pattern.compile(Utils.regEx);
         Matcher m = p.matcher(getEmailId);
+
+        int messageForToast= Utils.validatePassword(getPassword, getConfirmPassword);
 
         // Check if all strings are null or not
         if (getname.equals("") || getname.length() == 0
@@ -175,9 +176,9 @@ public class RegisterStep3Fragment extends Fragment implements OnClickListener {
                     getString(R.string.email_invalid));
 
             // Check if both password should be equal
-        else if (!getConfirmPassword.equals(getPassword))
-            new CustomToast().Show_Toast(getActivity(), view,
-                    getString(R.string.password_eq));
+       // else if (!getConfirmPassword.equals(getPassword))
+        //    new CustomToast().Show_Toast(getActivity(), view,
+        //            getString(R.string.password_eq));
 
             // Make sure user should check Terms and Conditions checkbox
         else if (!terms_conditions.isChecked())
@@ -195,10 +196,15 @@ public class RegisterStep3Fragment extends Fragment implements OnClickListener {
             // Check for a valid password, if the user entered one.
 
 
-        else if (!validation_Password(getPassword)) {
-            new CustomToast().Show_Toast(getActivity(), view, getContext().getResources().getString(R.string.password_secure));
-        }
+       // else if (!validation_Password(getPassword)) {
+         //   new CustomToast().Show_Toast(getActivity(), view, getContext().getResources().getString(R.string.password_secure));
+       // }
+        else if(!getPassword.trim().equals("") && !getConfirmPassword.trim().equals("") && messageForToast!= 0)
+        {
+                          new CustomToast().Show_Toast(getActivity(), view,
+                        getString(messageForToast));
 
+        }
 
         // Else do signup or do your stuff
         else
@@ -360,8 +366,8 @@ public class RegisterStep3Fragment extends Fragment implements OnClickListener {
                         .setCustomAnimations(R.anim.left_enter, R.anim.right_out)
                         .replace(R.id.frameContainer, new RegisterStep4WelcomeFragment(),
                                 Utils.Welcome_Fragment).commit();
-                new CustomToast().Show_Toast(getActivity(), view,
-                        responsetxt);
+                //new CustomToast().Show_Toast(getActivity(), view,
+                //        responsetxt);
 
             } else {
                 new CustomToast().Show_Toast(getActivity(), view,

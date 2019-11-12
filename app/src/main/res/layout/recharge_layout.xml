@@ -59,7 +59,7 @@
             android:layout_height="1px"
             android:background="@color/white_greyish" />
 
-            <TextView
+           <!-- <TextView
                 android:id="@+id/step1_next_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -69,7 +69,19 @@
                 android:text="@string/Finalize"
                 android:textColor="@color/white"
                 android:textSize="15sp"
-                android:textStyle="bold" />
+                android:textStyle="bold" />-->
+
+        <Button
+            android:id="@+id/step1_next_button"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/loginbutton_selector"
+            android:padding="3dp"
+            android:text="@string/process_finished"
+            android:textColor="@color/background_color"
+            android:textSize="17sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
 

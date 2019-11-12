@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -35,7 +36,7 @@ public class RegisterStep1Fragment extends Fragment implements
     static ProgressDialogAlodiga progressDialogAlodiga;
     private static View view;
     private static EditText phoneNumber;
-    private static TextView submit, back;
+    private static Button submit, back;
     private static Spinner spinnerCountry;
     private static EditText mobileNumber;
     String movilCode;
