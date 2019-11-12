@@ -1,15 +1,19 @@
 package com.alodiga.app.wallet.main;
 
 import android.Manifest;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -32,6 +36,8 @@ import com.alodiga.app.wallet.login.LoginActivity;
 import com.alodiga.app.wallet.manualRecharge.ManualRechargeStep1Activity;
 import com.alodiga.app.wallet.manualRemoval.ManualRemovalStep1Activity;
 import com.alodiga.app.wallet.model.ObjMoney;
+import com.alodiga.app.wallet.model.ObjNewsItem;
+import com.alodiga.app.wallet.model.ObjTransaction;
 import com.alodiga.app.wallet.model.ObjUserHasProduct;
 import com.alodiga.app.wallet.changePassword.ChangePasswordStep1Activity;
 import com.alodiga.app.wallet.paymentComerce.PaymentComerceStep1Activity;
@@ -45,7 +51,7 @@ import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, AdapterView.OnItemSelectedListener {
 
     Animation atg, atgtwo, atgthree;
     ImageView imageView3;
@@ -95,7 +101,8 @@ public class MainActivity extends AppCompatActivity
         //set adapter to recyclerview
         mAdapter = new AdapterMoneyProduct(mProductList, this);
         mRecyclerView.setAdapter(mAdapter);
-
+        // Registro el ListView para que tenga menú contextual.
+        registerForContextMenu(mRecyclerView);
 
         emailuser = findViewById(R.id.emailuser);
         nameuser = findViewById(R.id.nameuser);
@@ -149,7 +156,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        AlertDialog.Builder dialogo1 = new AlertDialog.Builder(this);
+        AlertDialog.Builder dialogo1 = new AlertDialog.Builder(this,R.style.yourDialog);
         dialogo1.setTitle(getString(R.string.close_session));
         dialogo1.setMessage(getString(R.string.close_session_answer));
         dialogo1.setCancelable(false);
@@ -188,7 +195,7 @@ public class MainActivity extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
 
-            AlertDialog.Builder dialogo1 = new AlertDialog.Builder(this);
+            AlertDialog.Builder dialogo1 = new AlertDialog.Builder(this, R.style.yourDialog);
             dialogo1.setTitle(R.string.close_session);
             dialogo1.setMessage(R.string.close_session_answer);
             dialogo1.setCancelable(false);
@@ -248,7 +255,7 @@ public class MainActivity extends AppCompatActivity
             startActivity(show);
 
         } else if (id == R.id.nav_close_session) {
-            AlertDialog.Builder dialogo1 = new AlertDialog.Builder(this);
+            AlertDialog.Builder dialogo1 = new AlertDialog.Builder(this, R.style.yourDialog);
             dialogo1.setTitle(R.string.close_session);
             dialogo1.setMessage(R.string.close_session_answer);
             dialogo1.setCancelable(false);
@@ -273,5 +280,15 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
     }
 }

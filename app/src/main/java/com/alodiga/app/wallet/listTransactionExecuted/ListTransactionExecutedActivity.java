@@ -255,7 +255,7 @@ public class ListTransactionExecutedActivity extends AppCompatActivity implement
                         String transactionType = "";
 
 
-                        AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+                        AlertDialog alertDialog = new AlertDialog.Builder(context,R.style.yourDialog).create();
                         alertDialog.setTitle(Html.fromHtml("Detalle Transaccion"));
                         showAlert = "Monto: " + ((ObjTransaction) newsData.getObject()).getAmount()
                                 + "\n" + "Numero de Transacción: " + ((ObjTransaction) newsData.getObject()).getTransactionId()
