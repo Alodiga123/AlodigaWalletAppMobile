@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -37,7 +38,7 @@ public class SecurityQuestionStep1Fragment extends Fragment implements
     private static EditText edtAnswer1, edtAnswer2, edtAnswer3;
     private static TextView textAnswer1, textAnswer2, textAnswer3;
     private static String getedtAnswer1, getedtAnswer2, getedtAnswer3;
-    private static TextView submit, back;
+    private static Button submit, back;
     private static Spinner spinnerAnswer1;
     private static Spinner spinnerAnswer2;
     private static Spinner spinnerAnswer3;

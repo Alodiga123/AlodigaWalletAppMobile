@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -16,7 +17,7 @@ import com.alodiga.app.wallet.utils.Session;
 
 public class SecurityQuestionStep2WelcomeFragment extends Fragment implements
         View.OnClickListener {
-    private static TextView submit, back;
+    private static Button submit, back;
     private static View view;
 
 
