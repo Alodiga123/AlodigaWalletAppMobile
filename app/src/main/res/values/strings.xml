@@ -81,7 +81,7 @@
     <string name="repeat_password">Repita la Nueva Contraseña</string>
     <string name="change">Cambiar</string>
     <string name="information">"Información: "</string>
-    <string name="close_password_recommendation">La contraseña debe ser alfanumérica, Debe tener al menos una mayúscula, caracteres especiales y una longuitud de 8 caracteres</string>
+    <string name="close_password_recommendation">Ayuda: La contraseña debe ser alfanumérica, Debe tener al menos una mayúscula, caracteres especiales y una longuitud de 8 caracteres</string>
     <string name="currentPassword">Contraseña Actual</string>
 
 
@@ -210,6 +210,7 @@
     <string name="web_services_response_20">Solicitud de tarjeta activa</string>
     <string name="web_services_response_21">Afiliaciones maximas alcanzadas</string>
     <string name="web_services_response_22">Usuario no tiene teléfono</string>
+    <string name="web_services_response_24">Usuario no tiene movimientos asociados</string>
     <string name="web_services_response_30">Ha excedido el monto maximo</string>
     <string name="web_services_response_31">Ha excedido el numero maximo de transacciones por producto</string>
     <string name="web_services_response_32">Ha excedido el numero maximo de transacciones por dia</string>
@@ -235,6 +236,7 @@
     <string name="error_spaces">La contraseña no puede contener espacios</string>
     <string name="password_secure">El password debe ser alfanumerico con caracteres especiales y mayuscula</string>
     <string name="into">Presione aqui para ingresar</string>
+    <string name="into_">Ingresar</string>
     <string name="welcome_register">¿Gracias por registrarse. Su registro se completo de forma satisfactoria </string>
     <string name="transference">Seleccione la moneda a transferir</string>
     <string name="howtofindtransfer">Seleccione el criterio de busqueda del usuario receptor</string>
