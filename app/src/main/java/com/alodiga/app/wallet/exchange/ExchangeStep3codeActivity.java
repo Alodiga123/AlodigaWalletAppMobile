@@ -226,6 +226,9 @@ public class ExchangeStep3codeActivity extends AppCompatActivity {
                 map.put("productDestinationId", Session.getExchange().getExange_productDestination().getId());
                 map.put("amountExchange", Session.getExchange().getAmountExchange());
                 map.put("conceptTransaction", "cualquier cosa");
+                map.put("includedAmount", Session.getExchange().getExange_includedAmount());
+
+
 
 
 
