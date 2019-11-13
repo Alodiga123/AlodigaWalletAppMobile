@@ -49,13 +49,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="1dp"
             android:padding="5dp"
-            android:background="@android:color/transparent"
             android:gravity="center_vertical"
             android:inputType="phone"
             android:singleLine="true"
             android:textColor="@color/white"
             android:textColorHint="@color/white_greyish"
-            android:textSize="8sp" />
+            android:textSize="8sp"
+            android:backgroundTint="@color/white_greyish"/>
         <View
             android:layout_width="match_parent"
             android:layout_height="2px"
@@ -75,13 +75,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="1dp"
             android:padding="5dp"
-            android:background="@android:color/transparent"
             android:gravity="center_vertical"
             android:inputType="phone"
             android:singleLine="true"
             android:textColor="@color/white"
             android:textColorHint="@color/white_greyish"
-            android:textSize="10sp" />
+            android:textSize="10sp"
+            android:backgroundTint="@color/white_greyish"/>
         <View
             android:layout_width="match_parent"
             android:layout_height="2px"
@@ -101,13 +101,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="1dp"
             android:padding="3dp"
-            android:background="@android:color/transparent"
             android:gravity="center_vertical"
             android:inputType="phone"
             android:singleLine="true"
             android:textColor="@color/white"
             android:textColorHint="@color/white_greyish"
-            android:textSize="10sp" />
+            android:textSize="10sp"
+            android:backgroundTint="@color/white_greyish"/>
         <View
             android:layout_width="match_parent"
             android:layout_height="2px"

@@ -52,14 +52,14 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:background="@android:color/transparent"
             android:drawablePadding="8dp"
             android:hint="@string/location"
             android:padding="10dp"
             android:singleLine="true"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:backgroundTint="@color/white_greyish"/>
 
 
 
@@ -85,14 +85,14 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:background="@android:color/transparent"
             android:drawablePadding="8dp"
             android:hint="@string/product"
             android:padding="10dp"
             android:singleLine="true"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:backgroundTint="@color/white_greyish"/>
 
         <View
             android:layout_width="fill_parent"

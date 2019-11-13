@@ -52,14 +52,14 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:background="@android:color/transparent"
             android:gravity="center_vertical"
             android:inputType="phone"
             android:padding="8dp"
             android:singleLine="true"
             android:textColor="@color/white"
             android:textColorHint="@color/white_greyish"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:backgroundTint="@color/white_greyish"/>
 
         <View
             android:layout_width="fill_parent"
@@ -84,14 +84,14 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:background="@android:color/transparent"
             android:gravity="center_vertical"
             android:inputType="phone"
             android:padding="8dp"
             android:singleLine="true"
             android:textColor="@color/white"
             android:textColorHint="@color/white_greyish"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:backgroundTint="@color/white_greyish"/>
 
         <View
             android:layout_width="fill_parent"
@@ -117,14 +117,14 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:background="@android:color/transparent"
             android:gravity="center_vertical"
             android:inputType="phone"
             android:padding="8dp"
             android:singleLine="true"
             android:textColor="@color/white"
             android:textColorHint="@color/white_greyish"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:backgroundTint="@color/white_greyish"/>
 
         <View
             android:layout_width="fill_parent"
