@@ -7,6 +7,7 @@ public class ObjMoney {
     public String productPrice;
     public String productWeight;
     public String productQty;
+    public boolean isTopup;
 
     public ObjMoney(String productName, int productImage, String productPrice, String productWeight, String productQty) {
         this.productImage = productImage;
@@ -15,6 +16,17 @@ public class ObjMoney {
         this.productWeight = productWeight;
         this.productQty = productQty;
     }
+
+
+    public ObjMoney(String productName, int productImage, String productPrice, String productWeight, String productQty,boolean isTopup) {
+        this.productImage = productImage;
+        this.productName = productName;
+        this.productPrice = productPrice;
+        this.productWeight = productWeight;
+        this.productQty = productQty;
+        this.isTopup=isTopup;
+    }
+
 
     public ObjMoney() {
 
@@ -58,5 +70,13 @@ public class ObjMoney {
 
     public void setProductName(String productName) {
         this.productName = productName;
+    }
+
+    public boolean isTopup() {
+        return isTopup;
+    }
+
+    public void setTopup(boolean topup) {
+        isTopup = topup;
     }
 }

@@ -90,9 +90,12 @@ public class LoginFragment extends Fragment implements OnClickListener {
         String elementGetCurrentBalance = "saldoActual=";
         String elementGetSymbol = "simbolo=";
         String litaProd = "respuestaListadoProductos=";
+        String isTopup = "isPayTopUP=";
+
+
 
         for (int i = 1; i < getLenghtFromResponseJson(litaProd, response); i++) {
-            ObjUserHasProduct objUserHasProduct = new ObjUserHasProduct(response.split(elementgetId)[i].split(";")[0], response.split(elementGetName)[i].split(";")[0], response.split(elementGetCurrentBalance)[i].split(";")[0], response.split(elementGetSymbol)[i].split(";")[0]);
+            ObjUserHasProduct objUserHasProduct = new ObjUserHasProduct(response.split(elementgetId)[i].split(";")[0], response.split(elementGetName)[i].split(";")[0], response.split(elementGetCurrentBalance)[i].split(";")[0], response.split(elementGetSymbol)[i].split(";")[0],response.split(isTopup)[i].split(";")[0]);
             objUserHasProducts.add(objUserHasProduct);
         }
 

@@ -19,16 +19,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alodiga.app.R;
+import com.alodiga.app.wallet.exchange.ExchangeStep1Activity;
 import com.alodiga.app.wallet.main.MainActivity;
+import com.alodiga.app.wallet.manualRecharge.ManualRechargeStep1Activity;
 import com.alodiga.app.wallet.manualRemoval.ManualRemovalStep1Activity;
 import com.alodiga.app.wallet.model.ObjMoney;
 import com.alodiga.app.wallet.model.ObjTransaction;
 import com.alodiga.app.wallet.paymentComerce.PaymentComerceStep1Activity;
+import com.alodiga.app.wallet.topup.TopupStep1Activity;
 import com.alodiga.app.wallet.transference.TransferenceStep1Activity;
 import com.alodiga.app.wallet.utils.Constants;
+import com.alodiga.app.wallet.utils.CustomToast;
 
 import java.util.List;
 
@@ -63,17 +68,35 @@ public class AdapterMoneyProduct extends RecyclerView.Adapter<AdapterMoneyProduc
             public void onClick(View v) {
                 String productName = grocderyItemList.get(position).getProductName();
 
-
                 AlertDialog.Builder ADBuilder = new AlertDialog.Builder(context,R.style.yourDialog);
                 ADBuilder.setTitle(Html.fromHtml("Operaciones "+productName));
 
 
                 //Creamos un nuevo ArrayAdapter de 'Strings' y pasamos como parametros (Contexto, int id "Referencia a layout");
                 final ArrayAdapter arrayAdapter = new ArrayAdapter(context,R.layout.menu_simple);
+                if(productName.equals("Tarjeta Prepagada")){
+                    arrayAdapter.add("    Recargar Tarjeta");
+                    arrayAdapter.add("    Extraer a Billetera");
+                }else{
+                    //R.string.menu_recharge
+                    arrayAdapter.add("    Recarga Manual");
+                    // R.string.menu_aoutMoney
+                    arrayAdapter.add("    Retiro Manual");
+                    // R.string.menu_convert
+                    arrayAdapter.add("    Convertir");
+                    // R.string.menu_transfer
+                    arrayAdapter.add("    Transferir");
+                    //  R.string.menu_pay_comerce
+                    arrayAdapter.add("    Pago QR Comercios");
 
-                arrayAdapter.add("    Retiro Manual");
-                arrayAdapter.add("    Transferir");
-                arrayAdapter.add("    Pago QR Comercios");
+                    if(grocderyItemList.get(position).isTopup()){
+                        // R.string.menu_recharge_n_i
+                        arrayAdapter.add("    TopUp");
+                    }
+                }
+
+
+                //if(){}
 
                 //Creamos un boton para cancelar el dialog
                 ADBuilder.setPositiveButton("Cancelar", new DialogInterface.OnClickListener() {
@@ -90,18 +113,42 @@ public class AdapterMoneyProduct extends RecyclerView.Adapter<AdapterMoneyProduc
                     public void onClick(DialogInterface dialog, int _item) {
 
                         //Creamos un toast para mostrar el elemento selecionado
-
-                        if(arrayAdapter.getItem(_item).toString()=="    Transferir"){
-                            Intent show = new Intent(context, TransferenceStep1Activity.class);
+                        if(arrayAdapter.getItem(_item).toString()=="    Recarga Manual"){
+                            Intent show = new Intent(context, ManualRechargeStep1Activity.class);
                             context.startActivity(show);
                         }
                         if(arrayAdapter.getItem(_item).toString()=="    Retiro Manual"){
                             Intent show = new Intent(context, ManualRemovalStep1Activity.class);
                             context.startActivity(show);
                         }
+                        if(arrayAdapter.getItem(_item).toString()=="    Convertir"){
+                            Intent show = new Intent(context, ExchangeStep1Activity.class);
+                            context.startActivity(show);
+                        }
+                        if(arrayAdapter.getItem(_item).toString()=="    Transferir"){
+                            Intent show = new Intent(context, TransferenceStep1Activity.class);
+                            context.startActivity(show);
+                        }
+
                         if(arrayAdapter.getItem(_item).toString()=="    Pago QR Comercios"){
                             Intent show = new Intent(context, PaymentComerceStep1Activity.class);
                             context.startActivity(show);
+                        }
+                        if(arrayAdapter.getItem(_item).toString()=="    TopUp"){
+                            Intent show = new Intent(context, TopupStep1Activity.class);
+                            context.startActivity(show);
+                        }
+                        if(arrayAdapter.getItem(_item).toString()=="    Recargar Tarjeta"){
+                           // Intent show = new Intent(context, PaymentComerceStep1Activity.class);
+                           // context.startActivity(show)
+                            Toast toast = Toast.makeText(context, "Funcionalidad no disponible", Toast.LENGTH_SHORT);
+                            toast.show();
+                        }
+                        if(arrayAdapter.getItem(_item).toString()=="    Extraer a Billetera"){
+                           // Intent show = new Intent(context, PaymentComerceStep1Activity.class);
+                           // context.startActivity(show);
+                            Toast toast = Toast.makeText(context, "Funcionalidad no disponible", Toast.LENGTH_SHORT);
+                            toast.show();
                         }
                     }
                 });

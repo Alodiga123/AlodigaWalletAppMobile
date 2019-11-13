@@ -11,6 +11,7 @@ public class ObjUserHasProduct {
     private String imageSource;
     private String currentBalance;
     private String symbol;
+    private String isTopUp;
 
     public ObjUserHasProduct(String name) {
         this.name = name;
@@ -35,12 +36,12 @@ public class ObjUserHasProduct {
         this.currentBalance = currentBalance;
     }
 
-    public ObjUserHasProduct(String id, String name, String currentBalance, String symbol, String imageSource) {
+    public ObjUserHasProduct(String id, String name, String currentBalance, String symbol, String isTopup) {
         this.id = id;
         this.name = name;
-        this.imageSource = imageSource;
-        this.currentBalance = currentBalance;
         this.symbol = symbol;
+        this.currentBalance = currentBalance;
+        this.isTopUp= isTopup;
     }
 
     public String getName() {
@@ -81,5 +82,13 @@ public class ObjUserHasProduct {
 
     public void setSymbol(String symbol) {
         this.symbol = symbol;
+    }
+
+    public String getIsTopUp() {
+        return isTopUp;
+    }
+
+    public void setIsTopUp(String isTopUp) {
+        this.isTopUp = isTopUp;
     }
 }

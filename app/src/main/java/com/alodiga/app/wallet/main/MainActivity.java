@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
@@ -80,13 +81,8 @@ public class MainActivity extends AppCompatActivity
         mProductList = new ArrayList<ObjMoney>();
 
         for (ObjUserHasProduct objUserHasProduct : Session.getObjUserHasProducts()) {
-            if (objUserHasProduct.getSymbol().equals("AL")) {
-                mProductList.add(new ObjMoney(objUserHasProduct.getName(), R.drawable.alocoinlogo, Session.getAccountNumber(), "Alodiga ", objUserHasProduct.getSymbol() + " " + objUserHasProduct.getCurrentBalance()));
-            } else if (objUserHasProduct.getSymbol().equals("SA")) {
-                mProductList.add(new ObjMoney(objUserHasProduct.getName(), R.drawable.dolarsimbol, Session.getAccountNumber(), "Alodiga ", objUserHasProduct.getSymbol() + " " + objUserHasProduct.getCurrentBalance()));
-            } else if (objUserHasProduct.getSymbol().equals("TP")) {
-                mProductList.add(new ObjMoney(objUserHasProduct.getName(), R.drawable.cardalodiga, Session.getAccountNumber(), "Alodiga ", objUserHasProduct.getSymbol() + " " + objUserHasProduct.getCurrentBalance()));
-            }
+                int resID = getResources().getIdentifier(objUserHasProduct.getSymbol().toLowerCase() , "drawable", getPackageName());
+                mProductList.add(new ObjMoney(objUserHasProduct.getName(),resID, Session.getAccountNumber(), "Alodiga ", objUserHasProduct.getSymbol() + " " + objUserHasProduct.getCurrentBalance(),Boolean.parseBoolean(objUserHasProduct.getIsTopUp())));
         }
 
 
