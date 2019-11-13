@@ -104,7 +104,8 @@
         android:singleLine="true"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:maxLength="8"/>
 
     <View
         android:layout_width="fill_parent"
@@ -126,7 +127,8 @@
         android:singleLine="true"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:maxLength="8"/>
 
     <View
         android:layout_width="fill_parent"
