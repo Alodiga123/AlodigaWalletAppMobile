@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -44,11 +45,14 @@ import com.alodiga.app.wallet.changePassword.ChangePasswordStep1Activity;
 import com.alodiga.app.wallet.paymentComerce.PaymentComerceStep1Activity;
 import com.alodiga.app.wallet.topup.TopupStep1Activity;
 import com.alodiga.app.wallet.transference.TransferenceStep1Activity;
+import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.Session;
+import com.alodiga.app.wallet.utils.Utils;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 
 public class MainActivity extends AppCompatActivity
@@ -212,6 +216,81 @@ public class MainActivity extends AppCompatActivity
             dialogo1.show();
 
         }
+
+        /*if (id == R.id.action_settings_es) {
+
+            AlertDialog.Builder dialogo1 = new AlertDialog.Builder(this, R.style.yourDialog);
+            dialogo1.setTitle(R.string.close_session);
+            dialogo1.setMessage(R.string.session_answer_es);
+            dialogo1.setCancelable(false);
+            dialogo1.setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialogo1, int id) {
+
+                    new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
+                            "Español");
+
+                    // Cambiar idioma Español
+                    //Configuration config = new Configuration();
+                    //config.locale = Locale.getDefault();
+                    //getBaseContext().getResources().updateConfiguration(config,
+                     //       getBaseContext().getResources().getDisplayMetrics());
+                    // Reinicializar los controles
+                    //getResources().updateConfiguration(config, null);
+                    if(Utils.updateResources(getApplicationContext(),"es")){
+                        Intent show = new Intent(MainActivity.this, MainActivity.class);
+                        finish();
+                        startActivity(show);
+                    }
+                }
+            });
+            dialogo1.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialogo1, int id) {
+                    //cancelar();
+                }
+            });
+            dialogo1.show();
+
+        }
+
+        if (id == R.id.action_settings_en) {
+
+            AlertDialog.Builder dialogo1 = new AlertDialog.Builder(this, R.style.yourDialog);
+            dialogo1.setTitle(R.string.close_session);
+            dialogo1.setMessage(R.string.session_answer_en);
+            dialogo1.setCancelable(false);
+            dialogo1.setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialogo1, int id) {
+                    new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
+                            "Ingles");
+                    //Configuration config = new Configuration(getResources().getConfiguration());
+                    //Configuration config = new Configuration();
+
+                    // Cambiar idioma Ingles
+                    //config.locale = Locale.ENGLISH;
+                    //getBaseContext().getResources().updateConfiguration(config,
+                            //getBaseContext().getResources().getDisplayMetrics());
+                    //getResources().updateConfiguration(config, null);
+                    if(Utils.updateResources(getApplicationContext(),"en_US")){
+                        Intent show = new Intent(MainActivity.this, MainActivity.class);
+                        finish();
+                        startActivity(show);
+                    }
+
+
+
+
+                }
+            });
+            dialogo1.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialogo1, int id) {
+                    //cancelar();
+                }
+            });
+            dialogo1.show();
+
+        }*/
+
+
         return super.onOptionsItemSelected(item);
     }
 

@@ -1,6 +1,8 @@
 package com.alodiga.app.wallet.utils;
 
 import android.content.Context;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.provider.Settings;
 import android.view.Gravity;
@@ -417,4 +419,22 @@ public class Utils {
         return (str.matches("[+]?\\d*") && str.equals("")==false);
     }
 
+
+    public static boolean updateResources(Context context, String language) {
+        //Locale locale;//= Locale.getDefault();
+
+        Locale locale = new Locale(language);
+        Toast.makeText(context,locale.getCountry(),Toast.LENGTH_LONG);
+
+        Locale.setDefault(locale);
+
+        Resources resources = context.getResources();
+
+        Configuration configuration = resources.getConfiguration();
+        configuration.locale = locale;
+
+        resources.updateConfiguration(configuration, resources.getDisplayMetrics());
+
+        return true;
+    }
 }
