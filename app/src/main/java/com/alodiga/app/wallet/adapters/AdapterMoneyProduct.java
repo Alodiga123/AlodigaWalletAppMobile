@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -36,6 +37,7 @@ import com.alodiga.app.wallet.utils.Constants;
 import com.alodiga.app.wallet.utils.CustomToast;
 
 import java.util.List;
+import java.util.Locale;
 
 public class AdapterMoneyProduct extends RecyclerView.Adapter<AdapterMoneyProduct.GroceryProductViewHolder> implements AdapterView.OnItemSelectedListener {
     Context context;
@@ -70,30 +72,59 @@ public class AdapterMoneyProduct extends RecyclerView.Adapter<AdapterMoneyProduc
 
                 AlertDialog.Builder ADBuilder = new AlertDialog.Builder(context,R.style.yourDialog);
                 ADBuilder.setTitle(Html.fromHtml("Operaciones "+productName));
+                Configuration config = new Configuration();
+
+                final String idioma= Locale.getDefault().getLanguage();
 
 
                 //Creamos un nuevo ArrayAdapter de 'Strings' y pasamos como parametros (Contexto, int id "Referencia a layout");
                 final ArrayAdapter arrayAdapter = new ArrayAdapter(context,R.layout.menu_simple);
-                if(productName.equals("Tarjeta Prepagada")){
-                    arrayAdapter.add("    Recargar Tarjeta");
-                    arrayAdapter.add("    Extraer a Billetera");
-                }else{
-                    //R.string.menu_recharge
-                    arrayAdapter.add("    Recarga Manual");
-                    // R.string.menu_aoutMoney
-                    arrayAdapter.add("    Retiro Manual");
-                    // R.string.menu_convert
-                    arrayAdapter.add("    Convertir");
-                    // R.string.menu_transfer
-                    arrayAdapter.add("    Transferir");
-                    //  R.string.menu_pay_comerce
-                    arrayAdapter.add("    Pago QR Comercios");
+                if(idioma.equals("en")){
+                    if(productName.equals("Tarjeta Prepagada")){
+                        arrayAdapter.add("    Reload Card");
+                        arrayAdapter.add("    Remove Wallet");
+                    }else{
+                        //R.string.menu_recharge
+                        arrayAdapter.add("    Manual Recharge");
+                        // R.string.menu_aoutMoney
+                        arrayAdapter.add("    Manual Withdrawal");
+                        // R.string.menu_convert
+                        arrayAdapter.add("    Convert");
+                        // R.string.menu_transfer
+                        arrayAdapter.add("    To transfer");
+                        //  R.string.menu_pay_comerce
+                        arrayAdapter.add("    QR Payment Shops");
 
-                    if(grocderyItemList.get(position).isTopup()){
-                        // R.string.menu_recharge_n_i
-                        arrayAdapter.add("    TopUp");
+                        if(grocderyItemList.get(position).isTopup()){
+                            // R.string.menu_recharge_n_i
+                            arrayAdapter.add("    TopUp");
+                        }
+                    }
+
+                }else{
+                    if(productName.equals("Tarjeta Prepagada")){
+                        arrayAdapter.add("    Recargar Tarjeta");
+                        arrayAdapter.add("    Extraer a Billetera");
+                    }else{
+                        //R.string.menu_recharge
+                        arrayAdapter.add("    Recarga Manual");
+                        // R.string.menu_aoutMoney
+                        arrayAdapter.add("    Retiro Manual");
+                        // R.string.menu_convert
+                        arrayAdapter.add("    Convertir");
+                        // R.string.menu_transfer
+                        arrayAdapter.add("    Transferir");
+                        //  R.string.menu_pay_comerce
+                        arrayAdapter.add("    Pago QR Comercios");
+
+                        if(grocderyItemList.get(position).isTopup()){
+                            // R.string.menu_recharge_n_i
+                            arrayAdapter.add("    TopUp");
+                        }
                     }
                 }
+
+
 
 
                 //if(){}
@@ -113,24 +144,24 @@ public class AdapterMoneyProduct extends RecyclerView.Adapter<AdapterMoneyProduc
                     public void onClick(DialogInterface dialog, int _item) {
 
                         //Creamos un toast para mostrar el elemento selecionado
-                        if(arrayAdapter.getItem(_item).toString()=="    Recarga Manual"){
+                        if(arrayAdapter.getItem(_item).toString()=="    Recarga Manual" || arrayAdapter.getItem(_item).toString()=="    Manual Recharge"){
                             Intent show = new Intent(context, ManualRechargeStep1Activity.class);
                             context.startActivity(show);
                         }
-                        if(arrayAdapter.getItem(_item).toString()=="    Retiro Manual"){
+                        if(arrayAdapter.getItem(_item).toString()=="    Retiro Manual" || arrayAdapter.getItem(_item).toString()=="    Manual Withdrawal"){
                             Intent show = new Intent(context, ManualRemovalStep1Activity.class);
                             context.startActivity(show);
                         }
-                        if(arrayAdapter.getItem(_item).toString()=="    Convertir"){
+                        if(arrayAdapter.getItem(_item).toString()=="    Convertir" || arrayAdapter.getItem(_item).toString()=="    Convert"){
                             Intent show = new Intent(context, ExchangeStep1Activity.class);
                             context.startActivity(show);
                         }
-                        if(arrayAdapter.getItem(_item).toString()=="    Transferir"){
+                        if(arrayAdapter.getItem(_item).toString()=="    Transferir" || arrayAdapter.getItem(_item).toString()=="    To transfer"){
                             Intent show = new Intent(context, TransferenceStep1Activity.class);
                             context.startActivity(show);
                         }
 
-                        if(arrayAdapter.getItem(_item).toString()=="    Pago QR Comercios"){
+                        if(arrayAdapter.getItem(_item).toString()=="    Pago QR Comercios" ||arrayAdapter.getItem(_item).toString()=="    QR Payment Shops"){
                             Intent show = new Intent(context, PaymentComerceStep1Activity.class);
                             context.startActivity(show);
                         }
@@ -138,17 +169,28 @@ public class AdapterMoneyProduct extends RecyclerView.Adapter<AdapterMoneyProduc
                             Intent show = new Intent(context, TopupStep1Activity.class);
                             context.startActivity(show);
                         }
-                        if(arrayAdapter.getItem(_item).toString()=="    Recargar Tarjeta"){
+                        if(arrayAdapter.getItem(_item).toString()=="    Recargar Tarjeta" || arrayAdapter.getItem(_item).toString()=="    Reload Card"){
                            // Intent show = new Intent(context, PaymentComerceStep1Activity.class);
                            // context.startActivity(show)
-                            Toast toast = Toast.makeText(context, "Funcionalidad no disponible", Toast.LENGTH_SHORT);
-                            toast.show();
+                            if (idioma.equals("en")){
+                                Toast toast = Toast.makeText(context, "Functionality not available", Toast.LENGTH_SHORT);
+                                toast.show();
+                            }else{
+                                Toast toast = Toast.makeText(context, "Funcionalidad no disponible", Toast.LENGTH_SHORT);
+                                toast.show();
+                            }
+
                         }
-                        if(arrayAdapter.getItem(_item).toString()=="    Extraer a Billetera"){
+                        if(arrayAdapter.getItem(_item).toString()=="    Extraer a Billetera" || arrayAdapter.getItem(_item).toString()=="    Remove Wallet"){
                            // Intent show = new Intent(context, PaymentComerceStep1Activity.class);
                            // context.startActivity(show);
-                            Toast toast = Toast.makeText(context, "Funcionalidad no disponible", Toast.LENGTH_SHORT);
-                            toast.show();
+                            if (idioma.equals("en")){
+                                Toast toast = Toast.makeText(context, "Functionality not available", Toast.LENGTH_SHORT);
+                                toast.show();
+                            }else{
+                                Toast toast = Toast.makeText(context, "Funcionalidad no disponible", Toast.LENGTH_SHORT);
+                                toast.show();
+                            }
                         }
                     }
                 });
