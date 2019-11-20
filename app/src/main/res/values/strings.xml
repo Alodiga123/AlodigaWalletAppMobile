@@ -6,6 +6,8 @@
     <string name="nav_header_subtitle">Carroferta Media Group, C.A.</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Cerrar sesión</string>
+    <string name="action_settings_es">Español</string>
+    <string name="action_settings_en">Ingles</string>
     <string name="transaction">Operaciones</string>
     <string name="menu_buy">Comprar</string>
     <string name="menu_qr">Mi QR</string>
@@ -64,7 +66,7 @@
     <string name="validate_password_change_capital_letter">La contraseña debe tener al menos una letra mayúscula.</string>
     <string name="validate_password_change_lowercase_letter">La contraseña debe tener al menos una letra minúscula.</string>
     <string name="validate_password_change_number">La contraseña debe tener al menos un número.</string>
-    <string name="validate_password_change_special_character">La contraseña debe tener al menos uno de los siguientes caracteres. \n # ? ! @ $ % ^ &amp; * - </string>
+    <string name="validate_password_change_special_character">La contraseña debe tener al menos uno de los siguientes caracteres.   # ? ! @ $ % ^ * -</string>
     <string name="validate_password_change_number_characters">La contraseña debe tener al menos 8 caracteres.</string>
     <string name="toast_different_passwords">Las contraseñas no coinciden. Inténtalo de nuevo.</string>
     <string name="required_fields">Uno o más campos están vacíos.</string>
@@ -279,12 +281,14 @@
     <string name="loading">cargando..</string>
     <string name="close_session">Cerrar Sesion</string>
     <string name="close_session_answer">¿Esta Seguro que desea cerrar la sesion?</string>
+    <string name="session_answer_es">¿Esta Seguro que desea cambiar su idioma a Español?</string>
+    <string name="session_answer_en">¿Esta Seguro que desea cambiar su idioma a Ingles?</string>
     <string name="confirm">Confirmar</string>
     <string name="cancel">Cancelar</string>
     <string name="invalid_phone">La longitud del teléfono en invalida"</string>
     <string name="forEmail">Por email</string>
     <string name="forPhone">Por número Teléfono</string>
-    <string name="forQr">Por Codigo QR</string>
+    <string name="forQr">Por codigo QR</string>
     <string name="scanQr">Escanear QR</string>
     <string name="concept_req">El campo concepto es requerido</string>
     <string name="amount_req">El monto es invalido</string>
@@ -292,28 +296,6 @@
     <string name="select_location">Debe seleccionar un Pais</string>
     <string name="scan_fine">Escaneo Exitoso</string>
     <string name="select_language">Seleccione el idioma:</string>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 </resources>
