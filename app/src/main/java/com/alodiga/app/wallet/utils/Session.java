@@ -42,6 +42,8 @@ public class Session {
     private static ObjTopUpInfos[] datosDenominacionFijaTopup;
     private static String DestinationAmountTopup;
     private static String operationTopup;
+    private static String operationPaymentComerce;
+    private static String operationTransference;
     private static ObjExchange exchange;
     private static String operationExchange;
     private static String forgotData;
@@ -311,6 +313,22 @@ public class Session {
         Session.forgotData = forgotData;
     }
 
+    public static String getOperationPaymentComerce() {
+        return operationPaymentComerce;
+    }
+
+    public static void setOperationPaymentComerce(String operationPaymentComerce) {
+        Session.operationPaymentComerce = operationPaymentComerce;
+    }
+
+    public static String getOperationTransference() {
+        return operationTransference;
+    }
+
+    public static void setOperationTransference(String operationTransference) {
+        Session.operationTransference = operationTransference;
+    }
+
     public static void clearALL() {
         Session.userId = null;
         Session.username = null;
@@ -344,6 +362,8 @@ public class Session {
         Session.operationTopup=null;
         Session.exchange= null;
         Session.operationExchange = null;
+        Session.operationPaymentComerce=null;
+        Session.operationTransference=null;
     }
 
 }
