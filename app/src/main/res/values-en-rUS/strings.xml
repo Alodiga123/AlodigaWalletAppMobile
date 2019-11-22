@@ -49,8 +49,8 @@
     <string name="debitTotal">"Total to debit: "</string>
     <string name="descrip">Description</string>
     <string name="descrip_info">"Enter the description: "</string>
-    <string name="destination_amount">"Amount: "</string>
-    <string name="destination_concept">"Concept: "</string>
+    <string name="destination_amount">"Amount "</string>
+    <string name="destination_concept">"Concept "</string>
     <string name="destination_cuenta">"Destination: "</string>
     <string name="destination_date_time">"Date: "</string>
     <string name="destination_information">"Destination Account Information "</string>
