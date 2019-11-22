@@ -247,8 +247,8 @@
     <string name="destination_lastName">Apellido:</string>
     <string name="destination_phoe">Teléfono:</string>
     <string name="destination_cuenta">Destino:</string>
-    <string name="destination_concept">Concepto:</string>
-    <string name="destination_amount">Monto:</string>
+    <string name="destination_concept">Concepto</string>
+    <string name="destination_amount">Monto</string>
     <string name="destination_transaction_id">Transacción:</string>
     <string name="destination_date_time">Fecha:</string>
     <string name="destination_source">Origen:</string>
