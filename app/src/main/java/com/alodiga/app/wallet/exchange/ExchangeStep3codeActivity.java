@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.model.ObjUserHasProduct;
-import com.alodiga.app.wallet.transference.TransferenceStep5Activity;
 import com.alodiga.app.wallet.utils.Constants;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.FailCodeOperationActivity;
@@ -37,6 +36,7 @@ public class ExchangeStep3codeActivity extends AppCompatActivity {
     private boolean serviceStatus;
     private ProgressDialogAlodiga progressDialogAlodiga;
     private SoapObject response_;
+    Boolean isProcess=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,9 +60,9 @@ public class ExchangeStep3codeActivity extends AppCompatActivity {
                     finish();
                     startActivity(i);
                 } else {
-                    progressDialogAlodiga = new ProgressDialogAlodiga(getApplicationContext(), getString(R.string.loading));
-                    mAuthTask = new UserGetCodeTask(Utils.aloDesencript(getCode));
-                    mAuthTask.execute((Void) null);
+
+                   Thread1(getCode);
+
                 }
 
             }
@@ -76,6 +76,20 @@ public class ExchangeStep3codeActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void Thread1(String getCode){
+        progressDialogAlodiga = new ProgressDialogAlodiga(this, getString(R.string.loading));
+        progressDialogAlodiga.show();
+        mAuthTask = new UserGetCodeTask(Utils.aloDesencript(getCode));
+        mAuthTask.execute((Void) null);
+    }
+
+    public void Thread2(){
+        progressDialogAlodiga = new ProgressDialogAlodiga(this, getString(R.string.loading));
+        progressDialogAlodiga.show();
+        mAuthTask_ = new UserGetProcessExange();
+        mAuthTask_.execute((Void) null);
     }
 
     @Override
@@ -191,11 +205,8 @@ public class ExchangeStep3codeActivity extends AppCompatActivity {
 
                 if (cout <= 3) {
                     Session.setCodeOperation(edtMobileCode.getText().toString());
-                    //Intent i = new Intent(ExchangeStep3codeActivity.this, ExchangeStep4Activity.class);
-                    //startActivity(i);
-                    progressDialogAlodiga = new ProgressDialogAlodiga(getApplicationContext(), getString(R.string.loading));
-                    mAuthTask_ = new UserGetProcessExange();
-                    mAuthTask_.execute((Void) null);
+
+                    Thread2();
 
                 } else {
                     Intent i = new Intent(ExchangeStep3codeActivity.this, FailCodeOperationActivity.class);
@@ -246,10 +257,6 @@ public class ExchangeStep3codeActivity extends AppCompatActivity {
                 map.put("amountExchange", Session.getExchange().getAmountExchange());
                 map.put("conceptTransaction", "cualquier cosa");
                 map.put("includedAmount", Session.getExchange().getExange_includedAmount());
-
-
-
-
 
                 response_ = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_NAME_GET_EXCHANGE, Constants.ALODIGA);
                 responseCode = response_.getProperty("codigoRespuesta").toString();
@@ -328,6 +335,7 @@ public class ExchangeStep3codeActivity extends AppCompatActivity {
                 Session.setOperationExchange(response_.getProperty("idTransaction").toString());
                 Session.setObjUserHasProducts(getListProductGeneric(response_));
 
+
                 Intent i = new Intent(ExchangeStep3codeActivity.this, ExchangeStep4Activity.class);
                 startActivity(i);
                 finish();
@@ -362,6 +370,5 @@ public class ExchangeStep3codeActivity extends AppCompatActivity {
 
         return obj2;
     }
-
 
 }
