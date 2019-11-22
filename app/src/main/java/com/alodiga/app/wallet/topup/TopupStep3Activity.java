@@ -41,7 +41,7 @@ public class TopupStep3Activity extends AppCompatActivity {
         txtoperator.setText(Session.getOperatorTopup());
         txtRemitente.setText(Session.getPhonenumberTopup());
         txtDestino.setText(Session.getNumberDestinationTopup());
-        txtAmount.setText(Session.getDestinationAmountTopup());
+        txtAmount.setText(Session.getDestinationAmountTopup() +" $");
         txtDateTime.setText(new Timestamp(new Date().getTime()).toGMTString());
         txtTransactionId_3.setText(Session.getOperationTopup());
 
@@ -64,7 +64,7 @@ public class TopupStep3Activity extends AppCompatActivity {
                         "\n" + getString(R.string.operator_text) + " " + Session.getOperatorTopup() +
                         "\n" + getString(R.string.register_phone_number_message_dest) + " " + Session.getNumberDestinationTopup() +
                         "\n" + getString(R.string.register_phone_number_message_rem) + " " + Session.getPhonenumberTopup() +
-                        "\n" + getString(R.string.destination_amount) + " " + Session.getDestinationAmountTopup() +
+                        "\n" + getString(R.string.destination_amount) + " " + Session.getDestinationAmountTopup() + " $" +
                         "\n" + getString(R.string.location) + " " + Session.getCountryTopup() +
                         "\n" + getString(R.string.destination_date_time) + " " + new Timestamp(new Date().getTime()).toGMTString());
                 startActivity(Intent.createChooser(intent, getString(R.string.share_with)));
@@ -74,5 +74,12 @@ public class TopupStep3Activity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(TopupStep3Activity.this, MainActivity.class);
+        startActivity(i);
+        finish();
+    }
 
 }

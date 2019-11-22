@@ -75,7 +75,7 @@ public class PaymentComerceStep6Activity extends AppCompatActivity {
         destinationNameValue.setText(Session.getDestinationNameValue());
         conceptValue.setText(Session.getDestinationConcept());
         amountValue.setText(Session.getGetDestinationAmount());
-        txtTransactionId_3.setText(String.valueOf(new Date().getTime()));
+        txtTransactionId_3.setText(Session.getOperationPaymentComerce());
         txtDateTimeValue_3.setText(new Timestamp(new Date().getTime()).toGMTString());
         txtAccountSourceValue.setText(Session.getMoneySelected().getName().split("-")[0]);
 
@@ -93,7 +93,7 @@ public class PaymentComerceStep6Activity extends AppCompatActivity {
                         "\n" + getString(R.string.destination_concept)+" " + Session.getDestinationConcept() +
                         "\n" + getString(R.string.destination_source)+" " + Session.getMoneySelected().getName().split("-")[0] +
                         "\n" + getString(R.string.destination_date_time)+" " + new Timestamp(new Date().getTime()).toGMTString() +
-                        "\n" + getString(R.string.number_trans)+" " + new Date().getTime());
+                        "\n" + getString(R.string.number_trans)+" " + Session.getOperationPaymentComerce());
                 startActivity(Intent.createChooser(intent, getString(R.string.share_with)));
             }
         });
@@ -113,6 +113,13 @@ public class PaymentComerceStep6Activity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(PaymentComerceStep6Activity.this, MainActivity.class);
+        startActivity(i);
+        finish();
+    }
 
     private ArrayList<ObjUserHasProduct> getElementsProduct(String elementGet, String response) {
         ArrayList<ObjUserHasProduct> objUserHasProducts = new ArrayList<ObjUserHasProduct>();

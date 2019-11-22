@@ -34,7 +34,7 @@ public class ForgotPasswordStep3Activity extends AppCompatActivity {
     private int forwardIndicator;
     String currentPassword, newPassword, confirmPassword;
     private static int messageForToast;
-    Button change;
+    Button change, backToLoginBtn;
     private String responsetxt = "";
     private boolean serviceStatus;
     SoapObject response;
@@ -52,6 +52,7 @@ public class ForgotPasswordStep3Activity extends AppCompatActivity {
 
         progressBar = (ProgressBar) findViewById(R.id.progressBarPassword);
         change= findViewById(R.id.change);
+        backToLoginBtn= findViewById(R.id.backToLoginBtn);
         edtNewPassword = (EditText) findViewById(R.id.editTextNewPassword);
 
         edtNewPassword.addTextChangedListener(new TextWatcher()
@@ -78,7 +79,13 @@ public class ForgotPasswordStep3Activity extends AppCompatActivity {
                 evchangePassword();
             }
         });
-
+        backToLoginBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent i = new Intent(ForgotPasswordStep3Activity.this, ForgotPasswordStep2Fragment.class);
+                startActivity(i);
+                finish();
+            }
+        });
     }
 
 

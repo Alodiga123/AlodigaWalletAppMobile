@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.adapters.SpinAdapterHowToTransfer;
 import com.alodiga.app.wallet.adapters.SpinAdapterTransferMoney;
+import com.alodiga.app.wallet.main.MainActivity;
 import com.alodiga.app.wallet.model.ObjHowToTranssfer;
 import com.alodiga.app.wallet.model.ObjTransferMoney;
 import com.alodiga.app.wallet.model.ObjUserHasProduct;
@@ -38,7 +39,7 @@ public class PaymentComerceStep1Activity extends AppCompatActivity {
     private Spinner spinnerIdentification;
     private EditText userEmailIdTransfer, mobileNumberTransfer, getPhoneOrEmail, editTextTelephone;
     private View viewQ;
-    private Button signFind;
+    private Button signFind, backToLoginBtn;
     private String responsetxt = "";
     private boolean serviceStatus;
     private ProgressDialogAlodiga progressDialogAlodiga;
@@ -66,6 +67,7 @@ public class PaymentComerceStep1Activity extends AppCompatActivity {
         userEmailIdTransfer = findViewById(R.id.userEmailOrPhoneIdTransfer);
         viewQ = findViewById(R.id.viewQ);
         signFind = findViewById(R.id.signFind);
+        backToLoginBtn= findViewById(R.id.backToLoginBtn);
 
 
         String[] optionsID = {"Alocoin", "Saldo Alodiga", "HealthCareCoin"};
@@ -147,7 +149,14 @@ public class PaymentComerceStep1Activity extends AppCompatActivity {
                 }
             }
         });
+        backToLoginBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
 
+                Intent i = new Intent(PaymentComerceStep1Activity.this, MainActivity.class);
+                startActivity(i);
+                finish();
+            }
+        });
 
     }
 
@@ -178,6 +187,13 @@ public class PaymentComerceStep1Activity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(PaymentComerceStep1Activity.this, MainActivity.class);
+        startActivity(i);
+        finish();
+    }
     public class FindUserTask extends AsyncTask<Void, Void, Boolean> {
         private final String phoneOrEmail;
 

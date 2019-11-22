@@ -25,10 +25,21 @@ public class ManualRemovalStep2WelcomeActivity extends AppCompatActivity {
                 Intent show;
                 show = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(show);
+                finish();
+
 
             }
         });
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent pasIntent = getIntent();
+        Intent i = new Intent(ManualRemovalStep2WelcomeActivity.this, MainActivity.class);
+        startActivity(i);
+        finish();
     }
 }

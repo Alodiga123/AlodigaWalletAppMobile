@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.adapters.SpinAdapterGeneric;
 import com.alodiga.app.wallet.adapters.SpinAdapterPais;
+import com.alodiga.app.wallet.main.MainActivity;
 import com.alodiga.app.wallet.model.ObjGenericObject;
 import com.alodiga.app.wallet.model.ObjTopUpInfos;
 import com.alodiga.app.wallet.model.ObjtopUpInfos_IsOpenRange;
@@ -40,7 +41,7 @@ public class TopupStep1Activity extends AppCompatActivity {
     String getmobileNumberRegister, getmobileNumberRegisterR;
     ObjGenericObject getcountry, getlanguaje;
     Spinner spinnerCountry, spinnerIdioma;
-    private Button next;
+    private Button next, backToLoginBtn;
     private String responsetxt = "";
     private ProcessTopup mAuthTask = null;
     private EditText mobileNumberRegister, mobileNumberRegisterR;
@@ -52,6 +53,7 @@ public class TopupStep1Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.topup_step1_layout);
         next = findViewById(R.id.next);
+        backToLoginBtn= findViewById(R.id.backToLoginBtn);
         spinnerCountry = findViewById(R.id.spinnerCountry);
         spinnerIdioma = findViewById(R.id.spinnerIdioma);
         mobileNumberRegister = findViewById(R.id.mobileNumberRegister);
@@ -179,8 +181,25 @@ public class TopupStep1Activity extends AppCompatActivity {
 
             }
         });
+
+        backToLoginBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent i = new Intent(TopupStep1Activity.this, MainActivity.class);
+                startActivity(i);
+                finish();
+
+            }
+        });
     }
 
+
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(TopupStep1Activity.this, MainActivity.class);
+        startActivity(i);
+        finish();
+
+    }
     public void entrar() {
 
         progressDialogAlodiga = new ProgressDialogAlodiga(this, getString(R.string.loading));

@@ -67,6 +67,23 @@ public class ExchangeStep3codeActivity extends AppCompatActivity {
 
             }
         });
+
+        backToLoginBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent i = new Intent(ExchangeStep3codeActivity.this, ExchangeStep2Activity.class);
+                startActivity(i);
+                finish();
+
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+             Intent i = new Intent(ExchangeStep3codeActivity.this, ExchangeStep2Activity.class);
+        startActivity(i);
+        finish();
+
     }
 
 
@@ -183,6 +200,8 @@ public class ExchangeStep3codeActivity extends AppCompatActivity {
                 } else {
                     Intent i = new Intent(ExchangeStep3codeActivity.this, FailCodeOperationActivity.class);
                     startActivity(i);
+                    finish();
+
                 }
 
 
@@ -311,6 +330,8 @@ public class ExchangeStep3codeActivity extends AppCompatActivity {
 
                 Intent i = new Intent(ExchangeStep3codeActivity.this, ExchangeStep4Activity.class);
                 startActivity(i);
+                finish();
+
 
 
             } else {
@@ -341,4 +362,6 @@ public class ExchangeStep3codeActivity extends AppCompatActivity {
 
         return obj2;
     }
+
+
 }

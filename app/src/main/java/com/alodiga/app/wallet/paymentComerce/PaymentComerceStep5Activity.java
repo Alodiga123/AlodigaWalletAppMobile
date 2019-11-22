@@ -32,7 +32,7 @@ public class PaymentComerceStep5Activity extends AppCompatActivity {
 
     private static TextView txtAccountSourceValue, acountNumberValue, destinationPhoneValue, destinationLastNameValue, destinationNameValue, txtAmountValue, txtConceptValue;
 
-    private static Button btnProcessTransaction;
+    private static Button btnProcessTransaction, backToLoginBtn;
     SoapObject response;
     private ProgressDialogAlodiga progressDialogAlodiga;
     private String responsetxt = "";
@@ -50,7 +50,7 @@ public class PaymentComerceStep5Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.confirmation_transfer2);
-
+        backToLoginBtn= findViewById(R.id.backToLoginBtn);
         amountValue = findViewById(R.id.txtAmountValue_2);
         conceptValue = findViewById(R.id.txtConceptValue_2);
         acountNumberValue = findViewById(R.id.txtAccountNumberValue_2);
@@ -73,10 +73,24 @@ public class PaymentComerceStep5Activity extends AppCompatActivity {
                 procesar();
             }
         });
+        backToLoginBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent i = new Intent(PaymentComerceStep5Activity.this, PaymentComerceStep4codeActivity.class);
+                startActivity(i);
+                finish();
+            }
+        });
 
 
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(PaymentComerceStep5Activity.this, PaymentComerceStep4codeActivity.class);
+        startActivity(i);
+        finish();
+    }
     public void procesar() {
 
 
@@ -90,7 +104,7 @@ public class PaymentComerceStep5Activity extends AppCompatActivity {
         //ObjUserHasProduct[] obj2_aux= new ObjUserHasProduct[response.getPropertyCount()-3];
         //ObjUserHasProduct[] obj2 = new ObjUserHasProduct[response.getPropertyCount()-3];
         ArrayList<ObjUserHasProduct> obj2 = new ArrayList<>();
-        for (int i = 3; i < response.getPropertyCount(); i++) {
+        for (int i = 4; i < response.getPropertyCount(); i++) {
             SoapObject obj = (SoapObject) response.getProperty(i);
             String propiedad = response.getProperty(i).toString();
             ObjUserHasProduct object = new ObjUserHasProduct(obj.getProperty("id").toString(), obj.getProperty("name").toString(), obj.getProperty("currentBalance").toString(), obj.getProperty("symbol").toString());
@@ -242,6 +256,7 @@ public class PaymentComerceStep5Activity extends AppCompatActivity {
                 Session.setHealthCareCoinsBalance(balancePrepaidCard);
                 Session.setAlodigaBalance(balanceAlodiga);
                 Session.setObjUserHasProducts(getListProduct(response));
+                Session.setOperationPaymentComerce(response.getProperty("idTransaction").toString());
                 Intent i = new Intent(PaymentComerceStep5Activity.this, PaymentComerceStep6Activity.class);
                 startActivity(i);
                 finish();

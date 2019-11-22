@@ -47,7 +47,7 @@ public class TopupStep2Activity extends AppCompatActivity {
     private String responsetxt = "";
     private boolean serviceStatus;
     private ProcessTopup2 mAuthTask = null;
-    private Button next;
+    private Button next, backToLoginBtn;
     //String tipo="1";
 
     @Override
@@ -55,6 +55,7 @@ public class TopupStep2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.topup_step2_layout);
         next = findViewById(R.id.next);
+        backToLoginBtn = findViewById(R.id.backToLoginBtn);
         number = findViewById(R.id.number);
         product = findViewById(R.id.product);
         range = findViewById(R.id.range);
@@ -204,9 +205,24 @@ public class TopupStep2Activity extends AppCompatActivity {
             }
         });
 
-
+        backToLoginBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent show;
+                show = new Intent(getApplicationContext(), TopupStep1Activity.class);
+                startActivity(show);
+                finish();
+            }
+        });
     }
 
+
+    @Override
+    public void onBackPressed() {
+        Intent show;
+        show = new Intent(getApplicationContext(), TopupStep1Activity.class);
+        startActivity(show);
+        finish();
+    }
     public void entrar(boolean isOR, String productID) {
 
         progressDialogAlodiga = new ProgressDialogAlodiga(this, getString(R.string.loading));
@@ -483,6 +499,8 @@ public class TopupStep2Activity extends AppCompatActivity {
                 Intent show;
                 show = new Intent(getApplicationContext(), TopupStep3Activity.class);
                 startActivity(show);
+                finish();
+
 
             } else {
                 new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),

@@ -19,6 +19,7 @@ import com.alodiga.app.R;
 import com.alodiga.app.wallet.adapters.SpinAdapterBank;
 import com.alodiga.app.wallet.adapters.SpinAdapterPais;
 import com.alodiga.app.wallet.adapters.SpinAdapterProduct;
+import com.alodiga.app.wallet.main.MainActivity;
 import com.alodiga.app.wallet.model.ObjGenericObject;
 import com.alodiga.app.wallet.model.ObjTransferMoney;
 import com.alodiga.app.wallet.utils.Constants;
@@ -48,7 +49,7 @@ public class ManualRechargeStep1Activity extends AppCompatActivity {
     String getNumberOperation, getTrans, getAmountRecharge;
     Spinner spinner_pais, spinnerbank, spinnerproducto;
     private EditText edtAmount, edtCOD, edttrans;
-    private Button signFind;
+    private Button signFind, backToLoginBtn;
     private String responsetxt = "";
     private boolean serviceStatus;
 
@@ -61,6 +62,7 @@ public class ManualRechargeStep1Activity extends AppCompatActivity {
         spinnerproducto = findViewById(R.id.spinnerproducto);
         edtAmount = findViewById(R.id.edtAmount);
         signFind = findViewById(R.id.signFind);
+        backToLoginBtn=findViewById(R.id.backToLoginBtn);
         edtCOD = findViewById(R.id.edtCOD);
         edttrans = findViewById(R.id.edttrans);
 
@@ -254,8 +256,25 @@ public class ManualRechargeStep1Activity extends AppCompatActivity {
                 }
             }
         });
+
+        backToLoginBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent show;
+                show = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(show);
+                finish();
+            }
+        });
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent pasIntent = getIntent();
+        Intent i = new Intent(ManualRechargeStep1Activity.this, MainActivity.class);
+        startActivity(i);
+        finish();
+    }
 
     protected ObjGenericObject[] getListGeneric(SoapObject response) {
 
@@ -467,6 +486,8 @@ public class ManualRechargeStep1Activity extends AppCompatActivity {
                 Intent show;
                 show = new Intent(getApplicationContext(), ManualRechargeStep2WelcomeActivity.class);
                 startActivity(show);
+                finish();
+
             } else {
                 new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                         responsetxt);

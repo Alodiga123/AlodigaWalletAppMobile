@@ -32,7 +32,7 @@ public class TransferenceStep5Activity extends AppCompatActivity {
 
     private static TextView txtAccountSourceValue, acountNumberValue, destinationPhoneValue, destinationLastNameValue, destinationNameValue, txtAmountValue, txtConceptValue;
 
-    private static Button btnProcessTransaction;
+    private static Button btnProcessTransaction, backToLoginBtn;
     SoapObject response;
     private ProgressDialogAlodiga progressDialogAlodiga;
     private String responsetxt = "";
@@ -58,13 +58,14 @@ public class TransferenceStep5Activity extends AppCompatActivity {
         destinationLastNameValue = findViewById(R.id.txtDestinationLastNameValue_2);
         destinationNameValue = findViewById(R.id.txtDestinationNameValue_2);
         btnProcessTransaction = findViewById(R.id.btnProcessTransaction);
+        backToLoginBtn= findViewById(R.id.backToLoginBtn);
         txtAccountSourceValue = findViewById(R.id.txtAccountSourceValue_2);
         acountNumberValue.setText(Session.getDestinationAccountNumber());
         destinationPhoneValue.setText(Session.getDestinationPhoneValue());
         destinationLastNameValue.setText(Session.getDestinationLastNameValue());
         destinationNameValue.setText(Session.getDestinationNameValue());
         conceptValue.setText(Session.getDestinationConcept());
-        amountValue.setText(Session.getGetDestinationAmount());
+        amountValue.setText(Session.getGetDestinationAmount() +" $");
         txtAccountSourceValue.setText(Session.getMoneySelected().getName());
 
         progressDialogAlodiga = new ProgressDialogAlodiga(this, getString(R.string.loading));
@@ -74,9 +75,23 @@ public class TransferenceStep5Activity extends AppCompatActivity {
             }
         });
 
+        backToLoginBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent i = new Intent(TransferenceStep5Activity.this, TransferenceStep4codeActivity.class);
+                startActivity(i);
+                finish();
+            }
+        });
+
 
     }
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(TransferenceStep5Activity.this, TransferenceStep4codeActivity.class);
+        startActivity(i);
+        finish();
+    }
     public void procesar() {
 
 
@@ -90,7 +105,7 @@ public class TransferenceStep5Activity extends AppCompatActivity {
         //ObjUserHasProduct[] obj2_aux= new ObjUserHasProduct[response.getPropertyCount()-3];
         //ObjUserHasProduct[] obj2 = new ObjUserHasProduct[response.getPropertyCount()-3];
         ArrayList<ObjUserHasProduct> obj2 = new ArrayList<>();
-        for (int i = 3; i < response.getPropertyCount(); i++) {
+        for (int i = 4; i < response.getPropertyCount(); i++) {
             SoapObject obj = (SoapObject) response.getProperty(i);
             String propiedad = response.getProperty(i).toString();
             ObjUserHasProduct object = new ObjUserHasProduct(obj.getProperty("id").toString(), obj.getProperty("name").toString(), obj.getProperty("currentBalance").toString(), obj.getProperty("symbol").toString());
@@ -241,6 +256,7 @@ public class TransferenceStep5Activity extends AppCompatActivity {
                 Session.setHealthCareCoinsBalance(balancePrepaidCard);
                 Session.setAlodigaBalance(balanceAlodiga);
                 Session.setObjUserHasProducts(getListProduct(response));
+                Session.setOperationTransference(response.getProperty("idTransaction").toString());
                 Intent i = new Intent(TransferenceStep5Activity.this, TransferenceStep6Activity.class);
                 startActivity(i);
                 finish();

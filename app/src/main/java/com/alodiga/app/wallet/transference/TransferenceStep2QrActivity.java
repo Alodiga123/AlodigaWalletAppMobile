@@ -247,7 +247,13 @@ public class TransferenceStep2QrActivity extends AppCompatActivity implements ZX
         }
     }
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(TransferenceStep2QrActivity.this, TransferenceStep1Activity.class);
+        startActivity(i);
+        finish();
+    }
 }
 
 

@@ -15,6 +15,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.alodiga.app.R;
+import com.alodiga.app.wallet.main.MainActivity;
 import com.alodiga.app.wallet.model.ObjCountry;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
@@ -25,7 +26,7 @@ public class PaymentComerceStep3Activity extends AppCompatActivity {
     private static View view;
     private static EditText amountValue, conceptValue;
     private static TextView txtAccountSourceValue, acountNumberValue, destinationPhoneValue, destinationLastNameValue, destinationNameValue;
-    private static Button btnProcessConfirmation1;
+    private static Button btnProcessConfirmation1, backToLoginBtn;
 
 
     public PaymentComerceStep3Activity() {
@@ -45,6 +46,7 @@ public class PaymentComerceStep3Activity extends AppCompatActivity {
         destinationNameValue = findViewById(R.id.txtDestinationNameValue);
         txtAccountSourceValue = findViewById(R.id.txtAccountSourceValue);
         btnProcessConfirmation1 = findViewById(R.id.btnProcessConfirmation1);
+        backToLoginBtn= findViewById(R.id.backToLoginBtn);
 
 
         acountNumberValue.setText(Session.getDestinationAccountNumber());
@@ -71,7 +73,13 @@ public class PaymentComerceStep3Activity extends AppCompatActivity {
                 }
             }
         });
-
+        backToLoginBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent i = new Intent(PaymentComerceStep3Activity.this, PaymentComerceStep1Activity.class);
+                startActivity(i);
+                finish();
+            }
+        });
 
         amountValue.addTextChangedListener(new TextWatcher() {
             public void afterTextChanged(Editable s) {
@@ -104,6 +112,13 @@ public class PaymentComerceStep3Activity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(PaymentComerceStep3Activity.this, PaymentComerceStep1Activity.class);
+        startActivity(i);
+        finish();
+    }
 
     private boolean checkValidation() {
         // Check if all strings are null or not

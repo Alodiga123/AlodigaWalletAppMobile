@@ -121,6 +121,13 @@ public class PaymentComerceStep2QrActivity extends AppCompatActivity implements 
 
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(PaymentComerceStep2QrActivity.this, PaymentComerceStep1Activity.class);
+        startActivity(i);
+        finish();
+    }
     public class FindUserTask extends AsyncTask<Void, Void, Boolean> {
         private final String phoneOrEmail;
 

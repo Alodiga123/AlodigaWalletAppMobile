@@ -16,6 +16,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.alodiga.app.R;
+import com.alodiga.app.wallet.main.MainActivity;
 import com.alodiga.app.wallet.model.ObjCountry;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
@@ -25,7 +26,7 @@ public class TransferenceStep3Activity extends AppCompatActivity {
     static ProgressDialogAlodiga progressDialogAlodiga;
     private static EditText amountValue, conceptValue;
     private static TextView txtAccountSourceValue, acountNumberValue, destinationPhoneValue, destinationLastNameValue, destinationNameValue;
-    private static Button btnProcessConfirmation1;
+    private static Button btnProcessConfirmation1, backToLoginBtn;
 
 
 
@@ -46,7 +47,7 @@ public class TransferenceStep3Activity extends AppCompatActivity {
         destinationNameValue = findViewById(R.id.txtDestinationNameValue);
         txtAccountSourceValue = findViewById(R.id.txtAccountSourceValue);
         btnProcessConfirmation1 = findViewById(R.id.btnProcessConfirmation1);
-
+        backToLoginBtn = findViewById(R.id.backToLoginBtn);
 
         acountNumberValue.setText(Session.getDestinationAccountNumber());
         destinationPhoneValue.setText(Session.getDestinationPhoneValue());
@@ -71,6 +72,15 @@ public class TransferenceStep3Activity extends AppCompatActivity {
                         finish();
                     }
                 }
+            }
+        });
+
+        backToLoginBtn.setOnClickListener(new OnClickListener() {
+            public void onClick(View v) {
+                        Intent i = new Intent(TransferenceStep3Activity.this, TransferenceStep1Activity.class);
+                        startActivity(i);
+                        finish();
+
             }
         });
 
@@ -129,6 +139,12 @@ public class TransferenceStep3Activity extends AppCompatActivity {
     }
 
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(TransferenceStep3Activity.this, TransferenceStep1Activity.class);
+        startActivity(i);
+        finish();
+    }
 
 }

@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.adapters.SpinAdapterHowToTransfer;
 import com.alodiga.app.wallet.adapters.SpinAdapterTransferMoney;
+import com.alodiga.app.wallet.main.MainActivity;
 import com.alodiga.app.wallet.model.ObjHowToTranssfer;
 import com.alodiga.app.wallet.model.ObjTransferMoney;
 import com.alodiga.app.wallet.model.ObjUserHasProduct;
@@ -37,7 +38,7 @@ public class TransferenceStep1Activity extends AppCompatActivity {
     private Spinner spinnerIdentification, spinnerTypeFind;
     private EditText userEmailIdTransfer, mobileNumberTransfer, getPhoneOrEmail, editTextTelephone;
     private View viewQ;
-    private Button signFind;
+    private Button signFind, backToLoginBtn;
     private String responsetxt = "";
     private boolean serviceStatus;
     private ProgressDialogAlodiga progressDialogAlodiga;
@@ -65,6 +66,7 @@ public class TransferenceStep1Activity extends AppCompatActivity {
         userEmailIdTransfer = findViewById(R.id.userEmailOrPhoneIdTransfer);
         viewQ = findViewById(R.id.viewQ);
         signFind = findViewById(R.id.signFind);
+        backToLoginBtn=findViewById(R.id.backToLoginBtn);
 
 
 
@@ -191,8 +193,23 @@ public class TransferenceStep1Activity extends AppCompatActivity {
                 }
             }
         });
+
+        backToLoginBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent i = new Intent(TransferenceStep1Activity.this, MainActivity.class);
+                startActivity(i);
+                finish();
+            }
+        });
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(TransferenceStep1Activity.this, MainActivity.class);
+        startActivity(i);
+        finish();
+    }
     // Check Validation Method
     private boolean checkValidation() {
         // Get all edittext texts

@@ -61,6 +61,24 @@ public class TransferenceStep4codeActivity extends AppCompatActivity {
 
             }
         });
+
+
+        backToLoginBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent i = new Intent(TransferenceStep4codeActivity.this, TransferenceStep3Activity.class);
+                finish();
+                startActivity(i);
+
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(TransferenceStep4codeActivity.this, TransferenceStep3Activity.class);
+        finish();
+        startActivity(i);
     }
 
 

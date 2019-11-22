@@ -13,12 +13,13 @@ import com.alodiga.app.wallet.utils.Session;
 
 public class ExchangeStep2Activity extends AppCompatActivity {
     TextView txtcommission,txtpercentage, txtdebitar, txtDestino, txtincludeM, rateSource, txtrateSource, rateDestination,txtrateDestination,txtAmount_ini;
-    Button next;
+    Button next, backToLoginBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.exchange_step2_layout);
         next= findViewById(R.id.next);
+        backToLoginBtn= findViewById(R.id.backToLoginBtn);
         txtcommission=findViewById(R.id.txtcommission);
         txtpercentage=findViewById(R.id.txtpercentage);
         txtdebitar=findViewById(R.id.txtdebitar);
@@ -46,9 +47,30 @@ public class ExchangeStep2Activity extends AppCompatActivity {
             public void onClick(View v) {
                         Intent i = new Intent(ExchangeStep2Activity.this, ExchangeStep3codeActivity.class);
                         startActivity(i);
+                         finish();
+
 
             }
         });
+
+        backToLoginBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                finish();
+                Intent i = new Intent(ExchangeStep2Activity.this, ExchangeStep1Activity.class);
+                startActivity(i);
+
+
+            }
+        });
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(ExchangeStep2Activity.this, ExchangeStep1Activity.class);
+        startActivity(i);
+        finish();
 
     }
 }

@@ -32,4 +32,13 @@ public class ChangePasswordStep2Activity extends Activity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent pasIntent = getIntent();
+        Intent i = new Intent(ChangePasswordStep2Activity.this, MainActivity.class);
+        startActivity(i);
+        finish();
+    }
+
 }

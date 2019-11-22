@@ -1,14 +1,17 @@
 package com.alodiga.app.wallet.exchange;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.alodiga.app.R;
+import com.alodiga.app.wallet.login.LoginActivity;
 import com.alodiga.app.wallet.main.MainActivity;
 import com.alodiga.app.wallet.utils.Session;
 
@@ -57,6 +60,8 @@ public class ExchangeStep4Activity extends AppCompatActivity {
                 Intent show;
                 show = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(show);
+                finish();
+
             }
         });
 
@@ -78,9 +83,20 @@ public class ExchangeStep4Activity extends AppCompatActivity {
                         "\n" +   rateSource.getText().toString() + " : "+ txtrateSource.getText().toString() +
                         "\n" +   rateDestination.getText().toString() + " : "+ txtrateDestination.getText().toString());
                 startActivity(Intent.createChooser(intent, getString(R.string.share_with)));
+
             }
         });
 
 
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent pasIntent = getIntent();
+        Intent i = new Intent(ExchangeStep4Activity.this, MainActivity.class);
+        startActivity(i);
+        finish();
+    }
+
 }

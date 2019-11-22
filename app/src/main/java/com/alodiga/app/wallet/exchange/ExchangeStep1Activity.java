@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.adapters.SpinAdapterProduct;
+import com.alodiga.app.wallet.main.MainActivity;
 import com.alodiga.app.wallet.model.ObjExchange;
 import com.alodiga.app.wallet.model.ObjTransferMoney;
 import com.alodiga.app.wallet.utils.Constants;
@@ -40,7 +41,7 @@ public class ExchangeStep1Activity extends AppCompatActivity {
     static ObjTransferMoney[] listSpinner_product1 = new ObjTransferMoney[0];
     static ObjTransferMoney[] listSpinner_product2;
     EditText  edtAmount;
-    Button next;
+    Button next, backToLoginBtn;
     CheckBox checkBox;
     private ProcessPreviewExange mAuthTask = null;
     ObjExchange exchange_aux= new ObjExchange();
@@ -54,6 +55,7 @@ public class ExchangeStep1Activity extends AppCompatActivity {
         spinnerProduct2= findViewById(R.id.spinnerProduct2);
         edtAmount= findViewById(R.id.edtAmount);
         next= findViewById(R.id.next);
+        backToLoginBtn= findViewById(R.id.backToLoginBtn);
         checkBox= findViewById(R.id.checkBox);
         //Spinner Languaje
         new Thread(new Runnable() {
@@ -170,6 +172,16 @@ public class ExchangeStep1Activity extends AppCompatActivity {
                 } else {
                     entrar(edtAmount_text);
                 }
+
+            }
+        });
+
+        backToLoginBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent pasIntent = getIntent();
+                Intent i = new Intent(ExchangeStep1Activity.this, MainActivity.class);
+                startActivity(i);
+                finish();
 
             }
         });
@@ -410,5 +422,14 @@ public class ExchangeStep1Activity extends AppCompatActivity {
         protected void onCancelled() {
             mAuthTask = null;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent pasIntent = getIntent();
+        Intent i = new Intent(ExchangeStep1Activity.this, MainActivity.class);
+        startActivity(i);
+        finish();
     }
 }

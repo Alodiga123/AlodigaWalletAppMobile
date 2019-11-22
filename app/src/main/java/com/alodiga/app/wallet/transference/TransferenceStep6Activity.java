@@ -77,11 +77,11 @@ public class TransferenceStep6Activity extends AppCompatActivity {
         destinationLastNameValue.setText(Session.getDestinationLastNameValue());
         destinationPhoneValue.setText(Session.getDestinationPhoneValue());
         acountNumberValue.setText(Session.getDestinationAccountNumber());
-        amountValue.setText(Session.getGetDestinationAmount());
+        amountValue.setText(Session.getGetDestinationAmount() +" $");
         conceptValue.setText(Session.getDestinationConcept());
         txtAccountSourceValue.setText(Session.getMoneySelected().getName().split("-")[0]);
         txtDateTimeValue_3.setText(new Timestamp(new Date().getTime()).toGMTString());
-        txtTransactionId_3.setText(String.valueOf(new Date().getTime()));
+        txtTransactionId_3.setText(Session.getOperationTransference());
 
 
 
@@ -94,11 +94,11 @@ public class TransferenceStep6Activity extends AppCompatActivity {
                         "\n" + getString(R.string.destination_name)+" "+ Session.getDestinationNameValue() + " " + Session.getDestinationLastNameValue() +
                         "\n" + getString(R.string.destination_phoe)+" " + Session.getDestinationPhoneValue() +
                         "\n" + getString(R.string.destination_cuenta)+" " + Session.getDestinationAccountNumber() +
-                        "\n" + getString(R.string.destination_amount)+" " + Session.getGetDestinationAmount() +
+                        "\n" + getString(R.string.destination_amount)+" " + Session.getGetDestinationAmount() + " $" +
                         "\n" + getString(R.string.destination_concept)+" " + Session.getDestinationConcept() +
                         "\n" + getString(R.string.destination_source)+" " + Session.getMoneySelected().getName().split("-")[0] +
                         "\n" + getString(R.string.destination_date_time)+" " + new Timestamp(new Date().getTime()).toGMTString() +
-                        "\n" + getString(R.string.number_trans)+" " + new Date().getTime());
+                        "\n" + getString(R.string.number_trans)+" " + Session.getOperationTransference());
                 startActivity(Intent.createChooser(intent, getString(R.string.share_with)));
             }
         });
@@ -261,6 +261,8 @@ public class TransferenceStep6Activity extends AppCompatActivity {
                 Intent show;
                 show = new Intent(getApplicationContext(), ManualRemovalStep2WelcomeActivity.class);
                 startActivity(show);
+                finish();
+
 
             } else {
                 new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
@@ -273,5 +275,13 @@ public class TransferenceStep6Activity extends AppCompatActivity {
         protected void onCancelled() {
             mAuthTask = null;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent show = new Intent(TransferenceStep6Activity.this, MainActivity.class);
+        finish();
+        startActivity(show);
+
     }
 }

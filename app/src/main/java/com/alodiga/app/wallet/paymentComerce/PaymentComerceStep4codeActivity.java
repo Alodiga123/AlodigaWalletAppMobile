@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -26,7 +27,8 @@ public class PaymentComerceStep4codeActivity extends AppCompatActivity {
     static int cout = 1;
     static int cout_aux = 3;
     UserGetCodeTask mAuthTask;
-    private TextView backToLoginBtn, step1_next_button, tvintentos;
+    private Button backToLoginBtn, step1_next_button;
+    private TextView tvintentos;
     private EditText edtMobileCode;
     private String responsetxt = "";
     private boolean serviceStatus;
@@ -61,8 +63,24 @@ public class PaymentComerceStep4codeActivity extends AppCompatActivity {
 
             }
         });
+
+        backToLoginBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                Intent i = new Intent(PaymentComerceStep4codeActivity.this, PaymentComerceStep3Activity.class);
+                finish();
+                startActivity(i);
+            }
+        });
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(PaymentComerceStep4codeActivity.this, PaymentComerceStep3Activity.class);
+        startActivity(i);
+        finish();
+    }
 
     public class UserGetCodeTask extends AsyncTask<Void, Void, Boolean> {
 

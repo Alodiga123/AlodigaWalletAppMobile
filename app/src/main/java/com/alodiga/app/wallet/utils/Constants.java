@@ -7,13 +7,15 @@ package com.alodiga.app.wallet.utils;
 public class Constants {
 
     //IP PUBLICA
-    // public static String IPDAT="200.73.192.179";
+     //public static String IPDAT="200.73.192.179";
 
     /*Data de Produccion*/
     public static final boolean CONSTANT_IS_PRODUCTION = false;
 
     //LOCAL moises
     public static String IPDAT="192.168.3.20";
+    //LOCAL QA
+    //public static String IPDAT = "192.168.3.140";
 
     public static final String RESUM_OPERATION_PHONE = "getResumOperationByPhoneNumberSender";
     public static final String RESUM_CLOSE_SESSION = "appCloseSession";
@@ -105,6 +107,7 @@ public class Constants {
     public static final String WEB_SERVICES_METHOD_NAME_SEND_SECRET_AMSWER = "setPreguntasSecretasUsuarioAplicacionMovil";
     public static final String WEB_SERVICES_METHOD_NAME_GET_BANK = "getBankByCountryApp";
     public static final String WEB_SERVICES_METHOD_NAME_GET_COUNTRIES = "getCountriesHasBank";
+    public static final String WEB_SERVICES_METHOD_NAME_GET_COUNTRIES_ = "getCountries";
     public static final String WEB_SERVICES_METHOD_NAME_GET_LANGUAJE_TOPUP = "getLanguage";
     public static final String WEB_SERVICES_METHOD_NAME_GET_PRODUCT_TOPUP = "getProductsPayTopUpByUserId";
     public static final String WEB_SERVICES_METHOD_NAME_GET_COUNTRIES_TOPUP = "getTopUpCountries";
@@ -133,8 +136,7 @@ public class Constants {
     public static final String VECTOR_ENCRIPT_DESENCRIPT = "0123456789ABCDEF";
     public static final String KEY_ENCRIPT_DESENCRIPT_QR = "alodigaPruebadellave";
     public static final String VALUE_KEY = "maria,d,tercerparametro,p";
-    //LOCAL
-    //public static String IPDAT = "192.168.3.140";
+
     /*PRODUCCION*/
     //public static final String  CONSTANT_IP = "192.168.3.20";
     public static final String CONSTANT_IP = IPDAT;

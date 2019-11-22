@@ -31,7 +31,7 @@ public class ChangePasswordStep1Activity extends AppCompatActivity {
     private int forwardIndicator;
     String currentPassword, newPassword, confirmPassword;
     private static int messageForToast;
-    Button change;
+    Button change, backToLoginBtn;
     private String responsetxt = "";
     private boolean serviceStatus;
     SoapObject response;
@@ -46,6 +46,7 @@ public class ChangePasswordStep1Activity extends AppCompatActivity {
         setContentView(R.layout.change_password_step1_layout);
         progressBar = (ProgressBar) findViewById(R.id.progressBarPassword);
         change= findViewById(R.id.change);
+        backToLoginBtn=findViewById(R.id.backToLoginBtn);
         edtNewPassword = (EditText) findViewById(R.id.editTextNewPassword);
 
         edtNewPassword.addTextChangedListener(new TextWatcher()
@@ -72,7 +73,13 @@ public class ChangePasswordStep1Activity extends AppCompatActivity {
                 evchangePassword();
             }
         });
-
+        backToLoginBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent i = new Intent(ChangePasswordStep1Activity.this, MainActivity.class);
+                startActivity(i);
+                finish();
+            }
+        });
     }
 
     @Override
