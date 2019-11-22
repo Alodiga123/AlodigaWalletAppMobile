@@ -33,7 +33,6 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="5dp"
-            android:layout_marginBottom="30dp"
             android:orientation="vertical">
 
         <TextView
@@ -200,13 +199,25 @@
             android:id="@+id/signFind"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/loginbutton_selector"
             android:padding="12dp"
             android:text="@string/buttonProcessRecharge"
             android:textColor="@color/background_color"
             android:textSize="14sp"
             android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/backToLoginBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/loginbutton_selector"
+                android:padding="12dp"
+                android:text="@string/back"
+                android:textColor="@color/background_color"
+                android:textSize="14sp"
+                android:textStyle="bold" />
     </LinearLayout>
 
 

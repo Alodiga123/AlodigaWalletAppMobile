@@ -172,6 +172,19 @@
             android:textSize="17sp"
             android:textStyle="bold" />
 
+        <Button
+            android:id="@+id/backToLoginBtn"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/login_layout"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/loginbutton_selector"
+            android:padding="10dp"
+            android:text="@string/back"
+            android:textColor="@color/background_color"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
 
     </LinearLayout>
 
