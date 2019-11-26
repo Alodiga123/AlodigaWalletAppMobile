@@ -213,6 +213,10 @@
     <string name="kyc_text_step5_1">En las proximas 24 horas le estaremos notificando.</string>
     <string name="kyc_text_step5_2">Una vez validado usted podra hacer uso de todas las funcionalidades que le brinda la Billetera Alodiga</string>
     <string name="kyc_text_image">No ha seleccionado una imagen</string>
+    <string name="kyc_text_code3">La validación de cuenta se encuentra vencida.</string>
+    <string name="kyc_text_code3_1">Para poder disfrutar de los servicios que brinda la billetera Alodiga debe validar su cuenta nuevamente.</string>
+    <string name="kyc_text_code4">Para poder disfrutar de los servicios que brinda la billetera Alodiga debe validar su cuenta.</string>
+
 
 
 

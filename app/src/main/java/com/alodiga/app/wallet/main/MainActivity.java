@@ -49,6 +49,9 @@ import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.Session;
 import com.alodiga.app.wallet.utils.Utils;
 import com.alodiga.app.wallet.validate.ValidateAccountActivity;
+import com.alodiga.app.wallet.validate.ValidateAccountCode3Activity;
+import com.alodiga.app.wallet.validate.ValidateAccountCode4Activity;
+import com.alodiga.app.wallet.validate.ValidateAccountStep5Activity;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
@@ -179,6 +182,7 @@ public class MainActivity extends AppCompatActivity
     }
 
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -218,80 +222,6 @@ public class MainActivity extends AppCompatActivity
 
         }
 
-        /*if (id == R.id.action_settings_es) {
-
-            AlertDialog.Builder dialogo1 = new AlertDialog.Builder(this, R.style.yourDialog);
-            dialogo1.setTitle(R.string.close_session);
-            dialogo1.setMessage(R.string.session_answer_es);
-            dialogo1.setCancelable(false);
-            dialogo1.setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialogo1, int id) {
-
-                    new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
-                            "Español");
-
-                    // Cambiar idioma Español
-                    //Configuration config = new Configuration();
-                    //config.locale = Locale.getDefault();
-                    //getBaseContext().getResources().updateConfiguration(config,
-                     //       getBaseContext().getResources().getDisplayMetrics());
-                    // Reinicializar los controles
-                    //getResources().updateConfiguration(config, null);
-                    if(Utils.updateResources(getApplicationContext(),"es")){
-                        Intent show = new Intent(MainActivity.this, MainActivity.class);
-                        finish();
-                        startActivity(show);
-                    }
-                }
-            });
-            dialogo1.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialogo1, int id) {
-                    //cancelar();
-                }
-            });
-            dialogo1.show();
-
-        }
-
-        if (id == R.id.action_settings_en) {
-
-            AlertDialog.Builder dialogo1 = new AlertDialog.Builder(this, R.style.yourDialog);
-            dialogo1.setTitle(R.string.close_session);
-            dialogo1.setMessage(R.string.session_answer_en);
-            dialogo1.setCancelable(false);
-            dialogo1.setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialogo1, int id) {
-                    new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
-                            "Ingles");
-                    //Configuration config = new Configuration(getResources().getConfiguration());
-                    //Configuration config = new Configuration();
-
-                    // Cambiar idioma Ingles
-                    //config.locale = Locale.ENGLISH;
-                    //getBaseContext().getResources().updateConfiguration(config,
-                            //getBaseContext().getResources().getDisplayMetrics());
-                    //getResources().updateConfiguration(config, null);
-                    if(Utils.updateResources(getApplicationContext(),"en_US")){
-                        Intent show = new Intent(MainActivity.this, MainActivity.class);
-                        finish();
-                        startActivity(show);
-                    }
-
-
-
-
-                }
-            });
-            dialogo1.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialogo1, int id) {
-                    //cancelar();
-                }
-            });
-            dialogo1.show();
-
-        }*/
-
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -301,34 +231,57 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_home) {
-            Intent show = new Intent(MainActivity.this, CreateQRCodeActivity.class);
-            startActivity(show);
-        } else if (id == R.id.nav_recharge) {
-            Intent show = new Intent(MainActivity.this, ManualRechargeStep1Activity.class);
-            startActivity(show);
-        } else if (id == R.id.nav_Withdrawal) {
-            Intent show = new Intent(MainActivity.this, ManualRemovalStep1Activity.class);
-            startActivity(show);
-        } else if (id == R.id.nav_transfer) {
-            Intent show = new Intent(MainActivity.this, TransferenceStep1Activity.class);
-            startActivity(show);
-        } else if (id == R.id.nav_last_activity) {
-            Intent show = new Intent(MainActivity.this, ListTransactionExecutedActivity.class);
-            startActivity(show);
+       if (id == R.id.nav_recharge || id == R.id.nav_Withdrawal || id == R.id.nav_transfer
+               || id == R.id.nav_last_activity || id == R.id.nav_pay_qr
+               || id == R.id.nav_topup || id == R.id.nav_convert){
+           Intent show;
+           switch(Session.getCumplimient()) {
+               case "1":
+                   show = new Intent(MainActivity.this, ValidateAccountStep5Activity.class);
+                   startActivity(show);
+                   break;
+               case "3":
+                   show = new Intent(MainActivity.this, ValidateAccountCode3Activity.class);
+                   startActivity(show);
+                   break;
+               case "4":
+                   show = new Intent(MainActivity.this, ValidateAccountCode4Activity.class);
+                   startActivity(show);
+                   break;
+               default:
+                   if (id == R.id.nav_recharge) {
+                       show = new Intent(MainActivity.this, ManualRechargeStep1Activity.class);
+                       startActivity(show);
+                   } else if (id == R.id.nav_Withdrawal) {
+                       show = new Intent(MainActivity.this, ManualRemovalStep1Activity.class);
+                       startActivity(show);
+                   } else if (id == R.id.nav_transfer) {
+                       show = new Intent(MainActivity.this, TransferenceStep1Activity.class);
+                       startActivity(show);
+                   } else if (id == R.id.nav_last_activity) {
+                        show = new Intent(MainActivity.this, ListTransactionExecutedActivity.class);
+                       startActivity(show);
+                   } else if (id == R.id.nav_pay_qr) {
+                       show = new Intent(MainActivity.this, PaymentComerceStep1Activity.class);
+                       startActivity(show);
+                   } else if (id == R.id.nav_topup) {
+                       show = new Intent(MainActivity.this, TopupStep1Activity.class);
+                       startActivity(show);
+
+                   }else if (id == R.id.nav_convert) {
+                       show = new Intent(MainActivity.this, ExchangeStep1Activity.class);
+                       startActivity(show);
+                   }
+       }
+
+       }else if (id == R.id.nav_home) {
+           Intent show = new Intent(MainActivity.this, CreateQRCodeActivity.class);
+           startActivity(show);
+
         }else if (id == R.id.nav_change_password) {
             Intent show = new Intent(MainActivity.this, ChangePasswordStep1Activity.class);
             startActivity(show);
-        } else if (id == R.id.nav_pay_qr) {
-            Intent show = new Intent(MainActivity.this, PaymentComerceStep1Activity.class);
-            startActivity(show);
-        } else if (id == R.id.nav_topup) {
-            Intent show = new Intent(MainActivity.this, TopupStep1Activity.class);
-            startActivity(show);
 
-        }else if (id == R.id.nav_convert) {
-            Intent show = new Intent(MainActivity.this, ExchangeStep1Activity.class);
-            startActivity(show);
         }else if (id == R.id.nav_validate_account) {
             Intent show = new Intent(MainActivity.this, ValidateAccountActivity.class);
             startActivity(show);

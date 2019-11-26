@@ -51,6 +51,7 @@ public class Session {
     private static String forgotData;
     private static Bitmap selectedImage;
     private static Bitmap selectedImageSelfie;
+    private static String cumplimient;
 
 
     public static ArrayList<ObjUserHasProduct> getObjUserHasProducts() {
@@ -349,6 +350,14 @@ public class Session {
         Session.selectedImageSelfie = selectedImageSelfie;
     }
 
+    public static String getCumplimient() {
+        return cumplimient;
+    }
+
+    public static void setCumplimient(String cumplimient) {
+        Session.cumplimient = cumplimient;
+    }
+
     public static void clearALL() {
         Session.userId = null;
         Session.username = null;
@@ -386,6 +395,7 @@ public class Session {
         Session.operationTransference=null;
         Session.selectedImage= null;
         Session.selectedImageSelfie= null;
+        Session.cumplimient= null;
     }
 
 }

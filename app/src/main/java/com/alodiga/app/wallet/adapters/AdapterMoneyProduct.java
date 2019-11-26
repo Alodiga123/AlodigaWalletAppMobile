@@ -35,6 +35,10 @@ import com.alodiga.app.wallet.topup.TopupStep1Activity;
 import com.alodiga.app.wallet.transference.TransferenceStep1Activity;
 import com.alodiga.app.wallet.utils.Constants;
 import com.alodiga.app.wallet.utils.CustomToast;
+import com.alodiga.app.wallet.utils.Session;
+import com.alodiga.app.wallet.validate.ValidateAccountCode3Activity;
+import com.alodiga.app.wallet.validate.ValidateAccountCode4Activity;
+import com.alodiga.app.wallet.validate.ValidateAccountStep5Activity;
 
 import java.util.List;
 import java.util.Locale;
@@ -68,22 +72,37 @@ public class AdapterMoneyProduct extends RecyclerView.Adapter<AdapterMoneyProduc
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent show;
+                switch(Session.getCumplimient()) {
+                    case "1":
+                        show = new Intent(context, ValidateAccountStep5Activity.class);
+                        context.startActivity(show);
+                        break;
+                    case "3":
+                        show = new Intent(context, ValidateAccountCode3Activity.class);
+                        context.startActivity(show);
+                        break;
+                    case "4":
+                        show = new Intent(context, ValidateAccountCode4Activity.class);
+                        context.startActivity(show);
+                        break;
+                    default:
                 String productName = grocderyItemList.get(position).getProductName();
 
-                AlertDialog.Builder ADBuilder = new AlertDialog.Builder(context,R.style.yourDialog);
-                ADBuilder.setTitle(Html.fromHtml("Operaciones "+productName));
+                AlertDialog.Builder ADBuilder = new AlertDialog.Builder(context, R.style.yourDialog);
+                ADBuilder.setTitle(Html.fromHtml("Operaciones " + productName));
                 Configuration config = new Configuration();
 
-                final String idioma= Locale.getDefault().getLanguage();
+                final String idioma = Locale.getDefault().getLanguage();
 
 
                 //Creamos un nuevo ArrayAdapter de 'Strings' y pasamos como parametros (Contexto, int id "Referencia a layout");
-                final ArrayAdapter arrayAdapter = new ArrayAdapter(context,R.layout.menu_simple);
-                if(idioma.equals("en")){
-                    if(productName.equals("Tarjeta Prepagada")){
+                final ArrayAdapter arrayAdapter = new ArrayAdapter(context, R.layout.menu_simple);
+                if (idioma.equals("en")) {
+                    if (productName.equals("Tarjeta Prepagada")) {
                         arrayAdapter.add("    Reload Card");
                         arrayAdapter.add("    Remove Wallet");
-                    }else{
+                    } else {
                         //R.string.menu_recharge
                         arrayAdapter.add("    Manual Recharge");
                         // R.string.menu_aoutMoney
@@ -95,17 +114,17 @@ public class AdapterMoneyProduct extends RecyclerView.Adapter<AdapterMoneyProduc
                         //  R.string.menu_pay_comerce
                         arrayAdapter.add("    QR Payment Shops");
 
-                        if(grocderyItemList.get(position).isTopup()){
+                        if (grocderyItemList.get(position).isTopup()) {
                             // R.string.menu_recharge_n_i
                             arrayAdapter.add("    TopUp");
                         }
                     }
 
-                }else{
-                    if(productName.equals("Tarjeta Prepagada")){
+                } else {
+                    if (productName.equals("Tarjeta Prepagada")) {
                         arrayAdapter.add("    Recargar Tarjeta");
                         arrayAdapter.add("    Extraer a Billetera");
-                    }else{
+                    } else {
                         //R.string.menu_recharge
                         arrayAdapter.add("    Recarga Manual");
                         // R.string.menu_aoutMoney
@@ -117,14 +136,12 @@ public class AdapterMoneyProduct extends RecyclerView.Adapter<AdapterMoneyProduc
                         //  R.string.menu_pay_comerce
                         arrayAdapter.add("    Pago QR Comercios");
 
-                        if(grocderyItemList.get(position).isTopup()){
+                        if (grocderyItemList.get(position).isTopup()) {
                             // R.string.menu_recharge_n_i
                             arrayAdapter.add("    TopUp");
                         }
                     }
                 }
-
-
 
 
                 //if(){}
@@ -144,50 +161,50 @@ public class AdapterMoneyProduct extends RecyclerView.Adapter<AdapterMoneyProduc
                     public void onClick(DialogInterface dialog, int _item) {
 
                         //Creamos un toast para mostrar el elemento selecionado
-                        if(arrayAdapter.getItem(_item).toString()=="    Recarga Manual" || arrayAdapter.getItem(_item).toString()=="    Manual Recharge"){
+                        if (arrayAdapter.getItem(_item).toString() == "    Recarga Manual" || arrayAdapter.getItem(_item).toString() == "    Manual Recharge") {
                             Intent show = new Intent(context, ManualRechargeStep1Activity.class);
                             context.startActivity(show);
                         }
-                        if(arrayAdapter.getItem(_item).toString()=="    Retiro Manual" || arrayAdapter.getItem(_item).toString()=="    Manual Withdrawal"){
+                        if (arrayAdapter.getItem(_item).toString() == "    Retiro Manual" || arrayAdapter.getItem(_item).toString() == "    Manual Withdrawal") {
                             Intent show = new Intent(context, ManualRemovalStep1Activity.class);
                             context.startActivity(show);
                         }
-                        if(arrayAdapter.getItem(_item).toString()=="    Convertir" || arrayAdapter.getItem(_item).toString()=="    Convert"){
+                        if (arrayAdapter.getItem(_item).toString() == "    Convertir" || arrayAdapter.getItem(_item).toString() == "    Convert") {
                             Intent show = new Intent(context, ExchangeStep1Activity.class);
                             context.startActivity(show);
                         }
-                        if(arrayAdapter.getItem(_item).toString()=="    Transferir" || arrayAdapter.getItem(_item).toString()=="    To transfer"){
+                        if (arrayAdapter.getItem(_item).toString() == "    Transferir" || arrayAdapter.getItem(_item).toString() == "    To transfer") {
                             Intent show = new Intent(context, TransferenceStep1Activity.class);
                             context.startActivity(show);
                         }
 
-                        if(arrayAdapter.getItem(_item).toString()=="    Pago QR Comercios" ||arrayAdapter.getItem(_item).toString()=="    QR Payment Shops"){
+                        if (arrayAdapter.getItem(_item).toString() == "    Pago QR Comercios" || arrayAdapter.getItem(_item).toString() == "    QR Payment Shops") {
                             Intent show = new Intent(context, PaymentComerceStep1Activity.class);
                             context.startActivity(show);
                         }
-                        if(arrayAdapter.getItem(_item).toString()=="    TopUp"){
+                        if (arrayAdapter.getItem(_item).toString() == "    TopUp") {
                             Intent show = new Intent(context, TopupStep1Activity.class);
                             context.startActivity(show);
                         }
-                        if(arrayAdapter.getItem(_item).toString()=="    Recargar Tarjeta" || arrayAdapter.getItem(_item).toString()=="    Reload Card"){
-                           // Intent show = new Intent(context, PaymentComerceStep1Activity.class);
-                           // context.startActivity(show)
-                            if (idioma.equals("en")){
+                        if (arrayAdapter.getItem(_item).toString() == "    Recargar Tarjeta" || arrayAdapter.getItem(_item).toString() == "    Reload Card") {
+                            // Intent show = new Intent(context, PaymentComerceStep1Activity.class);
+                            // context.startActivity(show)
+                            if (idioma.equals("en")) {
                                 Toast toast = Toast.makeText(context, "Functionality not available", Toast.LENGTH_SHORT);
                                 toast.show();
-                            }else{
+                            } else {
                                 Toast toast = Toast.makeText(context, "Funcionalidad no disponible", Toast.LENGTH_SHORT);
                                 toast.show();
                             }
 
                         }
-                        if(arrayAdapter.getItem(_item).toString()=="    Extraer a Billetera" || arrayAdapter.getItem(_item).toString()=="    Remove Wallet"){
-                           // Intent show = new Intent(context, PaymentComerceStep1Activity.class);
-                           // context.startActivity(show);
-                            if (idioma.equals("en")){
+                        if (arrayAdapter.getItem(_item).toString() == "    Extraer a Billetera" || arrayAdapter.getItem(_item).toString() == "    Remove Wallet") {
+                            // Intent show = new Intent(context, PaymentComerceStep1Activity.class);
+                            // context.startActivity(show);
+                            if (idioma.equals("en")) {
                                 Toast toast = Toast.makeText(context, "Functionality not available", Toast.LENGTH_SHORT);
                                 toast.show();
-                            }else{
+                            } else {
                                 Toast toast = Toast.makeText(context, "Funcionalidad no disponible", Toast.LENGTH_SHORT);
                                 toast.show();
                             }
@@ -198,6 +215,13 @@ public class AdapterMoneyProduct extends RecyclerView.Adapter<AdapterMoneyProduc
                 ADBuilder.show();//Mostramos el dialogo
 
             }
+
+
+        }
+
+
+
+
         });
     }
 

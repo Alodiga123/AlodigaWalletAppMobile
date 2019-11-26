@@ -293,4 +293,7 @@
     <string name="kyc_text_step5_1">" In the next 24 hours we will be notifying you."</string>
     <string name="kyc_text_step5_2">Once validated you can make use of all the features offered by the Alodiga Wallet</string>
     <string name="kyc_text_image">" You have not selected an image"</string>
+    <string name="kyc_text_code3">Account validation is expired.</string>
+    <string name="kyc_text_code3_1">In order to enjoy the services provided by the Alodiga wallet, you must validate your account again.</string>
+    <string name="kyc_text_code4">" In order to enjoy the services offered by the Alodiga wallet, you must validate your account."</string>
 </resources>

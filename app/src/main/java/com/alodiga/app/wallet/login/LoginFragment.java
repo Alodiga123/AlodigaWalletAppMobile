@@ -70,6 +70,7 @@ public class LoginFragment extends Fragment implements OnClickListener {
     String alocoinsBalanceSesssion = "";
     String healthCareCoinsBalanceSession = "";
     String userId = "";
+    String cumplimient= "";
     private boolean serviceStatus;
     private boolean isFirstAccess = false;
     private View mLoginFormView;
@@ -151,7 +152,11 @@ public class LoginFragment extends Fragment implements OnClickListener {
         //emailid.setText("adira0411@gmail.com");
         //password.setText("123456");
         emailid.setText("moisegrat12@gmail.com");
+        //password.setText("Alo$1234");
         password.setText("Alodi12-");
+
+        //emailid.setText("elmoi_88@hotmail.com");
+        //password.setText("Alo$1234");
 
     }
 
@@ -345,6 +350,7 @@ public class LoginFragment extends Fragment implements OnClickListener {
                     alocoinsBalanceSesssion = getValueFromResponseJson("saldoAlocoins", res);
                     healthCareCoinsBalanceSession = getValueFromResponseJson("saldoHealthCareCoins", res);
                     userId = getValueFromResponseJson("UsuarioID", res);
+                    cumplimient = getValueFromResponseJson("cumplimient", res);
 					 /*String elementgetId = "id=";
 					 String elementGet = "nombreProducto=";
 					 String elementGetS = "saldoActual=";
@@ -421,11 +427,11 @@ public class LoginFragment extends Fragment implements OnClickListener {
             if (success) {
                 emailid.setText("");
                 password.setText("");
-                setElementInitialSession(nameSession, phoneNumberSession, emailSession, alodigaBalanceSession, accountNumberSession, alocoinsBalanceSesssion, userId, healthCareCoinsBalanceSession, userHasProducts);
+                setElementInitialSession(nameSession, phoneNumberSession, emailSession, alodigaBalanceSession, accountNumberSession, alocoinsBalanceSesssion, userId, healthCareCoinsBalanceSession, userHasProducts, cumplimient);
                 Intent intent = new Intent(getActivity(), MainActivity.class);
                 getActivity().startActivity(intent);
             } else if (isFirstAccess) {
-                setElementInitialSession(nameSession, phoneNumberSession, emailSession, alodigaBalanceSession, accountNumberSession, alocoinsBalanceSesssion, userId, healthCareCoinsBalanceSession, userHasProducts);
+                setElementInitialSession(nameSession, phoneNumberSession, emailSession, alodigaBalanceSession, accountNumberSession, alocoinsBalanceSesssion, userId, healthCareCoinsBalanceSession, userHasProducts, cumplimient);
                 fragmentManager
                         .beginTransaction()
                         .setCustomAnimations(R.anim.right_enter, R.anim.left_out)
@@ -445,7 +451,7 @@ public class LoginFragment extends Fragment implements OnClickListener {
         }
 
 
-        private void setElementInitialSession(String nameSession, String phoneNumberSession, String emailSession, String alodigaBalanceSession, String accountNumberSession, String alocoinsBalanceSesssion, String userId, String healthCareCoinsBalanceSession, ArrayList<ObjUserHasProduct> objUserHasProducts) {
+        private void setElementInitialSession(String nameSession, String phoneNumberSession, String emailSession, String alodigaBalanceSession, String accountNumberSession, String alocoinsBalanceSesssion, String userId, String healthCareCoinsBalanceSession, ArrayList<ObjUserHasProduct> objUserHasProducts, String cumplimient) {
 
             Session.setObjUserHasProducts(objUserHasProducts);
             Session.setUsername(nameSession);
@@ -456,6 +462,7 @@ public class LoginFragment extends Fragment implements OnClickListener {
             Session.setAlocoinsBalance(alocoinsBalanceSesssion);
             Session.setUserId(userId);
             Session.setHealthCareCoinsBalance(healthCareCoinsBalanceSession);
+            Session.setCumplimient(cumplimient);
         }
     }
 
