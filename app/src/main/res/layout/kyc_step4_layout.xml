@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fillViewport="true"
+    android:overScrollMode="never"
+    android:scrollbars="none" >
+
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="@drawable/side_nav_bar"
+    android:padding="15dp" >
+
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="fill_parent"
+        android:layout_height="64dp"
+        android:gravity="top|center"
+        android:padding="10dp"
+        android:text="@string/kyc_info"
+        android:textColor="@color/background_color"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/already_use_"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:padding="10dp"
+        android:text="@string/kyc_text_step4_state"
+        android:textColor="@color/white_greyish"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/edtstate"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@android:color/transparent"
+        android:drawablePadding="0dp"
+        android:gravity="center_vertical"
+        android:hint="@string/kyc_text_step4_state_"
+        android:inputType="textCapWords"
+        android:padding="8dp"
+        android:singleLine="true"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="16sp" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="@color/white_greyish" />
+    <TextView
+        android:id="@+id/already_user_"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:padding="10dp"
+        android:text="@string/kyc_text_step4_city"
+        android:textColor="@color/white_greyish"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/edtcity"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@android:color/transparent"
+        android:drawablePadding="0dp"
+        android:gravity="center_vertical"
+        android:hint="@string/kyc_text_step4_city_"
+        android:inputType="textCapWords"
+        android:padding="8dp"
+        android:singleLine="true"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="16sp" />
+
+
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="@color/white_greyish" />
+
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="@string/kyc_text_step4_code"
+        android:textColor="@color/white_greyish"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/edtcode"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@android:color/transparent"
+        android:drawablePadding="0dp"
+        android:gravity="center_vertical"
+        android:hint="@string/kyc_text_step4_codezip"
+        android:inputType="number"
+        android:padding="8dp"
+        android:singleLine="true"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="16sp" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="@color/white_greyish" />
+
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="@string/kyc_text_step4_av_"
+        android:textColor="@color/white_greyish"
+        android:textSize="16sp" />
+
+
+    <EditText
+        android:id="@+id/edtAv"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@android:color/transparent"
+        android:drawablePadding="0dp"
+        android:gravity="start|top"
+        android:hint="@string/kyc_text_step4_av"
+        android:inputType="textMultiLine"
+        android:padding="8dp"
+        android:singleLine="true"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="16sp"
+        android:ems="10"
+        />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="@color/white_greyish" />
+    <Button
+        android:id="@+id/next"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/loginbutton_selector"
+        android:padding="3dp"
+        android:text="@string/next"
+        android:textColor="@color/background_color"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        />
+
+
+
+
+    <Button
+        android:id="@+id/backToLoginBtn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/loginbutton_selector"
+        android:padding="3dp"
+        android:text="@string/back"
+        android:textColor="@color/background_color"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        />
+
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="@color/white_greyish" />
+
+
+
+</LinearLayout>
+
+    </ScrollView>
