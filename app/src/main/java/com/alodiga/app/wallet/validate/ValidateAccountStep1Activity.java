@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.main.MainActivity;
@@ -21,7 +22,7 @@ import com.alodiga.app.wallet.utils.Session;
 import java.io.InputStream;
 
 
-public class ValidateAccountStep1Activity extends Activity {
+public class ValidateAccountStep1Activity extends AppCompatActivity {
 
     private Button back,next;
     private ImageView imgCamare;

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
@@ -22,9 +23,12 @@ import com.alodiga.app.R;
 import com.alodiga.app.wallet.main.MainActivity;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.Session;
+import com.alodiga.app.wallet.utils.Utils;
 
+import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 
 
@@ -76,7 +80,7 @@ public class ValidateAccountActivity extends Activity {
     }
 
 
-    @Override
+    /*@Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         try {
@@ -84,6 +88,7 @@ public class ValidateAccountActivity extends Activity {
                 final Uri imageUri = data.getData();
                 final InputStream imageStream = getContentResolver().openInputStream(imageUri);
                 final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+
                 Session.setSelectedImage(selectedImage);
 
                 Intent show = new Intent(ValidateAccountActivity.this, ValidateAccountStep1Activity.class);
@@ -98,6 +103,41 @@ public class ValidateAccountActivity extends Activity {
             }
         } catch (Exception e) {
             new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(), getString(R.string.web_services_response_99));
+
+        }
+    }*/
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == RESULT_LOAD_IMG && resultCode == RESULT_OK) {
+            //Bundle extras = data.getExtras();
+            //Bitmap imageBitmap = (Bitmap) extras.get("data");
+            //addPhoto.setImageBitmap(imageBitmap);
+            if (data.getExtras()!= null) {
+                Bundle extras = data.getExtras();
+                Bitmap imageBitmap = (Bitmap) extras.get("data");
+                Session.setSelectedImage(imageBitmap);
+            } else {
+                Uri selectedimg = data.getData();
+                try {
+                    Bitmap mBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedimg);
+                    int width = mBitmap.getWidth();
+                    int height = mBitmap.getHeight();
+                    float scaleWidth = ((float) 300) / width;
+                    float scaleHeight = ((float) 400) / height;
+                    Matrix matrix = new Matrix();
+                    matrix.postScale(scaleWidth, scaleHeight);
+                    Bitmap bit = Bitmap.createBitmap(mBitmap, 0, 0, width, height, matrix, false);
+                    Session.setSelectedImage(bit);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            Intent show = new Intent(ValidateAccountActivity.this, ValidateAccountStep1Activity.class);
+            startActivity(show);
+            finish();
 
         }
     }

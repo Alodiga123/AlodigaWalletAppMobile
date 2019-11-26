@@ -9,12 +9,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.utils.Session;
 
 
-public class ValidateAccountStep3Activity extends Activity {
+public class ValidateAccountStep3Activity extends AppCompatActivity {
 
     private Button back,next;
     private ImageView imgCamare;

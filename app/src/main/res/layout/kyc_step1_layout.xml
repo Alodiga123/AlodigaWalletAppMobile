@@ -3,9 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    xmlns:example="http://schemas.android.com/tools"
     android:fillViewport="true"
     android:overScrollMode="never"
-    android:scrollbars="none" >
+    android:scrollbars="none">
 
 <LinearLayout
     android:layout_width="fill_parent"
@@ -31,7 +32,8 @@
         android:layout_width="fill_parent"
         android:layout_height="360dp"
         android:layout_gravity="center_horizontal"
-        app:srcCompat="@color/background_color" />
+        app:srcCompat="@color/background_color"
+        />
     <View
         android:layout_width="fill_parent"
         android:layout_height="1px"

@@ -10,13 +10,14 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.Session;
 
 
-public class ValidateAccountStep4Activity extends Activity {
+public class ValidateAccountStep4Activity extends AppCompatActivity {
 
     private Button back,next;
 
