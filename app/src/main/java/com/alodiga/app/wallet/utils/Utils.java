@@ -3,8 +3,10 @@ package com.alodiga.app.wallet.utils;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.provider.Settings;
+import android.util.Base64;
 import android.view.Gravity;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -22,6 +24,7 @@ import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 
+import java.io.ByteArrayOutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.Inet4Address;
 import java.net.InetAddress;
@@ -436,5 +439,15 @@ public class Utils {
         resources.updateConfiguration(configuration, resources.getDisplayMetrics());
 
         return true;
+    }
+
+    //convertir a base 64
+    private String encodeImage(Bitmap bm) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bm.compress(Bitmap.CompressFormat.JPEG,100,baos);
+        byte[] b = baos.toByteArray();
+        String imgDecodableString = Base64.encodeToString(b, Base64.DEFAULT);
+
+        return imgDecodableString;
     }
 }

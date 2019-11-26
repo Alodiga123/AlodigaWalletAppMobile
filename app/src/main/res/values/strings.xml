@@ -104,6 +104,7 @@
     <string name="transference_title">TRANSFERENCIA</string>
     <string name="my_qr_title">MI QR</string>
     <string name="payment_comerce_title">PAGO QR COMERCIOS</string>
+    <string name="kyc_info">VALIDAR CUENTA</string>
     <string name="qr_code_title">MI CODIGO QR</string>
     <string name="confirmation_title">CONFIRMACION</string>
     <string name="confirmation_title_">CONFIRMACION.</string>
@@ -191,6 +192,38 @@
     <string name="info_fail_code">La Clave de Operaciones no es valida. Numero de intentos restantes: </string>
     <string name="connection_error">No es posible establecer una conexion. Compruebe su conexión a internet</string>
     <string name="action_reintent">Intentar de nuevo</string>
+    <string name="kyc_text_step1">1. Adjunta una fotografia de la cara principal de un documento de identidad valido. Puede ser:</string>
+    <string name="kyc_text_step1_2_a">a. Pasaporte</string>
+    <string name="kyc_text_step1_2_b">b. Licencia de Conducir</string>
+    <string name="kyc_text_step1_2_c">c. Cedula de Identidad </string>
+    <string name="kyc_text_step1_3">La fotografia debe estar legible y con una resolucion superior a 240ppx </string>
+    <string name="kyc_take_step1">Tomar fotografia</string>
+    <string name="kyc_attach_step1">Adjuntar</string>
+    <string name="kyc_info_menu">Validar Cuenta</string>
+    <string name="kyc_text_step2">2. Por favor toma una foto sosteniendo un cartel que diga "Mejora Tu Vida" con la fecha de hoy.</string>
+    <string name="kyc_text_step4_city">Seleccione la ciudad:</string>
+    <string name="kyc_text_step4_city_">Ciudad</string>
+    <string name="kyc_text_step4_state">Seleccione el estado:</string>
+    <string name="kyc_text_step4_state_">Estado</string>
+    <string name="kyc_text_step4_code">Ingrese codigo postal:</string>
+    <string name="kyc_text_step4_codezip">Codigo postal</string>
+    <string name="kyc_text_step4_av">Calle, Av, casa</string>
+    <string name="kyc_text_step4_av_">Ingrese su calle, Av, casa:</string>
+    <string name="kyc_text_step5">Su validación esta en proceso.</string>
+    <string name="kyc_text_step5_1">En las proximas 24 horas le estaremos notificando.</string>
+    <string name="kyc_text_step5_2">Una vez validado usted podra hacer uso de todas las funcionalidades que le brinda la Billetera Alodiga</string>
+    <string name="kyc_text_image">No ha seleccionado una imagen</string>
+
+
+
+
+
+
+
+
+
+
+
 
 
     <string name="web_services_response_01">Datos invalidos</string>

@@ -271,4 +271,26 @@
     <string name="welcome_secure_manual_recharge">"The recharge was successful. Once validated you will be notified "</string>
     <string name="welcome_secure_manual_removal">"The registration of the withdrawal was successful. Once the service provider makes it effective, he will be notified. "</string>
     <string name="yes">Yes</string>
+    <string name="kyc_info">"VALIDATE ACCOUNT "</string>
+    <string name="kyc_text_step1">1. Attach a photograph of the main face of a valid identity document. Can be:</string>
+    <string name="kyc_text_step1_3">The photograph must be legible and with a resolution greater than 240 ppx</string>
+    <string name="kyc_take_step1">"take photogaraphy "</string>
+    <string name="kyc_attach_step1">to attach</string>
+    <string name="kyc_info_menu">Validate Account</string>
+    <string name="kyc_text_step1_2_a">a. Passport</string>
+    <string name="kyc_text_step1_2_b">"b. Driver's License "</string>
+    <string name="kyc_text_step1_2_c">c. Identity card</string>
+    <string name="kyc_text_step2">2. Please take a picture holding a sign that says \"Improve your life\" with today\'s date.</string>
+    <string name="kyc_text_step4_city">Select the city:</string>
+    <string name="kyc_text_step4_state">"Select the state: "</string>
+    <string name="kyc_text_step4_code">" Enter zip code:"</string>
+    <string name="kyc_text_step4_codezip">zip code</string>
+    <string name="kyc_text_step4_av">Street, Av, house</string>
+    <string name="kyc_text_step4_av_">Enter your street, Av, house:</string>
+    <string name="kyc_text_step4_state_">State</string>
+    <string name="kyc_text_step4_city_">City</string>
+    <string name="kyc_text_step5">"Your validation is in process. "</string>
+    <string name="kyc_text_step5_1">" In the next 24 hours we will be notifying you."</string>
+    <string name="kyc_text_step5_2">Once validated you can make use of all the features offered by the Alodiga Wallet</string>
+    <string name="kyc_text_image">" You have not selected an image"</string>
 </resources>

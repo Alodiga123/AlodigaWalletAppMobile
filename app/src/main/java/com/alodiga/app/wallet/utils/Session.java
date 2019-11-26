@@ -1,5 +1,7 @@
 package com.alodiga.app.wallet.utils;
 
+import android.graphics.Bitmap;
+
 import com.alodiga.app.wallet.model.ObjExchange;
 import com.alodiga.app.wallet.model.ObjTopUpInfos;
 import com.alodiga.app.wallet.model.ObjUserHasProduct;
@@ -47,6 +49,8 @@ public class Session {
     private static ObjExchange exchange;
     private static String operationExchange;
     private static String forgotData;
+    private static Bitmap selectedImage;
+    private static Bitmap selectedImageSelfie;
 
 
     public static ArrayList<ObjUserHasProduct> getObjUserHasProducts() {
@@ -329,6 +333,22 @@ public class Session {
         Session.operationTransference = operationTransference;
     }
 
+    public static Bitmap getSelectedImage() {
+        return selectedImage;
+    }
+
+    public static void setSelectedImage(Bitmap selectedImage) {
+        Session.selectedImage = selectedImage;
+    }
+
+    public static Bitmap getSelectedImageSelfie() {
+        return selectedImageSelfie;
+    }
+
+    public static void setSelectedImageSelfie(Bitmap selectedImageSelfie) {
+        Session.selectedImageSelfie = selectedImageSelfie;
+    }
+
     public static void clearALL() {
         Session.userId = null;
         Session.username = null;
@@ -364,6 +384,8 @@ public class Session {
         Session.operationExchange = null;
         Session.operationPaymentComerce=null;
         Session.operationTransference=null;
+        Session.selectedImage= null;
+        Session.selectedImageSelfie= null;
     }
 
 }

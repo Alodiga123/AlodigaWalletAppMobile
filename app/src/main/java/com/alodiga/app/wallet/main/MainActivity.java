@@ -48,6 +48,7 @@ import com.alodiga.app.wallet.transference.TransferenceStep1Activity;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.Session;
 import com.alodiga.app.wallet.utils.Utils;
+import com.alodiga.app.wallet.validate.ValidateAccountActivity;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
@@ -328,7 +329,9 @@ public class MainActivity extends AppCompatActivity
         }else if (id == R.id.nav_convert) {
             Intent show = new Intent(MainActivity.this, ExchangeStep1Activity.class);
             startActivity(show);
-
+        }else if (id == R.id.nav_validate_account) {
+            Intent show = new Intent(MainActivity.this, ValidateAccountActivity.class);
+            startActivity(show);
         } else if (id == R.id.nav_close_session) {
             AlertDialog.Builder dialogo1 = new AlertDialog.Builder(this, R.style.yourDialog);
             dialogo1.setTitle(R.string.close_session);

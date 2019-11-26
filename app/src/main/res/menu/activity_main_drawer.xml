@@ -53,6 +53,10 @@
                 android:icon="@drawable/ic_menu_send"
                 android:title="@string/menu_change_password" />
             <item
+                android:id="@+id/nav_validate_account"
+                android:icon="@drawable/ic_menu_send"
+                android:title="@string/kyc_info_menu" />
+            <item
                 android:id="@+id/nav_close_session"
                 android:icon="@drawable/ic_menu_send"
                 android:title="@string/menu_send" />
