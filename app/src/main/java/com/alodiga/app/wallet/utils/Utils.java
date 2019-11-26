@@ -5,6 +5,8 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.Matrix;
+import android.media.ExifInterface;
 import android.provider.Settings;
 import android.util.Base64;
 import android.view.Gravity;
@@ -442,12 +444,36 @@ public class Utils {
     }
 
     //convertir a base 64
-    private String encodeImage(Bitmap bm) {
+    public String encodeImage(Bitmap bm) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bm.compress(Bitmap.CompressFormat.JPEG,100,baos);
         byte[] b = baos.toByteArray();
         String imgDecodableString = Base64.encodeToString(b, Base64.DEFAULT);
 
         return imgDecodableString;
+    }
+
+
+    public static Bitmap rotarBitmap(String Url, Bitmap bitmap) {
+        try {
+            ExifInterface exifInterface = new ExifInterface(Url);
+            int orientacion = exifInterface.getAttributeInt(
+                    ExifInterface.TAG_ORIENTATION, 1);
+            Matrix matrix = new Matrix();
+
+            if (orientacion == 6) {
+                matrix.postRotate(90);
+            } else if (orientacion == 3) {
+                matrix.postRotate(180);
+            } else if (orientacion == 8) {
+                matrix.postRotate(270);
+            }
+
+            bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(),
+                    bitmap.getHeight(), matrix, true); // rotating bitmap
+        } catch (Exception e) {
+            // TODO:
+        }
+        return bitmap;
     }
 }
