@@ -216,6 +216,7 @@
     <string name="kyc_text_code3">La validación de cuenta se encuentra vencida.</string>
     <string name="kyc_text_code3_1">Para poder disfrutar de los servicios que brinda la billetera Alodiga debe validar su cuenta nuevamente.</string>
     <string name="kyc_text_code4">Para poder disfrutar de los servicios que brinda la billetera Alodiga debe validar su cuenta.</string>
+    <string name="kyc_text_code2">Su cuenta se encuentra validada.</string>
 
 
 

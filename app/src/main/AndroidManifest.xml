@@ -206,7 +206,10 @@
             android:name="com.alodiga.app.wallet.validate.ValidateAccountCode4Activity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
-
+        <activity
+            android:name="com.alodiga.app.wallet.validate.ValidateAccountCode2Activity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
 
            <receiver android:name="com.alodiga.app.wallet.utils.SmsReceiver">
                <intent-filter>

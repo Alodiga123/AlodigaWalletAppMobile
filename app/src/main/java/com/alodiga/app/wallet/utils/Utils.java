@@ -444,7 +444,7 @@ public class Utils {
     }
 
     //convertir a base 64
-    public String encodeImage(Bitmap bm) {
+    public static String encodeImage(Bitmap bm) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bm.compress(Bitmap.CompressFormat.JPEG,100,baos);
         byte[] b = baos.toByteArray();

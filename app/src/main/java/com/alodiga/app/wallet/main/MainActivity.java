@@ -49,6 +49,7 @@ import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.Session;
 import com.alodiga.app.wallet.utils.Utils;
 import com.alodiga.app.wallet.validate.ValidateAccountActivity;
+import com.alodiga.app.wallet.validate.ValidateAccountCode2Activity;
 import com.alodiga.app.wallet.validate.ValidateAccountCode3Activity;
 import com.alodiga.app.wallet.validate.ValidateAccountCode4Activity;
 import com.alodiga.app.wallet.validate.ValidateAccountStep5Activity;
@@ -281,10 +282,21 @@ public class MainActivity extends AppCompatActivity
         }else if (id == R.id.nav_change_password) {
             Intent show = new Intent(MainActivity.this, ChangePasswordStep1Activity.class);
             startActivity(show);
-
-        }else if (id == R.id.nav_validate_account) {
-            Intent show = new Intent(MainActivity.this, ValidateAccountActivity.class);
-            startActivity(show);
+        }else if (id == R.id.nav_validate_account ) {
+           Intent show;
+           switch(Session.getCumplimient()) {
+               case "1":
+                   show = new Intent(MainActivity.this, ValidateAccountStep5Activity.class);
+                   startActivity(show);
+                   break;
+               case "2":
+                   show = new Intent(MainActivity.this, ValidateAccountCode2Activity.class);
+                   startActivity(show);
+                   break;
+               default:
+                   show = new Intent(MainActivity.this, ValidateAccountActivity.class);
+                   startActivity(show);
+           }
         } else if (id == R.id.nav_close_session) {
             AlertDialog.Builder dialogo1 = new AlertDialog.Builder(this, R.style.yourDialog);
             dialogo1.setTitle(R.string.close_session);
