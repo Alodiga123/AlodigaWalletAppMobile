@@ -119,6 +119,8 @@ public class Constants {
     public static final String WEB_SERVICES_METHOD_CHANGE_PASSWORD = "cambiarCredencialAplicacionMovil";
     public static final String WEB_SERVICES_METHOD_CHANGE_PASSWORD_FORGOT = "cambiarCredencialAplicacionMovilEmailOrPhone";
     public static final String WEB_SERVICES_METHOD_KYC_COLLECTION = "getValidateCollection";
+    public static final String WEB_SERVICES_METHOD_KYC_PROCESS = "saveCumplimient";
+
 
 
 

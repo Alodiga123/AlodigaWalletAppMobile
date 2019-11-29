@@ -138,12 +138,12 @@ public class ValidateAccountStep4Activity extends AppCompatActivity {
                 if (availableBalance) {
                     HashMap<String, String> map = new HashMap<String, String>();
                     map.put("userId", Session.getUserId());
-                    map.put("userId", getedtstate_);
-                    map.put("userId", getedtcity_);
-                    map.put("userId", getedtcode_);
-                    map.put("userId", getedtAv_);
-                    map.put("userId", Utils.encodeImage(Session.getSelectedImage()));
-                    map.put("userId", Utils.encodeImage(Session.getSelectedImageSelfie()));
+                    map.put("estado", getedtstate_);
+                    map.put("ciudad", getedtcity_);
+                    map.put("zipCode", getedtcode_);
+                    map.put("addres1", getedtAv_);
+                    map.put("imgDocument", Utils.encodeImage(Session.getSelectedImage()));
+                    map.put("imgProfile", Utils.encodeImage(Session.getSelectedImageSelfie()));
 
 
 
@@ -246,6 +246,7 @@ public class ValidateAccountStep4Activity extends AppCompatActivity {
             mAuthTask = null;
             if (success) {
 
+                Session.setCumplimient("1");
                 Intent i = new Intent(ValidateAccountStep4Activity.this, ValidateAccountStep5Activity.class);
                 startActivity(i);
                 finish();
