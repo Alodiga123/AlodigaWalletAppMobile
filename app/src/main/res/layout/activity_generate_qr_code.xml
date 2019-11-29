@@ -73,11 +73,11 @@
 
             <ImageView
                 android:id="@+id/iv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="20dp"
+                android:layout_width="386dp"
+                android:layout_height="303dp"
                 android:layout_marginTop="20dp"
-                android:src="@drawable/check" />
+                android:padding="20dp"
+                android:src="@drawable/ic_check" />
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

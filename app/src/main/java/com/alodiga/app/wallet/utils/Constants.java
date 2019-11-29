@@ -118,6 +118,7 @@ public class Constants {
     public static final String WEB_SERVICES_METHOD_NAME_GET_EXCHANGE = "exchangeProduct";
     public static final String WEB_SERVICES_METHOD_CHANGE_PASSWORD = "cambiarCredencialAplicacionMovil";
     public static final String WEB_SERVICES_METHOD_CHANGE_PASSWORD_FORGOT = "cambiarCredencialAplicacionMovilEmailOrPhone";
+    public static final String WEB_SERVICES_METHOD_KYC_COLLECTION = "getValidateCollection";
 
 
 

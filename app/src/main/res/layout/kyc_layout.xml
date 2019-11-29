@@ -36,31 +36,41 @@
         android:paddingBottom="12dp"
         android:text="@string/kyc_text_step1"/>
 
-    <TextView
-        android:layout_width="fill_parent"
+    <LinearLayout
+        android:id="@+id/layout"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/white_greyish"
-        android:textSize="17sp"
-        android:gravity="left"
+        android:orientation="vertical"
         android:paddingLeft="12dp"
-        android:text="@string/kyc_text_step1_2_a"/>
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/white_greyish"
-        android:textSize="17sp"
-        android:gravity="left"
-        android:paddingLeft="12dp"
-        android:text="@string/kyc_text_step1_2_b"/>
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/white_greyish"
-        android:textSize="17sp"
-        android:gravity="left"
-        android:paddingLeft="12dp"
-        android:paddingBottom="12dp"
-        android:text="@string/kyc_text_step1_2_c"/>
+        android:paddingBottom="12dp">
+        <!--<TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white_greyish"
+            android:textSize="17sp"
+            android:gravity="left"
+            android:paddingLeft="12dp"
+            android:text="@string/kyc_text_step1_2_a"/>
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white_greyish"
+            android:textSize="17sp"
+            android:gravity="left"
+            android:paddingLeft="12dp"
+            android:text="@string/kyc_text_step1_2_b"/>
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white_greyish"
+            android:textSize="17sp"
+            android:gravity="left"
+            android:paddingLeft="12dp"
+            android:paddingBottom="12dp"
+            android:text="@string/kyc_text_step1_2_c"/>-->
+
+    </LinearLayout>
+
 
     <TextView
         android:layout_width="fill_parent"
@@ -95,11 +105,10 @@
         android:layout_marginTop="15dp"
         android:background="@drawable/loginbutton_selector"
         android:padding="3dp"
-        android:text="@string/kyc_attach_step1"
+        android:text="@string/back"
         android:textColor="@color/background_color"
         android:textSize="17sp"
-        android:textStyle="bold"
-        android:drawableLeft="@drawable/attachment"/>
+        android:textStyle="bold" />
 
 
     <View

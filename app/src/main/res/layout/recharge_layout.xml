@@ -48,11 +48,11 @@
 
         <ImageView
             android:id="@+id/imageView3"
-            android:layout_width="303dp"
-            android:layout_height="wrap_content"
+            android:layout_width="314dp"
+            android:layout_height="288dp"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal"
-            app:srcCompat="@drawable/check" />
+            app:srcCompat="@drawable/ic_check" />
 
         <View
             android:layout_width="match_parent"

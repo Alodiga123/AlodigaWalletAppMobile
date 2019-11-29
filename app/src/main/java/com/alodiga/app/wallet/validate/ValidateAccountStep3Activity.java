@@ -15,7 +15,7 @@ import com.alodiga.app.R;
 import com.alodiga.app.wallet.utils.Session;
 
 
-public class ValidateAccountStep3Activity extends AppCompatActivity {
+public class ValidateAccountStep3Activity extends Activity {
 
     private Button back,next;
     private ImageView imgCamare;
@@ -23,7 +23,7 @@ public class ValidateAccountStep3Activity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.kyc_step1_layout);
+        setContentView(R.layout.kyc_step3_layout);
         next= findViewById(R.id.next);
         back= findViewById(R.id.backToLoginBtn);
         imgCamare = findViewById(R.id.imgCamare);

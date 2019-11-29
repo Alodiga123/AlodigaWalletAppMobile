@@ -78,11 +78,11 @@
         android:layout_marginTop="15dp"
         android:background="@drawable/loginbutton_selector"
         android:padding="3dp"
-        android:text="@string/kyc_attach_step1"
+        android:text="@string/back"
         android:textColor="@color/background_color"
         android:textSize="17sp"
         android:textStyle="bold"
-        android:drawableLeft="@drawable/attachment"/>
+        />
 
 
     <View

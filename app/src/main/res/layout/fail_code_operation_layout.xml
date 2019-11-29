@@ -53,7 +53,7 @@
             android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal"
             android:padding="10dp"
-            app:srcCompat="@drawable/close" />
+            app:srcCompat="@drawable/ic_block" />
 
 
         <RelativeLayout

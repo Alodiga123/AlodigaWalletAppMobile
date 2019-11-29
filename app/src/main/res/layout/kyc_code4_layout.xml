@@ -52,7 +52,7 @@
             android:layout_gravity="center_horizontal"
             android:paddingTop="20dp"
             android:paddingBottom="10dp"
-            app:srcCompat="@drawable/close" />
+            app:srcCompat="@drawable/ic_block" />
 
 
         <View
