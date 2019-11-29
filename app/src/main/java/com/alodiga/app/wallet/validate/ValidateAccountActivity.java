@@ -74,26 +74,6 @@ public class ValidateAccountActivity extends AppCompatActivity {
         take_photogaraphy= findViewById(R.id.take_photogaraphy);
         attach= findViewById(R.id.attach);
 
-/*
-        TextView miTextView = new TextView(getApplicationContext());
-        //Agrega propiedades al TextView.
-        miTextView.setText("mi TextView");
-        int prevTextViewId  =0;
-        LinearLayout ll=(LinearLayout) findViewById(R.id.layout);
-        for(int i = 0; i < 20; i++) {
-            final TextView textView = new TextView(getApplicationContext());
-            textView.setText("Text "+i);
-            int curTextViewId = prevTextViewId + 1;
-            textView.setId(curTextViewId);
-            textView.setTextSize(16);
-            textView.setTypeface(textView.getTypeface(), Typeface.NORMAL);
-            //textView.setPadding(12,1,1,1);
-            prevTextViewId = curTextViewId;
-            ll.addView(textView);
-
-        }*/
-
-
         entrar();
 
         take_photogaraphy.setOnClickListener(new View.OnClickListener() {
@@ -129,39 +109,10 @@ public class ValidateAccountActivity extends AppCompatActivity {
     }
 
 
-    /*@Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        try {
-            if (requestCode == RESULT_LOAD_IMG && resultCode == RESULT_OK) {
-                final Uri imageUri = data.getData();
-                final InputStream imageStream = getContentResolver().openInputStream(imageUri);
-                final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
-
-                Session.setSelectedImage(selectedImage);
-
-                Intent show = new Intent(ValidateAccountActivity.this, ValidateAccountStep1Activity.class);
-                startActivity(show);
-                finish();
-
-
-            } else {
-
-                new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(), getString(R.string.kyc_text_image));
-
-            }
-        } catch (Exception e) {
-            new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(), getString(R.string.web_services_response_99));
-
-        }
-    }*/
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == RESULT_LOAD_IMG && resultCode == RESULT_OK) {
-            //Bundle extras = data.getExtras();
-            //Bitmap imageBitmap = (Bitmap) extras.get("data");
-            //addPhoto.setImageBitmap(imageBitmap);
+         
             if (data.getExtras()!= null) {
                 Bundle extras = data.getExtras();
                 Bitmap imageBitmap = (Bitmap) extras.get("data");
@@ -368,7 +319,7 @@ public class ValidateAccountActivity extends AppCompatActivity {
 
                         final TextView textView = new TextView(getApplicationContext());
                         int curTextViewId = prevTextViewId + 1;
-                        textView.setText(curTextViewId+ ". "+ obj.getProperty("name").toString());
+                        textView.setText("- "+ obj.getProperty("name").toString());
 
                         textView.setId(curTextViewId);
                         textView.setTextSize(16);
@@ -378,24 +329,6 @@ public class ValidateAccountActivity extends AppCompatActivity {
                         prevTextViewId = curTextViewId;
                         ll.addView(textView);
                     }
-
-
-                /*String res = response.getProperty("datosRespuesta").toString();
-                String cumplimient = getValueFromResponseJson("cumplimient", res);*/
-
-                /*TextView miTextView = new TextView(getApplicationContext());
-                //Agrega propiedades al TextView.
-                miTextView.setText("mi TextView");
-
-                for(int i = 0; i < 20; i++) {
-                    final TextView textView = new TextView(getApplicationContext());
-                    textView.setText("Text "+i);
-                    int curTextViewId = prevTextViewId + 1;
-                    textView.setId(curTextViewId);
-                    prevTextViewId = curTextViewId;
-                    ll.addView(textView);
-
-                }*/
 
 
             } else {
