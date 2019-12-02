@@ -41,6 +41,11 @@
                 android:id="@+id/nav_last_activity"
                 android:icon="@drawable/ic_menu_slideshow"
                 android:title="@string/menu_last_activity" />
+
+            <item
+                android:id="@+id/nav_request_card"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="@string/menu_request_card" />
         </menu>
     </item>
 

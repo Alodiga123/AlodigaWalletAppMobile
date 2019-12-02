@@ -297,4 +297,5 @@
     <string name="kyc_text_code3_1">In order to enjoy the services provided by the Alodiga wallet, you must validate your account again.</string>
     <string name="kyc_text_code4">" In order to enjoy the services offered by the Alodiga wallet, you must validate your account."</string>
     <string name="kyc_text_code2">"Your account is validated. "</string>
+    <string name="menu_request_card">" Request Card"</string>
 </resources>
