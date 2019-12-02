@@ -13,9 +13,13 @@ public class Constants {
     public static final boolean CONSTANT_IS_PRODUCTION = false;
 
     //LOCAL moises
-    public static String IPDAT="192.168.3.20";
+    //public static String IPDAT="192.168.3.20";
     //LOCAL QA
-    //public static String IPDAT = "192.168.3.140";
+    public static String IPDAT = "192.168.3.140";
+
+
+    public static String LINK = "http://192.168.3.140:8080/ultima-1.0.6/formData.xhtml";
+
 
     public static final String RESUM_OPERATION_PHONE = "getResumOperationByPhoneNumberSender";
     public static final String RESUM_CLOSE_SESSION = "appCloseSession";

@@ -363,7 +363,7 @@ public class ExchangeStep3codeActivity extends AppCompatActivity {
         for (int i = 4; i < response.getPropertyCount(); i++) {
             SoapObject obj = (SoapObject) response.getProperty(i);
             String propiedad = response.getProperty(i).toString();
-            ObjUserHasProduct object = new ObjUserHasProduct(obj.getProperty("id").toString(), obj.getProperty("name").toString(), obj.getProperty("currentBalance").toString(), obj.getProperty("symbol").toString());
+            ObjUserHasProduct object = new ObjUserHasProduct(obj.getProperty("id").toString(), obj.getProperty("name").toString(), obj.getProperty("currentBalance").toString(), obj.getProperty("symbol").toString(), obj.getProperty("isPayTopUp").toString());
             obj2.add(object);
             //obj2[i-3] = object;
         }

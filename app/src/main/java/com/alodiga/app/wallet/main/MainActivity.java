@@ -49,6 +49,7 @@ import com.alodiga.app.wallet.changePassword.ChangePasswordStep1Activity;
 import com.alodiga.app.wallet.paymentComerce.PaymentComerceStep1Activity;
 import com.alodiga.app.wallet.topup.TopupStep1Activity;
 import com.alodiga.app.wallet.transference.TransferenceStep1Activity;
+import com.alodiga.app.wallet.utils.Constants;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.Session;
 import com.alodiga.app.wallet.utils.Utils;
@@ -344,9 +345,8 @@ public class MainActivity extends AppCompatActivity
 
     public void openUrl()
     {
-        String link = "http://200.73.192.179:8080/ultima-1.0.6/sample.xhtml;jsessionid=35a49af185e55965aa0ade9884b5#";
         Intent intent = null;
-        intent = new Intent(intent.ACTION_VIEW,Uri.parse(link));
+        intent = new Intent(intent.ACTION_VIEW,Uri.parse(Constants.LINK));
         startActivity(intent);
     }
 
