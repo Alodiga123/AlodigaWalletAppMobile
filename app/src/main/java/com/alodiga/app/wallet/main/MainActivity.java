@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
@@ -15,6 +16,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -282,7 +286,10 @@ public class MainActivity extends AppCompatActivity
         }else if (id == R.id.nav_change_password) {
             Intent show = new Intent(MainActivity.this, ChangePasswordStep1Activity.class);
             startActivity(show);
-        }else if (id == R.id.nav_validate_account ) {
+        }
+        else if (id == R.id.nav_request_card) {
+           openUrl();
+       }else if (id == R.id.nav_validate_account ) {
            Intent show;
            switch(Session.getCumplimient()) {
                case "1":
@@ -334,4 +341,13 @@ public class MainActivity extends AppCompatActivity
     public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
+
+    public void openUrl()
+    {
+        String link = "http://200.73.192.179:8080/ultima-1.0.6/sample.xhtml;jsessionid=35a49af185e55965aa0ade9884b5#";
+        Intent intent = null;
+        intent = new Intent(intent.ACTION_VIEW,Uri.parse(link));
+        startActivity(intent);
+    }
+
 }
