@@ -151,9 +151,9 @@ public class LoginFragment extends Fragment implements OnClickListener {
 		password.setText("Kg0m3z$11");*/
         //emailid.setText("adira0411@gmail.com");
         //password.setText("123456");
-        emailid.setText("moisegrat12@gmail.com");
+        //emailid.setText("moisegrat12@gmail.com");
         //password.setText("Alo$1234");
-        password.setText("Alodi12-");
+        //password.setText("Alodi12-");
 
         //emailid.setText("elmoi_88@hotmail.com");
         //password.setText("Alo$1234");

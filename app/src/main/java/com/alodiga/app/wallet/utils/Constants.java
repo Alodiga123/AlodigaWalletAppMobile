@@ -7,7 +7,7 @@ package com.alodiga.app.wallet.utils;
 public class Constants {
 
     //IP PUBLICA
-     //public static String IPDAT="200.73.192.179";
+     public static String IPDAT="200.73.192.179";
 
     /*Data de Produccion*/
     public static final boolean CONSTANT_IS_PRODUCTION = false;
@@ -15,10 +15,11 @@ public class Constants {
     //LOCAL moises
     //public static String IPDAT="192.168.3.20";
     //LOCAL QA
-    public static String IPDAT = "192.168.3.140";
+    //public static String IPDAT = "192.168.3.140";
 
 
-    public static String LINK = "http://192.168.3.140:8080/ultima-1.0.6/formData.xhtml";
+    //public static String LINK = "http://192.168.3.140:8080/ultima-1.0.6/formData.xhtml";
+    public static String LINK = "http://200.73.192.179:8080/ultima-1.0.6/formData.xhtml";
 
 
     public static final String RESUM_OPERATION_PHONE = "getResumOperationByPhoneNumberSender";
