@@ -1,12 +1,16 @@
 package com.alodiga.app.wallet.transference;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.main.MainActivity;
@@ -61,9 +65,18 @@ public class TransferenceStep2QrActivity extends AppCompatActivity implements ZX
     @Override
     public void onResume() {
         super.onResume();
+        int permissionCheckCamara = ContextCompat.checkSelfPermission(
+                this, Manifest.permission.CAMERA);
+        if (permissionCheckCamara != PackageManager.PERMISSION_GRANTED) {
+            Log.i("Mensaje", "No se tiene permiso para de camara");
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 225);
 
-        mScannerView.setResultHandler(this);
-        mScannerView.startCamera();
+        } else {
+            Log.i("Mensaje", "Se tiene permiso para leer!");
+
+            mScannerView.setResultHandler(this);
+            mScannerView.startCamera();
+        }
     }
 
     @Override
