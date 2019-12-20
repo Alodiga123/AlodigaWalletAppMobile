@@ -298,4 +298,23 @@
     <string name="kyc_text_code4">" In order to enjoy the services offered by the Alodiga wallet, you must validate your account."</string>
     <string name="kyc_text_code2">"Your account is validated. "</string>
     <string name="menu_request_card">" Request Card"</string>
+    <string name="Additional">Additional</string>
+    <string name="Prepaid_card">" Prepaid Card"</string>
+    <string name="Security">Security</string>
+    <string name="activate_card">Activate / Deactivate Card</string>
+    <string name="reload_card">Reload Card</string>
+    <string name="activate_card_title">ACTIVATE CARD</string>
+    <string name="activate_process">ACTIVATE</string>
+    <string name="activate_finish">" Your card has been activated successfully."</string>
+    <string name="deactivate_finish">Your card has been deactivated successfully.</string>
+    <string name="dactivate_card_title">DEACTIVATE CARD</string>
+    <string name="deactivate_process">DEACTIVATE</string>
+    <string name="reloadcard_title">"RECHARGE CARD "</string>
+    <string name="reloadcard_source">"Select source of funds "</string>
+    <string name="reloadcard_card">Select card to recharge</string>
+    <string name="reloadcard_process">" PROCESS RECHARGE"</string>
+    <string name="activate_card_number">" Enter card number"</string>
+    <string name="activate_number">Card number</string>
+    <string name="web_services_response_50">"Card is already active "</string>
+    <string name="web_services_response_51">" Unable to activate your card"</string>
 </resources>
