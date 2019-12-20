@@ -25,6 +25,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alodiga.app.R;
+import com.alodiga.app.wallet.activateDesativateCard.ActivateDeactivateCardStep1Activity;
 import com.alodiga.app.wallet.activeCard.ActiveCardActivity;
 import com.alodiga.app.wallet.deactivateCard.DeactiveCardActivity;
 import com.alodiga.app.wallet.exchange.ExchangeStep1Activity;
@@ -39,6 +40,7 @@ import com.alodiga.app.wallet.topup.TopupStep1Activity;
 import com.alodiga.app.wallet.transference.TransferenceStep1Activity;
 import com.alodiga.app.wallet.utils.Constants;
 import com.alodiga.app.wallet.utils.CustomToast;
+import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
 import com.alodiga.app.wallet.utils.Session;
 import com.alodiga.app.wallet.utils.WebService;
 import com.alodiga.app.wallet.validate.ValidateAccountCode3Activity;
@@ -229,10 +231,15 @@ public class AdapterMoneyProduct extends RecyclerView.Adapter<AdapterMoneyProduc
 
 
                         if (arrayAdapter.getItem(_item).toString() == "    Activate/Deactivate Card" || arrayAdapter.getItem(_item).toString() == "    Activar/Desactivar Tarjeta") {
-                        Session.setCardSelectActiveDeactive(grocderyItemList.get(position).getProductPrice());
+                       // Session.setCardSelectActiveDeactive(grocderyItemList.get(position).getProductPrice());
+                         //   Intent show = new Intent(context, ActivateDeactivateCardStep1Activity.class);
+                         //   context.startActivity(show);
+                            ProgressDialogAlodiga progressDialogAlodiga = new ProgressDialogAlodiga(context,"Cargando");
+                            progressDialogAlodiga.show();
 
                             new Thread(new Runnable() {
                                 public void run() {
+
                                     try {
 
                                         Calendar cal = Calendar.getInstance();
@@ -242,7 +249,7 @@ public class AdapterMoneyProduct extends RecyclerView.Adapter<AdapterMoneyProduc
                                         HashMap<String, String> map = new HashMap<String, String>();
                                         map.put("userId", Session.getUserId());
                                         map.put("card", grocderyItemList.get(position).getProductPrice());
-                                        map.put("timeZone",tz.getID());
+                                        map.put("timeZone", tz.getID());
 
                                         SoapObject response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_ACTIVE_DEACTIVE_STATUS, Constants.ALODIGA);
                                         String stringResponse = response.toString();
@@ -250,21 +257,42 @@ public class AdapterMoneyProduct extends RecyclerView.Adapter<AdapterMoneyProduc
                                         String datosRespuesta = response.getProperty("mensajeRespuesta").toString();
 
                                         if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
-
-                                                Intent show = new Intent(context, DeactiveCardActivity.class);
+                                            Session.setIsactivateCard(true);
+                                            Intent show = new Intent(context, ActivateDeactivateCardStep1Activity.class);
+                                            context.startActivity(show);
+                                        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_THERE_IS_NO_SEARCH_RECORD)){
+                                            if (idioma.equals("en")) {
+                                                Toast toast = Toast.makeText(context, "Card not found", Toast.LENGTH_SHORT);
+                                                toast.show();
+                                                Intent show = new Intent(context, MainActivity.class);
                                                 context.startActivity(show);
-                                        } else {
+                                            } else {
+                                                Toast toast = Toast.makeText(context, "Tarjeta no encontrada", Toast.LENGTH_SHORT);
+                                                toast.show();
+                                                Intent show = new Intent(context, MainActivity.class);
+                                                context.startActivity(show);
+                                            }
+                                        }
+                                        else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_INTERNO)){
+                                            if (idioma.equals("en")) {
+                                                Toast toast = Toast.makeText(context, "Internal error", Toast.LENGTH_SHORT);
+                                                toast.show();
+                                            } else {
+                                                Toast toast = Toast.makeText(context, "Error interno", Toast.LENGTH_SHORT);
+                                                toast.show();
+                                            }
+                                        }else {
                                             Intent show = new Intent(context, ActiveCardActivity.class);
                                             context.startActivity(show);
-                                        }
 
+                                        }
                                     } catch (Exception e) {
                                         e.printStackTrace();
                                     }
                                 }
                             }).start();
 
-
+                            progressDialogAlodiga.dismiss();
 
 
                         }

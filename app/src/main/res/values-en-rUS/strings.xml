@@ -317,4 +317,6 @@
     <string name="activate_number">Card number</string>
     <string name="web_services_response_50">"Card is already active "</string>
     <string name="web_services_response_51">" Unable to activate your card"</string>
+    <string name="ativate_card">" Through this functionality you can activate or deactivate your prepaid debit card"</string>
+    <string name="ativate_desactivate_card">"Deactivate / Activate "</string>
 </resources>

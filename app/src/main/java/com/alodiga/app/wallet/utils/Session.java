@@ -56,6 +56,7 @@ public class Session {
     private static String cardActive;
     private static String cardDeactive;
     private static boolean affiliatedCard;
+    private static boolean isactivateCard;
     private static String cardSelectActiveDeactive;
 
 
@@ -396,6 +397,14 @@ public class Session {
 
     public static void setCardSelectActiveDeactive(String cardSelectActiveDeactive) {
         Session.cardSelectActiveDeactive = cardSelectActiveDeactive;
+    }
+
+    public static boolean isIsactivateCard() {
+        return isactivateCard;
+    }
+
+    public static void setIsactivateCard(boolean isactivateCard) {
+        Session.isactivateCard = isactivateCard;
     }
 
     public static void clearALL() {

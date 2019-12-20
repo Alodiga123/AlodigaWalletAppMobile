@@ -303,7 +303,10 @@
     <string name="welcome_secure_manual_removal">El registro del retiro se ha realizado satisfactoriamente. Una vez el proveedor de servicios lo haga efectivo sera notificado </string>
     <string name="welcome_payment_comerce">El pago se ha realizado satisfactoriamente. </string>
     <string name="welcome_secure_manual_recharge">La recarga fue realizada satisfactoriamente. Una vez que se valide le sera notificado </string>
+    <string name="ativate_card">Mediante esta funcionalidad podra activar o desactivar su tarjeta de debito prepagada</string>
     <string name="fail_code_info">La Clave de Operaciones ha sido bloqueada temporalmente.</string>
+    <string name="ativate_desactivate_card">Desactivar / Activar</string>
+
 
 
     <string name="they_are_not_transactions">No hay operaciones disponibles</string>

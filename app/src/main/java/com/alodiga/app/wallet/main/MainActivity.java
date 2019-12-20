@@ -318,8 +318,6 @@ public class MainActivity extends AppCompatActivity
                        show = new Intent(MainActivity.this, ExchangeStep1Activity.class);
                        startActivity(show);
                    }else if (id == R.id.nav_active_card) {
-
-
                            show = new Intent(MainActivity.this, ActiveCardActivity.class);
                            startActivity(show);
 

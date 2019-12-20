@@ -25,6 +25,16 @@
         android:textStyle="bold" />
 
     <TextView
+        android:id="@+id/select2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:text="@string/ativate_card"
+        android:textColor="@color/white_greyish"
+        android:textSize="19sp"
+        android:textStyle="bold" />
+
+    <TextView
         android:id="@+id/tvintentos"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -33,14 +43,32 @@
         android:textSize="17sp"
         android:gravity="center"/>
 
+    <TextView
+        android:id="@+id/dos"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white_greyish"
+        android:textSize="17sp"
+        android:gravity="center"
+        android:text="@string/ativate_desactivate_card"
+        />
 
     <Switch
-        android:id="@+id/switch1"
-        android:layout_width="wrap_content"
+        android:id="@+id/simpleSwitch"
+        android:layout_width="216dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:minHeight="80dp"
         android:showText="true"
-        android:textOff="Desactivar"
-        android:textOn="Activar" />
+        android:switchMinWidth="200dp"
+        android:textColor="@color/white"
+        android:textOff="                        "
+        android:textOn="                        "
+        android:thumb="@drawable/activo"
+        android:thumbTextPadding="5dp"
+        android:thumbTint="@color/background_color"
+        android:track="@drawable/inactivo2" />
 
     <View
         android:layout_width="fill_parent"
