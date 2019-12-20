@@ -7,19 +7,19 @@ package com.alodiga.app.wallet.utils;
 public class Constants {
 
     //IP PUBLICA
-     public static String IPDAT="200.73.192.179";
+    // public static String IPDAT="200.73.192.179";
 
     /*Data de Produccion*/
     public static final boolean CONSTANT_IS_PRODUCTION = false;
 
     //LOCAL moises
-    //public static String IPDAT="192.168.3.20";
+    public static String IPDAT="192.168.3.20";
     //LOCAL QA
     //public static String IPDAT = "192.168.3.140";
 
 
-    //public static String LINK = "http://192.168.3.140:8080/ultima-1.0.6/formData.xhtml";
-    public static String LINK = "http://200.73.192.179:8080/ultima-1.0.6/formData.xhtml";
+    public static String LINK = "http://192.168.3.140:8080/ultima-1.0.6/formData.xhtml";
+    //public static String LINK = "http://200.73.192.179:8080/ultima-1.0.6/formData.xhtml";
 
 
     public static final String RESUM_OPERATION_PHONE = "getResumOperationByPhoneNumberSender";
@@ -93,6 +93,8 @@ public class Constants {
     public static final String WEB_SERVICES_RESPONSE_CODE_TRANSACTION_MAX_NUMBER_BY_ACCOUNT = "31";
     public static final String WEB_SERVICES_RESPONSE_CODE_TRANSACTION_MAX_NUMBER_BY_CUSTOMER = "32";
     public static final String WEB_SERVICES_RESPONSE_CODE_USER_HAS_NOT_BALANCE = "33";
+    public static final String WEB_SERVICES_RESPONSE_CODE_CARD_NUMBER_EXISTS = "50";
+    public static final String WEB_SERVICES_RESPONSE_CODE_NOT_ALLOWED_TO_CHANGE_STATE = "51";
     public static final String WEB_SERVICES_RESPONSE_CODE_APLICACION_NO_EXISTE = "94";
     public static final String WEB_SERVICES_RESPONSE_CODE_USUARIO_SOSPECHOSO = "95";
     public static final String WEB_SERVICES_RESPONSE_CODE_USUARIO_PENDIENTE = "96";
@@ -125,6 +127,13 @@ public class Constants {
     public static final String WEB_SERVICES_METHOD_CHANGE_PASSWORD_FORGOT = "cambiarCredencialAplicacionMovilEmailOrPhone";
     public static final String WEB_SERVICES_METHOD_KYC_COLLECTION = "getValidateCollection";
     public static final String WEB_SERVICES_METHOD_KYC_PROCESS = "saveCumplimient";
+    public static final String WEB_SERVICES_METHOD_ACTIVE_PROCESS = "activateCard";
+    public static final String WEB_SERVICES_METHOD_DEACTIVE_PROCESS = "desactivateCard";
+    public static final String WEB_SERVICES_METHOD_ACTIVE_DEACTIVE_STATUS = "checkStatusAccount";
+
+
+
+
 
 
 
@@ -200,6 +209,8 @@ public class Constants {
     public final static String TOPUP_DF = "DF";
     public final static String TOPUP_OR = "OR";
     public final static String TOPUP_PRODUCT_ID = "7";
+    public final static String ACTIVE_STATUS = "03";
+
 
 
 
