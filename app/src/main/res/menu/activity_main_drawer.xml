@@ -30,7 +30,25 @@
             android:title="@string/menu_recharge_n_i" />
     </group>
 
-    <item android:title="Adicionales">
+    <item android:title="@string/Prepaid_card" android:id="@+id/cardItems">
+        <menu>
+
+            <item
+                android:id="@+id/nav_request_card"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="@string/menu_request_card" />
+            <item
+                android:id="@+id/nav_active_card"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="@string/activate_card" />
+            <item
+                android:id="@+id/nav_reload_Card"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="@string/reload_card" />
+        </menu>
+    </item>
+
+    <item android:title="@string/Additional">
         <menu>
 
             <item
@@ -42,15 +60,12 @@
                 android:icon="@drawable/ic_menu_slideshow"
                 android:title="@string/menu_last_activity" />
 
-            <item
-                android:id="@+id/nav_request_card"
-                android:icon="@drawable/ic_menu_slideshow"
-                android:title="@string/menu_request_card" />
+
         </menu>
     </item>
 
 
-    <item android:title="Seguridad">
+    <item android:title="@string/Security">
         <menu>
 
             <item
