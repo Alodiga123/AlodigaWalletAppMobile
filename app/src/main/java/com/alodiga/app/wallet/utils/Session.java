@@ -1,6 +1,7 @@
 package com.alodiga.app.wallet.utils;
 
 import android.graphics.Bitmap;
+import android.se.omapi.SEService;
 
 import com.alodiga.app.wallet.model.ObjExchange;
 import com.alodiga.app.wallet.model.ObjTopUpInfos;
@@ -52,6 +53,13 @@ public class Session {
     private static Bitmap selectedImage;
     private static Bitmap selectedImageSelfie;
     private static String cumplimient;
+    private static String cardActive;
+    private static String cardDeactive;
+    private static boolean affiliatedCard;
+    private static String cardSelectActiveDeactive;
+
+
+
 
 
     public static ArrayList<ObjUserHasProduct> getObjUserHasProducts() {
@@ -358,6 +366,38 @@ public class Session {
         Session.cumplimient = cumplimient;
     }
 
+    public static String getCardActive() {
+        return cardActive;
+    }
+
+    public static void setCardActive(String cardActive) {
+        Session.cardActive = cardActive;
+    }
+
+    public static String getCardDeactive() {
+        return cardDeactive;
+    }
+
+    public static void setCardDeactive(String cardDeactive) {
+        Session.cardDeactive = cardDeactive;
+    }
+
+    public static boolean isAffiliatedCard() {
+        return affiliatedCard;
+    }
+
+    public static void setAffiliatedCard(boolean affiliatedCard) {
+        Session.affiliatedCard = affiliatedCard;
+    }
+
+    public static String getCardSelectActiveDeactive() {
+        return cardSelectActiveDeactive;
+    }
+
+    public static void setCardSelectActiveDeactive(String cardSelectActiveDeactive) {
+        Session.cardSelectActiveDeactive = cardSelectActiveDeactive;
+    }
+
     public static void clearALL() {
         Session.userId = null;
         Session.username = null;
@@ -396,6 +436,9 @@ public class Session {
         Session.selectedImage= null;
         Session.selectedImageSelfie= null;
         Session.cumplimient= null;
+        Session.cardActive= null;
+        Session.cardDeactive= null;
+        Session.cardSelectActiveDeactive= null;
     }
 
 }

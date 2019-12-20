@@ -2,6 +2,8 @@ package com.alodiga.app.wallet.main;
 
 import android.Manifest;
 import android.app.Dialog;
+import android.content.ClipData;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -12,7 +14,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.SubMenu;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -23,6 +27,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
@@ -35,7 +40,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.QR.CreateQRCodeActivity;
+import com.alodiga.app.wallet.activeCard.ActiveCardActivity;
 import com.alodiga.app.wallet.adapters.AdapterMoneyProduct;
+import com.alodiga.app.wallet.deactivateCard.DeactiveCardActivity;
 import com.alodiga.app.wallet.exchange.ExchangeStep1Activity;
 import com.alodiga.app.wallet.listTransactionExecuted.ListTransactionExecutedActivity;
 import com.alodiga.app.wallet.login.LoginActivity;
@@ -47,6 +54,7 @@ import com.alodiga.app.wallet.model.ObjTransaction;
 import com.alodiga.app.wallet.model.ObjUserHasProduct;
 import com.alodiga.app.wallet.changePassword.ChangePasswordStep1Activity;
 import com.alodiga.app.wallet.paymentComerce.PaymentComerceStep1Activity;
+import com.alodiga.app.wallet.reloadCard.ReloadCardStep1Activity;
 import com.alodiga.app.wallet.topup.TopupStep1Activity;
 import com.alodiga.app.wallet.transference.TransferenceStep1Activity;
 import com.alodiga.app.wallet.utils.Constants;
@@ -77,6 +85,9 @@ public class MainActivity extends AppCompatActivity
     private RecyclerView mRecyclerView;
     private AdapterMoneyProduct mAdapter;
     private List<ObjMoney> mProductList;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -151,6 +162,8 @@ public class MainActivity extends AppCompatActivity
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
+
+
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -162,7 +175,15 @@ public class MainActivity extends AppCompatActivity
             requestPermissions(new String[]{Manifest.permission.RECEIVE_SMS}, 1000);
         }
 
+
+
+
+
+
     }
+
+
+
 
     @Override
     public void onBackPressed() {
@@ -187,12 +208,30 @@ public class MainActivity extends AppCompatActivity
         dialogo1.show();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        invalidateOptionsMenu(); // Para asegurarse que lo vuelva a crear
+
+
+    }
+
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+
+        if(Session.isAffiliatedCard()){
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        Menu nav_menu =  navigationView.getMenu();
+        MenuItem menuItem = nav_menu.getItem(6);
+        SubMenu menuItem2 = menuItem.getSubMenu();
+        menuItem2.getItem(1).setVisible(false);
+        menuItem2.getItem(1).setEnabled(false);
+        }
+
         return true;
     }
 
@@ -202,7 +241,6 @@ public class MainActivity extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
 
@@ -234,12 +272,14 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
        if (id == R.id.nav_recharge || id == R.id.nav_Withdrawal || id == R.id.nav_transfer
                || id == R.id.nav_last_activity || id == R.id.nav_pay_qr
-               || id == R.id.nav_topup || id == R.id.nav_convert){
+               || id == R.id.nav_topup || id == R.id.nav_convert || id == R.id.nav_active_card
+               || id == R.id.nav_reload_Card){
            Intent show;
            switch(Session.getCumplimient()) {
                case "1":
@@ -277,7 +317,19 @@ public class MainActivity extends AppCompatActivity
                    }else if (id == R.id.nav_convert) {
                        show = new Intent(MainActivity.this, ExchangeStep1Activity.class);
                        startActivity(show);
-                   }
+                   }else if (id == R.id.nav_active_card) {
+
+
+                           show = new Intent(MainActivity.this, ActiveCardActivity.class);
+                           startActivity(show);
+
+                   }else if (id == R.id.nav_reload_Card) {
+                    show = new Intent(MainActivity.this, ReloadCardStep1Activity.class);
+                    startActivity(show);
+                     }
+
+
+
        }
 
        }else if (id == R.id.nav_home) {
