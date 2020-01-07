@@ -61,18 +61,12 @@ public class ActivateDeactivateCardStep1Activity extends AppCompatActivity {
 
         backToLoginBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(), "Prueba exitosa");
                 Intent show;
                 show = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(show);
             }
         });
 
-
-
-       // simpleSwitch.setChecked(Session.isIsactivateCard());
-
-       // simpleSwitch.setOnCheckedChangeListener(this);
     }
 
    @Override
@@ -106,35 +100,6 @@ public class ActivateDeactivateCardStep1Activity extends AppCompatActivity {
         });
     }
 
-  /*  @Override
-    protected void onPause() {
-        super.onPause();
-        simpleSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
-
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
-
-                if(isChecked){
-                    Activar();
-                }else{
-                    Desactivar();
-                }
-
-
-            }
-        });
-    }*/
-
-
-    /*@Override
-    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        if (isChecked) {
-            // do something when checked is selected
-            Activar();
-        } else {
-            Desactivar(); //do something when unchecked
-        }
-    }*/
 
     @Override
     public void onBackPressed() {
