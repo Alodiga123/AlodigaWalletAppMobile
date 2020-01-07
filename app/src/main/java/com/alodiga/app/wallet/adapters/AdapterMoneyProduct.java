@@ -232,14 +232,14 @@ public class AdapterMoneyProduct extends RecyclerView.Adapter<AdapterMoneyProduc
 
                         if (arrayAdapter.getItem(_item).toString() == "    Activate/Deactivate Card" || arrayAdapter.getItem(_item).toString() == "    Activar/Desactivar Tarjeta") {
                        // Session.setCardSelectActiveDeactive(grocderyItemList.get(position).getProductPrice());
-                         //   Intent show = new Intent(context, ActivateDeactivateCardStep1Activity.class);
-                         //   context.startActivity(show);
-                            ProgressDialogAlodiga progressDialogAlodiga = new ProgressDialogAlodiga(context,"Cargando");
-                            progressDialogAlodiga.show();
+                           Intent show = new Intent(context, ActivateDeactivateCardStep1Activity.class);
+                            context.startActivity(show);
 
-                            new Thread(new Runnable() {
+
+                           /* new Thread(new Runnable() {
                                 public void run() {
-
+                                    ProgressDialogAlodiga progressDialogAlodiga = new ProgressDialogAlodiga(context,"Cargando");
+                                    progressDialogAlodiga.show();
                                     try {
 
                                         Calendar cal = Calendar.getInstance();
@@ -289,10 +289,11 @@ public class AdapterMoneyProduct extends RecyclerView.Adapter<AdapterMoneyProduc
                                     } catch (Exception e) {
                                         e.printStackTrace();
                                     }
+                                    progressDialogAlodiga.dismiss();
                                 }
                             }).start();
 
-                            progressDialogAlodiga.dismiss();
+                            */
 
 
                         }
