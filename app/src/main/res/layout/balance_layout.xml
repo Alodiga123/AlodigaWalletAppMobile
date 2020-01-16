@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fillViewport="true"
+    android:overScrollMode="never"
+    android:scrollbars="none" >
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="@drawable/side_nav_bar"
+    android:padding="15dp" >
+
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="393dp"
+        android:layout_height="103dp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:padding="10dp"
+        android:text="@string/balance"
+        android:textColor="@color/background_color"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        />
+
+
+    <ImageView
+        android:id="@+id/sucessfullImageId"
+        android:layout_width="212dp"
+        android:layout_height="92dp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:padding="10dp"
+        android:paddingLeft="500dp"
+        android:src="@drawable/ic_check"
+        android:text="@string/confirmation_title_successfull"
+        android:textColor="@color/background_color"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+
+    <TableLayout
+        android:id="@+id/txtTableLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtConfirmationPaymen"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp">
+
+
+        <TableRow>
+            <TextView
+                android:id="@+id/txtPaymentReceiver"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:padding="5dip"
+                android:paddingTop="5dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="15dp"
+                android:singleLine="true"
+                android:textColor="@color/white_greyish"
+                android:textColorHint="@color/white_greyish"
+                android:textSize="16sp"
+                android:text="@string/balance_card_number"/>
+            <TextView
+                android:id="@+id/cardnumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:padding="5dip"
+                android:singleLine="true"
+                android:textColor="@color/white_greyish"
+                android:textColorHint="@color/white_greyish"
+                android:textSize="15sp"
+                />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:id="@+id/IdentificationNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:padding="5dip"
+                android:singleLine="true"
+                android:paddingLeft="5dp"
+                android:paddingRight="15dp"
+                android:textColor="@color/white_greyish"
+                android:textColorHint="@color/white_greyish"
+                android:textSize="16sp"
+                android:text="@string/balance_account_number"/>
+            <TextView
+                android:id="@+id/account"
+
+                android:padding="5dip"
+                android:singleLine="true"
+                android:textColor="@color/white_greyish"
+                android:textColorHint="@color/white_greyish"
+                android:textSize="15sp"
+
+                />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:id="@+id/txtIdentificationNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:padding="5dip"
+                android:singleLine="true"
+                android:paddingLeft="5dp"
+                android:paddingRight="15dp"
+                android:textColor="@color/white_greyish"
+                android:textColorHint="@color/white_greyish"
+                android:textSize="16sp"
+                android:text="@string/balance_status"/>
+            <TextView
+                android:id="@+id/balance"
+
+                android:padding="2dip"
+                android:singleLine="true"
+                android:textColor="@color/white_greyish"
+                android:textColorHint="@color/white_greyish"
+                android:textSize="15sp"
+
+                />
+        </TableRow>
+
+
+
+    </TableLayout>
+
+
+    <Button
+        android:id="@+id/backToLoginBtn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/loginbutton_selector"
+        android:padding="10dp"
+        android:text="@string/process_finished"
+        android:textColor="@color/background_color"
+        android:textSize="17sp"
+        android:textStyle="bold" />
+
+
+
+
+</LinearLayout>
+
+    </ScrollView>

@@ -130,7 +130,10 @@ public class Constants {
     public static final String WEB_SERVICES_METHOD_KYC_PROCESS = "saveCumplimient";
     public static final String WEB_SERVICES_METHOD_ACTIVE_PROCESS = "activateCard";
     public static final String WEB_SERVICES_METHOD_DEACTIVE_PROCESS = "desactivateCard";
-    public static final String WEB_SERVICES_METHOD_ACTIVE_DEACTIVE_STATUS = "checkStatusAccount";
+    public static final String WEB_SERVICES_METHOD_ACTIVE_DEACTIVE_STATUS = "checkStatusCard";
+    public static final String WEB_SERVICES_METHOD_CHECK_BALANCE = "checkStatusAccount";
+
+
 
 
 

@@ -58,6 +58,9 @@ public class Session {
     private static boolean affiliatedCard;
     private static boolean isactivateCard;
     private static String cardSelectActiveDeactive;
+    private static String cardBalance;
+    private static String cardBalanceMain;
+
 
 
 
@@ -407,6 +410,22 @@ public class Session {
         Session.isactivateCard = isactivateCard;
     }
 
+    public static String getCardBalance() {
+        return cardBalance;
+    }
+
+    public static void setCardBalance(String cardBalance) {
+        Session.cardBalance = cardBalance;
+    }
+
+    public static String getCardBalanceMain() {
+        return cardBalanceMain;
+    }
+
+    public static void setCardBalanceMain(String cardBalanceMain) {
+        Session.cardBalanceMain = cardBalanceMain;
+    }
+
     public static void clearALL() {
         Session.userId = null;
         Session.username = null;
@@ -448,6 +467,8 @@ public class Session {
         Session.cardActive= null;
         Session.cardDeactive= null;
         Session.cardSelectActiveDeactive= null;
+        Session.cardBalance=null;
+        Session.cardBalanceMain= null;
     }
 
 }

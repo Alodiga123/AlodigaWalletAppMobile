@@ -357,6 +357,13 @@
     <string name="reloadcard_process">PROCESAR RECARGA</string>
     <string name="activate_card_number">Ingrese numero de tarjeta</string>
     <string name="activate_number">Numero de tarjeta</string>
+    <string name="balance">CONSULTAR SALDO</string>
+    <string name="balance_status">Saldo</string>
+    <string name="balance_account_number">Cuenta</string>
+    <string name="balance_card_number">Tarjeta</string>
+
+
+
 
 
 

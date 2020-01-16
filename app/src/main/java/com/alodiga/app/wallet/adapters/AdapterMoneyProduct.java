@@ -27,6 +27,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.activateDesativateCard.ActivateDeactivateCardStep1Activity;
 import com.alodiga.app.wallet.activeCard.ActiveCardActivity;
+import com.alodiga.app.wallet.balance.BalanceStep1Activity;
+import com.alodiga.app.wallet.companionCards.CompanionCardsStep1Activity;
 import com.alodiga.app.wallet.deactivateCard.DeactiveCardActivity;
 import com.alodiga.app.wallet.exchange.ExchangeStep1Activity;
 import com.alodiga.app.wallet.main.MainActivity;
@@ -117,6 +119,8 @@ public class AdapterMoneyProduct extends RecyclerView.Adapter<AdapterMoneyProduc
                         arrayAdapter.add("    Reload Card");
                         arrayAdapter.add("    Remove Wallet");
                         arrayAdapter.add("    Activate/Deactivate Card");
+                        arrayAdapter.add("    Check balance");
+                        arrayAdapter.add("    Companion Cards");
 
                     } else {
                         //R.string.menu_recharge
@@ -141,6 +145,8 @@ public class AdapterMoneyProduct extends RecyclerView.Adapter<AdapterMoneyProduc
                         arrayAdapter.add("    Recargar Tarjeta");
                         arrayAdapter.add("    Extraer a Billetera");
                         arrayAdapter.add("    Activar/Desactivar Tarjeta");
+                        arrayAdapter.add("    Consultar Saldo");
+                        arrayAdapter.add("    Tarjetas Compañeras");
                     } else {
                         //R.string.menu_recharge
                         arrayAdapter.add("    Recarga Manual");
@@ -227,6 +233,21 @@ public class AdapterMoneyProduct extends RecyclerView.Adapter<AdapterMoneyProduc
                                 Toast toast = Toast.makeText(context, "Funcionalidad no disponible", Toast.LENGTH_SHORT);
                                 toast.show();
                             }
+                        }
+                        if (arrayAdapter.getItem(_item).toString() == "    Check balance" || arrayAdapter.getItem(_item).toString() == "    Consultar Saldo") {
+                            // Intent show = new Intent(context, PaymentComerceStep1Activity.class);
+                            // context.startActivity(show);
+                            Session.setCardBalance(grocderyItemList.get(position).getProductPrice());
+                            Intent show = new Intent(context, BalanceStep1Activity.class);
+                            context.startActivity(show);
+                        }
+
+                        if (arrayAdapter.getItem(_item).toString() == "    Tarjetas Compañeras" || arrayAdapter.getItem(_item).toString() == "    Companion Cards") {
+                            // Intent show = new Intent(context, PaymentComerceStep1Activity.class);
+                            // context.startActivity(show);
+                            Session.setCardBalanceMain(grocderyItemList.get(position).getProductPrice());
+                            Intent show = new Intent(context, CompanionCardsStep1Activity.class);
+                            context.startActivity(show);
                         }
 
 
