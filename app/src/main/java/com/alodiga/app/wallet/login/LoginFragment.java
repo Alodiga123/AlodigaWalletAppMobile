@@ -365,6 +365,7 @@ public class LoginFragment extends Fragment implements OnClickListener {
                     prepayCard= getValueFromResponseJson("prepayCard", res);
                     numberCard= getValueFromResponseJson("numberCard", res);
                     Session.setNumberCard(numberCard);
+                    Session.setAccountNumber(accountNumberSession);
                     prepayCardAsociate= getValueFromResponseJson("prepayCardAsociate", res);
 					 /*String elementgetId = "id=";
 					 String elementGet = "nombreProducto=";
