@@ -25,9 +25,14 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_transfer" />
         <item
+            android:id="@+id/nav_remesas"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_remesas" />
+        <item
             android:id="@+id/nav_topup"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_recharge_n_i" />
+
     </group>
 
     <item android:title="@string/Prepaid_card" android:id="@+id/cardItems">
@@ -41,10 +46,7 @@
                 android:id="@+id/nav_active_card"
                 android:icon="@drawable/ic_menu_slideshow"
                 android:title="@string/activate_card" />
-            <item
-                android:id="@+id/nav_reload_Card"
-                android:icon="@drawable/ic_menu_slideshow"
-                android:title="@string/reload_card" />
+
         </menu>
     </item>
 

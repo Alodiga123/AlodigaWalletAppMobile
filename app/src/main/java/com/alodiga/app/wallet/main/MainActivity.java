@@ -55,6 +55,7 @@ import com.alodiga.app.wallet.model.ObjUserHasProduct;
 import com.alodiga.app.wallet.changePassword.ChangePasswordStep1Activity;
 import com.alodiga.app.wallet.paymentComerce.PaymentComerceStep1Activity;
 import com.alodiga.app.wallet.reloadCard.ReloadCardStep1Activity;
+import com.alodiga.app.wallet.remesas.RemesasStep1Activity;
 import com.alodiga.app.wallet.topup.TopupStep1Activity;
 import com.alodiga.app.wallet.transference.TransferenceStep1Activity;
 import com.alodiga.app.wallet.utils.Constants;
@@ -107,7 +108,8 @@ public class MainActivity extends AppCompatActivity
 
         for (ObjUserHasProduct objUserHasProduct : Session.getObjUserHasProducts()) {
                 int resID = getResources().getIdentifier(objUserHasProduct.getSymbol().toLowerCase() , "drawable", getPackageName());
-                mProductList.add(new ObjMoney(objUserHasProduct.getName(),resID, Session.getAccountNumber(), "Alodiga ", objUserHasProduct.getSymbol() + " " + objUserHasProduct.getCurrentBalance(),Boolean.parseBoolean(objUserHasProduct.getIsTopUp())));
+                mProductList.add(new ObjMoney(objUserHasProduct.getName(),resID, objUserHasProduct.getNumberCard(), objUserHasProduct.getNumberCard().substring(0,4) + "*********" + objUserHasProduct.getNumberCard().substring(objUserHasProduct.getNumberCard().length()-4,objUserHasProduct.getNumberCard().length()), "Alodiga ", objUserHasProduct.getSymbol() + " " + objUserHasProduct.getCurrentBalance(),Boolean.parseBoolean(objUserHasProduct.getIsTopUp())));
+
         }
 
 
@@ -223,10 +225,10 @@ public class MainActivity extends AppCompatActivity
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
 
-        if(Session.isAffiliatedCard()){
+        if(!Session.isAffiliatedCard()){
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         Menu nav_menu =  navigationView.getMenu();
-        MenuItem menuItem = nav_menu.getItem(6);
+        MenuItem menuItem = nav_menu.getItem(7);
         SubMenu menuItem2 = menuItem.getSubMenu();
         menuItem2.getItem(1).setVisible(false);
         menuItem2.getItem(1).setEnabled(false);
@@ -279,7 +281,7 @@ public class MainActivity extends AppCompatActivity
        if (id == R.id.nav_recharge || id == R.id.nav_Withdrawal || id == R.id.nav_transfer
                || id == R.id.nav_last_activity || id == R.id.nav_pay_qr
                || id == R.id.nav_topup || id == R.id.nav_convert || id == R.id.nav_active_card
-               || id == R.id.nav_reload_Card){
+               || id == R.id.nav_remesas/*|| id == R.id.nav_reload_Card*/){
            Intent show;
            switch(Session.getCumplimient()) {
                case "1":
@@ -321,10 +323,14 @@ public class MainActivity extends AppCompatActivity
                            show = new Intent(MainActivity.this, ActiveCardActivity.class);
                            startActivity(show);
 
-                   }else if (id == R.id.nav_reload_Card) {
+                   }else if (id == R.id.nav_remesas) {
+                       show = new Intent(MainActivity.this, RemesasStep1Activity.class);
+                       startActivity(show);
+
+                   }/*else if (id == R.id.nav_reload_Card) {
                     show = new Intent(MainActivity.this, ReloadCardStep1Activity.class);
                     startActivity(show);
-                     }
+                     }*/
 
 
 

@@ -57,13 +57,7 @@ public class CompanionCardsStep1Activity extends AppCompatActivity {
 
         for (ObjUserHasProduct objUserHasProduct : Session.getObjUserHasProducts()) {
             int resID = getResources().getIdentifier(objUserHasProduct.getSymbol().toLowerCase() , "drawable", getPackageName());
-            mProductList.add(new ObjMoney(objUserHasProduct.getName(),resID, Session.getAccountNumber(), "Alodiga ", objUserHasProduct.getSymbol() + " " + objUserHasProduct.getCurrentBalance(),Boolean.parseBoolean(objUserHasProduct.getIsTopUp())));
-            mProductList.add(new ObjMoney(objUserHasProduct.getName(),resID, Session.getAccountNumber(), "Alodiga ", objUserHasProduct.getSymbol() + " " + objUserHasProduct.getCurrentBalance(),Boolean.parseBoolean(objUserHasProduct.getIsTopUp())));
-            mProductList.add(new ObjMoney(objUserHasProduct.getName(),resID, Session.getAccountNumber(), "Alodiga ", objUserHasProduct.getSymbol() + " " + objUserHasProduct.getCurrentBalance(),Boolean.parseBoolean(objUserHasProduct.getIsTopUp())));
-            mProductList.add(new ObjMoney(objUserHasProduct.getName(),resID, Session.getAccountNumber(), "Alodiga ", objUserHasProduct.getSymbol() + " " + objUserHasProduct.getCurrentBalance(),Boolean.parseBoolean(objUserHasProduct.getIsTopUp())));
-            mProductList.add(new ObjMoney(objUserHasProduct.getName(),resID, Session.getAccountNumber(), "Alodiga ", objUserHasProduct.getSymbol() + " " + objUserHasProduct.getCurrentBalance(),Boolean.parseBoolean(objUserHasProduct.getIsTopUp())));
-            mProductList.add(new ObjMoney(objUserHasProduct.getName(),resID, Session.getAccountNumber(), "Alodiga ", objUserHasProduct.getSymbol() + " " + objUserHasProduct.getCurrentBalance(),Boolean.parseBoolean(objUserHasProduct.getIsTopUp())));
-            mProductList.add(new ObjMoney(objUserHasProduct.getName(),resID, Session.getAccountNumber(), "Alodiga ", objUserHasProduct.getSymbol() + " " + objUserHasProduct.getCurrentBalance(),Boolean.parseBoolean(objUserHasProduct.getIsTopUp())));
+            mProductList.add(new ObjMoney(objUserHasProduct.getName(),resID, objUserHasProduct.getNumberCard(), objUserHasProduct.getNumberCard().substring(0,4) + "*********" + objUserHasProduct.getNumberCard().substring(objUserHasProduct.getNumberCard().length()-4,objUserHasProduct.getNumberCard().length()), "Alodiga ", objUserHasProduct.getSymbol() + " " + objUserHasProduct.getCurrentBalance(),Boolean.parseBoolean(objUserHasProduct.getIsTopUp())));
 
         }
 

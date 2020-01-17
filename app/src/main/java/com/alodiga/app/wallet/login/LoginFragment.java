@@ -71,6 +71,9 @@ public class LoginFragment extends Fragment implements OnClickListener {
     String healthCareCoinsBalanceSession = "";
     String userId = "";
     String cumplimient= "";
+    String prepayCard= "";
+    String numberCard="";
+    String prepayCardAsociate="";
     private boolean serviceStatus;
     private boolean isFirstAccess = false;
     private View mLoginFormView;
@@ -97,10 +100,15 @@ public class LoginFragment extends Fragment implements OnClickListener {
 
         for (int i = 1; i < getLenghtFromResponseJson(litaProd, response); i++) {
             ObjUserHasProduct objUserHasProduct = new ObjUserHasProduct(response.split(elementgetId)[i].split(";")[0], response.split(elementGetName)[i].split(";")[0], response.split(elementGetCurrentBalance)[i].split(";")[0], response.split(elementGetSymbol)[i].split(";")[0],response.split(isTopup)[i].split(";")[0]);
-            objUserHasProducts.add(objUserHasProduct);
+
             if (objUserHasProduct.getName().equals("Tarjeta Prepagada") || objUserHasProduct.getName().equals("Prepaid Card") ){
-                Session.setAffiliatedCard(true);
+                Session.setAffiliatedCard(Boolean.parseBoolean(Session.getPrepayCardAsociate()));
+                objUserHasProduct.setNumberCard(Session.getNumberCard());
+            }else{
+                objUserHasProduct.setNumberCard(Session.getAccountNumber());
             }
+
+            objUserHasProducts.add(objUserHasProduct);
         }
 
         return objUserHasProducts;
@@ -354,6 +362,10 @@ public class LoginFragment extends Fragment implements OnClickListener {
                     healthCareCoinsBalanceSession = getValueFromResponseJson("saldoHealthCareCoins", res);
                     userId = getValueFromResponseJson("UsuarioID", res);
                     cumplimient = getValueFromResponseJson("cumplimient", res);
+                    prepayCard= getValueFromResponseJson("prepayCard", res);
+                    numberCard= getValueFromResponseJson("numberCard", res);
+                    Session.setNumberCard(numberCard);
+                    prepayCardAsociate= getValueFromResponseJson("prepayCardAsociate", res);
 					 /*String elementgetId = "id=";
 					 String elementGet = "nombreProducto=";
 					 String elementGetS = "saldoActual=";
@@ -430,11 +442,11 @@ public class LoginFragment extends Fragment implements OnClickListener {
             if (success) {
                 emailid.setText("");
                 password.setText("");
-                setElementInitialSession(nameSession, phoneNumberSession, emailSession, alodigaBalanceSession, accountNumberSession, alocoinsBalanceSesssion, userId, healthCareCoinsBalanceSession, userHasProducts, cumplimient);
+                setElementInitialSession(nameSession, phoneNumberSession, emailSession, alodigaBalanceSession, accountNumberSession, alocoinsBalanceSesssion, userId, healthCareCoinsBalanceSession, userHasProducts, cumplimient, prepayCard, prepayCardAsociate, numberCard);
                 Intent intent = new Intent(getActivity(), MainActivity.class);
                 getActivity().startActivity(intent);
             } else if (isFirstAccess) {
-                setElementInitialSession(nameSession, phoneNumberSession, emailSession, alodigaBalanceSession, accountNumberSession, alocoinsBalanceSesssion, userId, healthCareCoinsBalanceSession, userHasProducts, cumplimient);
+                setElementInitialSession(nameSession, phoneNumberSession, emailSession, alodigaBalanceSession, accountNumberSession, alocoinsBalanceSesssion, userId, healthCareCoinsBalanceSession, userHasProducts, cumplimient, prepayCard, prepayCardAsociate, numberCard);
                 fragmentManager
                         .beginTransaction()
                         .setCustomAnimations(R.anim.right_enter, R.anim.left_out)
@@ -454,7 +466,7 @@ public class LoginFragment extends Fragment implements OnClickListener {
         }
 
 
-        private void setElementInitialSession(String nameSession, String phoneNumberSession, String emailSession, String alodigaBalanceSession, String accountNumberSession, String alocoinsBalanceSesssion, String userId, String healthCareCoinsBalanceSession, ArrayList<ObjUserHasProduct> objUserHasProducts, String cumplimient) {
+        private void setElementInitialSession(String nameSession, String phoneNumberSession, String emailSession, String alodigaBalanceSession, String accountNumberSession, String alocoinsBalanceSesssion, String userId, String healthCareCoinsBalanceSession, ArrayList<ObjUserHasProduct> objUserHasProducts, String cumplimient, String prepayCard, String prepayCardAsociate, String numberCard) {
 
             Session.setObjUserHasProducts(objUserHasProducts);
             Session.setUsername(nameSession);
@@ -466,6 +478,9 @@ public class LoginFragment extends Fragment implements OnClickListener {
             Session.setUserId(userId);
             Session.setHealthCareCoinsBalance(healthCareCoinsBalanceSession);
             Session.setCumplimient(cumplimient);
+            Session.setPrepayCard(prepayCard);
+            Session.setPrepayCardAsociate(prepayCardAsociate);
+            Session.setNumberCard(numberCard);
         }
     }
 

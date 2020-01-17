@@ -60,6 +60,9 @@ public class Session {
     private static String cardSelectActiveDeactive;
     private static String cardBalance;
     private static String cardBalanceMain;
+    private static String prepayCard;
+    private static String numberCard;
+    private static String prepayCardAsociate;
 
 
 
@@ -426,6 +429,30 @@ public class Session {
         Session.cardBalanceMain = cardBalanceMain;
     }
 
+    public static String getPrepayCard() {
+        return prepayCard;
+    }
+
+    public static void setPrepayCard(String prepayCard) {
+        Session.prepayCard = prepayCard;
+    }
+
+    public static String getNumberCard() {
+        return numberCard;
+    }
+
+    public static void setNumberCard(String numberCard) {
+        Session.numberCard = numberCard;
+    }
+
+    public static String getPrepayCardAsociate() {
+        return prepayCardAsociate;
+    }
+
+    public static void setPrepayCardAsociate(String prepayCardAsociate) {
+        Session.prepayCardAsociate = prepayCardAsociate;
+    }
+
     public static void clearALL() {
         Session.userId = null;
         Session.username = null;
@@ -469,6 +496,9 @@ public class Session {
         Session.cardSelectActiveDeactive= null;
         Session.cardBalance=null;
         Session.cardBalanceMain= null;
+        Session.prepayCard= null;
+        Session.prepayCardAsociate= null;
+        Session.numberCard= null;
     }
 
 }

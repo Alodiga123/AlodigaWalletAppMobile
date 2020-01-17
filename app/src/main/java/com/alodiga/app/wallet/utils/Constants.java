@@ -96,6 +96,7 @@ public class Constants {
     public static final String WEB_SERVICES_RESPONSE_CODE_CARD_NUMBER_EXISTS = "50";
     public static final String WEB_SERVICES_RESPONSE_CODE_NOT_ALLOWED_TO_CHANGE_STATE = "51";
     public static final String WEB_SERVICES_RESPONSE_CODE_THERE_IS_NO_SEARCH_RECORD = "52";
+    public static final String WEB_SERVICES_RESPONSE_CODE_THE_NUMBER_OF_ORDERS_ALLOWED_IS_EXCEEDED= "60";
     public static final String WEB_SERVICES_RESPONSE_CODE_APLICACION_NO_EXISTE = "94";
     public static final String WEB_SERVICES_RESPONSE_CODE_USUARIO_SOSPECHOSO = "95";
     public static final String WEB_SERVICES_RESPONSE_CODE_USUARIO_PENDIENTE = "96";
@@ -213,7 +214,8 @@ public class Constants {
     public final static String TOPUP_DF = "DF";
     public final static String TOPUP_OR = "OR";
     public final static String TOPUP_PRODUCT_ID = "7";
-    public final static String ACTIVE_STATUS = "03";
+    public final static String ACTIVE_STATUS_ACTIVE = "01";
+    public final static String ACTIVE_STATUS_DEACTIVE = "24";
 
 
 

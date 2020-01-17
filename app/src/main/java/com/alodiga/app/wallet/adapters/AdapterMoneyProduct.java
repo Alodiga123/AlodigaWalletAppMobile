@@ -80,7 +80,7 @@ public class AdapterMoneyProduct extends RecyclerView.Adapter<AdapterMoneyProduc
     public void onBindViewHolder(GroceryProductViewHolder holder, final int position) {
         holder.imageProductImage.setImageResource(grocderyItemList.get(position).getProductImage());
         holder.txtProductName.setText(grocderyItemList.get(position).getProductName());
-        holder.txtProductPrice.setText(grocderyItemList.get(position).getProductPrice());
+        holder.txtProductPrice.setText(grocderyItemList.get(position).getProductPriceEncrip());
         holder.txtProductWeight.setText(grocderyItemList.get(position).getProductWeight());
         holder.txtProductQty.setText(grocderyItemList.get(position).getProductQty());
 
@@ -116,11 +116,11 @@ public class AdapterMoneyProduct extends RecyclerView.Adapter<AdapterMoneyProduc
                 final ArrayAdapter arrayAdapter = new ArrayAdapter(context, R.layout.menu_simple);
                 if (idioma.equals("en")) {
                     if (productName.equals("Tarjeta Prepagada")) {
-                        arrayAdapter.add("    Reload Card");
-                        arrayAdapter.add("    Remove Wallet");
+                        //arrayAdapter.add("    Reload Card");
+                        //arrayAdapter.add("    Remove Wallet");
                         arrayAdapter.add("    Activate/Deactivate Card");
                         arrayAdapter.add("    Check balance");
-                        arrayAdapter.add("    Companion Cards");
+                        //arrayAdapter.add("    Companion Cards");
 
                     } else {
                         //R.string.menu_recharge
@@ -142,11 +142,11 @@ public class AdapterMoneyProduct extends RecyclerView.Adapter<AdapterMoneyProduc
 
                 } else {
                     if (productName.equals("Tarjeta Prepagada")) {
-                        arrayAdapter.add("    Recargar Tarjeta");
-                        arrayAdapter.add("    Extraer a Billetera");
+                       // arrayAdapter.add("    Recargar Tarjeta");
+                       // arrayAdapter.add("    Extraer a Billetera");
                         arrayAdapter.add("    Activar/Desactivar Tarjeta");
                         arrayAdapter.add("    Consultar Saldo");
-                        arrayAdapter.add("    Tarjetas Compañeras");
+                        //arrayAdapter.add("    Tarjetas Compañeras");
                     } else {
                         //R.string.menu_recharge
                         arrayAdapter.add("    Recarga Manual");
@@ -209,21 +209,23 @@ public class AdapterMoneyProduct extends RecyclerView.Adapter<AdapterMoneyProduc
                             Intent show = new Intent(context, TopupStep1Activity.class);
                             context.startActivity(show);
                         }
-                        if (arrayAdapter.getItem(_item).toString() == "    Recargar Tarjeta" || arrayAdapter.getItem(_item).toString() == "    Reload Card") {
+
+                        /*if (arrayAdapter.getItem(_item).toString() == "    Recargar Tarjeta" || arrayAdapter.getItem(_item).toString() == "    Reload Card") {
                             // Intent show = new Intent(context, PaymentComerceStep1Activity.class);
                             // context.startActivity(show)
-                           /* if (idioma.equals("en")) {
+                            if (idioma.equals("en")) {
                                 Toast toast = Toast.makeText(context, "Functionality not available", Toast.LENGTH_SHORT);
                                 toast.show();
                             } else {
                                 Toast toast = Toast.makeText(context, "Funcionalidad no disponible", Toast.LENGTH_SHORT);
                                 toast.show();
-                            }*/
-                            Intent show = new Intent(context, ReloadCardStep1Activity.class);
-                            context.startActivity(show);
+                            }
 
-                        }
-                        if (arrayAdapter.getItem(_item).toString() == "    Extraer a Billetera" || arrayAdapter.getItem(_item).toString() == "    Remove Wallet") {
+                            //Intent show = new Intent(context, ReloadCardStep1Activity.class);
+                            //context.startActivity(show);
+
+                        }*/
+                        /*if (arrayAdapter.getItem(_item).toString() == "    Extraer a Billetera" || arrayAdapter.getItem(_item).toString() == "    Remove Wallet") {
                             // Intent show = new Intent(context, PaymentComerceStep1Activity.class);
                             // context.startActivity(show);
                             if (idioma.equals("en")) {
@@ -233,7 +235,7 @@ public class AdapterMoneyProduct extends RecyclerView.Adapter<AdapterMoneyProduc
                                 Toast toast = Toast.makeText(context, "Funcionalidad no disponible", Toast.LENGTH_SHORT);
                                 toast.show();
                             }
-                        }
+                        }*/
                         if (arrayAdapter.getItem(_item).toString() == "    Check balance" || arrayAdapter.getItem(_item).toString() == "    Consultar Saldo") {
                             // Intent show = new Intent(context, PaymentComerceStep1Activity.class);
                             // context.startActivity(show);
@@ -242,17 +244,25 @@ public class AdapterMoneyProduct extends RecyclerView.Adapter<AdapterMoneyProduc
                             context.startActivity(show);
                         }
 
-                        if (arrayAdapter.getItem(_item).toString() == "    Tarjetas Compañeras" || arrayAdapter.getItem(_item).toString() == "    Companion Cards") {
-                            // Intent show = new Intent(context, PaymentComerceStep1Activity.class);
-                            // context.startActivity(show);
-                            Session.setCardBalanceMain(grocderyItemList.get(position).getProductPrice());
-                            Intent show = new Intent(context, CompanionCardsStep1Activity.class);
-                            context.startActivity(show);
-                        }
+                        /*if (arrayAdapter.getItem(_item).toString() == "    Tarjetas Compañeras" || arrayAdapter.getItem(_item).toString() == "    Companion Cards") {
+
+
+                            //Session.setCardBalanceMain(grocderyItemList.get(position).getProductPrice());
+                            //Intent show = new Intent(context, CompanionCardsStep1Activity.class);
+                            //context.startActivity(show);
+
+                            if (idioma.equals("en")) {
+                                Toast toast = Toast.makeText(context, "Functionality not available", Toast.LENGTH_SHORT);
+                                toast.show();
+                            } else {
+                                Toast toast = Toast.makeText(context, "Funcionalidad no disponible", Toast.LENGTH_SHORT);
+                                toast.show();
+                            }
+                        }*/
 
 
                         if (arrayAdapter.getItem(_item).toString() == "    Activate/Deactivate Card" || arrayAdapter.getItem(_item).toString() == "    Activar/Desactivar Tarjeta") {
-                       // Session.setCardSelectActiveDeactive(grocderyItemList.get(position).getProductPrice());
+                           Session.setCardSelectActiveDeactive(grocderyItemList.get(position).getProductPrice());
                            Intent show = new Intent(context, ActivateDeactivateCardStep1Activity.class);
                             context.startActivity(show);
 

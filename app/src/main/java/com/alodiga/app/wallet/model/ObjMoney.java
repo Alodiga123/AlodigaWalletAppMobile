@@ -8,6 +8,7 @@ public class ObjMoney {
     public String productWeight;
     public String productQty;
     public boolean isTopup;
+    public String productPriceEncrip;
 
     public ObjMoney(String productName, int productImage, String productPrice, String productWeight, String productQty) {
         this.productImage = productImage;
@@ -18,10 +19,11 @@ public class ObjMoney {
     }
 
 
-    public ObjMoney(String productName, int productImage, String productPrice, String productWeight, String productQty,boolean isTopup) {
+    public ObjMoney(String productName, int productImage, String productPrice,String productPriceEncrip, String productWeight, String productQty,boolean isTopup) {
         this.productImage = productImage;
         this.productName = productName;
         this.productPrice = productPrice;
+        this.productPriceEncrip = productPriceEncrip;
         this.productWeight = productWeight;
         this.productQty = productQty;
         this.isTopup=isTopup;
@@ -78,5 +80,13 @@ public class ObjMoney {
 
     public void setTopup(boolean topup) {
         isTopup = topup;
+    }
+
+    public String getProductPriceEncrip() {
+        return productPriceEncrip;
+    }
+
+    public void setProductPriceEncrip(String productPriceEncrip) {
+        this.productPriceEncrip = productPriceEncrip;
     }
 }

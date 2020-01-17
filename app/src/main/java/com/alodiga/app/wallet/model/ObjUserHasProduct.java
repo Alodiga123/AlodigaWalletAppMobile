@@ -12,6 +12,8 @@ public class ObjUserHasProduct {
     private String currentBalance;
     private String symbol;
     private String isTopUp;
+    private String numberCard;
+    private String numberCardEncrip;
 
     public ObjUserHasProduct(String name) {
         this.name = name;
@@ -42,6 +44,26 @@ public class ObjUserHasProduct {
         this.symbol = symbol;
         this.currentBalance = currentBalance;
         this.isTopUp= isTopup;
+    }
+
+    public ObjUserHasProduct(String id, String name, String currentBalance, String symbol, String isTopup, String numberCard) {
+        this.id = id;
+        this.name = name;
+        this.symbol = symbol;
+        this.currentBalance = currentBalance;
+        this.isTopUp= isTopup;
+        this.numberCard = numberCard;
+    }
+
+
+    public ObjUserHasProduct(String id, String name, String currentBalance, String symbol, String isTopup, String numberCard, String numberCardEncrip) {
+        this.id = id;
+        this.name = name;
+        this.symbol = symbol;
+        this.currentBalance = currentBalance;
+        this.isTopUp= isTopup;
+        this.numberCard = numberCard;
+        this.numberCardEncrip= numberCardEncrip;
     }
 
     public String getName() {
@@ -90,5 +112,21 @@ public class ObjUserHasProduct {
 
     public void setIsTopUp(String isTopUp) {
         this.isTopUp = isTopUp;
+    }
+
+    public String getNumberCard() {
+        return numberCard;
+    }
+
+    public void setNumberCard(String numberCard) {
+        this.numberCard = numberCard;
+    }
+
+    public String getNumberCardEncrip() {
+        return numberCardEncrip;
+    }
+
+    public void setNumberCardEncrip(String numberCardEncrip) {
+        this.numberCardEncrip = numberCardEncrip;
     }
 }

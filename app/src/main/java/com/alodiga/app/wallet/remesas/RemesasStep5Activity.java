@@ -1,19 +1,18 @@
-package com.alodiga.app.wallet.paymentComerce;
+package com.alodiga.app.wallet.remesas;
 
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.alodiga.app.R;
-import com.alodiga.app.wallet.model.ObjCountry;
 import com.alodiga.app.wallet.model.ObjUserHasProduct;
+import com.alodiga.app.wallet.transference.TransferenceStep4codeActivity;
+import com.alodiga.app.wallet.transference.TransferenceStep6Activity;
 import com.alodiga.app.wallet.utils.Constants;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
@@ -26,7 +25,7 @@ import org.ksoap2.serialization.SoapObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class PaymentComerceStep5Activity extends AppCompatActivity {
+public class RemesasStep5Activity extends AppCompatActivity {
     private static View view;
     private static TextView amountValue, conceptValue;
 
@@ -42,15 +41,15 @@ public class PaymentComerceStep5Activity extends AppCompatActivity {
     private String balanceAlodiga = "";
     private ProcessOperationTransferenceTask mAuthTask = null;
 
-    public PaymentComerceStep5Activity() {
+    public RemesasStep5Activity() {
 
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.confirmation_transfer2);
-        backToLoginBtn= findViewById(R.id.backToLoginBtn);
+        setContentView(R.layout.remesas_step5_layout);
+
         amountValue = findViewById(R.id.txtAmountValue_2);
         conceptValue = findViewById(R.id.txtConceptValue_2);
         acountNumberValue = findViewById(R.id.txtAccountNumberValue_2);
@@ -58,13 +57,14 @@ public class PaymentComerceStep5Activity extends AppCompatActivity {
         destinationLastNameValue = findViewById(R.id.txtDestinationLastNameValue_2);
         destinationNameValue = findViewById(R.id.txtDestinationNameValue_2);
         btnProcessTransaction = findViewById(R.id.btnProcessTransaction);
+        backToLoginBtn= findViewById(R.id.backToLoginBtn);
         txtAccountSourceValue = findViewById(R.id.txtAccountSourceValue_2);
         acountNumberValue.setText(Session.getDestinationAccountNumber());
         destinationPhoneValue.setText(Session.getDestinationPhoneValue());
         destinationLastNameValue.setText(Session.getDestinationLastNameValue());
         destinationNameValue.setText(Session.getDestinationNameValue());
         conceptValue.setText(Session.getDestinationConcept());
-        amountValue.setText(Session.getGetDestinationAmount());
+        amountValue.setText(Session.getGetDestinationAmount() +" $");
         txtAccountSourceValue.setText(Session.getMoneySelected().getName());
 
         progressDialogAlodiga = new ProgressDialogAlodiga(this, getString(R.string.loading));
@@ -73,9 +73,10 @@ public class PaymentComerceStep5Activity extends AppCompatActivity {
                 procesar();
             }
         });
+
         backToLoginBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent i = new Intent(PaymentComerceStep5Activity.this, PaymentComerceStep4codeActivity.class);
+                Intent i = new Intent(RemesasStep5Activity.this, RemesasStep4codeActivity.class);
                 startActivity(i);
                 finish();
             }
@@ -83,11 +84,10 @@ public class PaymentComerceStep5Activity extends AppCompatActivity {
 
 
     }
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent i = new Intent(PaymentComerceStep5Activity.this, PaymentComerceStep4codeActivity.class);
+        Intent i = new Intent(RemesasStep5Activity.this, RemesasStep4codeActivity.class);
         startActivity(i);
         finish();
     }
@@ -114,13 +114,13 @@ public class PaymentComerceStep5Activity extends AppCompatActivity {
             }else{
                 object.setNumberCard(Session.getAccountNumber());
             }
+
             obj2.add(object);
             //obj2[i-3] = object;
         }
 
         return obj2;
     }
-
 
     public class ProcessOperationTransferenceTask extends AsyncTask<Void, Void, Boolean> {
 
@@ -153,15 +153,15 @@ public class PaymentComerceStep5Activity extends AppCompatActivity {
 
                 if (availableBalance) {
                     HashMap<String, String> map = new HashMap<String, String>();
-                    map.put("cryptogramShop", cryptogramShop);
+                    map.put("cryptogramUserSource", cryptogramShop);
                     map.put("emailUser", emailUser);
                     map.put("productId", productId);
-                    map.put("amountPayment", amountPayment);
+                    map.put("amountTransfer", amountPayment);
                     map.put("conceptTransaction", conceptTransaction);
-                    map.put("cryptogramUser", cryptogramUser);
+                    map.put("cryptogramUserDestination", cryptogramUser);
                     map.put("idUserDestination", idUserDestination);
 
-                    response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_NAME_PAYMENT_COMERCE, Constants.ALODIGA);
+                    response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_NAME_TRANSFERENCE, Constants.ALODIGA);
                     responseCode = response.getProperty("codigoRespuesta").toString();
                     responseMessage = response.getProperty("mensajeRespuesta").toString();
 
@@ -262,8 +262,8 @@ public class PaymentComerceStep5Activity extends AppCompatActivity {
                 Session.setHealthCareCoinsBalance(balancePrepaidCard);
                 Session.setAlodigaBalance(balanceAlodiga);
                 Session.setObjUserHasProducts(getListProduct(response));
-                Session.setOperationPaymentComerce(response.getProperty("idTransaction").toString());
-                Intent i = new Intent(PaymentComerceStep5Activity.this, PaymentComerceStep6Activity.class);
+                Session.setOperationTransference(response.getProperty("idTransaction").toString());
+                Intent i = new Intent(RemesasStep5Activity.this, RemesasStep6Activity.class);
                 startActivity(i);
                 finish();
 

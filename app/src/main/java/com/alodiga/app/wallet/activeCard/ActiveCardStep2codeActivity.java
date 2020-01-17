@@ -263,9 +263,9 @@ public class ActiveCardStep2codeActivity extends AppCompatActivity {
 
                 HashMap<String, String> map = new HashMap<String, String>();
                 map.put("userId", Session.getUserId());
-                map.put("card", Session.getCardActive());
+                map.put("card", Utils.aloDesencript(Session.getCardActive().trim()));
                 map.put("timeZone", tz.getID());
-                map.put("status", Constants.ACTIVE_STATUS);
+                map.put("status", Constants.ACTIVE_STATUS_ACTIVE);
 
 
 
@@ -306,6 +306,9 @@ public class ActiveCardStep2codeActivity extends AppCompatActivity {
                     serviceStatus = false;
                 } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_NOT_ALLOWED_TO_CHANGE_STATE)) {
                     responsetxt = getString(R.string.web_services_response_51);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_THE_NUMBER_OF_ORDERS_ALLOWED_IS_EXCEEDED)) {
+                    responsetxt = getString(R.string.web_services_response_60);
                     serviceStatus = false;
                 }else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_SOSPECHOSO)) {
                     responsetxt = getString(R.string.web_services_response_95);

@@ -61,7 +61,7 @@ public class AdapterCardProduct extends RecyclerView.Adapter<AdapterCardProduct.
     public void onBindViewHolder(GroceryProductViewHolder holder, final int position) {
         holder.imageProductImage.setImageResource(grocderyItemList.get(position).getProductImage());
         holder.txtProductName.setText(grocderyItemList.get(position).getProductName());
-        holder.txtProductPrice.setText(grocderyItemList.get(position).getProductPrice());
+        holder.txtProductPrice.setText(grocderyItemList.get(position).getProductPriceEncrip());
         //holder.itemView.setBackgroundColor(Color.parseColor("#00BEDF"));
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -97,12 +97,12 @@ public class AdapterCardProduct extends RecyclerView.Adapter<AdapterCardProduct.
 
                         //R.string.menu_recharge
                     arrayAdapter.add("    Check balance");
-                    arrayAdapter.add("    Reload from Main");
+                    //arrayAdapter.add("    Reload from Main");
                 } else {
 
                         //R.string.menu_recharge
                     arrayAdapter.add("    Consultar Saldo");
-                    arrayAdapter.add("    Recargar desde Principal");
+                    //arrayAdapter.add("    Recargar desde Principal");
 
                 }
 
@@ -131,7 +131,7 @@ public class AdapterCardProduct extends RecyclerView.Adapter<AdapterCardProduct.
                             context.startActivity(show);
                         }
 
-                        if (arrayAdapter.getItem(_item).toString() == "    Reload from Main" || arrayAdapter.getItem(_item).toString() == "    Recargar desde Principal") {
+                        /*if (arrayAdapter.getItem(_item).toString() == "    Reload from Main" || arrayAdapter.getItem(_item).toString() == "    Recargar desde Principal") {
 
                             if (idioma.equals("en")) {
                                 Toast toast = Toast.makeText(context, "Functionality not available", Toast.LENGTH_SHORT);
@@ -140,7 +140,7 @@ public class AdapterCardProduct extends RecyclerView.Adapter<AdapterCardProduct.
                                 Toast toast = Toast.makeText(context, "Funcionalidad no disponible", Toast.LENGTH_SHORT);
                                 toast.show();
                             }
-                        }
+                        }*/
 
                     }
                 });

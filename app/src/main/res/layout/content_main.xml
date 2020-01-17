@@ -25,7 +25,7 @@
         android:layout_height="71dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="60dp"
-        android:src="@drawable/userpic"
+        android:src="@drawable/nuestravision_logo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginLeft="16dp" />

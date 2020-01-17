@@ -24,6 +24,7 @@
     <string name="menu_aoutMoney">Retiro Manual</string>
     <string name="menu_transfer">Transferir</string>
     <string name="menu_recharge_n_i">TopUp</string>
+    <string name="menu_remesas">Remesas</string>
     <string name="afiliation">Afiliar</string>
     <string name="menu_send">Cerrar sesión</string>
     <string name="email">Introduce E-mail</string>
@@ -103,6 +104,7 @@
     <string name="exchange_title">CONVERTIR</string>
     <string name="security_question">PREGUNTAS DE SEGURIDAD</string>
     <string name="transference_title">TRANSFERENCIA</string>
+    <string name="remesas_title">REMESAS</string>
     <string name="my_qr_title">MI QR</string>
     <string name="payment_comerce_title">PAGO QR COMERCIOS</string>
     <string name="kyc_info">VALIDAR CUENTA</string>
@@ -257,7 +259,8 @@
     <string name="web_services_response_32">Ha excedido el numero maximo de transacciones por dia</string>
     <string name="web_services_response_33">Saldo insuficiente para completar la transaccion</string>
     <string name="web_services_response_50">Tarjeta ya se encuentra activa</string>
-    <string name="web_services_response_51">No se puede realizar la activación de su tarjeta</string>
+    <string name="web_services_response_51">No se puede realizar la activación/desactivación de su tarjeta</string>
+    <string name="web_services_response_60">Numero de operaciones excedidas</string>
     <string name="web_services_response_94">Aplicacion no existe</string>
     <string name="web_services_response_95">Usuario sospecho</string>
     <string name="web_services_response_96">Usuario pendiente</string>

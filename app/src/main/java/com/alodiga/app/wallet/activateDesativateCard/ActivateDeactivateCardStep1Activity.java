@@ -25,6 +25,7 @@ import com.alodiga.app.wallet.utils.Session;
 import com.alodiga.app.wallet.utils.Utils;
 import com.alodiga.app.wallet.utils.WebService;
 
+import org.kobjects.util.Util;
 import org.ksoap2.serialization.SoapObject;
 
 import java.util.Calendar;
@@ -39,7 +40,7 @@ public class ActivateDeactivateCardStep1Activity extends AppCompatActivity {
     private String responsetxt = "";
     private boolean serviceStatus;
     private ProgressDialogAlodiga progressDialogAlodiga;
-    private SoapObject response, response_;
+    private SoapObject response, response_, response_1;
     UserGetProcessDeActive mAuthTask;
     UserGetProcessActive mAuthTask_A;
     UserGetProcessStatus mAuthTask_S;
@@ -54,9 +55,25 @@ public class ActivateDeactivateCardStep1Activity extends AppCompatActivity {
         setContentView(R.layout.activecard_deactivate_step1_layout);
         backToLoginBtn = findViewById(R.id.backToLoginBtn);
         simpleSwitch = findViewById(R.id.simpleSwitch);
-        Session.setCardSelectActiveDeactive("zzTQTPW8sjZ1rXOFtcBmIM7+exK1iSVr4sWp1Avyjh6HqBr1Jlr7pWktVpSQAxziAaLbCmZ3P0GuJgMSBFhrOf/KiQq1YEO2MLhXrhRBtEqgPvt/5TE2++K+Dr//OcjFCArBr+MmpadvpIh4qT4zhau87w5IsFDaZkpzVikB7uM=");
+        //Session.setCardSelectActiveDeactive("zzTQTPW8sjZ1rXOFtcBmIM7+exK1iSVr4sWp1Avyjh6HqBr1Jlr7pWktVpSQAxziAaLbCmZ3P0GuJgMSBFhrOf/KiQq1YEO2MLhXrhRBtEqgPvt/5TE2++K+Dr//OcjFCArBr+MmpadvpIh4qT4zhau87w5IsFDaZkpzVikB7uM=");
 
+        Status();
 
+        simpleSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
+
+                if(isChec){
+                    if(isChecked){
+                        Activar();
+                    }else{
+                        Desactivar();
+                    }
+                }
+
+            }
+        });
 
 
         backToLoginBtn.setOnClickListener(new View.OnClickListener() {
@@ -69,15 +86,15 @@ public class ActivateDeactivateCardStep1Activity extends AppCompatActivity {
 
     }
 
-   @Override
+   /*@Override
     protected void onStart() {
 
         super.onStart();
         Status();
-        isChec= true;
-    }
+        //isChec= true;
+    }*/
 
-    @Override
+   /* @Override
     protected void onResume() {
         super.onResume();
         simpleSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
@@ -86,19 +103,23 @@ public class ActivateDeactivateCardStep1Activity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
 
                 if(!isChec){
+                    isChecked=true;
+                }
                if(isChecked){
                     Activar();
                 }else{
                     Desactivar();
                 }
-                }
-                isChec= false;
+                //}else{
+
+                //}
+                //isChec= false;
 
 
 
             }
         });
-    }
+    }*/
 
 
     @Override
@@ -153,7 +174,7 @@ public class ActivateDeactivateCardStep1Activity extends AppCompatActivity {
                 map.put("userId", Session.getUserId());
                 map.put("card", Session.getCardSelectActiveDeactive());
                 map.put("timeZone", tz.getID());
-                map.put("status", Constants.ACTIVE_STATUS);
+                map.put("status", Constants.ACTIVE_STATUS_DEACTIVE);
 
 
 
@@ -194,6 +215,9 @@ public class ActivateDeactivateCardStep1Activity extends AppCompatActivity {
                     serviceStatus = false;
                 } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_NOT_ALLOWED_TO_CHANGE_STATE)) {
                     responsetxt = getString(R.string.web_services_response_51);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_THE_NUMBER_OF_ORDERS_ALLOWED_IS_EXCEEDED)) {
+                    responsetxt = getString(R.string.web_services_response_60);
                     serviceStatus = false;
                 }else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_SOSPECHOSO)) {
                     responsetxt = getString(R.string.web_services_response_95);
@@ -250,6 +274,9 @@ public class ActivateDeactivateCardStep1Activity extends AppCompatActivity {
             } else {
                 new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                         responsetxt);
+                Intent i = new Intent(ActivateDeactivateCardStep1Activity.this, MainActivity.class);
+                startActivity(i);
+                finish();
             }
             progressDialogAlodiga.dismiss();
         }
@@ -278,9 +305,9 @@ public class ActivateDeactivateCardStep1Activity extends AppCompatActivity {
 
                 HashMap<String, String> map = new HashMap<String, String>();
                 map.put("userId", Session.getUserId());
-                map.put("card", Session.getCardSelectActiveDeactive());
+                map.put("card", Utils.aloDesencript(Session.getCardSelectActiveDeactive().trim()));
                 map.put("timeZone", tz.getID());
-                map.put("status", Constants.ACTIVE_STATUS);
+                map.put("status", Constants.ACTIVE_STATUS_ACTIVE);
 
 
 
@@ -321,6 +348,9 @@ public class ActivateDeactivateCardStep1Activity extends AppCompatActivity {
                     serviceStatus = false;
                 } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_NOT_ALLOWED_TO_CHANGE_STATE)) {
                     responsetxt = getString(R.string.web_services_response_51);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_THE_NUMBER_OF_ORDERS_ALLOWED_IS_EXCEEDED)) {
+                    responsetxt = getString(R.string.web_services_response_60);
                     serviceStatus = false;
                 }else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_SOSPECHOSO)) {
                     responsetxt = getString(R.string.web_services_response_95);
@@ -377,6 +407,9 @@ public class ActivateDeactivateCardStep1Activity extends AppCompatActivity {
             } else {
                 new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                         responsetxt);
+                Intent i = new Intent(ActivateDeactivateCardStep1Activity.this, MainActivity.class);
+                startActivity(i);
+                finish();
             }
             progressDialogAlodiga.dismiss();
         }
@@ -406,11 +439,11 @@ public class ActivateDeactivateCardStep1Activity extends AppCompatActivity {
 
                 HashMap<String, String> map = new HashMap<String, String>();
                 map.put("userId", Session.getUserId());
-                map.put("card", Session.getCardSelectActiveDeactive());
+                map.put("card", Utils.aloDesencript(Session.getCardSelectActiveDeactive().trim()));
                 map.put("timeZone", tz.getID());
 
-                SoapObject response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_ACTIVE_DEACTIVE_STATUS, Constants.ALODIGA);
-                responseCode = response.getProperty("codigoRespuesta").toString();
+                response_1 = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_ACTIVE_DEACTIVE_STATUS, Constants.ALODIGA);
+                responseCode = response_1.getProperty("codigoRespuesta").toString();
 
 
                 if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
@@ -445,6 +478,9 @@ public class ActivateDeactivateCardStep1Activity extends AppCompatActivity {
                     serviceStatus = true;
                 } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_NOT_ALLOWED_TO_CHANGE_STATE)) {
                     responsetxt = getString(R.string.web_services_response_51);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_THE_NUMBER_OF_ORDERS_ALLOWED_IS_EXCEEDED)) {
+                    responsetxt = getString(R.string.web_services_response_60);
                     serviceStatus = false;
                 }else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_SOSPECHOSO)) {
                     responsetxt = getString(R.string.web_services_response_95);
@@ -488,11 +524,23 @@ public class ActivateDeactivateCardStep1Activity extends AppCompatActivity {
             mAuthTask_S = null;
             //showProgress(false);
             if (success) {
-                Session.setIsactivateCard(true);
-                simpleSwitch.setChecked(true);
+                SoapObject res_ = (SoapObject) response_1.getProperty(3);
+
+                String stateCode = res_.getProperty("stateCode").toString().trim();
+
+                if(stateCode.equals(Constants.ACTIVE_STATUS_ACTIVE)){
+                    Session.setIsactivateCard(true);
+                    simpleSwitch.setChecked(true);
+                    isChec=true;
+                }
+                else if(stateCode.equals(Constants.ACTIVE_STATUS_DEACTIVE)){
+                    Session.setIsactivateCard(false);
+                    simpleSwitch.setChecked(false);
+                    isChec= true;
+                }
+
             } else {
-                Session.setIsactivateCard(false);
-                simpleSwitch.setChecked(false);
+
                 new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                         responsetxt);
 
