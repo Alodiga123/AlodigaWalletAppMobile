@@ -172,11 +172,10 @@ public class ActivateDeactivateCardStep1Activity extends AppCompatActivity {
 
                 HashMap<String, String> map = new HashMap<String, String>();
                 map.put("userId", Session.getUserId());
-                map.put("card", Session.getCardSelectActiveDeactive());
+                map.put("card",Session.getCardSelectActiveDeactive());
+                //Utils.aloEncrpter(Session.getCardSelectActiveDeactive());
                 map.put("timeZone", tz.getID());
                 map.put("status", Constants.ACTIVE_STATUS_DEACTIVE);
-
-
 
                 response_ = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_DEACTIVE_PROCESS, Constants.ALODIGA);
                 responseCode = response_.getProperty("codigoRespuesta").toString();
@@ -218,6 +217,9 @@ public class ActivateDeactivateCardStep1Activity extends AppCompatActivity {
                     serviceStatus = false;
                 } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_THE_NUMBER_OF_ORDERS_ALLOWED_IS_EXCEEDED)) {
                     responsetxt = getString(R.string.web_services_response_60);
+                    serviceStatus = false;
+                }else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_THERE_ARE_NO_RECORDS_FOR_THE_REQUESTED_SEARCH)) {
+                    responsetxt = getString(R.string.web_services_response_58);
                     serviceStatus = false;
                 }else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_SOSPECHOSO)) {
                     responsetxt = getString(R.string.web_services_response_95);
@@ -352,6 +354,9 @@ public class ActivateDeactivateCardStep1Activity extends AppCompatActivity {
                 } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_THE_NUMBER_OF_ORDERS_ALLOWED_IS_EXCEEDED)) {
                     responsetxt = getString(R.string.web_services_response_60);
                     serviceStatus = false;
+                }else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_THERE_ARE_NO_RECORDS_FOR_THE_REQUESTED_SEARCH)) {
+                    responsetxt = getString(R.string.web_services_response_58);
+                    serviceStatus = false;
                 }else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_SOSPECHOSO)) {
                     responsetxt = getString(R.string.web_services_response_95);
                     serviceStatus = false;
@@ -481,6 +486,9 @@ public class ActivateDeactivateCardStep1Activity extends AppCompatActivity {
                     serviceStatus = false;
                 } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_THE_NUMBER_OF_ORDERS_ALLOWED_IS_EXCEEDED)) {
                     responsetxt = getString(R.string.web_services_response_60);
+                    serviceStatus = false;
+                }else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_THERE_ARE_NO_RECORDS_FOR_THE_REQUESTED_SEARCH)) {
+                    responsetxt = getString(R.string.web_services_response_58);
                     serviceStatus = false;
                 }else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_SOSPECHOSO)) {
                     responsetxt = getString(R.string.web_services_response_95);

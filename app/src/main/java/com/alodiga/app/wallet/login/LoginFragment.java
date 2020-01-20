@@ -162,10 +162,16 @@ public class LoginFragment extends Fragment implements OnClickListener {
 		password.setText("Kg0m3z$11");*/
         //emailid.setText("adira0411@gmail.com");
         //password.setText("123456");
-        emailid.setText("moisegrat12@gmail.com");
         //password.setText("Alo$1234");
-        password.setText("Alodi12-");
 
+     //   emailid.setText("jcalderaso@gmail.com");
+     //   password.setText("Alo#1234");
+
+       // emailid.setText("moisegrat12@gmail.com ");
+       // password.setText("Alodi12-");
+
+        emailid.setText("kerwin2821@gmail.com");
+        password.setText("Alo#1234");
         //emailid.setText("elmoi_88@hotmail.com");
         //password.setText("Alo$1234");
 
@@ -346,7 +352,7 @@ public class LoginFragment extends Fragment implements OnClickListener {
                 map.put("passwordApi", Constants.WEB_SERVICES_PASSWORDWS);
                 map.put("email", mEmail);
                 map.put("credencial", mPassword);
-                map.put("ip", "192.168.3.45");
+                map.put("ip", "192.168.3.20");
                 response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_NAME_LOGIN_APP_MOBILE, Constants.REGISTRO_UNIFICADO);
                 responseCode = response.getProperty("codigoRespuesta").toString();
                 responseMessage = response.getProperty("mensajeRespuesta").toString();
@@ -361,12 +367,30 @@ public class LoginFragment extends Fragment implements OnClickListener {
                     alocoinsBalanceSesssion = getValueFromResponseJson("saldoAlocoins", res);
                     healthCareCoinsBalanceSession = getValueFromResponseJson("saldoHealthCareCoins", res);
                     userId = getValueFromResponseJson("UsuarioID", res);
-                    cumplimient = getValueFromResponseJson("cumplimient", res);
-                    prepayCard= getValueFromResponseJson("prepayCard", res);
-                    numberCard= getValueFromResponseJson("numberCard", res);
-                    Session.setNumberCard(numberCard);
+
+
+                    if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_PRIMER_INGRESO)){
+                        cumplimient = "4";
+                        prepayCardAsociate= "false";
+                        prepayCard="false";
+
+
+                    }else{
+                        cumplimient = getValueFromResponseJson("cumplimient", res);
+                        //prepayCardAsociate = getValueFromResponseJson("prepayCardAsociate", res);
+                        prepayCardAsociate = getValueFromResponseJson("prepayCardAsociate", res);
+                        prepayCard= getValueFromResponseJson("prepayCard", res);
+                        if(Boolean.valueOf(prepayCard)){
+                            numberCard = getValueFromResponseJson("numberCard", res);
+                            Session.setNumberCard(numberCard);
+                        }
+                    }
+
+
+
                     Session.setAccountNumber(accountNumberSession);
-                    prepayCardAsociate= getValueFromResponseJson("prepayCardAsociate", res);
+                    Session.setPrepayCardAsociate(prepayCardAsociate);
+
 					 /*String elementgetId = "id=";
 					 String elementGet = "nombreProducto=";
 					 String elementGetS = "saldoActual=";

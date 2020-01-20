@@ -56,7 +56,7 @@
         android:drawableLeft="@drawable/password"
         android:drawablePadding="8dp"
         android:gravity="center_vertical"
-        android:hint="@string/pin"
+        android:hint="@string/pin_"
         android:inputType="number"
         android:padding="10dp"
         android:maxLength="6"

@@ -12,6 +12,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.BoringLayout;
 import android.text.Html;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -93,7 +94,6 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -108,7 +108,15 @@ public class MainActivity extends AppCompatActivity
 
         for (ObjUserHasProduct objUserHasProduct : Session.getObjUserHasProducts()) {
                 int resID = getResources().getIdentifier(objUserHasProduct.getSymbol().toLowerCase() , "drawable", getPackageName());
-                mProductList.add(new ObjMoney(objUserHasProduct.getName(),resID, objUserHasProduct.getNumberCard(), objUserHasProduct.getNumberCard().substring(0,4) + "*********" + objUserHasProduct.getNumberCard().substring(objUserHasProduct.getNumberCard().length()-4,objUserHasProduct.getNumberCard().length()), "Alodiga ", objUserHasProduct.getSymbol() + " " + objUserHasProduct.getCurrentBalance(),Boolean.parseBoolean(objUserHasProduct.getIsTopUp())));
+
+
+                //Esto en el caso de que sea tarjeta prepagada no muestra el saldo
+            String uno= objUserHasProduct.getNumberCard();
+
+                    mProductList.add(new ObjMoney(objUserHasProduct.getName(),resID, objUserHasProduct.getNumberCard(), objUserHasProduct.getNumberCard().substring(0,4) + "*********" + objUserHasProduct.getNumberCard().substring(objUserHasProduct.getNumberCard().length()-4,objUserHasProduct.getNumberCard().length()),objUserHasProduct.getId().equals("3") ?"":"Alodiga ", objUserHasProduct.getId().equals("3") ?"":objUserHasProduct.getSymbol() + " " + objUserHasProduct.getCurrentBalance(),Boolean.parseBoolean(objUserHasProduct.getIsTopUp())));
+
+
+
 
         }
 
@@ -177,11 +185,6 @@ public class MainActivity extends AppCompatActivity
             requestPermissions(new String[]{Manifest.permission.RECEIVE_SMS}, 1000);
         }
 
-
-
-
-
-
     }
 
 
@@ -225,13 +228,14 @@ public class MainActivity extends AppCompatActivity
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
 
-        if(!Session.isAffiliatedCard()){
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        Menu nav_menu =  navigationView.getMenu();
-        MenuItem menuItem = nav_menu.getItem(7);
-        SubMenu menuItem2 = menuItem.getSubMenu();
-        menuItem2.getItem(1).setVisible(false);
-        menuItem2.getItem(1).setEnabled(false);
+       if(Session.isAffiliatedCard() && Boolean.valueOf(Session.getPrepayCard()))
+        {
+            NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+            Menu nav_menu =  navigationView.getMenu();
+            MenuItem menuItem = nav_menu.getItem(7);
+            SubMenu menuItem2 = menuItem.getSubMenu();
+            menuItem2.getItem(1).setVisible(false);
+            menuItem2.getItem(1).setEnabled(false);
         }
 
         return true;

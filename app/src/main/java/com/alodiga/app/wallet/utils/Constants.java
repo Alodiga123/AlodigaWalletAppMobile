@@ -7,7 +7,7 @@ package com.alodiga.app.wallet.utils;
 public class Constants {
 
     //IP PUBLICA
-    // public static String IPDAT="200.73.192.179";
+    //public static String IPDAT="200.73.192.179";
 
     /*Data de Produccion*/
     public static final boolean CONSTANT_IS_PRODUCTION = false;
@@ -17,9 +17,8 @@ public class Constants {
     //LOCAL QA
     //public static String IPDAT = "192.168.3.140";
 
-
-    public static String LINK = "http://192.168.3.140:8080/ultima-1.0.6/formData.xhtml";
-    //public static String LINK = "http://200.73.192.179:8080/ultima-1.0.6/formData.xhtml";
+    //public static String LINK = "http://192.168.3.140:8080/ultima-1.0.6/formData.xhtml";
+    public static String LINK = "http://200.73.192.178:8080/CardFormWeb/";
 
 
     public static final String RESUM_OPERATION_PHONE = "getResumOperationByPhoneNumberSender";
@@ -96,6 +95,7 @@ public class Constants {
     public static final String WEB_SERVICES_RESPONSE_CODE_CARD_NUMBER_EXISTS = "50";
     public static final String WEB_SERVICES_RESPONSE_CODE_NOT_ALLOWED_TO_CHANGE_STATE = "51";
     public static final String WEB_SERVICES_RESPONSE_CODE_THERE_IS_NO_SEARCH_RECORD = "52";
+    public static final String WEB_SERVICES_RESPONSE_CODE_THERE_ARE_NO_RECORDS_FOR_THE_REQUESTED_SEARCH = "58";
     public static final String WEB_SERVICES_RESPONSE_CODE_THE_NUMBER_OF_ORDERS_ALLOWED_IS_EXCEEDED= "60";
     public static final String WEB_SERVICES_RESPONSE_CODE_APLICACION_NO_EXISTE = "94";
     public static final String WEB_SERVICES_RESPONSE_CODE_USUARIO_SOSPECHOSO = "95";

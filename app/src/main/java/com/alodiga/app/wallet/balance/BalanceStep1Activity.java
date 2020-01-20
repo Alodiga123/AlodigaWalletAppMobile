@@ -230,7 +230,7 @@ public class BalanceStep1Activity extends AppCompatActivity {
                 HashMap<String, String> map = new HashMap<String, String>();
                 map.put("userId", Session.getUserId());
                 map.put("card", Utils.aloDesencript(Session.getCardBalance().trim()));
-                String card= Session.getCardBalance();
+                String card = Session.getCardBalance();
                 map.put("timeZone", tz.getID());
 
                 response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_CHECK_BALANCE, Constants.ALODIGA);
@@ -323,7 +323,7 @@ public class BalanceStep1Activity extends AppCompatActivity {
 
                 cardnumber.setText(Session.getCardBalance().substring(0,4) + "*********" +Session.getCardBalance().substring(Session.getCardBalance().length()-4,Session.getCardBalance().length()));
                 account.setText(accountNumber.substring(0,3)+"***"+accountNumber.substring(accountNumber.length()-3,accountNumber.length()));
-                balance.setText(balance_);
+                balance.setText(balance_+" MXN");
 
             } else {
                 new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Alodiga</string>
+    <string name="app_name">Nuestra Vision</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -131,6 +131,7 @@
     <string name="terms_conditions">Al hacer clic en Registrarse, usted acepta todos los Términos y Condiciones.</string>
     <string name="confirmPassword">Confirme Contraseña</string>
     <string name="pin">Clave de Operaciones</string>
+    <string name="pin_">Token</string>
     <string name="pin_invalid">Clave de operaciones es invalida, debe tener 4 digitos</string>
 
 
@@ -207,6 +208,7 @@
     <string name="kyc_text_step4_city">Seleccione la ciudad:</string>
     <string name="kyc_text_step4_city_">Ciudad</string>
     <string name="kyc_text_step4_state">Seleccione el estado:</string>
+    <string name="kyc_text_step4_dir">Introduzca su dirección</string>
     <string name="kyc_text_step4_state_">Estado</string>
     <string name="kyc_text_step4_code">Ingrese codigo postal:</string>
     <string name="kyc_text_step4_codezip">Codigo postal</string>
@@ -260,6 +262,7 @@
     <string name="web_services_response_33">Saldo insuficiente para completar la transaccion</string>
     <string name="web_services_response_50">Tarjeta ya se encuentra activa</string>
     <string name="web_services_response_51">No se puede realizar la activación/desactivación de su tarjeta</string>
+    <string name="web_services_response_58">Tarjeta invalida</string>
     <string name="web_services_response_60">Numero de operaciones excedidas</string>
     <string name="web_services_response_94">Aplicacion no existe</string>
     <string name="web_services_response_95">Usuario sospecho</string>

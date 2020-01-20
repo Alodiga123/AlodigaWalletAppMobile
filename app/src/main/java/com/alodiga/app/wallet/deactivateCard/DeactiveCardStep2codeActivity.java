@@ -307,6 +307,9 @@ public class DeactiveCardStep2codeActivity extends AppCompatActivity {
                 } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_NOT_ALLOWED_TO_CHANGE_STATE)) {
                     responsetxt = getString(R.string.web_services_response_51);
                     serviceStatus = false;
+                }else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_THERE_ARE_NO_RECORDS_FOR_THE_REQUESTED_SEARCH)) {
+                    responsetxt = getString(R.string.web_services_response_58);
+                    serviceStatus = false;
                 } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_THE_NUMBER_OF_ORDERS_ALLOWED_IS_EXCEEDED)) {
                     responsetxt = getString(R.string.web_services_response_60);
                     serviceStatus = false;

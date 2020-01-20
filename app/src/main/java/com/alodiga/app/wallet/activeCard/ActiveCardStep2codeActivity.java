@@ -307,7 +307,10 @@ public class ActiveCardStep2codeActivity extends AppCompatActivity {
                 } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_NOT_ALLOWED_TO_CHANGE_STATE)) {
                     responsetxt = getString(R.string.web_services_response_51);
                     serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_THE_NUMBER_OF_ORDERS_ALLOWED_IS_EXCEEDED)) {
+                }else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_THERE_ARE_NO_RECORDS_FOR_THE_REQUESTED_SEARCH)) {
+                    responsetxt = getString(R.string.web_services_response_58);
+                    serviceStatus = false;
+                }  else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_THE_NUMBER_OF_ORDERS_ALLOWED_IS_EXCEEDED)) {
                     responsetxt = getString(R.string.web_services_response_60);
                     serviceStatus = false;
                 }else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_SOSPECHOSO)) {
@@ -352,9 +355,10 @@ public class ActiveCardStep2codeActivity extends AppCompatActivity {
             mAuthTask = null;
             //showProgress(false);
             if (success) {
+                String numberCard = response_.getProperty("numberCard").toString();
+                Session.setNumberCard(numberCard);
                 //Session.setOperationExchange(response_.getProperty("idTransaction").toString());
-                //Session.setObjUserHasProducts(getListProductGeneric(response_));
-
+                Session.setObjUserHasProducts(getListProductGeneric(response_));
 
                 Intent i = new Intent(ActiveCardStep2codeActivity.this, ActiveCardStep3Activity.class);
                 startActivity(i);
@@ -380,10 +384,18 @@ public class ActiveCardStep2codeActivity extends AppCompatActivity {
         //ObjUserHasProduct[] obj2_aux= new ObjUserHasProduct[response.getPropertyCount()-3];
         //ObjUserHasProduct[] obj2 = new ObjUserHasProduct[response.getPropertyCount()-3];
         ArrayList<ObjUserHasProduct> obj2 = new ArrayList<>();
-        for (int i = 4; i < response.getPropertyCount(); i++) {
+        for (int i = 4; i < response.getPropertyCount()-1; i++) {
             SoapObject obj = (SoapObject) response.getProperty(i);
             String propiedad = response.getProperty(i).toString();
             ObjUserHasProduct object = new ObjUserHasProduct(obj.getProperty("id").toString(), obj.getProperty("name").toString(), obj.getProperty("currentBalance").toString(), obj.getProperty("symbol").toString(), obj.getProperty("isPayTopUp").toString());
+            if (object.getName().equals("Tarjeta Prepagada") || object.getName().equals("Prepaid Card") ){
+                Session.setAffiliatedCard(Boolean.parseBoolean(Session.getPrepayCardAsociate()));
+                object.setNumberCard(Session.getNumberCard());
+                Session.setAffiliatedCard(true);
+                Session.setPrepayCard("true");
+            }else{
+                object.setNumberCard(Session.getAccountNumber());
+            }
             obj2.add(object);
             //obj2[i-3] = object;
         }

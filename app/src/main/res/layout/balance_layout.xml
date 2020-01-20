@@ -86,19 +86,20 @@
         </TableRow>
 
         <TableRow>
+
             <TextView
                 android:id="@+id/IdentificationNumber"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
+                android:layout_height="match_parent"
                 android:padding="5dip"
-                android:singleLine="true"
                 android:paddingLeft="5dp"
                 android:paddingRight="15dp"
+                android:singleLine="true"
+                android:text="@string/balance_account_number"
                 android:textColor="@color/white_greyish"
                 android:textColorHint="@color/white_greyish"
                 android:textSize="16sp"
-                android:text="@string/balance_account_number"/>
+                android:textStyle="bold" />
             <TextView
                 android:id="@+id/account"
 

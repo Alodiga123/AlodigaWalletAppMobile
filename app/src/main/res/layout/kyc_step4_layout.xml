@@ -27,6 +27,21 @@
         android:textStyle="bold" />
 
     <TextView
+        android:id="@+id/already"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:padding="10dp"
+        android:layout_gravity="center"
+        android:text="@string/kyc_text_step4_dir"
+        android:textColor="@color/white_greyish"
+        android:textSize="16sp" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="@color/white_greyish" />
+    <TextView
         android:id="@+id/already_use_"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
