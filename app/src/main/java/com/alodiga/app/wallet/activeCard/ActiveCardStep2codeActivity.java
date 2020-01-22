@@ -235,7 +235,7 @@ public class ActiveCardStep2codeActivity extends AppCompatActivity {
                     startActivity(i);
                 }
             }
-            //progressDialogAlodiga.dismiss();
+            progressDialogAlodiga.dismiss();
         }
 
         @Override
