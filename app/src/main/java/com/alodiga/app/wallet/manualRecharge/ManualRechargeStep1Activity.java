@@ -308,7 +308,7 @@ public class ManualRechargeStep1Activity extends AppCompatActivity {
     public void RemovalTask() {
         progressDialogAlodiga = new ProgressDialogAlodiga(this, getString(R.string.loading));
         progressDialogAlodiga.show();
-        mAuthTask = new ManualRechargeStep1Activity.UserRemovalTask();
+        mAuthTask = new UserRemovalTask();
         mAuthTask.execute((Void) null);
 
     }

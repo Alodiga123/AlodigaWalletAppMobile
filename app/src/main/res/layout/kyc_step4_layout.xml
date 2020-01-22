@@ -47,7 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:padding="10dp"
-        android:text="@string/kyc_text_step4_state"
+        android:text="@string/kyc_text_step4_state_1"
         android:textColor="@color/white_greyish"
         android:textSize="16sp" />
 

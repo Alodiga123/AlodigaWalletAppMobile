@@ -208,6 +208,7 @@
     <string name="kyc_text_step4_city">Seleccione la ciudad:</string>
     <string name="kyc_text_step4_city_">Ciudad</string>
     <string name="kyc_text_step4_state">Seleccione el estado:</string>
+    <string name="kyc_text_step4_state_1">Introduzca el estado:</string>
     <string name="kyc_text_step4_dir">Introduzca su dirección</string>
     <string name="kyc_text_step4_state_">Estado</string>
     <string name="kyc_text_step4_code">Ingrese codigo postal:</string>

@@ -12,15 +12,15 @@ import com.alodiga.app.R;
 import com.alodiga.app.wallet.main.MainActivity;
 
 public class ManualRechargeStep2WelcomeActivity extends AppCompatActivity {
-    private static Button submit, back;
+    private static Button submit1, back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recharge_layout);
-        submit = findViewById(R.id.step1_next_button);
+        submit1 = findViewById(R.id.finalizar);
 
-        submit.setOnClickListener(new View.OnClickListener() {
+        submit1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent show;
                 show = new Intent(getApplicationContext(), MainActivity.class);

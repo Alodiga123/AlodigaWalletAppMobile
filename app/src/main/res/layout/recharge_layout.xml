@@ -72,7 +72,7 @@
                 android:textStyle="bold" />-->
 
         <Button
-            android:id="@+id/step1_next_button"
+            android:id="@+id/finalizar"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"

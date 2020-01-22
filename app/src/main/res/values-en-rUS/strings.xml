@@ -301,13 +301,13 @@
     <string name="Additional">Additional</string>
     <string name="Prepaid_card">" Prepaid Card"</string>
     <string name="Security">Security</string>
-    <string name="activate_card">Activate / Deactivate Card</string>
+    <string name="activate_card">Unlock / Lock Card</string>
     <string name="reload_card">Reload Card</string>
-    <string name="activate_card_title">ACTIVATE CARD</string>
+    <string name="activate_card_title">UNLOCK CARD</string>
     <string name="activate_process">ACTIVATE</string>
-    <string name="activate_finish">" Your card has been activated successfully."</string>
-    <string name="deactivate_finish">Your card has been deactivated successfully.</string>
-    <string name="dactivate_card_title">DEACTIVATE CARD</string>
+    <string name="activate_finish">" Your card has been Unlock successfully."</string>
+    <string name="deactivate_finish">Your card has been lock successfully.</string>
+    <string name="dactivate_card_title">LOCK CARD</string>
     <string name="deactivate_process">DEACTIVATE</string>
     <string name="reloadcard_title">"RECHARGE CARD "</string>
     <string name="reloadcard_source">"Select source of funds "</string>
@@ -315,10 +315,10 @@
     <string name="reloadcard_process">" PROCESS RECHARGE"</string>
     <string name="activate_card_number">" Enter card number"</string>
     <string name="activate_number">Card number</string>
-    <string name="web_services_response_50">"Card is already active "</string>
-    <string name="web_services_response_51">" Unable to activate/deactivation your card"</string>
-    <string name="ativate_card">" Through this functionality you can activate or deactivate your prepaid debit card"</string>
-    <string name="ativate_desactivate_card">"Deactivate / Activate "</string>
+    <string name="web_services_response_50">"Card is already unlock "</string>
+    <string name="web_services_response_51">" Unable to Unlock/Lock your card"</string>
+    <string name="ativate_card">" Through this functionality you can unlock or lock your prepaid debit card"</string>
+    <string name="ativate_desactivate_card">"Lock / Unlock "</string>
     <string name="balance">CHECK BALANCE</string>
     <string name="balance_status">Balance</string>
     <string name="balance_account_number">Account</string>
@@ -329,4 +329,5 @@
     <string name="web_services_response_58">"Invalid card "</string>
     <string name="pin_">Token</string>
     <string name="kyc_text_step4_dir">Enter your address</string>
+    <string name="kyc_text_step4_state_1">"Enter the status: "</string>
 </resources>

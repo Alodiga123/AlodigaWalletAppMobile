@@ -118,7 +118,7 @@ public class AdapterMoneyProduct extends RecyclerView.Adapter<AdapterMoneyProduc
                     if (productName.equals("Tarjeta Prepagada")) {
                         //arrayAdapter.add("    Reload Card");
                         //arrayAdapter.add("    Remove Wallet");
-                        arrayAdapter.add("    Activate/Deactivate Card");
+                        arrayAdapter.add("    Unlock/Lock Card");
                         arrayAdapter.add("    Check balance");
                         //arrayAdapter.add("    Companion Cards");
 
@@ -261,7 +261,7 @@ public class AdapterMoneyProduct extends RecyclerView.Adapter<AdapterMoneyProduc
                         }*/
 
 
-                        if (arrayAdapter.getItem(_item).toString() == "    Activate/Deactivate Card" || arrayAdapter.getItem(_item).toString() == "    Activar/Desactivar Tarjeta") {
+                        if (arrayAdapter.getItem(_item).toString() == "    Unlock/Lock Card" || arrayAdapter.getItem(_item).toString() == "    Activar/Desactivar Tarjeta") {
                            Session.setCardSelectActiveDeactive(grocderyItemList.get(position).getProductPrice());
                            Intent show = new Intent(context, ActivateDeactivateCardStep1Activity.class);
                             context.startActivity(show);
