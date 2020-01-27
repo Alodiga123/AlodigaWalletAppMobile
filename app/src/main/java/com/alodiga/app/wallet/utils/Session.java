@@ -63,11 +63,42 @@ public class Session {
     private static String prepayCard;
     private static String numberCard;
     private static String prepayCardAsociate;
+    private static String tranferenceCardToCard;
+    private static String tranferenceCardToCardEncrip;
+    private static String tranferenceCardToCardDest;
+    private static String tranferenceCardToCardEncripDest;
 
+    public static String getTranferenceCardToCardDest() {
+        return tranferenceCardToCardDest;
+    }
 
+    public static void setTranferenceCardToCardDest(String tranferenceCardToCardDest) {
+        Session.tranferenceCardToCardDest = tranferenceCardToCardDest;
+    }
 
+    public static String getTranferenceCardToCardEncripDest() {
+        return tranferenceCardToCardEncripDest;
+    }
 
+    public static void setTranferenceCardToCardEncripDest(String tranferenceCardToCardEncripDest) {
+        Session.tranferenceCardToCardEncripDest = tranferenceCardToCardEncripDest;
+    }
 
+    public static String getTranferenceCardToCardEncrip() {
+        return tranferenceCardToCardEncrip;
+    }
+
+    public static void setTranferenceCardToCardEncrip(String tranferenceCardToCardEncrip) {
+        Session.tranferenceCardToCardEncrip = tranferenceCardToCardEncrip;
+    }
+
+    public static String getTranferenceCardToCard() {
+        return tranferenceCardToCard;
+    }
+
+    public static void setTranferenceCardToCard(String tranferenceCardToCard) {
+        Session.tranferenceCardToCard = tranferenceCardToCard;
+    }
 
     public static ArrayList<ObjUserHasProduct> getObjUserHasProducts() {
         return objUserHasProducts;
@@ -499,6 +530,10 @@ public class Session {
         Session.prepayCard= null;
         Session.prepayCardAsociate= null;
         Session.numberCard= null;
+        Session.tranferenceCardToCard= null;
+        Session.tranferenceCardToCardEncrip= null;
+        Session.tranferenceCardToCardDest= null;
+        Session.tranferenceCardToCardEncripDest= null;
     }
 
 }

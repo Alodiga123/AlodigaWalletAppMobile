@@ -280,6 +280,30 @@
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
+            android:name="com.alodiga.app.wallet.transferenceCardToCard.TransferenceCardToCardStep1Activity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name="com.alodiga.app.wallet.transferenceCardToCard.TransferenceCardToCardStep2QrActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name="com.alodiga.app.wallet.transferenceCardToCard.TransferenceCardToCardStep3Activity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name="com.alodiga.app.wallet.transferenceCardToCard.TransferenceCardToCardStep4codeActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name="com.alodiga.app.wallet.transferenceCardToCard.TransferenceCardToCardStep5Activity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name="com.alodiga.app.wallet.transferenceCardToCard.TransferenceCardToCArdStep6Activity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
             android:name="com.alodiga.app.wallet.companionCards.CompanionCardsStep1Activity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>

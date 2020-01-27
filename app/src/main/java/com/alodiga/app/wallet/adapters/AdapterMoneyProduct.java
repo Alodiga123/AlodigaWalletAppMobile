@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
+import android.se.omapi.SEService;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -40,6 +41,7 @@ import com.alodiga.app.wallet.paymentComerce.PaymentComerceStep1Activity;
 import com.alodiga.app.wallet.reloadCard.ReloadCardStep1Activity;
 import com.alodiga.app.wallet.topup.TopupStep1Activity;
 import com.alodiga.app.wallet.transference.TransferenceStep1Activity;
+import com.alodiga.app.wallet.transferenceCardToCard.TransferenceCardToCardStep1Activity;
 import com.alodiga.app.wallet.utils.Constants;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
@@ -120,6 +122,7 @@ public class AdapterMoneyProduct extends RecyclerView.Adapter<AdapterMoneyProduc
                         //arrayAdapter.add("    Remove Wallet");
                         arrayAdapter.add("    Unlock/Lock Card");
                         arrayAdapter.add("    Check balance");
+                        arrayAdapter.add("    Card to card transfer");
                         //arrayAdapter.add("    Companion Cards");
 
                     } else {
@@ -146,6 +149,7 @@ public class AdapterMoneyProduct extends RecyclerView.Adapter<AdapterMoneyProduc
                        // arrayAdapter.add("    Extraer a Billetera");
                         arrayAdapter.add("    Activar/Desactivar Tarjeta");
                         arrayAdapter.add("    Consultar Saldo");
+                        arrayAdapter.add("    Transferencia tarjeta a tarjeta");
                         //arrayAdapter.add("    Tarjetas Compañeras");
                     } else {
                         //R.string.menu_recharge
@@ -241,6 +245,15 @@ public class AdapterMoneyProduct extends RecyclerView.Adapter<AdapterMoneyProduc
                             // context.startActivity(show);
                             Session.setCardBalance(grocderyItemList.get(position).getProductPrice());
                             Intent show = new Intent(context, BalanceStep1Activity.class);
+                            context.startActivity(show);
+                        }
+
+                        if (arrayAdapter.getItem(_item).toString() == "    Transferencia tarjeta a tarjeta" || arrayAdapter.getItem(_item).toString() == "    Card to card transfer") {
+                            // Intent show = new Intent(context, PaymentComerceStep1Activity.class);
+                            // context.startActivity(show);
+                            Session.setTranferenceCardToCard(grocderyItemList.get(position).getProductPrice());
+                            Session.setTranferenceCardToCardEncrip(grocderyItemList.get(position).getProductPriceEncrip());
+                            Intent show = new Intent(context, TransferenceCardToCardStep1Activity.class);
                             context.startActivity(show);
                         }
 
