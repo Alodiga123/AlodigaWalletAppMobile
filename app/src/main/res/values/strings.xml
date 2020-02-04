@@ -265,6 +265,7 @@
     <string name="web_services_response_33">Saldo insuficiente para completar la transaccion</string>
     <string name="web_services_response_50">Tarjeta ya se encuentra activa</string>
     <string name="web_services_response_51">No se puede realizar la activación/desactivación de su tarjeta</string>
+    <string name="web_services_response_54">Servicio no disponible</string>
     <string name="web_services_response_58">Tarjeta invalida</string>
     <string name="web_services_response_60">Numero de operaciones excedidas</string>
     <string name="web_services_response_94">Aplicacion no existe</string>

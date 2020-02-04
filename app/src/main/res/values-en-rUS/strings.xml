@@ -380,4 +380,5 @@
     <string name="web_services_response_141">"Product Validation Error "</string>
     <string name="web_services_response_142">"Invalid Amount "</string>
     <string name="web_services_response_139">Error validating cvc2</string>
+    <string name="web_services_response_54">"Service not available "</string>
 </resources>
