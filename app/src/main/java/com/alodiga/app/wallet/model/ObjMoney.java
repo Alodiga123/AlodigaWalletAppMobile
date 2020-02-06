@@ -9,6 +9,7 @@ public class ObjMoney {
     public String productQty;
     public boolean isTopup;
     public String productPriceEncrip;
+    public String symbol;
 
     public ObjMoney(String productName, int productImage, String productPrice, String productWeight, String productQty) {
         this.productImage = productImage;
@@ -19,7 +20,7 @@ public class ObjMoney {
     }
 
 
-    public ObjMoney(String productName, int productImage, String productPrice,String productPriceEncrip, String productWeight, String productQty,boolean isTopup) {
+    public ObjMoney(String productName, int productImage, String productPrice,String productPriceEncrip, String productWeight, String productQty,boolean isTopup, String symbol) {
         this.productImage = productImage;
         this.productName = productName;
         this.productPrice = productPrice;
@@ -27,11 +28,25 @@ public class ObjMoney {
         this.productWeight = productWeight;
         this.productQty = productQty;
         this.isTopup=isTopup;
+        this.symbol= symbol;
     }
 
+    public ObjMoney(String productName, String productPrice, String productPriceEncrip) {
+        this.productName = productName;
+        this.productPrice = productPrice;
+        this.productPriceEncrip = productPriceEncrip;
+    }
 
     public ObjMoney() {
 
+    }
+
+    public String getSymbol() {
+        return symbol;
+    }
+
+    public void setSymbol(String symbol) {
+        this.symbol = symbol;
     }
 
     public String getProductQty() {

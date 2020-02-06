@@ -67,6 +67,15 @@ public class Session {
     private static String tranferenceCardToCardEncrip;
     private static String tranferenceCardToCardDest;
     private static String tranferenceCardToCardEncripDest;
+    private static String symbolCompanionCards;
+
+    public static String getSymbolCompanionCards() {
+        return symbolCompanionCards;
+    }
+
+    public static void setSymbolCompanionCards(String symbolCompanionCards) {
+        Session.symbolCompanionCards = symbolCompanionCards;
+    }
 
     public static String getTranferenceCardToCardDest() {
         return tranferenceCardToCardDest;

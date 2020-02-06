@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity
                 //Esto en el caso de que sea tarjeta prepagada no muestra el saldo
             String uno= objUserHasProduct.getNumberCard();
 
-                    mProductList.add(new ObjMoney(objUserHasProduct.getName(),resID, objUserHasProduct.getNumberCard(), objUserHasProduct.getNumberCard().substring(0,4) + "*********" + objUserHasProduct.getNumberCard().substring(objUserHasProduct.getNumberCard().length()-4,objUserHasProduct.getNumberCard().length()),objUserHasProduct.getId().equals("3") ?"":"Alodiga ", objUserHasProduct.getId().equals("3") ?"":objUserHasProduct.getSymbol() + " " + objUserHasProduct.getCurrentBalance(),Boolean.parseBoolean(objUserHasProduct.getIsTopUp())));
+                    mProductList.add(new ObjMoney(objUserHasProduct.getName(),resID, objUserHasProduct.getNumberCard(), objUserHasProduct.getNumberCard().substring(0,4) + "*********" + objUserHasProduct.getNumberCard().substring(objUserHasProduct.getNumberCard().length()-4,objUserHasProduct.getNumberCard().length()),objUserHasProduct.getId().equals("3") ?"":"Alodiga ", objUserHasProduct.getId().equals("3") ?"":objUserHasProduct.getSymbol() + " " + objUserHasProduct.getCurrentBalance(),Boolean.parseBoolean(objUserHasProduct.getIsTopUp()),objUserHasProduct.getSymbol()));
 
 
 

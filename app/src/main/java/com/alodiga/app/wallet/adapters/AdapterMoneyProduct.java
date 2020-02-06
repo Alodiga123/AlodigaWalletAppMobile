@@ -108,7 +108,6 @@ public class AdapterMoneyProduct extends RecyclerView.Adapter<AdapterMoneyProduc
                 String productName = grocderyItemList.get(position).getProductName();
 
                 AlertDialog.Builder ADBuilder = new AlertDialog.Builder(context, R.style.yourDialog);
-                ADBuilder.setTitle(Html.fromHtml("Operaciones " + productName));
                 Configuration config = new Configuration();
 
                 final String idioma = Locale.getDefault().getLanguage();
@@ -117,13 +116,15 @@ public class AdapterMoneyProduct extends RecyclerView.Adapter<AdapterMoneyProduc
                 //Creamos un nuevo ArrayAdapter de 'Strings' y pasamos como parametros (Contexto, int id "Referencia a layout");
                 final ArrayAdapter arrayAdapter = new ArrayAdapter(context, R.layout.menu_simple);
                 if (idioma.equals("en")) {
+                    ADBuilder.setTitle(Html.fromHtml("Operations " + productName));
+
                     if (productName.equals("Tarjeta Prepagada")) {
                         //arrayAdapter.add("    Reload Card");
                         //arrayAdapter.add("    Remove Wallet");
                         arrayAdapter.add("    Unlock/Lock Card");
                         arrayAdapter.add("    Check balance");
                         arrayAdapter.add("    Card to card transfer");
-                        //arrayAdapter.add("    Companion Cards");
+                        arrayAdapter.add("    Companion Cards");
 
                     } else {
                         //R.string.menu_recharge
@@ -144,13 +145,14 @@ public class AdapterMoneyProduct extends RecyclerView.Adapter<AdapterMoneyProduc
                     }
 
                 } else {
+                    ADBuilder.setTitle(Html.fromHtml("Operaciones " + productName));
                     if (productName.equals("Tarjeta Prepagada")) {
                        // arrayAdapter.add("    Recargar Tarjeta");
                        // arrayAdapter.add("    Extraer a Billetera");
                         arrayAdapter.add("    Activar/Desactivar Tarjeta");
                         arrayAdapter.add("    Consultar Saldo");
                         arrayAdapter.add("    Transferencia tarjeta a tarjeta");
-                        //arrayAdapter.add("    Tarjetas Compañeras");
+                        arrayAdapter.add("    Tarjetas Compañeras");
                     } else {
                         //R.string.menu_recharge
                         arrayAdapter.add("    Recarga Manual");
@@ -257,21 +259,24 @@ public class AdapterMoneyProduct extends RecyclerView.Adapter<AdapterMoneyProduc
                             context.startActivity(show);
                         }
 
-                        /*if (arrayAdapter.getItem(_item).toString() == "    Tarjetas Compañeras" || arrayAdapter.getItem(_item).toString() == "    Companion Cards") {
+                        if (arrayAdapter.getItem(_item).toString() == "    Tarjetas Compañeras" || arrayAdapter.getItem(_item).toString() == "    Companion Cards") {
 
 
-                            //Session.setCardBalanceMain(grocderyItemList.get(position).getProductPrice());
-                            //Intent show = new Intent(context, CompanionCardsStep1Activity.class);
-                            //context.startActivity(show);
+                            Session.setCardBalanceMain(grocderyItemList.get(position).getProductPrice());
+                            Session.setSymbolCompanionCards(grocderyItemList.get(position).getSymbol());
+                            Session.setTranferenceCardToCard(grocderyItemList.get(position).getProductPrice());
+                            Session.setTranferenceCardToCardEncrip(grocderyItemList.get(position).getProductPriceEncrip());
+                            Intent show = new Intent(context, CompanionCardsStep1Activity.class);
+                            context.startActivity(show);
 
-                            if (idioma.equals("en")) {
+                            /*if (idioma.equals("en")) {
                                 Toast toast = Toast.makeText(context, "Functionality not available", Toast.LENGTH_SHORT);
                                 toast.show();
                             } else {
                                 Toast toast = Toast.makeText(context, "Funcionalidad no disponible", Toast.LENGTH_SHORT);
                                 toast.show();
-                            }
-                        }*/
+                            }*/
+                        }
 
 
                         if (arrayAdapter.getItem(_item).toString() == "    Unlock/Lock Card" || arrayAdapter.getItem(_item).toString() == "    Activar/Desactivar Tarjeta") {

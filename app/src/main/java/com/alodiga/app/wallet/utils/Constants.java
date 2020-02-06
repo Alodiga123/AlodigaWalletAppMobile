@@ -193,6 +193,7 @@ public class Constants {
     public static final String WEB_SERVICES_METHOD_CHECK_BALANCE = "checkStatusAccount";
     public static final String WEB_SERVICES_METHOD_TRANSFERENCE_GET_CARD = "getCardByUserId";
     public static final String WEB_SERVICES_METHOD_TRANSFERENCE_CARD_TO_CARD = "transferCardToCardAutorization";
+    public static final String WEB_SERVICES_METHOD_LIST_COMPANION_CARDS = "getCardsListByUserId";
 
 
 

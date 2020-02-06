@@ -476,4 +476,10 @@ public class Utils {
         }
         return bitmap;
     }
+
+    public static String mask_card(String card){
+        card= card.substring(0,4) + "*********" +  card.substring( card.length()-4, card.length());
+        return card;
+    }
+
 }

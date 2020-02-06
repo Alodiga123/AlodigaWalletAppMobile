@@ -22,9 +22,11 @@ import com.alodiga.app.R;
 import com.alodiga.app.wallet.activateDesativateCard.ActivateDeactivateCardStep1Activity;
 import com.alodiga.app.wallet.balance.BalanceStep1Activity;
 import com.alodiga.app.wallet.companionCards.CompanionCardsStep1Activity;
+import com.alodiga.app.wallet.companionCards.CompanionCardsStep2Activity;
 import com.alodiga.app.wallet.exchange.ExchangeStep1Activity;
 import com.alodiga.app.wallet.manualRecharge.ManualRechargeStep1Activity;
 import com.alodiga.app.wallet.manualRemoval.ManualRemovalStep1Activity;
+import com.alodiga.app.wallet.model.ObjCompanionCards;
 import com.alodiga.app.wallet.model.ObjMoney;
 import com.alodiga.app.wallet.paymentComerce.PaymentComerceStep1Activity;
 import com.alodiga.app.wallet.reloadCard.ReloadCardStep1Activity;
@@ -40,11 +42,9 @@ import java.util.Locale;
 
 public class AdapterCardProduct extends RecyclerView.Adapter<AdapterCardProduct.GroceryProductViewHolder> implements AdapterView.OnItemSelectedListener {
     Context context;
-    private String responsetxt = "";
-    private boolean serviceStatus;
-    private List<ObjMoney> grocderyItemList;
+    private List<ObjCompanionCards> grocderyItemList;
 
-    public AdapterCardProduct(List<ObjMoney> grocderyItemList, Context context) {
+    public AdapterCardProduct(List<ObjCompanionCards> grocderyItemList, Context context) {
         this.grocderyItemList = grocderyItemList;
         this.context = context;
     }
@@ -59,10 +59,9 @@ public class AdapterCardProduct extends RecyclerView.Adapter<AdapterCardProduct.
 
     @Override
     public void onBindViewHolder(GroceryProductViewHolder holder, final int position) {
-        holder.imageProductImage.setImageResource(grocderyItemList.get(position).getProductImage());
-        holder.txtProductName.setText(grocderyItemList.get(position).getProductName());
-        holder.txtProductPrice.setText(grocderyItemList.get(position).getProductPriceEncrip());
-        //holder.itemView.setBackgroundColor(Color.parseColor("#00BEDF"));
+        holder.imageProductImage.setImageResource(grocderyItemList.get(position).getImageCard());
+        holder.txtProductName.setText(grocderyItemList.get(position).getNameCard());
+        holder.txtProductPrice.setText(grocderyItemList.get(position).getNumberCardEncrip());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,10 +81,12 @@ public class AdapterCardProduct extends RecyclerView.Adapter<AdapterCardProduct.
                         context.startActivity(show);
                         break;
                     default:
-                String productName = grocderyItemList.get(position).getProductName();
+                //String productName = grocderyItemList.get(position).getProductName();
 
-                AlertDialog.Builder ADBuilder = new AlertDialog.Builder(context, R.style.yourDialog);
-                ADBuilder.setTitle(Html.fromHtml("Operaciones " + productName));
+                AlertDialog.Builder ADBuilder2 = new AlertDialog.Builder(context, R.style.yourDialog);
+
+
+                //ADBuilder2.setTitle(Html.fromHtml("Operaciones" ));
                 Configuration config = new Configuration();
 
                 final String idioma = Locale.getDefault().getLanguage();
@@ -94,22 +95,22 @@ public class AdapterCardProduct extends RecyclerView.Adapter<AdapterCardProduct.
                 //Creamos un nuevo ArrayAdapter de 'Strings' y pasamos como parametros (Contexto, int id "Referencia a layout");
                 final ArrayAdapter arrayAdapter = new ArrayAdapter(context, R.layout.menu_simple);
                 if (idioma.equals("en")) {
+                    ADBuilder2.setTitle(Html.fromHtml("Operations" ));
 
                         //R.string.menu_recharge
                     arrayAdapter.add("    Check balance");
-                    //arrayAdapter.add("    Reload from Main");
+                    arrayAdapter.add("    Recharge from main");
                 } else {
+                    ADBuilder2.setTitle(Html.fromHtml("Operaciones" ));
 
                         //R.string.menu_recharge
                     arrayAdapter.add("    Consultar Saldo");
-                    //arrayAdapter.add("    Recargar desde Principal");
+                    arrayAdapter.add("    Recargar desde Principal");
 
                 }
 
-
-
                 //Creamos un boton para cancelar el dialog
-                ADBuilder.setPositiveButton("Cancelar", new DialogInterface.OnClickListener() {
+                        ADBuilder2.setPositiveButton("Cancelar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();//Cerramos el dialogo
@@ -118,42 +119,34 @@ public class AdapterCardProduct extends RecyclerView.Adapter<AdapterCardProduct.
                 });
 
                 //Capturamos el evento 'OnClick' de los elementos en el dialogo
-                ADBuilder.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
+                        ADBuilder2.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int _item) {
 
                         //Creamos un toast para mostrar el elemento selecionado
                         if (arrayAdapter.getItem(_item).toString() == "    Check balance" || arrayAdapter.getItem(_item).toString() == "    Consultar Saldo") {
-                            // Intent show = new Intent(context, PaymentComerceStep1Activity.class);
-                            // context.startActivity(show);
-                            Session.setCardBalance(grocderyItemList.get(position).getProductPrice());
+                            Session.setCardBalance(grocderyItemList.get(position).getNumberCard());
                             Intent show = new Intent(context, BalanceStep1Activity.class);
                             context.startActivity(show);
                         }
 
-                        /*if (arrayAdapter.getItem(_item).toString() == "    Reload from Main" || arrayAdapter.getItem(_item).toString() == "    Recargar desde Principal") {
-
-                            if (idioma.equals("en")) {
-                                Toast toast = Toast.makeText(context, "Functionality not available", Toast.LENGTH_SHORT);
-                                toast.show();
-                            } else {
-                                Toast toast = Toast.makeText(context, "Funcionalidad no disponible", Toast.LENGTH_SHORT);
-                                toast.show();
-                            }
-                        }*/
+                        if (arrayAdapter.getItem(_item).toString() == "    Recharge from main" || arrayAdapter.getItem(_item).toString() == "    Recargar desde Principal") {
+                               Session.setTranferenceCardToCardDest(grocderyItemList.get(position).getNumberCard());
+                               Session.setTranferenceCardToCardEncripDest(grocderyItemList.get(position).getNumberCardEncrip());
+                               Session.setDestinationNameValue(grocderyItemList.get(position).getNameCard());
+                               Intent show = new Intent(context, CompanionCardsStep2Activity.class);
+                            context.startActivity(show);
+                        }
 
                     }
                 });
 
-                ADBuilder.show();//Mostramos el dialogo
+                        ADBuilder2.show();//Mostramos el dialogo
 
             }
 
 
         }
-
-
-
 
         });
     }

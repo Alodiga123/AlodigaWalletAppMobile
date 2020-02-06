@@ -173,7 +173,7 @@ public class BalanceStep1Activity extends AppCompatActivity {
                     responsetxt = getString(R.string.web_services_response_99);
                     serviceStatus = false;
                 }
-                //progressDialogAlodiga.dismiss();
+                progressDialogAlodiga.dismiss();
             } catch (IllegalArgumentException e) {
                 responsetxt = getString(R.string.web_services_response_99);
                 serviceStatus = false;
@@ -207,7 +207,9 @@ public class BalanceStep1Activity extends AppCompatActivity {
 
                 new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                         responsetxt);
-
+                Intent i = new Intent(BalanceStep1Activity.this, MainActivity.class);
+                startActivity(i);
+                finish();
             }
 
 
