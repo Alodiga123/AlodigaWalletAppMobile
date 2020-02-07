@@ -427,6 +427,8 @@
     <string name="balance_status">Saldo</string>
     <string name="balance_account_number">Cuenta</string>
     <string name="balance_card_number">Tarjeta</string>
+    <string name="card_tile">TARJETAS COMPAÑERAS</string>
+
 
 
 </resources>

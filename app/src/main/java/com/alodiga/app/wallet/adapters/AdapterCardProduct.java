@@ -134,6 +134,7 @@ public class AdapterCardProduct extends RecyclerView.Adapter<AdapterCardProduct.
                                Session.setTranferenceCardToCardDest(grocderyItemList.get(position).getNumberCard());
                                Session.setTranferenceCardToCardEncripDest(grocderyItemList.get(position).getNumberCardEncrip());
                                Session.setDestinationNameValue(grocderyItemList.get(position).getNameCard());
+                               Session.setUsuarioDestionId(grocderyItemList.get(position).getUserDestinationId());
                                Intent show = new Intent(context, CompanionCardsStep2Activity.class);
                             context.startActivity(show);
                         }

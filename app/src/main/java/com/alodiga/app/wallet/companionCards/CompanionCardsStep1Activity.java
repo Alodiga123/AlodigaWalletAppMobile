@@ -198,7 +198,7 @@ public class CompanionCardsStep1Activity extends AppCompatActivity {
 
                 for (int i = 3; i < response_.getPropertyCount(); i++) {
                     SoapObject obj = (SoapObject) response_.getProperty(i);
-                    mProductList.add(new ObjCompanionCards(obj.getProperty("id").toString(),obj.getProperty("nameCard").toString(),obj.getProperty("numberCard").toString(), obj.getProperty("numberCard").toString(), Utils.mask_card(obj.getProperty("numberCard").toString().trim()),resID));
+                    mProductList.add(new ObjCompanionCards(obj.getProperty("id").toString(),obj.getProperty("nameCard").toString(),obj.getProperty("numberCard").toString(), obj.getProperty("numberCard").toString(), Utils.mask_card(obj.getProperty("numberCard").toString().trim()),resID,obj.getProperty("userDestinationId").toString()));
                 }
 
                 mAdapter = new AdapterCardProduct(mProductList, CompanionCardsStep1Activity.this);
@@ -225,26 +225,5 @@ public class CompanionCardsStep1Activity extends AppCompatActivity {
             mAuthTask = null;
         }
     }
-
-
-    protected ArrayList<ObjCompanionCards> getListProduct(SoapObject response) {
-        //ObjUserHasProduct[] obj2_aux= new ObjUserHasProduct[response.getPropertyCount()-3];
-        //ObjUserHasProduct[] obj2 = new ObjUserHasProduct[response.getPropertyCount()-3];
-        ArrayList<ObjCompanionCards> obj2 = new ArrayList<>();
-        int resID = getResources().getIdentifier(Session.getSymbolCompanionCards().toLowerCase() , "drawable", getPackageName());
-
-        for (int i = 4; i < response.getPropertyCount(); i++) {
-            SoapObject obj = (SoapObject) response.getProperty(i);
-            String propiedad = response.getProperty(i).toString();
-
-            mProductList.add(new ObjCompanionCards(obj.getProperty("id").toString(),obj.getProperty("nameCard").toString(),obj.getProperty("numberCard").toString(), obj.getProperty("numberCard").toString(), Utils.mask_card(obj.getProperty("numberCard").toString().trim()),resID));
-
-           // obj2.add(object);
-            //obj2[i-3] = object;
-        }
-
-        return obj2;
-    }
-
 
 }

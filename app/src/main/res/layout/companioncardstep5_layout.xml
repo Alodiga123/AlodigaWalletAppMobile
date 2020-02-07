@@ -87,51 +87,8 @@
                 />
         </TableRow>
 
-        <TableRow>
-            <TextView
-                android:id="@+id/txtIdentificationNumber"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:padding="2dip"
-                android:singleLine="true"
-                android:textColor="@color/white_greyish"
-                android:textColorHint="@color/white_greyish"
-                android:textSize="15sp"
-                android:text="@string/destination_lastName"/>
-            <TextView
-                android:id="@+id/txtDestinationLastNameValue_3"
 
-                android:padding="2dip"
-                android:singleLine="true"
-                android:textColor="@color/white_greyish"
-                android:textColorHint="@color/white_greyish"
-                android:textSize="14sp"
 
-                />
-        </TableRow>
-
-        <TableRow>
-            <TextView
-                android:id="@+id/txtConcept"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:padding="2dip"
-                android:singleLine="true"
-                android:textColor="@color/white_greyish"
-                android:textColorHint="@color/white_greyish"
-                android:textSize="15sp"
-                android:text="@string/destination_phoe"/>
-            <TextView
-                android:id="@+id/txtDestinationPhoneValue_3"
-
-                android:padding="2dip"
-                android:singleLine="true"
-                android:textColor="@color/white_greyish"
-                android:textColorHint="@color/white_greyish"
-                android:textSize="14sp"/>
-        </TableRow>
         <TableRow>
             <TextView
                 android:id="@+id/accountSource"

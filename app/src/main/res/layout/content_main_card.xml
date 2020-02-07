@@ -18,7 +18,7 @@
         android:layout_height="118dp"
         android:gravity="top|center"
         android:padding="10dp"
-        android:text="@string/dactivate_card_title"
+        android:text="@string/card_tile"
         android:textColor="@color/background_color"
         android:textSize="25sp"
         android:textStyle="bold" />

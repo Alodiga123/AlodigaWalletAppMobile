@@ -90,10 +90,10 @@ public class TransferenceCardToCArdStep6Activity extends AppCompatActivity {
                 intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.confirmation_title_successfull_Alodiga)+
                         "\n" + getString(R.string.destination_name)+" "+ Session.getDestinationNameValue() + " " + Session.getDestinationLastNameValue() +
                         "\n" + getString(R.string.destination_phoe)+" " + Session.getDestinationPhoneValue() +
-                        "\n" + getString(R.string.destination_cuenta)+" " + Session.getDestinationAccountNumber() +
-                        "\n" + getString(R.string.destination_amount)+" " + Session.getGetDestinationAmount() + " $" +
+                        "\n" + getString(R.string.destination_cuenta)+" " + Session.getTranferenceCardToCardEncripDest() +
+                        "\n" + getString(R.string.destination_amount)+" " + Session.getGetDestinationAmount()  +
                         "\n" + getString(R.string.destination_concept)+" " + Session.getDestinationConcept() +
-                        "\n" + getString(R.string.destination_source)+" " + Session.getMoneySelected().getName().split("-")[0] +
+                        "\n" + getString(R.string.destination_source)+" " + Session.getTranferenceCardToCardEncrip() +
                         "\n" + getString(R.string.destination_date_time)+" " + new Timestamp(new Date().getTime()).toGMTString() +
                         "\n" + getString(R.string.number_trans)+" " + Session.getOperationTransference());
                 startActivity(Intent.createChooser(intent, getString(R.string.share_with)));

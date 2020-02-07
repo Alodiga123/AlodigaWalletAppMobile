@@ -7,14 +7,24 @@ public class ObjCompanionCards {
     private String numberCardEncrip;
     private String parentId;
     private  int imageCard;
+    private String userDestinationId;
 
-    public ObjCompanionCards(String id, String nameCard, String numberCard, String parentId, String numberCardEncrip, int image) {
+    public ObjCompanionCards(String id, String nameCard, String numberCard, String parentId, String numberCardEncrip, int image, String userDestinationId) {
         this.id = id;
         this.nameCard = nameCard;
         this.numberCard = numberCard;
         this.parentId = parentId;
         this.numberCardEncrip= numberCardEncrip;
         this.imageCard= image;
+        this.userDestinationId= userDestinationId;
+    }
+
+    public String getUserDestinationId() {
+        return userDestinationId;
+    }
+
+    public void setUserDestinationId(String userDestinationId) {
+        this.userDestinationId = userDestinationId;
     }
 
     public int getImageCard() {

@@ -51,9 +51,7 @@ public class CompanionCardsStep5Activity extends AppCompatActivity {
         //nombre
         destinationNameValue = findViewById(R.id.txtDestinationNameValue_3);
         //apellido
-        destinationLastNameValue = findViewById(R.id.txtDestinationLastNameValue_3);
         //telefono
-        destinationPhoneValue = findViewById(R.id.txtDestinationPhoneValue_3);
         //Destino
         acountNumberValue = findViewById(R.id.txtAccountNumberValue_3);
         //Monto
@@ -71,8 +69,6 @@ public class CompanionCardsStep5Activity extends AppCompatActivity {
         btnShareInformation = findViewById(R.id.btnShareInformationTransference);
 
         destinationNameValue.setText(Session.getDestinationNameValue());
-        destinationLastNameValue.setText(Session.getDestinationLastNameValue());
-        destinationPhoneValue.setText(Session.getDestinationPhoneValue());
         acountNumberValue.setText(Session.getTranferenceCardToCardEncripDest());
         amountValue.setText(Session.getGetDestinationAmount());
         conceptValue.setText(Session.getDestinationConcept());
@@ -89,11 +85,10 @@ public class CompanionCardsStep5Activity extends AppCompatActivity {
                 intent.setType("text/plain");
                 intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.confirmation_title_successfull_Alodiga)+
                         "\n" + getString(R.string.destination_name)+" "+ Session.getDestinationNameValue() + " " + Session.getDestinationLastNameValue() +
-                        "\n" + getString(R.string.destination_phoe)+" " + Session.getDestinationPhoneValue() +
-                        "\n" + getString(R.string.destination_cuenta)+" " + Session.getDestinationAccountNumber() +
-                        "\n" + getString(R.string.destination_amount)+" " + Session.getGetDestinationAmount() + " $" +
+                        "\n" + getString(R.string.destination_cuenta)+" " + Session.getTranferenceCardToCardEncripDest() +
+                        "\n" + getString(R.string.destination_amount)+" " + Session.getGetDestinationAmount()  +
                         "\n" + getString(R.string.destination_concept)+" " + Session.getDestinationConcept() +
-                        "\n" + getString(R.string.destination_source)+" " + Session.getMoneySelected().getName().split("-")[0] +
+                        "\n" + getString(R.string.destination_source)+" " + Session.getTranferenceCardToCardEncrip() +
                         "\n" + getString(R.string.destination_date_time)+" " + new Timestamp(new Date().getTime()).toGMTString() +
                         "\n" + getString(R.string.number_trans)+" " + Session.getOperationTransference());
                 startActivity(Intent.createChooser(intent, getString(R.string.share_with)));

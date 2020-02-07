@@ -61,6 +61,7 @@ import com.alodiga.app.wallet.topup.TopupStep1Activity;
 import com.alodiga.app.wallet.transference.TransferenceStep1Activity;
 import com.alodiga.app.wallet.utils.Constants;
 import com.alodiga.app.wallet.utils.CustomToast;
+import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
 import com.alodiga.app.wallet.utils.Session;
 import com.alodiga.app.wallet.utils.Utils;
 import com.alodiga.app.wallet.validate.ValidateAccountActivity;
@@ -87,6 +88,7 @@ public class MainActivity extends AppCompatActivity
     private RecyclerView mRecyclerView;
     private AdapterMoneyProduct mAdapter;
     private List<ObjMoney> mProductList;
+    private ProgressDialogAlodiga progressDialogAlodiga;
 
 
 
@@ -95,6 +97,8 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        progressDialogAlodiga = new ProgressDialogAlodiga(this, getString(R.string.loading));
+        progressDialogAlodiga.show();
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         atg = AnimationUtils.loadAnimation(this, R.anim.atg);
@@ -184,7 +188,7 @@ public class MainActivity extends AppCompatActivity
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.RECEIVE_SMS) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(new String[]{Manifest.permission.RECEIVE_SMS}, 1000);
         }
-
+        progressDialogAlodiga.dismiss();
     }
 
 

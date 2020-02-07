@@ -381,4 +381,5 @@
     <string name="web_services_response_142">"Invalid Amount "</string>
     <string name="web_services_response_139">Error validating cvc2</string>
     <string name="web_services_response_54">"Service not available "</string>
+    <string name="card_tile">"COMPANION CARDS "</string>
 </resources>
