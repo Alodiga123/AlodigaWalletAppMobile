@@ -30,7 +30,7 @@ import java.util.HashMap;
 
 public class CompanionCardsStep5Activity extends AppCompatActivity {
     private static TextView amountValue, conceptValue;
-    private static TextView txtTransactionId_3, txtAccountSourceValue, txtDateTimeValue_3, acountNumberValue, destinationPhoneValue, destinationLastNameValue, destinationNameValue, txtAmountValue, txtConceptValue;
+    private static TextView txtRemitenteNameValue_rem, txtTransactionId_3, txtAccountSourceValue, txtDateTimeValue_3, acountNumberValue, destinationPhoneValue, destinationLastNameValue, destinationNameValue, txtAmountValue, txtConceptValue;
     private static Button btnProcessFinisTransference;
     private static Button btnShareInformation;
     private ProgressDialogAlodiga progressDialogAlodiga;
@@ -48,6 +48,9 @@ public class CompanionCardsStep5Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.companioncardstep5_layout);
 
+
+        txtRemitenteNameValue_rem= findViewById(R.id.txtRemitenteNameValue_rem);
+        txtRemitenteNameValue_rem.setText(Session.getUsername());
         //nombre
         destinationNameValue = findViewById(R.id.txtDestinationNameValue_3);
         //apellido
@@ -84,11 +87,12 @@ public class CompanionCardsStep5Activity extends AppCompatActivity {
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
                 intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.confirmation_title_successfull_Alodiga)+
-                        "\n" + getString(R.string.destination_name)+" "+ Session.getDestinationNameValue() + " " + Session.getDestinationLastNameValue() +
-                        "\n" + getString(R.string.destination_cuenta)+" " + Session.getTranferenceCardToCardEncripDest() +
+                        "\n" + getString(R.string.destination_name_)+" "+ Session.getDestinationNameValue() + " " + Session.getDestinationLastNameValue() +
+                        "\n" + getString(R.string.destinationCard_dest)+" " + Session.getTranferenceCardToCardEncripDest() +
+                        "\n" + getString(R.string.destination_name_1)+" " + Session.getUsername() +
+                        "\n" + getString(R.string.destinationCard_source)+" " + Session.getTranferenceCardToCardEncrip() +
                         "\n" + getString(R.string.destination_amount)+" " + Session.getGetDestinationAmount()  +
                         "\n" + getString(R.string.destination_concept)+" " + Session.getDestinationConcept() +
-                        "\n" + getString(R.string.destination_source)+" " + Session.getTranferenceCardToCardEncrip() +
                         "\n" + getString(R.string.destination_date_time)+" " + new Timestamp(new Date().getTime()).toGMTString() +
                         "\n" + getString(R.string.number_trans)+" " + Session.getOperationTransference());
                 startActivity(Intent.createChooser(intent, getString(R.string.share_with)));

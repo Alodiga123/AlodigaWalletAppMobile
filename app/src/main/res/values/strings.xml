@@ -206,7 +206,7 @@
     <string name="kyc_attach_step1">Adjuntar</string>
     <string name="kyc_info_menu">Validar Cuenta</string>
     <string name="kyc_text_step2">2. Por favor toma una foto sosteniendo un cartel que diga "Mejora Tu Vida" con la fecha de hoy.</string>
-    <string name="kyc_text_step4_city">Seleccione la ciudad:</string>
+    <string name="kyc_text_step4_city">Introduzca la ciudad:</string>
     <string name="kyc_text_step4_city_">Ciudad</string>
     <string name="kyc_text_step4_state">Seleccione el estado:</string>
     <string name="kyc_text_step4_state_1">Introduzca el estado:</string>
@@ -259,7 +259,9 @@
     <string name="web_services_response_22">Usuario no tiene teléfono</string>
     <string name="web_services_response_24">Usuario no tiene movimientos asociados</string>
     <string name="web_services_response_28">Tarjeta destino no encontrada</string>
+    <string name="web_services_response_29">No tiene tarjetas asociadas</string>
     <string name="web_services_response_30">Ha excedido el monto maximo</string>
+    <string name="web_services_response_30_">No tiene tarjetas compañeras asociadas</string>
     <string name="web_services_response_31">Ha excedido el numero maximo de transacciones por producto</string>
     <string name="web_services_response_32">Ha excedido el numero maximo de transacciones por dia</string>
     <string name="web_services_response_33">Saldo insuficiente para completar la transaccion</string>
@@ -347,6 +349,8 @@
     <string name="howtofindtransfer">Seleccione el criterio de busqueda del usuario receptor</string>
     <string name="howtofindtransferComerce">Escanee el código QR del comercio!</string>
     <string name="destination_name">Nombre:</string>
+    <string name="destination_name_1">Nombre Remitente:</string>
+    <string name="destination_name_">Nombre Destinatario:</string>
     <string name="destination_lastName">Apellido:</string>
     <string name="destination_phoe">Teléfono:</string>
     <string name="destination_cuenta">Destino:</string>
@@ -372,6 +376,35 @@
     <string name="ativate_card">Mediante esta funcionalidad podra activar o desactivar su tarjeta de debito prepagada</string>
     <string name="fail_code_info">La Clave de Operaciones ha sido bloqueada temporalmente.</string>
     <string name="ativate_desactivate_card">Desactivar / Activar</string>
+    <string name="amount_to_send">Monto a enviar</string>
+    <string name="rate_included">¿Tarifa incluida?</string>
+    <string name="destination_country">Pais Destino</string>
+    <string name="Correspondent">Punto Pago</string>
+    <string name="delivery_method">Forma de entrega</string>
+    <string name="quote">COTIZAR</string>
+    <string name="quote_">COTIZAR NUEVAMENTE</string>
+    <string name="exchange_rate">Tasa de cambio</string>
+    <string name="shipping_rate">Tarifa de envio</string>
+    <string name="actual_amount_to_send">Monto real a enviar</string>
+    <string name="Actual_amount_to_pay">Monto real a pagar</string>
+    <string name="total_to_pay">Total a pagar</string>
+    <string name="Rates_and_Payment_Points">Tarifas y Puntos de Pago</string>
+    <string name="amount_">Ingrese Monto</string>
+    <string name="reloadcard_source_">Origen de fondos</string>
+    <string name="addressee">Datos del Destinatario</string>
+    <string name="addresseeRem">Datos del Remitente</string>
+    <string name="datasender">Datos del Envio</string>
+    <string name="Recipient_address">Dirección del Destinatario</string>
+    <string name="Recipient_name">Introduzca el nombre</string>
+    <string name="Recipient_lastname">Introduzca el Apellido</string>
+    <string name="Amount_to_deliver">Monto a entregar</string>
+
+
+
+
+
+
+
 
 
 

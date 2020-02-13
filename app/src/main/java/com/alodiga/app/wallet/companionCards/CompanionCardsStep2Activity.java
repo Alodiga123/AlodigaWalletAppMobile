@@ -31,7 +31,7 @@ import java.util.HashMap;
 public class CompanionCardsStep2Activity extends AppCompatActivity {
     static ProgressDialogAlodiga progressDialogAlodiga;
     private static EditText amountValue, conceptValue;
-    private static TextView txtAccountSourceValue,txtAccountdesValue, acountNumberValue, destinationPhoneValue, destinationLastNameValue, destinationNameValue;
+    private static TextView txtRemitenteNameValue_rem,txtAccountSourceValue,txtAccountdesValue, acountNumberValue, destinationPhoneValue, destinationLastNameValue, destinationNameValue;
     private static Button btnProcessConfirmation1, backToLoginBtn;
     private String responsetxt = "";
     private boolean serviceStatus;
@@ -55,6 +55,8 @@ public class CompanionCardsStep2Activity extends AppCompatActivity {
         backToLoginBtn = findViewById(R.id.backToLoginBtn);
 
 
+        txtRemitenteNameValue_rem= findViewById(R.id.txtRemitenteNameValue_rem);
+        txtRemitenteNameValue_rem.setText(Session.getUsername());
 
         destinationNameValue = findViewById(R.id.txtDestinationNameValue);
         destinationNameValue.setText(Session.getDestinationNameValue());

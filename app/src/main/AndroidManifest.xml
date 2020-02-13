@@ -323,6 +323,18 @@
             android:name="com.alodiga.app.wallet.companionCards.CompanionCardsStep5Activity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity
+            android:name="com.alodiga.app.wallet.remesas.PaymentStep1Activity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name="com.alodiga.app.wallet.remesas.PaymentStep2Activity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name="com.alodiga.app.wallet.remesas.PaymentStep3Activity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
            <receiver android:name="com.alodiga.app.wallet.utils.SmsReceiver">
                <intent-filter>
                    <action android:name="android.provider.Telephony.SMS_RECEIVED"/>

@@ -128,7 +128,13 @@ public class CompanionCardsStep1Activity extends AppCompatActivity {
                 } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_PRIMER_INGRESO)) {
                     responsetxt = getString(R.string.web_services_response_12);
                     serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CARD_NUMBER_EXISTS)) {
+                }  else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USER_NOT_HAS_CARD)) {
+                    responsetxt = getString(R.string.web_services_response_29);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_DOES_NOT_HAVE_AN_ASSOCIATED_COMPANION_CARD)) {
+                    responsetxt = getString(R.string.web_services_response_30_);
+                    serviceStatus = false;
+                }else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CARD_NUMBER_EXISTS)) {
                     responsetxt = getString(R.string.web_services_response_50);
                     serviceStatus = true;
                 } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_NOT_ALLOWED_TO_CHANGE_STATE)) {

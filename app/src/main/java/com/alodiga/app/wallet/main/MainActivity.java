@@ -1,34 +1,22 @@
 package com.alodiga.app.wallet.main;
 
 import android.Manifest;
-import android.app.Dialog;
-import android.content.ClipData;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.res.Configuration;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.BoringLayout;
-import android.text.Html;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
@@ -43,27 +31,21 @@ import com.alodiga.app.R;
 import com.alodiga.app.wallet.QR.CreateQRCodeActivity;
 import com.alodiga.app.wallet.activeCard.ActiveCardActivity;
 import com.alodiga.app.wallet.adapters.AdapterMoneyProduct;
-import com.alodiga.app.wallet.deactivateCard.DeactiveCardActivity;
 import com.alodiga.app.wallet.exchange.ExchangeStep1Activity;
 import com.alodiga.app.wallet.listTransactionExecuted.ListTransactionExecutedActivity;
 import com.alodiga.app.wallet.login.LoginActivity;
 import com.alodiga.app.wallet.manualRecharge.ManualRechargeStep1Activity;
 import com.alodiga.app.wallet.manualRemoval.ManualRemovalStep1Activity;
 import com.alodiga.app.wallet.model.ObjMoney;
-import com.alodiga.app.wallet.model.ObjNewsItem;
-import com.alodiga.app.wallet.model.ObjTransaction;
 import com.alodiga.app.wallet.model.ObjUserHasProduct;
 import com.alodiga.app.wallet.changePassword.ChangePasswordStep1Activity;
 import com.alodiga.app.wallet.paymentComerce.PaymentComerceStep1Activity;
-import com.alodiga.app.wallet.reloadCard.ReloadCardStep1Activity;
-import com.alodiga.app.wallet.remesas.RemesasStep1Activity;
+import com.alodiga.app.wallet.remesas.PaymentStep1Activity;
 import com.alodiga.app.wallet.topup.TopupStep1Activity;
 import com.alodiga.app.wallet.transference.TransferenceStep1Activity;
 import com.alodiga.app.wallet.utils.Constants;
-import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
 import com.alodiga.app.wallet.utils.Session;
-import com.alodiga.app.wallet.utils.Utils;
 import com.alodiga.app.wallet.validate.ValidateAccountActivity;
 import com.alodiga.app.wallet.validate.ValidateAccountCode2Activity;
 import com.alodiga.app.wallet.validate.ValidateAccountCode3Activity;
@@ -73,7 +55,6 @@ import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 
 public class MainActivity extends AppCompatActivity
@@ -332,7 +313,7 @@ public class MainActivity extends AppCompatActivity
                            startActivity(show);
 
                    }else if (id == R.id.nav_remesas) {
-                       show = new Intent(MainActivity.this, RemesasStep1Activity.class);
+                       show = new Intent(MainActivity.this, PaymentStep1Activity.class);
                        startActivity(show);
 
                    }/*else if (id == R.id.nav_reload_Card) {

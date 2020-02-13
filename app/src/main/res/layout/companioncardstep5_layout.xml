@@ -61,33 +61,33 @@
         android:layout_marginTop="20dp">
 
 
+
+
         <TableRow>
             <TextView
-                android:id="@+id/txtPaymentReceiver"
+                android:id="@+id/txtPaymentReceiverRem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:padding="2dip"
+                android:padding="3dip"
                 android:paddingTop="5dp"
                 android:singleLine="true"
                 android:textColor="@color/white_greyish"
                 android:textColorHint="@color/white_greyish"
-                android:textSize="15sp"
-                android:text="@string/destination_name"/>
+                android:textSize="16sp"
+                android:text="@string/destination_name_1"/>
             <TextView
-                android:id="@+id/txtDestinationNameValue_3"
+                android:id="@+id/txtRemitenteNameValue_rem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:padding="2dip"
+                android:padding="3dip"
                 android:singleLine="true"
                 android:textColor="@color/white_greyish"
                 android:textColorHint="@color/white_greyish"
                 android:textSize="14sp"
                 />
         </TableRow>
-
-
 
         <TableRow>
             <TextView
@@ -108,6 +108,32 @@
                 android:textColor="@color/white_greyish"
                 android:textColorHint="@color/white_greyish"
                 android:textSize="14sp"/>
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:id="@+id/txtPaymentReceiver"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:padding="2dip"
+                android:paddingTop="5dp"
+                android:singleLine="true"
+                android:textColor="@color/white_greyish"
+                android:textColorHint="@color/white_greyish"
+                android:textSize="15sp"
+                android:text="@string/destination_name_"/>
+            <TextView
+                android:id="@+id/txtDestinationNameValue_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:padding="2dip"
+                android:singleLine="true"
+                android:textColor="@color/white_greyish"
+                android:textColorHint="@color/white_greyish"
+                android:textSize="14sp"
+                />
         </TableRow>
         <TableRow>
             <TextView

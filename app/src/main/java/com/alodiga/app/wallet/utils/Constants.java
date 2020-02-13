@@ -13,9 +13,9 @@ public class Constants {
     public static final boolean CONSTANT_IS_PRODUCTION = false;
 
     //LOCAL moises
-    public static String IPDAT="192.168.3.20";
+    //public static String IPDAT="192.168.3.20";
     //LOCAL QA
-    //public static String IPDAT = "192.168.3.140";
+    public static String IPDAT = "192.168.3.140";
 
     //public static String LINK = "http://192.168.3.140:8080/ultima-1.0.6/formData.xhtml";
     public static String LINK = "http://200.73.192.178:8080/CardFormWeb/";
@@ -89,6 +89,8 @@ public class Constants {
     public static final String WEB_SERVICES_RESPONSE_CODE_USER_NOT_HAS_PHONE_NUMBER = "22";
     public static final String WEB_SERVICES_RESPONSE_CODE_USER_NOT_HAS_TRANSACTIONS = "24";
     public static final String WEB_SERVICES_RESPONSE_CODE_ERROR_LOADING_CARDS = "28";
+    public static final String WEB_SERVICES_RESPONSE_CODE_USER_NOT_HAS_CARD = "29";
+    public static final String WEB_SERVICES_RESPONSE_CODE_DOES_NOT_HAVE_AN_ASSOCIATED_COMPANION_CARD = "30";
     public static final String WEB_SERVICES_RESPONSE_CODE_TRANSACTION_AMOUNT_LIMIT = "30";
     public static final String WEB_SERVICES_RESPONSE_CODE_TRANSACTION_MAX_NUMBER_BY_ACCOUNT = "31";
     public static final String WEB_SERVICES_RESPONSE_CODE_TRANSACTION_MAX_NUMBER_BY_CUSTOMER = "32";

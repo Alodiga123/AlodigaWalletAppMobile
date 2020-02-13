@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fillViewport="true"
+    android:overScrollMode="never"
+    android:scrollbars="none" >
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="@drawable/side_nav_bar"
+    android:padding="15dp" >
+
+
+
+
+    <TextView
+        android:id="@+id/remesas_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="@string/remesas_title"
+        android:textColor="@color/background_color"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        />
+
+    <TextView
+        android:id="@+id/select"
+        android:layout_width="wrap_content"
+        android:layout_height="37dp"
+        android:text="@string/Rates_and_Payment_Points"
+        android:layout_gravity="center"
+        android:textColor="@color/white_greyish"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+
+    <TableLayout
+        android:id="@+id/txtTableLayout2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtConfirmationPaymen"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp">
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/txtPaymentReceiver3"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="2dip"
+                android:paddingTop="5dp"
+                android:singleLine="true"
+                android:text="@string/reloadcard_source_"
+                android:textColor="@color/white_greyish"
+                android:textColorHint="@color/white_greyish"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/reloadcard_source"
+                android:layout_width="226dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:backgroundTint="@color/white_greyish"
+                android:drawableLeft="@drawable/email"
+                android:drawablePadding="8dp"
+                android:gravity="right"
+                android:hint="@string/location"
+                android:inputType="phone"
+                android:padding="10dp"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="16sp" />
+        </TableRow>
+
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/txtIdentificationNumber"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="2dip"
+                android:singleLine="true"
+                android:text="@string/rate_included"
+                android:textColor="@color/white_greyish"
+                android:textColorHint="@color/white_greyish"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/rate_included"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:backgroundTint="@color/white_greyish"
+                android:drawableLeft="@drawable/email"
+                android:drawablePadding="8dp"
+                android:gravity="right"
+                android:hint="@string/location"
+                android:inputType="phone"
+                android:padding="10dp"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="16sp" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/txtConcept"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="2dip"
+                android:singleLine="true"
+                android:text="@string/destination_country"
+                android:textColor="@color/white_greyish"
+                android:textColorHint="@color/white_greyish"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/destination_country"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:backgroundTint="@color/white_greyish"
+                android:drawableLeft="@drawable/email"
+                android:drawablePadding="8dp"
+                android:gravity="right"
+                android:hint="@string/location"
+                android:inputType="phone"
+                android:padding="10dp"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="16sp" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/txtAccountNumber"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:padding="2dip"
+                android:singleLine="true"
+                android:text="@string/Correspondent"
+                android:textColor="@color/white_greyish"
+                android:textColorHint="@color/white_greyish"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/Correspondent"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:backgroundTint="@color/white_greyish"
+                android:drawableLeft="@drawable/email"
+                android:drawablePadding="8dp"
+                android:gravity="right"
+                android:hint="@string/location"
+                android:inputType="phone"
+                android:padding="10dp"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="16sp" />
+        </TableRow>
+
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/txtAmount"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="2dip"
+                android:singleLine="true"
+                android:text="@string/delivery_method"
+                android:textColor="@color/white_greyish"
+                android:textColorHint="@color/white_greyish"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/delivery_method"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:backgroundTint="@color/white_greyish"
+                android:drawableLeft="@drawable/email"
+                android:drawablePadding="8dp"
+                android:gravity="right"
+                android:hint="@string/location"
+                android:inputType="phone"
+                android:padding="10dp"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="16sp" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/txtPaymentReceiver2"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="2dip"
+                android:paddingTop="5dp"
+                android:singleLine="true"
+                android:text="@string/amount_to_send"
+                android:textColor="@color/white_greyish"
+                android:textColorHint="@color/white_greyish"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edtMobileCode"
+                android:layout_width="189dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@android:color/transparent"
+                android:drawableRight="@drawable/moneyicon"
+                android:drawablePadding="8dp"
+                android:gravity="right"
+                android:hint="@string/amount_"
+                android:inputType="numberDecimal"
+                android:maxLength="4"
+                android:padding="10dp"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="15sp" />
+        </TableRow>
+
+    </TableLayout>
+
+
+    <Button
+        android:id="@+id/quote"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/loginbutton_selector"
+        android:padding="3dp"
+        android:text="@string/quote"
+        android:textColor="@color/background_color"
+        android:textSize="17sp"
+        android:textStyle="bold" />
+
+    <TableLayout
+        android:id="@+id/txtTableLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtConfirmationPaymen"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp">
+
+
+        <TableRow
+            android:layout_width="312dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/info">
+
+            <TextView
+                android:id="@+id/txtPaymentReceiver"
+                android:layout_width="188dp"
+                android:layout_height="wrap_content"
+                android:padding="2dip"
+                android:paddingTop="5dp"
+                android:singleLine="true"
+                android:text="@string/exchange_rate"
+                android:textColor="@color/white_greyish"
+                android:textColorHint="@color/white_greyish"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/exchange_rate"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                android:gravity="right"
+                android:padding="2dip"
+                android:singleLine="true"
+                android:text="---"
+                android:textColor="@color/white_greyish"
+                android:textColorHint="@color/white_greyish"
+                android:textSize="14sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="347dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/txtIdentificationNumber2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="2dip"
+                android:singleLine="true"
+                android:text="@string/shipping_rate"
+                android:textColor="@color/white_greyish"
+                android:textColorHint="@color/white_greyish"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/shipping_rate"
+                android:layout_width="135dp"
+                android:layout_height="24dp"
+                android:gravity="right"
+                android:padding="2dip"
+                android:singleLine="true"
+                android:text="---"
+                android:textColor="@color/white_greyish"
+
+                android:textColorHint="@color/white_greyish"
+                android:textSize="14sp" />
+        </TableRow>
+
+
+        <View
+            android:paddingTop="10dp"
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:background="@color/white_greyish" />
+
+
+        <TableRow>
+            <TextView
+                android:id="@+id/txtConcept2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:padding="2dip"
+                android:singleLine="true"
+                android:textColor="@color/white_greyish"
+                android:textColorHint="@color/white_greyish"
+                android:textSize="15sp"
+                android:text="@string/actual_amount_to_send"/>
+
+            <TextView
+                android:id="@+id/actual_amount_to_send"
+                android:layout_width="119dp"
+                android:layout_height="match_parent"
+                android:gravity="right"
+                android:padding="2dip"
+                android:singleLine="true"
+                android:text="---"
+                android:textColor="@color/white_greyish"
+                android:textColorHint="@color/white_greyish"
+                android:textSize="14sp" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:id="@+id/txtAccountNumber2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:padding="2dip"
+                android:singleLine="true"
+                android:textColor="@color/white_greyish"
+                android:textColorHint="@color/white_greyish"
+                android:textSize="15sp"
+                android:text="@string/Actual_amount_to_pay"/>
+            <TextView
+                android:id="@+id/Actual_amount_to_pay"
+                android:padding="2dip"
+                android:text="---"
+                android:gravity="right"
+                android:singleLine="true"
+                android:textColor="@color/white_greyish"
+                android:textColorHint="@color/white_greyish"
+                android:textSize="14sp"/>
+        </TableRow>
+
+
+        <TableRow
+            android:layout_width="360dp"
+            android:layout_height="28dp">
+
+            <TextView
+                android:id="@+id/txtAmount2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="2dip"
+                android:singleLine="true"
+                android:text="@string/total_to_pay"
+                android:textColor="@color/white_greyish"
+                android:textColorHint="@color/white_greyish"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/total_to_pay"
+                android:gravity="right"
+                android:padding="3dip"
+                android:singleLine="true"
+                android:text="---"
+                android:textColor="@color/white_greyish"
+                android:textColorHint="@color/white_greyish"
+                android:textSize="14sp" />
+        </TableRow>
+
+
+    </TableLayout>
+
+
+    <Button
+        android:id="@+id/next"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/loginbutton_selector"
+        android:padding="3dp"
+        android:text="@string/next"
+        android:textColor="@color/background_color"
+        android:textSize="17sp"
+        android:textStyle="bold" />
+
+
+</LinearLayout>
+
+
+
+    </ScrollView>

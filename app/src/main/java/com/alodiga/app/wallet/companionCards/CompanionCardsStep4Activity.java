@@ -29,7 +29,7 @@ public class CompanionCardsStep4Activity extends AppCompatActivity {
     private static View view;
     private static TextView amountValue, conceptValue;
 
-    private static TextView txtAccountSourceValue, acountNumberValue, destinationPhoneValue, destinationLastNameValue, destinationNameValue, txtAmountValue, txtConceptValue;
+    private static TextView txtRemitenteNameValue_rem,txtAccountSourceValue, acountNumberValue, destinationPhoneValue, destinationLastNameValue, destinationNameValue, txtAmountValue, txtConceptValue;
 
     private static Button btnProcessTransaction, backToLoginBtn;
     SoapObject response;
@@ -49,6 +49,9 @@ public class CompanionCardsStep4Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.companioncardstep4_layout);
+
+        txtRemitenteNameValue_rem= findViewById(R.id.txtRemitenteNameValue_rem);
+        txtRemitenteNameValue_rem.setText(Session.getUsername());
 
         amountValue = findViewById(R.id.txtAmountValue_2);
         conceptValue = findViewById(R.id.txtConceptValue_2);
