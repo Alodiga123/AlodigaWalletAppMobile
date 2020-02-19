@@ -36,7 +36,7 @@
     <TextView
         android:id="@+id/select"
         android:layout_width="wrap_content"
-        android:layout_height="37dp"
+        android:layout_height="34dp"
         android:text="@string/Rates_and_Payment_Points"
         android:layout_gravity="center"
         android:textColor="@color/white_greyish"
@@ -50,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/txtConfirmationPaymen"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="5dp">
 
         <TableRow>
 
@@ -69,13 +69,12 @@
 
             <Spinner
                 android:id="@+id/reloadcard_source"
-                android:layout_width="226dp"
+                android:layout_width="107dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_gravity="left"
                 android:backgroundTint="@color/white_greyish"
                 android:drawableLeft="@drawable/email"
                 android:drawablePadding="8dp"
-                android:gravity="right"
                 android:hint="@string/location"
                 android:inputType="phone"
                 android:padding="10dp"
@@ -90,7 +89,7 @@
 
             <TextView
                 android:id="@+id/txtIdentificationNumber"
-                android:layout_width="fill_parent"
+                android:layout_width="185dp"
                 android:layout_height="wrap_content"
                 android:padding="2dip"
                 android:singleLine="true"
@@ -102,13 +101,12 @@
 
             <Spinner
                 android:id="@+id/rate_included"
-                android:layout_width="fill_parent"
+                android:layout_width="96dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_gravity="left"
                 android:backgroundTint="@color/white_greyish"
                 android:drawableLeft="@drawable/email"
                 android:drawablePadding="8dp"
-                android:gravity="right"
                 android:hint="@string/location"
                 android:inputType="phone"
                 android:padding="10dp"
@@ -136,11 +134,10 @@
                 android:id="@+id/destination_country"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:backgroundTint="@color/white_greyish"
                 android:drawableLeft="@drawable/email"
                 android:drawablePadding="8dp"
-                android:gravity="right"
+                android:layout_gravity="left"
                 android:hint="@string/location"
                 android:inputType="phone"
                 android:padding="10dp"
@@ -168,11 +165,10 @@
                 android:id="@+id/Correspondent"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:backgroundTint="@color/white_greyish"
                 android:drawableLeft="@drawable/email"
                 android:drawablePadding="8dp"
-                android:gravity="right"
+                android:layout_gravity="left"
                 android:hint="@string/location"
                 android:inputType="phone"
                 android:padding="10dp"
@@ -201,11 +197,10 @@
                 android:id="@+id/delivery_method"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:backgroundTint="@color/white_greyish"
                 android:drawableLeft="@drawable/email"
                 android:drawablePadding="8dp"
-                android:gravity="right"
+                android:layout_gravity="left"
                 android:hint="@string/location"
                 android:inputType="phone"
                 android:padding="10dp"
@@ -236,9 +231,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:background="@android:color/transparent"
-                android:drawableRight="@drawable/moneyicon"
                 android:drawablePadding="8dp"
-                android:gravity="right"
+                android:layout_gravity="left"
                 android:hint="@string/amount_"
                 android:inputType="numberDecimal"
                 android:maxLength="4"
@@ -258,7 +252,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:background="@drawable/loginbutton_selector"
-        android:padding="3dp"
         android:text="@string/quote"
         android:textColor="@color/background_color"
         android:textSize="17sp"
@@ -293,14 +286,14 @@
 
             <TextView
                 android:id="@+id/exchange_rate"
-                android:layout_width="wrap_content"
+                android:layout_width="39dp"
                 android:layout_height="match_parent"
-                android:layout_gravity="right"
-                android:gravity="right"
+                android:layout_gravity="left"
                 android:padding="2dip"
                 android:singleLine="true"
                 android:text="---"
                 android:textColor="@color/white_greyish"
+
                 android:textColorHint="@color/white_greyish"
                 android:textSize="14sp" />
         </TableRow>
@@ -311,7 +304,7 @@
 
             <TextView
                 android:id="@+id/txtIdentificationNumber2"
-                android:layout_width="wrap_content"
+                android:layout_width="157dp"
                 android:layout_height="wrap_content"
                 android:padding="2dip"
                 android:singleLine="true"
@@ -325,7 +318,7 @@
                 android:id="@+id/shipping_rate"
                 android:layout_width="135dp"
                 android:layout_height="24dp"
-                android:gravity="right"
+                android:layout_gravity="left"
                 android:padding="2dip"
                 android:singleLine="true"
                 android:text="---"
@@ -344,23 +337,24 @@
 
 
         <TableRow>
+
             <TextView
                 android:id="@+id/txtConcept2"
-                android:layout_width="wrap_content"
+                android:layout_width="188dp"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
                 android:padding="2dip"
                 android:singleLine="true"
+                android:text="@string/actual_amount_to_send"
                 android:textColor="@color/white_greyish"
                 android:textColorHint="@color/white_greyish"
                 android:textSize="15sp"
-                android:text="@string/actual_amount_to_send"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/actual_amount_to_send"
                 android:layout_width="119dp"
                 android:layout_height="match_parent"
-                android:gravity="right"
+                android:layout_gravity="left"
                 android:padding="2dip"
                 android:singleLine="true"
                 android:text="---"
@@ -385,7 +379,7 @@
                 android:id="@+id/Actual_amount_to_pay"
                 android:padding="2dip"
                 android:text="---"
-                android:gravity="right"
+                android:layout_gravity="left"
                 android:singleLine="true"
                 android:textColor="@color/white_greyish"
                 android:textColorHint="@color/white_greyish"
@@ -411,7 +405,7 @@
 
             <TextView
                 android:id="@+id/total_to_pay"
-                android:gravity="right"
+                android:layout_gravity="left"
                 android:padding="3dip"
                 android:singleLine="true"
                 android:text="---"

@@ -13,9 +13,9 @@ public class Constants {
     public static final boolean CONSTANT_IS_PRODUCTION = false;
 
     //LOCAL moises
-    //public static String IPDAT="192.168.3.20";
+    public static String IPDAT="192.168.3.20";
     //LOCAL QA
-    public static String IPDAT = "192.168.3.140";
+    //public static String IPDAT = "192.168.3.140";
 
     //public static String LINK = "http://192.168.3.140:8080/ultima-1.0.6/formData.xhtml";
     public static String LINK = "http://200.73.192.178:8080/CardFormWeb/";
@@ -35,7 +35,9 @@ public class Constants {
     //public static final String  CONSTANT_URL_PROD = "http://201.249.236.187:8080/P2PWSServicesProviderService/P2PWSServicesProvider";
     //public static final String  CONSTANT_SECURE_URL = "https://201.249.236.187:8181/P2PWSServicesProviderService/P2PWSServicesProvider";
     public static final String REGISTRO_UNIFICADO = "RegistroUnificado";
+    public static final String REMITTANCE = "remittance";
     public static final String CONSTANT_NAMESPACE_QA_ALODIGA = "http://ws.wallet.alodiga.com/";
+    public static final String CONSTANT_NAMESPACE_REMITTANCE="http://services.remittance.ws.alodiga.com/";
     public static final String ALODIGA = "AlodigaWallet";
     public static final String CONSTANT_NAMESPACE_ALODIGA_WALLET = "http://ws.wallet.alodiga.com/";
     public static final String CONSTANT_SEPARATOR = ":";
@@ -68,6 +70,7 @@ public class Constants {
     public static final long STARTIME = SECONDS * 1000; //In miliseconds
     public static final long INTERVAL = 1000;
     public static final String WEB_SERVICES_RESPONSE_CODE_EXITO = "00";
+    public static final String WEB_SERVICES_RESPONSE_CODE_EXITO_ = "0";
     public static final String WEB_SERVICES_RESPONSE_CODE_DATOS_INVALIDOS = "01";
     public static final String WEB_SERVICES_RESPONSE_CODE_CONTRASENIA_EXPIRADA = "03";
     public static final String WEB_SERVICES_RESPONSE_CODE_IP_NO_CONFIANZA = "04";
@@ -196,6 +199,8 @@ public class Constants {
     public static final String WEB_SERVICES_METHOD_TRANSFERENCE_GET_CARD = "getCardByUserId";
     public static final String WEB_SERVICES_METHOD_TRANSFERENCE_CARD_TO_CARD = "transferCardToCardAutorization";
     public static final String WEB_SERVICES_METHOD_LIST_COMPANION_CARDS = "getCardsListByUserId";
+    public static final String WEB_SERVICES_METHOD_LOGIN = "loginWS";
+    public static final String WEB_SERVICES_METHOD_COUNTRIES = "getCountries";
 
 
 
@@ -253,6 +258,8 @@ public class Constants {
     //public static final String CONSTANT_URL_QA_ALODIGA_WALLET  = "http://192.168.3.20:8080/AlodigaWallet/APIAlodigaWalletService";
     public static final String CONSTANT_URL_QA_ALODIGA_WALLET = "http://" + IPDAT + ":8080/AlodigaWallet/APIAlodigaWalletService";
 
+    public static final String CONSTANT_URL_REMITTENCE = "http://" + IPDAT + ":8080/WSRemittenceService/WSRemittence";
+
 
     public static final String MD5 ="MD5";
     public static final String INVALID_KEY_LONG="Longitud de clave invalida";
@@ -285,6 +292,8 @@ public class Constants {
     public final static String ACTIVE_STATUS_DEACTIVE = "24";
 
 
+    public final static String USUARIO = "alodiga";
+    public final static String PASSWORD = "d6f80e647631bb4522392aff53370502";
 
 
 }

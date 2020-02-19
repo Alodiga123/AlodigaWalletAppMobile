@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Nuestra Vision</string>
+    <string name="app_name">Alodiga</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -121,6 +121,7 @@
     <string name="process_finished_share">COMPARTIR</string>
     <string name="name">Nombre</string>
     <string name="lastName">Apellido</string>
+    <string name="Name_lastName">Nombre y Apellido</string>
     <string name="mobileNumber">Numero de Teléfono</string>
     <string name="table_title_exchange">Detalle</string>
     <string name="table_title_exchange_rate">Tasa de Cambio</string>
@@ -396,6 +397,7 @@
     <string name="datasender">Datos del Envio</string>
     <string name="Recipient_address">Dirección del Destinatario</string>
     <string name="Recipient_name">Introduzca el nombre</string>
+    <string name="Recipient_name_all">Introduzca el nombre completo</string>
     <string name="Recipient_lastname">Introduzca el Apellido</string>
     <string name="Amount_to_deliver">Monto a entregar</string>
 

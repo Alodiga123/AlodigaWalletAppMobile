@@ -14,13 +14,15 @@ public class WebService {
     public static SoapObject invokeGetAutoConfigString(HashMap<String, String> map, String webMethName, String namespace) {
         SoapObject response = null;
         // Create request
-        SoapObject request;
+        SoapObject request = null;
 
         if (namespace == Constants.ALODIGA)
             request = new SoapObject(Constants.CONSTANT_NAMESPACE_QA_ALODIGA, webMethName);
-        else
+        else if (namespace == Constants.REGISTRO_UNIFICADO) {
             request = new SoapObject(Constants.CONSTANT_NAMESPACE_QA_REGISTRO_UNIFICADO, webMethName);
-
+        }else if (namespace == Constants.REMITTANCE){
+            request = new SoapObject(Constants.CONSTANT_NAMESPACE_REMITTANCE, webMethName);
+        }
 
         // Property which holds input parameters
         if (!map.isEmpty()) {

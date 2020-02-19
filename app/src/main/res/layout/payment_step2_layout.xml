@@ -10,7 +10,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    android:padding="5dp"
+    android:padding="20dp"
     android:background="@drawable/side_nav_bar">
 
     <TextView
@@ -69,9 +69,7 @@
             android:layout_width="fill_parent"
             android:layout_height="1px"
             android:background="@color/white_greyish" />
-
     <TextView
-        android:id="@+id/already_user_1"
         android:layout_width="wrap_content"
         android:layout_height="35dp"
         android:layout_marginTop="5dp"
@@ -80,23 +78,56 @@
         android:textColor="@color/white_greyish"
         android:textSize="15sp" />
 
-        <EditText
-            android:id="@+id/lastname1"
-            android:layout_width="fill_parent"
-            android:layout_height="35dp"
-            android:layout_marginTop="5dp"
-            android:background="@android:color/transparent"
-            android:drawablePadding="0dp"
-            android:gravity="center_vertical"
-            android:hint="@string/lastName"
-            android:inputType="textCapWords"
-            android:padding="5dp"
-            android:singleLine="true"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
-            android:textSize="15sp" />
+    <EditText
+        android:id="@+id/lastName"
+        android:layout_width="fill_parent"
+        android:layout_height="41dp"
+        android:layout_marginTop="5dp"
+        android:background="@android:color/transparent"
+        android:drawablePadding="0dp"
+        android:gravity="center_vertical"
+        android:hint="@string/lastName"
+        android:inputType="textCapWords"
+        android:padding="5dp"
+        android:singleLine="true"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="15sp" />
 
-        <View
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="@color/white_greyish" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginTop="5dp"
+        android:padding="5dp"
+        android:text="@string/register_phone_number_message"
+        android:textColor="@color/white_greyish"
+        android:textSize="15sp" />
+
+    <EditText
+        android:id="@+id/editTextTelephone"
+        android:layout_width="fill_parent"
+        android:layout_height="41dp"
+        android:layout_marginTop="5dp"
+        android:background="@android:color/transparent"
+        android:drawablePadding="0dp"
+        android:gravity="center_vertical"
+        android:hint="@string/editTextTelephone"
+        android:inputType="textCapWords"
+        android:padding="5dp"
+        android:singleLine="true"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="15sp" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="@color/white_greyish" />
+    <View
             android:layout_width="fill_parent"
             android:layout_height="1px"
             android:background="@color/white_greyish" />
@@ -112,20 +143,52 @@
             android:textStyle="bold"
             android:paddingTop="5dp"/>
 
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="@color/white_greyish" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginTop="5dp"
+        android:padding="5dp"
+        android:text="@string/pais_info"
+        android:textColor="@color/white_greyish"
+        android:textSize="15sp" />
+
+    <EditText
+        android:id="@+id/location"
+        android:layout_width="fill_parent"
+        android:layout_height="35dp"
+        android:layout_marginTop="5dp"
+        android:background="@android:color/transparent"
+        android:drawablePadding="0dp"
+        android:gravity="center_vertical"
+        android:hint="@string/location"
+        android:inputType="textCapWords"
+        android:padding="5dp"
+        android:singleLine="true"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="15sp" />
+
+
         <View
             android:layout_width="fill_parent"
             android:layout_height="1px"
             android:background="@color/white_greyish" />
 
-        <TextView
-            android:id="@+id/already_use_"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:layout_marginTop="5dp"
-            android:padding="5dp"
-            android:text="@string/kyc_text_step4_state_1"
-            android:textColor="@color/white_greyish"
-            android:textSize="15sp" />
+    <TextView
+        android:id="@+id/already_use_"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginTop="5dp"
+        android:padding="5dp"
+        android:text="@string/kyc_text_step4_state_1"
+        android:textColor="@color/white_greyish"
+        android:textSize="15sp" />
 
         <EditText
             android:id="@+id/edtstate"
@@ -217,7 +280,7 @@
             android:padding="5dp"
             android:text="@string/kyc_text_step4_av_"
             android:textColor="@color/white_greyish"
-            android:textSize="16sp" />
+            android:textSize="15sp" />
 
 
         <EditText

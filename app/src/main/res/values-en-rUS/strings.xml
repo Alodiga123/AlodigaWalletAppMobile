@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Nuestra Vision</string>
+    <string name="app_name">Alodiga</string>
     <string name="action_reintent">Try again</string>
     <string name="action_settings">Sign off</string>
     <string name="action_settings_en">"English "</string>
@@ -408,4 +408,6 @@
     <string name="addresseeRem">Sender Data</string>
     <string name="datasender">"Shipping information "</string>
     <string name="Amount_to_deliver">"Amount to deliver "</string>
+    <string name="Name_lastName">Name and Surname</string>
+    <string name="Recipient_name_all">Enter the full name</string>
 </resources>
