@@ -43,192 +43,164 @@
         android:textSize="18sp"
         android:textStyle="bold" />
 
-
-    <TableLayout
-        android:id="@+id/txtTableLayout2"
-        android:layout_width="fill_parent"
+    <GridLayout
+        android:layout_width="330dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txtConfirmationPaymen"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp">
+        android:columnCount="2"
+        android:paddingRight="5dp">
 
 
+        <TextView
+            android:id="@+id/txtConcept"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:padding="2dip"
+            android:singleLine="true"
+            android:text="@string/destination_country"
+            android:textColor="@color/white_greyish"
+            android:textColorHint="@color/white_greyish"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/destination_country"
+            android:layout_width="176dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill_horizontal"
+            android:backgroundTint="@color/white_greyish"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
 
 
+        <TextView
+            android:id="@+id/txtAccountNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:padding="2dip"
+            android:singleLine="true"
+            android:text="@string/Correspondent"
+            android:textColor="@color/white_greyish"
+            android:textColorHint="@color/white_greyish"
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
-        <TableRow>
+        <Spinner
+            android:id="@+id/Correspondent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_gravity="fill_horizontal"
+            android:backgroundTint="@color/white_greyish"
+            android:inputType="phone"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
 
-            <TextView
-                android:id="@+id/txtConcept"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:padding="2dip"
-                android:singleLine="true"
-                android:text="@string/destination_country"
-                android:textColor="@color/white_greyish"
-                android:textColorHint="@color/white_greyish"
-                android:textSize="15sp"
-                android:textStyle="bold" />
 
-            <Spinner
-                android:id="@+id/destination_country"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/white_greyish"
-                android:layout_alignParentLeft="true"
-                android:singleLine="true"
-                android:textColor="@color/white"
-                android:textSize="15sp"
-                android:layout_gravity="fill_horizontal"
-                />
+        <TextView
+            android:id="@+id/txtAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:padding="2dip"
+            android:singleLine="true"
+            android:text="@string/delivery_method"
+            android:textColor="@color/white_greyish"
+            android:textColorHint="@color/white_greyish"
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
-        </TableRow>
+        <Spinner
+            android:id="@+id/delivery_method"
+            android:layout_height="match_parent"
+            android:layout_gravity="fill_horizontal"
+            android:backgroundTint="@color/white_greyish"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
 
-        <TableRow>
 
-            <TextView
-                android:id="@+id/txtAccountNumber"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:padding="2dip"
-                android:singleLine="true"
-                android:text="@string/Correspondent"
-                android:textColor="@color/white_greyish"
-                android:textColorHint="@color/white_greyish"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+        <TextView
+            android:id="@+id/txtPaymentReceiver3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="2dip"
+            android:paddingTop="5dp"
+            android:singleLine="true"
+            android:text="@string/reloadcard_source_"
+            android:textColor="@color/white_greyish"
+            android:textColorHint="@color/white_greyish"
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
-            <Spinner
-                android:id="@+id/Correspondent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/white_greyish"
-                android:layout_alignParentLeft="true"
-                android:inputType="phone"
-                android:singleLine="true"
-                android:textColor="@color/white"
-                android:textSize="15sp"
-                android:layout_gravity="fill_horizontal"
-               />
-        </TableRow>
+        <Spinner
+            android:id="@+id/reloadcard_source"
+            android:layout_width="176dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_gravity="fill_horizontal"
+            android:backgroundTint="@color/white_greyish"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="15sp" />
 
-        <TableRow>
 
-            <TextView
-                android:id="@+id/txtAmount"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:padding="2dip"
-                android:singleLine="true"
-                android:text="@string/delivery_method"
-                android:textColor="@color/white_greyish"
-                android:textColorHint="@color/white_greyish"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+        <TextView
+            android:id="@+id/txtIdentificationNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="2dip"
+            android:singleLine="true"
+            android:text="@string/rate_included"
+            android:textColor="@color/white_greyish"
+            android:textColorHint="@color/white_greyish"
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
-            <Spinner
-                android:id="@+id/delivery_method"
-                android:backgroundTint="@color/white_greyish"
-                android:singleLine="true"
-                android:textColor="@color/white"
-                android:textSize="15sp"
-                android:layout_gravity="fill_horizontal"
-                />
-        </TableRow>
-        <TableRow>
+        <Switch
+            android:id="@+id/rate_included"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:gravity="fill_horizontal"
+            android:minHeight="80dp"
+            android:showText="true"
+            android:switchMinWidth="65dp"
+            android:textColor="@color/white"
+            android:textColorHighlight="@color/white"
+            android:textOff="@string/no"
+            android:textOn="@string/yes"
+            android:thumb="@drawable/cuadrado"
+            android:thumbTextPadding="10dp"
+            android:thumbTint="@color/background_color"
+            android:track="@drawable/cuadrito"
+            android:trackTint="@color/white" />
 
-            <TextView
-                android:id="@+id/txtPaymentReceiver3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="2dip"
-                android:paddingTop="5dp"
-                android:singleLine="true"
-                android:text="@string/reloadcard_source_"
-                android:textColor="@color/white_greyish"
-                android:textColorHint="@color/white_greyish"
-                android:textSize="15sp"
-                android:textStyle="bold" />
 
-            <Spinner
-                android:id="@+id/reloadcard_source"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/white_greyish"
-                android:layout_alignParentLeft="true"
-                android:singleLine="true"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                android:textSize="15sp"
-                android:layout_gravity="fill_horizontal"
-                />
-        </TableRow>
+        <TextView
+            android:id="@+id/txtPaymentReceiver2"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:padding="2dip"
+            android:paddingTop="5dp"
+            android:singleLine="true"
+            android:text="@string/amount_to_send"
+            android:textColor="@color/white_greyish"
+            android:textColorHint="@color/white_greyish"
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
-        <TableRow>
+        <EditText
+            android:id="@+id/amount_"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill_horizontal"
+            android:layout_marginTop="5dp"
+            android:background="@android:color/transparent"
+            android:drawablePadding="8dp"
+            android:hint="@string/amount_"
+            android:inputType="numberDecimal"
+            android:padding="10dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="15sp" />
+    </GridLayout>
 
-            <TextView
-                android:id="@+id/txtIdentificationNumber"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="2dip"
-                android:singleLine="true"
-                android:text="@string/rate_included"
-                android:textColor="@color/white_greyish"
-                android:textColorHint="@color/white_greyish"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <Switch
-                android:id="@+id/rate_included"
-                android:layout_width="fill_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="left"
-                android:minHeight="80dp"
-                android:showText="true"
-                android:switchMinWidth="65dp"
-                android:textColor="@color/white"
-                android:textColorHighlight="@color/white"
-                android:textOff="@string/no"
-                android:textOn="@string/yes"
-                android:thumb="@drawable/cuadrado"
-                android:thumbTextPadding="10dp"
-                android:thumbTint="@color/background_color"
-                android:track="@drawable/cuadrito"
-                android:trackTint="@color/white"
-                android:gravity="fill_horizontal"/>
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:id="@+id/txtPaymentReceiver2"
-                android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:padding="2dip"
-                android:paddingTop="5dp"
-                android:singleLine="true"
-                android:text="@string/amount_to_send"
-                android:textColor="@color/white_greyish"
-                android:textColorHint="@color/white_greyish"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/amount_"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:background="@android:color/transparent"
-                android:drawablePadding="8dp"
-                android:layout_gravity="left"
-                android:hint="@string/amount_"
-                android:inputType="numberDecimal"
-                android:maxLength="4"
-                android:padding="10dp"
-                android:singleLine="true"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                android:textSize="15sp" />
-        </TableRow>
-
-    </TableLayout>
 
 
     <Button

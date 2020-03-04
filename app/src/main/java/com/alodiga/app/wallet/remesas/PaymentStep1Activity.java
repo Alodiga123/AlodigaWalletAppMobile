@@ -322,7 +322,7 @@ public class PaymentStep1Activity extends AppCompatActivity {
             }
         });
 
-        /*//Seteo de decimales al campo de monto
+        //Seteo de decimales al campo de monto
         amount.addTextChangedListener(new TextWatcher() {
             public void afterTextChanged(Editable s) {
             }
@@ -351,7 +351,7 @@ public class PaymentStep1Activity extends AppCompatActivity {
                 }
 
             }
-        });*/
+        });
 
         quote.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
