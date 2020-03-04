@@ -240,7 +240,7 @@ public class TransferenceCardToCardStep2QrActivity extends AppCompatActivity imp
             if (success) {
                 //llama activities
                 //llama activities
-                selectedMoney = Session.getMoneySelected().getId();
+                //selectedMoney = Session.getMoneySelected().getId();
                 Session.setDestinationAccountNumber(destinationAccountNumber);
                 Session.setDestinationLastNameValue(destinationLastNameValue);
                 Session.setDestinationPhoneValue(destinationPhoneValue);

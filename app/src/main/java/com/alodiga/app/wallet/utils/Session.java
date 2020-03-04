@@ -3,7 +3,10 @@ package com.alodiga.app.wallet.utils;
 import android.graphics.Bitmap;
 import android.se.omapi.SEService;
 
+import com.alodiga.app.wallet.model.ObjDireccion;
 import com.alodiga.app.wallet.model.ObjExchange;
+import com.alodiga.app.wallet.model.ObjRemittencePay;
+import com.alodiga.app.wallet.model.ObjResumeRemittence;
 import com.alodiga.app.wallet.model.ObjTopUpInfos;
 import com.alodiga.app.wallet.model.ObjUserHasProduct;
 import com.alodiga.app.wallet.model.ObjtopUpInfos_IsOpenRange;
@@ -68,6 +71,33 @@ public class Session {
     private static String tranferenceCardToCardDest;
     private static String tranferenceCardToCardEncripDest;
     private static String symbolCompanionCards;
+    private static ObjRemittencePay pay;
+    private static ObjDireccion direccionUsuario;
+    private static ObjResumeRemittence ObjResumeRemittence;
+
+    public static com.alodiga.app.wallet.model.ObjResumeRemittence getObjResumeRemittence() {
+        return ObjResumeRemittence;
+    }
+
+    public static void setObjResumeRemittence(com.alodiga.app.wallet.model.ObjResumeRemittence objResumeRemittence) {
+        ObjResumeRemittence = objResumeRemittence;
+    }
+
+    public static ObjDireccion getDireccionUsuario() {
+        return direccionUsuario;
+    }
+
+    public static void setDireccionUsuario(ObjDireccion direccionUsuario) {
+        Session.direccionUsuario = direccionUsuario;
+    }
+
+    public static ObjRemittencePay getPay() {
+        return pay;
+    }
+
+    public static void setPay(ObjRemittencePay pay) {
+        Session.pay = pay;
+    }
 
     public static String getSymbolCompanionCards() {
         return symbolCompanionCards;

@@ -33,6 +33,7 @@ import androidx.fragment.app.FragmentManager;
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.forgotPassword.ForgotPasswordStep1Fragment;
 import com.alodiga.app.wallet.main.MainActivity;
+import com.alodiga.app.wallet.model.ObjDireccion;
 import com.alodiga.app.wallet.model.ObjUserHasProduct;
 import com.alodiga.app.wallet.register.RegisterStep1Fragment;
 import com.alodiga.app.wallet.securityQuestion.SecurityQuestionStep1Fragment;
@@ -156,28 +157,31 @@ public class LoginFragment extends Fragment implements OnClickListener {
             signUp.setTextColor(csl);
         } catch (Exception e) {
         }
-		/*emailid.setText("antonioarcangelgomez@gmail.com");
+
+        /*emailid.setText("antonioarcangelgomez@gmail.com");
 		password.setText("Kg0m3z$11");*/
 		/*emailid.setText("kerwin2821@gmail.com");
 		password.setText("Kg0m3z$11");*/
         //emailid.setText("adira0411@gmail.com");
+
         //password.setText("123456");
         //password.setText("Alo$1234");
 
-     //   emailid.setText("jcalderaso@gmail.com");
-     //   password.setText("Alo#1234");
+        //emailid.setText("jcalderaso@gmail.com");
+        //password.setText("Alo#1234");
 
-        //emailid.setText("moisegrat12@gmail.com ");
-        //password.setText("Alodi12-");
+        emailid.setText("moisegrat12@gmail.com ");
+        password.setText("Alodi12-");
 
-        emailid.setText("kerwin2821@gmail.com");
-        password.setText("Alo#1234");
+        //emailid.setText("kerwin2821@gmail.com");
+        //password.setText("Alo#1234");
 
         //emailid.setText("gomezvadriana@gmail.com");
         //password.setText("Alo#1234");
 
         //emailid.setText("dalonso@alodiga.com");
         //password.setText("Alo#1234");
+
         //emailid.setText("elmoi_88@hotmail.com");
         //password.setText("Alo$1234");
 
@@ -365,6 +369,7 @@ public class LoginFragment extends Fragment implements OnClickListener {
 
                 if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO) || responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_PRIMER_INGRESO)) {
                     String res = response.getProperty("datosRespuesta").toString();
+                    SoapObject res_ = (SoapObject) response.getProperty("datosRespuesta");
                     nameSession = getValueFromResponseJson("nombre", res) + " " + getValueFromResponseJson("apellido", res);
                     phoneNumberSession = getValueFromResponseJson("movil", res);
                     emailSession = getValueFromResponseJson("email", res);
@@ -373,6 +378,16 @@ public class LoginFragment extends Fragment implements OnClickListener {
                     alocoinsBalanceSesssion = getValueFromResponseJson("saldoAlocoins", res);
                     healthCareCoinsBalanceSession = getValueFromResponseJson("saldoHealthCareCoins", res);
                     userId = getValueFromResponseJson("UsuarioID", res);
+                    String direccion = res_.getProperty("direccion").toString();
+                    ObjDireccion direccion_ = new ObjDireccion(getValueFromResponseJson("ciudadId", direccion),
+                            getValueFromResponseJson("codigoPostal", direccion),
+                            getValueFromResponseJson("condadoId", direccion),
+                            getValueFromResponseJson("direccion", direccion),
+                            getValueFromResponseJson("direccionId", direccion),
+                            getValueFromResponseJson("estadoId", direccion),
+                            getValueFromResponseJson("paisId", direccion));
+                    Session.setDireccionUsuario(direccion_);
+
 
 
                     if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_PRIMER_INGRESO)){

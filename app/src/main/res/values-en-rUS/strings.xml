@@ -394,7 +394,7 @@
     <string name="quote">QUOTE</string>
     <string name="exchange_rate">Exchange rate</string>
     <string name="shipping_rate">"Shipping Rate "</string>
-    <string name="actual_amount_to_send">"Actual amount to send "</string>
+    <string name="actual_amount_to_send">Actual amount to receive</string>
     <string name="Actual_amount_to_pay">Actual amount to pay</string>
     <string name="total_to_pay">"Total to pay "</string>
     <string name="Rates_and_Payment_Points">"Rates and Payment Points "</string>
@@ -410,4 +410,6 @@
     <string name="Amount_to_deliver">"Amount to deliver "</string>
     <string name="Name_lastName">Name and Surname</string>
     <string name="Recipient_name_all">Enter the full name</string>
+    <string name="menu_remesas_status">"Consult Remittances "</string>
+    <string name="menu_request_remittances">"Request Remittances "</string>
 </resources>

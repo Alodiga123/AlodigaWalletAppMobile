@@ -201,6 +201,12 @@ public class Constants {
     public static final String WEB_SERVICES_METHOD_LIST_COMPANION_CARDS = "getCardsListByUserId";
     public static final String WEB_SERVICES_METHOD_LOGIN = "loginWS";
     public static final String WEB_SERVICES_METHOD_COUNTRIES = "getCountries";
+    public static final String WEB_SERVICES_METHOD_PAYMENTBYCONTRY = "getPaymentNetworkByCountryId";
+    public static final String WEB_SERVICES_METHOD_REMETTENCE_SUMARY = "getRemettenceSummary";
+    public static final String WEB_SERVICES_METHOD_GETPRODUCTSREMETTENCEBYUSER = "getProductsRemettenceByUserId";
+    public static final String WEB_SERVICES_METHOD_LOADDELIVERYFORMBYPAYMENTNETWORK= "getDeliveryFormByPamentNetwork";
+
+
 
 
 
@@ -259,6 +265,16 @@ public class Constants {
     public static final String CONSTANT_URL_QA_ALODIGA_WALLET = "http://" + IPDAT + ":8080/AlodigaWallet/APIAlodigaWalletService";
 
     public static final String CONSTANT_URL_REMITTENCE = "http://" + IPDAT + ":8080/WSRemittenceService/WSRemittence";
+    public static final String CONSTANT_URL_REMITTENCE_PAYMENT_NETWORK = "http://" + IPDAT + ":8080/WSPaymentNetworkMethodService/WSPaymentNetworkMethod";
+    public static final String CONSTANT_URL_REMITTENCE_MOBILE = "http://" + IPDAT + ":8080/WSRemittenceMobileService/WSRemittenceMobile";
+
+
+    public static final String CONSTANT_WSREMITTENCE= "WSRemittence";
+    public static final String CONSTANT_WSPAYMENTNETWORK= "WSPaymentNetworkMethod";
+    public static final String CONSTANT_WSREMITTENCESERVICES= "WSRemittenceServices";
+    public static final String CONSTANT_WSREMITTENCEMOBILE= "WSRemittenceMobile";
+
+
 
 
     public static final String MD5 ="MD5";

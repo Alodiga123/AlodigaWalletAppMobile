@@ -24,16 +24,28 @@
             android:id="@+id/nav_transfer"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_transfer" />
-        <item
-            android:id="@+id/nav_remesas"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_remesas" />
+
         <item
             android:id="@+id/nav_topup"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_recharge_n_i" />
 
     </group>
+
+    <item android:title="@string/menu_remesas" android:id="@+id/remittence">
+        <menu>
+
+            <item
+                android:id="@+id/nav_remesas"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="@string/menu_request_remittances" />/>
+            <item
+                android:id="@+id/nav_remesas_status"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="@string/menu_remesas_status" />
+
+        </menu>
+    </item>
 
     <item android:title="@string/Prepaid_card" android:id="@+id/cardItems">
         <menu>

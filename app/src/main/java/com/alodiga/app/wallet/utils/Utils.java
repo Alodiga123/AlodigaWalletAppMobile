@@ -178,6 +178,23 @@ public class Utils {
     }
 
 
+    public static String getUrl_uri(String namespace, String uri) {
+
+        if (Constants.ALODIGA == namespace)
+            return Constants.CONSTANT_IS_PRODUCTION ? Constants.CONSTANT_URL_PROD : Constants.CONSTANT_URL_QA_ALODIGA;
+        else if (Constants.REGISTRO_UNIFICADO == namespace)
+            return Constants.CONSTANT_IS_PRODUCTION ? Constants.CONSTANT_URL_PROD : Constants.CONSTANT_URL_QA_REGISTRO_UNIFICADO;
+        else if (Constants.REMITTANCE == namespace){
+            if(Constants.CONSTANT_WSREMITTENCE==uri){
+                return Constants.CONSTANT_IS_PRODUCTION ? Constants.CONSTANT_URL_PROD : Constants.CONSTANT_URL_REMITTENCE;
+            }else if(Constants.CONSTANT_WSREMITTENCEMOBILE==uri){
+                return Constants.CONSTANT_IS_PRODUCTION ? Constants.CONSTANT_URL_PROD : Constants.CONSTANT_URL_REMITTENCE_MOBILE;
+            }
+        }
+
+        return null;
+    }
+
     public static String processPetition(SoapObject request, String url) throws Exception {
         String soapAction = " ";
         final String value;

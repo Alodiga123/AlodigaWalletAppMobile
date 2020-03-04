@@ -25,6 +25,8 @@
     <string name="menu_transfer">Transferir</string>
     <string name="menu_recharge_n_i">TopUp</string>
     <string name="menu_remesas">Remesas</string>
+    <string name="menu_request_remittances">Solicitar Remesas</string>
+    <string name="menu_remesas_status">Consultar Remesas</string>
     <string name="afiliation">Afiliar</string>
     <string name="menu_send">Cerrar sesión</string>
     <string name="email">Introduce E-mail</string>
@@ -386,7 +388,7 @@
     <string name="quote_">COTIZAR NUEVAMENTE</string>
     <string name="exchange_rate">Tasa de cambio</string>
     <string name="shipping_rate">Tarifa de envio</string>
-    <string name="actual_amount_to_send">Monto real a enviar</string>
+    <string name="actual_amount_to_send">Monto real a recibir</string>
     <string name="Actual_amount_to_pay">Monto real a pagar</string>
     <string name="total_to_pay">Total a pagar</string>
     <string name="Rates_and_Payment_Points">Tarifas y Puntos de Pago</string>

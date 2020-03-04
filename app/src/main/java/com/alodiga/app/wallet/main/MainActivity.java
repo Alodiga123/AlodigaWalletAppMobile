@@ -32,6 +32,7 @@ import com.alodiga.app.wallet.QR.CreateQRCodeActivity;
 import com.alodiga.app.wallet.activeCard.ActiveCardActivity;
 import com.alodiga.app.wallet.adapters.AdapterMoneyProduct;
 import com.alodiga.app.wallet.exchange.ExchangeStep1Activity;
+import com.alodiga.app.wallet.listRemittence.ListRemittenceActivity;
 import com.alodiga.app.wallet.listTransactionExecuted.ListTransactionExecutedActivity;
 import com.alodiga.app.wallet.login.LoginActivity;
 import com.alodiga.app.wallet.manualRecharge.ManualRechargeStep1Activity;
@@ -270,7 +271,8 @@ public class MainActivity extends AppCompatActivity
        if (id == R.id.nav_recharge || id == R.id.nav_Withdrawal || id == R.id.nav_transfer
                || id == R.id.nav_last_activity || id == R.id.nav_pay_qr
                || id == R.id.nav_topup || id == R.id.nav_convert || id == R.id.nav_active_card
-               || id == R.id.nav_remesas/*|| id == R.id.nav_reload_Card*/){
+               || id == R.id.nav_remesas
+               || id == R.id.nav_remesas_status/*|| id == R.id.nav_reload_Card*/){
            Intent show;
            switch(Session.getCumplimient()) {
                case "1":
@@ -314,6 +316,10 @@ public class MainActivity extends AppCompatActivity
 
                    }else if (id == R.id.nav_remesas) {
                        show = new Intent(MainActivity.this, PaymentStep1Activity.class);
+                       startActivity(show);
+
+                   }else if (id == R.id.nav_remesas_status) {
+                       show = new Intent(MainActivity.this, ListRemittenceActivity.class);
                        startActivity(show);
 
                    }/*else if (id == R.id.nav_reload_Card) {
