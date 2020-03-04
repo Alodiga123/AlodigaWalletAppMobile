@@ -415,40 +415,27 @@ public class PaymentStep1Activity extends AppCompatActivity {
             responsetxt = getString(R.string.web_services_response_00);
             serviceStatus = true;
             //return serviceStatus;
-        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_DATOS_INVALIDOS)) {
-            responsetxt = getString(R.string.web_services_response_01);
+
+        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_AUTHENTICATION_FAILED)) {
+            responsetxt = getString(R.string.web_services_response_01_Remittence);
             serviceStatus = false;
-        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CONTRASENIA_EXPIRADA)) {
-            responsetxt = getString(R.string.web_services_response_03);
+        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_MISSING_PARAMETERS)) {
+            responsetxt = getString(R.string.web_services_response_02_Remittence);
             serviceStatus = false;
-        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_IP_NO_CONFIANZA)) {
-            responsetxt = getString(R.string.web_services_response_04);
+        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_DISABLED_ACCOUNT)) {
+            responsetxt = getString(R.string.web_services_response_03_Remittence);
             serviceStatus = false;
-        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CREDENCIALES_INVALIDAS)) {
-            responsetxt = getString(R.string.web_services_response_05);
+        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_RECORDS_NOT_FOUND)) {
+            responsetxt = getString(R.string.web_services_response_28_Remittence);
             serviceStatus = false;
-        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_BLOQUEADO)) {
-            responsetxt = getString(R.string.web_services_response_06);
+        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_TOKEN_NOT_FOUND)) {
+            responsetxt = getString(R.string.web_services_response_50_Remittence);
             serviceStatus = false;
-        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_NUMERO_TELEFONO_YA_EXISTE)) {
-            responsetxt = getString(R.string.web_services_response_08);
+
+        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_GENERAL_ERROR) || responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_INTERNO)) {
+            responsetxt = getString(R.string.web_services_response_99);
             serviceStatus = false;
-        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_PRIMER_INGRESO)) {
-            responsetxt = getString(R.string.web_services_response_12);
-            serviceStatus = false;
-        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_SOSPECHOSO)) {
-            responsetxt = getString(R.string.web_services_response_95);
-            serviceStatus = false;
-        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_PENDIENTE)) {
-            responsetxt = getString(R.string.web_services_response_96);
-            serviceStatus = false;
-        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_NO_EXISTE)) {
-            responsetxt = getString(R.string.web_services_response_97);
-            serviceStatus = false;
-        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_CREDENCIALES)) {
-            responsetxt = getString(R.string.web_services_response_98);
-            serviceStatus = false;
-        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_INTERNO)) {
+        } else {
             responsetxt = getString(R.string.web_services_response_99);
             serviceStatus = false;
         }
@@ -506,58 +493,27 @@ public class PaymentStep1Activity extends AppCompatActivity {
 
 
                 if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO_) || responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
-
                     responsetxt = getString(R.string.web_services_response_00);
                     serviceStatus = true;
                     return serviceStatus;
 
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_DATOS_INVALIDOS)) {
-                    responsetxt = getString(R.string.web_services_response_01);
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_AUTHENTICATION_FAILED)) {
+                    responsetxt = getString(R.string.web_services_response_01_Remittence);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_MISSING_PARAMETERS)) {
+                    responsetxt = getString(R.string.web_services_response_02_Remittence);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_DISABLED_ACCOUNT)) {
+                    responsetxt = getString(R.string.web_services_response_03_Remittence);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_RECORDS_NOT_FOUND)) {
+                    responsetxt = getString(R.string.web_services_response_28_Remittence);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_TOKEN_NOT_FOUND)) {
+                    responsetxt = getString(R.string.web_services_response_50_Remittence);
                     serviceStatus = false;
 
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CONTRASENIA_EXPIRADA)) {
-                    responsetxt = getString(R.string.web_services_response_03);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_IP_NO_CONFIANZA)) {
-                    responsetxt = getString(R.string.web_services_response_04);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CREDENCIALES_INVALIDAS)) {
-                    responsetxt = getString(R.string.web_services_response_05);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_BLOQUEADO)) {
-                    responsetxt = getString(R.string.web_services_response_06);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_NUMERO_TELEFONO_YA_EXISTE)) {
-                    responsetxt = getString(R.string.web_services_response_08);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_PRIMER_INGRESO)) {
-                    responsetxt = getString(R.string.web_services_response_12);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_TRANSACTION_AMOUNT_LIMIT)) {
-                    responsetxt = getString(R.string.web_services_response_30);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_TRANSACTION_MAX_NUMBER_BY_ACCOUNT)) {
-                    responsetxt = getString(R.string.web_services_response_31);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_TRANSACTION_MAX_NUMBER_BY_CUSTOMER)) {
-                    responsetxt = getString(R.string.web_services_response_32);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USER_HAS_NOT_BALANCE)) {
-                    responsetxt = getString(R.string.web_services_response_33);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_SOSPECHOSO)) {
-                    responsetxt = getString(R.string.web_services_response_95);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_PENDIENTE)) {
-                    responsetxt = getString(R.string.web_services_response_96);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_NO_EXISTE)) {
-                    responsetxt = getString(R.string.web_services_response_97);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_CREDENCIALES)) {
-                    responsetxt = getString(R.string.web_services_response_98);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_INTERNO)) {
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_GENERAL_ERROR) || responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_INTERNO)) {
                     responsetxt = getString(R.string.web_services_response_99);
                     serviceStatus = false;
                 } else {
@@ -650,58 +606,27 @@ public class PaymentStep1Activity extends AppCompatActivity {
 
 
                 if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO_) || responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
-
                     responsetxt = getString(R.string.web_services_response_00);
                     serviceStatus = true;
                     return serviceStatus;
 
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_DATOS_INVALIDOS)) {
-                    responsetxt = getString(R.string.web_services_response_01);
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_AUTHENTICATION_FAILED)) {
+                    responsetxt = getString(R.string.web_services_response_01_Remittence);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_MISSING_PARAMETERS)) {
+                    responsetxt = getString(R.string.web_services_response_02_Remittence);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_DISABLED_ACCOUNT)) {
+                    responsetxt = getString(R.string.web_services_response_03_Remittence);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_RECORDS_NOT_FOUND)) {
+                    responsetxt = getString(R.string.web_services_response_28_Remittence);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_TOKEN_NOT_FOUND)) {
+                    responsetxt = getString(R.string.web_services_response_50_Remittence);
                     serviceStatus = false;
 
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CONTRASENIA_EXPIRADA)) {
-                    responsetxt = getString(R.string.web_services_response_03);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_IP_NO_CONFIANZA)) {
-                    responsetxt = getString(R.string.web_services_response_04);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CREDENCIALES_INVALIDAS)) {
-                    responsetxt = getString(R.string.web_services_response_05);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_BLOQUEADO)) {
-                    responsetxt = getString(R.string.web_services_response_06);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_NUMERO_TELEFONO_YA_EXISTE)) {
-                    responsetxt = getString(R.string.web_services_response_08);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_PRIMER_INGRESO)) {
-                    responsetxt = getString(R.string.web_services_response_12);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_TRANSACTION_AMOUNT_LIMIT)) {
-                    responsetxt = getString(R.string.web_services_response_30);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_TRANSACTION_MAX_NUMBER_BY_ACCOUNT)) {
-                    responsetxt = getString(R.string.web_services_response_31);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_TRANSACTION_MAX_NUMBER_BY_CUSTOMER)) {
-                    responsetxt = getString(R.string.web_services_response_32);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USER_HAS_NOT_BALANCE)) {
-                    responsetxt = getString(R.string.web_services_response_33);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_SOSPECHOSO)) {
-                    responsetxt = getString(R.string.web_services_response_95);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_PENDIENTE)) {
-                    responsetxt = getString(R.string.web_services_response_96);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_NO_EXISTE)) {
-                    responsetxt = getString(R.string.web_services_response_97);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_CREDENCIALES)) {
-                    responsetxt = getString(R.string.web_services_response_98);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_INTERNO)) {
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_GENERAL_ERROR) || responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_INTERNO)) {
                     responsetxt = getString(R.string.web_services_response_99);
                     serviceStatus = false;
                 } else {

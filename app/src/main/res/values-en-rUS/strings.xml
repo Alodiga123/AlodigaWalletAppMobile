@@ -412,4 +412,9 @@
     <string name="Recipient_name_all">Enter the full name</string>
     <string name="menu_remesas_status">"Consult Remittances "</string>
     <string name="menu_request_remittances">"Request Remittances "</string>
+    <string name="web_services_response_01_Remittence">Authentication failed</string>
+    <string name="web_services_response_03_Remittence">Disabled account</string>
+    <string name="web_services_response_50_Remittence">Token not found</string>
+    <string name="web_services_response_28_Remittence">Records not found</string>
+    <string name="web_services_response_02_Remittence">Missing parameters</string>
 </resources>

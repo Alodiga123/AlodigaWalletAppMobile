@@ -242,7 +242,10 @@
 
 
     <string name="web_services_response_01">Datos invalidos</string>
+    <string name="web_services_response_01_Remittence">Autenticación fallida</string>
+    <string name="web_services_response_02_Remittence">Parámetros faltantes</string>
     <string name="web_services_response_03">Contraseña expirada</string>
+    <string name="web_services_response_03_Remittence">Cuenta Inactiva</string>
     <string name="web_services_response_04">La IP no es de confianza</string>
     <string name="web_services_response_05">Las credenciales son inválidas</string>
     <string name="web_services_response_06">Usuario bloqueado</string>
@@ -262,6 +265,7 @@
     <string name="web_services_response_22">Usuario no tiene teléfono</string>
     <string name="web_services_response_24">Usuario no tiene movimientos asociados</string>
     <string name="web_services_response_28">Tarjeta destino no encontrada</string>
+    <string name="web_services_response_28_Remittence">Registros no encontrados</string>
     <string name="web_services_response_29">No tiene tarjetas asociadas</string>
     <string name="web_services_response_30">Ha excedido el monto maximo</string>
     <string name="web_services_response_30_">No tiene tarjetas compañeras asociadas</string>
@@ -269,6 +273,7 @@
     <string name="web_services_response_32">Ha excedido el numero maximo de transacciones por dia</string>
     <string name="web_services_response_33">Saldo insuficiente para completar la transaccion</string>
     <string name="web_services_response_50">Tarjeta ya se encuentra activa</string>
+    <string name="web_services_response_50_Remittence">Token no encontrado</string>
     <string name="web_services_response_51">No se puede realizar la activación/desactivación de su tarjeta</string>
     <string name="web_services_response_54">Servicio no disponible</string>
     <string name="web_services_response_58">Tarjeta invalida</string>

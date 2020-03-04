@@ -157,6 +157,18 @@ public class Constants {
     public static final String WEB_SERVICES_RESPONSE_CODE_ERROR_VALIDATING_THE_ITEM = "141";
     public static final String WEB_SERVICES_RESPONSE_CODE_INVALID_AMOUNT = "142";
 
+    //resumen remesas
+    public static final String WEB_SERVICES_RESPONSE_CODE_AUTHENTICATION_FAILED = "1";
+    public static final String WEB_SERVICES_RESPONSE_CODE_MISSING_PARAMETERS = "2";
+    public static final String WEB_SERVICES_RESPONSE_CODE_DISABLED_ACCOUNT = "3";
+    public static final String WEB_SERVICES_RESPONSE_CODE_TOKEN_NOT_FOUND ="50";
+    public static final String WEB_SERVICES_RESPONSE_CODE_RECORDS_NOT_FOUND = "28";
+    public static final String WEB_SERVICES_RESPONSE_CODE_GENERAL_ERROR = "999";
+
+
+
+
+
 
 
 
