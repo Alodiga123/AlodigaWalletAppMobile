@@ -2,7 +2,7 @@ package com.alodiga.app.wallet.model;
 
 public class ObjRemittencePay {
 
-    private String reloadcard_source;
+    private ObjTransferMoney reloadcard_source;
     private boolean rate_included;
     private ObjGenericObject destination_country;
     private ObjGenericObject Correspondent;
@@ -18,7 +18,7 @@ public class ObjRemittencePay {
     public ObjRemittencePay() {
     }
 
-    public ObjRemittencePay(String reloadcard_source, boolean rate_included, ObjGenericObject destination_country, ObjGenericObject correspondent, ObjGenericObject delivery_method, String amount_, String exchange_rate, String shipping_rate, String actual_amount_to_send, String actual_amount_to_pay, String total_to_pay) {
+    public ObjRemittencePay(ObjTransferMoney reloadcard_source, boolean rate_included, ObjGenericObject destination_country, ObjGenericObject correspondent, ObjGenericObject delivery_method, String amount_, String exchange_rate, String shipping_rate, String actual_amount_to_send, String actual_amount_to_pay, String total_to_pay) {
         this.reloadcard_source = reloadcard_source;
         this.rate_included = rate_included;
         this.destination_country = destination_country;
@@ -32,11 +32,11 @@ public class ObjRemittencePay {
         this.total_to_pay = total_to_pay;
     }
 
-    public String getReloadcard_source() {
+    public ObjTransferMoney getReloadcard_source() {
         return reloadcard_source;
     }
 
-    public void setReloadcard_source(String reloadcard_source) {
+    public void setReloadcard_source(ObjTransferMoney reloadcard_source) {
         this.reloadcard_source = reloadcard_source;
     }
 

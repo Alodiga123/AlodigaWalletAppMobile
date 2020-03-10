@@ -217,6 +217,10 @@ public class Constants {
     public static final String WEB_SERVICES_METHOD_REMETTENCE_SUMARY = "getRemettenceSummary";
     public static final String WEB_SERVICES_METHOD_GETPRODUCTSREMETTENCEBYUSER = "getProductsRemettenceByUserId";
     public static final String WEB_SERVICES_METHOD_LOADDELIVERYFORMBYPAYMENTNETWORK= "getDeliveryFormByPamentNetwork";
+    public static final String WEB_SERVICES_METHOD_GETSTATESBYCOUNTRY= "getStatesByCountry";
+    public static final String WEB_SERVICES_METHOD_GETCITIESBYSTATE= "getCitiesByState";
+
+
 
 
 
@@ -318,6 +322,8 @@ public class Constants {
     public final static String TOPUP_PRODUCT_ID = "7";
     public final static String ACTIVE_STATUS_ACTIVE = "01";
     public final static String ACTIVE_STATUS_DEACTIVE = "24";
+    public final static String REMITTENCE_ID = "0";
+
 
 
     public final static String USUARIO = "alodiga";

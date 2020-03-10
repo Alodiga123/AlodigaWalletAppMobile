@@ -38,9 +38,9 @@ public class ExchangeStep2Activity extends AppCompatActivity {
         txtincludeM.setText((Session.getExchange().getExange_includedAmount()=="1")?getString(R.string.yes):getString(R.string.no));
         rateSource.setText(Session.getExchange().getExange_productSource().getName().split("-")[0]);
         txtDestino.setText(Session.getExchange().getExange_amountConversion()+" "+Session.getExchange().getExange_productDestination().getSymbol());
-        txtrateSource.setText(Session.getExchange().getExange_exchangeRateProductSource()+" "+getString(R.string.percentage));
+        txtrateSource.setText(Session.getExchange().getExange_exchangeRateProductSource());
         rateDestination.setText(Session.getExchange().getExange_productDestination().getName().split("-")[0]);
-        txtrateDestination.setText(Session.getExchange().getExange_exchangeRateProductDestination() +" "+getString(R.string.percentage));
+        txtrateDestination.setText(Session.getExchange().getExange_exchangeRateProductDestination());
         txtAmount_ini.setText(Session.getExchange().getAmountExchange().trim()+" "+Session.getExchange().getExange_productSource().getSymbol());
 
         next.setOnClickListener(new View.OnClickListener() {

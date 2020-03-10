@@ -372,9 +372,18 @@ public class PaymentStep1Activity extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent pasIntent = getIntent();
-                Intent i = new Intent(PaymentStep1Activity.this, PaymentStep2Activity.class);
-                startActivity(i);
-                finish();
+                Session.setPay(pay);
+
+                if(Session.getRemettencesDireccionId().equals(Constants.REMITTENCE_ID)){
+                    Intent i = new Intent(PaymentStep1Activity.this, PaymentStep2Activity.class);
+                    startActivity(i);
+                    finish();
+                }else{
+                    Intent i = new Intent(PaymentStep1Activity.this, PaymentStep3Activity.class);
+                    startActivity(i);
+                    finish();
+                }
+
             }
         });
 
@@ -584,6 +593,7 @@ public class PaymentStep1Activity extends AppCompatActivity {
             pay.setCorrespondent((ObjGenericObject) Correspondent.getSelectedItem());
             pay.setDelivery_method((ObjGenericObject) delivery_method.getSelectedItem());
             pay.setAmount_(amount.getText().toString());
+            pay.setReloadcard_source((ObjTransferMoney) reloadcard_source.getSelectedItem());
 
 
             try {
@@ -769,6 +779,8 @@ public class PaymentStep1Activity extends AppCompatActivity {
                 quote.setText(R.string.quote_);
                 txtTableLayout.setVisibility(View.VISIBLE);
                 next.setVisibility(View.VISIBLE);
+
+                Session.setPay(pay);
 
             } else {
                 new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),

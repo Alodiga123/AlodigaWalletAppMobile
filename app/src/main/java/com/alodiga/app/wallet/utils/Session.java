@@ -1,11 +1,11 @@
 package com.alodiga.app.wallet.utils;
 
 import android.graphics.Bitmap;
-import android.se.omapi.SEService;
 
 import com.alodiga.app.wallet.model.ObjDireccion;
 import com.alodiga.app.wallet.model.ObjExchange;
 import com.alodiga.app.wallet.model.ObjRemittencePay;
+import com.alodiga.app.wallet.model.ObjRemittencePerson;
 import com.alodiga.app.wallet.model.ObjResumeRemittence;
 import com.alodiga.app.wallet.model.ObjTopUpInfos;
 import com.alodiga.app.wallet.model.ObjUserHasProduct;
@@ -19,6 +19,8 @@ public class Session {
     private static String userId = "";
 
     private static String username = "";
+    private static String name = "";
+    private static String lastname = "";
     private static String email = "";
     private static String phoneNumber = "";
     private static String country = "";
@@ -74,6 +76,49 @@ public class Session {
     private static ObjRemittencePay pay;
     private static ObjDireccion direccionUsuario;
     private static ObjResumeRemittence ObjResumeRemittence;
+    private static String remettencesDireccionId;
+    private static ObjRemittencePerson remittenceDestinatario;
+    private static ObjRemittencePerson remittenceRemitente;
+
+    public static String getName() {
+        return name;
+    }
+
+    public static void setName(String name) {
+        Session.name = name;
+    }
+
+    public static String getLastname() {
+        return lastname;
+    }
+
+    public static void setLastname(String lastname) {
+        Session.lastname = lastname;
+    }
+
+    public static ObjRemittencePerson getRemittenceDestinatario() {
+        return remittenceDestinatario;
+    }
+
+    public static void setRemittenceDestinatario(ObjRemittencePerson remittenceDestinatario) {
+        Session.remittenceDestinatario = remittenceDestinatario;
+    }
+
+    public static ObjRemittencePerson getRemittenceRemitente() {
+        return remittenceRemitente;
+    }
+
+    public static void setRemittenceRemitente(ObjRemittencePerson remittenceRemitente) {
+        Session.remittenceRemitente = remittenceRemitente;
+    }
+
+    public static String getRemettencesDireccionId() {
+        return remettencesDireccionId;
+    }
+
+    public static void setRemettencesDireccionId(String remettencesDireccionId) {
+        Session.remettencesDireccionId = remettencesDireccionId;
+    }
 
     public static com.alodiga.app.wallet.model.ObjResumeRemittence getObjResumeRemittence() {
         return ObjResumeRemittence;

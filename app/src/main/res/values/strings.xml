@@ -168,6 +168,9 @@
     <string name="security_question_info">Por favor ingrese las preguntas de seguridad</string>
     <string name="invalid_all_question">Todos los campos son requeridos</string>
     <string name="bank_info">Seleccione el banco:</string>
+    <string name="estado_info">Seleccione el estado:</string>
+    <string name="ciudad_info">Seleccione la ciudad:</string>
+
     <string name="pais_info">Seleccione el pais:</string>
     <string name="producto_info">Seleccione el producto a recargar:</string>
     <string name="exchange_product_sourse">Seleccione el producto origen:</string>
@@ -403,6 +406,7 @@
     <string name="addresseeRem">Datos del Remitente</string>
     <string name="datasender">Datos del Envio</string>
     <string name="Recipient_address">Dirección del Destinatario</string>
+    <string name="Rem_address">Dirección del Remitente</string>
     <string name="Recipient_name">Introduzca el nombre</string>
     <string name="Recipient_name_all">Introduzca el nombre completo</string>
     <string name="Recipient_lastname">Introduzca el Apellido</string>

@@ -328,7 +328,7 @@
     <string name="web_services_response_58">"Invalid card "</string>
     <string name="pin_">Token</string>
     <string name="kyc_text_step4_dir">Enter your address</string>
-    <string name="kyc_text_step4_state_1">"Enter the status: "</string>
+    <string name="kyc_text_step4_state_1">"Enter the state: "</string>
     <string name="transferenceCardToCard_title">CARD TO CARD TRANSFER</string>
     <string name="destinationCard_source">"Origin Card:"</string>
     <string name="destination_amount">Amount</string>
@@ -417,4 +417,7 @@
     <string name="web_services_response_50_Remittence">Token not found</string>
     <string name="web_services_response_28_Remittence">Records not found</string>
     <string name="web_services_response_02_Remittence">Missing parameters</string>
+    <string name="Rem_address">Return address</string>
+    <string name="estado_info">Select the state:</string>
+    <string name="ciudad_info">Select city:</string>
 </resources>

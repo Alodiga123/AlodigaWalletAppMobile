@@ -1,17 +1,20 @@
 package com.alodiga.app.wallet.model;
 
-public class ObjRemittenceDestinatario {
+public class ObjRemittencePerson {
 
     private String name;
     private String lastName;
     private String Telephone;
-    private String location;
-    private String state;
-    private String city;
+    private ObjGenericObject location;
+    private ObjGenericObject state;
+    private ObjGenericObject city;
     private String codeZip;
     private String av;
 
-    public ObjRemittenceDestinatario(String name, String lastName, String telephone, String location, String state, String city, String codeZip, String av) {
+    public ObjRemittencePerson() {
+    }
+
+    public ObjRemittencePerson(String name, String lastName, String telephone, ObjGenericObject location, ObjGenericObject state, ObjGenericObject city, String codeZip, String av) {
         this.name = name;
         this.lastName = lastName;
         Telephone = telephone;
@@ -46,27 +49,27 @@ public class ObjRemittenceDestinatario {
         Telephone = telephone;
     }
 
-    public String getLocation() {
+    public ObjGenericObject getLocation() {
         return location;
     }
 
-    public void setLocation(String location) {
+    public void setLocation(ObjGenericObject location) {
         this.location = location;
     }
 
-    public String getState() {
+    public ObjGenericObject getState() {
         return state;
     }
 
-    public void setState(String state) {
+    public void setState(ObjGenericObject state) {
         this.state = state;
     }
 
-    public String getCity() {
+    public ObjGenericObject getCity() {
         return city;
     }
 
-    public void setCity(String city) {
+    public void setCity(ObjGenericObject city) {
         this.city = city;
     }
 

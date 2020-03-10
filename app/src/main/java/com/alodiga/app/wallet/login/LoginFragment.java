@@ -63,6 +63,8 @@ public class LoginFragment extends Fragment implements OnClickListener {
     private static FragmentManager fragmentManager;
     ArrayList<ObjUserHasProduct> userHasProducts = new ArrayList<ObjUserHasProduct>();
     String nameSession = "";
+    String name;
+    String lastName;
     String lastNameSession = "";
     String phoneNumberSession = "";
     String emailSession = "";
@@ -370,6 +372,8 @@ public class LoginFragment extends Fragment implements OnClickListener {
                 if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO) || responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_PRIMER_INGRESO)) {
                     String res = response.getProperty("datosRespuesta").toString();
                     SoapObject res_ = (SoapObject) response.getProperty("datosRespuesta");
+                    name = getValueFromResponseJson("nombre", res) ;
+                    lastName= getValueFromResponseJson("apellido", res);
                     nameSession = getValueFromResponseJson("nombre", res) + " " + getValueFromResponseJson("apellido", res);
                     phoneNumberSession = getValueFromResponseJson("movil", res);
                     emailSession = getValueFromResponseJson("email", res);
@@ -387,7 +391,9 @@ public class LoginFragment extends Fragment implements OnClickListener {
                             getValueFromResponseJson("estadoId", direccion),
                             getValueFromResponseJson("paisId", direccion));
                     Session.setDireccionUsuario(direccion_);
-
+                    Session.setRemettencesDireccionId(getValueFromResponseJson("remettencesDireccionId", res)) ;
+                    Session.setName(name);
+                    Session.setLastname(lastName);
 
 
                     if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_PRIMER_INGRESO)){
