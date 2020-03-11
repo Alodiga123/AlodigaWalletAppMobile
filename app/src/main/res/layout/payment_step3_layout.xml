@@ -110,18 +110,19 @@
     <EditText
         android:id="@+id/editTextTelephone"
         android:layout_width="fill_parent"
-        android:layout_height="41dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:background="@android:color/transparent"
-        android:drawablePadding="0dp"
+        android:drawablePadding="8dp"
         android:gravity="center_vertical"
-        android:hint="@string/editTextTelephone"
-        android:inputType="textCapWords"
-        android:padding="5dp"
+        android:hint="@string/mobileNumber"
+        android:inputType="phone"
+        android:padding="10dp"
         android:singleLine="true"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-        android:textSize="15sp" />
+        android:textSize="16sp"
+        />
 
     <View
         android:layout_width="fill_parent"

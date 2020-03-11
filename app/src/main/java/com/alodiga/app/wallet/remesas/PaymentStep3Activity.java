@@ -314,6 +314,14 @@ public class PaymentStep3Activity extends AppCompatActivity {
         });
 
 
+        name.setText("adira");
+        lastName.setText("quintero");
+        editTextTelephone.setText("04142223322");
+        edtstate.setText("estado");
+        edtcity.setText("ciudad");
+        edtcode.setText("0000");
+        edtAv.setText("av");
+
     }
 
     protected ObjGenericObject[] getListGeneric(SoapObject response) {
@@ -384,6 +392,9 @@ public class PaymentStep3Activity extends AppCompatActivity {
 
 
     public void validate(){
+
+
+
 
         String getname= name.getText().toString();
         String getlastName= lastName.getText().toString();

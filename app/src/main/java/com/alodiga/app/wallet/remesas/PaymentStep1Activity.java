@@ -406,6 +406,9 @@ public class PaymentStep1Activity extends AppCompatActivity {
     public void Thread2(String token){
         //progressDialogAlodiga = new ProgressDialogAlodiga(this, getString(R.string.loading));
         //progressDialogAlodiga.show();
+
+
+
         mAuthTask = new taskResume(token);
         mAuthTask.execute((Void) null);
     }
@@ -762,14 +765,16 @@ public class PaymentStep1Activity extends AppCompatActivity {
 
                 Session.setObjResumeRemittence(ObjResume);
 
-                ObjResumeRemittence prueba = Session.getObjResumeRemittence();
-
                 /**SETEO DE CAMPOS**/
                 exchange_rate.setText(Session.getObjResumeRemittence().getExchangeRateSource().getAmount());
                 shipping_rate.setText(Session.getObjResumeRemittence().getRatePaymentNetwork().getAmount());
                 actual_amount_to_send.setText(Session.getObjResumeRemittence().getReceiverAmount());
                 Actual_amount_to_pay.setText(Session.getObjResumeRemittence().getAmountToSendRemettence());
 
+                pay.setExchange_rate(Session.getObjResumeRemittence().getExchangeRateSource().getAmount());
+                pay.setShipping_rate(Session.getObjResumeRemittence().getRatePaymentNetwork().getAmount());
+                pay.setActual_amount_to_send(Session.getObjResumeRemittence().getReceiverAmount());
+                pay.setActual_amount_to_pay(Session.getObjResumeRemittence().getAmountToSendRemettence());
 
                 String exchange = Session.getObjResumeRemittence().getExchangeRateSource().getAmount();
                 String shipping = Session.getObjResumeRemittence().getRatePaymentNetwork().getAmount();

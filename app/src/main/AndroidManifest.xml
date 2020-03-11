@@ -340,6 +340,10 @@
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
+            android:name="com.alodiga.app.wallet.remesas.PaymentStep5Activity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
             android:name="com.alodiga.app.wallet.listRemittence.ListRemittenceActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>

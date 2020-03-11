@@ -50,7 +50,7 @@ public class PaymentStep4Activity extends AppCompatActivity {
         shipping_rate.setText(Session.getPay().getShipping_rate());
         exchange_rate.setText(Session.getPay().getExchange_rate());
         Amount_to_deliver.setText(Session.getPay().getActual_amount_to_send());
-        total_to_pay.setText(Session.getPay().getTotal_to_pay());
+        total_to_pay.setText(Session.getPay().getActual_amount_to_pay());
 
         name.setText(Session.getRemittenceDestinatario().getName()+" "+Session.getRemittenceDestinatario().getLastName());
         editTextTelephone.setText(Session.getRemittenceDestinatario().getTelephone());
@@ -67,6 +67,16 @@ public class PaymentStep4Activity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent pasIntent = getIntent();
                 Intent i = new Intent(PaymentStep4Activity.this, PaymentStep3Activity.class);
+                startActivity(i);
+                finish();
+            }
+        });
+
+
+        process.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent pasIntent = getIntent();
+                Intent i = new Intent(PaymentStep4Activity.this, PaymentStep5Activity.class);
                 startActivity(i);
                 finish();
             }
