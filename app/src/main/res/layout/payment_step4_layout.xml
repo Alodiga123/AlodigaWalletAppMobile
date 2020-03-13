@@ -463,6 +463,31 @@
                 android:textColorHint="@color/white_greyish"
                 android:textSize="14sp" />
 
+    <TextView
+        android:id="@+id/lastName_"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="2dip"
+        android:paddingTop="5dp"
+        android:singleLine="true"
+        android:text="@string/lastName"
+        android:textColor="@color/white_greyish"
+        android:textColorHint="@color/white_greyish"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/lastName"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="fill_horizontal"
+        android:padding="2dip"
+        android:singleLine="true"
+        android:text="---"
+        android:textColor="@color/white_greyish"
+        android:textColorHint="@color/white_greyish"
+        android:textSize="14sp" />
+
 
             <TextView
                 android:layout_width="wrap_content"
@@ -487,6 +512,30 @@
                 android:textColor="@color/white_greyish"
                 android:textColorHint="@color/white_greyish"
                 android:textSize="14sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="2dip"
+        android:paddingTop="5dp"
+        android:singleLine="true"
+        android:text="@string/email_"
+        android:textColor="@color/white_greyish"
+        android:textColorHint="@color/white_greyish"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/emailuser"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="fill_horizontal"
+        android:padding="2dip"
+        android:singleLine="true"
+        android:text="---"
+        android:textColor="@color/white_greyish"
+        android:textColorHint="@color/white_greyish"
+        android:textSize="14sp" />
 
 
             <TextView

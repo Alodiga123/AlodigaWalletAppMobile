@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 
 import com.alodiga.app.wallet.model.ObjDireccion;
 import com.alodiga.app.wallet.model.ObjExchange;
+import com.alodiga.app.wallet.model.ObjProccessRemittence;
 import com.alodiga.app.wallet.model.ObjRemittencePay;
 import com.alodiga.app.wallet.model.ObjRemittencePerson;
 import com.alodiga.app.wallet.model.ObjResumeRemittence;
@@ -79,6 +80,16 @@ public class Session {
     private static String remettencesDireccionId;
     private static ObjRemittencePerson remittenceDestinatario;
     private static ObjRemittencePerson remittenceRemitente;
+    private static ObjProccessRemittence processRemittence;
+
+
+    public static ObjProccessRemittence getProcessRemittence() {
+        return processRemittence;
+    }
+
+    public static void setProcessRemittence(ObjProccessRemittence processRemittence) {
+        Session.processRemittence = processRemittence;
+    }
 
     public static String getName() {
         return name;

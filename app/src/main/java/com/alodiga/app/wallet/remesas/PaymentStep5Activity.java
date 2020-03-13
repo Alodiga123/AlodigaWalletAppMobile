@@ -17,7 +17,7 @@ import java.util.Date;
 
 public class PaymentStep5Activity extends AppCompatActivity {
     private static Button finish, btnShareInformation;
-    private static TextView reloadcard_source_, amount_to_send, Correspondent, delivery_method, shipping_rate, exchange_rate, Amount_to_deliver, total_to_pay, name, editTextTelephone, location, state, city, codezip, av, nameRem, editTextTelephoneRem, idOP, txtDateTimeValue_3;
+    private static TextView status,reloadcard_source_, amount_to_send, Correspondent, delivery_method, shipping_rate, exchange_rate, Amount_to_deliver, total_to_pay, name, editTextTelephone, location, state, city, codezip, av, nameRem, editTextTelephoneRem, idOP, txtDateTimeValue_3,  emailuser,lastName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +25,7 @@ public class PaymentStep5Activity extends AppCompatActivity {
         setContentView(R.layout.payment_step5_layout);
         finish=findViewById(R.id.btnProcessFinish);
         btnShareInformation=findViewById(R.id.btnShareInformation);
-
+        status=findViewById(R.id.status);
 
         idOP= findViewById(R.id.idOP);
         txtDateTimeValue_3=findViewById(R.id.txtDateTimeValue_3);
@@ -39,6 +39,8 @@ public class PaymentStep5Activity extends AppCompatActivity {
         total_to_pay= findViewById(R.id.total_to_pay);
 
         name= findViewById(R.id.name);
+        emailuser= findViewById(R.id.emailuser);
+        lastName= findViewById(R.id.lastName);
         editTextTelephone= findViewById(R.id.editTextTelephone);
         location= findViewById(R.id.location);
         state= findViewById(R.id.state);
@@ -50,8 +52,9 @@ public class PaymentStep5Activity extends AppCompatActivity {
         editTextTelephoneRem= findViewById(R.id.editTextTelephoneRem);
 
         //id
-        idOP.setText("");
+        idOP.setText(Session.getProcessRemittence().getId());
         txtDateTimeValue_3.setText(new Timestamp(new Date().getTime()).toGMTString());
+        status.setText(Session.getProcessRemittence().getStatus());
 
         //informacion pago
         reloadcard_source_.setText(Session.getPay().getReloadcard_source().getName().split("-")[0]);
@@ -67,7 +70,9 @@ public class PaymentStep5Activity extends AppCompatActivity {
         editTextTelephoneRem.setText(Session.getPhoneNumber());
 
         //Destinatario
-        name.setText(Session.getRemittenceDestinatario().getName()+" "+Session.getRemittenceDestinatario().getLastName());
+        name.setText(Session.getRemittenceDestinatario().getName()+" "+Session.getRemittenceDestinatario().getSecondname());
+        emailuser.setText(Session.getRemittenceDestinatario().getEmail());
+        lastName.setText(Session.getRemittenceDestinatario().getLastName() + " "+ Session.getRemittenceDestinatario().getSecondSurmane());
         editTextTelephone.setText(Session.getRemittenceDestinatario().getTelephone());
         location.setText(Session.getRemittenceDestinatario().getLocation().getName());
         state.setText(Session.getRemittenceDestinatario().getState().getName());
@@ -88,6 +93,7 @@ public class PaymentStep5Activity extends AppCompatActivity {
                         "\n" + getString(R.string.destination_operatión_resum)+" - "+getString(R.string.remesas_title)+
                         "\n" + "**********"+
                         "\n" + getString(R.string.destination_transaction_id)+": "+ idOP.getText().toString() +
+                        "\n" + getString(R.string.status_remittence)+": " + status.getText().toString() +
                         "\n" + getString(R.string.destination_date_time)+": " + new Timestamp(new Date().getTime()).toGMTString() +
                         "\n" + "**********"+
                         "\n" + getString(R.string.datasender)+" "+
@@ -105,7 +111,9 @@ public class PaymentStep5Activity extends AppCompatActivity {
                         "\n" + "**********"+
                         "\n" + getString(R.string.addressee)+" " +
                         "\n" + getString(R.string.name)+": " + name.getText().toString() +
+                        "\n" + getString(R.string.lastName)+": " + lastName.getText().toString() +
                         "\n" + getString(R.string.editTextTelephone)+": " + editTextTelephone.getText().toString() +
+                        "\n" + getString(R.string.email_)+": " + emailuser.getText().toString() +
                         "\n" + getString(R.string.location)+": " + location.getText().toString() +
                         "\n" + getString(R.string.kyc_text_step4_state_)+": " + state.getText().toString() +
                         "\n" + getString(R.string.kyc_text_step4_city_)+": " + city.getText().toString() +

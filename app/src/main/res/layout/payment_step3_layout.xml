@@ -45,7 +45,7 @@
         android:layout_height="35dp"
         android:layout_marginTop="5dp"
         android:padding="5dp"
-        android:text="@string/Recipient_name"
+        android:text="@string/name1"
         android:textColor="@color/white_greyish"
         android:textSize="15sp" />
 
@@ -57,7 +57,7 @@
         android:background="@android:color/transparent"
         android:drawablePadding="0dp"
         android:gravity="center_vertical"
-        android:hint="@string/name"
+        android:hint="@string/name1_"
         android:inputType="textCapWords"
         android:padding="5dp"
         android:singleLine="true"
@@ -65,6 +65,36 @@
         android:textColorHint="@color/white"
         android:textSize="15sp" />
 
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="@color/white_greyish" />
+
+    <TextView
+        android:id="@+id/already_use_1_"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginTop="5dp"
+        android:padding="5dp"
+        android:text="@string/name2"
+        android:textColor="@color/white_greyish"
+        android:textSize="15sp" />
+
+    <EditText
+        android:id="@+id/secondname"
+        android:layout_width="fill_parent"
+        android:layout_height="41dp"
+        android:layout_marginTop="5dp"
+        android:background="@android:color/transparent"
+        android:drawablePadding="0dp"
+        android:gravity="center_vertical"
+        android:hint="@string/name2_"
+        android:inputType="textCapWords"
+        android:padding="5dp"
+        android:singleLine="true"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="15sp" />
         <View
             android:layout_width="fill_parent"
             android:layout_height="1px"
@@ -86,7 +116,7 @@
         android:background="@android:color/transparent"
         android:drawablePadding="0dp"
         android:gravity="center_vertical"
-        android:hint="@string/lastName"
+        android:hint="@string/lastname1_"
         android:inputType="textCapWords"
         android:padding="5dp"
         android:singleLine="true"
@@ -94,6 +124,34 @@
         android:textColorHint="@color/white"
         android:textSize="15sp" />
 
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="@color/white_greyish" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginTop="5dp"
+        android:padding="5dp"
+        android:text="@string/lastname2"
+        android:textColor="@color/white_greyish"
+        android:textSize="15sp" />
+
+    <EditText
+        android:id="@+id/secondSurmane"
+        android:layout_width="fill_parent"
+        android:layout_height="41dp"
+        android:layout_marginTop="5dp"
+        android:background="@android:color/transparent"
+        android:drawablePadding="0dp"
+        android:gravity="center_vertical"
+        android:hint="@string/lastname2_"
+        android:inputType="textCapWords"
+        android:padding="5dp"
+        android:singleLine="true"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="15sp" />
     <View
         android:layout_width="fill_parent"
         android:layout_height="1px"
@@ -128,6 +186,39 @@
         android:layout_width="fill_parent"
         android:layout_height="1px"
         android:background="@color/white_greyish" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginTop="5dp"
+        android:padding="5dp"
+        android:text="@string/email"
+        android:textColor="@color/white_greyish"
+        android:textSize="15sp" />
+
+    <EditText
+        android:id="@+id/userEmailIdTransfer"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@android:color/transparent"
+        android:drawablePadding="8dp"
+        android:gravity="center_vertical"
+        android:hint="@string/email_"
+        android:inputType="textEmailAddress"
+        android:padding="10dp"
+        android:singleLine="true"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="16sp"
+        />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="@color/white_greyish" />
+
+
     <View
             android:layout_width="fill_parent"
             android:layout_height="1px"

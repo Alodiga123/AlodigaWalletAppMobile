@@ -420,4 +420,14 @@
     <string name="Rem_address">Return address</string>
     <string name="estado_info">Select the state:</string>
     <string name="ciudad_info">Select city:</string>
+    <string name="name1">"Enter the first name "</string>
+    <string name="name2">"Enter the middle name "</string>
+    <string name="lastname1">Enter the first last name</string>
+    <string name="lastname2">"Enter the second last name "</string>
+    <string name="lastname1_">First last name</string>
+    <string name="lastname2_">"Second last name "</string>
+    <string name="name1_">"First name "</string>
+    <string name="name2_">"Middle name "</string>
+    <string name="email_">E-mail</string>
+    <string name="status_remittence">Status</string>
 </resources>

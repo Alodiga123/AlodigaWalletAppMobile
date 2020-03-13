@@ -30,6 +30,7 @@
     <string name="afiliation">Afiliar</string>
     <string name="menu_send">Cerrar sesión</string>
     <string name="email">Introduce E-mail</string>
+    <string name="email_">E-mail</string>
     <string name="emailorPhone">E-mail o teléfono</string>
 
     <string name="email_invalid">E-mail no es valido</string>
@@ -230,6 +231,8 @@
     <string name="kyc_text_code3_1">Para poder disfrutar de los servicios que brinda la billetera Alodiga debe validar su cuenta nuevamente.</string>
     <string name="kyc_text_code4">Para poder disfrutar de los servicios que brinda la billetera Alodiga debe validar su cuenta.</string>
     <string name="kyc_text_code2">Su cuenta se encuentra validada.</string>
+    <string name="status_remittence">Estado</string>
+
 
 
 
@@ -474,6 +477,15 @@
     <string name="balance_account_number">Cuenta</string>
     <string name="balance_card_number">Tarjeta</string>
     <string name="card_tile">TARJETAS COMPAÑERAS</string>
+    <string name="name1">Introduzca el primer nombre</string>
+    <string name="name2">Introduzca el segundo nombre</string>
+    <string name="name1_">Primer nombre</string>
+    <string name="name2_">Segundo nombre</string>
+    <string name="lastname1">Introduzca el primer apellido</string>
+    <string name="lastname2">Introduzca el segundo apellido</string>
+    <string name="lastname1_">Primer apellido</string>
+    <string name="lastname2_">Segundo apellido</string>
+
 
 
 

@@ -356,11 +356,22 @@ public class PaymentStep1Activity extends AppCompatActivity {
         quote.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
+                ObjTransferMoney reloadcard = (ObjTransferMoney) reloadcard_source.getSelectedItem();
+                //float realoadcard_amount=  ;
+
                 String amount_= amount.getText().toString();
+                //float amount_float =  ;
+
 
                 if (amount_.equals("") || amount_.length() == 0) {
                     new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                             getString(R.string.amount_info_invalid));
+                }else if(Float.parseFloat(amount_)==0){
+                    new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
+                            getString(R.string.amount_req));
+                }else if(Float.parseFloat(amount_) > Float.parseFloat(reloadcard.getCurrency())){
+                    new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
+                            getString(R.string.insuficient_balance));
                 }else{
                     cotizar();
                 }
@@ -501,7 +512,7 @@ public class PaymentStep1Activity extends AppCompatActivity {
                 response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_LOGIN, Constants.REMITTANCE, Constants.CONSTANT_WSREMITTENCEMOBILE);
                 stringResponse = response.toString();
                 responseCode = response.getProperty("code").toString();
-                serviceAnswer(responseCode);
+                //serviceAnswer(responseCode);
 
 
                 if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO_) || responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
@@ -673,6 +684,7 @@ public class PaymentStep1Activity extends AppCompatActivity {
             if (success) {
                 String amountToSendRemettence= response.getProperty("amountToSendRemettence").toString();
                 String receiverAmount = response.getProperty("receiverAmount").toString();
+                String realAmountToSend= response.getProperty("realAmountToSend").toString();
 
                 /**exchangeRateDestiny**/
                 SoapObject res_exchangeRateDestiny = (SoapObject) response.getProperty("exchangeRateDestiny");
@@ -757,6 +769,7 @@ public class PaymentStep1Activity extends AppCompatActivity {
                 /***OBJETO FINAL****/
                 ObjResume = new ObjResumeRemittence(amountToSendRemettence,
                         receiverAmount,
+                        realAmountToSend,
                         exchangeRateDestiny,
                         exchangeRateSource,
                         ratePaymentNetwork);

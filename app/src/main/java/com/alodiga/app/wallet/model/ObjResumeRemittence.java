@@ -4,6 +4,7 @@ public class ObjResumeRemittence {
 
     private String amountToSendRemettence;
     private String receiverAmount;
+    private String realAmountToSend;
 
     ObjExchangeRate exchangeRateDestiny;
     ObjExchangeRate  exchangeRateSource;
@@ -12,12 +13,21 @@ public class ObjResumeRemittence {
     public ObjResumeRemittence() {
     }
 
-    public ObjResumeRemittence(String amountToSendRemettence, String receiverAmount, ObjExchangeRate exchangeRateDestiny, ObjExchangeRate exchangeRateSource, ObjRatePaymentNetwork ratePaymentNetwork) {
+    public ObjResumeRemittence(String amountToSendRemettence, String receiverAmount, String realAmountToSend,  ObjExchangeRate exchangeRateDestiny, ObjExchangeRate exchangeRateSource, ObjRatePaymentNetwork ratePaymentNetwork) {
         this.amountToSendRemettence = amountToSendRemettence;
         this.receiverAmount = receiverAmount;
+        this.realAmountToSend= realAmountToSend;
         this.exchangeRateDestiny = exchangeRateDestiny;
         this.exchangeRateSource = exchangeRateSource;
         this.ratePaymentNetwork = ratePaymentNetwork;
+    }
+
+    public String getRealAmountToSend() {
+        return realAmountToSend;
+    }
+
+    public void setRealAmountToSend(String realAmountToSend) {
+        this.realAmountToSend = realAmountToSend;
     }
 
     public String getAmountToSendRemettence() {

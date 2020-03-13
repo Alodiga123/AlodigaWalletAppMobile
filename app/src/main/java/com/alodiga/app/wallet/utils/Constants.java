@@ -219,6 +219,9 @@ public class Constants {
     public static final String WEB_SERVICES_METHOD_LOADDELIVERYFORMBYPAYMENTNETWORK= "getDeliveryFormByPamentNetwork";
     public static final String WEB_SERVICES_METHOD_GETSTATESBYCOUNTRY= "getStatesByCountry";
     public static final String WEB_SERVICES_METHOD_GETCITIESBYSTATE= "getCitiesByState";
+    public static final String WEB_SERVICES_METHOD_PROCESSREMETTENCEACCOUNT= "processRemettenceAccount";
+
+
 
 
 
