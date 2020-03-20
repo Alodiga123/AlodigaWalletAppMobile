@@ -27,7 +27,7 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class PaymentStep3Activity extends AppCompatActivity {
+public class PaymentStep3_2Activity extends AppCompatActivity {
     private static Button next, backToLoginBtn;
     private static EditText name, lastName, editTextTelephone, edtstate, edtcity, edtcode, edtAv, userEmailIdTransfer, secondname,secondSurmane;
 
@@ -47,32 +47,31 @@ public class PaymentStep3Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.payment_step3_layout);
+        setContentView(R.layout.payment_step3_2_layout);
         next=findViewById(R.id.next);
         backToLoginBtn=findViewById(R.id.backToLoginBtn);
-        userEmailIdTransfer=findViewById(R.id.userEmailIdTransfer);
+        /*userEmailIdTransfer=findViewById(R.id.userEmailIdTransfer);
 
         name= findViewById(R.id.name);
         secondname= findViewById(R.id.secondname);
         lastName= findViewById(R.id.lastName);
-        secondSurmane= findViewById(R.id.secondSurmane);
-        editTextTelephone= findViewById(R.id.editTextTelephone);
-
-        /*edtstate=findViewById(R.id.edtstate);
-        edtcity=findViewById(R.id.edtcity);
-        edtcode=findViewById(R.id.edtcode);
-        edtAv=findViewById(R.id.edtAv);
-        location= findViewById(R.id.location);*/
-
-
-        /*info_ciudad= findViewById(R.id.info_ciudad);
-        info_estado  = findViewById(R.id.info_estado) ;
-
-
+        secondSurmane= findViewById(R.id.secondSurmane);*/
+        //editTextTelephone= findViewById(R.id.editTextTelephone);
         edtstate=findViewById(R.id.edtstate);
         edtcity=findViewById(R.id.edtcity);
         edtcode=findViewById(R.id.edtcode);
         edtAv=findViewById(R.id.edtAv);
+        location= findViewById(R.id.location);
+
+
+        info_ciudad= findViewById(R.id.info_ciudad);
+        info_estado  = findViewById(R.id.info_estado) ;
+
+
+       /* edtstate=findViewById(R.id.edtstate);
+        edtcity=findViewById(R.id.edtcity);
+        edtcode=findViewById(R.id.edtcode);
+        edtAv=findViewById(R.id.edtAv);*/
 
         spinner_pais= findViewById(R.id.spinner_pais);
         spinner_estado= findViewById(R.id.spinner_estado);
@@ -81,7 +80,7 @@ public class PaymentStep3Activity extends AppCompatActivity {
         edtstate.setVisibility(View.INVISIBLE);
         edtcity.setVisibility(View.INVISIBLE);
         spinner_estado.setVisibility(View.INVISIBLE);
-        spinner_ciudad.setVisibility(View.INVISIBLE);*/
+        spinner_ciudad.setVisibility(View.INVISIBLE);
 
         next.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -91,9 +90,72 @@ public class PaymentStep3Activity extends AppCompatActivity {
 
 
 
-       /* location.setText(Session.getPay().getDestination_country().getName());
+        location.setText(Session.getPay().getDestination_country().getName());
+
+      /*  //Spinner Pais
+        new Thread(new Runnable() {
+            public void run() {
+                try {
+
+                    listSpinner_pais = new ObjGenericObject[0];
+                    listSpinner_estado = new ObjGenericObject[0];
+                    listSpinner_ciudad = new ObjGenericObject[0];
+                    edtstate.setVisibility(View.INVISIBLE);
+                    edtcity.setVisibility(View.INVISIBLE);
+                    spinner_estado.setVisibility(View.INVISIBLE);
+                    spinner_ciudad.setVisibility(View.INVISIBLE);
+
+                    String responseCode = null;
+                    WebService webService = new WebService();
+                    HashMap<String, String> map = new HashMap<String, String>();
+                    map.put("userId", Session.getUserId());
+                    response_pais = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_NAME_GET_COUNTRIES_, Constants.REMITTANCE, Constants.CONSTANT_WSREMITTENCEMOBILE);
+                    stringResponse = response_pais.toString();
+                    responseCode = response_pais.getProperty("code").toString();
+                    serviceAnswer(responseCode);
+
+                    if (serviceStatus) {
+
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                listSpinner_pais = getListGeneric(response_pais);
+                                SpinAdapterPais spinAdapterPais;
+                                spinAdapterPais = new SpinAdapterPais(getApplicationContext(), android.R.layout.simple_spinner_item, listSpinner_pais);
+                                spinner_pais.setAdapter(spinAdapterPais);
+
+                            }
+                        });
+                    } else {
+
+                        new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
+                                responsetxt);
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }).start();*/
 
 
+        //Spinner Bank
+       /* spinner_pais.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                spinner_estado.setEnabled(true);
+                spinner_ciudad.setAdapter(null);
+
+                listSpinner_estado = new ObjGenericObject[0];
+                listSpinner_ciudad = new ObjGenericObject[0];
+                edtstate.setVisibility(View.INVISIBLE);
+                edtcity.setVisibility(View.INVISIBLE);
+                spinner_estado.setVisibility(View.INVISIBLE);
+                spinner_ciudad.setVisibility(View.INVISIBLE);
+                //spinnerproducto.setAdapter(null);
+
+                final ObjGenericObject pais = (ObjGenericObject) spinner_pais.getSelectedItem();
+                //Toast.makeText(getApplicationContext(),"id" + pais.getId() ,Toast.LENGTH_SHORT).show();*/
 
                new Thread(new Runnable() {
                     public void run() {
@@ -161,7 +223,7 @@ public class PaymentStep3Activity extends AppCompatActivity {
         });*/
 
 
-     /*   //Spinner Bank
+        //Spinner Bank
         spinner_estado.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 spinner_ciudad.setEnabled(true);
@@ -238,37 +300,40 @@ public class PaymentStep3Activity extends AppCompatActivity {
             }
         });
 
-*/
+
 
 
         backToLoginBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                if(Session.getRemettencesDireccionId().equals(Constants.REMITTENCE_ID)){
+              /*  if(Session.getRemettencesDireccionId().equals(Constants.REMITTENCE_ID)){
                     Intent pasIntent = getIntent();
-                    Intent i = new Intent(PaymentStep3Activity.this, PaymentStep2Activity.class);
+                    Intent i = new Intent(PaymentStep3_2Activity.this, PaymentStep2Activity.class);
                     startActivity(i);
                     finish();
                 }else{
-                    Intent i = new Intent(PaymentStep3Activity.this, PaymentStep1Activity.class);
+                    Intent i = new Intent(PaymentStep3_2Activity.this, PaymentStep1Activity.class);
                     startActivity(i);
                     finish();
-                }
+                }*/
 
+                Intent i = new Intent(PaymentStep3_2Activity.this, PaymentStep3Activity.class);
+                startActivity(i);
+                finish();
             }
         });
 
 
-        name.setText("adira");
+       /* name.setText("adira");
         secondname.setText("yadira");
         lastName.setText("quintero");
         secondSurmane.setText("aaasaadira");
-        editTextTelephone.setText("04142223322");
-        //edtstate.setText("estado");
-        //edtcity.setText("ciudad");
-        //edtcode.setText("0000");
-        userEmailIdTransfer.setText("adira@jjmmm.com");
-        //edtAv.setText("av");
+        editTextTelephone.setText("04142223322");*/
+        edtstate.setText("estado");
+        edtcity.setText("ciudad");
+        edtcode.setText("0000");
+        //userEmailIdTransfer.setText("adira@jjmmm.com");
+        edtAv.setText("av");
 
     }
 
@@ -341,68 +406,74 @@ public class PaymentStep3Activity extends AppCompatActivity {
 
     public void validate(){
 
-        Pattern p = Pattern.compile(Utils.regEx);
-        Matcher m = p.matcher(userEmailIdTransfer.getText());
+        //Pattern p = Pattern.compile(Utils.regEx);
+        //Matcher m = p.matcher(userEmailIdTransfer.getText());
 
-        String getname= name.getText().toString();
-        String getsecondname = secondname.getText().toString();
-        String getlastName= lastName.getText().toString();
-        String getmidleName= secondSurmane.getText().toString();
-        String geteditTextTelephone= editTextTelephone.getText().toString();
-        //String getedtstate= edtstate.getText().toString();
-        //String getedtcity= edtcity.getText().toString();
-        //String getedtcode= edtcode.getText().toString();
-        //String getedtAv= edtAv.getText().toString();
-        String getuserEmailIdTransfer= userEmailIdTransfer.getText().toString();
+        //String getname= name.getText().toString();
+        //String getsecondname = secondname.getText().toString();
+        //String getlastName= lastName.getText().toString();
+        //String getmidleName= secondSurmane.getText().toString();
+        //String geteditTextTelephone= editTextTelephone.getText().toString();
+        String getedtstate= edtstate.getText().toString();
+        String getedtcity= edtcity.getText().toString();
+        String getedtcode= edtcode.getText().toString();
+        String getedtAv= edtAv.getText().toString();
+        //String getuserEmailIdTransfer= userEmailIdTransfer.getText().toString();
 
 
-        if( getname.equals("") || getname.length() == 0
-                || getlastName.equals("") || getlastName.length() == 0
-                || geteditTextTelephone.equals("") || geteditTextTelephone.length() == 0
-                //|| ((spinner_ciudad.getVisibility()== View.INVISIBLE) && (getedtcity.equals("") || getedtcity.length() == 0))
-                //|| ((spinner_estado.getVisibility() == View.INVISIBLE) && (getedtstate.equals("") || getedtstate.length() == 0 || getedtcity.equals("") || getedtcity.length() == 0))
-                //|| (getedtcode.equals("") || getedtcode.length() == 0
-                //||getedtAv.equals("") || getedtAv.length() == 0
-                || getuserEmailIdTransfer.equals("") || getuserEmailIdTransfer.length() == 0
-                || getsecondname.equals("") || getsecondname.length() == 0
-                || getmidleName.equals("") || getmidleName.length() == 0){
+        if( //getname.equals("") || getname.length() == 0
+                //|| getlastName.equals("") || getlastName.length() == 0
+                //|| geteditTextTelephone.equals("") || geteditTextTelephone.length() == 0
+                 ((spinner_ciudad.getVisibility()== View.INVISIBLE) && (getedtcity.equals("") || getedtcity.length() == 0))
+                || ((spinner_estado.getVisibility() == View.INVISIBLE) && (getedtstate.equals("") || getedtstate.length() == 0 || getedtcity.equals("") || getedtcity.length() == 0))
+                || (getedtcode.equals("") || getedtcode.length() == 0
+                ||getedtAv.equals("") || getedtAv.length() == 0)){
+                //|| getuserEmailIdTransfer.equals("") || getuserEmailIdTransfer.length() == 0
+                //|| getsecondname.equals("") || getsecondname.length() == 0
+                //|| getmidleName.equals("") || getmidleName.length() == 0)){
 
             new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(), getString(R.string.invalid_all_question));
 
-        }else if ((caseFind == 0) && (!m.find())) {
+        }/*else if ((caseFind == 0) && (!m.find())) {
 
             new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                     getString(R.string.email_invalid));
-        }else{
+        }*/else{
 
-            ObjRemittencePerson remittenceDestinatario= new ObjRemittencePerson();
-            remittenceDestinatario.setName(getname);
-            remittenceDestinatario.setSecondname(getsecondname);
-            remittenceDestinatario.setLastName(getlastName);
-            remittenceDestinatario.setSecondSurmane(getmidleName);
-            remittenceDestinatario.setEmail(getuserEmailIdTransfer);
-            remittenceDestinatario.setTelephone(geteditTextTelephone);
-            remittenceDestinatario.setLocation(Session.getPay().getDestination_country());
+            //ObjRemittencePerson remittenceDestinatario= new ObjRemittencePerson();
+            //remittenceDestinatario.setName(getname);
+            //remittenceDestinatario.setSecondname(getsecondname);
+            //remittenceDestinatario.setLastName(getlastName);
+            //remittenceDestinatario.setSecondSurmane(getmidleName);
+            //remittenceDestinatario.setEmail(getuserEmailIdTransfer);
+            //remittenceDestinatario.setTelephone(geteditTextTelephone);
+            //remittenceDestinatario.setLocation(Session.getPay().getDestination_country());
 
-           /* if(spinner_estado.getVisibility()== View.VISIBLE) {
-                remittenceDestinatario.setState((ObjGenericObject) spinner_estado.getSelectedItem());
+            if(spinner_estado.getVisibility()== View.VISIBLE) {
+                Session.getRemittenceDestinatario().setState((ObjGenericObject) spinner_estado.getSelectedItem());
+                //remittenceDestinatario.setState((ObjGenericObject) spinner_estado.getSelectedItem());
             }else{
-                remittenceDestinatario.setState(new ObjGenericObject(getedtstate,""));
+                Session.getRemittenceDestinatario().setState(new ObjGenericObject(getedtstate,""));
+                //remittenceDestinatario.setState(new ObjGenericObject(getedtstate,""));
             }
 
             if(spinner_ciudad.getVisibility()== View.VISIBLE) {
-                remittenceDestinatario.setCity((ObjGenericObject) spinner_ciudad.getSelectedItem());
+                Session.getRemittenceDestinatario().setCity((ObjGenericObject) spinner_ciudad.getSelectedItem());
+                //remittenceDestinatario.setCity((ObjGenericObject) spinner_ciudad.getSelectedItem());
             }else{
-                remittenceDestinatario.setCity(new ObjGenericObject(getedtcity,""));
+                Session.getRemittenceDestinatario().setCity(new ObjGenericObject(getedtcity,""));
+                //remittenceDestinatario.setCity(new ObjGenericObject(getedtcity,""));
             }
 
-            remittenceDestinatario.setCodeZip(getedtcode);
-            remittenceDestinatario.setAv(getedtAv);*/
+            Session.getRemittenceDestinatario().setCodeZip(getedtcode);
+            //remittenceDestinatario.setCodeZip(getedtcode);
+            Session.getRemittenceDestinatario().setAv(getedtAv);
+            //remittenceDestinatario.setAv(getedtAv);
 
-            Session.setRemittenceDestinatario(remittenceDestinatario);
+            //Session.setRemittenceDestinatario(remittenceDestinatario);
 
             Intent pasIntent = getIntent();
-            Intent i = new Intent(PaymentStep3Activity.this, PaymentStep3_2Activity.class);
+            Intent i = new Intent(PaymentStep3_2Activity.this, PaymentStep4Activity.class);
             startActivity(i);
             finish();
 
@@ -436,16 +507,20 @@ public class PaymentStep3Activity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        if(Session.getRemettencesDireccionId().equals(Constants.REMITTENCE_ID)){
+        /*if(Session.getRemettencesDireccionId().equals(Constants.REMITTENCE_ID)){
             Intent pasIntent = getIntent();
-            Intent i = new Intent(PaymentStep3Activity.this, PaymentStep2Activity.class);
+            Intent i = new Intent(PaymentStep3_2Activity.this, PaymentStep2Activity.class);
             startActivity(i);
             finish();
         }else{
-            Intent i = new Intent(PaymentStep3Activity.this, PaymentStep1Activity.class);
+            Intent i = new Intent(PaymentStep3_2Activity.this, PaymentStep1Activity.class);
             startActivity(i);
             finish();
-        }
+        }*/
+
+        Intent i = new Intent(PaymentStep3_2Activity.this, PaymentStep3Activity.class);
+        startActivity(i);
+        finish();
     }
 
 
