@@ -351,6 +351,10 @@
             android:name="com.alodiga.app.wallet.rechargeWithCard.RechargeWithCardStep1"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity
+            android:name="com.alodiga.app.wallet.rechargeWithCard.RechargeWithCardStep2"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
 
 
 

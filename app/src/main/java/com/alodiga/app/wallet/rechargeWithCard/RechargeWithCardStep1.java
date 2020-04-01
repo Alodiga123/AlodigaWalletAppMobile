@@ -1,14 +1,9 @@
 package com.alodiga.app.wallet.rechargeWithCard;
 
-import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.Selection;
-import android.text.TextWatcher;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -18,10 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
 import com.alodiga.app.R;
-import com.alodiga.app.wallet.adapters.SpinAdapterBank;
 import com.alodiga.app.wallet.adapters.SpinAdapterGeneric;
-import com.alodiga.app.wallet.adapters.SpinAdapterPais;
-import com.alodiga.app.wallet.adapters.SpinAdapterProduct;
 import com.alodiga.app.wallet.main.MainActivity;
 import com.alodiga.app.wallet.model.ObjGenericObject;
 import com.alodiga.app.wallet.model.ObjTransferMoney;
@@ -34,11 +26,8 @@ import com.alodiga.app.wallet.utils.WebService;
 
 import org.ksoap2.serialization.SoapObject;
 
-import java.text.DateFormatSymbols;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.List;
 
 
 public class RechargeWithCardStep1 extends AppCompatActivity {
@@ -101,6 +90,18 @@ public class RechargeWithCardStep1 extends AppCompatActivity {
                 show = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(show);
                 finish();
+            }
+        });
+
+
+        signFind.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent show;
+                show = new Intent(getApplicationContext(), RechargeWithCardStep2.class);
+                startActivity(show);
+                finish();
+
+
             }
         });
     }
@@ -359,7 +360,7 @@ public class RechargeWithCardStep1 extends AppCompatActivity {
             //showProgress(false);
             if (success) {
                 Intent show;
-                show = new Intent(getApplicationContext(), RechargeWithCardStep2.class);
+                show = new Intent(getApplicationContext(), RechargeWithCardStep.class);
                 startActivity(show);
                 finish();
 
