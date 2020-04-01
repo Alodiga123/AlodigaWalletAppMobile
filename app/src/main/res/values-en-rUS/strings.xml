@@ -21,6 +21,7 @@
     <string name="bank_info">"Select the bank: "</string>
     <string name="BS">Bs</string>
     <string name="buttonProcesarPago">"Process Payment "</string>
+    <string name="menu_recharge_with_credit_card">Recharge Wallet</string>
     <string name="buttonProcesarRetiro">"Process Withdrawal "</string>
     <string name="buttonProcessRecharge">"Process Transfer "</string>
     <string name="buy">TO BUY</string>
@@ -430,4 +431,14 @@
     <string name="name2_">"Middle name "</string>
     <string name="email_">E-mail</string>
     <string name="status_remittence">Status</string>
+    <string name="recharge_whih_card_title">"WALLET RECHARGE "</string>
+    <string name="cvv_title">"Enter CVV "</string>
+    <string name="cvv">CVV</string>
+    <string name="date_recharge">"Select the expiration date "</string>
+    <string name="date_recharge_">Expiration date</string>
+    <string name="amount_info_">" Enter the amount to recharge:"</string>
+    <string name="month">Month:</string>
+    <string name="year">Year:</string>
+    <string name="name_">"Cardholder Name "</string>
+    <string name="name_1">Name</string>
 </resources>

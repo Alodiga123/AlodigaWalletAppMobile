@@ -168,17 +168,6 @@ public class Constants {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     public static final String WEB_SERVICES_RESPONSE_CODE_DESTINATION_NOT_PREPAID = "204";
     public static final String WEB_SERVICES_RESPONSE_CODE_ERROR_TRANSACTION_TOP_UP = "205";
     public static final String WEB_SERVICES_RESPONSE_CODE_DENOMINATION_NOT_AVAILABLE = "301";
@@ -220,19 +209,6 @@ public class Constants {
     public static final String WEB_SERVICES_METHOD_GETSTATESBYCOUNTRY= "getStatesByCountry";
     public static final String WEB_SERVICES_METHOD_GETCITIESBYSTATE= "getCitiesByState";
     public static final String WEB_SERVICES_METHOD_PROCESSREMETTENCEACCOUNT= "processRemettenceAccount";
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -332,5 +308,6 @@ public class Constants {
     public final static String USUARIO = "alodiga";
     public final static String PASSWORD = "d6f80e647631bb4522392aff53370502";
 
+    public static final int YEARPLUS = 50;
 
 }

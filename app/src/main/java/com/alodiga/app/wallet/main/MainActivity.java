@@ -41,6 +41,7 @@ import com.alodiga.app.wallet.model.ObjMoney;
 import com.alodiga.app.wallet.model.ObjUserHasProduct;
 import com.alodiga.app.wallet.changePassword.ChangePasswordStep1Activity;
 import com.alodiga.app.wallet.paymentComerce.PaymentComerceStep1Activity;
+import com.alodiga.app.wallet.rechargeWithCard.RechargeWithCardStep1;
 import com.alodiga.app.wallet.remesas.PaymentStep1Activity;
 import com.alodiga.app.wallet.topup.TopupStep1Activity;
 import com.alodiga.app.wallet.transference.TransferenceStep1Activity;
@@ -272,6 +273,7 @@ public class MainActivity extends AppCompatActivity
                || id == R.id.nav_last_activity || id == R.id.nav_pay_qr
                || id == R.id.nav_topup || id == R.id.nav_convert || id == R.id.nav_active_card
                || id == R.id.nav_remesas
+               || id == R.id.nav_recharge_with_card
                || id == R.id.nav_remesas_status/*|| id == R.id.nav_reload_Card*/){
            Intent show;
            switch(Session.getCumplimient()) {
@@ -288,10 +290,14 @@ public class MainActivity extends AppCompatActivity
                    startActivity(show);
                    break;
                default:
-                   if (id == R.id.nav_recharge) {
-                       show = new Intent(MainActivity.this, ManualRechargeStep1Activity.class);
+                   if (id == R.id.nav_recharge_with_card) {
+                       show = new Intent(MainActivity.this, RechargeWithCardStep1.class);
                        startActivity(show);
-                   } else if (id == R.id.nav_Withdrawal) {
+                   } if (id == R.id.nav_recharge) {
+                   show = new Intent(MainActivity.this, ManualRechargeStep1Activity.class);
+                   startActivity(show);
+                   }
+                   else if (id == R.id.nav_Withdrawal) {
                        show = new Intent(MainActivity.this, ManualRemovalStep1Activity.class);
                        startActivity(show);
                    } else if (id == R.id.nav_transfer) {

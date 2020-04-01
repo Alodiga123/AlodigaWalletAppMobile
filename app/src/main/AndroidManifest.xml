@@ -336,6 +336,10 @@
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
+            android:name="com.alodiga.app.wallet.remesas.PaymentStep3_2Activity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
             android:name="com.alodiga.app.wallet.remesas.PaymentStep4Activity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
@@ -343,6 +347,15 @@
             android:name="com.alodiga.app.wallet.remesas.PaymentStep5Activity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity
+            android:name="com.alodiga.app.wallet.rechargeWithCard.RechargeWithCardStep1"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
+
+
+
+
         <activity
             android:name="com.alodiga.app.wallet.listRemittence.ListRemittenceActivity"
             android:theme="@style/AppTheme.NoActionBar">

@@ -20,8 +20,10 @@
     <string name="menu_pay_comerce">Pago QR Comercios</string>
     <string name="menu_send_money">Enviar Dinero</string>
     <string name="menu_convert">Convertir</string>
+    <string name="menu_recharge_with_credit_card">Recargar Billetera</string>
     <string name="menu_recharge">Recarga Manual</string>
     <string name="menu_aoutMoney">Retiro Manual</string>
+
     <string name="menu_transfer">Transferir</string>
     <string name="menu_recharge_n_i">TopUp</string>
     <string name="menu_remesas">Remesas</string>
@@ -189,6 +191,7 @@
     <string name="rechargeCOD">Numero de transferencia</string>
     <string name="transaction_concept">Concepto de la transferencia</string>
     <string name="amount_info">Ingrese el monto:</string>
+    <string name="amount_info_">Ingrese el monto a recargar:</string>
     <string name="descrip_info">Ingrese la descripción:</string>
     <string name="amount_info_invalid">El monto no puede estar vacio</string>
     <string name="info_transaction">El concepto de la transferencia no puede estar vacio</string>
@@ -199,6 +202,7 @@
     <string name="find">BUSCAR</string>
     <string name="buy">COMPRAR</string>
     <string name="recharge_title">RECARGA</string>
+    <string name="recharge_whih_card_title">RECARGAR BILLETERA</string>
     <string name="id_recharge">Ingrese el identificador de la recarga:</string>
     <string name="id_transfer">Concepto de la transferencia:</string>
     <string name="info_fail_code">La Clave de Operaciones no es valida. Numero de intentos restantes: </string>
@@ -485,6 +489,24 @@
     <string name="lastname2">Introduzca el segundo apellido</string>
     <string name="lastname1_">Primer apellido</string>
     <string name="lastname2_">Segundo apellido</string>
+
+    <string name="cvv_title">Ingrese el CVV</string>
+    <string name="cvv">CVV</string>
+    <string name="date_recharge">Seleccione la fecha de vencimiento</string>
+    <string name="date_recharge_">Fecha de vencimiento</string>
+
+    <string name="month">Mes: </string>
+    <string name="year">Año: </string>
+
+    <string name="name_">Nombre del Tarjetahabiente </string>
+    <string name="name_1">Nombre</string>
+
+
+
+
+
+
+
 
 
 

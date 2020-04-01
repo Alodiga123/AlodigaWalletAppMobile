@@ -13,6 +13,10 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_recharge" />
         <item
+            android:id="@+id/nav_recharge_with_card"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_recharge_with_credit_card" />
+        <item
             android:id="@+id/nav_Withdrawal"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_aoutMoney" />
