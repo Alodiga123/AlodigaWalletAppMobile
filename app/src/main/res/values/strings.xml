@@ -500,6 +500,11 @@
 
     <string name="name_">Nombre del Tarjetahabiente </string>
     <string name="name_1">Nombre</string>
+    <string name="recharge_contact">Seleccionar</string>
+    <string name="drop">Eliminar</string>
+    <string name="add_contact">Agregar Tarjeta</string>
+
+
 
 
 

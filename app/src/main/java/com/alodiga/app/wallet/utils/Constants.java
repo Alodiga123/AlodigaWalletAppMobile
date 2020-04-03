@@ -308,6 +308,7 @@ public class Constants {
     public final static String USUARIO = "alodiga";
     public final static String PASSWORD = "d6f80e647631bb4522392aff53370502";
 
-    public static final int YEARPLUS = 50;
+    public static final int YEARPLUS = 70;
+    public static final int YEARMINUS = 30;
 
 }

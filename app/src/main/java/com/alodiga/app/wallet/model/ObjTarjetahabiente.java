@@ -1,0 +1,121 @@
+package com.alodiga.app.wallet.model;
+
+public class ObjTarjetahabiente {
+
+    private String card_number;
+    private String security_code;
+    private String cardholder_name;
+    private String type_card;
+    private String expiration_date;
+    private String country;
+    private String state;
+    private String county;
+    private String city;
+    private String direction;
+    private String zip_code;
+
+    public ObjTarjetahabiente() {
+    }
+
+    public ObjTarjetahabiente(String card_number, String security_code, String cardholder_name, String type_card, String expiration_date, String country, String state, String county, String city, String direction, String zip_code) {
+        this.card_number = card_number;
+        this.security_code = security_code;
+        this.cardholder_name = cardholder_name;
+        this.type_card = type_card;
+        this.expiration_date = expiration_date;
+        this.country = country;
+        this.state = state;
+        this.county = county;
+        this.city = city;
+        this.direction = direction;
+        this.zip_code = zip_code;
+    }
+
+    public String getCard_number() {
+        return card_number;
+    }
+
+    public void setCard_number(String card_number) {
+        this.card_number = card_number;
+    }
+
+    public String getSecurity_code() {
+        return security_code;
+    }
+
+    public void setSecurity_code(String security_code) {
+        this.security_code = security_code;
+    }
+
+    public String getCardholder_name() {
+        return cardholder_name;
+    }
+
+    public void setCardholder_name(String cardholder_name) {
+        this.cardholder_name = cardholder_name;
+    }
+
+    public String getType_card() {
+        return type_card;
+    }
+
+    public void setType_card(String type_card) {
+        this.type_card = type_card;
+    }
+
+    public String getExpiration_date() {
+        return expiration_date;
+    }
+
+    public void setExpiration_date(String expiration_date) {
+        this.expiration_date = expiration_date;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getCounty() {
+        return county;
+    }
+
+    public void setCounty(String county) {
+        this.county = county;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getDirection() {
+        return direction;
+    }
+
+    public void setDirection(String direction) {
+        this.direction = direction;
+    }
+
+    public String getZip_code() {
+        return zip_code;
+    }
+
+    public void setZip_code(String zip_code) {
+        this.zip_code = zip_code;
+    }
+}

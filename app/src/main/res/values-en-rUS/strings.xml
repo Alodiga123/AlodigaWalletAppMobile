@@ -441,4 +441,6 @@
     <string name="year">Year:</string>
     <string name="name_">"Cardholder Name "</string>
     <string name="name_1">Name</string>
+    <string name="recharge_contact">Select</string>
+    <string name="drop">Drop</string>
 </resources>

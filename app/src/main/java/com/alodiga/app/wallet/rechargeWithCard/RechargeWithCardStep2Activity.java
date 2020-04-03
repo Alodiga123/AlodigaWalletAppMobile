@@ -30,7 +30,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 
 
-public class RechargeWithCardStep1 extends AppCompatActivity {
+public class RechargeWithCardStep2Activity extends AppCompatActivity {
     static SoapObject response;
     static ObjGenericObject[] listSpinner_pais = new ObjGenericObject[0];
     static ObjTransferMoney[] listSpinner_producto = new ObjTransferMoney[0];
@@ -78,7 +78,7 @@ public class RechargeWithCardStep1 extends AppCompatActivity {
         month.setAdapter(spinAdapterMoth);
         month.setSelection(monthAct);
 
-        listSpinner_years = getListYears(1998);
+        listSpinner_years = getListYears();
         SpinAdapterGeneric spinAdapterYears;
         spinAdapterYears = new SpinAdapterGeneric(getApplicationContext(), android.R.layout.simple_spinner_item, listSpinner_years);
         year.setAdapter(spinAdapterYears);
@@ -97,7 +97,7 @@ public class RechargeWithCardStep1 extends AppCompatActivity {
         signFind.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent show;
-                show = new Intent(getApplicationContext(), RechargeWithCardStep2.class);
+                show = new Intent(getApplicationContext(), RechargeWithCardStep3Activity.class);
                 startActivity(show);
                 finish();
 
@@ -106,11 +106,12 @@ public class RechargeWithCardStep1 extends AppCompatActivity {
         });
     }
 
-    private ObjGenericObject[] getListYears(int yearIni) {
+    private ObjGenericObject[] getListYears() {
         Calendar calendar = Calendar.getInstance();
 
 
         int yearAct= calendar.get(Calendar.YEAR);
+        int yearIni= yearAct-Constants.YEARMINUS;
         int yearFin = yearAct+Constants.YEARPLUS;
         int total= (yearFin- yearIni);
         ObjGenericObject[] ListYear = new ObjGenericObject[total+1];
@@ -147,7 +148,7 @@ public class RechargeWithCardStep1 extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         Intent pasIntent = getIntent();
-        Intent i = new Intent(RechargeWithCardStep1.this, MainActivity.class);
+        Intent i = new Intent(RechargeWithCardStep2Activity.this, MainActivity.class);
         startActivity(i);
         finish();
     }

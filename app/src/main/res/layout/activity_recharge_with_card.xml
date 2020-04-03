@@ -175,6 +175,8 @@
                     android:layout_marginTop="1dp"
                     android:backgroundTint="@color/white_greyish"
                     android:padding="3dp"
+                    android:layout_gravity="fill_horizontal"
+                    android:textAlignment="gravity"
                     android:singleLine="true"
                     android:textColor="@color/white"
                     android:textColorHint="@color/white_greyish"
@@ -189,14 +191,15 @@
 
                 <Spinner
                     android:id="@+id/year"
-                    android:layout_width="185dp"
+                    android:layout_width="130dp"
                     android:layout_height="37dp"
+                    android:layout_gravity="fill_horizontal"
                     android:layout_marginTop="1dp"
                     android:backgroundTint="@color/white_greyish"
-                    android:gravity="fill_horizontal"
                     android:inputType="phone"
                     android:padding="3dp"
                     android:singleLine="true"
+                    android:textAlignment="gravity"
                     android:textColor="@color/white"
                     android:textColorHint="@color/white_greyish"
                     android:textSize="10sp" />
