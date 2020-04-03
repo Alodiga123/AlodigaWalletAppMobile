@@ -8,6 +8,7 @@ import com.alodiga.app.wallet.model.ObjProccessRemittence;
 import com.alodiga.app.wallet.model.ObjRemittencePay;
 import com.alodiga.app.wallet.model.ObjRemittencePerson;
 import com.alodiga.app.wallet.model.ObjResumeRemittence;
+import com.alodiga.app.wallet.model.ObjTarjetahabiente;
 import com.alodiga.app.wallet.model.ObjTopUpInfos;
 import com.alodiga.app.wallet.model.ObjUserHasProduct;
 import com.alodiga.app.wallet.model.ObjtopUpInfos_IsOpenRange;
@@ -81,7 +82,24 @@ public class Session {
     private static ObjRemittencePerson remittenceDestinatario;
     private static ObjRemittencePerson remittenceRemitente;
     private static ObjProccessRemittence processRemittence;
+    private static ObjTarjetahabiente TarjetahabienteSelect;
+    private static Boolean IsTarjetahabienteSelect=false;
 
+    public static Boolean getIsTarjetahabienteSelect() {
+        return IsTarjetahabienteSelect;
+    }
+
+    public static void setIsTarjetahabienteSelect(Boolean isTarjetahabienteSelect) {
+        IsTarjetahabienteSelect = isTarjetahabienteSelect;
+    }
+
+    public static ObjTarjetahabiente getTarjetahabienteSelect() {
+        return TarjetahabienteSelect;
+    }
+
+    public static void setTarjetahabienteSelect(ObjTarjetahabiente tarjetahabienteSelect) {
+        TarjetahabienteSelect = tarjetahabienteSelect;
+    }
 
     public static ObjProccessRemittence getProcessRemittence() {
         return processRemittence;

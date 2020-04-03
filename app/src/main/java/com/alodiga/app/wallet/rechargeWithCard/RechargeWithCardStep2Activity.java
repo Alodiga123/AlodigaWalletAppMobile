@@ -4,21 +4,17 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
 
 import com.alodiga.app.R;
-import com.alodiga.app.wallet.adapters.SpinAdapterGeneric;
-import com.alodiga.app.wallet.main.MainActivity;
-import com.alodiga.app.wallet.model.ObjGenericObject;
-import com.alodiga.app.wallet.model.ObjTransferMoney;
+import com.alodiga.app.wallet.transference.TransferenceStep3Activity;
+import com.alodiga.app.wallet.transference.TransferenceStep5Activity;
 import com.alodiga.app.wallet.utils.Constants;
 import com.alodiga.app.wallet.utils.CustomToast;
+import com.alodiga.app.wallet.utils.FailCodeOperationActivity;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
 import com.alodiga.app.wallet.utils.Session;
 import com.alodiga.app.wallet.utils.Utils;
@@ -26,215 +22,76 @@ import com.alodiga.app.wallet.utils.WebService;
 
 import org.ksoap2.serialization.SoapObject;
 
-import java.util.Calendar;
 import java.util.HashMap;
 
-
 public class RechargeWithCardStep2Activity extends AppCompatActivity {
-    static SoapObject response;
-    static ObjGenericObject[] listSpinner_pais = new ObjGenericObject[0];
-    static ObjTransferMoney[] listSpinner_producto = new ObjTransferMoney[0];
-    static ObjGenericObject[] listSpinner_banco = new ObjGenericObject[0];
-    static ProgressDialogAlodiga progressDialogAlodiga;
-    static int indexYears;
-    private static FragmentManager fragmentManager;
-    private static String stringResponse = "";
-    String datosRespuesta = "";
-    UserRemovalTask mAuthTask;
-    ObjGenericObject getbank;
-    ObjTransferMoney getproduct;
-    String getNumberOperation, getTrans, getAmountRecharge;
-    Spinner spinner_pais, spinnerbank, spinnerproducto;
-    private EditText edtAmount, edtCOD, edttrans;
-    private Button signFind, backToLoginBtn;
+    static int cout = 1;
+    static int cout_aux = 3;
+    UserGetCodeTask mAuthTask;
+    private TextView backToLoginBtn, step1_next_button, tvintentos;
+    private EditText edtMobileCode;
     private String responsetxt = "";
     private boolean serviceStatus;
-    static DatePicker DatePicker;
-    Spinner month, year;
-    static ObjGenericObject[] listSpinner_years;
-    static ObjGenericObject[] listSpinner_moth;
-
+    private ProgressDialogAlodiga progressDialogAlodiga;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recharge_with_card);
+        setContentView(R.layout.transference_payment_code_layout);
+        step1_next_button = findViewById(R.id.step1_next_button);
+        backToLoginBtn = findViewById(R.id.backToLoginBtn);
+        edtMobileCode = findViewById(R.id.edtMobileCode);
+        tvintentos = findViewById(R.id.tvintentos);
 
+        step1_next_button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
 
-        edtAmount = findViewById(R.id.edtAmount);
-        signFind = findViewById(R.id.signFind);
-        backToLoginBtn=findViewById(R.id.backToLoginBtn);
-        edtCOD = findViewById(R.id.edtCOD);
-        edttrans = findViewById(R.id.edttrans);
+                String getCode = edtMobileCode.getText().toString();
 
-        month= findViewById(R.id.month);
-        year= findViewById(R.id.year);
+                if (getCode.equals("") || getCode.length() == 0 || getCode.length() != 4) {
+                    new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
+                            getString(R.string.pin_text));
+                } else if (cout >= 3) {
+                    Intent i = new Intent(RechargeWithCardStep2Activity.this, FailCodeOperationActivity.class);
+                    finish();
+                    startActivity(i);
+                } else {
+                    progressDialogAlodiga = new ProgressDialogAlodiga(getApplicationContext(), getString(R.string.loading));
+                    mAuthTask = new UserGetCodeTask(Utils.aloDesencript(getCode));
+                    mAuthTask.execute((Void) null);
+                }
 
-        Calendar calendar = Calendar.getInstance();
-        int monthAct= calendar.get(Calendar.MONTH);
-        listSpinner_moth = getListMonth();
-        SpinAdapterGeneric spinAdapterMoth;
-        spinAdapterMoth = new SpinAdapterGeneric(getApplicationContext(), android.R.layout.simple_spinner_item, listSpinner_moth);
-        month.setAdapter(spinAdapterMoth);
-        month.setSelection(monthAct);
+            }
+        });
 
-        listSpinner_years = getListYears();
-        SpinAdapterGeneric spinAdapterYears;
-        spinAdapterYears = new SpinAdapterGeneric(getApplicationContext(), android.R.layout.simple_spinner_item, listSpinner_years);
-        year.setAdapter(spinAdapterYears);
-        year.setSelection(indexYears);
 
         backToLoginBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent show;
-                show = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(show);
+                Intent i = new Intent(RechargeWithCardStep2Activity.this, RechargeWithCardStep1Activity.class);
                 finish();
-            }
-        });
-
-
-        signFind.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent show;
-                show = new Intent(getApplicationContext(), RechargeWithCardStep3Activity.class);
-                startActivity(show);
-                finish();
-
+                startActivity(i);
 
             }
         });
-    }
-
-    private ObjGenericObject[] getListYears() {
-        Calendar calendar = Calendar.getInstance();
-
-
-        int yearAct= calendar.get(Calendar.YEAR);
-        int yearIni= yearAct-Constants.YEARMINUS;
-        int yearFin = yearAct+Constants.YEARPLUS;
-        int total= (yearFin- yearIni);
-        ObjGenericObject[] ListYear = new ObjGenericObject[total+1];
-        int aux=0;
-
-        for(int i = yearIni; i <= yearFin; i++)
-        {
-           ListYear[aux]= new ObjGenericObject(String.valueOf(i),String.valueOf(aux));
-           if(yearAct==i){
-            indexYears=aux;
-           }
-
-           aux++;
-        }
-
-        return ListYear;
-    }
-
-    private ObjGenericObject[] getListMonth() {
-        Calendar calendar = Calendar.getInstance();
-        ObjGenericObject[] ListMoth = new ObjGenericObject[12];
-        int aux=0;
-
-        for(int i = 1; i <= 12; i++)
-        {
-            ListMoth[aux]= new ObjGenericObject(String.valueOf(i),String.valueOf(aux));
-            aux++;
-        }
-
-        return ListMoth;
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent pasIntent = getIntent();
-        Intent i = new Intent(RechargeWithCardStep2Activity.this, MainActivity.class);
-        startActivity(i);
+        Intent i = new Intent(RechargeWithCardStep2Activity.this, RechargeWithCardStep1Activity.class);
         finish();
+        startActivity(i);
     }
 
-    protected ObjGenericObject[] getListGeneric(SoapObject response) {
 
-        ObjGenericObject[] obj2 = new ObjGenericObject[response.getPropertyCount() - 3];
+    public class UserGetCodeTask extends AsyncTask<Void, Void, Boolean> {
 
-        for (int i = 3; i < response.getPropertyCount(); i++) {
-            SoapObject obj = (SoapObject) response.getProperty(i);
-            String propiedad = response.getProperty(i).toString();
-            ObjGenericObject object = new ObjGenericObject(obj.getProperty("name").toString(), obj.getProperty("id").toString());
-            obj2[i - 3] = object;
+        private final String clave;
+
+
+        public UserGetCodeTask(String clave) {
+            this.clave = clave;
         }
-
-        return obj2;
-    }
-
-    protected ObjTransferMoney[] getListProduct(SoapObject response) {
-
-        ObjTransferMoney[] obj2 = new ObjTransferMoney[response.getPropertyCount() - 3];
-
-        for (int i = 3; i < response.getPropertyCount(); i++) {
-            SoapObject obj = (SoapObject) response.getProperty(i);
-            String propiedad = response.getProperty(i).toString();
-            ObjTransferMoney object = new ObjTransferMoney(obj.getProperty("id").toString(), obj.getProperty("name").toString() + " - " + obj.getProperty("currentBalance").toString(), obj.getProperty("currentBalance").toString());
-            obj2[i - 3] = object;
-        }
-
-        return obj2;
-    }
-
-
-    public void RemovalTask() {
-        progressDialogAlodiga = new ProgressDialogAlodiga(this, getString(R.string.loading));
-        progressDialogAlodiga.show();
-        mAuthTask = new UserRemovalTask();
-        mAuthTask.execute((Void) null);
-
-    }
-
-    public void serviceAnswer(String responseCode) {
-        if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
-            responsetxt = getString(R.string.web_services_response_00);
-            serviceStatus = true;
-            //return serviceStatus;
-        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_DATOS_INVALIDOS)) {
-            responsetxt = getString(R.string.web_services_response_01);
-            serviceStatus = false;
-        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CONTRASENIA_EXPIRADA)) {
-            responsetxt = getString(R.string.web_services_response_03);
-            serviceStatus = false;
-        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_IP_NO_CONFIANZA)) {
-            responsetxt = getString(R.string.web_services_response_04);
-            serviceStatus = false;
-        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CREDENCIALES_INVALIDAS)) {
-            responsetxt = getString(R.string.web_services_response_05);
-            serviceStatus = false;
-        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_BLOQUEADO)) {
-            responsetxt = getString(R.string.web_services_response_06);
-            serviceStatus = false;
-        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_NUMERO_TELEFONO_YA_EXISTE)) {
-            responsetxt = getString(R.string.web_services_response_08);
-            serviceStatus = false;
-        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_PRIMER_INGRESO)) {
-            responsetxt = getString(R.string.web_services_response_12);
-            serviceStatus = false;
-        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_SOSPECHOSO)) {
-            responsetxt = getString(R.string.web_services_response_95);
-            serviceStatus = false;
-        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_PENDIENTE)) {
-            responsetxt = getString(R.string.web_services_response_96);
-            serviceStatus = false;
-        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_NO_EXISTE)) {
-            responsetxt = getString(R.string.web_services_response_97);
-            serviceStatus = false;
-        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_CREDENCIALES)) {
-            responsetxt = getString(R.string.web_services_response_98);
-            serviceStatus = false;
-        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_INTERNO)) {
-            responsetxt = getString(R.string.web_services_response_99);
-            serviceStatus = false;
-        }
-    }
-
-    public class UserRemovalTask extends AsyncTask<Void, Void, Boolean> {
 
         @Override
         protected Boolean doInBackground(Void... params) {
@@ -242,37 +99,19 @@ public class RechargeWithCardStep2Activity extends AppCompatActivity {
             WebService webService = new WebService();
             Utils utils = new Utils();
             SoapObject response;
-
-           /* getbank = (ObjGenericObject) spinnerbank.getSelectedItem();
-            getNumberOperation = edtCOD.getText().toString();
-            getAmountRecharge = edtAmount.getText().toString();
-            getproduct = (ObjTransferMoney) spinnerproducto.getSelectedItem();
-            getTrans = edttrans.getText().toString();*/
-
-
             try {
                 String responseCode;
                 String responseMessage = "";
 
+
                 HashMap<String, String> map = new HashMap<String, String>();
-                map.put("bankId", getbank.getId());
-                map.put("emailUser", Session.getEmail());
-                map.put("referenceNumberOperation", getNumberOperation);
-                map.put("amountRecharge", getAmountRecharge);
-                map.put("productId", getproduct.getId());
-                map.put("conceptTransaction", getTrans);
+                map.put("usuarioApi", Constants.WEB_SERVICES_USUARIOWS);
+                map.put("passwordApi", Constants.WEB_SERVICES_PASSWORDWS);
+                map.put("usuarioId", Session.getUserId());
+                map.put("pin", clave);
 
-                /*
-                 @WebParam(name = "bankId") Long bankId,
-                @WebParam(name = "emailUser") String emailUser,
-                @WebParam(name = "referenceNumberOperation") String referenceNumberOperation,
-                @WebParam(name = "amountRecharge") Float amountRecharge,
-                @WebParam(name = "productId") Long productId,
-                @WebParam(name = "conceptTransaction") String conceptTransaction) {
-                return operations.ManualRecharge(bankId, emailUser, referenceNumberOperation, amountRecharge,
-                 */
 
-                response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_NAME_RECHARGE, Constants.ALODIGA);
+                response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_NAME_VALID_CODE, Constants.REGISTRO_UNIFICADO);
                 responseCode = response.getProperty("codigoRespuesta").toString();
                 responseMessage = response.getProperty("mensajeRespuesta").toString();
 
@@ -285,6 +124,7 @@ public class RechargeWithCardStep2Activity extends AppCompatActivity {
                 } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_DATOS_INVALIDOS)) {
                     responsetxt = getString(R.string.web_services_response_01);
                     serviceStatus = false;
+
                 } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CONTRASENIA_EXPIRADA)) {
                     responsetxt = getString(R.string.web_services_response_03);
                     serviceStatus = false;
@@ -302,18 +142,6 @@ public class RechargeWithCardStep2Activity extends AppCompatActivity {
                     serviceStatus = false;
                 } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_PRIMER_INGRESO)) {
                     responsetxt = getString(R.string.web_services_response_12);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_TRANSACTION_AMOUNT_LIMIT)) {
-                    responsetxt = getString(R.string.web_services_response_30);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_TRANSACTION_MAX_NUMBER_BY_ACCOUNT)) {
-                    responsetxt = getString(R.string.web_services_response_31);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_TRANSACTION_MAX_NUMBER_BY_CUSTOMER)) {
-                    responsetxt = getString(R.string.web_services_response_32);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USER_HAS_NOT_BALANCE)) {
-                    responsetxt = getString(R.string.web_services_response_33);
                     serviceStatus = false;
                 } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_SOSPECHOSO)) {
                     responsetxt = getString(R.string.web_services_response_95);
@@ -334,25 +162,22 @@ public class RechargeWithCardStep2Activity extends AppCompatActivity {
                     responsetxt = getString(R.string.web_services_response_99);
                     serviceStatus = false;
                 }
-
+                //progressDialogAlodiga.dismiss();
             } catch (IllegalArgumentException e) {
                 responsetxt = getString(R.string.web_services_response_99);
                 serviceStatus = false;
                 e.printStackTrace();
                 System.err.println(e);
-
                 return false;
-
             } catch (Exception e) {
                 responsetxt = getString(R.string.web_services_response_99);
                 serviceStatus = false;
                 e.printStackTrace();
                 System.err.println(e);
-
                 return false;
             }
-
             return serviceStatus;
+
         }
 
         @Override
@@ -360,14 +185,30 @@ public class RechargeWithCardStep2Activity extends AppCompatActivity {
             mAuthTask = null;
             //showProgress(false);
             if (success) {
-                Intent show;
-                show = new Intent(getApplicationContext(), RechargeWithCardStep.class);
-                startActivity(show);
-                finish();
+
+                if (cout <= 3) {
+                    Session.setCodeOperation(edtMobileCode.getText().toString());
+                    Intent i = new Intent(RechargeWithCardStep2Activity.this, TransferenceStep5Activity.class);
+                    startActivity(i);
+                    finish();
+                } else {
+                    Intent i = new Intent(RechargeWithCardStep2Activity.this, FailCodeOperationActivity.class);
+                    startActivity(i);
+                    finish();
+                }
+
 
             } else {
-                new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
-                        responsetxt);
+                edtMobileCode.setText("");
+                cout_aux = cout_aux - 1;
+                tvintentos.setText(getString(R.string.info_fail_code) + cout_aux);
+                cout = cout + 1;
+
+                if (cout_aux == 0) {
+                    Intent i = new Intent(RechargeWithCardStep2Activity.this, FailCodeOperationActivity.class);
+                    startActivity(i);
+                    finish();
+                }
             }
             progressDialogAlodiga.dismiss();
         }
@@ -377,4 +218,5 @@ public class RechargeWithCardStep2Activity extends AppCompatActivity {
             mAuthTask = null;
         }
     }
+
 }

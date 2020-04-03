@@ -6,7 +6,8 @@ public class ObjTarjetahabiente {
     private String security_code;
     private String cardholder_name;
     private String type_card;
-    private String expiration_date;
+    private String expiration_date_moth;
+    private String expiration_date_year;
     private String country;
     private String state;
     private String county;
@@ -17,12 +18,13 @@ public class ObjTarjetahabiente {
     public ObjTarjetahabiente() {
     }
 
-    public ObjTarjetahabiente(String card_number, String security_code, String cardholder_name, String type_card, String expiration_date, String country, String state, String county, String city, String direction, String zip_code) {
+    public ObjTarjetahabiente(String card_number, String security_code, String cardholder_name, String type_card, String expiration_date_moth, String expiration_date_year, String country, String state, String county, String city, String direction, String zip_code) {
         this.card_number = card_number;
         this.security_code = security_code;
         this.cardholder_name = cardholder_name;
         this.type_card = type_card;
-        this.expiration_date = expiration_date;
+        this.expiration_date_moth = expiration_date_moth;
+        this.expiration_date_year = expiration_date_year;
         this.country = country;
         this.state = state;
         this.county = county;
@@ -63,12 +65,20 @@ public class ObjTarjetahabiente {
         this.type_card = type_card;
     }
 
-    public String getExpiration_date() {
-        return expiration_date;
+    public String getExpiration_date_moth() {
+        return expiration_date_moth;
     }
 
-    public void setExpiration_date(String expiration_date) {
-        this.expiration_date = expiration_date;
+    public void setExpiration_date_moth(String expiration_date_moth) {
+        this.expiration_date_moth = expiration_date_moth;
+    }
+
+    public String getExpiration_date_year() {
+        return expiration_date_year;
+    }
+
+    public void setExpiration_date_year(String expiration_date_year) {
+        this.expiration_date_year = expiration_date_year;
     }
 
     public String getCountry() {

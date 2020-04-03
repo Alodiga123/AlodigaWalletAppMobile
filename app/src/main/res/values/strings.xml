@@ -490,8 +490,8 @@
     <string name="lastname1_">Primer apellido</string>
     <string name="lastname2_">Segundo apellido</string>
 
-    <string name="cvv_title">Ingrese el CVV</string>
-    <string name="cvv">CVV</string>
+    <string name="cvv_title">Ingrese el Codigo de Seguridad (CVV)</string>
+    <string name="cvv">Codigo de Seguridad (CVV)</string>
     <string name="date_recharge">Seleccione la fecha de vencimiento</string>
     <string name="date_recharge_">Fecha de vencimiento</string>
 
@@ -503,6 +503,13 @@
     <string name="recharge_contact">Seleccionar</string>
     <string name="drop">Eliminar</string>
     <string name="add_contact">Agregar Tarjeta</string>
+    <string name="add_contact_fre">Metodo de Pago Frecuente</string>
+    <string name="save">GUARDAR</string>
+    <string name="card_type">Seleccione el Tipo de Tarjeta</string>
+    <string name="payment_method_information">Información del Metodo de Pago</string>
+
+
+
 
 
 

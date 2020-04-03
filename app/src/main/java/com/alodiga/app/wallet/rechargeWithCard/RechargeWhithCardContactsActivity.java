@@ -13,30 +13,25 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.adapters.AdapterCardContacts;
-import com.alodiga.app.wallet.adapters.AdapterCardProduct;
 import com.alodiga.app.wallet.main.MainActivity;
 import com.alodiga.app.wallet.model.ObjCompanionCards;
-import com.alodiga.app.wallet.utils.Constants;
+import com.alodiga.app.wallet.model.ObjTarjetahabiente;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
-import com.alodiga.app.wallet.utils.Session;
-import com.alodiga.app.wallet.utils.Utils;
-import com.alodiga.app.wallet.utils.WebService;
 
 import org.ksoap2.serialization.SoapObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 
-public class RechargeWhithCardStep1Activity extends AppCompatActivity {
+public class RechargeWhithCardContactsActivity extends AppCompatActivity {
 
     private static Spinner spinnerProduct;
-    private Button step1_next_button, backToLoginBtn;
+    private Button step1_next_button, backToLoginBtn, add;
     private RecyclerView mRecyclerView;
     private AdapterCardContacts mAdapter;
-    private List<ObjCompanionCards> mProductList;
+    private List<ObjTarjetahabiente> mProductList;
     private String responsetxt = "";
     private boolean serviceStatus;
     private ProgressDialogAlodiga progressDialogAlodiga;
@@ -48,18 +43,27 @@ public class RechargeWhithCardStep1Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_main_card_contact);
         backToLoginBtn= findViewById(R.id.backToLoginBtn);
-
+        add= findViewById(R.id.add);
 
         backToLoginBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 //new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(), "Prueba exitosa");
                 Intent show;
-                show = new Intent(getApplicationContext(), MainActivity.class);
+                show = new Intent(getApplicationContext(), RechargeWithCardStep1Activity.class);
                 startActivity(show);
             }
         });
 
 
+
+        add.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                //new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(), "Prueba exitosa");
+                Intent show;
+                show = new Intent(getApplicationContext(), RechargeWithCardContactsAddActivity.class);
+                startActivity(show);
+            }
+        });
 
 
 
@@ -71,7 +75,7 @@ public class RechargeWhithCardStep1Activity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent i = new Intent(RechargeWhithCardStep1Activity.this, MainActivity.class);
+        Intent i = new Intent(RechargeWhithCardContactsActivity.this, RechargeWithCardStep1Activity.class);
         startActivity(i);
         finish();
     }
@@ -201,15 +205,15 @@ public class RechargeWhithCardStep1Activity extends AppCompatActivity {
                 mRecyclerView = findViewById(R.id.idRecyclerView);
                 //mRecyclerView.setHasFixedSize(true);
                 mRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                mProductList = new ArrayList<ObjCompanionCards>();
+                mProductList = new ArrayList<ObjTarjetahabiente>();
                 int resID = getResources().getIdentifier("al" , "drawable", getPackageName());
 
                 for (int i = 0; i < 3; i++) {
                     //SoapObject obj = (SoapObject) response_.getProperty(i);
-                    mProductList.add(new ObjCompanionCards("id","nameCard","numberCard", "parentIDnumberCard", "MasknumberCard",resID,"userDestinationId"));
+                    mProductList.add(new ObjTarjetahabiente("card_number-"+i,"security_code", "cardholder_name","mastercar-2", "12","3000", "country", "state", "county", "city",  "direction", "zip_code"));
                 }
 
-                mAdapter = new AdapterCardContacts(mProductList, RechargeWhithCardStep1Activity.this);
+                mAdapter = new AdapterCardContacts(mProductList, RechargeWhithCardContactsActivity.this);
                 mRecyclerView.setAdapter(mAdapter);
                 registerForContextMenu(mRecyclerView);
 
@@ -219,7 +223,7 @@ public class RechargeWhithCardStep1Activity extends AppCompatActivity {
 
                 new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                         responsetxt);
-               Intent i = new Intent(RechargeWhithCardStep1Activity.this, MainActivity.class);
+               Intent i = new Intent(RechargeWhithCardContactsActivity.this, MainActivity.class);
                startActivity(i);
                 finish();
             }

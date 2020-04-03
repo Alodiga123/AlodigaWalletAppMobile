@@ -102,7 +102,7 @@
                 android:gravity="center"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:text="@string/Finalize"
+                android:text="@string/back"
                 android:textColor="@color/background_color"
                 android:textSize="14sp"
                 android:textStyle="bold" />

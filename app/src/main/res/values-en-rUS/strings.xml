@@ -432,8 +432,8 @@
     <string name="email_">E-mail</string>
     <string name="status_remittence">Status</string>
     <string name="recharge_whih_card_title">"WALLET RECHARGE "</string>
-    <string name="cvv_title">"Enter CVV "</string>
-    <string name="cvv">CVV</string>
+    <string name="cvv_title">Enter the Security Code (CVV)</string>
+    <string name="cvv">" Security Code (CVV)"</string>
     <string name="date_recharge">"Select the expiration date "</string>
     <string name="date_recharge_">Expiration date</string>
     <string name="amount_info_">" Enter the amount to recharge:"</string>
@@ -443,4 +443,9 @@
     <string name="name_1">Name</string>
     <string name="recharge_contact">Select</string>
     <string name="drop">Drop</string>
+    <string name="add_contact">Add Card</string>
+    <string name="add_contact_fre">Frequent Payment Method</string>
+    <string name="save">SAVE</string>
+    <string name="card_type">"Select Card Type "</string>
+    <string name="payment_method_information">" Payment Method Information"</string>
 </resources>

@@ -12,7 +12,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,6 +22,8 @@ import com.alodiga.app.R;
 import com.alodiga.app.wallet.balance.BalanceStep1Activity;
 import com.alodiga.app.wallet.companionCards.CompanionCardsStep2Activity;
 import com.alodiga.app.wallet.model.ObjCompanionCards;
+import com.alodiga.app.wallet.model.ObjTarjetahabiente;
+import com.alodiga.app.wallet.rechargeWithCard.RechargeWithCardStep1Activity;
 import com.alodiga.app.wallet.utils.Session;
 import com.alodiga.app.wallet.validate.ValidateAccountCode3Activity;
 import com.alodiga.app.wallet.validate.ValidateAccountCode4Activity;
@@ -30,9 +34,9 @@ import java.util.Locale;
 
 public class AdapterCardContacts extends RecyclerView.Adapter<AdapterCardContacts.GroceryProductViewHolder> implements AdapterView.OnItemSelectedListener {
     Context context;
-    private List<ObjCompanionCards> grocderyItemList;
+    private List<ObjTarjetahabiente> grocderyItemList;
 
-    public AdapterCardContacts(List<ObjCompanionCards> grocderyItemList, Context context) {
+    public AdapterCardContacts(List<ObjTarjetahabiente> grocderyItemList, Context context) {
         this.grocderyItemList = grocderyItemList;
         this.context = context;
     }
@@ -49,55 +53,51 @@ public class AdapterCardContacts extends RecyclerView.Adapter<AdapterCardContact
     public void onBindViewHolder(GroceryProductViewHolder holder, final int position) {
         //holder.imageProductImage.setImageResource(grocderyItemList.get(position).getImageCard());
 
-        holder.idProductType.setText(grocderyItemList.get(position).getNameCard());
-        holder.txtProductName.setText(grocderyItemList.get(position).getNameCard());
-        holder.txtProductPrice.setText(grocderyItemList.get(position).getNumberCardEncrip());
+        holder.idProductType.setText(grocderyItemList.get(position).getType_card());
+        holder.txtProductName.setText(grocderyItemList.get(position).getCardholder_name());
+        holder.txtProductPrice.setText(grocderyItemList.get(position).getCard_number());
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.linearSelect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Session.setTarjetahabienteSelect(grocderyItemList.get(position));
+                Session.setIsTarjetahabienteSelect(true);
+                Intent show = new Intent(context, RechargeWithCardStep1Activity.class);
+                context.startActivity(show);
+            }
+
+
+        });
+
+        holder.linearDrop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Session.setTarjetahabienteSelect(grocderyItemList.get(position));
+                Toast toast = Toast.makeText(context, "En Proceso", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+
+
+        });
+
+
+       /* holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent show;
-                switch(Session.getCumplimient()) {
-                    case "1":
-                        show = new Intent(context, ValidateAccountStep5Activity.class);
-                        context.startActivity(show);
-                        break;
-                    case "3":
-                        show = new Intent(context, ValidateAccountCode3Activity.class);
-                        context.startActivity(show);
-                        break;
-                    case "4":
-                        show = new Intent(context, ValidateAccountCode4Activity.class);
-                        context.startActivity(show);
-                        break;
-                    default:
-                //String productName = grocderyItemList.get(position).getProductName();
 
                 AlertDialog.Builder ADBuilder2 = new AlertDialog.Builder(context, R.style.yourDialog);
 
-
-                //ADBuilder2.setTitle(Html.fromHtml("Operaciones" ));
-                Configuration config = new Configuration();
 
                 final String idioma = Locale.getDefault().getLanguage();
 
 
                 //Creamos un nuevo ArrayAdapter de 'Strings' y pasamos como parametros (Contexto, int id "Referencia a layout");
                 final ArrayAdapter arrayAdapter = new ArrayAdapter(context, R.layout.menu_simple);
-                if (idioma.equals("en")) {
                     ADBuilder2.setTitle(Html.fromHtml("Operations" ));
 
-                        //R.string.menu_recharge
-                    arrayAdapter.add("    Check balance");
-                    arrayAdapter.add("    Recharge from main");
-                } else {
-                    ADBuilder2.setTitle(Html.fromHtml("Operaciones" ));
-
-                        //R.string.menu_recharge
-                    arrayAdapter.add("    Consultar Saldo");
-                    arrayAdapter.add("    Recargar desde Principal");
-
-                }
 
                 //Creamos un boton para cancelar el dialog
                         ADBuilder2.setPositiveButton("Cancelar", new DialogInterface.OnClickListener() {
@@ -109,25 +109,10 @@ public class AdapterCardContacts extends RecyclerView.Adapter<AdapterCardContact
                 });
 
                 //Capturamos el evento 'OnClick' de los elementos en el dialogo
-                        ADBuilder2.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
+                ADBuilder2.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int _item) {
 
-                        //Creamos un toast para mostrar el elemento selecionado
-                        if (arrayAdapter.getItem(_item).toString() == "    Check balance" || arrayAdapter.getItem(_item).toString() == "    Consultar Saldo") {
-                            Session.setCardBalance(grocderyItemList.get(position).getNumberCard());
-                            Intent show = new Intent(context, BalanceStep1Activity.class);
-                            context.startActivity(show);
-                        }
-
-                        if (arrayAdapter.getItem(_item).toString() == "    Recharge from main" || arrayAdapter.getItem(_item).toString() == "    Recargar desde Principal") {
-                               Session.setTranferenceCardToCardDest(grocderyItemList.get(position).getNumberCard());
-                               Session.setTranferenceCardToCardEncripDest(grocderyItemList.get(position).getNumberCardEncrip());
-                               Session.setDestinationNameValue(grocderyItemList.get(position).getNameCard());
-                               Session.setUsuarioDestionId(grocderyItemList.get(position).getUserDestinationId());
-                               Intent show = new Intent(context, CompanionCardsStep2Activity.class);
-                            context.startActivity(show);
-                        }
 
                     }
                 });
@@ -137,9 +122,7 @@ public class AdapterCardContacts extends RecyclerView.Adapter<AdapterCardContact
             }
 
 
-        }
-
-        });
+        });*/
     }
 
     @Override
@@ -159,16 +142,16 @@ public class AdapterCardContacts extends RecyclerView.Adapter<AdapterCardContact
 
     public class GroceryProductViewHolder extends RecyclerView.ViewHolder {
         //ImageView imageProductImage;
-        //ImageView imageSelect;
-        //ImageView imageDrop;
+        LinearLayout linearSelect;
+        LinearLayout linearDrop;
         TextView idProductType;
         TextView txtProductName;
         TextView txtProductPrice;
 
         public GroceryProductViewHolder(View view) {
             super(view);
-            //imageProductImage = view.findViewById(R.id.idProductImage);
-            //imageProductImage = view.findViewById(R.id.idProductImage);
+            linearSelect = view.findViewById(R.id.linearSelect);
+            linearDrop = view.findViewById(R.id.linearDrop);
 
             idProductType= view.findViewById(R.id.idProductType);
             txtProductName = view.findViewById(R.id.idProductName);

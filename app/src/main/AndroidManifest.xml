@@ -348,7 +348,11 @@
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-            android:name="com.alodiga.app.wallet.rechargeWithCard.RechargeWhithCardStep1Activity"
+            android:name="com.alodiga.app.wallet.rechargeWithCard.RechargeWhithCardContactsActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name="com.alodiga.app.wallet.rechargeWithCard.RechargeWithCardStep1Activity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
@@ -356,7 +360,7 @@
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-            android:name="com.alodiga.app.wallet.rechargeWithCard.RechargeWithCardStep3Activity"
+            android:name="com.alodiga.app.wallet.rechargeWithCard.RechargeWithCardContactsAddActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
 

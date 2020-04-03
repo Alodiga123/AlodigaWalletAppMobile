@@ -41,8 +41,8 @@ import com.alodiga.app.wallet.model.ObjMoney;
 import com.alodiga.app.wallet.model.ObjUserHasProduct;
 import com.alodiga.app.wallet.changePassword.ChangePasswordStep1Activity;
 import com.alodiga.app.wallet.paymentComerce.PaymentComerceStep1Activity;
-import com.alodiga.app.wallet.rechargeWithCard.RechargeWhithCardStep1Activity;
-import com.alodiga.app.wallet.rechargeWithCard.RechargeWithCardStep2Activity;
+import com.alodiga.app.wallet.rechargeWithCard.RechargeWhithCardContactsActivity;
+import com.alodiga.app.wallet.rechargeWithCard.RechargeWithCardStep1Activity;
 import com.alodiga.app.wallet.remesas.PaymentStep1Activity;
 import com.alodiga.app.wallet.topup.TopupStep1Activity;
 import com.alodiga.app.wallet.transference.TransferenceStep1Activity;
@@ -292,7 +292,7 @@ public class MainActivity extends AppCompatActivity
                    break;
                default:
                    if (id == R.id.nav_recharge_with_card) {
-                       show = new Intent(MainActivity.this, RechargeWhithCardStep1Activity.class);
+                       show = new Intent(MainActivity.this, RechargeWithCardStep1Activity.class);
                        startActivity(show);
                    } if (id == R.id.nav_recharge) {
                    show = new Intent(MainActivity.this, ManualRechargeStep1Activity.class);

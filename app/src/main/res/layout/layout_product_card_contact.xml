@@ -93,7 +93,7 @@
                >
 
                 <LinearLayout
-                    android:id="@+id/linear"
+                    android:id="@+id/linearSelect"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
@@ -123,6 +123,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_alignParentRight="true"
+                    android:id="@+id/linearDrop"
                     >
 
                     <ImageView
