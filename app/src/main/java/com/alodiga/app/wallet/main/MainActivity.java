@@ -294,7 +294,8 @@ public class MainActivity extends AppCompatActivity
                    if (id == R.id.nav_recharge_with_card) {
                        show = new Intent(MainActivity.this, RechargeWithCardStep1Activity.class);
                        startActivity(show);
-                   } if (id == R.id.nav_recharge) {
+                   }
+                   if (id == R.id.nav_recharge) {
                    show = new Intent(MainActivity.this, ManualRechargeStep1Activity.class);
                    startActivity(show);
                    }

@@ -448,4 +448,12 @@
     <string name="save">SAVE</string>
     <string name="card_type">"Select Card Type "</string>
     <string name="payment_method_information">" Payment Method Information"</string>
+    <string name="cvv_information">Invalid security code length</string>
+    <string name="cvv_numeric">Security Code (CVV) must be numeric</string>
+    <string name="cvv_null">"Security Code (CVV) cannot be empty "</string>
+    <string name="cvv_invalic_type">Security Code (CVV) does NOT match the type of card</string>
+    <string name="card_invalic">"The card number can NOT be empty "</string>
+    <string name="card_invalic2">"The card number has an invalid length "</string>
+    <string name="card_numeric">"The card number must be numeric "</string>
+    <string name="payment_method_information_recharge">"Refill Information "</string>
 </resources>

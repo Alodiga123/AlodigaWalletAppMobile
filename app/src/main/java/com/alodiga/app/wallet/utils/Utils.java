@@ -102,6 +102,8 @@ public class Utils {
      */
     private static final int TEXT_SIZE = 15;
 
+    private static final String CVV_DIG = "\\d+";
+
 
     /**
      * method used to encrypt the parameters sent to the webservice
@@ -168,9 +170,9 @@ public class Utils {
     public static String getUrl(String namespace) {
 
         if (Constants.ALODIGA == namespace)
-            return Constants.CONSTANT_IS_PRODUCTION ? Constants.CONSTANT_URL_PROD : Constants.CONSTANT_URL_QA_ALODIGA;
+            return Constants.CONSTANT_IS_PRODUCTION ? Constants.CONSTANT_URL_PROD : Constants.CONSTANT_URL_QA_ALODIGA_AW;
         else if (Constants.REGISTRO_UNIFICADO == namespace)
-            return Constants.CONSTANT_IS_PRODUCTION ? Constants.CONSTANT_URL_PROD : Constants.CONSTANT_URL_QA_REGISTRO_UNIFICADO;
+            return Constants.CONSTANT_IS_PRODUCTION ? Constants.CONSTANT_URL_PROD : Constants.CONSTANT_URL_QA_REGISTRO_UNIFICADO_AW;
         else
             return Constants.CONSTANT_IS_PRODUCTION ? Constants.CONSTANT_URL_PROD : Constants.CONSTANT_URL_REMITTENCE;
 
@@ -181,14 +183,14 @@ public class Utils {
     public static String getUrl_uri(String namespace, String uri) {
 
         if (Constants.ALODIGA == namespace)
-            return Constants.CONSTANT_IS_PRODUCTION ? Constants.CONSTANT_URL_PROD : Constants.CONSTANT_URL_QA_ALODIGA;
+            return Constants.CONSTANT_IS_PRODUCTION ? Constants.CONSTANT_URL_PROD : Constants.CONSTANT_URL_QA_ALODIGA_AW;
         else if (Constants.REGISTRO_UNIFICADO == namespace)
-            return Constants.CONSTANT_IS_PRODUCTION ? Constants.CONSTANT_URL_PROD : Constants.CONSTANT_URL_QA_REGISTRO_UNIFICADO;
+            return Constants.CONSTANT_IS_PRODUCTION ? Constants.CONSTANT_URL_PROD : Constants.CONSTANT_URL_QA_REGISTRO_UNIFICADO_AW;
         else if (Constants.REMITTANCE == namespace){
             if(Constants.CONSTANT_WSREMITTENCE==uri){
                 return Constants.CONSTANT_IS_PRODUCTION ? Constants.CONSTANT_URL_PROD : Constants.CONSTANT_URL_REMITTENCE;
             }else if(Constants.CONSTANT_WSREMITTENCEMOBILE==uri){
-                return Constants.CONSTANT_IS_PRODUCTION ? Constants.CONSTANT_URL_PROD : Constants.CONSTANT_URL_REMITTENCE_MOBILE;
+                return Constants.CONSTANT_IS_PRODUCTION ? Constants.CONSTANT_URL_PROD : Constants.CONSTANT_URL_REMITTENCE_MOBILE_AW;
             }
         }
 
@@ -430,6 +432,38 @@ public class Utils {
         }
         return 0;
     }
+
+    public static int validateCard(@NonNull String type, @NonNull String cvv, @NonNull String card)
+    {
+        Pattern digi_cvv = Pattern.compile(CVV_DIG);
+        Matcher cvv_dig = digi_cvv.matcher(cvv);
+        Matcher cvv_dig_card = digi_cvv.matcher(card);
+
+        if(!cvv_dig.lookingAt())
+        {
+            return R.string.cvv_numeric;
+        }else if(cvv == null){
+        return R.string.cvv_null;
+        }if(cvv.length() < Constants.LONGITUD_MINIMA_CVV || cvv.length() > Constants.LONGITUD_MAXIMA_CVV){
+        return R.string.cvv_information;
+        }else if(type.equals("AMEX") || type.equals("JCB") &&  cvv.length() == Constants.LONGITUD_MAXIMA_CVV ){
+        return R.string.cvv_invalic_type;
+        } else if(card == null){
+        return R.string.card_invalic;
+        } else if(card.length() < Constants.LONGITUD_MINIMA_TARJETA_CREDITO || card.length() > Constants.LONGITUD_MAXIMA_TARJETA_CREDITO){
+            return R.string.card_invalic2;
+        }else if(!cvv_dig_card.lookingAt())
+        return R.string.card_numeric;
+        else{
+
+        }
+
+
+
+
+        return 0;
+    }
+
 
     public static boolean isNumeric(String cadena){
         try {

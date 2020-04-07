@@ -507,6 +507,19 @@
     <string name="save">GUARDAR</string>
     <string name="card_type">Seleccione el Tipo de Tarjeta</string>
     <string name="payment_method_information">Información del Metodo de Pago</string>
+    <string name="payment_method_information_recharge">Información de la Recarga</string>
+    <string name="cvv_information">Longitud del Codigo de Seguridad (CVV) invalida</string>
+    <string name="cvv_numeric">Codigo de Seguridad (CVV) debe ser numerico</string>
+    <string name="cvv_null">Codigo de Seguridad (CVV) no puede estar vacio</string>
+    <string name="cvv_invalic_type">Codigo de Seguridad (CVV) NO coincide con el tipo de tarjeta</string>
+    <string name="card_invalic">El número de tarjeta NO puede estar vacío</string>
+    <string name="card_invalic2">El número de tarjeta tiene una longitud inválida</string>
+    <string name="card_numeric">El número de tarjeta  debe ser numerico</string>
+
+
+
+
+
 
 
 

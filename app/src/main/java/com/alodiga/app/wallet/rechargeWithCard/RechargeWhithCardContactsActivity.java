@@ -210,7 +210,7 @@ public class RechargeWhithCardContactsActivity extends AppCompatActivity {
 
                 for (int i = 0; i < 3; i++) {
                     //SoapObject obj = (SoapObject) response_.getProperty(i);
-                    mProductList.add(new ObjTarjetahabiente("card_number-"+i,"security_code", "cardholder_name","mastercar-2", "12","3000", "country", "state", "county", "city",  "direction", "zip_code"));
+                    mProductList.add(new ObjTarjetahabiente("123456789101111"+i,"123", "cardholder_name"+i,"MASTERCARD", "12","3000", "country", "state", "county", "city",  "direction", "zip_code"));
                 }
 
                 mAdapter = new AdapterCardContacts(mProductList, RechargeWhithCardContactsActivity.this);

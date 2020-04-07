@@ -1,222 +1,349 @@
 package com.alodiga.app.wallet.rechargeWithCard;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.Selection;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 import com.alodiga.app.R;
-import com.alodiga.app.wallet.transference.TransferenceStep3Activity;
-import com.alodiga.app.wallet.transference.TransferenceStep5Activity;
+import com.alodiga.app.wallet.adapters.SpinAdapterGeneric;
+import com.alodiga.app.wallet.adapters.SpinAdapterTransferMoneyRemittence;
+import com.alodiga.app.wallet.main.MainActivity;
+import com.alodiga.app.wallet.model.ObjGenericObject;
+import com.alodiga.app.wallet.model.ObjTransferMoney;
 import com.alodiga.app.wallet.utils.Constants;
 import com.alodiga.app.wallet.utils.CustomToast;
-import com.alodiga.app.wallet.utils.FailCodeOperationActivity;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
 import com.alodiga.app.wallet.utils.Session;
-import com.alodiga.app.wallet.utils.Utils;
-import com.alodiga.app.wallet.utils.WebService;
 
 import org.ksoap2.serialization.SoapObject;
 
-import java.util.HashMap;
+import java.util.Calendar;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 
 public class RechargeWithCardStep2Activity extends AppCompatActivity {
-    static int cout = 1;
-    static int cout_aux = 3;
-    UserGetCodeTask mAuthTask;
-    private TextView backToLoginBtn, step1_next_button, tvintentos;
-    private EditText edtMobileCode;
+    static SoapObject response;
+    static ObjTransferMoney[] listSpinner_producto = new ObjTransferMoney[0];
+    static ProgressDialogAlodiga progressDialogAlodiga;
+    static int indexYears;
+    static int indexType;
+    private static FragmentManager fragmentManager;
+    private static String stringResponse = "";
+    String datosRespuesta = "";
+    ObjGenericObject getbank;
+    ObjTransferMoney getproduct;
+    String getNumberOperation, getTrans, getAmountRecharge;
+    private Button signFind, backToLoginBtn;
     private String responsetxt = "";
     private boolean serviceStatus;
-    private ProgressDialogAlodiga progressDialogAlodiga;
+    static DatePicker DatePicker;
+    static Spinner month, year;
+    static ObjGenericObject[] listSpinner_years;
+    static ObjGenericObject[] listSpinner_moth;
+    static ObjGenericObject[] listSpinner_Type;
+    LinearLayout linearLayout1;
+    EditText card, name, ccv, edtAmount;
+    static Spinner spinnerType,  spinnerproducto;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.transference_payment_code_layout);
-        step1_next_button = findViewById(R.id.step1_next_button);
-        backToLoginBtn = findViewById(R.id.backToLoginBtn);
-        edtMobileCode = findViewById(R.id.edtMobileCode);
-        tvintentos = findViewById(R.id.tvintentos);
+        setContentView(R.layout.activity_recharge_with_card_2);
 
-        step1_next_button.setOnClickListener(new View.OnClickListener() {
+
+
+        spinnerproducto= findViewById(R.id.spinnerproducto);
+
+        edtAmount = findViewById(R.id.edtAmount);
+        signFind = findViewById(R.id.signFind);
+        backToLoginBtn=findViewById(R.id.backToLoginBtn);
+
+
+        listSpinner_producto = getListProduct1(response);
+        SpinAdapterTransferMoneyRemittence spinAdapterProduct;
+        spinAdapterProduct = new SpinAdapterTransferMoneyRemittence(getApplicationContext(), android.R.layout.simple_spinner_item, listSpinner_producto);
+        spinnerproducto.setAdapter(spinAdapterProduct);
+
+
+        backToLoginBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                Intent show;
+                show = new Intent(getApplicationContext(), RechargeWithCardStep1Activity.class);
+                startActivity(show);
+                finish();
+            }
+        });
 
-                String getCode = edtMobileCode.getText().toString();
 
-                if (getCode.equals("") || getCode.length() == 0 || getCode.length() != 4) {
-                    new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
-                            getString(R.string.pin_text));
-                } else if (cout >= 3) {
-                    Intent i = new Intent(RechargeWithCardStep2Activity.this, FailCodeOperationActivity.class);
-                    finish();
-                    startActivity(i);
-                } else {
-                    progressDialogAlodiga = new ProgressDialogAlodiga(getApplicationContext(), getString(R.string.loading));
-                    mAuthTask = new UserGetCodeTask(Utils.aloDesencript(getCode));
-                    mAuthTask.execute((Void) null);
+        edtAmount.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {
+            }
+
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (!s.toString().matches("^\\ (\\d{1,3}(\\,\\d{3})*|(\\d+))(\\.\\d{2})?$")) {
+                    String userInput = "" + s.toString().replaceAll("[^\\d]", "");
+                    StringBuilder cashAmountBuilder = new StringBuilder(userInput);
+
+                    while (cashAmountBuilder.length() > 3 && cashAmountBuilder.charAt(0) == '0') {
+                        cashAmountBuilder.deleteCharAt(0);
+                    }
+                    while (cashAmountBuilder.length() < 3) {
+                        cashAmountBuilder.insert(0, '0');
+                    }
+                    cashAmountBuilder.insert(cashAmountBuilder.length() - 2, '.');
+                    cashAmountBuilder.insert(0, ' ');
+
+                    edtAmount.setText(cashAmountBuilder.toString());
+                    // keeps the cursor always to the right
+                    Selection.setSelection(edtAmount.getText(), cashAmountBuilder.toString().length());
+
                 }
 
             }
         });
 
-
-        backToLoginBtn.setOnClickListener(new View.OnClickListener() {
+        signFind.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent i = new Intent(RechargeWithCardStep2Activity.this, RechargeWithCardStep1Activity.class);
-                finish();
-                startActivity(i);
+                entrar();
 
             }
         });
+
+    }
+
+
+    private void entrar(){
+
+        String getEdtAmount= edtAmount.getText().toString();
+        Float amountFloat =Float.valueOf(getEdtAmount);
+
+        ObjTransferMoney getSpinnerproducto = (ObjTransferMoney) spinnerproducto.getSelectedItem();
+        Float amountFloatproduct= Float.valueOf(getSpinnerproducto.getCurrency());
+
+        if (getEdtAmount.equals("") || getEdtAmount.length() == 0) {
+            new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
+                    getString(R.string.invalid_all_question));
+        }else if(amountFloat == 0 ){
+            new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
+                    getString(R.string.amount_info_invalid));
+        }else if (amountFloat > amountFloatproduct ){
+            new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
+                    getString(R.string.web_services_response_33));
+        } else{
+            Session.setIsTarjetahabienteSelect(false);
+            Intent show;
+            show = new Intent(getApplicationContext(), RechargeWithCardStep3Activity.class);
+            startActivity(show);
+            finish();
+        }
+    }
+
+
+    protected ObjTransferMoney[] getListProduct1(SoapObject response) {
+//        ObjTransferMoney[] obj2 = new ObjTransferMoney[response.getPropertyCount() - 3];
+        ObjTransferMoney[] obj2 = new ObjTransferMoney[3];
+
+        //for (int i = 3; i < response.getPropertyCount(); i++) {
+            for (int i = 0; i < 3; i++) {
+
+                //SoapObject obj = (SoapObject) response.getProperty(i);
+                //ObjTransferMoney object = new ObjTransferMoney(obj.getProperty("id").toString(), obj.getProperty("name").toString() + " - " + obj.getProperty("currentBalance").toString(), obj.getProperty("currentBalance").toString());
+                ObjTransferMoney object = new ObjTransferMoney("id-"+i, "name-2000-"+i, "2000");
+            obj2[i] = object;
+        }
+
+        return obj2;
+    }
+    private ObjGenericObject[] getListYears() {
+        Calendar calendar = Calendar.getInstance();
+
+
+        int yearAct= calendar.get(Calendar.YEAR);
+        int yearIni= yearAct-Constants.YEARMINUS;
+        int yearFin = yearAct+Constants.YEARPLUS;
+        int total= (yearFin- yearIni);
+        ObjGenericObject[] ListYear = new ObjGenericObject[total+1];
+        int aux=0;
+
+        for(int i = yearIni; i <= yearFin; i++)
+        {
+           ListYear[aux]= new ObjGenericObject(String.valueOf(i),String.valueOf(aux));
+           if(yearAct==i){
+            indexYears=aux;
+           }
+
+           aux++;
+        }
+
+        return ListYear;
+    }
+
+    private ObjGenericObject[] getListYears(int year) {
+        Calendar calendar = Calendar.getInstance();
+
+
+
+        int yearAct= calendar.get(Calendar.YEAR);
+        int yearIni= yearAct-Constants.YEARMINUS;
+        int yearFin = yearAct+Constants.YEARPLUS;
+
+
+        if(year>=yearFin){
+            int plus = year - yearAct;
+            yearFin= yearFin+Constants.YEARPLUS+plus;
+        }
+
+        if(year<=yearIni){
+            int minus= yearIni-year;
+            yearIni= yearIni-(minus+Constants.YEARMINUS);
+        }
+
+        int total= (yearFin- yearIni);
+        ObjGenericObject[] ListYear = new ObjGenericObject[total+1];
+        int aux=0;
+
+        for(int i = yearIni; i <= yearFin; i++)
+        {
+            ListYear[aux]= new ObjGenericObject(String.valueOf(i),String.valueOf(aux));
+            if(year==i){
+                indexYears=aux;
+            }
+
+            aux++;
+        }
+        return ListYear;
+    }
+
+    private int getListType(String type) {
+
+        for(int i = 0; i < listSpinner_Type.length; i++)
+        {
+
+            if(listSpinner_Type[i].getName().equals(type)){
+                indexType=i;
+            }
+
+        }
+        return indexType;
+    }
+
+
+    private ObjGenericObject[] getListMonth() {
+        Calendar calendar = Calendar.getInstance();
+        ObjGenericObject[] ListMoth = new ObjGenericObject[12];
+        int aux=0;
+
+        for(int i = 1; i <= 12; i++)
+        {
+            ListMoth[aux]= new ObjGenericObject(String.valueOf(i),String.valueOf(aux));
+            aux++;
+        }
+
+        return ListMoth;
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        Session.setIsTarjetahabienteSelect(false);
+        Intent pasIntent = getIntent();
         Intent i = new Intent(RechargeWithCardStep2Activity.this, RechargeWithCardStep1Activity.class);
-        finish();
         startActivity(i);
+        finish();
+    }
+
+    protected ObjGenericObject[] getListGeneric(SoapObject response) {
+
+        ObjGenericObject[] obj2 = new ObjGenericObject[response.getPropertyCount() - 3];
+
+        for (int i = 3; i < response.getPropertyCount(); i++) {
+            SoapObject obj = (SoapObject) response.getProperty(i);
+            String propiedad = response.getProperty(i).toString();
+            ObjGenericObject object = new ObjGenericObject(obj.getProperty("name").toString(), obj.getProperty("id").toString());
+            obj2[i - 3] = object;
+        }
+
+        return obj2;
+    }
+
+    protected ObjTransferMoney[] getListProduct(SoapObject response) {
+
+        ObjTransferMoney[] obj2 = new ObjTransferMoney[response.getPropertyCount() - 3];
+
+        for (int i = 3; i < response.getPropertyCount(); i++) {
+            SoapObject obj = (SoapObject) response.getProperty(i);
+            String propiedad = response.getProperty(i).toString();
+            ObjTransferMoney object = new ObjTransferMoney(obj.getProperty("id").toString(), obj.getProperty("name").toString() + " - " + obj.getProperty("currentBalance").toString(), obj.getProperty("currentBalance").toString());
+            obj2[i - 3] = object;
+        }
+
+        return obj2;
     }
 
 
-    public class UserGetCodeTask extends AsyncTask<Void, Void, Boolean> {
-
-        private final String clave;
 
 
-        public UserGetCodeTask(String clave) {
-            this.clave = clave;
-        }
 
-        @Override
-        protected Boolean doInBackground(Void... params) {
-
-            WebService webService = new WebService();
-            Utils utils = new Utils();
-            SoapObject response;
-            try {
-                String responseCode;
-                String responseMessage = "";
-
-
-                HashMap<String, String> map = new HashMap<String, String>();
-                map.put("usuarioApi", Constants.WEB_SERVICES_USUARIOWS);
-                map.put("passwordApi", Constants.WEB_SERVICES_PASSWORDWS);
-                map.put("usuarioId", Session.getUserId());
-                map.put("pin", clave);
-
-
-                response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_NAME_VALID_CODE, Constants.REGISTRO_UNIFICADO);
-                responseCode = response.getProperty("codigoRespuesta").toString();
-                responseMessage = response.getProperty("mensajeRespuesta").toString();
-
-
-                if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
-                    responsetxt = getString(R.string.web_services_response_00);
-                    serviceStatus = true;
-                    return serviceStatus;
-
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_DATOS_INVALIDOS)) {
-                    responsetxt = getString(R.string.web_services_response_01);
-                    serviceStatus = false;
-
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CONTRASENIA_EXPIRADA)) {
-                    responsetxt = getString(R.string.web_services_response_03);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_IP_NO_CONFIANZA)) {
-                    responsetxt = getString(R.string.web_services_response_04);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CREDENCIALES_INVALIDAS)) {
-                    responsetxt = getString(R.string.web_services_response_05);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_BLOQUEADO)) {
-                    responsetxt = getString(R.string.web_services_response_06);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_NUMERO_TELEFONO_YA_EXISTE)) {
-                    responsetxt = getString(R.string.web_services_response_08);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_PRIMER_INGRESO)) {
-                    responsetxt = getString(R.string.web_services_response_12);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_SOSPECHOSO)) {
-                    responsetxt = getString(R.string.web_services_response_95);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_PENDIENTE)) {
-                    responsetxt = getString(R.string.web_services_response_96);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_NO_EXISTE)) {
-                    responsetxt = getString(R.string.web_services_response_97);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_CREDENCIALES)) {
-                    responsetxt = getString(R.string.web_services_response_98);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_INTERNO)) {
-                    responsetxt = getString(R.string.web_services_response_99);
-                    serviceStatus = false;
-                } else {
-                    responsetxt = getString(R.string.web_services_response_99);
-                    serviceStatus = false;
-                }
-                //progressDialogAlodiga.dismiss();
-            } catch (IllegalArgumentException e) {
-                responsetxt = getString(R.string.web_services_response_99);
-                serviceStatus = false;
-                e.printStackTrace();
-                System.err.println(e);
-                return false;
-            } catch (Exception e) {
-                responsetxt = getString(R.string.web_services_response_99);
-                serviceStatus = false;
-                e.printStackTrace();
-                System.err.println(e);
-                return false;
-            }
-            return serviceStatus;
-
-        }
-
-        @Override
-        protected void onPostExecute(final Boolean success) {
-            mAuthTask = null;
-            //showProgress(false);
-            if (success) {
-
-                if (cout <= 3) {
-                    Session.setCodeOperation(edtMobileCode.getText().toString());
-                    Intent i = new Intent(RechargeWithCardStep2Activity.this, TransferenceStep5Activity.class);
-                    startActivity(i);
-                    finish();
-                } else {
-                    Intent i = new Intent(RechargeWithCardStep2Activity.this, FailCodeOperationActivity.class);
-                    startActivity(i);
-                    finish();
-                }
-
-
-            } else {
-                edtMobileCode.setText("");
-                cout_aux = cout_aux - 1;
-                tvintentos.setText(getString(R.string.info_fail_code) + cout_aux);
-                cout = cout + 1;
-
-                if (cout_aux == 0) {
-                    Intent i = new Intent(RechargeWithCardStep2Activity.this, FailCodeOperationActivity.class);
-                    startActivity(i);
-                    finish();
-                }
-            }
-            progressDialogAlodiga.dismiss();
-        }
-
-        @Override
-        protected void onCancelled() {
-            mAuthTask = null;
+    public void serviceAnswer(String responseCode) {
+        if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
+            responsetxt = getString(R.string.web_services_response_00);
+            serviceStatus = true;
+            //return serviceStatus;
+        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_DATOS_INVALIDOS)) {
+            responsetxt = getString(R.string.web_services_response_01);
+            serviceStatus = false;
+        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CONTRASENIA_EXPIRADA)) {
+            responsetxt = getString(R.string.web_services_response_03);
+            serviceStatus = false;
+        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_IP_NO_CONFIANZA)) {
+            responsetxt = getString(R.string.web_services_response_04);
+            serviceStatus = false;
+        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CREDENCIALES_INVALIDAS)) {
+            responsetxt = getString(R.string.web_services_response_05);
+            serviceStatus = false;
+        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_BLOQUEADO)) {
+            responsetxt = getString(R.string.web_services_response_06);
+            serviceStatus = false;
+        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_NUMERO_TELEFONO_YA_EXISTE)) {
+            responsetxt = getString(R.string.web_services_response_08);
+            serviceStatus = false;
+        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_PRIMER_INGRESO)) {
+            responsetxt = getString(R.string.web_services_response_12);
+            serviceStatus = false;
+        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_SOSPECHOSO)) {
+            responsetxt = getString(R.string.web_services_response_95);
+            serviceStatus = false;
+        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_PENDIENTE)) {
+            responsetxt = getString(R.string.web_services_response_96);
+            serviceStatus = false;
+        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_NO_EXISTE)) {
+            responsetxt = getString(R.string.web_services_response_97);
+            serviceStatus = false;
+        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_CREDENCIALES)) {
+            responsetxt = getString(R.string.web_services_response_98);
+            serviceStatus = false;
+        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_INTERNO)) {
+            responsetxt = getString(R.string.web_services_response_99);
+            serviceStatus = false;
         }
     }
+
 
 }

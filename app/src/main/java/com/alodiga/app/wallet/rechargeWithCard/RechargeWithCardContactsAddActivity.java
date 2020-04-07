@@ -101,7 +101,7 @@ public class RechargeWithCardContactsAddActivity extends AppCompatActivity {
         signFind.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 /*Intent show;
-                show = new Intent(getApplicationContext(), RechargeWithCardStep2Activity.class);
+                show = new Intent(getApplicationContext(), RechargeWithCardStep3Activity.class);
                 startActivity(show);
                 finish();*/
                 new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),

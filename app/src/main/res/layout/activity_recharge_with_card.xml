@@ -13,17 +13,16 @@
         android:background="@drawable/side_nav_bar"
         >
 
+
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="vertical">
 
-
             <TextView
                 android:id="@+id/textbox"
                 android:layout_width="fill_parent"
-                android:layout_height="39dp"
-                android:layout_weight="1"
+                android:layout_height="49dp"
                 android:gravity="top|center"
                 android:hint="Type to text"
                 android:text="@string/recharge_whih_card_title"
@@ -34,86 +33,24 @@
 
 
 
+
             <LinearLayout
                 android:id="@+id/login_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/textbox"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="5dp"
                 android:orientation="vertical">
-
-
-
-
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:text="@string/producto_info"
-                    android:textColor="@color/white_greyish"
-                    android:textSize="14sp"/>
-                <Spinner
-                    android:id="@+id/spinnerproducto"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="1dp"
-                    android:padding="3dp"
-                    android:gravity="center_vertical"
-                    android:inputType="phone"
-                    android:singleLine="true"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/white_greyish"
-                    android:textSize="10sp"
-                    android:backgroundTint="@color/white_greyish"/>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2px"
-                    android:background="@color/white" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:text="@string/amount_info_"
-                    android:textColor="@color/white_greyish"
-                    android:textSize="14sp" />
-                <EditText
-                    android:id="@+id/edtAmount"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:background="@android:color/transparent"
-                    android:drawablePadding="0dp"
-                    android:gravity="center_vertical"
-                    android:hint="@string/amount"
-                    android:inputType="numberDecimal"
-                    android:padding="8dp"
-                    android:singleLine="true"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/white"
-                    android:textSize="14sp" />
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2px"
-                    android:background="@color/white" />
 
 
                 <TextView
                     android:id="@+id/select"
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="26dp"
                     android:layout_weight="1"
-                    android:textStyle="bold"
-                    android:layout_gravity="center"
                     android:gravity="center"
-                    android:paddingTop="10dp"
-
                     android:text="@string/payment_method_information"
                     android:textColor="@color/white_greyish"
-                    android:textSize="19sp" />
+                    android:textSize="19sp"
+                    android:textStyle="bold" />
 
 
 
@@ -163,7 +100,7 @@
                     android:gravity="center_vertical"
                     android:hint="@string/balance_card_number"
                     android:inputType="number"
-                    android:maxLength="45"
+                    android:maxLength="16"
                     android:padding="5dp"
                     android:singleLine="true"
                     android:textColor="@color/white"
@@ -215,7 +152,7 @@
                     android:gravity="center_vertical"
                     android:hint="@string/cvv"
                     android:inputType="number"
-                    android:maxLength="3"
+                    android:maxLength="4"
                     android:padding="5dp"
                     android:singleLine="true"
                     android:textColor="@color/white"
@@ -321,6 +258,11 @@
                     android:background="@color/white" />
 
 
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2px"
+                    android:background="@color/white" />
 
 
 
