@@ -17,11 +17,11 @@ public class WebService {
         SoapObject request = null;
 
         if (namespace == Constants.ALODIGA)
-            request = new SoapObject(Constants.CONSTANT_NAMESPACE_QA_ALODIGA, webMethName);
+            request = new SoapObject(Constants.CONSTANT_NAMESPACE_QA_ALODIGA_AW, webMethName);
         else if (namespace == Constants.REGISTRO_UNIFICADO) {
-            request = new SoapObject(Constants.CONSTANT_NAMESPACE_QA_REGISTRO_UNIFICADO, webMethName);
+            request = new SoapObject(Constants.CONSTANT_NAMESPACE_QA_REGISTRO_UNIFICADO_AW, webMethName);
         }else if (namespace == Constants.REMITTANCE){
-            request = new SoapObject(Constants.CONSTANT_NAMESPACE_REMITTANCE, webMethName);
+            request = new SoapObject(Constants.CONSTANT_NAMESPACE_REMITTANCE_AW, webMethName);
         }
 
         // Property which holds input parameters
@@ -54,11 +54,11 @@ public class WebService {
         SoapObject request = null;
 
         if (namespace == Constants.ALODIGA)
-            request = new SoapObject(Constants.CONSTANT_NAMESPACE_QA_ALODIGA, webMethName);
+            request = new SoapObject(Constants.CONSTANT_NAMESPACE_QA_ALODIGA_AW, webMethName);
         else if (namespace == Constants.REGISTRO_UNIFICADO) {
-            request = new SoapObject(Constants.CONSTANT_NAMESPACE_QA_REGISTRO_UNIFICADO, webMethName);
+            request = new SoapObject(Constants.CONSTANT_NAMESPACE_QA_REGISTRO_UNIFICADO_AW, webMethName);
         }else if (namespace == Constants.REMITTANCE){
-            request = new SoapObject(Constants.CONSTANT_NAMESPACE_REMITTANCE, webMethName);
+            request = new SoapObject(Constants.CONSTANT_NAMESPACE_REMITTANCE_AW, webMethName);
         }
 
         // Property which holds input parameters

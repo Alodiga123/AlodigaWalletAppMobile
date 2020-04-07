@@ -27,6 +27,8 @@ public class Constants {
     public static final boolean CONSTANT_IS_SECURE_PORT = false;
     public static final String CONSTANT_SECURE_PORT = "8181";
     public static final String CONSTANT_NAMESPACE_QA_REGISTRO_UNIFICADO = "http://ws.alodiga.ericsson.com/";
+    public static final String CONSTANT_NAMESPACE_QA_REGISTRO_UNIFICADO_AW = "http://ws.alodiga.ericsson.com/";
+
     //public static final String  CONSTANT_SECURE_URL_ALODIGA_WALLET = "http://192.168.3.20:8080/AlodigaWallet/APIAlodigaWalletService";
 
 
@@ -37,7 +39,12 @@ public class Constants {
     public static final String REGISTRO_UNIFICADO = "RegistroUnificado";
     public static final String REMITTANCE = "remittance";
     public static final String CONSTANT_NAMESPACE_QA_ALODIGA = "http://ws.wallet.alodiga.com/";
+    public static final String CONSTANT_NAMESPACE_QA_ALODIGA_AW = "http://ws.wallet.alodiga.com/";
+
     public static final String CONSTANT_NAMESPACE_REMITTANCE="http://services.remittance.ws.alodiga.com/";
+    public static final String CONSTANT_NAMESPACE_REMITTANCE_AW=" http://services.remittance.ws.alodiga.com/";
+
+
     public static final String ALODIGA = "AlodigaWallet";
     public static final String CONSTANT_NAMESPACE_ALODIGA_WALLET = "http://ws.wallet.alodiga.com/";
     public static final String CONSTANT_SEPARATOR = ":";
@@ -248,11 +255,18 @@ public class Constants {
      */
     //public static final String CONSTANT_URL_QA_REGISTRO_UNIFICADO = "http://192.168.3.20:8080/RegistroUnificado/APIRegistroUnificadoService";
     public static final String CONSTANT_URL_QA_REGISTRO_UNIFICADO = "http://" + IPDAT + ":8080/RegistroUnificado/APIRegistroUnificadoService";
+
+    public static final String CONSTANT_URL_QA_REGISTRO_UNIFICADO_AW = "http://ec2-35-164-98-136.us-west-2.compute.amazonaws.com:8080/RegistroUnificado/APIRegistroUnificadoService?wsdl";
+
     /**
      *
      */
     //public static final String CONSTANT_URL_QA_ALODIGA = "http://192.168.3.20:8080/AlodigaWallet/APIAlodigaWalletService";
     public static final String CONSTANT_URL_QA_ALODIGA = "http://" + IPDAT + ":8080/AlodigaWallet/APIAlodigaWalletService";
+    public static final String CONSTANT_URL_QA_ALODIGA_AW = " http://ec2-35-164-98-136.us-west-2.compute.amazonaws.com:8080/AlodigaWallet/APIAlodigaWalletService?wsdl";
+
+
+
     /**
      * Alodiga WAllet
      */
@@ -262,6 +276,7 @@ public class Constants {
     public static final String CONSTANT_URL_REMITTENCE = "http://" + IPDAT + ":8080/WSRemittenceService/WSRemittence";
     public static final String CONSTANT_URL_REMITTENCE_PAYMENT_NETWORK = "http://" + IPDAT + ":8080/WSPaymentNetworkMethodService/WSPaymentNetworkMethod";
     public static final String CONSTANT_URL_REMITTENCE_MOBILE = "http://" + IPDAT + ":8080/WSRemittenceMobileService/WSRemittenceMobile";
+    public static final String CONSTANT_URL_REMITTENCE_MOBILE_AW = "http://ec2-35-164-98-136.us-west-2.compute.amazonaws.com:8080/WSRemittenceMobileService/WSRemittenceMobile?wsdl";
 
 
     public static final String CONSTANT_WSREMITTENCE= "WSRemittence";
@@ -310,5 +325,10 @@ public class Constants {
 
     public static final int YEARPLUS = 70;
     public static final int YEARMINUS = 30;
+
+    public static final int LONGITUD_MAXIMA_CVV = 4;
+    public static final int LONGITUD_MINIMA_CVV = 3;
+    public static final int LONGITUD_MAXIMA_TARJETA_CREDITO = 16;
+    public static final int LONGITUD_MINIMA_TARJETA_CREDITO = 13;
 
 }
