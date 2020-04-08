@@ -292,7 +292,7 @@ public class MainActivity extends AppCompatActivity
                    break;
                default:
                    if (id == R.id.nav_recharge_with_card) {
-                       show = new Intent(MainActivity.this, RechargeWithCardStep1Activity.class);
+                       show = new Intent(MainActivity.this, RechargeWhithCardContactsActivity.class);
                        startActivity(show);
                    }
                    if (id == R.id.nav_recharge) {
