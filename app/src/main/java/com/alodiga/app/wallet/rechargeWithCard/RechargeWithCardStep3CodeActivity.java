@@ -10,7 +10,6 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.alodiga.app.R;
-import com.alodiga.app.wallet.transference.TransferenceStep5Activity;
 import com.alodiga.app.wallet.utils.Constants;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.FailCodeOperationActivity;
@@ -23,7 +22,7 @@ import org.ksoap2.serialization.SoapObject;
 
 import java.util.HashMap;
 
-public class RechargeWithCardStep3Activity extends AppCompatActivity {
+public class RechargeWithCardStep3CodeActivity extends AppCompatActivity {
     static int cout = 1;
     static int cout_aux = 3;
     UserGetCodeTask mAuthTask;
@@ -45,20 +44,24 @@ public class RechargeWithCardStep3Activity extends AppCompatActivity {
         step1_next_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                String getCode = edtMobileCode.getText().toString();
+               /* String getCode = edtMobileCode.getText().toString();
 
                 if (getCode.equals("") || getCode.length() == 0 || getCode.length() != 4) {
                     new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                             getString(R.string.pin_text));
                 } else if (cout >= 3) {
-                    Intent i = new Intent(RechargeWithCardStep3Activity.this, FailCodeOperationActivity.class);
+                    Intent i = new Intent(RechargeWithCardStep3CodeActivity.this, FailCodeOperationActivity.class);
                     finish();
                     startActivity(i);
                 } else {
                     progressDialogAlodiga = new ProgressDialogAlodiga(getApplicationContext(), getString(R.string.loading));
                     mAuthTask = new UserGetCodeTask(Utils.aloDesencript(getCode));
                     mAuthTask.execute((Void) null);
-                }
+                }*/
+
+                Intent i = new Intent(RechargeWithCardStep3CodeActivity.this, RechargeWithCardStep4Activity.class);
+                finish();
+                startActivity(i);
 
             }
         });
@@ -66,7 +69,7 @@ public class RechargeWithCardStep3Activity extends AppCompatActivity {
 
         backToLoginBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent i = new Intent(RechargeWithCardStep3Activity.this, RechargeWithCardStep2Activity.class);
+                Intent i = new Intent(RechargeWithCardStep3CodeActivity.this, RechargeWithCardStep2Activity.class);
                 finish();
                 startActivity(i);
 
@@ -77,7 +80,7 @@ public class RechargeWithCardStep3Activity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent i = new Intent(RechargeWithCardStep3Activity.this, RechargeWithCardStep2Activity.class);
+        Intent i = new Intent(RechargeWithCardStep3CodeActivity.this, RechargeWithCardStep2Activity.class);
         finish();
         startActivity(i);
     }
@@ -187,11 +190,11 @@ public class RechargeWithCardStep3Activity extends AppCompatActivity {
 
                 if (cout <= 3) {
                     Session.setCodeOperation(edtMobileCode.getText().toString());
-                    Intent i = new Intent(RechargeWithCardStep3Activity.this, RechargeWithCardStep4Activity.class);
+                    Intent i = new Intent(RechargeWithCardStep3CodeActivity.this, RechargeWithCardStep4Activity.class);
                     startActivity(i);
                     finish();
                 } else {
-                    Intent i = new Intent(RechargeWithCardStep3Activity.this, FailCodeOperationActivity.class);
+                    Intent i = new Intent(RechargeWithCardStep3CodeActivity.this, FailCodeOperationActivity.class);
                     startActivity(i);
                     finish();
                 }
@@ -204,7 +207,7 @@ public class RechargeWithCardStep3Activity extends AppCompatActivity {
                 cout = cout + 1;
 
                 if (cout_aux == 0) {
-                    Intent i = new Intent(RechargeWithCardStep3Activity.this, FailCodeOperationActivity.class);
+                    Intent i = new Intent(RechargeWithCardStep3CodeActivity.this, FailCodeOperationActivity.class);
                     startActivity(i);
                     finish();
                 }

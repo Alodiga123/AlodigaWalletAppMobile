@@ -16,9 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
 import com.alodiga.app.R;
-import com.alodiga.app.wallet.adapters.SpinAdapterGeneric;
 import com.alodiga.app.wallet.adapters.SpinAdapterTransferMoneyRemittence;
-import com.alodiga.app.wallet.main.MainActivity;
 import com.alodiga.app.wallet.model.ObjGenericObject;
 import com.alodiga.app.wallet.model.ObjTransferMoney;
 import com.alodiga.app.wallet.utils.Constants;
@@ -29,8 +27,6 @@ import com.alodiga.app.wallet.utils.Session;
 import org.ksoap2.serialization.SoapObject;
 
 import java.util.Calendar;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 
 public class RechargeWithCardStep2Activity extends AppCompatActivity {
@@ -56,6 +52,8 @@ public class RechargeWithCardStep2Activity extends AppCompatActivity {
     LinearLayout linearLayout1;
     EditText card, name, ccv, edtAmount;
     static Spinner spinnerType,  spinnerproducto;
+    static String getEdtAmount;
+    static ObjTransferMoney getSpinnerproducto;
 
 
 
@@ -131,25 +129,26 @@ public class RechargeWithCardStep2Activity extends AppCompatActivity {
 
     private void entrar(){
 
-        String getEdtAmount= edtAmount.getText().toString();
-        Float amountFloat =Float.valueOf(getEdtAmount);
+        getEdtAmount= edtAmount.getText().toString();
 
-        ObjTransferMoney getSpinnerproducto = (ObjTransferMoney) spinnerproducto.getSelectedItem();
-        Float amountFloatproduct= Float.valueOf(getSpinnerproducto.getCurrency());
+        getSpinnerproducto = (ObjTransferMoney) spinnerproducto.getSelectedItem();
 
-        if (getEdtAmount.equals("") || getEdtAmount.length() == 0) {
+      if (getEdtAmount.equals("") || getEdtAmount.length() == 0) {
             new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                     getString(R.string.invalid_all_question));
-        }else if(amountFloat == 0 ){
+        }else if(Float.valueOf(getEdtAmount) == 0 ){
             new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
-                    getString(R.string.amount_info_invalid));
-        }else if (amountFloat > amountFloatproduct ){
+                    getString(R.string.web_services_response_134));
+        }else if (Float.valueOf(getEdtAmount) > Float.valueOf(getSpinnerproducto.getCurrency() )){
             new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                     getString(R.string.web_services_response_33));
         } else{
-            Session.setIsTarjetahabienteSelect(false);
+
+            Session.getTarjetahabienteSelect().setAmount(getEdtAmount);
+            Session.getTarjetahabienteSelect().setProduct(getSpinnerproducto);
+
             Intent show;
-            show = new Intent(getApplicationContext(), RechargeWithCardStep3Activity.class);
+            show = new Intent(getApplicationContext(), RechargeWithCardStep3CodeActivity.class);
             startActivity(show);
             finish();
         }

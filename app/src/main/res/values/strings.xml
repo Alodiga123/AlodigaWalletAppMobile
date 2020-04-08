@@ -492,6 +492,7 @@
 
     <string name="cvv_title">Ingrese el Codigo de Seguridad (CVV)</string>
     <string name="cvv">Codigo de Seguridad (CVV)</string>
+    <string name="cvv_">CVV</string>
     <string name="date_recharge">Seleccione la fecha de vencimiento</string>
     <string name="date_recharge_">Fecha de vencimiento</string>
 
@@ -515,6 +516,9 @@
     <string name="card_invalic">El número de tarjeta NO puede estar vacío</string>
     <string name="card_invalic2">El número de tarjeta tiene una longitud inválida</string>
     <string name="card_numeric">El número de tarjeta  debe ser numerico</string>
+    <string name="cardholder">Tarjetahabiente</string>
+    <string name="card_type_">Tipo de Tarjeta</string>
+
 
 
 

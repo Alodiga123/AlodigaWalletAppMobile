@@ -360,11 +360,15 @@
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-            android:name="com.alodiga.app.wallet.rechargeWithCard.RechargeWithCardStep3Activity"
+            android:name="com.alodiga.app.wallet.rechargeWithCard.RechargeWithCardStep3CodeActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
             android:name="com.alodiga.app.wallet.rechargeWithCard.RechargeWithCardStep4Activity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name="com.alodiga.app.wallet.rechargeWithCard.RechargeWithCardStep5Activity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity

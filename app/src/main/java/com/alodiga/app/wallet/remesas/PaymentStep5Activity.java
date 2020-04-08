@@ -94,7 +94,7 @@ public class PaymentStep5Activity extends AppCompatActivity {
                         "\n" + "**********"+
                         "\n" + getString(R.string.destination_transaction_id)+": "+ idOP.getText().toString() +
                         "\n" + getString(R.string.status_remittence)+": " + status.getText().toString() +
-                        "\n" + getString(R.string.destination_date_time)+": " + new Timestamp(new Date().getTime()).toGMTString() +
+                        "\n" + getString(R.string.destination_date_time)+" " + new Timestamp(new Date().getTime()).toGMTString() +
                         "\n" + "**********"+
                         "\n" + getString(R.string.datasender)+" "+
                         "\n" + getString(R.string.reloadcard_source_)+": " + reloadcard_source_.getText().toString() +

@@ -456,4 +456,7 @@
     <string name="card_invalic2">"The card number has an invalid length "</string>
     <string name="card_numeric">"The card number must be numeric "</string>
     <string name="payment_method_information_recharge">"Refill Information "</string>
+    <string name="cardholder">Cardholder</string>
+    <string name="card_type_">"Card Type "</string>
+    <string name="cvv_">CVV</string>
 </resources>

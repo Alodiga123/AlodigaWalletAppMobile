@@ -20,6 +20,7 @@ import com.alodiga.app.wallet.adapters.SpinAdapterGeneric;
 import com.alodiga.app.wallet.adapters.SpinAdapterTransferMoneyRemittence;
 import com.alodiga.app.wallet.main.MainActivity;
 import com.alodiga.app.wallet.model.ObjGenericObject;
+import com.alodiga.app.wallet.model.ObjTarjetahabiente;
 import com.alodiga.app.wallet.model.ObjTransferMoney;
 import com.alodiga.app.wallet.utils.Constants;
 import com.alodiga.app.wallet.utils.CustomToast;
@@ -44,11 +45,9 @@ public class RechargeWithCardStep1Activity extends AppCompatActivity {
     String datosRespuesta = "";
     ObjGenericObject getbank;
     ObjTransferMoney getproduct;
-    String getNumberOperation, getTrans, getAmountRecharge;
     private Button signFind, backToLoginBtn;
     private String responsetxt = "";
     private boolean serviceStatus;
-    static DatePicker DatePicker;
     static Spinner month, year;
     static ObjGenericObject[] listSpinner_years;
     static ObjGenericObject[] listSpinner_moth;
@@ -56,6 +55,8 @@ public class RechargeWithCardStep1Activity extends AppCompatActivity {
     LinearLayout linearLayout1;
     EditText card, name, ccv;
     static Spinner spinnerType;
+    static String getCard, getName, getCcv;
+    static ObjGenericObject getSpinnerType,getMonth,getYear;
 
 
 
@@ -150,7 +151,6 @@ public class RechargeWithCardStep1Activity extends AppCompatActivity {
 
         linearLayout1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                int prue = Session.getTarjetahabienteSelectProduct();
                 Intent show;
                 show = new Intent(getApplicationContext(), RechargeWhithCardContactsActivity.class);
                 startActivity(show);
@@ -163,14 +163,14 @@ public class RechargeWithCardStep1Activity extends AppCompatActivity {
     private void entrar(){
 
         final String CVV_DIG = "\\d+";
-        String getCard= card.getText().toString();
-        String getName= name.getText().toString();
-        String getCcv= ccv.getText().toString();
+        getCard= card.getText().toString();
+        getName= name.getText().toString();
+        getCcv= ccv.getText().toString();
 
 
         //ObjGenericObject getMonth= (ObjGenericObject) month.getSelectedItem();
         //ObjGenericObject getYear = (ObjGenericObject) year.getSelectedItem();
-        ObjGenericObject getSpinnerType = (ObjGenericObject) spinnerType.getSelectedItem();
+        getSpinnerType = (ObjGenericObject) spinnerType.getSelectedItem();
 
 
         Pattern digi_cvv = Pattern.compile(CVV_DIG);
@@ -209,6 +209,19 @@ public class RechargeWithCardStep1Activity extends AppCompatActivity {
                     getString(R.string.card_numeric));
         else{
             Session.setIsTarjetahabienteSelect(false);
+            getMonth= (ObjGenericObject) month.getSelectedItem();
+            getYear = (ObjGenericObject) year.getSelectedItem();
+
+            ObjTarjetahabiente tarjetahabiente= new ObjTarjetahabiente();
+            tarjetahabiente.setCard_number(getCard);
+            tarjetahabiente.setCardholder_name(getName);
+            tarjetahabiente.setSecurity_code(getCcv);
+            tarjetahabiente.setType_card(getSpinnerType.getName());
+            tarjetahabiente.setExpiration_date_moth(getMonth.getName());
+            tarjetahabiente.setExpiration_date_year(getYear.getName());
+
+            Session.setTarjetahabienteSelect(tarjetahabiente);
+
             Intent show;
             show = new Intent(getApplicationContext(), RechargeWithCardStep2Activity.class);
             startActivity(show);

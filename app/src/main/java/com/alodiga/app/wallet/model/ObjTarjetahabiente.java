@@ -15,10 +15,14 @@ public class ObjTarjetahabiente {
     private String direction;
     private String zip_code;
 
+    private ObjTransferMoney product;
+    private String amount;
+
+
     public ObjTarjetahabiente() {
     }
 
-    public ObjTarjetahabiente(String card_number, String security_code, String cardholder_name, String type_card, String expiration_date_moth, String expiration_date_year, String country, String state, String county, String city, String direction, String zip_code) {
+    public ObjTarjetahabiente(String card_number, String security_code, String cardholder_name, String type_card, String expiration_date_moth, String expiration_date_year, String country, String state, String county, String city, String direction, String zip_code, ObjTransferMoney product, String amount) {
         this.card_number = card_number;
         this.security_code = security_code;
         this.cardholder_name = cardholder_name;
@@ -31,6 +35,25 @@ public class ObjTarjetahabiente {
         this.city = city;
         this.direction = direction;
         this.zip_code = zip_code;
+        this.product = product;
+        this.amount = amount;
+    }
+
+
+    public ObjTransferMoney getProduct() {
+        return product;
+    }
+
+    public void setProduct(ObjTransferMoney product) {
+        this.product = product;
+    }
+
+    public String getAmount() {
+        return amount;
+    }
+
+    public void setAmount(String amount) {
+        this.amount = amount;
     }
 
     public String getCard_number() {
