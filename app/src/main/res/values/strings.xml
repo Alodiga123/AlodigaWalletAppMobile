@@ -518,6 +518,10 @@
     <string name="card_numeric">El número de tarjeta  debe ser numerico</string>
     <string name="cardholder">Tarjetahabiente</string>
     <string name="card_type_">Tipo de Tarjeta</string>
+    <string name="save_payment_method">Guardar el metodo de pago</string>
+    <string name="payment_method">Metodos de pago</string>
+
+
 
 
 

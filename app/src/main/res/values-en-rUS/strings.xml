@@ -459,4 +459,6 @@
     <string name="cardholder">Cardholder</string>
     <string name="card_type_">"Card Type "</string>
     <string name="cvv_">CVV</string>
+    <string name="save_payment_method">" Save the payment method"</string>
+    <string name="payment_method">"Payment methods "</string>
 </resources>

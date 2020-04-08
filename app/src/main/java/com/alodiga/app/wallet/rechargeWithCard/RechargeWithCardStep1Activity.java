@@ -65,7 +65,7 @@ public class RechargeWithCardStep1Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recharge_with_card);
 
-        linearLayout1= findViewById(R.id.linearLayout1);
+        //linearLayout1= findViewById(R.id.linearLayout1);
 
         signFind = findViewById(R.id.signFind);
         backToLoginBtn=findViewById(R.id.backToLoginBtn);
@@ -149,14 +149,14 @@ public class RechargeWithCardStep1Activity extends AppCompatActivity {
             }
         });
 
-        linearLayout1.setOnClickListener(new View.OnClickListener() {
+       /* linearLayout1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent show;
                 show = new Intent(getApplicationContext(), RechargeWhithCardContactsActivity.class);
                 startActivity(show);
                 finish();
             }
-        });
+        });*/
     }
 
 

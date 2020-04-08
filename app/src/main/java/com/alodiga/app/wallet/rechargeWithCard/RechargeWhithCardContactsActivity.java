@@ -80,7 +80,7 @@ public class RechargeWhithCardContactsActivity extends AppCompatActivity {
         finish();
     }
     public void getList(){
-        progressDialogAlodiga = new ProgressDialogAlodiga(this, getString(R.string.loading));
+        progressDialogAlodiga = new ProgressDialogAlodiga(RechargeWhithCardContactsActivity.this, getString(R.string.loading));
         progressDialogAlodiga.show();
         mAuthTask = new UserGetList();
         mAuthTask.execute((Void) null);
@@ -192,7 +192,8 @@ public class RechargeWhithCardContactsActivity extends AppCompatActivity {
                 return false;
             }*/
            // return serviceStatus;
-            return true;
+            responsetxt="00";
+            return false;
 
         }
 
@@ -202,30 +203,44 @@ public class RechargeWhithCardContactsActivity extends AppCompatActivity {
             //showProgress(false);
             if (success) {
 
-                mRecyclerView = findViewById(R.id.idRecyclerView);
-                //mRecyclerView.setHasFixedSize(true);
-                mRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                mProductList = new ArrayList<ObjTarjetahabiente>();
-                int resID = getResources().getIdentifier("al" , "drawable", getPackageName());
 
-                for (int i = 0; i < 3; i++) {
-                    //SoapObject obj = (SoapObject) response_.getProperty(i);
-                    mProductList.add(new ObjTarjetahabiente("123456789101111"+i,"123", "cardholder_name"+i,"MASTERCARD", "12","3000", "country", "state", "county", "city",  "direction", "zip_code",null,"0.0"));
-                }
+                    mRecyclerView = findViewById(R.id.idRecyclerView);
+                    //mRecyclerView.setHasFixedSize(true);
+                    mRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                    mProductList = new ArrayList<ObjTarjetahabiente>();
+                    int resID = getResources().getIdentifier("al" , "drawable", getPackageName());
 
-                mAdapter = new AdapterCardContacts(mProductList, RechargeWhithCardContactsActivity.this);
-                mRecyclerView.setAdapter(mAdapter);
-                registerForContextMenu(mRecyclerView);
+                    for (int i = 0; i < 3; i++) {
+                        //SoapObject obj = (SoapObject) response_.getProperty(i);
+                        mProductList.add(new ObjTarjetahabiente("123456789101111"+i,"123", "cardholder_name"+i,"MASTERCARD", "12","3000", "country", "state", "county", "city",  "direction", "zip_code",null,"0.0"));
+                    }
+
+                    mAdapter = new AdapterCardContacts(mProductList, RechargeWhithCardContactsActivity.this);
+                    mRecyclerView.setAdapter(mAdapter);
+                    registerForContextMenu(mRecyclerView);
+;
 
                 progressDialogAlodiga.dismiss();
 
             } else {
 
-                new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
-                        responsetxt);
-               Intent i = new Intent(RechargeWhithCardContactsActivity.this, MainActivity.class);
-               startActivity(i);
-                finish();
+                if(responsetxt.equals("00")){
+                    new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
+                            "No tiene metodos de pagos asociados, por favor ingrese los datos solicitados");
+
+                    Intent i = new Intent(RechargeWhithCardContactsActivity.this, RechargeWithCardStep1Activity.class);
+                    startActivity(i);
+                    finish();
+                }else{
+                    new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
+                            responsetxt);
+
+                    Intent i = new Intent(RechargeWhithCardContactsActivity.this, MainActivity.class);
+                    startActivity(i);
+                    finish();
+                }
+
+
             }
 
 
