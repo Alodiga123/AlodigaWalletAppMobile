@@ -17,6 +17,7 @@ import com.alodiga.app.R;
 import com.alodiga.app.wallet.adapters.SpinAdapterGeneric;
 import com.alodiga.app.wallet.main.MainActivity;
 import com.alodiga.app.wallet.model.ObjGenericObject;
+import com.alodiga.app.wallet.model.ObjTarjetahabiente;
 import com.alodiga.app.wallet.model.ObjTransferMoney;
 import com.alodiga.app.wallet.utils.Constants;
 import com.alodiga.app.wallet.utils.CustomToast;
@@ -29,6 +30,8 @@ import org.ksoap2.serialization.SoapObject;
 
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class RechargeWithCardContactsAddActivity extends AppCompatActivity {
@@ -56,6 +59,10 @@ public class RechargeWithCardContactsAddActivity extends AppCompatActivity {
     static ObjGenericObject[] listSpinner_moth;
     LinearLayout linearLayout1;
 
+    static String getCard, getName, getCcv;
+    static ObjGenericObject getSpinnerType,getMonth,getYear;
+    EditText card, name, ccv;
+    static Spinner spinnerType;
 
 
     @Override
@@ -70,6 +77,14 @@ public class RechargeWithCardContactsAddActivity extends AppCompatActivity {
         backToLoginBtn=findViewById(R.id.backToLoginBtn);
         edtCOD = findViewById(R.id.edtCOD);
         edttrans = findViewById(R.id.edttrans);
+        card = findViewById(R.id.card);
+        name = findViewById(R.id.name);
+        ccv = findViewById(R.id.ccv);
+
+        month= findViewById(R.id.month);
+        year= findViewById(R.id.year);
+        spinnerType= findViewById(R.id.spinnerType);
+
 
         month= findViewById(R.id.month);
         year= findViewById(R.id.year);
@@ -104,8 +119,7 @@ public class RechargeWithCardContactsAddActivity extends AppCompatActivity {
                 show = new Intent(getApplicationContext(), RechargeWithCardStep3CodeActivity.class);
                 startActivity(show);
                 finish();*/
-                new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
-                        "En proceso, falta servicio guardar");
+          entrar();
 
 
             }
@@ -113,6 +127,73 @@ public class RechargeWithCardContactsAddActivity extends AppCompatActivity {
 
     }
 
+
+    private void entrar() {
+
+        final String CVV_DIG = "\\d+";
+        getCard = card.getText().toString();
+        getName = name.getText().toString();
+        getCcv = ccv.getText().toString();
+
+
+        //ObjGenericObject getMonth= (ObjGenericObject) month.getSelectedItem();
+        //ObjGenericObject getYear = (ObjGenericObject) year.getSelectedItem();
+        getSpinnerType = (ObjGenericObject) spinnerType.getSelectedItem();
+
+
+        Pattern digi_cvv = Pattern.compile(CVV_DIG);
+        Matcher cvv_dig = digi_cvv.matcher(getCcv);
+        Matcher cvv_dig_card = digi_cvv.matcher(getCard);
+
+        if (getCard.equals("") || getCard.length() == 0 ||
+                getName.equals("") || getName.length() == 0 ||
+                getCcv.equals("") || getCcv.length() == 0) {
+            new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
+                    getString(R.string.invalid_all_question));
+        } else if (!cvv_dig.lookingAt()) {
+            new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
+                    getString(R.string.cvv_numeric));
+        } else if (getCcv == null) {
+            new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
+                    getString(R.string.cvv_null));
+        }
+        if (getCcv.length() < Constants.LONGITUD_MINIMA_CVV || getCcv.length() > Constants.LONGITUD_MAXIMA_CVV) {
+            new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
+                    getString(R.string.cvv_information));
+        } else if (!getSpinnerType.getName().equals("AMEX") && getCcv.length() == Constants.LONGITUD_MAXIMA_CVV) {
+            new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
+                    getString(R.string.cvv_invalic_type));
+        } else if (getSpinnerType.getName().equals("AMEX") && getCcv.length() == Constants.LONGITUD_MINIMA_CVV) {
+            new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
+                    getString(R.string.cvv_invalic_type));
+        } else if (getCard == null) {
+            new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
+                    getString(R.string.card_invalic));
+        } else if (card.length() < Constants.LONGITUD_MINIMA_TARJETA_CREDITO || card.length() > Constants.LONGITUD_MAXIMA_TARJETA_CREDITO) {
+            new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
+                    getString(R.string.card_invalic2));
+        } else if (!cvv_dig_card.lookingAt())
+            new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
+                    getString(R.string.card_numeric));
+        else {
+            Session.setIsTarjetahabienteSelect(false);
+            getMonth = (ObjGenericObject) month.getSelectedItem();
+            getYear = (ObjGenericObject) year.getSelectedItem();
+
+            ObjTarjetahabiente tarjetahabiente = new ObjTarjetahabiente();
+            tarjetahabiente.setCard_number(getCard);
+            tarjetahabiente.setCardholder_name(getName);
+            tarjetahabiente.setSecurity_code(getCcv);
+            tarjetahabiente.setType_card(getSpinnerType.getName());
+            tarjetahabiente.setExpiration_date_moth(getMonth.getName());
+            tarjetahabiente.setExpiration_date_year(getYear.getName());
+
+            Session.setTarjetahabienteSelect(tarjetahabiente);
+
+            new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
+                    "En proceso, falta servicio guardar");
+        }
+    }
     @Override
     public void onBackPressed() {
         super.onBackPressed();

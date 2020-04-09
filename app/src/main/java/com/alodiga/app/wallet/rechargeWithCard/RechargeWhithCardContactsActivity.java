@@ -34,9 +34,9 @@ public class RechargeWhithCardContactsActivity extends AppCompatActivity {
     private List<ObjTarjetahabiente> mProductList;
     private String responsetxt = "";
     private boolean serviceStatus;
-    private ProgressDialogAlodiga progressDialogAlodiga;
+    static ProgressDialogAlodiga progressDialogAlodiga2;
     private SoapObject response, response_;
-    UserGetList mAuthTask;
+    UserGetListContact mAuthTask_;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,12 +45,15 @@ public class RechargeWhithCardContactsActivity extends AppCompatActivity {
         backToLoginBtn= findViewById(R.id.backToLoginBtn);
         add= findViewById(R.id.add);
 
+        getList();
+
         backToLoginBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 //new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(), "Prueba exitosa");
                 Intent show;
                 show = new Intent(getApplicationContext(), RechargeWithCardStep1Activity.class);
                 startActivity(show);
+                finish();
             }
         });
 
@@ -62,12 +65,12 @@ public class RechargeWhithCardContactsActivity extends AppCompatActivity {
                 Intent show;
                 show = new Intent(getApplicationContext(), RechargeWithCardContactsAddActivity.class);
                 startActivity(show);
+                finish();
             }
         });
 
 
-
-        getList();
+        //
         //set adapter to recyclerview
 
     }
@@ -80,16 +83,17 @@ public class RechargeWhithCardContactsActivity extends AppCompatActivity {
         finish();
     }
     public void getList(){
-        progressDialogAlodiga = new ProgressDialogAlodiga(RechargeWhithCardContactsActivity.this, getString(R.string.loading));
-        progressDialogAlodiga.show();
-        mAuthTask = new UserGetList();
-        mAuthTask.execute((Void) null);
+        progressDialogAlodiga2 = new ProgressDialogAlodiga(this, getString(R.string.loading));
+        progressDialogAlodiga2.show();
+        mAuthTask_ = new UserGetListContact();
+        mAuthTask_.execute((Void) null);
     }
 
-    public class UserGetList extends AsyncTask<Void, Void, Boolean> {
+    public class UserGetListContact extends AsyncTask<Void, Void, Boolean> {
 
         @Override
         protected Boolean doInBackground(Void... params) {
+
 
            /* WebService webService = new WebService();
             Utils utils = new Utils();
@@ -199,7 +203,7 @@ public class RechargeWhithCardContactsActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(final Boolean success) {
-            mAuthTask = null;
+            mAuthTask_ = null;
             //showProgress(false);
             if (success) {
 
@@ -220,7 +224,7 @@ public class RechargeWhithCardContactsActivity extends AppCompatActivity {
                     registerForContextMenu(mRecyclerView);
 ;
 
-                progressDialogAlodiga.dismiss();
+                progressDialogAlodiga2.dismiss();
 
             } else {
 
@@ -249,7 +253,7 @@ public class RechargeWhithCardContactsActivity extends AppCompatActivity {
 
         @Override
         protected void onCancelled() {
-            mAuthTask = null;
+            mAuthTask_ = null;
         }
     }
 
