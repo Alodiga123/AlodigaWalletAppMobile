@@ -7,6 +7,7 @@ import android.text.Selection;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -57,6 +58,7 @@ public class RechargeWithCardStep1Activity extends AppCompatActivity {
     static Spinner spinnerType;
     static String getCard, getName, getCcv;
     static ObjGenericObject getSpinnerType,getMonth,getYear;
+    CheckBox checkBox;
 
 
 
@@ -72,6 +74,8 @@ public class RechargeWithCardStep1Activity extends AppCompatActivity {
         card = findViewById(R.id.card);
         name = findViewById(R.id.name);
         ccv = findViewById(R.id.ccv);
+
+        checkBox= findViewById(R.id.checkBox);
 
         month= findViewById(R.id.month);
         year= findViewById(R.id.year);
@@ -219,8 +223,10 @@ public class RechargeWithCardStep1Activity extends AppCompatActivity {
             tarjetahabiente.setType_card(getSpinnerType.getName());
             tarjetahabiente.setExpiration_date_moth(getMonth.getName());
             tarjetahabiente.setExpiration_date_year(getYear.getName());
+            tarjetahabiente.setSave(checkBox.isChecked());
 
             Session.setTarjetahabienteSelect(tarjetahabiente);
+
 
             Intent show;
             show = new Intent(getApplicationContext(), RechargeWithCardStep2Activity.class);

@@ -63,6 +63,7 @@ public class RechargeWithCardContactsAddActivity extends AppCompatActivity {
     static ObjGenericObject getSpinnerType,getMonth,getYear;
     EditText card, name, ccv;
     static Spinner spinnerType;
+    static ObjGenericObject[] listSpinner_Type;
 
 
     @Override
@@ -71,11 +72,10 @@ public class RechargeWithCardContactsAddActivity extends AppCompatActivity {
         setContentView(R.layout.activity_recharge_with_card_contatc_add);
 
 
-        linearLayout1= findViewById(R.id.linearLayout1);
-
         signFind = findViewById(R.id.signFind);
         backToLoginBtn=findViewById(R.id.backToLoginBtn);
-        edtCOD = findViewById(R.id.edtCOD);
+
+
         edttrans = findViewById(R.id.edttrans);
         card = findViewById(R.id.card);
         name = findViewById(R.id.name);
@@ -102,6 +102,21 @@ public class RechargeWithCardContactsAddActivity extends AppCompatActivity {
         spinAdapterYears = new SpinAdapterGeneric(getApplicationContext(), android.R.layout.simple_spinner_item, listSpinner_years);
         year.setAdapter(spinAdapterYears);
         year.setSelection(indexYears);
+
+        listSpinner_Type = new ObjGenericObject[6];
+        listSpinner_Type[0]= new ObjGenericObject("VISA","0");
+        listSpinner_Type[1]= new ObjGenericObject("MASTERCARD","1");
+        listSpinner_Type[2]= new ObjGenericObject("DINNERS","2");
+        listSpinner_Type[3]= new ObjGenericObject("DISCOVER","3");
+        listSpinner_Type[4]= new ObjGenericObject("JCB","4");
+        listSpinner_Type[5]= new ObjGenericObject("AMEX","5");
+
+
+
+        SpinAdapterGeneric spinAdapterType;
+        spinAdapterType = new SpinAdapterGeneric(getApplicationContext(), android.R.layout.simple_spinner_item, listSpinner_Type);
+        spinnerType.setAdapter(spinAdapterType);
+
 
         backToLoginBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

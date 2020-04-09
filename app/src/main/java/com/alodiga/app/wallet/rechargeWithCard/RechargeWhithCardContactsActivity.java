@@ -196,8 +196,8 @@ public class RechargeWhithCardContactsActivity extends AppCompatActivity {
                 return false;
             }*/
            // return serviceStatus;
-            responsetxt="00";
-            return false;
+            responsetxt="01";
+            return true;
 
         }
 

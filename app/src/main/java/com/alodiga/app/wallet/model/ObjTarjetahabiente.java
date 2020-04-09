@@ -14,6 +14,7 @@ public class ObjTarjetahabiente {
     private String city;
     private String direction;
     private String zip_code;
+    private Boolean isSave;
 
     private ObjTransferMoney product;
     private String amount;
@@ -39,6 +40,13 @@ public class ObjTarjetahabiente {
         this.amount = amount;
     }
 
+    public Boolean getSave() {
+        return isSave;
+    }
+
+    public void setSave(Boolean save) {
+        isSave = save;
+    }
 
     public ObjTransferMoney getProduct() {
         return product;
