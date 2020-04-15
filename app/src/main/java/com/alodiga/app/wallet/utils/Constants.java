@@ -216,6 +216,10 @@ public class Constants {
     public static final String WEB_SERVICES_METHOD_GETSTATESBYCOUNTRY= "getStatesByCountry";
     public static final String WEB_SERVICES_METHOD_GETCITIESBYSTATE= "getCitiesByState";
     public static final String WEB_SERVICES_METHOD_PROCESSREMETTENCEACCOUNT= "processRemettenceAccount";
+    public static final String WEB_SERVICES_METHOD_SAVEPAYMENTINFO= "savePaymentInfo";
+    public static final String WEB_SERVICES_METHOD_GETPAYMENTINFO= "getPaymentInfo";
+
+
 
 
 
@@ -256,14 +260,17 @@ public class Constants {
     //public static final String CONSTANT_URL_QA_REGISTRO_UNIFICADO = "http://192.168.3.20:8080/RegistroUnificado/APIRegistroUnificadoService";
     public static final String CONSTANT_URL_QA_REGISTRO_UNIFICADO = "http://" + IPDAT + ":8080/RegistroUnificado/APIRegistroUnificadoService";
 
-    public static final String CONSTANT_URL_QA_REGISTRO_UNIFICADO_AW = "http://ec2-35-164-98-136.us-west-2.compute.amazonaws.com:8080/RegistroUnificado/APIRegistroUnificadoService?wsdl";
+    //public static final String CONSTANT_URL_QA_REGISTRO_UNIFICADO_AW = "http://ec2-35-164-98-136.us-west-2.compute.amazonaws.com:8080/RegistroUnificado/APIRegistroUnificadoService?wsdl";
+    //public static final String CONSTANT_URL_QA_REGISTRO_UNIFICADO_AW = "http://ec2-52-42-63-64.us-west-2.compute.amazonaws.com:8080/RegistroUnificado/APIRegistroUnificadoService?wsdl";
+    public static final String CONSTANT_URL_QA_REGISTRO_UNIFICADO_AW = "http://ec2-52-42-63-64.us-west-2.compute.amazonaws.com:8080/RegistroUnificado/APIRegistroUnificadoService?wsdl";
+
 
     /**
      *
      */
     //public static final String CONSTANT_URL_QA_ALODIGA = "http://192.168.3.20:8080/AlodigaWallet/APIAlodigaWalletService";
     public static final String CONSTANT_URL_QA_ALODIGA = "http://" + IPDAT + ":8080/AlodigaWallet/APIAlodigaWalletService";
-    public static final String CONSTANT_URL_QA_ALODIGA_AW = " http://ec2-35-164-98-136.us-west-2.compute.amazonaws.com:8080/AlodigaWallet/APIAlodigaWalletService?wsdl";
+    public static final String CONSTANT_URL_QA_ALODIGA_AW = "http://ec2-35-164-98-136.us-west-2.compute.amazonaws.com:8080/AlodigaWallet/APIAlodigaWalletService?wsdl";
 
 
 
