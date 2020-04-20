@@ -23,6 +23,7 @@ import com.alodiga.app.wallet.balance.BalanceStep1Activity;
 import com.alodiga.app.wallet.companionCards.CompanionCardsStep2Activity;
 import com.alodiga.app.wallet.model.ObjCompanionCards;
 import com.alodiga.app.wallet.model.ObjTarjetahabiente;
+import com.alodiga.app.wallet.rechargeWithCard.RechargeWhithCarContactsDrop;
 import com.alodiga.app.wallet.rechargeWithCard.RechargeWithCardStep1Activity;
 import com.alodiga.app.wallet.rechargeWithCard.RechargeWithCardStep2Activity;
 import com.alodiga.app.wallet.utils.Session;
@@ -76,8 +77,11 @@ public class AdapterCardContacts extends RecyclerView.Adapter<AdapterCardContact
             public void onClick(View v) {
 
                 Session.setTarjetahabienteSelect(grocderyItemList.get(position));
-                Toast toast = Toast.makeText(context, "En Proceso", Toast.LENGTH_SHORT);
-                toast.show();
+                //Toast toast = Toast.makeText(context, "En Proceso", Toast.LENGTH_SHORT);
+                //toast.show();
+                Intent show = new Intent(context, RechargeWhithCarContactsDrop.class);
+                context.startActivity(show);
+
             }
 
 

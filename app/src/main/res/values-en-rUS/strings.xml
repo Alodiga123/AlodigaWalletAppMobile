@@ -461,4 +461,7 @@
     <string name="cvv_">CVV</string>
     <string name="save_payment_method">" Save the payment method"</string>
     <string name="payment_method">"Payment methods "</string>
+    <string name="payment_method_drop_succefull">Payment method successfully removed</string>
+    <string name="payment_method_save_succefull">" Payment method successfully saved"</string>
+
 </resources>

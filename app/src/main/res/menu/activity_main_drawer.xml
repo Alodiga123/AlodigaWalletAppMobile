@@ -43,10 +43,10 @@
                 android:id="@+id/nav_remesas"
                 android:icon="@drawable/ic_menu_slideshow"
                 android:title="@string/menu_request_remittances" />/>
-            <item
+            <!--<item
                 android:id="@+id/nav_remesas_status"
                 android:icon="@drawable/ic_menu_slideshow"
-                android:title="@string/menu_remesas_status" />
+                android:title="@string/menu_remesas_status" />-->
 
         </menu>
     </item>

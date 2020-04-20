@@ -205,8 +205,12 @@ public class RechargeWithCardContactsAddActivity extends AppCompatActivity {
 
             Session.setTarjetahabienteSelect(tarjetahabiente);
 
-            new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
-                    "En proceso, falta servicio guardar");
+            //new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
+               //     "En proceso, falta servicio guardar");
+
+            Intent i = new Intent(RechargeWithCardContactsAddActivity.this, RechargeWhithCarContactsSave.class);
+            startActivity(i);
+            finish();
         }
     }
     @Override

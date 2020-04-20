@@ -375,6 +375,14 @@
             android:name="com.alodiga.app.wallet.rechargeWithCard.RechargeWithCardContactsAddActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity
+            android:name="com.alodiga.app.wallet.rechargeWithCard.RechargeWhithCarContactsDrop"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name="com.alodiga.app.wallet.rechargeWithCard.RechargeWhithCarContactsSave"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
 
 
 

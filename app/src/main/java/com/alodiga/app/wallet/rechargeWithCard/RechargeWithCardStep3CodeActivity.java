@@ -35,7 +35,7 @@ public class RechargeWithCardStep3CodeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.transference_payment_code_layout);
+        setContentView(R.layout.activity_recharge_code_layout);
         step1_next_button = findViewById(R.id.step1_next_button);
         backToLoginBtn = findViewById(R.id.backToLoginBtn);
         edtMobileCode = findViewById(R.id.edtMobileCode);
@@ -44,7 +44,7 @@ public class RechargeWithCardStep3CodeActivity extends AppCompatActivity {
         step1_next_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-               /* String getCode = edtMobileCode.getText().toString();
+                String getCode = edtMobileCode.getText().toString();
 
                 if (getCode.equals("") || getCode.length() == 0 || getCode.length() != 4) {
                     new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
@@ -57,11 +57,11 @@ public class RechargeWithCardStep3CodeActivity extends AppCompatActivity {
                     progressDialogAlodiga = new ProgressDialogAlodiga(getApplicationContext(), getString(R.string.loading));
                     mAuthTask = new UserGetCodeTask(Utils.aloDesencript(getCode));
                     mAuthTask.execute((Void) null);
-                }*/
+                }
 
-                Intent i = new Intent(RechargeWithCardStep3CodeActivity.this, RechargeWithCardStep4Activity.class);
+             /*   Intent i = new Intent(RechargeWithCardStep3CodeActivity.this, RechargeWithCardStep4Activity.class);
                 finish();
-                startActivity(i);
+                startActivity(i);*/
 
             }
         });

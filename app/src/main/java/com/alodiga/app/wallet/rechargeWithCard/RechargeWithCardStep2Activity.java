@@ -79,10 +79,19 @@ public class RechargeWithCardStep2Activity extends AppCompatActivity {
 
         backToLoginBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent show;
-                show = new Intent(getApplicationContext(), RechargeWithCardStep1Activity.class);
-                startActivity(show);
-                finish();
+
+                if (Session.getIsTarjetahabienteSelect()){
+                    Intent show;
+                    show = new Intent(getApplicationContext(), RechargeWhithCardContactsActivity.class);
+                    startActivity(show);
+                    finish();
+                }else{
+                    Intent show;
+                    show = new Intent(getApplicationContext(), RechargeWithCardStep1Activity.class);
+                    startActivity(show);
+                    finish();
+                }
+
             }
         });
 
@@ -262,10 +271,23 @@ public class RechargeWithCardStep2Activity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         Session.setIsTarjetahabienteSelect(false);
-        Intent pasIntent = getIntent();
+        /*Intent pasIntent = getIntent();
         Intent i = new Intent(RechargeWithCardStep2Activity.this, RechargeWithCardStep1Activity.class);
         startActivity(i);
-        finish();
+        finish();*/
+
+        if (Session.getIsTarjetahabienteSelect()){
+            Intent show;
+            show = new Intent(getApplicationContext(), RechargeWhithCardContactsActivity.class);
+            startActivity(show);
+            finish();
+        }else{
+            Intent show;
+            show = new Intent(getApplicationContext(), RechargeWithCardStep1Activity.class);
+            startActivity(show);
+            finish();
+        }
+
     }
 
     protected ObjGenericObject[] getListGeneric(SoapObject response) {

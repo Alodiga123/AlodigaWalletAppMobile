@@ -520,6 +520,8 @@
     <string name="card_type_">Tipo de Tarjeta</string>
     <string name="save_payment_method">Guardar el metodo de pago</string>
     <string name="payment_method">Metodos de pago</string>
+    <string name="payment_method_drop_succefull">Metodo de pago eliminado satisfactoriamente</string>
+    <string name="payment_method_save_succefull">Metodo de pago guardado satisfactoriamente</string>
 
 
 

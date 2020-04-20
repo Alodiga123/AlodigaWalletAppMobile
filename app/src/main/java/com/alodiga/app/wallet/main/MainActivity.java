@@ -275,7 +275,7 @@ public class MainActivity extends AppCompatActivity
                || id == R.id.nav_topup || id == R.id.nav_convert || id == R.id.nav_active_card
                || id == R.id.nav_remesas
                || id == R.id.nav_recharge_with_card
-               || id == R.id.nav_remesas_status/*|| id == R.id.nav_reload_Card*/){
+           /*|| id == R.id.nav_remesas_status|| id == R.id.nav_reload_Card*/){
            Intent show;
            switch(Session.getCumplimient()) {
                case "1":
@@ -326,11 +326,11 @@ public class MainActivity extends AppCompatActivity
                        show = new Intent(MainActivity.this, PaymentStep1Activity.class);
                        startActivity(show);
 
-                   }else if (id == R.id.nav_remesas_status) {
+                  } /*else if (id == R.id.nav_remesas_status) {
                        show = new Intent(MainActivity.this, ListRemittenceActivity.class);
                        startActivity(show);
 
-                   }/*else if (id == R.id.nav_reload_Card) {
+                   }else if (id == R.id.nav_reload_Card) {
                     show = new Intent(MainActivity.this, ReloadCardStep1Activity.class);
                     startActivity(show);
                      }*/

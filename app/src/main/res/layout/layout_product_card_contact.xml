@@ -34,7 +34,7 @@
                     android:id="@+id/idProductImage"
                     android:layout_width="55dp"
                     android:layout_height="55dp"
-                    android:src="@drawable/ic_person_black_24dp"/>
+                    android:src="@drawable/tp"/>
             </LinearLayout>
 
             <!-- Rest of the product info and add/remove to/from cart symbols -->
