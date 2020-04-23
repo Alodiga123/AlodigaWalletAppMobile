@@ -24,12 +24,11 @@ import java.util.HashMap;
 
 public class RechargeWhithCarContactsDrop extends AppCompatActivity {
 
-    private static Spinner spinnerProduct;
-    private Button step1_next_button, backToLoginBtn;
+    private Button  backToLoginBtn;
     private String responsetxt = "";
     private boolean serviceStatus;
     private ProgressDialogAlodiga progressDialogAlodiga;
-    private SoapObject response, response_;
+    private SoapObject response_;
     dropContacts mAuthTask;
 
     @Override
@@ -38,20 +37,13 @@ public class RechargeWhithCarContactsDrop extends AppCompatActivity {
         setContentView(R.layout.succefull_drop_cards);
         backToLoginBtn = findViewById(R.id.step1_next_button);
 
-        //entrar();
-
-
-
         backToLoginBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(), "Prueba exitosa");
                 Intent show;
                 show = new Intent(getApplicationContext(), RechargeWhithCardContactsActivity.class);
                 startActivity(show);
             }
         });
-
-
 
 
     }
@@ -76,9 +68,6 @@ public class RechargeWhithCarContactsDrop extends AppCompatActivity {
 
         @Override
         protected Boolean doInBackground(Void... params) {
-
-            WebService webService = new WebService();
-            Utils utils = new Utils();
 
             try {
                 String responseCode;
@@ -165,7 +154,6 @@ public class RechargeWhithCarContactsDrop extends AppCompatActivity {
                     responsetxt = getString(R.string.web_services_response_99);
                     serviceStatus = false;
                 }
-
 
             } catch (IllegalArgumentException e) {
                 responsetxt = getString(R.string.web_services_response_99);

@@ -28,7 +28,6 @@ import java.util.HashMap;
 
 public class RechargeWithCardStep4Activity extends AppCompatActivity {
 
-    private static Spinner spinnerProduct;
     private Button btnProcessTransaction, backToLoginBtn;
     private TextView card,cardholder,cvv,card_type, date_recharge_expired, product,amount;
     private String responsetxt = "";
@@ -67,7 +66,6 @@ public class RechargeWithCardStep4Activity extends AppCompatActivity {
 
         backToLoginBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(), "Prueba exitosa");
                 Intent show;
                 show = new Intent(getApplicationContext(), RechargeWithCardStep3CodeActivity.class);
                 startActivity(show);
@@ -77,7 +75,6 @@ public class RechargeWithCardStep4Activity extends AppCompatActivity {
 
         btnProcessTransaction.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(), "Prueba exitosa");
                 if(Session.getIsConstantsEmpty() && Session.getTarjetahabienteSelect().getSave()){
                     addTask();
                 }
@@ -109,12 +106,9 @@ public class RechargeWithCardStep4Activity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
 
-            WebService webService = new WebService();
-            Utils utils = new Utils();
 
             try {
                 String responseCode;
-                String responseMessage = "";
 
                 HashMap<String, String> map = new HashMap<String, String>();
                 map.put("userId", Session.getUserId());
@@ -271,12 +265,8 @@ public class RechargeWithCardStep4Activity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
 
-            WebService webService = new WebService();
-            Utils utils = new Utils();
-
             try {
                 String responseCode;
-                String responseMessage = "";
 
                 HashMap<String, String> map = new HashMap<String, String>();
                 map.put("userApi", Constants.WEB_SERVICES_USUARIOWS_);
@@ -297,7 +287,6 @@ public class RechargeWithCardStep4Activity extends AppCompatActivity {
 
                 response_ = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_SAVEPAYMENTINFO, Constants.ALODIGA);
                 responseCode = response_.getProperty("codigoRespuesta").toString();
-                responseMessage = response_.getProperty("mensajeRespuesta").toString();
 
 
                 if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {

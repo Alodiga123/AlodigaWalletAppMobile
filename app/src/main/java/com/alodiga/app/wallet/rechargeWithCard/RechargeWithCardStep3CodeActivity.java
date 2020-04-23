@@ -98,8 +98,6 @@ public class RechargeWithCardStep3CodeActivity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
 
-            WebService webService = new WebService();
-            Utils utils = new Utils();
             SoapObject response;
             try {
                 String responseCode;
@@ -115,7 +113,6 @@ public class RechargeWithCardStep3CodeActivity extends AppCompatActivity {
 
                 response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_NAME_VALID_CODE, Constants.REGISTRO_UNIFICADO);
                 responseCode = response.getProperty("codigoRespuesta").toString();
-                responseMessage = response.getProperty("mensajeRespuesta").toString();
 
 
                 if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {

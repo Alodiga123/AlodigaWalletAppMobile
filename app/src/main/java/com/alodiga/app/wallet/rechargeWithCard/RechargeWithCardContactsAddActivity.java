@@ -40,30 +40,16 @@ import java.util.regex.Pattern;
 
 
 public class RechargeWithCardContactsAddActivity extends AppCompatActivity {
-    static SoapObject response, response_;
-    static ObjGenericObject[] listSpinner_pais = new ObjGenericObject[0];
-    static ObjTransferMoney[] listSpinner_producto = new ObjTransferMoney[0];
-    static ObjGenericObject[] listSpinner_banco = new ObjGenericObject[0];
+    static SoapObject  response_;
     static ProgressDialogAlodiga progressDialogAlodiga;
     static int indexYears;
-    private static FragmentManager fragmentManager;
-    private static String stringResponse = "";
-    String datosRespuesta = "";
     AddContactTask mAuthTask;
-    ObjGenericObject getbank;
-    ObjTransferMoney getproduct;
-    String getNumberOperation, getTrans, getAmountRecharge;
-    Spinner spinner_pais, spinnerbank, spinnerproducto;
-    private EditText edtAmount, edtCOD, edttrans;
     private Button signFind, backToLoginBtn;
     private String responsetxt = "";
     private boolean serviceStatus;
-    static DatePicker DatePicker;
     Spinner month, year;
     static ObjGenericObject[] listSpinner_years;
     static ObjGenericObject[] listSpinner_moth;
-    LinearLayout linearLayout1;
-
     static String getCard, getName, getCcv;
     static ObjGenericObject getMonth,getYear;
     ObjCreditCardTypeId getSpinnerType;
@@ -82,8 +68,6 @@ public class RechargeWithCardContactsAddActivity extends AppCompatActivity {
         signFind = findViewById(R.id.signFind);
         backToLoginBtn=findViewById(R.id.backToLoginBtn);
 
-
-        edttrans = findViewById(R.id.edttrans);
         card = findViewById(R.id.card);
         name = findViewById(R.id.name);
         ccv = findViewById(R.id.ccv);
@@ -112,20 +96,6 @@ public class RechargeWithCardContactsAddActivity extends AppCompatActivity {
 
 
         cargar();
-        /*listSpinner_Type = new ObjGenericObject[6];
-        listSpinner_Type[0]= new ObjGenericObject("VISA","0");
-        listSpinner_Type[1]= new ObjGenericObject("MASTERCARD","1");
-        listSpinner_Type[2]= new ObjGenericObject("DINNERS","2");
-        listSpinner_Type[3]= new ObjGenericObject("DISCOVER","3");
-        listSpinner_Type[4]= new ObjGenericObject("JCB","4");
-        listSpinner_Type[5]= new ObjGenericObject("AMEX","5");
-
-
-
-        SpinAdapterGeneric spinAdapterType;
-        spinAdapterType = new SpinAdapterGeneric(getApplicationContext(), android.R.layout.simple_spinner_item, listSpinner_Type);
-        spinnerType.setAdapter(spinAdapterType);
-*/
 
         backToLoginBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -139,26 +109,14 @@ public class RechargeWithCardContactsAddActivity extends AppCompatActivity {
 
         signFind.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                /*Intent show;
-                show = new Intent(getApplicationContext(), RechargeWithCardStep3CodeActivity.class);
-                startActivity(show);
-                finish();*/
-
-
-                try {
                     entrar();
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-
-
             }
         });
 
     }
 
 
-    private void entrar() throws ParseException {
+    private void entrar() {
 
         final String CVV_DIG = "\\d+";
         getCard = card.getText().toString();
@@ -196,7 +154,6 @@ public class RechargeWithCardContactsAddActivity extends AppCompatActivity {
             new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                     getString(R.string.card_numeric));
         else {
-            //Session.setIsTarjetahabienteSelect(false);
             getMonth = (ObjGenericObject) month.getSelectedItem();
             getYear = (ObjGenericObject) year.getSelectedItem();
 
@@ -212,27 +169,12 @@ public class RechargeWithCardContactsAddActivity extends AppCompatActivity {
             cardType.setName(getSpinnerType.getName());
             cardType.setId(getSpinnerType.getId());
             card.setCreditCardTypeId(cardType);
-
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM");
-            card.setCreditCardDate(format.parse(getYear.getName()+"-"+getMonth.getName()));
-
             tarjetahabiente.setCardInfo(card);
-
-            /*tarjetahabiente.setCard_number(getCard);
-            tarjetahabiente.setCardholder_name(getName);
-            tarjetahabiente.setSecurity_code(getCcv);
-            tarjetahabiente.setType_card(getSpinnerType.getName());
-            tarjetahabiente.setExpiration_date_moth(getMonth.getName());
-            tarjetahabiente.setExpiration_date_year(getYear.getName());*/
 
             Session.setTarjetahabienteSelect(tarjetahabiente);
 
-            //new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
-               //     "En proceso, falta servicio guardar");
             AddTask();
-           /* Intent i = new Intent(RechargeWithCardContactsAddActivity.this, RechargeWhithCarContactsSave.class);
-            startActivity(i);
-            finish();*/
+
         }
     }
     @Override
@@ -296,20 +238,6 @@ public class RechargeWithCardContactsAddActivity extends AppCompatActivity {
         return obj2;
     }
 
-    protected ObjTransferMoney[] getListProduct(SoapObject response) {
-
-        ObjTransferMoney[] obj2 = new ObjTransferMoney[response.getPropertyCount() - 3];
-
-        for (int i = 3; i < response.getPropertyCount(); i++) {
-            SoapObject obj = (SoapObject) response.getProperty(i);
-            String propiedad = response.getProperty(i).toString();
-            ObjTransferMoney object = new ObjTransferMoney(obj.getProperty("id").toString(), obj.getProperty("name").toString() + " - " + obj.getProperty("currentBalance").toString(), obj.getProperty("currentBalance").toString());
-            obj2[i - 3] = object;
-        }
-
-        return obj2;
-    }
-
 
     public void AddTask() {
         progressDialogAlodiga = new ProgressDialogAlodiga(this, getString(R.string.loading));
@@ -325,21 +253,10 @@ public class RechargeWithCardContactsAddActivity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
 
-            WebService webService = new WebService();
-            Utils utils = new Utils();
             SoapObject response;
-            Date date = null;
-            String fecha= getYear.getName()+"-"+getMonth.getName();
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM");
-            try {
-                date = format.parse(fecha);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
 
             try {
                 String responseCode;
-                String responseMessage = "";
 
                 HashMap<String, String> map = new HashMap<String, String>();
                 map.put("userApi", Constants.WEB_SERVICES_USUARIOWS_);
@@ -360,7 +277,6 @@ public class RechargeWithCardContactsAddActivity extends AppCompatActivity {
 
                 response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_SAVEPAYMENTINFO, Constants.ALODIGA);
                 responseCode = response.getProperty("codigoRespuesta").toString();
-                responseMessage = response.getProperty("mensajeRespuesta").toString();
 
 
                 if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
@@ -478,12 +394,8 @@ public class RechargeWithCardContactsAddActivity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
 
-            WebService webService = new WebService();
-            Utils utils = new Utils();
-
             try {
                 String responseCode;
-                String responseMessage = "";
 
                 HashMap<String, String> map = new HashMap<String, String>();
                 map.put("userApi", Constants.WEB_SERVICES_USUARIOWS_);
@@ -586,17 +498,13 @@ public class RechargeWithCardContactsAddActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
-            //showProgress(false);
             if (success) {
 
                     listSpinner_Type= getListCardType(response_);
 
-
                     SpinAdapterCardType spinAdapterType;
                     spinAdapterType = new SpinAdapterCardType(getApplicationContext(), android.R.layout.simple_spinner_item, listSpinner_Type);
                     spinnerType.setAdapter(spinAdapterType);
-
-
 
                 progressDialogAlodiga.dismiss();
 
@@ -622,15 +530,12 @@ public class RechargeWithCardContactsAddActivity extends AppCompatActivity {
 
     protected ObjCreditCardTypeId[] getListCardType(SoapObject response) {
         ObjCreditCardTypeId[] obj2 = new ObjCreditCardTypeId[response.getPropertyCount() - 3];
-        //ObjTransferMoney[] obj2 = new ObjTransferMoney[3];
 
         int aux= 0;
         for (int i = 3; i < response.getPropertyCount(); i++) {
-            //for (int i = 0; i < 3; i++) {
 
             SoapObject obj = (SoapObject) response.getProperty(i);
             ObjCreditCardTypeId object = new ObjCreditCardTypeId(obj.getProperty("enabled").toString(), obj.getProperty("id").toString(),obj.getProperty("lengh").toString(), obj.getProperty("name").toString());
-            //ObjTransferMoney object = new ObjTransferMoney("id-"+i, "name-2000-"+i, "2000");
             obj2[aux] = object;
             aux++;
         }

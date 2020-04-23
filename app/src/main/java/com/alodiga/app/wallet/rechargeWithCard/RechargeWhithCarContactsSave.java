@@ -24,8 +24,7 @@ import java.util.ArrayList;
 
 public class RechargeWhithCarContactsSave extends AppCompatActivity {
 
-    private static Spinner spinnerProduct;
-    private Button step1_next_button, backToLoginBtn;
+    private Button backToLoginBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,19 +32,13 @@ public class RechargeWhithCarContactsSave extends AppCompatActivity {
         setContentView(R.layout.succefull_save_cards);
         backToLoginBtn = findViewById(R.id.step1_next_button);
 
-
-
         backToLoginBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(), "Prueba exitosa");
                 Intent show;
                 show = new Intent(getApplicationContext(), RechargeWhithCardContactsActivity.class);
                 startActivity(show);
             }
         });
-
-
-
 
     }
 

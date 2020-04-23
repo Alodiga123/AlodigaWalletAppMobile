@@ -209,15 +209,10 @@ public class RechargeWithCardStep2Activity extends AppCompatActivity {
 
     protected ObjTransferMoney[] getListProduct1(SoapObject response) {
         ObjTransferMoney[] obj2 = new ObjTransferMoney[response.getPropertyCount() - 3];
-        //ObjTransferMoney[] obj2 = new ObjTransferMoney[3];
-
         int aux= 0;
         for (int i = 3; i < response.getPropertyCount(); i++) {
-            //for (int i = 0; i < 3; i++) {
-
                 SoapObject obj = (SoapObject) response.getProperty(i);
                 ObjTransferMoney object = new ObjTransferMoney(obj.getProperty("id").toString(), obj.getProperty("name").toString() + " - " + obj.getProperty("currentBalance").toString(), obj.getProperty("currentBalance").toString());
-                //ObjTransferMoney object = new ObjTransferMoney("id-"+i, "name-2000-"+i, "2000");
             obj2[aux] = object;
             aux++;
         }
@@ -248,174 +243,23 @@ public class RechargeWithCardStep2Activity extends AppCompatActivity {
         return ListYear;
     }
 
-    private ObjGenericObject[] getListYears(int year) {
-        Calendar calendar = Calendar.getInstance();
-
-
-
-        int yearAct= calendar.get(Calendar.YEAR);
-        int yearIni= yearAct-Constants.YEARMINUS;
-        int yearFin = yearAct+Constants.YEARPLUS;
-
-
-        if(year>=yearFin){
-            int plus = year - yearAct;
-            yearFin= yearFin+Constants.YEARPLUS+plus;
-        }
-
-        if(year<=yearIni){
-            int minus= yearIni-year;
-            yearIni= yearIni-(minus+Constants.YEARMINUS);
-        }
-
-        int total= (yearFin- yearIni);
-        ObjGenericObject[] ListYear = new ObjGenericObject[total+1];
-        int aux=0;
-
-        for(int i = yearIni; i <= yearFin; i++)
-        {
-            ListYear[aux]= new ObjGenericObject(String.valueOf(i),String.valueOf(aux));
-            if(year==i){
-                indexYears=aux;
-            }
-
-            aux++;
-        }
-        return ListYear;
-    }
-
-    private int getListType(String type) {
-
-        for(int i = 0; i < listSpinner_Type.length; i++)
-        {
-
-            if(listSpinner_Type[i].getName().equals(type)){
-                indexType=i;
-            }
-
-        }
-        return indexType;
-    }
-
-
-    private ObjGenericObject[] getListMonth() {
-        Calendar calendar = Calendar.getInstance();
-        ObjGenericObject[] ListMoth = new ObjGenericObject[12];
-        int aux=0;
-
-        for(int i = 1; i <= 12; i++)
-        {
-            ListMoth[aux]= new ObjGenericObject(String.valueOf(i),String.valueOf(aux));
-            aux++;
-        }
-
-        return ListMoth;
-    }
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        //Session.setIsTarjetahabienteSelect(false);
-        /*Intent pasIntent = getIntent();
-        Intent i = new Intent(RechargeWithCardStep2Activity.this, RechargeWithCardStep1Activity.class);
-        startActivity(i);
-        finish();*/
 
         if (Session.getIsConstantsEmpty()){
-
             Intent show;
             show = new Intent(getApplicationContext(), RechargeWithCardStep1Activity.class);
             startActivity(show);
             finish();
-
-
         }else{
-
             Intent show;
             show = new Intent(getApplicationContext(),RechargeWhithCardContactsActivity.class);
             startActivity(show);
             finish();
-
         }
 
     }
-
-    protected ObjGenericObject[] getListGeneric(SoapObject response) {
-
-        ObjGenericObject[] obj2 = new ObjGenericObject[response.getPropertyCount() - 3];
-
-        for (int i = 3; i < response.getPropertyCount(); i++) {
-            SoapObject obj = (SoapObject) response.getProperty(i);
-            String propiedad = response.getProperty(i).toString();
-            ObjGenericObject object = new ObjGenericObject(obj.getProperty("name").toString(), obj.getProperty("id").toString());
-            obj2[i - 3] = object;
-        }
-
-        return obj2;
-    }
-
-    protected ObjTransferMoney[] getListProduct(SoapObject response) {
-
-        ObjTransferMoney[] obj2 = new ObjTransferMoney[response.getPropertyCount() - 3];
-
-        for (int i = 3; i < response.getPropertyCount(); i++) {
-            SoapObject obj = (SoapObject) response.getProperty(i);
-            String propiedad = response.getProperty(i).toString();
-            ObjTransferMoney object = new ObjTransferMoney(obj.getProperty("id").toString(), obj.getProperty("name").toString() + " - " + obj.getProperty("currentBalance").toString(), obj.getProperty("currentBalance").toString());
-            obj2[i - 3] = object;
-        }
-
-        return obj2;
-    }
-
-
-
-
-
-    public void serviceAnswer(String responseCode) {
-        if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
-            responsetxt = getString(R.string.web_services_response_00);
-            serviceStatus = true;
-            //return serviceStatus;
-        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_DATOS_INVALIDOS)) {
-            responsetxt = getString(R.string.web_services_response_01);
-            serviceStatus = false;
-        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CONTRASENIA_EXPIRADA)) {
-            responsetxt = getString(R.string.web_services_response_03);
-            serviceStatus = false;
-        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_IP_NO_CONFIANZA)) {
-            responsetxt = getString(R.string.web_services_response_04);
-            serviceStatus = false;
-        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CREDENCIALES_INVALIDAS)) {
-            responsetxt = getString(R.string.web_services_response_05);
-            serviceStatus = false;
-        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_BLOQUEADO)) {
-            responsetxt = getString(R.string.web_services_response_06);
-            serviceStatus = false;
-        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_NUMERO_TELEFONO_YA_EXISTE)) {
-            responsetxt = getString(R.string.web_services_response_08);
-            serviceStatus = false;
-        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_PRIMER_INGRESO)) {
-            responsetxt = getString(R.string.web_services_response_12);
-            serviceStatus = false;
-        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_SOSPECHOSO)) {
-            responsetxt = getString(R.string.web_services_response_95);
-            serviceStatus = false;
-        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_PENDIENTE)) {
-            responsetxt = getString(R.string.web_services_response_96);
-            serviceStatus = false;
-        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_NO_EXISTE)) {
-            responsetxt = getString(R.string.web_services_response_97);
-            serviceStatus = false;
-        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_CREDENCIALES)) {
-            responsetxt = getString(R.string.web_services_response_98);
-            serviceStatus = false;
-        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_INTERNO)) {
-            responsetxt = getString(R.string.web_services_response_99);
-            serviceStatus = false;
-        }
-    }
-
 
     public void cargar(){
         progressDialogAlodiga = new ProgressDialogAlodiga(this, getString(R.string.loading));
@@ -435,7 +279,6 @@ public class RechargeWithCardStep2Activity extends AppCompatActivity {
 
             try {
                 String responseCode;
-                String responseMessage = "";
 
                 HashMap<String, String> map = new HashMap<String, String>();
                 map.put("userId", Session.getUserId());
@@ -554,9 +397,7 @@ public class RechargeWithCardStep2Activity extends AppCompatActivity {
                 finish();
             }
 
-
         }
-
 
         @Override
         protected void onCancelled() {

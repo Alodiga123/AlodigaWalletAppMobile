@@ -63,7 +63,6 @@ public class RechargeWhithCardContactsActivity extends AppCompatActivity {
 
         backToLoginBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(), "Prueba exitosa");
                 Intent show;
                 show = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(show);
@@ -82,10 +81,6 @@ public class RechargeWhithCardContactsActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-
-        //
-        //set adapter to recyclerview
 
     }
 
@@ -108,13 +103,7 @@ public class RechargeWhithCardContactsActivity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
 
-
-            WebService webService = new WebService();
-            Utils utils = new Utils();
-
             try {
-
-                String responseMessage = "";
 
                 HashMap<String, String> map = new HashMap<String, String>();
                 map.put("userApi", Constants.WEB_SERVICES_USUARIOWS_);
@@ -212,9 +201,6 @@ public class RechargeWhithCardContactsActivity extends AppCompatActivity {
                 return false;
             }
             return serviceStatus;
-           // responsetxt="01";
-           // return true;
-
         }
 
         @Override
@@ -232,16 +218,7 @@ public class RechargeWhithCardContactsActivity extends AppCompatActivity {
 
 
                 mRecyclerView = findViewById(R.id.idRecyclerView);
-                    //mRecyclerView.setHasFixedSize(true);
                     mRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                    /*mProductList = new ArrayList<ObjTarjetahabiente>();
-                    int resID = getResources().getIdentifier("al" , "drawable", getPackageName());
-
-                    for (int i = 0; i < 3; i++) {
-                        //SoapObject obj = (SoapObject) response_.getProperty(i);
-                        mProductList.add(new ObjTarjetahabiente("123456789101111"+i,"123", "cardholder_name"+i,"MASTERCARD", "12","3000", "country", "state", "county", "city",  "direction", "zip_code",null,"0.0"));
-                    }*/
-
                     mAdapter = new AdapterCardContacts(mPaymentList, RechargeWhithCardContactsActivity.this);
                     mRecyclerView.setAdapter(mAdapter);
                     registerForContextMenu(mRecyclerView);
@@ -274,9 +251,7 @@ public class RechargeWhithCardContactsActivity extends AppCompatActivity {
 
             }
 
-
         }
-
 
 
 
@@ -301,7 +276,6 @@ public class RechargeWhithCardContactsActivity extends AppCompatActivity {
              payment.setYear(obj.getProperty("creditCardDate").toString().split("-")[0]);
              payment.setMonth(obj.getProperty("creditCardDate").toString().split("-")[1]);
              payment.setCreditCardName(obj.getProperty("creditCardName").toString());
-             //payment.setCreditCardNumber("123333333333");
              payment.setCreditCardNumber(Utils.aloEncrpter(obj.getProperty("creditCardNumber").toString()));
              SoapObject creditCard = (SoapObject) obj.getProperty("creditCardTypeId");
              payment.setCreditCardTypeId( new ObjCreditCardTypeId(creditCard.getProperty("enabled").toString(),creditCard.getProperty("id").toString(),creditCard.getProperty("lengh").toString(),creditCard.getProperty("name").toString()));

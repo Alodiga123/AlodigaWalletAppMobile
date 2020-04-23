@@ -19,7 +19,6 @@ import java.util.Date;
 
 public class RechargeWithCardStep5Activity extends AppCompatActivity {
 
-    private static Spinner spinnerProduct;
     private Button btnShareInformation, backToLoginBtn;
     private TextView card,cardholder,cvv,card_type, date_recharge_expired, product,amount,number_trans,date;
 
@@ -40,15 +39,6 @@ public class RechargeWithCardStep5Activity extends AppCompatActivity {
         number_trans= findViewById(R.id.number_trans);
         date=findViewById(R.id.date);
 
-
-        /*card.setText(Session.getTarjetahabienteSelect().getCard_number());
-        cardholder.setText(Session.getTarjetahabienteSelect().getCardholder_name());
-        cvv.setText(Session.getTarjetahabienteSelect().getSecurity_code());
-        card_type.setText(Session.getTarjetahabienteSelect().getType_card());
-        date_recharge_expired.setText(Session.getTarjetahabienteSelect().getExpiration_date_moth()+" / "+Session.getTarjetahabienteSelect().getExpiration_date_year());
-        product.setText(Session.getTarjetahabienteSelect().getProduct().getName());
-        amount.setText(Session.getTarjetahabienteSelect().getAmount());*/
-
         card.setText(Session.getTarjetahabienteSelect().getCardInfo().getCreditCardNumber());
         cardholder.setText(Session.getTarjetahabienteSelect().getCardInfo().getCreditCardName());
         cvv.setText(Session.getTarjetahabienteSelect().getCardInfo().getCreditCardCVV());
@@ -64,7 +54,6 @@ public class RechargeWithCardStep5Activity extends AppCompatActivity {
 
         backToLoginBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(), "Prueba exitosa");
                 Intent show;
                 show = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(show);
