@@ -220,7 +220,7 @@ public class MainActivity extends AppCompatActivity
         {
             NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
             Menu nav_menu =  navigationView.getMenu();
-            MenuItem menuItem = nav_menu.getItem(7);
+            MenuItem menuItem = nav_menu.getItem(8);
             SubMenu menuItem2 = menuItem.getSubMenu();
             menuItem2.getItem(1).setVisible(false);
             menuItem2.getItem(1).setEnabled(false);
@@ -292,7 +292,9 @@ public class MainActivity extends AppCompatActivity
                    break;
                default:
                    if (id == R.id.nav_recharge_with_card) {
+
                        show = new Intent(MainActivity.this, RechargeWhithCardContactsActivity.class);
+                       //show = new Intent(MainActivity.this, RechargeWithCardStep1Activity.class);
                        startActivity(show);
                    }
                    if (id == R.id.nav_recharge) {

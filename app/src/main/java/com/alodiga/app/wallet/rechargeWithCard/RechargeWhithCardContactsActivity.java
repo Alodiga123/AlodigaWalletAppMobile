@@ -3,6 +3,7 @@ package com.alodiga.app.wallet.rechargeWithCard;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.BoringLayout;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -15,13 +16,24 @@ import com.alodiga.app.R;
 import com.alodiga.app.wallet.adapters.AdapterCardContacts;
 import com.alodiga.app.wallet.main.MainActivity;
 import com.alodiga.app.wallet.model.ObjCompanionCards;
+import com.alodiga.app.wallet.model.ObjCreditCardTypeId;
+import com.alodiga.app.wallet.model.ObjPaymentInfo;
 import com.alodiga.app.wallet.model.ObjTarjetahabiente;
+import com.alodiga.app.wallet.model.ObjTransferMoney;
+import com.alodiga.app.wallet.utils.Constants;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
+import com.alodiga.app.wallet.utils.Session;
+import com.alodiga.app.wallet.utils.Utils;
+import com.alodiga.app.wallet.utils.WebService;
 
 import org.ksoap2.serialization.SoapObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -32,11 +44,13 @@ public class RechargeWhithCardContactsActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private AdapterCardContacts mAdapter;
     private List<ObjTarjetahabiente> mProductList;
+    private List<ObjPaymentInfo> mPaymentList;
     private String responsetxt = "";
     private boolean serviceStatus;
     static ProgressDialogAlodiga progressDialogAlodiga2;
     private SoapObject response, response_;
     UserGetListContact mAuthTask_;
+    String responseCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +65,7 @@ public class RechargeWhithCardContactsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(), "Prueba exitosa");
                 Intent show;
-                show = new Intent(getApplicationContext(), RechargeWithCardStep1Activity.class);
+                show = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(show);
                 finish();
             }
@@ -78,7 +92,7 @@ public class RechargeWhithCardContactsActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent i = new Intent(RechargeWhithCardContactsActivity.this, RechargeWithCardStep1Activity.class);
+        Intent i = new Intent(RechargeWhithCardContactsActivity.this, MainActivity.class);
         startActivity(i);
         finish();
     }
@@ -95,18 +109,20 @@ public class RechargeWhithCardContactsActivity extends AppCompatActivity {
         protected Boolean doInBackground(Void... params) {
 
 
-           /* WebService webService = new WebService();
+            WebService webService = new WebService();
             Utils utils = new Utils();
 
             try {
-                String responseCode;
+
                 String responseMessage = "";
 
                 HashMap<String, String> map = new HashMap<String, String>();
+                map.put("userApi", Constants.WEB_SERVICES_USUARIOWS_);
+                map.put("passwordApi", Constants.WEB_SERVICES_PASSWORDWS);
                 map.put("userId", Session.getUserId());
 
 
-                response_ = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_LIST_COMPANION_CARDS, Constants.ALODIGA);
+                response_ = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_GETPAYMENTINFO, Constants.ALODIGA);
                 responseCode = response_.getProperty("codigoRespuesta").toString();
 
 
@@ -194,10 +210,10 @@ public class RechargeWhithCardContactsActivity extends AppCompatActivity {
                 e.printStackTrace();
                 System.err.println(e);
                 return false;
-            }*/
-           // return serviceStatus;
-            responsetxt="01";
-            return true;
+            }
+            return serviceStatus;
+           // responsetxt="01";
+           // return true;
 
         }
 
@@ -206,20 +222,27 @@ public class RechargeWhithCardContactsActivity extends AppCompatActivity {
             mAuthTask_ = null;
             //showProgress(false);
             if (success) {
+                Session.setIsConstantsEmpty(false);
+
+                try {
+                    mPaymentList=getlistPaymentInfo(response_);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
 
 
-                    mRecyclerView = findViewById(R.id.idRecyclerView);
+                mRecyclerView = findViewById(R.id.idRecyclerView);
                     //mRecyclerView.setHasFixedSize(true);
                     mRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                    mProductList = new ArrayList<ObjTarjetahabiente>();
+                    /*mProductList = new ArrayList<ObjTarjetahabiente>();
                     int resID = getResources().getIdentifier("al" , "drawable", getPackageName());
 
                     for (int i = 0; i < 3; i++) {
                         //SoapObject obj = (SoapObject) response_.getProperty(i);
                         mProductList.add(new ObjTarjetahabiente("123456789101111"+i,"123", "cardholder_name"+i,"MASTERCARD", "12","3000", "country", "state", "county", "city",  "direction", "zip_code",null,"0.0"));
-                    }
+                    }*/
 
-                    mAdapter = new AdapterCardContacts(mProductList, RechargeWhithCardContactsActivity.this);
+                    mAdapter = new AdapterCardContacts(mPaymentList, RechargeWhithCardContactsActivity.this);
                     mRecyclerView.setAdapter(mAdapter);
                     registerForContextMenu(mRecyclerView);
 ;
@@ -228,14 +251,18 @@ public class RechargeWhithCardContactsActivity extends AppCompatActivity {
 
             } else {
 
-                if(responsetxt.equals("00")){
+                if(responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_NOT_ASSOCIATED_PAYMENT_INFO)){
                     new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
-                            "No tiene metodos de pagos asociados, por favor ingrese los datos solicitados");
+                            getString(R.string.web_services_response_220));
+
+                    Session.setIsConstantsEmpty(true);
 
                     Intent i = new Intent(RechargeWhithCardContactsActivity.this, RechargeWithCardStep1Activity.class);
                     startActivity(i);
                     finish();
+
                 }else{
+
                     new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                             responsetxt);
 
@@ -251,10 +278,44 @@ public class RechargeWhithCardContactsActivity extends AppCompatActivity {
         }
 
 
+
+
         @Override
         protected void onCancelled() {
             mAuthTask_ = null;
         }
     }
 
+     List<ObjPaymentInfo> getlistPaymentInfo(SoapObject response ) throws ParseException {
+
+          List<ObjPaymentInfo> listPayment= new ArrayList<ObjPaymentInfo>();
+          ObjPaymentInfo payment;
+         Date date = null;
+         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
+         for (int i = 3; i < response.getPropertyCount(); i++) {
+             payment= new ObjPaymentInfo();
+             SoapObject obj = (SoapObject) response.getProperty(i);
+             payment.setCreditCardCVV(obj.getProperty("creditCardCVV").toString());
+             payment.setCreditCardDate(format.parse(obj.getProperty("creditCardDate").toString()));
+             payment.setYear(obj.getProperty("creditCardDate").toString().split("-")[0]);
+             payment.setMonth(obj.getProperty("creditCardDate").toString().split("-")[1]);
+             payment.setCreditCardName(obj.getProperty("creditCardName").toString());
+             //payment.setCreditCardNumber("123333333333");
+             payment.setCreditCardNumber(Utils.aloEncrpter(obj.getProperty("creditCardNumber").toString()));
+             SoapObject creditCard = (SoapObject) obj.getProperty("creditCardTypeId");
+             payment.setCreditCardTypeId( new ObjCreditCardTypeId(creditCard.getProperty("enabled").toString(),creditCard.getProperty("id").toString(),creditCard.getProperty("lengh").toString(),creditCard.getProperty("name").toString()));
+             payment.setEnabled(Boolean.parseBoolean(obj.getProperty("enabled").toString()));
+             payment.setId(obj.getProperty("id").toString());
+             SoapObject paymentPatner = (SoapObject) obj.getProperty("paymentPatnerId");
+             payment.setPaymentPatnerId(paymentPatner.getProperty("id").toString());
+             SoapObject paymentType = (SoapObject) obj.getProperty("paymentTypeId");
+             payment.setPaymentTypeId(paymentType.getProperty("id").toString());
+             payment.setUserId(obj.getProperty("userId").toString());
+
+             listPayment.add(payment);
+
+         }
+        return listPayment;
+    }
 }

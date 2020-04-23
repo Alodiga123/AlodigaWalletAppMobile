@@ -14,9 +14,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
 import com.alodiga.app.R;
+import com.alodiga.app.wallet.adapters.SpinAdapterCardType;
 import com.alodiga.app.wallet.adapters.SpinAdapterGeneric;
-import com.alodiga.app.wallet.main.MainActivity;
+import com.alodiga.app.wallet.model.ObjCreditCardTypeId;
 import com.alodiga.app.wallet.model.ObjGenericObject;
+import com.alodiga.app.wallet.model.ObjPaymentInfo;
 import com.alodiga.app.wallet.model.ObjTarjetahabiente;
 import com.alodiga.app.wallet.model.ObjTransferMoney;
 import com.alodiga.app.wallet.utils.Constants;
@@ -28,14 +30,17 @@ import com.alodiga.app.wallet.utils.WebService;
 
 import org.ksoap2.serialization.SoapObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
 public class RechargeWithCardContactsAddActivity extends AppCompatActivity {
-    static SoapObject response;
+    static SoapObject response, response_;
     static ObjGenericObject[] listSpinner_pais = new ObjGenericObject[0];
     static ObjTransferMoney[] listSpinner_producto = new ObjTransferMoney[0];
     static ObjGenericObject[] listSpinner_banco = new ObjGenericObject[0];
@@ -44,7 +49,7 @@ public class RechargeWithCardContactsAddActivity extends AppCompatActivity {
     private static FragmentManager fragmentManager;
     private static String stringResponse = "";
     String datosRespuesta = "";
-    UserRemovalTask mAuthTask;
+    AddContactTask mAuthTask;
     ObjGenericObject getbank;
     ObjTransferMoney getproduct;
     String getNumberOperation, getTrans, getAmountRecharge;
@@ -60,10 +65,12 @@ public class RechargeWithCardContactsAddActivity extends AppCompatActivity {
     LinearLayout linearLayout1;
 
     static String getCard, getName, getCcv;
-    static ObjGenericObject getSpinnerType,getMonth,getYear;
+    static ObjGenericObject getMonth,getYear;
+    ObjCreditCardTypeId getSpinnerType;
     EditText card, name, ccv;
     static Spinner spinnerType;
-    static ObjGenericObject[] listSpinner_Type;
+    static ObjCreditCardTypeId[] listSpinner_Type;
+    getTypeCards mAuthTask_;
 
 
     @Override
@@ -103,7 +110,9 @@ public class RechargeWithCardContactsAddActivity extends AppCompatActivity {
         year.setAdapter(spinAdapterYears);
         year.setSelection(indexYears);
 
-        listSpinner_Type = new ObjGenericObject[6];
+
+        cargar();
+        /*listSpinner_Type = new ObjGenericObject[6];
         listSpinner_Type[0]= new ObjGenericObject("VISA","0");
         listSpinner_Type[1]= new ObjGenericObject("MASTERCARD","1");
         listSpinner_Type[2]= new ObjGenericObject("DINNERS","2");
@@ -116,7 +125,7 @@ public class RechargeWithCardContactsAddActivity extends AppCompatActivity {
         SpinAdapterGeneric spinAdapterType;
         spinAdapterType = new SpinAdapterGeneric(getApplicationContext(), android.R.layout.simple_spinner_item, listSpinner_Type);
         spinnerType.setAdapter(spinAdapterType);
-
+*/
 
         backToLoginBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -134,7 +143,13 @@ public class RechargeWithCardContactsAddActivity extends AppCompatActivity {
                 show = new Intent(getApplicationContext(), RechargeWithCardStep3CodeActivity.class);
                 startActivity(show);
                 finish();*/
-          entrar();
+
+
+                try {
+                    entrar();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
 
 
             }
@@ -143,18 +158,15 @@ public class RechargeWithCardContactsAddActivity extends AppCompatActivity {
     }
 
 
-    private void entrar() {
+    private void entrar() throws ParseException {
 
         final String CVV_DIG = "\\d+";
         getCard = card.getText().toString();
         getName = name.getText().toString();
         getCcv = ccv.getText().toString();
-
-
-        //ObjGenericObject getMonth= (ObjGenericObject) month.getSelectedItem();
-        //ObjGenericObject getYear = (ObjGenericObject) year.getSelectedItem();
-        getSpinnerType = (ObjGenericObject) spinnerType.getSelectedItem();
-
+        getSpinnerType = (ObjCreditCardTypeId) spinnerType.getSelectedItem();
+        getMonth= (ObjGenericObject) month.getSelectedItem();
+        getYear= (ObjGenericObject) year.getSelectedItem();
 
         Pattern digi_cvv = Pattern.compile(CVV_DIG);
         Matcher cvv_dig = digi_cvv.matcher(getCcv);
@@ -171,16 +183,9 @@ public class RechargeWithCardContactsAddActivity extends AppCompatActivity {
         } else if (getCcv == null) {
             new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                     getString(R.string.cvv_null));
-        }
-        if (getCcv.length() < Constants.LONGITUD_MINIMA_CVV || getCcv.length() > Constants.LONGITUD_MAXIMA_CVV) {
+        }else if(getCcv.length()!=Integer.parseInt(getSpinnerType.getLenghCVV()) ){
             new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                     getString(R.string.cvv_information));
-        } else if (!getSpinnerType.getName().equals("AMEX") && getCcv.length() == Constants.LONGITUD_MAXIMA_CVV) {
-            new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
-                    getString(R.string.cvv_invalic_type));
-        } else if (getSpinnerType.getName().equals("AMEX") && getCcv.length() == Constants.LONGITUD_MINIMA_CVV) {
-            new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
-                    getString(R.string.cvv_invalic_type));
         } else if (getCard == null) {
             new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                     getString(R.string.card_invalic));
@@ -191,26 +196,43 @@ public class RechargeWithCardContactsAddActivity extends AppCompatActivity {
             new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                     getString(R.string.card_numeric));
         else {
-            Session.setIsTarjetahabienteSelect(false);
+            //Session.setIsTarjetahabienteSelect(false);
             getMonth = (ObjGenericObject) month.getSelectedItem();
             getYear = (ObjGenericObject) year.getSelectedItem();
 
             ObjTarjetahabiente tarjetahabiente = new ObjTarjetahabiente();
-            tarjetahabiente.setCard_number(getCard);
+            ObjPaymentInfo card= new ObjPaymentInfo();
+            card.setCreditCardNumber(getCard);
+            card.setCreditCardName(getName);
+            card.setCreditCardCVV(getCcv);
+            card.setMonth(getMonth.getName());
+            card.setYear(getYear.getName());
+
+            ObjCreditCardTypeId cardType = new ObjCreditCardTypeId();
+            cardType.setName(getSpinnerType.getName());
+            cardType.setId(getSpinnerType.getId());
+            card.setCreditCardTypeId(cardType);
+
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM");
+            card.setCreditCardDate(format.parse(getYear.getName()+"-"+getMonth.getName()));
+
+            tarjetahabiente.setCardInfo(card);
+
+            /*tarjetahabiente.setCard_number(getCard);
             tarjetahabiente.setCardholder_name(getName);
             tarjetahabiente.setSecurity_code(getCcv);
             tarjetahabiente.setType_card(getSpinnerType.getName());
             tarjetahabiente.setExpiration_date_moth(getMonth.getName());
-            tarjetahabiente.setExpiration_date_year(getYear.getName());
+            tarjetahabiente.setExpiration_date_year(getYear.getName());*/
 
             Session.setTarjetahabienteSelect(tarjetahabiente);
 
             //new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                //     "En proceso, falta servicio guardar");
-
-            Intent i = new Intent(RechargeWithCardContactsAddActivity.this, RechargeWhithCarContactsSave.class);
+            AddTask();
+           /* Intent i = new Intent(RechargeWithCardContactsAddActivity.this, RechargeWhithCarContactsSave.class);
             startActivity(i);
-            finish();
+            finish();*/
         }
     }
     @Override
@@ -289,59 +311,16 @@ public class RechargeWithCardContactsAddActivity extends AppCompatActivity {
     }
 
 
-    public void RemovalTask() {
+    public void AddTask() {
         progressDialogAlodiga = new ProgressDialogAlodiga(this, getString(R.string.loading));
         progressDialogAlodiga.show();
-        mAuthTask = new UserRemovalTask();
+        mAuthTask = new AddContactTask();
         mAuthTask.execute((Void) null);
 
     }
 
-    public void serviceAnswer(String responseCode) {
-        if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
-            responsetxt = getString(R.string.web_services_response_00);
-            serviceStatus = true;
-            //return serviceStatus;
-        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_DATOS_INVALIDOS)) {
-            responsetxt = getString(R.string.web_services_response_01);
-            serviceStatus = false;
-        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CONTRASENIA_EXPIRADA)) {
-            responsetxt = getString(R.string.web_services_response_03);
-            serviceStatus = false;
-        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_IP_NO_CONFIANZA)) {
-            responsetxt = getString(R.string.web_services_response_04);
-            serviceStatus = false;
-        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CREDENCIALES_INVALIDAS)) {
-            responsetxt = getString(R.string.web_services_response_05);
-            serviceStatus = false;
-        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_BLOQUEADO)) {
-            responsetxt = getString(R.string.web_services_response_06);
-            serviceStatus = false;
-        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_NUMERO_TELEFONO_YA_EXISTE)) {
-            responsetxt = getString(R.string.web_services_response_08);
-            serviceStatus = false;
-        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_PRIMER_INGRESO)) {
-            responsetxt = getString(R.string.web_services_response_12);
-            serviceStatus = false;
-        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_SOSPECHOSO)) {
-            responsetxt = getString(R.string.web_services_response_95);
-            serviceStatus = false;
-        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_PENDIENTE)) {
-            responsetxt = getString(R.string.web_services_response_96);
-            serviceStatus = false;
-        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_NO_EXISTE)) {
-            responsetxt = getString(R.string.web_services_response_97);
-            serviceStatus = false;
-        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_CREDENCIALES)) {
-            responsetxt = getString(R.string.web_services_response_98);
-            serviceStatus = false;
-        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_INTERNO)) {
-            responsetxt = getString(R.string.web_services_response_99);
-            serviceStatus = false;
-        }
-    }
 
-    public class UserRemovalTask extends AsyncTask<Void, Void, Boolean> {
+    public class AddContactTask extends AsyncTask<Void, Void, Boolean> {
 
         @Override
         protected Boolean doInBackground(Void... params) {
@@ -349,37 +328,37 @@ public class RechargeWithCardContactsAddActivity extends AppCompatActivity {
             WebService webService = new WebService();
             Utils utils = new Utils();
             SoapObject response;
-
-           /* getbank = (ObjGenericObject) spinnerbank.getSelectedItem();
-            getNumberOperation = edtCOD.getText().toString();
-            getAmountRecharge = edtAmount.getText().toString();
-            getproduct = (ObjTransferMoney) spinnerproducto.getSelectedItem();
-            getTrans = edttrans.getText().toString();*/
-
+            Date date = null;
+            String fecha= getYear.getName()+"-"+getMonth.getName();
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM");
+            try {
+                date = format.parse(fecha);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
 
             try {
                 String responseCode;
                 String responseMessage = "";
 
                 HashMap<String, String> map = new HashMap<String, String>();
-                map.put("bankId", getbank.getId());
-                map.put("emailUser", Session.getEmail());
-                map.put("referenceNumberOperation", getNumberOperation);
-                map.put("amountRecharge", getAmountRecharge);
-                map.put("productId", getproduct.getId());
-                map.put("conceptTransaction", getTrans);
+                map.put("userApi", Constants.WEB_SERVICES_USUARIOWS_);
+                map.put("passwordApi", Constants.WEB_SERVICES_PASSWORDWS);
+                map.put("userId", Session.getUserId());
+                map.put("estado", "");
+                map.put("ciudad", "");
+                map.put("zipCode", "");
+                map.put("addres1", "");
+                map.put("paymentPatnerId", "2");
+                map.put("paymentTypeId", "1");
+                map.put("creditCardTypeId", Session.getTarjetahabienteSelect().getCardInfo().getCreditCardTypeId().getId());
+                map.put("creditCardName", Session.getTarjetahabienteSelect().getCardInfo().getCreditCardName());
+                map.put("creditCardNumber", Utils.aloDesencript(Session.getTarjetahabienteSelect().getCardInfo().getCreditCardNumber()));
+                map.put("creditCardCVV", getCcv);
+                map.put("creditCardDate", getYear.getName()+"-"+getMonth.getName());
 
-                /*
-                 @WebParam(name = "bankId") Long bankId,
-                @WebParam(name = "emailUser") String emailUser,
-                @WebParam(name = "referenceNumberOperation") String referenceNumberOperation,
-                @WebParam(name = "amountRecharge") Float amountRecharge,
-                @WebParam(name = "productId") Long productId,
-                @WebParam(name = "conceptTransaction") String conceptTransaction) {
-                return operations.ManualRecharge(bankId, emailUser, referenceNumberOperation, amountRecharge,
-                 */
 
-                response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_NAME_RECHARGE, Constants.ALODIGA);
+                response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_SAVEPAYMENTINFO, Constants.ALODIGA);
                 responseCode = response.getProperty("codigoRespuesta").toString();
                 responseMessage = response.getProperty("mensajeRespuesta").toString();
 
@@ -468,7 +447,7 @@ public class RechargeWithCardContactsAddActivity extends AppCompatActivity {
             //showProgress(false);
             if (success) {
                 Intent show;
-                show = new Intent(getApplicationContext(), RechargeWithCardStep.class);
+                show = new Intent(getApplicationContext(), RechargeWhithCarContactsSave.class);
                 startActivity(show);
                 finish();
 
@@ -483,5 +462,179 @@ public class RechargeWithCardContactsAddActivity extends AppCompatActivity {
         protected void onCancelled() {
             mAuthTask = null;
         }
+    }
+
+
+    public void cargar(){
+        progressDialogAlodiga = new ProgressDialogAlodiga(this, getString(R.string.loading));
+        progressDialogAlodiga.show();
+        mAuthTask_ = new getTypeCards();
+        mAuthTask_.execute((Void) null);
+    }
+
+
+    public class getTypeCards extends AsyncTask<Void, Void, Boolean> {
+
+        @Override
+        protected Boolean doInBackground(Void... params) {
+
+            WebService webService = new WebService();
+            Utils utils = new Utils();
+
+            try {
+                String responseCode;
+                String responseMessage = "";
+
+                HashMap<String, String> map = new HashMap<String, String>();
+                map.put("userApi", Constants.WEB_SERVICES_USUARIOWS_);
+                map.put("passwordApi", Constants.WEB_SERVICES_PASSWORDWS);
+
+
+                response_ = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_GET_CREDIT_CARD_TYPE, Constants.ALODIGA);
+                responseCode = response_.getProperty("codigoRespuesta").toString();
+
+
+                if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
+                    responsetxt = getString(R.string.web_services_response_00);
+                    serviceStatus = true;
+                    return serviceStatus;
+
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_DATOS_INVALIDOS)) {
+                    responsetxt = getString(R.string.web_services_response_01);
+                    serviceStatus = false;
+
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CONTRASENIA_EXPIRADA)) {
+                    responsetxt = getString(R.string.web_services_response_03);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_IP_NO_CONFIANZA)) {
+                    responsetxt = getString(R.string.web_services_response_04);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CREDENCIALES_INVALIDAS)) {
+                    responsetxt = getString(R.string.web_services_response_05);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_BLOQUEADO)) {
+                    responsetxt = getString(R.string.web_services_response_06);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_NUMERO_TELEFONO_YA_EXISTE)) {
+                    responsetxt = getString(R.string.web_services_response_08);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_PRIMER_INGRESO)) {
+                    responsetxt = getString(R.string.web_services_response_12);
+                    serviceStatus = false;
+                }  else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USER_NOT_HAS_CARD)) {
+                    responsetxt = getString(R.string.web_services_response_29);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_DOES_NOT_HAVE_AN_ASSOCIATED_COMPANION_CARD)) {
+                    responsetxt = getString(R.string.web_services_response_30_);
+                    serviceStatus = false;
+                }else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CARD_NUMBER_EXISTS)) {
+                    responsetxt = getString(R.string.web_services_response_50);
+                    serviceStatus = true;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_NOT_ALLOWED_TO_CHANGE_STATE)) {
+                    responsetxt = getString(R.string.web_services_response_51);
+                    serviceStatus = false;
+                }else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_AUTHENTICALLY_IMPOSSIBLE)) {
+                    responsetxt = getString(R.string.web_services_response_54);
+                    serviceStatus = false;
+                }else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_UNABLE_TO_ACCESS_DATA)) {
+                    responsetxt = getString(R.string.web_services_response_54);
+                    serviceStatus = false;
+                }else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_THERE_ARE_NO_RECORDS_FOR_THE_REQUESTED_SEARCH)) {
+                    responsetxt = getString(R.string.web_services_response_58);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_THE_NUMBER_OF_ORDERS_ALLOWED_IS_EXCEEDED)) {
+                    responsetxt = getString(R.string.web_services_response_60);
+                    serviceStatus = false;
+                }else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_SOSPECHOSO)) {
+                    responsetxt = getString(R.string.web_services_response_95);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_PENDIENTE)) {
+                    responsetxt = getString(R.string.web_services_response_96);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_NO_EXISTE)) {
+                    responsetxt = getString(R.string.web_services_response_97);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_CREDENCIALES)) {
+                    responsetxt = getString(R.string.web_services_response_98);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_INTERNO)) {
+                    responsetxt = getString(R.string.web_services_response_99);
+                    serviceStatus = false;
+                } else {
+                    responsetxt = getString(R.string.web_services_response_99);
+                    serviceStatus = false;
+                }
+
+
+            } catch (IllegalArgumentException e) {
+                responsetxt = getString(R.string.web_services_response_99);
+                serviceStatus = false;
+                e.printStackTrace();
+                System.err.println(e);
+                return false;
+            } catch (Exception e) {
+                responsetxt = getString(R.string.web_services_response_99);
+                serviceStatus = false;
+                e.printStackTrace();
+                System.err.println(e);
+                return false;
+            }
+            return serviceStatus;
+
+        }
+
+        @Override
+        protected void onPostExecute(final Boolean success) {
+            mAuthTask = null;
+            //showProgress(false);
+            if (success) {
+
+                    listSpinner_Type= getListCardType(response_);
+
+
+                    SpinAdapterCardType spinAdapterType;
+                    spinAdapterType = new SpinAdapterCardType(getApplicationContext(), android.R.layout.simple_spinner_item, listSpinner_Type);
+                    spinnerType.setAdapter(spinAdapterType);
+
+
+
+                progressDialogAlodiga.dismiss();
+
+            } else {
+
+                new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
+                        responsetxt);
+                Intent i = new Intent(getApplication(), RechargeWhithCardContactsActivity.class);
+                startActivity(i);
+                finish();
+            }
+
+
+        }
+
+
+        @Override
+        protected void onCancelled() {
+            mAuthTask_ = null;
+        }
+    }
+
+
+    protected ObjCreditCardTypeId[] getListCardType(SoapObject response) {
+        ObjCreditCardTypeId[] obj2 = new ObjCreditCardTypeId[response.getPropertyCount() - 3];
+        //ObjTransferMoney[] obj2 = new ObjTransferMoney[3];
+
+        int aux= 0;
+        for (int i = 3; i < response.getPropertyCount(); i++) {
+            //for (int i = 0; i < 3; i++) {
+
+            SoapObject obj = (SoapObject) response.getProperty(i);
+            ObjCreditCardTypeId object = new ObjCreditCardTypeId(obj.getProperty("enabled").toString(), obj.getProperty("id").toString(),obj.getProperty("lengh").toString(), obj.getProperty("name").toString());
+            //ObjTransferMoney object = new ObjTransferMoney("id-"+i, "name-2000-"+i, "2000");
+            obj2[aux] = object;
+            aux++;
+        }
+
+        return obj2;
     }
 }

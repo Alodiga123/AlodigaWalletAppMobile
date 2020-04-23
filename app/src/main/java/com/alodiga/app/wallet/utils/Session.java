@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 
 import com.alodiga.app.wallet.model.ObjDireccion;
 import com.alodiga.app.wallet.model.ObjExchange;
+import com.alodiga.app.wallet.model.ObjPaymentInfo;
 import com.alodiga.app.wallet.model.ObjProccessRemittence;
 import com.alodiga.app.wallet.model.ObjRemittencePay;
 import com.alodiga.app.wallet.model.ObjRemittencePerson;
@@ -83,15 +84,34 @@ public class Session {
     private static ObjRemittencePerson remittenceRemitente;
     private static ObjProccessRemittence processRemittence;
     private static ObjTarjetahabiente TarjetahabienteSelect;
-    private static Boolean IsTarjetahabienteSelect=false;
+    private static ObjPaymentInfo paymentInfo;
+    private static Boolean isConstantsEmpty;
+    private static String  rechargeWhitCardIdTransaccion;
 
-    public static Boolean getIsTarjetahabienteSelect() {
-        return IsTarjetahabienteSelect;
+    public static String getRechargeWhitCardIdTransaccion() {
+        return rechargeWhitCardIdTransaccion;
     }
 
-    public static void setIsTarjetahabienteSelect(Boolean isTarjetahabienteSelect) {
-        IsTarjetahabienteSelect = isTarjetahabienteSelect;
+    public static void setRechargeWhitCardIdTransaccion(String rechargeWhitCardIdTransaccion) {
+        Session.rechargeWhitCardIdTransaccion = rechargeWhitCardIdTransaccion;
     }
+
+    public static Boolean getIsConstantsEmpty() {
+        return isConstantsEmpty;
+    }
+
+    public static void setIsConstantsEmpty(Boolean isConstantsEmpty) {
+        Session.isConstantsEmpty = isConstantsEmpty;
+    }
+
+    public static ObjPaymentInfo getPaymentInfo() {
+        return paymentInfo;
+    }
+
+    public static void setPaymentInfo(ObjPaymentInfo paymentInfo) {
+        Session.paymentInfo = paymentInfo;
+    }
+
 
     public static ObjTarjetahabiente getTarjetahabienteSelect() {
         return TarjetahabienteSelect;

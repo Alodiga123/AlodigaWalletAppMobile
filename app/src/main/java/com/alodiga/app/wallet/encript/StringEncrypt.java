@@ -7,12 +7,16 @@ package com.alodiga.app.wallet.encript;
 
 import com.alodiga.app.wallet.utils.Constants;
 
+import org.apache.commons.codec.binary.Base64;
+
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
-import static org.apache.commons.codec.binary.Base64.decodeBase64;
 import static org.apache.commons.codec.binary.Base64.encodeBase64;
+
+import android.util.Base64.*;
+
 
 /**
  * @author usuario
@@ -32,7 +36,8 @@ public class StringEncrypt {
         Cipher cipher = Cipher.getInstance(Constants.CI);
         SecretKeySpec skeySpec = new SecretKeySpec(key.getBytes(), Constants.ALG);
         IvParameterSpec ivParameterSpec = new IvParameterSpec(iv.getBytes());
-        byte[] enc = decodeBase64(encrypted);
+        Base64 prue= new Base64();
+        byte[] enc = android.util.Base64.decode(encrypted,64);
         cipher.init(Cipher.DECRYPT_MODE, skeySpec, ivParameterSpec);
         byte[] decrypted = cipher.doFinal(enc);
         return new String(decrypted);

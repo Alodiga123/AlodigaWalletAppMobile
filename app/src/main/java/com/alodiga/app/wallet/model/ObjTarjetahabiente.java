@@ -2,12 +2,7 @@ package com.alodiga.app.wallet.model;
 
 public class ObjTarjetahabiente {
 
-    private String card_number;
-    private String security_code;
-    private String cardholder_name;
-    private String type_card;
-    private String expiration_date_moth;
-    private String expiration_date_year;
+    private ObjPaymentInfo cardInfo;
     private String country;
     private String state;
     private String county;
@@ -23,21 +18,25 @@ public class ObjTarjetahabiente {
     public ObjTarjetahabiente() {
     }
 
-    public ObjTarjetahabiente(String card_number, String security_code, String cardholder_name, String type_card, String expiration_date_moth, String expiration_date_year, String country, String state, String county, String city, String direction, String zip_code, ObjTransferMoney product, String amount) {
-        this.card_number = card_number;
-        this.security_code = security_code;
-        this.cardholder_name = cardholder_name;
-        this.type_card = type_card;
-        this.expiration_date_moth = expiration_date_moth;
-        this.expiration_date_year = expiration_date_year;
+    public ObjTarjetahabiente(ObjPaymentInfo cardInfo, String country, String state, String county, String city, String direction, String zip_code, Boolean isSave, ObjTransferMoney product, String amount) {
+        this.cardInfo = cardInfo;
         this.country = country;
         this.state = state;
         this.county = county;
         this.city = city;
         this.direction = direction;
         this.zip_code = zip_code;
+        this.isSave = isSave;
         this.product = product;
         this.amount = amount;
+    }
+
+    public ObjPaymentInfo getCardInfo() {
+        return cardInfo;
+    }
+
+    public void setCardInfo(ObjPaymentInfo cardInfo) {
+        this.cardInfo = cardInfo;
     }
 
     public Boolean getSave() {
@@ -62,54 +61,6 @@ public class ObjTarjetahabiente {
 
     public void setAmount(String amount) {
         this.amount = amount;
-    }
-
-    public String getCard_number() {
-        return card_number;
-    }
-
-    public void setCard_number(String card_number) {
-        this.card_number = card_number;
-    }
-
-    public String getSecurity_code() {
-        return security_code;
-    }
-
-    public void setSecurity_code(String security_code) {
-        this.security_code = security_code;
-    }
-
-    public String getCardholder_name() {
-        return cardholder_name;
-    }
-
-    public void setCardholder_name(String cardholder_name) {
-        this.cardholder_name = cardholder_name;
-    }
-
-    public String getType_card() {
-        return type_card;
-    }
-
-    public void setType_card(String type_card) {
-        this.type_card = type_card;
-    }
-
-    public String getExpiration_date_moth() {
-        return expiration_date_moth;
-    }
-
-    public void setExpiration_date_moth(String expiration_date_moth) {
-        this.expiration_date_moth = expiration_date_moth;
-    }
-
-    public String getExpiration_date_year() {
-        return expiration_date_year;
-    }
-
-    public void setExpiration_date_year(String expiration_date_year) {
-        this.expiration_date_year = expiration_date_year;
     }
 
     public String getCountry() {

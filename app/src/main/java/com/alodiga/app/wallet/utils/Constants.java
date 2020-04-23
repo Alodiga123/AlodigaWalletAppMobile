@@ -72,6 +72,7 @@ public class Constants {
      * Tiempo de inactividad
      */
     public static final String WEB_SERVICES_USUARIOWS = "usuarioWS";
+    public static final String WEB_SERVICES_USUARIOWS_ = "userWS";
     public static final String WEB_SERVICES_PASSWORDWS = "passwordWS";
     public static final long SECONDS = 180; //In seconds
     public static final long STARTIME = SECONDS * 1000; //In miliseconds
@@ -178,6 +179,8 @@ public class Constants {
     public static final String WEB_SERVICES_RESPONSE_CODE_DESTINATION_NOT_PREPAID = "204";
     public static final String WEB_SERVICES_RESPONSE_CODE_ERROR_TRANSACTION_TOP_UP = "205";
     public static final String WEB_SERVICES_RESPONSE_CODE_DENOMINATION_NOT_AVAILABLE = "301";
+    public static final String WEB_SERVICES_RESPONSE_CODE_NOT_ASSOCIATED_PAYMENT_INFO="220";
+
     public static final String WEB_SERVICES_METHOD_NAME_SAVE_USER = "guardarUsuarioAplicacionMovil";
     public static final String WEB_SERVICES_METHOD_NAME_SEND_CODE_SMS = "generarCodigoMovilSMS";
     public static final String WEB_SERVICES_METHOD_NAME_SEND_CODE_SMS_MOVIL = "generarCodigoMovilSMSAplicacionMovil";
@@ -218,6 +221,12 @@ public class Constants {
     public static final String WEB_SERVICES_METHOD_PROCESSREMETTENCEACCOUNT= "processRemettenceAccount";
     public static final String WEB_SERVICES_METHOD_SAVEPAYMENTINFO= "savePaymentInfo";
     public static final String WEB_SERVICES_METHOD_GETPAYMENTINFO= "getPaymentInfo";
+    public static final String WEB_SERVICES_METHOD_GETPRODUCTS_RECHARGE_PAYMENT_BY_USERID= "getProductsRechargePaymentByUserId";
+    public static final String WEB_SERVICES_METHOD_GET_CREDIT_CARD_TYPE= "getCreditCardType";
+    public static final String WEB_SERVICES_METHOD_CHANGE_STATUS_PAYMENT_INFO="ChangeStatusPaymentInfo";
+    public static final String WEB_SERVICES_METHOD_SAVE_RECHARGE_AFINITAS= "saveRechargeAfinitas";
+
+
 
 
 
@@ -338,5 +347,9 @@ public class Constants {
     public static final int LONGITUD_MINIMA_CVV = 3;
     public static final int LONGITUD_MAXIMA_TARJETA_CREDITO = 16;
     public static final int LONGITUD_MINIMA_TARJETA_CREDITO = 13;
+
+    public static final String CURRENCY_INFO_PAYMENT = "840";
+
+
 
 }

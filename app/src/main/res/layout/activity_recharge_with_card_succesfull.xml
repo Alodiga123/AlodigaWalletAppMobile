@@ -147,18 +147,20 @@
             android:background="@color/white" />
 
         <TableRow>
+
             <TextView
                 android:id="@+id/txtPaymentReceiver"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
+                android:layout_width="182dp"
+                android:layout_height="match_parent"
                 android:padding="3dip"
                 android:paddingTop="5dp"
                 android:singleLine="true"
+                android:text="@string/balance_card_number"
                 android:textColor="@color/white_greyish"
                 android:textColorHint="@color/white_greyish"
                 android:textSize="16sp"
-                android:text="@string/balance_card_number"/>
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/card"
                 android:layout_width="wrap_content"
@@ -168,8 +170,7 @@
                 android:singleLine="true"
                 android:textColor="@color/white_greyish"
                 android:textColorHint="@color/white_greyish"
-                android:textSize="14sp"
-                />
+                android:textSize="14sp" />
         </TableRow>
 
         <TableRow>
@@ -191,6 +192,8 @@
                 android:textColor="@color/white_greyish"
                 android:textColorHint="@color/white_greyish"
                 android:textSize="14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
 
                 />
         </TableRow>
@@ -208,6 +211,8 @@
                 android:textSize="16sp"
                 android:text="@string/cvv_"/>
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:id="@+id/cvv"
                 android:padding="3dip"
                 android:singleLine="true"
@@ -229,6 +234,8 @@
                 android:textSize="16sp"
                 android:text="@string/card_type_"/>
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:id="@+id/card_type"
                 android:padding="3dip"
                 android:singleLine="true"
@@ -251,12 +258,15 @@
                 android:textSize="16sp"
                 android:text="@string/date_recharge_"/>
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:id="@+id/date_recharge"
                 android:padding="3dip"
                 android:singleLine="true"
                 android:textColor="@color/white_greyish"
                 android:textColorHint="@color/white_greyish"
                 android:textSize="14sp"/>
+
         </TableRow>
         <View
             android:layout_width="match_parent"
@@ -291,18 +301,19 @@
             android:background="@color/white" />
 
         <TableRow>
+
             <TextView
                 android:id="@+id/txtPaymentReceiver1"
-                android:layout_width="wrap_content"
+                android:layout_width="184dp"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
                 android:padding="3dip"
                 android:paddingTop="5dp"
                 android:singleLine="true"
+                android:text="@string/product"
                 android:textColor="@color/white_greyish"
                 android:textColorHint="@color/white_greyish"
                 android:textSize="16sp"
-                android:text="@string/product"/>
+                android:textStyle="bold" />
             <TextView
                 android:id="@+id/product"
                 android:layout_width="wrap_content"
@@ -313,6 +324,7 @@
                 android:textColor="@color/white_greyish"
                 android:textColorHint="@color/white_greyish"
                 android:textSize="14sp"
+
                 />
         </TableRow>
 
@@ -328,15 +340,17 @@
                 android:textColorHint="@color/white_greyish"
                 android:textSize="16sp"
                 android:text="@string/amount"/>
+
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:id="@+id/amount"
                 android:padding="3dip"
                 android:singleLine="true"
                 android:textColor="@color/white_greyish"
                 android:textColorHint="@color/white_greyish"
-                android:textSize="14sp"
 
-                />
+                android:textSize="14sp" />
         </TableRow>
 
         <View

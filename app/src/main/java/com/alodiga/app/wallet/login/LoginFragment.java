@@ -331,6 +331,7 @@ public class LoginFragment extends Fragment implements OnClickListener {
 
     public void entrar() {
 
+
         progressDialogAlodiga = new ProgressDialogAlodiga(getContext(), getString(R.string.loading));
         progressDialogAlodiga.show();
         mAuthTask = new UserLoginTask(getEmailId, getPassword);
@@ -351,12 +352,12 @@ public class LoginFragment extends Fragment implements OnClickListener {
         @Override
         protected Boolean doInBackground(Void... params) {
 
-            WebService webService = new WebService();
+           WebService webService = new WebService();
             Utils utils = new Utils();
             SoapObject response;
             try {
 
-                String responseCode;
+               String responseCode;
                 String responseMessage = "";
 
                 HashMap<String, String> map = new HashMap<String, String>();
@@ -418,10 +419,7 @@ public class LoginFragment extends Fragment implements OnClickListener {
                     Session.setAccountNumber(accountNumberSession);
                     Session.setPrepayCardAsociate(prepayCardAsociate);
 
-					 /*String elementgetId = "id=";
-					 String elementGet = "nombreProducto=";
-					 String elementGetS = "saldoActual=";
-					 String elementGetSi = "simbolo=";*/
+
                     userHasProducts = getElementsProduct("", res);
 
                     if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
@@ -484,6 +482,7 @@ public class LoginFragment extends Fragment implements OnClickListener {
                 return false;
             }
             return serviceStatus;
+         //return true;
 
         }
 
@@ -494,7 +493,9 @@ public class LoginFragment extends Fragment implements OnClickListener {
             if (success) {
                 emailid.setText("");
                 password.setText("");
-                setElementInitialSession(nameSession, phoneNumberSession, emailSession, alodigaBalanceSession, accountNumberSession, alocoinsBalanceSesssion, userId, healthCareCoinsBalanceSession, userHasProducts, cumplimient, prepayCard, prepayCardAsociate, numberCard);
+                setElementInitialSession("prueba", "0414", "adi123", "0.0", "00", "000", "379", "000", userHasProducts, "0", "00", "00", "0000");
+
+                //setElementInitialSession(nameSession, phoneNumberSession, emailSession, alodigaBalanceSession, accountNumberSession, alocoinsBalanceSesssion, userId, healthCareCoinsBalanceSession, userHasProducts, cumplimient, prepayCard, prepayCardAsociate, numberCard);
                 Intent intent = new Intent(getActivity(), MainActivity.class);
                 getActivity().startActivity(intent);
             } else if (isFirstAccess) {

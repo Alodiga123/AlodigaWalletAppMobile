@@ -41,13 +41,24 @@ public class RechargeWithCardStep5Activity extends AppCompatActivity {
         date=findViewById(R.id.date);
 
 
-        card.setText(Session.getTarjetahabienteSelect().getCard_number());
+        /*card.setText(Session.getTarjetahabienteSelect().getCard_number());
         cardholder.setText(Session.getTarjetahabienteSelect().getCardholder_name());
         cvv.setText(Session.getTarjetahabienteSelect().getSecurity_code());
         card_type.setText(Session.getTarjetahabienteSelect().getType_card());
         date_recharge_expired.setText(Session.getTarjetahabienteSelect().getExpiration_date_moth()+" / "+Session.getTarjetahabienteSelect().getExpiration_date_year());
         product.setText(Session.getTarjetahabienteSelect().getProduct().getName());
+        amount.setText(Session.getTarjetahabienteSelect().getAmount());*/
+
+        card.setText(Session.getTarjetahabienteSelect().getCardInfo().getCreditCardNumber());
+        cardholder.setText(Session.getTarjetahabienteSelect().getCardInfo().getCreditCardName());
+        cvv.setText(Session.getTarjetahabienteSelect().getCardInfo().getCreditCardCVV());
+        card_type.setText(Session.getTarjetahabienteSelect().getCardInfo().getCreditCardTypeId().getName());
+        date_recharge_expired.setText(Session.getTarjetahabienteSelect().getCardInfo().getMonth()+" / "+Session.getTarjetahabienteSelect().getCardInfo().getYear());
+        product.setText(Session.getTarjetahabienteSelect().getProduct().getName().split("-")[0]);
         amount.setText(Session.getTarjetahabienteSelect().getAmount());
+
+        number_trans.setText(Session.getRechargeWhitCardIdTransaccion());
+        date.setText(new Timestamp(new Date().getTime()).toGMTString());
 
 
 

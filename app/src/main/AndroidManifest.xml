@@ -392,7 +392,9 @@
             android:name="com.alodiga.app.wallet.listRemittence.ListRemittenceActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
-           <receiver android:name="com.alodiga.app.wallet.utils.SmsReceiver">
+
+
+        <receiver android:name="com.alodiga.app.wallet.utils.SmsReceiver">
                <intent-filter>
                    <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
                </intent-filter>

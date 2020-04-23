@@ -1,6 +1,6 @@
 package com.alodiga.app.wallet.adapters;
 
-import android.app.AlertDialog;
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -16,29 +16,48 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.balance.BalanceStep1Activity;
 import com.alodiga.app.wallet.companionCards.CompanionCardsStep2Activity;
+import com.alodiga.app.wallet.login.LoginActivity;
+import com.alodiga.app.wallet.main.MainActivity;
 import com.alodiga.app.wallet.model.ObjCompanionCards;
+import com.alodiga.app.wallet.model.ObjPaymentInfo;
 import com.alodiga.app.wallet.model.ObjTarjetahabiente;
 import com.alodiga.app.wallet.rechargeWithCard.RechargeWhithCarContactsDrop;
 import com.alodiga.app.wallet.rechargeWithCard.RechargeWithCardStep1Activity;
 import com.alodiga.app.wallet.rechargeWithCard.RechargeWithCardStep2Activity;
+import com.alodiga.app.wallet.utils.Constants;
+import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.Session;
+import com.alodiga.app.wallet.utils.WebService;
 import com.alodiga.app.wallet.validate.ValidateAccountCode3Activity;
 import com.alodiga.app.wallet.validate.ValidateAccountCode4Activity;
 import com.alodiga.app.wallet.validate.ValidateAccountStep5Activity;
 
+import org.ksoap2.serialization.SoapObject;
+
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
 public class AdapterCardContacts extends RecyclerView.Adapter<AdapterCardContacts.GroceryProductViewHolder> implements AdapterView.OnItemSelectedListener {
     Context context;
-    private List<ObjTarjetahabiente> grocderyItemList;
+    private List<ObjPaymentInfo> grocderyItemList;
+    private String responsetxt = "";
+    private boolean serviceStatus;
+    static SoapObject response;
+    private static String stringResponse = "";
+    String datosRespuesta = "";
+    final String idioma = Locale.getDefault().getLanguage();
 
-    public AdapterCardContacts(List<ObjTarjetahabiente> grocderyItemList, Context context) {
+
+
+    public AdapterCardContacts(List<ObjPaymentInfo> grocderyItemList, Context context) {
         this.grocderyItemList = grocderyItemList;
         this.context = context;
     }
@@ -52,19 +71,21 @@ public class AdapterCardContacts extends RecyclerView.Adapter<AdapterCardContact
     }
 
     @Override
-    public void onBindViewHolder(GroceryProductViewHolder holder, final int position) {
+    public void onBindViewHolder(final GroceryProductViewHolder holder, final int position) {
         //holder.imageProductImage.setImageResource(grocderyItemList.get(position).getImageCard());
 
-        holder.idProductType.setText(grocderyItemList.get(position).getType_card());
-        holder.txtProductName.setText(grocderyItemList.get(position).getCardholder_name());
-        holder.txtProductPrice.setText(grocderyItemList.get(position).getCard_number());
+        holder.idProductType.setText(grocderyItemList.get(position).getCreditCardNumber());
+        holder.txtProductName.setText(grocderyItemList.get(position).getCreditCardName());
+        holder.txtProductPrice.setText(grocderyItemList.get(position).getCreditCardTypeId().getName());
 
         holder.linearSelect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Session.setTarjetahabienteSelect(grocderyItemList.get(position));
-                Session.setIsTarjetahabienteSelect(true);
+                ObjTarjetahabiente tarjetahabiente= new ObjTarjetahabiente();
+                tarjetahabiente.setCardInfo(grocderyItemList.get(position));
+                Session.setTarjetahabienteSelect(tarjetahabiente);
+                //Session.setIsTarjetahabienteSelect(true);
                 Intent show = new Intent(context, RechargeWithCardStep2Activity.class);
                 context.startActivity(show);
             }
@@ -74,13 +95,34 @@ public class AdapterCardContacts extends RecyclerView.Adapter<AdapterCardContact
 
         holder.linearDrop.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
 
-                Session.setTarjetahabienteSelect(grocderyItemList.get(position));
+
+
+
+
+                ObjPaymentInfo paymentInfo= grocderyItemList.get(position);
+                ObjTarjetahabiente tarjetahabiente = new ObjTarjetahabiente();
+                tarjetahabiente.setCardInfo(paymentInfo);
+                Session.setTarjetahabienteSelect(tarjetahabiente);
                 //Toast toast = Toast.makeText(context, "En Proceso", Toast.LENGTH_SHORT);
                 //toast.show();
-                Intent show = new Intent(context, RechargeWhithCarContactsDrop.class);
-                context.startActivity(show);
+
+                androidx.appcompat.app.AlertDialog.Builder dialogo1 = new AlertDialog.Builder(context, R.style.yourDialog);
+                dialogo1.setTitle(R.string.payment_method_drop_question);
+                dialogo1.setMessage(tarjetahabiente.getCardInfo().getCreditCardName());
+                dialogo1.setCancelable(false);
+                dialogo1.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialogo1, int id) {
+                        dropContact();
+                    }
+                });
+                dialogo1.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialogo1, int id) {
+                        //cancelar();
+                    }
+                });
+                dialogo1.show();
 
             }
 
@@ -145,6 +187,42 @@ public class AdapterCardContacts extends RecyclerView.Adapter<AdapterCardContact
 
     }
 
+    void dropContact(){
+        new Thread(new Runnable() {
+            public void run() {
+                try {
+                    String responseCode = null;
+                    WebService webService = new WebService();
+                    HashMap<String, String> map = new HashMap<String, String>();
+                    map.put("userApi", Constants.WEB_SERVICES_USUARIOWS_);
+                    map.put("passwordApi", Constants.WEB_SERVICES_PASSWORDWS);
+                    map.put("userId", Session.getUserId());
+                    map.put("paymentInfoId", Session.getTarjetahabienteSelect().getCardInfo().getId());
+                    map.put("status", "false");
+
+                    response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_CHANGE_STATUS_PAYMENT_INFO, Constants.ALODIGA);
+                    responseCode = response.getProperty("codigoRespuesta").toString();
+                    datosRespuesta = response.getProperty("mensajeRespuesta").toString();
+                    serviceAnswer(responseCode);
+
+                    if (serviceStatus) {
+                        Intent show = new Intent(context, RechargeWhithCarContactsDrop.class);
+                        context.startActivity(show);
+                    } else {
+
+                        Toast toast = Toast.makeText(context, responsetxt, Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }).start();
+
+    }
+
     public class GroceryProductViewHolder extends RecyclerView.ViewHolder {
         //ImageView imageProductImage;
         LinearLayout linearSelect;
@@ -164,4 +242,22 @@ public class AdapterCardContacts extends RecyclerView.Adapter<AdapterCardContact
         }
     }
 
+    public void serviceAnswer(String responseCode) {
+        if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
+            if (idioma.equals("en")) {
+                responsetxt="welcome";
+            } else {
+                responsetxt="Bienvenido";
+            }
+            serviceStatus = true;
+
+        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_INTERNO)) {
+            if (idioma.equals("en")) {
+                responsetxt="Internal error";
+            } else {
+                responsetxt="Error interno";
+            }
+            serviceStatus = false;
+        }
+    }
 }

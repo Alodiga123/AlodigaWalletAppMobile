@@ -348,6 +348,7 @@
 
     <string name="web_services_response_204">Destino no es prepago</string>
     <string name="web_services_response_205">Error transacción TopUp</string>
+    <string name="web_services_response_220">No tiene metodos de pagos asociados, por favor ingrese los datos solicitados</string>
     <string name="web_services_response_301">Denominación no disponible. Intente nuevamente con otra denominación.</string>
 
 
@@ -522,6 +523,10 @@
     <string name="payment_method">Metodos de pago</string>
     <string name="payment_method_drop_succefull">Metodo de pago eliminado satisfactoriamente</string>
     <string name="payment_method_save_succefull">Metodo de pago guardado satisfactoriamente</string>
+    <string name="payment_method_drop_title">Eliminar Metodo de Pago</string>
+    <string name="payment_method_drop_question">¿Esta seguro que desea eliminar el metodo de pago?</string>
+
+
 
 
 
