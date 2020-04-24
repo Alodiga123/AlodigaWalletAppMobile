@@ -74,7 +74,7 @@ public class AdapterCardContacts extends RecyclerView.Adapter<AdapterCardContact
     public void onBindViewHolder(final GroceryProductViewHolder holder, final int position) {
         //holder.imageProductImage.setImageResource(grocderyItemList.get(position).getImageCard());
 
-        holder.idProductType.setText(grocderyItemList.get(position).getCreditCardNumber());
+        holder.idProductType.setText(grocderyItemList.get(position).getCreditCardNumberEnmas());
         holder.txtProductName.setText(grocderyItemList.get(position).getCreditCardName());
         holder.txtProductPrice.setText(grocderyItemList.get(position).getCreditCardTypeId().getName());
 

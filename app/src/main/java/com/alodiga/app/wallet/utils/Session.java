@@ -28,6 +28,7 @@ public class Session {
     private static String phoneNumber = "";
     private static String country = "";
     private static String accountNumber = "";
+    private static String accountNumber_aux = "";
     private static String alocoinsBalance = "";
     private static String alodigaBalance = "";
     private static String HealthCareCoinsBalance = "";
@@ -70,6 +71,7 @@ public class Session {
     private static String cardBalanceMain;
     private static String prepayCard;
     private static String numberCard;
+    private static String numberCard_aux;
     private static String prepayCardAsociate;
     private static String tranferenceCardToCard;
     private static String tranferenceCardToCardEncrip;
@@ -87,6 +89,22 @@ public class Session {
     private static ObjPaymentInfo paymentInfo;
     private static Boolean isConstantsEmpty;
     private static String  rechargeWhitCardIdTransaccion;
+
+    public static String getAccountNumber_aux() {
+        return accountNumber_aux;
+    }
+
+    public static void setAccountNumber_aux(String accountNumber_aux) {
+        Session.accountNumber_aux = accountNumber_aux;
+    }
+
+    public static String getNumberCard_aux() {
+        return numberCard_aux;
+    }
+
+    public static void setNumberCard_aux(String numberCard_aux) {
+        Session.numberCard_aux = numberCard_aux;
+    }
 
     public static String getRechargeWhitCardIdTransaccion() {
         return rechargeWhitCardIdTransaccion;

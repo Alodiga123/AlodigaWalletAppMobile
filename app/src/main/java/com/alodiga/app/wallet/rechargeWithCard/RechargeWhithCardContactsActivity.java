@@ -277,6 +277,7 @@ public class RechargeWhithCardContactsActivity extends AppCompatActivity {
              payment.setMonth(obj.getProperty("creditCardDate").toString().split("-")[1]);
              payment.setCreditCardName(obj.getProperty("creditCardName").toString());
              payment.setCreditCardNumber(Utils.aloEncrpter(obj.getProperty("creditCardNumber").toString()));
+             payment.setCreditCardNumberEnmas(payment.getCreditCardNumber().substring(0,4) + "********" + payment.getCreditCardNumber().substring(payment.getCreditCardNumber().length()-4));
              SoapObject creditCard = (SoapObject) obj.getProperty("creditCardTypeId");
              payment.setCreditCardTypeId( new ObjCreditCardTypeId(creditCard.getProperty("enabled").toString(),creditCard.getProperty("id").toString(),creditCard.getProperty("lengh").toString(),creditCard.getProperty("name").toString()));
              payment.setEnabled(Boolean.parseBoolean(obj.getProperty("enabled").toString()));

@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.adapters.SpinAdapterTransferMoneyRemittence;
+import com.alodiga.app.wallet.model.ObjUserHasProduct;
 import com.alodiga.app.wallet.utils.Constants;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
@@ -22,6 +23,7 @@ import com.alodiga.app.wallet.utils.WebService;
 import org.ksoap2.serialization.SoapObject;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -53,7 +55,7 @@ public class RechargeWithCardStep4Activity extends AppCompatActivity {
         amount= findViewById(R.id.amount);
 
 
-        card.setText(Session.getTarjetahabienteSelect().getCardInfo().getCreditCardNumber());
+        card.setText(Session.getTarjetahabienteSelect().getCardInfo().getCreditCardNumberEnmas());
         cardholder.setText(Session.getTarjetahabienteSelect().getCardInfo().getCreditCardName());
         cvv.setText(Session.getTarjetahabienteSelect().getCardInfo().getCreditCardCVV());
         card_type.setText(Session.getTarjetahabienteSelect().getCardInfo().getCreditCardTypeId().getName());
@@ -313,7 +315,7 @@ public class RechargeWithCardStep4Activity extends AppCompatActivity {
             progressDialogAlodiga.dismiss();
 
             if (success) {
-
+                Session.setObjUserHasProducts(getListProduct(response));
                 Session.setRechargeWhitCardIdTransaccion(response.getProperty("idTransaction").toString());
 
                 Intent show;
@@ -351,6 +353,9 @@ public class RechargeWithCardStep4Activity extends AppCompatActivity {
 
         @Override
         protected Boolean doInBackground(Void... params) {
+
+            String prueba= Session.getNumberCard();
+            String pr= Session.getAccountNumber();
 
             try {
                 String responseCode;
@@ -474,6 +479,26 @@ public class RechargeWithCardStep4Activity extends AppCompatActivity {
         protected void onCancelled() {
             mAuthTask_ = null;
         }
+    }
+    protected ArrayList<ObjUserHasProduct> getListProduct(SoapObject response) {
+        //ObjUserHasProduct[] obj2_aux= new ObjUserHasProduct[response.getPropertyCount()-3];
+        //ObjUserHasProduct[] obj2 = new ObjUserHasProduct[response.getPropertyCount()-3];
+        ArrayList<ObjUserHasProduct> obj2 = new ArrayList<>();
+        for (int i = 4; i < response.getPropertyCount()-1; i++) {
+            SoapObject obj = (SoapObject) response.getProperty(i);
+            String propiedad = response.getProperty(i).toString();
+            ObjUserHasProduct object = new ObjUserHasProduct(obj.getProperty("id").toString(), obj.getProperty("name").toString(), obj.getProperty("currentBalance").toString(), obj.getProperty("symbol").toString(), obj.getProperty("isPayTopUp").toString());
+            if (object.getName().equals("Tarjeta Prepagada") || object.getName().equals("Prepaid Card") ){
+                Session.setAffiliatedCard(Boolean.parseBoolean(Session.getPrepayCardAsociate()));
+                object.setNumberCard(Session.getNumberCard_aux());
+            }else{
+                object.setNumberCard(Session.getAccountNumber_aux());
+            }
+            obj2.add(object);
+            //obj2[i-3] = object;
+        }
+
+        return obj2;
     }
 
 

@@ -169,6 +169,7 @@ public class RechargeWithCardStep1Activity extends AppCompatActivity {
             ObjTarjetahabiente tarjetahabiente = new ObjTarjetahabiente();
             ObjPaymentInfo card= new ObjPaymentInfo();
             card.setCreditCardNumber(getCard);
+            card.setCreditCardNumberEnmas(card.getCreditCardNumber().substring(0,4) + "********" + card.getCreditCardNumber().substring(card.getCreditCardNumber().length()-4));
             card.setCreditCardName(getName);
             card.setCreditCardCVV(getCcv);
             card.setMonth(getMonth.getName());

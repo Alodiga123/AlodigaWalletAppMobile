@@ -11,6 +11,7 @@ public class ObjPaymentInfo {
     private String year;
     private String creditCardName;
     private String creditCardNumber;
+    private String creditCardNumberEnmas;
     private ObjCreditCardTypeId  creditCardTypeId;
     private Boolean isEnabled;
     private String id;
@@ -19,6 +20,14 @@ public class ObjPaymentInfo {
     private String userId;
 
     public ObjPaymentInfo() {
+    }
+
+    public String getCreditCardNumberEnmas() {
+        return creditCardNumberEnmas;
+    }
+
+    public void setCreditCardNumberEnmas(String creditCardNumberEnmas) {
+        this.creditCardNumberEnmas = creditCardNumberEnmas;
     }
 
     public String getMonth() {

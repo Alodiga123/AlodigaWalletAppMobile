@@ -411,12 +411,14 @@ public class LoginFragment extends Fragment implements OnClickListener {
                         if(Boolean.valueOf(prepayCard)){
                             numberCard = getValueFromResponseJson("numberCard", res);
                             Session.setNumberCard(numberCard);
+                            Session.setNumberCard_aux(numberCard);
                         }
                     }
 
 
 
                     Session.setAccountNumber(accountNumberSession);
+                    Session.setAccountNumber_aux(accountNumberSession);
                     Session.setPrepayCardAsociate(prepayCardAsociate);
 
 
@@ -534,6 +536,7 @@ public class LoginFragment extends Fragment implements OnClickListener {
             Session.setPrepayCard(prepayCard);
             Session.setPrepayCardAsociate(prepayCardAsociate);
             Session.setNumberCard(numberCard);
+            Session.setNumberCard_aux(numberCard);
         }
     }
 

@@ -39,7 +39,7 @@ public class RechargeWithCardStep5Activity extends AppCompatActivity {
         number_trans= findViewById(R.id.number_trans);
         date=findViewById(R.id.date);
 
-        card.setText(Session.getTarjetahabienteSelect().getCardInfo().getCreditCardNumber());
+        card.setText(Session.getTarjetahabienteSelect().getCardInfo().getCreditCardNumberEnmas());
         cardholder.setText(Session.getTarjetahabienteSelect().getCardInfo().getCreditCardName());
         cvv.setText(Session.getTarjetahabienteSelect().getCardInfo().getCreditCardCVV());
         card_type.setText(Session.getTarjetahabienteSelect().getCardInfo().getCreditCardTypeId().getName());
