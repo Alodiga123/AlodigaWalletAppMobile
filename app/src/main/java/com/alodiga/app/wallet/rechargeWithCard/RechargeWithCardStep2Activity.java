@@ -75,43 +75,6 @@ public class RechargeWithCardStep2Activity extends AppCompatActivity {
         signFind = findViewById(R.id.signFind);
         backToLoginBtn=findViewById(R.id.backToLoginBtn);
 
-       /* new Thread(new Runnable() {
-            public void run() {
-                try {
-                    String responseCode = null;
-                    WebService webService = new WebService();
-                    HashMap<String, String> map = new HashMap<String, String>();
-                    map.put("userId", Session.getUserId());
-                    response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_GETPRODUCTS_RECHARGE_PAYMENT_BY_USERID, Constants.ALODIGA);
-                    stringResponse = response.toString();
-                    responseCode = response.getProperty("codigoRespuesta").toString();
-                    datosRespuesta = response.getProperty("mensajeRespuesta").toString();
-                    serviceAnswer(responseCode);
-
-                    if (serviceStatus) {
-
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                listSpinner_producto = getListProduct1(response);
-                                SpinAdapterTransferMoneyRemittence spinAdapterProduct;
-                                spinAdapterProduct = new SpinAdapterTransferMoneyRemittence(getApplicationContext(), android.R.layout.simple_spinner_item, listSpinner_producto);
-                                spinnerproducto.setAdapter(spinAdapterProduct);
-
-                            }
-                        });
-                    } else {
-
-                        new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
-                                responsetxt);
-                    }
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-            }
-        }).start();*/
         cargar();
 
 
@@ -191,9 +154,9 @@ public class RechargeWithCardStep2Activity extends AppCompatActivity {
         }else if(Float.valueOf(getEdtAmount) == 0 ){
             new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                     getString(R.string.web_services_response_134));
-        }else if (Float.valueOf(getEdtAmount) > Float.valueOf(getSpinnerproducto.getCurrency() )){
+        /*}else if (Float.valueOf(getEdtAmount) > Float.valueOf(getSpinnerproducto.getCurrency() )){
             new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
-                    getString(R.string.web_services_response_33));
+                    getString(R.string.web_services_response_33));*/
         } else{
 
             Session.getTarjetahabienteSelect().setAmount(getEdtAmount);
@@ -219,29 +182,7 @@ public class RechargeWithCardStep2Activity extends AppCompatActivity {
 
         return obj2;
     }
-    private ObjGenericObject[] getListYears() {
-        Calendar calendar = Calendar.getInstance();
-
-
-        int yearAct= calendar.get(Calendar.YEAR);
-        int yearIni= yearAct-Constants.YEARMINUS;
-        int yearFin = yearAct+Constants.YEARPLUS;
-        int total= (yearFin- yearIni);
-        ObjGenericObject[] ListYear = new ObjGenericObject[total+1];
-        int aux=0;
-
-        for(int i = yearIni; i <= yearFin; i++)
-        {
-           ListYear[aux]= new ObjGenericObject(String.valueOf(i),String.valueOf(aux));
-           if(yearAct==i){
-            indexYears=aux;
-           }
-
-           aux++;
-        }
-
-        return ListYear;
-    }
+   
 
     @Override
     public void onBackPressed() {
