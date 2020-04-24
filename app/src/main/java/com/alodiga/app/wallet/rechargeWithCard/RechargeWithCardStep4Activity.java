@@ -135,63 +135,149 @@ public class RechargeWithCardStep4Activity extends AppCompatActivity {
                     serviceStatus = true;
                     return serviceStatus;
 
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_DATOS_INVALIDOS)) {
-                    responsetxt = getString(R.string.web_services_response_01);
+                } else if (responseCode.equals(Constants.WEB_SERVICES_METHOD_CREDENTIALS_WS_INAVAILABLE)) {
+                    responsetxt = getString(R.string.web_services_response_143);
                     serviceStatus = false;
-
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CONTRASENIA_EXPIRADA)) {
-                    responsetxt = getString(R.string.web_services_response_03);
+                } else if (responseCode.equals(Constants.WEB_SERVICES_METHOD_CALL_ISSUER)) {
+                    responsetxt = getString(R.string.web_services_response_150);
                     serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_IP_NO_CONFIANZA)) {
-                    responsetxt = getString(R.string.web_services_response_04);
+                } else if (responseCode.equals(Constants.WEB_SERVICES_METHOD_NOT_AUTHORIZED)) {
+                    responsetxt = getString(R.string.web_services_response_151);
                     serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CREDENCIALES_INVALIDAS)) {
-                    responsetxt = getString(R.string.web_services_response_05);
+                } else if (responseCode.equals(Constants.WEB_SERVICES_METHOD_INVALID_TRADE)) {
+                    responsetxt = getString(R.string.web_services_response_152);
                     serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_BLOQUEADO)) {
-                    responsetxt = getString(R.string.web_services_response_06);
+                } else if (responseCode.equals(Constants.WEB_SERVICES_METHOD_RETAIN_CARD)) {
+                    responsetxt = getString(R.string.web_services_response_153);
                     serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_NUMERO_TELEFONO_YA_EXISTE)) {
-                    responsetxt = getString(R.string.web_services_response_08);
+                } else if (responseCode.equals(Constants.WEB_SERVICES_METHOD_INVALID_TRANSACTION_AFINITAS)) {
+                    responsetxt = getString(R.string.web_services_response_154);
                     serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_PRIMER_INGRESO)) {
-                    responsetxt = getString(R.string.web_services_response_12);
+                } else if (responseCode.equals(Constants.WEB_SERVICES_METHOD_RETRY_AFINITAS)) {
+                    responsetxt = getString(R.string.web_services_response_155);
                     serviceStatus = false;
-                }  else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USER_NOT_HAS_CARD)) {
-                    responsetxt = getString(R.string.web_services_response_29);
+                } else if (responseCode.equals(Constants.WEB_SERVICES_METHOD_TRANSACTION_NOT_PERMITTED)) {
+                    responsetxt = getString(R.string.web_services_response_156);
                     serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_DOES_NOT_HAVE_AN_ASSOCIATED_COMPANION_CARD)) {
-                    responsetxt = getString(R.string.web_services_response_30_);
+                } else if (responseCode.equals(Constants.WEB_SERVICES_METHOD_INVALID_CARD)) {
+                    responsetxt = getString(R.string.web_services_response_157);
                     serviceStatus = false;
-                }else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CARD_NUMBER_EXISTS)) {
-                    responsetxt = getString(R.string.web_services_response_50);
-                    serviceStatus = true;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_NOT_ALLOWED_TO_CHANGE_STATE)) {
-                    responsetxt = getString(R.string.web_services_response_51);
+                } else if (responseCode.equals(Constants.WEB_SERVICES_METHOD_FORMAT_ERROR)) {
+                    responsetxt = getString(R.string.web_services_response_158);
                     serviceStatus = false;
-                }else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_AUTHENTICALLY_IMPOSSIBLE)) {
-                    responsetxt = getString(R.string.web_services_response_54);
+                } else if (responseCode.equals(Constants.WEB_SERVICES_METHOD_INSUFFICIENT_FUNDS)) {
+                    responsetxt = getString(R.string.web_services_response_159);
                     serviceStatus = false;
-                }else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_UNABLE_TO_ACCESS_DATA)) {
-                    responsetxt = getString(R.string.web_services_response_54);
+                } else if (responseCode.equals(Constants.WEB_SERVICES_METHOD_EXPIRED_CARD_AFINITAS)) {
+                    responsetxt = getString(R.string.web_services_response_160);
                     serviceStatus = false;
-                }else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_THERE_ARE_NO_RECORDS_FOR_THE_REQUESTED_SEARCH)) {
-                    responsetxt = getString(R.string.web_services_response_58);
+                } else if (responseCode.equals(Constants.WEB_SERVICES_METHOD_INVALID_PIN)) {
+                    responsetxt = getString(R.string.web_services_response_161);
                     serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_THE_NUMBER_OF_ORDERS_ALLOWED_IS_EXCEEDED)) {
-                    responsetxt = getString(R.string.web_services_response_60);
+                } else if (responseCode.equals(Constants.WEB_SERVICES_METHOD_DEFERRED_PAYMENT_NOT_PERMITTED)) {
+                    responsetxt = getString(R.string.web_services_response_162);
                     serviceStatus = false;
-                }else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_SOSPECHOSO)) {
-                    responsetxt = getString(R.string.web_services_response_95);
+                } else if (responseCode.equals(Constants.WEB_SERVICES_METHOD_LIMIT_EXCEEDED)) {
+                    responsetxt = getString(R.string.web_services_response_163);
                     serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_PENDIENTE)) {
-                    responsetxt = getString(R.string.web_services_response_96);
+                } else if (responseCode.equals(Constants.WEB_SERVICES_METHOD_TYPE_OF_PLAN_TERM_INVALID)) {
+                    responsetxt = getString(R.string.web_services_response_164);
                     serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_NO_EXISTE)) {
-                    responsetxt = getString(R.string.web_services_response_97);
+                } else if (responseCode.equals(Constants.WEB_SERVICES_METHOD_DUPLICATED_TRANSACTION)) {
+                    responsetxt = getString(R.string.web_services_response_165);
                     serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_CREDENCIALES)) {
-                    responsetxt = getString(R.string.web_services_response_98);
+                } else if (responseCode.equals(Constants.WEB_SERVICES_METHOD_EXCESSED_AUTHORIZATIONS)) {
+                    responsetxt = getString(R.string.web_services_response_166);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_METHOD_CP_NOT_PERMITTED_BY_TH)) {
+                    responsetxt = getString(R.string.web_services_response_167);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_METHOD_TERMINAL_ERROR)) {
+                    responsetxt = getString(R.string.web_services_response_168);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_METHOD_UNACTIVATED_CARD)) {
+                    responsetxt = getString(R.string.web_services_response_169);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_METHOD_INVALID_COIN)) {
+                    responsetxt = getString(R.string.web_services_response_170);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_METHOD_CHIP_READING_ERROR)) {
+                    responsetxt = getString(R.string.web_services_response_171);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_METHOD_INVALID_CHIP)) {
+                    responsetxt = getString(R.string.web_services_response_172);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_METHOD_CHIP_NOT_SUPPORTED)) {
+                    responsetxt = getString(R.string.web_services_response_173);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_METHOD_UNKNOWN)) {
+                    responsetxt = getString(R.string.web_services_response_174);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_METHOD_THE_DEVICE_IS_NOT_ACTIVE)) {
+                    responsetxt = getString(R.string.web_services_response_175);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_METHOD_THE_BRANCH_IS_NOT_ACTIVE)) {
+                    responsetxt = getString(R.string.web_services_response_176);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_METHOD_TRADE_IS_NOT_ACTIVE)) {
+                    responsetxt = getString(R.string.web_services_response_177);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_METHOD_THE_REQUEST_IS_EMPTY)) {
+                    responsetxt = getString(R.string.web_services_response_178);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_METHOD_MISSING_PARAMETER_ON_REQUEST)) {
+                    responsetxt = getString(R.string.web_services_response_179);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_METHOD_RESOURCE_NOT_FOUND)) {
+                    responsetxt = getString(R.string.web_services_response_180);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_METHOD_ANSWER_EMPTY)) {
+                    responsetxt = getString(R.string.web_services_response_181);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_METHOD_THE_TRANSACTION_EXCEEDS_THE_PERMITTED_AMOUNT)) {
+                    responsetxt = getString(R.string.web_services_response_182);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_METHOD_TRANSACTION_EXCEEDS_THE_ALLOWED_DAILY_AMOUNT)) {
+                    responsetxt = getString(R.string.web_services_response_183);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_METHOD_TRANSACTION_EXCEEDS_THE_MONTHLY_AMOUNT_ALLOWED)) {
+                    responsetxt = getString(R.string.web_services_response_184);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_METHOD_NON_ACTIVE_PROMOTIONS)) {
+                    responsetxt = getString(R.string.web_services_response_185);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_METHOD_PROMOTION_NOT_ACTIVE)) {
+                    responsetxt = getString(R.string.web_services_response_186);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_METHOD_THE_TRANSACTION_IS_NOT_WITHIN_THE_PERMITTED_SCHEDULE)) {
+                    responsetxt = getString(R.string.web_services_response_187);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_METHOD_THE_TRANSACTION_DOES_NOT_EXIST)) {
+                    responsetxt = getString(R.string.web_services_response_188);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_METHOD_TRANSACTION_WITH_NOT_APPROVED_SOURCE)) {
+                    responsetxt = getString(R.string.web_services_response_189);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_METHOD_INVALID_MEMBERSHIP)) {
+                    responsetxt = getString(R.string.web_services_response_190);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_METHOD_TRANSACTION_CANCELED_PREVIOUSLY)) {
+                    responsetxt = getString(R.string.web_services_response_191);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_METHOD_PREVIOUSLY_REVERSED_TRANSACTION)) {
+                    responsetxt = getString(R.string.web_services_response_192);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_METHOD_EXCEED_PERMITTED_DAILY_TRANSACTIONS)) {
+                    responsetxt = getString(R.string.web_services_response_193);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_METHOD_THE_CORPORATE_IS_NOT_ACTIVE)) {
+                    responsetxt = getString(R.string.web_services_response_194);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_METHOD_ANSWER_NOT_FOUND)) {
+                    responsetxt = getString(R.string.web_services_response_195);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_METHOD_TIME_EXCEEDED_TO_PERFORM_CANCELLATION)) {
+                    responsetxt = getString(R.string.web_services_response_196);
                     serviceStatus = false;
                 } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_INTERNO)) {
                     responsetxt = getString(R.string.web_services_response_99);

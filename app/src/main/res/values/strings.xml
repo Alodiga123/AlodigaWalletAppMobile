@@ -341,6 +341,55 @@
     <string name="web_services_response_142">Monto invalido</string>
 
 
+    <string name="web_services_response_143">Credenciales no disponibles</string>
+    <string name="web_services_response_150">Por favor llamar al emisor</string>
+    <string name="web_services_response_151">No autorizada</string>
+    <string name="web_services_response_152">Comercio inválido</string>
+    <string name="web_services_response_153">Retener tarjeta</string>
+    <string name="web_services_response_154">Transacción no válida</string>
+    <string name="web_services_response_155">Intente nuevamente</string>
+    <string name="web_services_response_156">Transacción no permitida</string>
+    <string name="web_services_response_157">Tarjeta inválida</string>
+    <string name="web_services_response_158">Error de formato</string>
+    <string name="web_services_response_159">Fondos insuficientes</string>
+    <string name="web_services_response_160">Tarjeta expirada</string>
+    <string name="web_services_response_161">Pin inválido</string>
+    <string name="web_services_response_162">Pago diferido no permitido</string>
+    <string name="web_services_response_163">Límite excedido</string>
+    <string name="web_services_response_164">Tipo de término del plan inválido</string>
+    <string name="web_services_response_165">Transacción duplicada</string>
+    <string name="web_services_response_166">Autorizaciones en exceso</string>
+    <string name="web_services_response_167">cp no permitido por th</string>
+    <string name="web_services_response_168">Error de terminal</string>
+    <string name="web_services_response_169">Tarjeta inactiva</string>
+    <string name="web_services_response_170">Moneda inválida</string>
+    <string name="web_services_response_171">Error de lectura de chip</string>
+    <string name="web_services_response_172">Chip inválido</string>
+    <string name="web_services_response_173">Chip no compatible</string>
+    <string name="web_services_response_174">Error desconocido</string>
+    <string name="web_services_response_175">El dispositivo no está activo</string>
+    <string name="web_services_response_176">La rama no está activa</string>
+    <string name="web_services_response_177">El comercio no está activo</string>
+    <string name="web_services_response_178">La solicitud está vacía</string>
+    <string name="web_services_response_179">Parámetro faltante en la solicitud</string>
+    <string name="web_services_response_180">Recurso no encontrado</string>
+    <string name="web_services_response_181">Respuesta vacía</string>
+    <string name="web_services_response_182">La transacción excede la cantidad permitida</string>
+    <string name="web_services_response_183">La transacción excede la cantidad diaria permitida</string>
+    <string name="web_services_response_184">La transacción excede la cantidad mensual permitida</string>
+    <string name="web_services_response_185">Promociones no activas</string>
+    <string name="web_services_response_186">Promoción no activa</string>
+    <string name="web_services_response_187">La transacción no está dentro del horario permitido</string>
+    <string name="web_services_response_188">La transacción no existe</string>
+    <string name="web_services_response_189">Transacción con fuente no aprobada</string>
+    <string name="web_services_response_190">Membresía inválida</string>
+    <string name="web_services_response_191">Transacción cancelada previamente</string>
+    <string name="web_services_response_192">Transacción invertida anteriormente</string>
+    <string name="web_services_response_193">Excede las transacciones diarias permitidas</string>
+    <string name="web_services_response_194">La empresa no está activa</string>
+    <string name="web_services_response_195">Respuesta no encontrada</string>
+    <string name="web_services_response_196">Tiempo excedido para realizar la cancelación</string>
+
 
 
 

@@ -13,7 +13,7 @@ public class Constants {
     public static final boolean CONSTANT_IS_PRODUCTION = false;
 
     //LOCAL moises
-    public static String IPDAT="192.168.3.20";
+    public static String IPDAT = "192.168.3.20";
     //LOCAL QA
     //public static String IPDAT = "192.168.3.140";
 
@@ -41,8 +41,8 @@ public class Constants {
     public static final String CONSTANT_NAMESPACE_QA_ALODIGA = "http://ws.wallet.alodiga.com/";
     public static final String CONSTANT_NAMESPACE_QA_ALODIGA_AW = "http://ws.wallet.alodiga.com/";
 
-    public static final String CONSTANT_NAMESPACE_REMITTANCE="http://services.remittance.ws.alodiga.com/";
-    public static final String CONSTANT_NAMESPACE_REMITTANCE_AW=" http://services.remittance.ws.alodiga.com/";
+    public static final String CONSTANT_NAMESPACE_REMITTANCE = "http://services.remittance.ws.alodiga.com/";
+    public static final String CONSTANT_NAMESPACE_REMITTANCE_AW = " http://services.remittance.ws.alodiga.com/";
 
 
     public static final String ALODIGA = "AlodigaWallet";
@@ -109,10 +109,10 @@ public class Constants {
     public static final String WEB_SERVICES_RESPONSE_CODE_CARD_NUMBER_EXISTS = "50";
     public static final String WEB_SERVICES_RESPONSE_CODE_NOT_ALLOWED_TO_CHANGE_STATE = "51";
     public static final String WEB_SERVICES_RESPONSE_CODE_THERE_IS_NO_SEARCH_RECORD = "52";
-    public static final String WEB_SERVICES_RESPONSE_CODE_AUTHENTICALLY_IMPOSSIBLE  = "54";
+    public static final String WEB_SERVICES_RESPONSE_CODE_AUTHENTICALLY_IMPOSSIBLE = "54";
     public static final String WEB_SERVICES_RESPONSE_CODE_UNABLE_TO_ACCESS_DATA = "57";
     public static final String WEB_SERVICES_RESPONSE_CODE_THERE_ARE_NO_RECORDS_FOR_THE_REQUESTED_SEARCH = "58";
-    public static final String WEB_SERVICES_RESPONSE_CODE_THE_NUMBER_OF_ORDERS_ALLOWED_IS_EXCEEDED= "60";
+    public static final String WEB_SERVICES_RESPONSE_CODE_THE_NUMBER_OF_ORDERS_ALLOWED_IS_EXCEEDED = "60";
     public static final String WEB_SERVICES_RESPONSE_CODE_APLICACION_NO_EXISTE = "94";
     public static final String WEB_SERVICES_RESPONSE_CODE_USUARIO_SOSPECHOSO = "95";
     public static final String WEB_SERVICES_RESPONSE_CODE_USUARIO_PENDIENTE = "96";
@@ -135,7 +135,7 @@ public class Constants {
     public static final String WEB_SERVICES_RESPONSE_CODE_ERROR_PROCESSING_THE_TRANSACTION = "111";
     public static final String WEB_SERVICES_RESPONSE_CODE_INVALID_TRANSACTION = "112";
     public static final String WEB_SERVICES_RESPONSE_CODE_ERROR_VALIDATION_THE_TERMINAL = "113";
-    public static final String WEB_SERVICES_RESPONSE_CODE_DESTINATION_CARD_LOCKED= "114";
+    public static final String WEB_SERVICES_RESPONSE_CODE_DESTINATION_CARD_LOCKED = "114";
     public static final String WEB_SERVICES_RESPONSE_CODE_DESTINATION_ACCOUNT_LOCKED = "115";
     public static final String WEB_SERVICES_RESPONSE_CODE_INVALID_DESTINATION_CARD = "116";
     public static final String WEB_SERVICES_RESPONSE_CODE_INVALID_DESTINATION_ACCOUNT = "117";
@@ -152,7 +152,7 @@ public class Constants {
     public static final String WEB_SERVICES_RESPONSE_CODE_OPERATION_NOT_ENABLED_FOR_THE_DESTINATION_CARD = "128";
     public static final String WEB_SERVICES_RESPONSE_CODE_BIN_NOT_ALLOWED = "129";
     public static final String WEB_SERVICES_RESPONSE_CODE_STOCK_CARD = "130";
-    public static final String WEB_SERVICES_RESPONSE_CODE_THE_ACCOUNT_EXCEEDS_THE_MONTHLY_LIMIT= "131";
+    public static final String WEB_SERVICES_RESPONSE_CODE_THE_ACCOUNT_EXCEEDS_THE_MONTHLY_LIMIT = "131";
     public static final String WEB_SERVICES_RESPONSE_CODE_THE_PAN_FIELD_IS_MANDATORY = "132";
     public static final String WEB_SERVICES_RESPONSE_CODE_THE_AMOUNT_TO_BE_RECHARGE_IS_INCORRECT = "133";
     public static final String WEB_SERVICES_RESPONSE_CODE_THE_AMOUNT_MUST_BE_GREATER_THAN_0 = "134";
@@ -169,17 +169,15 @@ public class Constants {
     public static final String WEB_SERVICES_RESPONSE_CODE_AUTHENTICATION_FAILED = "1";
     public static final String WEB_SERVICES_RESPONSE_CODE_MISSING_PARAMETERS = "2";
     public static final String WEB_SERVICES_RESPONSE_CODE_DISABLED_ACCOUNT = "3";
-    public static final String WEB_SERVICES_RESPONSE_CODE_TOKEN_NOT_FOUND ="50";
+    public static final String WEB_SERVICES_RESPONSE_CODE_TOKEN_NOT_FOUND = "50";
     public static final String WEB_SERVICES_RESPONSE_CODE_RECORDS_NOT_FOUND = "28";
     public static final String WEB_SERVICES_RESPONSE_CODE_GENERAL_ERROR = "999";
-
-
 
 
     public static final String WEB_SERVICES_RESPONSE_CODE_DESTINATION_NOT_PREPAID = "204";
     public static final String WEB_SERVICES_RESPONSE_CODE_ERROR_TRANSACTION_TOP_UP = "205";
     public static final String WEB_SERVICES_RESPONSE_CODE_DENOMINATION_NOT_AVAILABLE = "301";
-    public static final String WEB_SERVICES_RESPONSE_CODE_NOT_ASSOCIATED_PAYMENT_INFO="220";
+    public static final String WEB_SERVICES_RESPONSE_CODE_NOT_ASSOCIATED_PAYMENT_INFO = "220";
 
     public static final String WEB_SERVICES_METHOD_NAME_SAVE_USER = "guardarUsuarioAplicacionMovil";
     public static final String WEB_SERVICES_METHOD_NAME_SEND_CODE_SMS = "generarCodigoMovilSMS";
@@ -215,25 +213,65 @@ public class Constants {
     public static final String WEB_SERVICES_METHOD_PAYMENTBYCONTRY = "getPaymentNetworkByCountryId";
     public static final String WEB_SERVICES_METHOD_REMETTENCE_SUMARY = "getRemettenceSummary";
     public static final String WEB_SERVICES_METHOD_GETPRODUCTSREMETTENCEBYUSER = "getProductsRemettenceByUserId";
-    public static final String WEB_SERVICES_METHOD_LOADDELIVERYFORMBYPAYMENTNETWORK= "getDeliveryFormByPamentNetwork";
-    public static final String WEB_SERVICES_METHOD_GETSTATESBYCOUNTRY= "getStatesByCountry";
-    public static final String WEB_SERVICES_METHOD_GETCITIESBYSTATE= "getCitiesByState";
-    public static final String WEB_SERVICES_METHOD_PROCESSREMETTENCEACCOUNT= "processRemettenceAccount";
-    public static final String WEB_SERVICES_METHOD_SAVEPAYMENTINFO= "savePaymentInfo";
-    public static final String WEB_SERVICES_METHOD_GETPAYMENTINFO= "getPaymentInfo";
-    public static final String WEB_SERVICES_METHOD_GETPRODUCTS_RECHARGE_PAYMENT_BY_USERID= "getProductsRechargePaymentByUserId";
-    public static final String WEB_SERVICES_METHOD_GET_CREDIT_CARD_TYPE= "getCreditCardType";
-    public static final String WEB_SERVICES_METHOD_CHANGE_STATUS_PAYMENT_INFO="ChangeStatusPaymentInfo";
-    public static final String WEB_SERVICES_METHOD_SAVE_RECHARGE_AFINITAS= "saveRechargeAfinitas";
+    public static final String WEB_SERVICES_METHOD_LOADDELIVERYFORMBYPAYMENTNETWORK = "getDeliveryFormByPamentNetwork";
+    public static final String WEB_SERVICES_METHOD_GETSTATESBYCOUNTRY = "getStatesByCountry";
+    public static final String WEB_SERVICES_METHOD_GETCITIESBYSTATE = "getCitiesByState";
+    public static final String WEB_SERVICES_METHOD_PROCESSREMETTENCEACCOUNT = "processRemettenceAccount";
+    public static final String WEB_SERVICES_METHOD_SAVEPAYMENTINFO = "savePaymentInfo";
+    public static final String WEB_SERVICES_METHOD_GETPAYMENTINFO = "getPaymentInfo";
+    public static final String WEB_SERVICES_METHOD_GETPRODUCTS_RECHARGE_PAYMENT_BY_USERID = "getProductsRechargePaymentByUserId";
+    public static final String WEB_SERVICES_METHOD_GET_CREDIT_CARD_TYPE = "getCreditCardType";
+    public static final String WEB_SERVICES_METHOD_CHANGE_STATUS_PAYMENT_INFO = "ChangeStatusPaymentInfo";
+    public static final String WEB_SERVICES_METHOD_SAVE_RECHARGE_AFINITAS = "saveRechargeAfinitas";
 
-
-
-
-
-
-
-
-
+    public static final String WEB_SERVICES_METHOD_CREDENTIALS_WS_INAVAILABLE="143";
+    public static final String WEB_SERVICES_METHOD_CALL_ISSUER="150";
+    public static final String WEB_SERVICES_METHOD_NOT_AUTHORIZED="151";
+    public static final String WEB_SERVICES_METHOD_INVALID_TRADE="152";
+    public static final String WEB_SERVICES_METHOD_RETAIN_CARD="153";
+    public static final String WEB_SERVICES_METHOD_INVALID_TRANSACTION_AFINITAS="154";
+    public static final String WEB_SERVICES_METHOD_RETRY_AFINITAS="155";
+    public static final String WEB_SERVICES_METHOD_TRANSACTION_NOT_PERMITTED="156";
+    public static final String WEB_SERVICES_METHOD_INVALID_CARD="157";
+    public static final String WEB_SERVICES_METHOD_FORMAT_ERROR="158";
+    public static final String WEB_SERVICES_METHOD_INSUFFICIENT_FUNDS="159";
+    public static final String WEB_SERVICES_METHOD_EXPIRED_CARD_AFINITAS="160";
+    public static final String WEB_SERVICES_METHOD_INVALID_PIN="161";
+    public static final String WEB_SERVICES_METHOD_DEFERRED_PAYMENT_NOT_PERMITTED="162";
+    public static final String WEB_SERVICES_METHOD_LIMIT_EXCEEDED="163";
+    public static final String WEB_SERVICES_METHOD_TYPE_OF_PLAN_TERM_INVALID="164";
+    public static final String WEB_SERVICES_METHOD_DUPLICATED_TRANSACTION="165";
+    public static final String WEB_SERVICES_METHOD_EXCESSED_AUTHORIZATIONS="166";
+    public static final String WEB_SERVICES_METHOD_CP_NOT_PERMITTED_BY_TH="167";
+    public static final String WEB_SERVICES_METHOD_TERMINAL_ERROR="168";
+    public static final String WEB_SERVICES_METHOD_UNACTIVATED_CARD="169";
+    public static final String WEB_SERVICES_METHOD_INVALID_COIN="170";
+    public static final String WEB_SERVICES_METHOD_CHIP_READING_ERROR="171";
+    public static final String WEB_SERVICES_METHOD_INVALID_CHIP="172";
+    public static final String WEB_SERVICES_METHOD_CHIP_NOT_SUPPORTED="173";
+    public static final String WEB_SERVICES_METHOD_UNKNOWN="174";
+    public static final String WEB_SERVICES_METHOD_THE_DEVICE_IS_NOT_ACTIVE="175";
+    public static final String WEB_SERVICES_METHOD_THE_BRANCH_IS_NOT_ACTIVE="176";
+    public static final String WEB_SERVICES_METHOD_TRADE_IS_NOT_ACTIVE="177";
+    public static final String WEB_SERVICES_METHOD_THE_REQUEST_IS_EMPTY="178";
+    public static final String WEB_SERVICES_METHOD_MISSING_PARAMETER_ON_REQUEST="179";
+    public static final String WEB_SERVICES_METHOD_RESOURCE_NOT_FOUND="180";
+    public static final String WEB_SERVICES_METHOD_ANSWER_EMPTY="181";
+    public static final String WEB_SERVICES_METHOD_THE_TRANSACTION_EXCEEDS_THE_PERMITTED_AMOUNT="182";
+    public static final String WEB_SERVICES_METHOD_TRANSACTION_EXCEEDS_THE_ALLOWED_DAILY_AMOUNT="183";
+    public static final String WEB_SERVICES_METHOD_TRANSACTION_EXCEEDS_THE_MONTHLY_AMOUNT_ALLOWED="184";
+    public static final String WEB_SERVICES_METHOD_NON_ACTIVE_PROMOTIONS="185";
+    public static final String WEB_SERVICES_METHOD_PROMOTION_NOT_ACTIVE="186";
+    public static final String WEB_SERVICES_METHOD_THE_TRANSACTION_IS_NOT_WITHIN_THE_PERMITTED_SCHEDULE="187";
+    public static final String WEB_SERVICES_METHOD_THE_TRANSACTION_DOES_NOT_EXIST="188";
+    public static final String WEB_SERVICES_METHOD_TRANSACTION_WITH_NOT_APPROVED_SOURCE="189";
+    public static final String WEB_SERVICES_METHOD_INVALID_MEMBERSHIP="190";
+    public static final String WEB_SERVICES_METHOD_TRANSACTION_CANCELED_PREVIOUSLY="191";
+    public static final String WEB_SERVICES_METHOD_PREVIOUSLY_REVERSED_TRANSACTION="192";
+    public static final String WEB_SERVICES_METHOD_EXCEED_PERMITTED_DAILY_TRANSACTIONS="193";
+    public static final String WEB_SERVICES_METHOD_THE_CORPORATE_IS_NOT_ACTIVE="194";
+    public static final String WEB_SERVICES_METHOD_ANSWER_NOT_FOUND="195";
+    public static final String WEB_SERVICES_METHOD_TIME_EXCEEDED_TO_PERFORM_CANCELLATION="196";
 
 
     public static final String WEB_SERVICES_METHOD_NAME_GET_PRODUCT = "getProductsByBankId";
