@@ -36,6 +36,7 @@ public class RechargeWithCardStep4Activity extends AppCompatActivity {
     private SoapObject response, response_;
      processRecharge mAuthTask;
      AddContactTask mAuthTask_;
+     Boolean isSaveTrue=true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +76,7 @@ public class RechargeWithCardStep4Activity extends AppCompatActivity {
 
         btnProcessTransaction.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(Session.getIsConstantsEmpty() && Session.getTarjetahabienteSelect().getSave()){
+                if(Session.getIsConstantsEmpty() && Session.getTarjetahabienteSelect().getSave() && isSaveTrue ){
                     addTask();
                 }
 
@@ -460,6 +461,7 @@ public class RechargeWithCardStep4Activity extends AppCompatActivity {
             if (success) {
                 new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                         getString(R.string.payment_method_save_succefull));;
+                        isSaveTrue=false;
 
             } else {
                 new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
