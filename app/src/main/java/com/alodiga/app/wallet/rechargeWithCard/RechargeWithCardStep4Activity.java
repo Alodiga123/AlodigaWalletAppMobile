@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.adapters.SpinAdapterTransferMoneyRemittence;
+import com.alodiga.app.wallet.main.MainActivity;
 import com.alodiga.app.wallet.model.ObjUserHasProduct;
 import com.alodiga.app.wallet.utils.Constants;
 import com.alodiga.app.wallet.utils.CustomToast;
@@ -70,7 +71,7 @@ public class RechargeWithCardStep4Activity extends AppCompatActivity {
         backToLoginBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent show;
-                show = new Intent(getApplicationContext(), RechargeWithCardStep3CodeActivity.class);
+                show = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(show);
             }
         });
@@ -78,13 +79,21 @@ public class RechargeWithCardStep4Activity extends AppCompatActivity {
 
         btnProcessTransaction.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(Session.getIsConstantsEmpty() && Session.getTarjetahabienteSelect().getSave() && isSaveTrue ){
-                    addTask();
-                }
-
-                cargar();
+                process();
             }
         });
+    }
+
+
+    public void process(){
+        progressDialogAlodiga = new ProgressDialogAlodiga(this, getString(R.string.loading));
+        progressDialogAlodiga.show();
+
+        if(Session.getIsConstantsEmpty() && Session.getTarjetahabienteSelect().getSave() && isSaveTrue ){
+            addTask();
+        }
+
+        cargar();
     }
 
     @Override
@@ -97,8 +106,8 @@ public class RechargeWithCardStep4Activity extends AppCompatActivity {
 
 
     public void cargar(){
-        progressDialogAlodiga = new ProgressDialogAlodiga(this, getString(R.string.loading));
-        progressDialogAlodiga.show();
+        //progressDialogAlodiga = new ProgressDialogAlodiga(this, getString(R.string.loading));
+        //progressDialogAlodiga.show();
         mAuthTask = new processRecharge();
         mAuthTask.execute((Void) null);
     }
@@ -289,6 +298,7 @@ public class RechargeWithCardStep4Activity extends AppCompatActivity {
                     responsetxt = getString(R.string.web_services_response_99);
                     serviceStatus = false;
                 }
+                progressDialogAlodiga.dismiss();
 
 
             } catch (IllegalArgumentException e) {
@@ -312,7 +322,6 @@ public class RechargeWithCardStep4Activity extends AppCompatActivity {
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
             //showProgress(false);
-            progressDialogAlodiga.dismiss();
 
             if (success) {
                 Session.setObjUserHasProducts(getListProduct(response));
@@ -330,7 +339,7 @@ public class RechargeWithCardStep4Activity extends AppCompatActivity {
                         responsetxt);
             }
 
-
+            //progressDialogAlodiga.dismiss();
         }
 
 
@@ -341,8 +350,8 @@ public class RechargeWithCardStep4Activity extends AppCompatActivity {
     }
 
     public void addTask() {
-        progressDialogAlodiga = new ProgressDialogAlodiga(this, getString(R.string.loading));
-        progressDialogAlodiga.show();
+        //progressDialogAlodiga = new ProgressDialogAlodiga(this, getString(R.string.loading));
+        //progressDialogAlodiga.show();
         mAuthTask_ = new AddContactTask();
         mAuthTask_.execute((Void) null);
 
@@ -472,7 +481,7 @@ public class RechargeWithCardStep4Activity extends AppCompatActivity {
                 new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                         responsetxt);
             }
-            progressDialogAlodiga.dismiss();
+            //progressDialogAlodiga.dismiss();
         }
 
         @Override

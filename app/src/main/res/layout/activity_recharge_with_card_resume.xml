@@ -278,7 +278,7 @@
         android:layout_marginTop="15dp"
         android:background="@drawable/loginbutton_selector"
         android:padding="3dp"
-        android:text="@string/back"
+        android:text="@string/Finalize"
         android:textColor="@color/background_color"
         android:textSize="17sp"
         android:textStyle="bold" />
