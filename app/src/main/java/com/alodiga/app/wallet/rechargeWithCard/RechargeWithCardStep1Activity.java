@@ -184,6 +184,9 @@ public class RechargeWithCardStep1Activity extends AppCompatActivity {
 
             tarjetahabiente.setSave(checkBox.isChecked());
 
+            int resID = getResources().getIdentifier(card.getCreditCardTypeId().getName().replace(" ","_").toLowerCase() , "drawable", getPackageName());
+            card.setImageCard(resID);
+
             Session.setTarjetahabienteSelect(tarjetahabiente);
 
             Intent show;

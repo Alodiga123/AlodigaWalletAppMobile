@@ -4,15 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingTop="10dp"
-    android:paddingBottom="10dp">
+    >
     <androidx.cardview.widget.CardView
         android:id="@+id/idCardView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:elevation="7dp"
-        android:layout_margin="7dp"
+        android:layout_margin="1dp"
         app:cardCornerRadius="6dp"
         app:cardPreventCornerOverlap="false">
 
@@ -29,12 +28,15 @@
                 android:id="@+id/idLinearLayoutProductImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true">
+                android:layout_alignParentLeft="true"
+                android:gravity="center"
+                android:foregroundGravity="center">
                 <ImageView
                     android:id="@+id/idProductImage"
-                    android:layout_width="55dp"
-                    android:layout_height="55dp"
-                    android:src="@drawable/tp"/>
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    />
             </LinearLayout>
 
             <!-- Rest of the product info and add/remove to/from cart symbols -->
@@ -52,11 +54,11 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_gravity="fill_horizontal"
-                    android:layout_marginLeft="60dp"
+                    android:layout_marginLeft="70dp"
                     android:layout_weight="1"
                     android:paddingRight="15dp"
+                    android:textSize="17dp"
                     android:textStyle="bold"
-                    android:textSize="15dp"
                     tools:textColor="@android:color/black" />
 
                 <TextView
@@ -64,7 +66,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_gravity="fill_horizontal"
-                    android:layout_marginLeft="60dp"
+                    android:layout_marginLeft="70dp"
                     android:layout_weight="1"
                     android:paddingRight="15dp"
                     android:textSize="11dp"
@@ -75,7 +77,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_gravity="fill_horizontal"
-                    android:layout_marginLeft="60dp"
+                    android:layout_marginLeft="70dp"
                     android:layout_weight="1"
                     android:paddingRight="15dp"
                     android:textSize="11dp"
@@ -107,7 +109,7 @@
                         android:layout_height="40dp"
                         android:layout_alignBottom="@+id/linear"
                         android:layout_gravity="center"
-                        android:src="@drawable/ic_check_box_black_24dp" />
+                        android:src="@drawable/ic_check_box_verde7" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -132,7 +134,7 @@
                         android:layout_height="40dp"
                         android:layout_gravity="center"
                         android:layout_alignBottom="@+id/idTopLayout"
-                        android:src="@drawable/ic_delete_forever"
+                        android:src="@drawable/ic_delete_forever_verde"
                         android:text="@string/drop"
                         android:textColor="#000000" />
                     <TextView

@@ -288,6 +288,9 @@ public class RechargeWhithCardContactsActivity extends AppCompatActivity {
              payment.setPaymentTypeId(paymentType.getProperty("id").toString());
              payment.setUserId(obj.getProperty("userId").toString());
 
+             int resID = getResources().getIdentifier(payment.getCreditCardTypeId().getName().replace(" ","_").toLowerCase() , "drawable", getPackageName());
+             payment.setImageCard(resID);
+
              listPayment.add(payment);
 
          }

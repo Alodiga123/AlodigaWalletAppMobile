@@ -18,6 +18,15 @@ public class ObjPaymentInfo {
     private String paymentPatnerId;
     private String paymentTypeId;
     private String userId;
+    private  int imageCard;
+
+    public int getImageCard() {
+        return imageCard;
+    }
+
+    public void setImageCard(int imageCard) {
+        this.imageCard = imageCard;
+    }
 
     public ObjPaymentInfo() {
     }

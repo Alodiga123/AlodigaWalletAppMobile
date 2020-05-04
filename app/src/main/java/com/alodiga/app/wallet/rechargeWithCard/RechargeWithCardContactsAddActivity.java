@@ -173,6 +173,9 @@ public class RechargeWithCardContactsAddActivity extends AppCompatActivity {
             card.setCreditCardTypeId(cardType);
             tarjetahabiente.setCardInfo(card);
 
+            int resID = getResources().getIdentifier(card.getCreditCardTypeId().getName().replace(" ","_").toLowerCase() , "drawable", getPackageName());
+            card.setImageCard(resID);
+
             Session.setTarjetahabienteSelect(tarjetahabiente);
 
             AddTask();

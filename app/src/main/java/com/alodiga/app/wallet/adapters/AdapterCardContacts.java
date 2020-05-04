@@ -72,11 +72,10 @@ public class AdapterCardContacts extends RecyclerView.Adapter<AdapterCardContact
 
     @Override
     public void onBindViewHolder(final GroceryProductViewHolder holder, final int position) {
-        //holder.imageProductImage.setImageResource(grocderyItemList.get(position).getImageCard());
-
+        holder.imageProductImage.setImageResource(grocderyItemList.get(position).getImageCard());
         holder.idProductType.setText(grocderyItemList.get(position).getCreditCardNumberEnmas());
         holder.txtProductName.setText(grocderyItemList.get(position).getCreditCardName());
-        holder.txtProductPrice.setText(grocderyItemList.get(position).getCreditCardTypeId().getName());
+        holder.txtProductPrice.setText(grocderyItemList.get(position).getMonth() +"/"+grocderyItemList.get(position).getYear());
 
         holder.linearSelect.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -224,7 +223,7 @@ public class AdapterCardContacts extends RecyclerView.Adapter<AdapterCardContact
     }
 
     public class GroceryProductViewHolder extends RecyclerView.ViewHolder {
-        //ImageView imageProductImage;
+        ImageView imageProductImage;
         LinearLayout linearSelect;
         LinearLayout linearDrop;
         TextView idProductType;
@@ -235,6 +234,7 @@ public class AdapterCardContacts extends RecyclerView.Adapter<AdapterCardContact
             super(view);
             linearSelect = view.findViewById(R.id.linearSelect);
             linearDrop = view.findViewById(R.id.linearDrop);
+            imageProductImage= view.findViewById(R.id.idProductImage);
 
             idProductType= view.findViewById(R.id.idProductType);
             txtProductName = view.findViewById(R.id.idProductName);
