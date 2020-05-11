@@ -18,7 +18,7 @@ public class Constants {
     //public static String IPDAT = "192.168.3.140";
 
     //public static String LINK = "http://192.168.3.140:8080/ultima-1.0.6/formData.xhtml";
-    public static String LINK = "http://200.73.192.178:8080/CardFormWeb/";
+    public static String LINK = "http://18.237.99.116:8080/CardRequestWeb/";
 
 
     public static final String RESUM_OPERATION_PHONE = "getResumOperationByPhoneNumberSender";
@@ -42,7 +42,7 @@ public class Constants {
     public static final String CONSTANT_NAMESPACE_QA_ALODIGA_AW = "http://ws.wallet.alodiga.com/";
 
     public static final String CONSTANT_NAMESPACE_REMITTANCE = "http://services.remittance.ws.alodiga.com/";
-    public static final String CONSTANT_NAMESPACE_REMITTANCE_AW = " http://services.remittance.ws.alodiga.com/";
+    public static final String CONSTANT_NAMESPACE_REMITTANCE_AW = "http://services.remittance.ws.alodiga.com/";
 
 
     public static final String ALODIGA = "AlodigaWallet";
@@ -272,6 +272,7 @@ public class Constants {
     public static final String WEB_SERVICES_METHOD_THE_CORPORATE_IS_NOT_ACTIVE="194";
     public static final String WEB_SERVICES_METHOD_ANSWER_NOT_FOUND="195";
     public static final String WEB_SERVICES_METHOD_TIME_EXCEEDED_TO_PERFORM_CANCELLATION="196";
+    public static final String WEB_SERVICES_METHOD_SERVICE_NOT_AVAILABLE="144";
 
 
     public static final String WEB_SERVICES_METHOD_NAME_GET_PRODUCT = "getProductsByBankId";
@@ -310,7 +311,7 @@ public class Constants {
     //public static final String CONSTANT_URL_QA_REGISTRO_UNIFICADO_AW = "http://ec2-35-164-98-136.us-west-2.compute.amazonaws.com:8080/RegistroUnificado/APIRegistroUnificadoService?wsdl";
     //public static final String CONSTANT_URL_QA_REGISTRO_UNIFICADO_AW = "http://ec2-52-42-63-64.us-west-2.compute.amazonaws.com:8080/RegistroUnificado/APIRegistroUnificadoService?wsdl";
     //public static final String CONSTANT_URL_QA_REGISTRO_UNIFICADO_AW = "http://ec2-52-42-63-64.us-west-2.compute.amazonaws.com:8080/RegistroUnificado/APIRegistroUnificadoService?wsdl";
-    public static final String CONSTANT_URL_QA_REGISTRO_UNIFICADO_AW = "http://ec2-54-191-88-8.us-west-2.compute.amazonaws.com:8080/RegistroUnificado/APIRegistroUnificadoService?wsdl";
+    public static final String CONSTANT_URL_QA_REGISTRO_UNIFICADO_AW = "http://ec2-52-42-63-64.us-west-2.compute.amazonaws.com:8080/RegistroUnificado/APIRegistroUnificadoService?wsdl";
 
     /**
      *
@@ -318,7 +319,7 @@ public class Constants {
     //public static final String CONSTANT_URL_QA_ALODIGA = "http://192.168.3.20:8080/AlodigaWallet/APIAlodigaWalletService";
     public static final String CONSTANT_URL_QA_ALODIGA = "http://" + IPDAT + ":8080/AlodigaWallet/APIAlodigaWalletService";
     //public static final String CONSTANT_URL_QA_ALODIGA_AW = "http://ec2-35-164-98-136.us-west-2.compute.amazonaws.com:8080/AlodigaWallet/APIAlodigaWalletService?wsdl";
-    public static final String CONSTANT_URL_QA_ALODIGA_AW ="http://ec2-54-191-88-8.us-west-2.compute.amazonaws.com:8080/AlodigaWallet/APIAlodigaWalletService?wsdl";
+    public static final String CONSTANT_URL_QA_ALODIGA_AW ="http://54.70.31.158:8080/AlodigaWallet/APIAlodigaWalletService?wsdl";
 
 
 
@@ -332,7 +333,7 @@ public class Constants {
     public static final String CONSTANT_URL_REMITTENCE_PAYMENT_NETWORK = "http://" + IPDAT + ":8080/WSPaymentNetworkMethodService/WSPaymentNetworkMethod";
     public static final String CONSTANT_URL_REMITTENCE_MOBILE = "http://" + IPDAT + ":8080/WSRemittenceMobileService/WSRemittenceMobile";
     //public static final String CONSTANT_URL_REMITTENCE_MOBILE_AW = "http://ec2-35-164-98-136.us-west-2.compute.amazonaws.com:8080/WSRemittenceMobileService/WSRemittenceMobile?wsdl";
-    public static final String CONSTANT_URL_REMITTENCE_MOBILE_AW ="http://ec2-54-191-88-8.us-west-2.compute.amazonaws.com:8080/WSRemittenceServicesService/WSRemittenceServices?wsdl";
+    public static final String CONSTANT_URL_REMITTENCE_MOBILE_AW ="http://ec2-35-162-209-241.us-west-2.compute.amazonaws.com:8080/WSRemittenceMobileService/WSRemittenceMobile?wsdl";
 
     public static final String CONSTANT_WSREMITTENCE= "WSRemittence";
     public static final String CONSTANT_WSPAYMENTNETWORK= "WSPaymentNetworkMethod";

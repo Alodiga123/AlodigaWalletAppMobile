@@ -329,11 +329,11 @@ public class PaymentStep3_2Activity extends AppCompatActivity {
         lastName.setText("quintero");
         secondSurmane.setText("aaasaadira");
         editTextTelephone.setText("04142223322");*/
-        edtstate.setText("estado");
-        edtcity.setText("ciudad");
-        edtcode.setText("0000");
+        //edtstate.setText("estado");
+        //edtcity.setText("ciudad");
+        //edtcode.setText("0000");
         //userEmailIdTransfer.setText("adira@jjmmm.com");
-        edtAv.setText("av");
+        //edtAv.setText("av");
 
     }
 

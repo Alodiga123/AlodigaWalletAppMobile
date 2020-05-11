@@ -27,7 +27,7 @@
     <string name="menu_transfer">Transferir</string>
     <string name="menu_recharge_n_i">TopUp</string>
     <string name="menu_remesas">Remesas</string>
-    <string name="menu_request_remittances">Solicitar Remesas</string>
+    <string name="menu_request_remittances">Enviar Remesa</string>
     <string name="menu_remesas_status">Consultar Remesas</string>
     <string name="afiliation">Afiliar</string>
     <string name="menu_send">Cerrar sesión</string>
@@ -389,17 +389,13 @@
     <string name="web_services_response_194">La empresa no está activa</string>
     <string name="web_services_response_195">Respuesta no encontrada</string>
     <string name="web_services_response_196">Tiempo excedido para realizar la cancelación</string>
-
-
-
-
+    <string name="web_services_response_144">Servicio no disponible en este momento AF32</string>
 
 
     <string name="web_services_response_204">Destino no es prepago</string>
     <string name="web_services_response_205">Error transacción TopUp</string>
     <string name="web_services_response_220">No tiene metodos de pagos asociados, por favor ingrese los datos solicitados</string>
     <string name="web_services_response_301">Denominación no disponible. Intente nuevamente con otra denominación.</string>
-
 
     <string name="error_not_find_special_caracter">La contraseña debe tener caracteres especiales</string>
     <string name="error_not_find_number">La contraseña debe tener al menos un numero</string>

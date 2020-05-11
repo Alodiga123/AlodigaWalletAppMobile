@@ -172,7 +172,7 @@ public class LoginFragment extends Fragment implements OnClickListener {
         //emailid.setText("jcalderaso@gmail.com");
         //password.setText("Alo#1234");
 
-        emailid.setText("moisegrat12@gmail.com ");
+        emailid.setText("moisegrat12@gmail.com");
         password.setText("Alodi12-");
 
         //emailid.setText("kerwin2821@gmail.com");
@@ -495,9 +495,10 @@ public class LoginFragment extends Fragment implements OnClickListener {
             if (success) {
                 emailid.setText("");
                 password.setText("");
-                setElementInitialSession("prueba", "0414", "adi123", "0.0", "00", "000", "379", "000", userHasProducts, "0", "00", "00", "0000");
 
-                //setElementInitialSession(nameSession, phoneNumberSession, emailSession, alodigaBalanceSession, accountNumberSession, alocoinsBalanceSesssion, userId, healthCareCoinsBalanceSession, userHasProducts, cumplimient, prepayCard, prepayCardAsociate, numberCard);
+                //setElementInitialSession("prueba", "0414", "adi123", "0.0", "00", "000", "379", "000", userHasProducts, "0", "00", "00", "0000");
+
+                setElementInitialSession(nameSession, phoneNumberSession, emailSession, alodigaBalanceSession, accountNumberSession, alocoinsBalanceSesssion, userId, healthCareCoinsBalanceSession, userHasProducts, cumplimient, prepayCard, prepayCardAsociate, numberCard);
                 Intent intent = new Intent(getActivity(), MainActivity.class);
                 getActivity().startActivity(intent);
             } else if (isFirstAccess) {

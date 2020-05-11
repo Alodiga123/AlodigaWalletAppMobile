@@ -138,7 +138,6 @@ public class PaymentStep1Activity extends AppCompatActivity {
                     HashMap<String, String> map = new HashMap<String, String>();
                     map.put("login", Constants.USUARIO);
                     map.put("password", Constants.PASSWORD);
-
                     response_destination_country = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_LOGIN,Constants.REMITTANCE, Constants.CONSTANT_WSREMITTENCEMOBILE);
                     //stringResponse = response_destination_country.toString();
                     responseCode = response_destination_country.getProperty("code").toString();

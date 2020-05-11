@@ -55,7 +55,6 @@ public class RechargeWithCardStep4Activity extends AppCompatActivity {
         product= findViewById(R.id.product);
         amount= findViewById(R.id.amount);
 
-
         card.setText(Session.getTarjetahabienteSelect().getCardInfo().getCreditCardNumberEnmas());
         cardholder.setText(Session.getTarjetahabienteSelect().getCardInfo().getCreditCardName());
         cvv.setText(Session.getTarjetahabienteSelect().getCardInfo().getCreditCardCVV());
@@ -63,11 +62,7 @@ public class RechargeWithCardStep4Activity extends AppCompatActivity {
         date_recharge_expired.setText(Session.getTarjetahabienteSelect().getCardInfo().getMonth()+" / "+Session.getTarjetahabienteSelect().getCardInfo().getYear());
         product.setText(Session.getTarjetahabienteSelect().getProduct().getName().split("-")[0]);
         amount.setText(Session.getTarjetahabienteSelect().getAmount());
-
-
-
-
-
+        
         backToLoginBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent show;
@@ -290,6 +285,9 @@ public class RechargeWithCardStep4Activity extends AppCompatActivity {
                     serviceStatus = false;
                 } else if (responseCode.equals(Constants.WEB_SERVICES_METHOD_TIME_EXCEEDED_TO_PERFORM_CANCELLATION)) {
                     responsetxt = getString(R.string.web_services_response_196);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_METHOD_SERVICE_NOT_AVAILABLE)) {
+                    responsetxt = getString(R.string.web_services_response_144);
                     serviceStatus = false;
                 } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_INTERNO)) {
                     responsetxt = getString(R.string.web_services_response_99);

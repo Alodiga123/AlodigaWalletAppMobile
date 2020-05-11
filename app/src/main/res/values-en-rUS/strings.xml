@@ -429,6 +429,7 @@
     <string name="web_services_response_194">The corporate is not active</string>
     <string name="web_services_response_195">Answer not found</string>
     <string name="web_services_response_196">Time exceeded to perform cancellation</string>
+    <string name="web_services_response_144">Service no available at the moment AF32</string>
 
 
     <string name="web_services_response_139">Error validating cvc2</string>

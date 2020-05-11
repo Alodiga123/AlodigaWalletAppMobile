@@ -259,15 +259,15 @@ public class PaymentStep3Activity extends AppCompatActivity {
         });
 
 
-        name.setText("adira");
-        secondname.setText("yadira");
-        lastName.setText("quintero");
-        secondSurmane.setText("aaasaadira");
-        editTextTelephone.setText("04142223322");
+      //  name.setText("adira");
+       // secondname.setText("yadira");
+        //lastName.setText("quintero");
+        ///secondSurmane.setText("aaasaadira");
+        //editTextTelephone.setText("04142223322");
         //edtstate.setText("estado");
         //edtcity.setText("ciudad");
         //edtcode.setText("0000");
-        userEmailIdTransfer.setText("adira@jjmmm.com");
+        //userEmailIdTransfer.setText("adira@jjmmm.com");
         //edtAv.setText("av");
 
     }
