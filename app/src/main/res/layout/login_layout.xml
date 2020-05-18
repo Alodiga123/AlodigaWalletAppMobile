@@ -23,7 +23,7 @@
             <LinearLayout android:id="@+id/linearLayout1" android:layout_width="fill_parent"            android:layout_height="wrap_content" android:orientation="vertical">
                 <View android:layout_height="1dp" android:layout_width="45dp" />
                 <ImageView android:layout_height="fill_parent"
-                    android:src="@drawable/img_app_logo"
+                    android:src="@drawable/login_alodiga_logo"
                     android:scaleType="fitCenter"
                     android:layout_gravity="top"
                     android:layout_width="fill_parent"></ImageView>
