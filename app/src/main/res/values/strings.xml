@@ -3,7 +3,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">Carroferta Media Group, C.A.</string>
+    <string name="nav_header_subtitle">Alodiga</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Cerrar sesión</string>
     <string name="action_settings_es">Español</string>
@@ -488,6 +488,7 @@
     <string name="product">Producto</string>
     <string name="answer">Pregunta de Seguridad</string>
     <string name="loading">cargando..</string>
+    <string name="loading_session">Ingresando..</string>
     <string name="close_session">Cerrar Sesion</string>
     <string name="close_session_answer">¿Esta Seguro que desea cerrar la sesion?</string>
     <string name="session_answer_es">¿Esta Seguro que desea cambiar su idioma a Español?</string>
@@ -535,16 +536,13 @@
     <string name="lastname2">Introduzca el segundo apellido</string>
     <string name="lastname1_">Primer apellido</string>
     <string name="lastname2_">Segundo apellido</string>
-
     <string name="cvv_title">Ingrese el Codigo de Seguridad (CVV)</string>
     <string name="cvv">Codigo de Seguridad (CVV)</string>
     <string name="cvv_">CVV</string>
     <string name="date_recharge">Seleccione la fecha de vencimiento</string>
     <string name="date_recharge_">Fecha de vencimiento</string>
-
     <string name="month">Mes: </string>
     <string name="year">Año: </string>
-
     <string name="name_">Nombre del Tarjetahabiente </string>
     <string name="name_1">Nombre</string>
     <string name="recharge_contact">Seleccionar</string>
@@ -570,30 +568,4 @@
     <string name="payment_method_save_succefull">Metodo de pago guardado satisfactoriamente</string>
     <string name="payment_method_drop_title">Eliminar Metodo de Pago</string>
     <string name="payment_method_drop_question">¿Esta seguro que desea eliminar el metodo de pago?</string>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </resources>

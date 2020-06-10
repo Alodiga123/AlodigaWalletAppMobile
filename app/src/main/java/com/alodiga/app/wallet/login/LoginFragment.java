@@ -332,7 +332,7 @@ public class LoginFragment extends Fragment implements OnClickListener {
     public void entrar() {
 
 
-        progressDialogAlodiga = new ProgressDialogAlodiga(getContext(), getString(R.string.loading));
+        progressDialogAlodiga = new ProgressDialogAlodiga(getContext(), getString(R.string.loading_session));
         progressDialogAlodiga.show();
         mAuthTask = new UserLoginTask(getEmailId, getPassword);
         mAuthTask.execute((Void) null);

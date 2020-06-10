@@ -211,7 +211,7 @@ public class Constants {
     public static final String WEB_SERVICES_METHOD_LOGIN = "loginWS";
     public static final String WEB_SERVICES_METHOD_COUNTRIES = "getCountries";
     public static final String WEB_SERVICES_METHOD_PAYMENTBYCONTRY = "getPaymentNetworkByCountryId";
-    public static final String WEB_SERVICES_METHOD_REMETTENCE_SUMARY = "getRemettenceSummary";
+        public static final String WEB_SERVICES_METHOD_REMETTENCE_SUMARY = "getRemettenceSummary";
     public static final String WEB_SERVICES_METHOD_GETPRODUCTSREMETTENCEBYUSER = "getProductsRemettenceByUserId";
     public static final String WEB_SERVICES_METHOD_LOADDELIVERYFORMBYPAYMENTNETWORK = "getDeliveryFormByPamentNetwork";
     public static final String WEB_SERVICES_METHOD_GETSTATESBYCOUNTRY = "getStatesByCountry";

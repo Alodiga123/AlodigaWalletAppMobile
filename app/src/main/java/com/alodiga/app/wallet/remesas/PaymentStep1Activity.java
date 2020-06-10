@@ -46,6 +46,7 @@ import java.util.HashMap;
 
 public class PaymentStep1Activity extends AppCompatActivity {
     private static Button next, quote;
+
     private static TableLayout txtTableLayout;
     private static Spinner reloadcard_source, rate_included_, destination_country, Correspondent, delivery_method;
     private static Switch  rate_included;
@@ -62,9 +63,12 @@ public class PaymentStep1Activity extends AppCompatActivity {
     ObjRemittencePay pay= new ObjRemittencePay();
     ObjResumeRemittence  ObjResume= new ObjResumeRemittence();
 
+    ProgressDialogAlodiga progressDialogAlodiga;
+
+
     taskResume mAuthTask;
     taskToken mAuthTask_;
-    static ProgressDialogAlodiga progressDialogAlodiga;
+
 
 
 
@@ -94,10 +98,18 @@ public class PaymentStep1Activity extends AppCompatActivity {
         actual_amount_to_send= findViewById(R.id.actual_amount_to_send);
         Actual_amount_to_pay= findViewById(R.id.Actual_amount_to_pay);
 
+        final ProgressDialogAlodiga progressDialogAlodigaRemesa;
+        progressDialogAlodigaRemesa = new ProgressDialogAlodiga(this, getString(R.string.loading));
+        progressDialogAlodigaRemesa.show();
+
+
         //Spinner producto a debitar
         new Thread(new Runnable() {
             public void run() {
                 try {
+
+
+
                     String responseCode = null;
                     WebService webService = new WebService();
                     HashMap<String, String> map = new HashMap<String, String>();
@@ -116,20 +128,24 @@ public class PaymentStep1Activity extends AppCompatActivity {
                                 SpinAdapterTransferMoneyRemittence spinAdapterProduct;
                                 spinAdapterProduct = new SpinAdapterTransferMoneyRemittence(getApplicationContext(), android.R.layout.simple_spinner_item, listSpinner_reloadcard_source);
                                 reloadcard_source.setAdapter(spinAdapterProduct);
-                            }
+                            }                                                       
                         });
                     } else {
                         new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                                 responsetxt);
                     }
+
+
                 } catch (Exception e) {
                     e.printStackTrace();
-                }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    }
             }
+
         }).start();
 
 
         //destination_country
+
         new Thread(new Runnable() {
             public void run() {
                 try {
@@ -175,17 +191,24 @@ public class PaymentStep1Activity extends AppCompatActivity {
                         new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                                 responsetxt);
                     }
-
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         }).start();
 
+
+
+        final ProgressDialogAlodiga progressDialogAlodigaRemmetenceCountry;
+        progressDialogAlodigaRemmetenceCountry = new ProgressDialogAlodiga(this, getString(R.string.loading));
         destination_country.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 Correspondent.setEnabled(true);
                 delivery_method.setAdapter(null);
+
+                progressDialogAlodigaRemmetenceCountry.show();
+
+
 
                 final ObjGenericObject pais = (ObjGenericObject) destination_country.getSelectedItem();
                 //Toast.makeText(getApplicationContext(),"id" + pais.getId() ,Toast.LENGTH_SHORT).show();
@@ -238,13 +261,12 @@ public class PaymentStep1Activity extends AppCompatActivity {
                                 new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                                         responsetxt);
                             }
-
+                            progressDialogAlodigaRemmetenceCountry.dismiss();
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
                     }
                 }).start();
-
             }
 
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -307,7 +329,7 @@ public class PaymentStep1Activity extends AppCompatActivity {
                                 new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                                         responsetxt);
                             }
-
+                            progressDialogAlodigaRemesa.dismiss();
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -404,6 +426,8 @@ public class PaymentStep1Activity extends AppCompatActivity {
         pay.setRate_included(isStatusRate);
         txtTableLayout.setVisibility(View.INVISIBLE);
         next.setVisibility(View.INVISIBLE);
+
+
 
         progressDialogAlodiga = new ProgressDialogAlodiga(this, getString(R.string.loading));
         progressDialogAlodiga.show();
@@ -542,16 +566,16 @@ public class PaymentStep1Activity extends AppCompatActivity {
                     responsetxt = getString(R.string.web_services_response_99);
                     serviceStatus = false;
                 }
-                progressDialogAlodiga.dismiss();
+             //   progressDialogAlodiga.dismiss();
             } catch (IllegalArgumentException e) {
-                progressDialogAlodiga.dismiss();
+             //   progressDialogAlodiga.dismiss();
                 responsetxt = getString(R.string.web_services_response_99);
                 serviceStatus = false;
                 e.printStackTrace();
                 System.err.println(e);
                 return false;
             } catch (Exception e) {
-                progressDialogAlodiga.dismiss();
+       //         progressDialogAlodiga.dismiss();
                 responsetxt = getString(R.string.web_services_response_99);
                 serviceStatus = false;
                 e.printStackTrace();
@@ -656,16 +680,16 @@ public class PaymentStep1Activity extends AppCompatActivity {
                     responsetxt = getString(R.string.web_services_response_99);
                     serviceStatus = false;
                 }
-                progressDialogAlodiga.dismiss();
+              //  progressDialogAlodiga.dismiss();
             } catch (IllegalArgumentException e) {
-                progressDialogAlodiga.dismiss();
+                //progressDialogAlodiga.dismiss();
                 responsetxt = getString(R.string.web_services_response_99);
                 serviceStatus = false;
                 e.printStackTrace();
                 System.err.println(e);
                 return false;
             } catch (Exception e) {
-                progressDialogAlodiga.dismiss();
+                //progressDialogAlodiga.dismiss();
                 responsetxt = getString(R.string.web_services_response_99);
                 serviceStatus = false;
                 e.printStackTrace();
@@ -803,7 +827,7 @@ public class PaymentStep1Activity extends AppCompatActivity {
                 new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                         responsetxt);
             }
-            progressDialogAlodiga.dismiss();
+            //progressDialogAlodiga.dismiss();
         }
 
         @Override

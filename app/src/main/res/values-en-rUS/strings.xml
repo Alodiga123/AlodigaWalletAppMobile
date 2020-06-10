@@ -118,6 +118,7 @@
     <string name="lastName">"last name "</string>
     <string name="last_operation_title">"LAST MOVEMENTS "</string>
     <string name="loading">loading..</string>
+    <string name="loading_session">Entering..</string>
     <string name="location">Country</string>
     <string name="location_">Country:</string>
     <string name="login">"Start "</string>
@@ -141,7 +142,7 @@
     <string name="my_qr_title">"MY QR "</string>
     <string name="name">Name</string>
     <string name="nav_header_desc">"Navigation header "</string>
-    <string name="nav_header_subtitle">Carroferta Media Group, C.A.</string>
+    <string name="nav_header_subtitle">Alodiga</string>
     <string name="nav_header_title">Android Studio</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>

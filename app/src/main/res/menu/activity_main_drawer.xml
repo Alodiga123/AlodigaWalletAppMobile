@@ -6,32 +6,32 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/menu_qr"
             android:title="@string/menu_qr" />
         <item
             android:id="@+id/nav_recharge"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/menu_recargue_wallet"
             android:title="@string/menu_recharge" />
         <item
             android:id="@+id/nav_recharge_with_card"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/menu_pay_comerce"
             android:title="@string/menu_recharge_with_credit_card" />
         <item
             android:id="@+id/nav_Withdrawal"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/menu_withdrawal_icon"
             android:title="@string/menu_aoutMoney" />
         <item
             android:id="@+id/nav_convert"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/menu_interchange"
             android:title="@string/menu_convert" />
         <item
             android:id="@+id/nav_transfer"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/menu_transference"
             android:title="@string/menu_transfer" />
 
         <item
             android:id="@+id/nav_topup"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/menu_top_up"
             android:title="@string/menu_recharge_n_i" />
 
     </group>
@@ -41,7 +41,7 @@
 
             <item
                 android:id="@+id/nav_remesas"
-                android:icon="@drawable/ic_menu_slideshow"
+                android:icon="@drawable/menu_remetance"
                 android:title="@string/menu_request_remittances" />/>
             <!--<item
                 android:id="@+id/nav_remesas_status"
@@ -56,7 +56,7 @@
 
             <item
                 android:id="@+id/nav_request_card"
-                android:icon="@drawable/ic_menu_slideshow"
+                android:icon="@drawable/menu_get_card"
                 android:title="@string/menu_request_card" />
             <item
                 android:id="@+id/nav_active_card"
@@ -71,11 +71,11 @@
 
             <item
                 android:id="@+id/nav_pay_qr"
-                android:icon="@drawable/ic_menu_slideshow"
+                android:icon="@drawable/menu_qr"
                 android:title="@string/menu_pay_comerce" />
             <item
                 android:id="@+id/nav_last_activity"
-                android:icon="@drawable/ic_menu_slideshow"
+                android:icon="@drawable/menu_list_transaction"
                 android:title="@string/menu_last_activity" />
 
 
@@ -88,15 +88,15 @@
 
             <item
                 android:id="@+id/nav_change_password"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@drawable/menu_change_password"
                 android:title="@string/menu_change_password" />
             <item
                 android:id="@+id/nav_validate_account"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@drawable/menu_validate_account"
                 android:title="@string/kyc_info_menu" />
             <item
                 android:id="@+id/nav_close_session"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@drawable/menu_close_session"
                 android:title="@string/menu_send" />
         </menu>
     </item>
