@@ -13,7 +13,7 @@
         android:layout_height="230dp"
         android:layout_alignParentTop="true"
         android:layout_marginTop="5dp"
-        android:background="@drawable/bgheader"
+        android:background="@drawable/bgheader2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -21,11 +21,11 @@
 |
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="71dp"
+        android:layout_width="99dp"
         android:layout_height="71dp"
-        android:layout_marginStart="14dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="60dp"
-        android:src="@drawable/userpic"
+        android:src="@drawable/international_banplus_pic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginLeft="16dp" />
