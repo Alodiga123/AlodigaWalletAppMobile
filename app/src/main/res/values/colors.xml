@@ -2,13 +2,15 @@
 <resources>
     <color name="colorPrimary">#9E9E9E</color>
     <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#96BF18</color>
-    <color name="background_color">#96BF18</color>
-    <color name="white">#EEEEEE</color>
-    <color name="black">#000000</color>
-    <color name="white_greyish">#96BF18</color>
-    <color name="powerby">#505050</color>
-    <color name="button_selectorcolor">#9E9E9E</color>
-    <color name="color_spinner">#96BF18</color>
+    <color name="colorAccent">#E72E33</color>
+    <color name="background_color">#E72E33</color>
+
+    <color name="white">#535151</color>
+    <color name="black">#535151</color>
+    <color name="white_greyish">#535151</color>
+    <color name="powerby">#E72E33</color>
+    <color name="button_selectorcolor">#CDC9C9</color>
+    <color name="selected">#535151</color>
+    <color name="color_spinner">#E72E33</color>
 </resources>
 

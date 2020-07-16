@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity
     private String[] xData = {"Mitch", "Jessica" };
     public static final int[] COLORFUL_COLORS_THIS = {
             Color.rgb(245, 199, 0),
-            Color.rgb(106, 150, 31),
+            Color.rgb(231, 46, 51),
             Color.rgb(73, 237, 247)
     };
 

@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 
+import com.alodiga.app.R;
 import com.alodiga.app.wallet.model.ObjGenericObject;
 import com.alodiga.app.wallet.model.ObjTopUpInfos;
 import com.alodiga.app.wallet.utils.Constants;
@@ -41,7 +42,7 @@ public class SpinAdapterProductTopup extends ArrayAdapter<ObjTopUpInfos> {
     public View getView(int position, View convertView, ViewGroup parent) {
         // I created a dynamic TextView here, but you can reference your own  custom layout for each spinner item
         TextView label = new TextView(context);
-        label.setTextColor(Color.WHITE);
+        label.setTextColor(context.getResources().getColor(R.color.selected));
         label.setHint(Constants.PRODUCT);
         label.setTextSize(16);
 
@@ -59,7 +60,7 @@ public class SpinAdapterProductTopup extends ArrayAdapter<ObjTopUpInfos> {
                                 ViewGroup parent) {
 
         TextView label = new TextView(context);
-        label.setTextColor(Color.BLACK);
+        label.setTextColor(context.getResources().getColor(R.color.selected));
         label.setPadding(10, 5, 5, 5);
         label.setHint(Constants.PRODUCT);
         //label.setTextSize(15);

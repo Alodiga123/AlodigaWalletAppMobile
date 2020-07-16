@@ -41,7 +41,7 @@ public class SpinAdapterHowToTransfer extends ArrayAdapter<ObjHowToTranssfer> {
     public View getView(int position, View convertView, ViewGroup parent) {
         // I created a dynamic TextView here, but you can reference your own  custom layout for each spinner item
         TextView label = new TextView(context);
-        label.setTextColor(Color.WHITE);
+        label.setTextColor(context.getResources().getColor(R.color.selected));
         label.setHint(Constants.MONEY);
         label.setTextSize(16);
 
@@ -58,7 +58,7 @@ public class SpinAdapterHowToTransfer extends ArrayAdapter<ObjHowToTranssfer> {
                                 ViewGroup parent) {
 
         TextView label = new TextView(context);
-        label.setTextColor(Color.BLACK);
+        label.setTextColor(context.getResources().getColor(R.color.selected));
         label.setPadding(10, 5, 5, 5);
         label.setHint(Constants.MONEY);
         //label.setTextSize(15);

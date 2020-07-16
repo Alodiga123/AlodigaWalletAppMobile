@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 
+import com.alodiga.app.R;
 import com.alodiga.app.wallet.model.ObjCreditCardTypeId;
 import com.alodiga.app.wallet.model.ObjGenericObject;
 import com.alodiga.app.wallet.utils.Constants;
@@ -41,7 +42,7 @@ public class SpinAdapterCardType extends ArrayAdapter<ObjCreditCardTypeId> {
     public View getView(int position, View convertView, ViewGroup parent) {
         // I created a dynamic TextView here, but you can reference your own  custom layout for each spinner item
         TextView label = new TextView(context);
-        label.setTextColor(Color.WHITE);
+        label.setTextColor(context.getResources().getColor(R.color.selected));
         label.setHint(Constants.LOCATION);
         label.setTextSize(16);
 
@@ -58,7 +59,7 @@ public class SpinAdapterCardType extends ArrayAdapter<ObjCreditCardTypeId> {
                                 ViewGroup parent) {
 
         TextView label = new TextView(context);
-        label.setTextColor(Color.BLACK);
+        label.setTextColor(context.getResources().getColor(R.color.selected));
         label.setPadding(10, 5, 5, 5);
         label.setHint(Constants.LOCATION);
         //label.setTextSize(15);

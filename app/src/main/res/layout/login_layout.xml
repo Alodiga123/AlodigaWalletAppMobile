@@ -29,7 +29,7 @@
                     android:layout_gravity="top"
                     android:scaleType="fitCenter"
                     android:gravity="center"
-                    android:src="@drawable/sendex_logo"></ImageView>
+                    android:src="@drawable/satin_logo_segundo"></ImageView>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

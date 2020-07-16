@@ -18,7 +18,7 @@ public class Constants {
     //public static String IPDAT = "192.168.3.140";
 
     //public static String LINK = "http://192.168.3.140:8080/ultima-1.0.6/formData.xhtml";
-    public static String LINK = "http://18.237.99.116:8080/CardRequestWeb/";
+    public static String LINK = "http://tarjetas.alodiga.com/NuestraVision/index.xhtml";
 
 
     public static final String RESUM_OPERATION_PHONE = "getResumOperationByPhoneNumberSender";

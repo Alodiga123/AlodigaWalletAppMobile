@@ -13,7 +13,7 @@
         android:layout_height="230dp"
         android:layout_alignParentTop="true"
         android:layout_marginTop="5dp"
-        android:background="@drawable/bgheader2"
+        android:background="@drawable/bgheader3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,12 +22,12 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="154dp"
-        android:layout_height="131dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_marginStart="2dp"
         android:layout_marginLeft="5dp"
-        android:layout_marginTop="30dp"
-        android:src="@drawable/sendex_logo"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/satim_favicon"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
