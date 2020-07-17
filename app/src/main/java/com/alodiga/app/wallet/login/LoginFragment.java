@@ -172,7 +172,7 @@ public class LoginFragment extends Fragment implements OnClickListener {
         //emailid.setText("jcalderaso@gmail.com");
         //password.setText("Alo#1234");
 
-        emailid.setText("moisegrat12@gmail.com");
+        emailid.setText("kerwin2821@gmail.com");
         password.setText("Alodi12-");
 
         //emailid.setText("kerwin2821@gmail.com");
