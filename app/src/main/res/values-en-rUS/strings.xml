@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">SATIM</string>
+    <string name="app_name">BOD</string>
     <string name="action_reintent">Try again</string>
     <string name="action_settings">Sign off</string>
     <string name="action_settings_en">"English "</string>

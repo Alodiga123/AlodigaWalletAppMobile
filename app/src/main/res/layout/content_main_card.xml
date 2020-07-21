@@ -19,7 +19,7 @@
         android:gravity="top|center"
         android:padding="10dp"
         android:text="@string/card_tile"
-        android:textColor="@color/background_color"
+        android:textColor="@color/colorTitleFunction"
         android:textSize="25sp"
         android:textStyle="bold" />
 
@@ -28,7 +28,6 @@
         android:layout_width="fill_parent"
         android:layout_height="310dp"
         android:layout_marginTop="110dp"
-        android:background="@drawable/bgheader4"
         >
 
 

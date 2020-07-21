@@ -18,7 +18,7 @@
         android:layout_height="149dp"
         android:gravity="top|center"
         android:text="@string/signUp"
-        android:textColor="@color/background_color"
+        android:textColor="@color/colorTitleFunction"
         android:textSize="25sp"
         android:textStyle="bold" />
 

@@ -20,7 +20,7 @@
         android:gravity="top|center"
         android:padding="10dp"
         android:text="@string/reloadcard_title"
-        android:textColor="@color/background_color"
+        android:textColor="@color/colorTitleFunction"
         android:textSize="25sp"
         android:textStyle="bold" />
 

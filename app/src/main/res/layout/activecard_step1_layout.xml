@@ -21,7 +21,7 @@
             android:gravity="top|center"
             android:hint="Type to text"
             android:text="@string/activate_card_title"
-            android:textColor="@color/background_color"
+            android:textColor="@color/colorTitleFunction"
             android:textSize="25sp"
             android:textStyle="bold"/>
 

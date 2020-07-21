@@ -19,7 +19,7 @@
         android:gravity="center"
         android:padding="10dp"
         android:text="@string/last_operation_title"
-        android:textColor="@color/background_color"
+        android:textColor="@color/colorTitleFunction"
         android:textSize="25sp"
         android:textStyle="bold"/>
 
