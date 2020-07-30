@@ -8,7 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.alodiga.app.R;
-import com.alodiga.app.wallet.model.ObjNewsItem;
+import com.alodiga.app.wallet.duallibrary.model.ObjNewsItem;
 
 import java.util.ArrayList;
 

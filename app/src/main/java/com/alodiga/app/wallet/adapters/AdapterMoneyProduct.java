@@ -1,63 +1,41 @@
 package com.alodiga.app.wallet.adapters;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.graphics.Color;
-import android.se.omapi.SEService;
 import android.text.Html;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.activateDesativateCard.ActivateDeactivateCardStep1Activity;
-import com.alodiga.app.wallet.activeCard.ActiveCardActivity;
 import com.alodiga.app.wallet.balance.BalanceStep1Activity;
 import com.alodiga.app.wallet.companionCards.CompanionCardsStep1Activity;
-import com.alodiga.app.wallet.deactivateCard.DeactiveCardActivity;
 import com.alodiga.app.wallet.exchange.ExchangeStep1Activity;
-import com.alodiga.app.wallet.main.MainActivity;
 import com.alodiga.app.wallet.manualRecharge.ManualRechargeStep1Activity;
 import com.alodiga.app.wallet.manualRemoval.ManualRemovalStep1Activity;
-import com.alodiga.app.wallet.model.ObjMoney;
-import com.alodiga.app.wallet.model.ObjTransaction;
+import com.alodiga.app.wallet.duallibrary.model.ObjMoney;
+import com.alodiga.app.wallet.duallibrary.model.ObjTransaction;
 import com.alodiga.app.wallet.paymentComerce.PaymentComerceStep1Activity;
-import com.alodiga.app.wallet.reloadCard.ReloadCardStep1Activity;
 import com.alodiga.app.wallet.topup.TopupStep1Activity;
 import com.alodiga.app.wallet.transference.TransferenceStep1Activity;
 import com.alodiga.app.wallet.transferenceCardToCard.TransferenceCardToCardStep1Activity;
-import com.alodiga.app.wallet.utils.Constants;
-import com.alodiga.app.wallet.utils.CustomToast;
-import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
 import com.alodiga.app.wallet.utils.Session;
-import com.alodiga.app.wallet.utils.WebService;
 import com.alodiga.app.wallet.validate.ValidateAccountCode3Activity;
 import com.alodiga.app.wallet.validate.ValidateAccountCode4Activity;
 import com.alodiga.app.wallet.validate.ValidateAccountStep5Activity;
 
-import org.ksoap2.serialization.SoapObject;
-
-import java.util.Calendar;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.TimeZone;
 
 public class AdapterMoneyProduct extends RecyclerView.Adapter<AdapterMoneyProduct.GroceryProductViewHolder> implements AdapterView.OnItemSelectedListener {
     Context context;

@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.alodiga.app.R;
-import com.alodiga.app.wallet.model.ObjProccessRemittence;
+import com.alodiga.app.wallet.duallibrary.model.ObjProccessRemittence;
 import com.alodiga.app.wallet.utils.Constants;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;

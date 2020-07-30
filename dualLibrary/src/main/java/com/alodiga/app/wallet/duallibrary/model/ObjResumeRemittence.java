@@ -1,4 +1,4 @@
-package com.alodiga.app.wallet.model;
+package com.alodiga.app.wallet.duallibrary.model;
 
 public class ObjResumeRemittence {
 

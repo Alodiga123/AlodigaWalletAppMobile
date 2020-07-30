@@ -2,17 +2,17 @@ package com.alodiga.app.wallet.utils;
 
 import android.graphics.Bitmap;
 
-import com.alodiga.app.wallet.model.ObjDireccion;
-import com.alodiga.app.wallet.model.ObjExchange;
-import com.alodiga.app.wallet.model.ObjPaymentInfo;
-import com.alodiga.app.wallet.model.ObjProccessRemittence;
-import com.alodiga.app.wallet.model.ObjRemittencePay;
-import com.alodiga.app.wallet.model.ObjRemittencePerson;
-import com.alodiga.app.wallet.model.ObjResumeRemittence;
-import com.alodiga.app.wallet.model.ObjTarjetahabiente;
-import com.alodiga.app.wallet.model.ObjTopUpInfos;
-import com.alodiga.app.wallet.model.ObjUserHasProduct;
-import com.alodiga.app.wallet.model.ObjtopUpInfos_IsOpenRange;
+import com.alodiga.app.wallet.duallibrary.model.ObjDireccion;
+import com.alodiga.app.wallet.duallibrary.model.ObjExchange;
+import com.alodiga.app.wallet.duallibrary.model.ObjPaymentInfo;
+import com.alodiga.app.wallet.duallibrary.model.ObjProccessRemittence;
+import com.alodiga.app.wallet.duallibrary.model.ObjRemittencePay;
+import com.alodiga.app.wallet.duallibrary.model.ObjRemittencePerson;
+import com.alodiga.app.wallet.duallibrary.model.ObjResumeRemittence;
+import com.alodiga.app.wallet.duallibrary.model.ObjTarjetahabiente;
+import com.alodiga.app.wallet.duallibrary.model.ObjTopUpInfos;
+import com.alodiga.app.wallet.duallibrary.model.ObjUserHasProduct;
+import com.alodiga.app.wallet.duallibrary.model.ObjtopUpInfos_IsOpenRange;
 
 import java.util.ArrayList;
 
@@ -187,11 +187,11 @@ public class Session {
         Session.remettencesDireccionId = remettencesDireccionId;
     }
 
-    public static com.alodiga.app.wallet.model.ObjResumeRemittence getObjResumeRemittence() {
+    public static com.alodiga.app.wallet.duallibrary.model.ObjResumeRemittence getObjResumeRemittence() {
         return ObjResumeRemittence;
     }
 
-    public static void setObjResumeRemittence(com.alodiga.app.wallet.model.ObjResumeRemittence objResumeRemittence) {
+    public static void setObjResumeRemittence(com.alodiga.app.wallet.duallibrary.model.ObjResumeRemittence objResumeRemittence) {
         ObjResumeRemittence = objResumeRemittence;
     }
 

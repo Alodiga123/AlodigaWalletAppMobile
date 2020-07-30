@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.main.MainActivity;
 import com.alodiga.app.wallet.manualRemoval.ManualRemovalStep2WelcomeActivity;
-import com.alodiga.app.wallet.model.ObjUserHasProduct;
+import com.alodiga.app.wallet.duallibrary.model.ObjUserHasProduct;
 import com.alodiga.app.wallet.utils.Constants;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;

@@ -1,7 +1,6 @@
 package com.alodiga.app.wallet.adapters;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -11,7 +10,7 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 
 import com.alodiga.app.R;
-import com.alodiga.app.wallet.model.ObjGenericObject;
+import com.alodiga.app.wallet.duallibrary.model.ObjGenericObject;
 import com.alodiga.app.wallet.utils.Constants;
 
 public class SpinAdapterGeneric extends ArrayAdapter<ObjGenericObject> {

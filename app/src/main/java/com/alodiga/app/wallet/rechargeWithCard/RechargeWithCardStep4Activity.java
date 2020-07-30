@@ -5,15 +5,13 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.alodiga.app.R;
-import com.alodiga.app.wallet.adapters.SpinAdapterTransferMoneyRemittence;
 import com.alodiga.app.wallet.main.MainActivity;
-import com.alodiga.app.wallet.model.ObjUserHasProduct;
+import com.alodiga.app.wallet.duallibrary.model.ObjUserHasProduct;
 import com.alodiga.app.wallet.utils.Constants;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
@@ -23,9 +21,7 @@ import com.alodiga.app.wallet.utils.WebService;
 
 import org.ksoap2.serialization.SoapObject;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 
 

@@ -8,7 +8,6 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
@@ -19,7 +18,6 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
@@ -35,17 +33,15 @@ import com.alodiga.app.wallet.QR.CreateQRCodeActivity;
 import com.alodiga.app.wallet.activeCard.ActiveCardActivity;
 import com.alodiga.app.wallet.adapters.AdapterMoneyProduct;
 import com.alodiga.app.wallet.exchange.ExchangeStep1Activity;
-import com.alodiga.app.wallet.listRemittence.ListRemittenceActivity;
 import com.alodiga.app.wallet.listTransactionExecuted.ListTransactionExecutedActivity;
 import com.alodiga.app.wallet.login.LoginActivity;
 import com.alodiga.app.wallet.manualRecharge.ManualRechargeStep1Activity;
 import com.alodiga.app.wallet.manualRemoval.ManualRemovalStep1Activity;
-import com.alodiga.app.wallet.model.ObjMoney;
-import com.alodiga.app.wallet.model.ObjUserHasProduct;
+import com.alodiga.app.wallet.duallibrary.model.ObjMoney;
+import com.alodiga.app.wallet.duallibrary.model.ObjUserHasProduct;
 import com.alodiga.app.wallet.changePassword.ChangePasswordStep1Activity;
 import com.alodiga.app.wallet.paymentComerce.PaymentComerceStep1Activity;
 import com.alodiga.app.wallet.rechargeWithCard.RechargeWhithCardContactsActivity;
-import com.alodiga.app.wallet.rechargeWithCard.RechargeWithCardStep1Activity;
 import com.alodiga.app.wallet.remesas.PaymentStep1Activity;
 import com.alodiga.app.wallet.topup.TopupStep1Activity;
 import com.alodiga.app.wallet.transference.TransferenceStep1Activity;
@@ -59,20 +55,12 @@ import com.alodiga.app.wallet.validate.ValidateAccountCode4Activity;
 import com.alodiga.app.wallet.validate.ValidateAccountStep5Activity;
 
 
-import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.highlight.Highlight;
-import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.android.material.navigation.NavigationView;
 
 import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.formatter.PercentFormatter;
-import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 import java.util.List;

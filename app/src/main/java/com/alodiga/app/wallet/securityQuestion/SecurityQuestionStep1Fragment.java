@@ -17,7 +17,7 @@ import androidx.fragment.app.Fragment;
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.adapters.SpinAdapterSecurityAnswer;
 import com.alodiga.app.wallet.login.LoginActivity;
-import com.alodiga.app.wallet.model.ObjGenericObject;
+import com.alodiga.app.wallet.duallibrary.model.ObjGenericObject;
 import com.alodiga.app.wallet.utils.Constants;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;

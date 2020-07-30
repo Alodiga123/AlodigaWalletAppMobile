@@ -1,4 +1,4 @@
-package com.alodiga.app.wallet.model;
+package com.alodiga.app.wallet.duallibrary.model;
 
 /**
  * Created by anyeli on 19/09/17.

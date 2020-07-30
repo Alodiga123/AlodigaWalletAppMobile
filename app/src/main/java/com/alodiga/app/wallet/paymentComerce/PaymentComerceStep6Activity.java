@@ -13,8 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.main.MainActivity;
-import com.alodiga.app.wallet.model.ObjCountry;
-import com.alodiga.app.wallet.model.ObjUserHasProduct;
+import com.alodiga.app.wallet.duallibrary.model.ObjCountry;
+import com.alodiga.app.wallet.duallibrary.model.ObjUserHasProduct;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
 import com.alodiga.app.wallet.utils.Session;
 

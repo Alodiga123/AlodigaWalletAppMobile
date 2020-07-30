@@ -14,7 +14,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,8 +21,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.adapters.AdapterCustomList;
 import com.alodiga.app.wallet.main.MainActivity;
-import com.alodiga.app.wallet.model.ObjNewsItem;
-import com.alodiga.app.wallet.model.ObjTransaction;
+import com.alodiga.app.wallet.duallibrary.model.ObjNewsItem;
+import com.alodiga.app.wallet.duallibrary.model.ObjTransaction;
 import com.alodiga.app.wallet.utils.Constants;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;

@@ -1,43 +1,29 @@
 package com.alodiga.app.wallet.adapters;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alodiga.app.R;
-import com.alodiga.app.wallet.balance.BalanceStep1Activity;
-import com.alodiga.app.wallet.companionCards.CompanionCardsStep2Activity;
-import com.alodiga.app.wallet.login.LoginActivity;
-import com.alodiga.app.wallet.main.MainActivity;
-import com.alodiga.app.wallet.model.ObjCompanionCards;
-import com.alodiga.app.wallet.model.ObjPaymentInfo;
-import com.alodiga.app.wallet.model.ObjTarjetahabiente;
+import com.alodiga.app.wallet.duallibrary.model.ObjCompanionCards;
+import com.alodiga.app.wallet.duallibrary.model.ObjPaymentInfo;
+import com.alodiga.app.wallet.duallibrary.model.ObjTarjetahabiente;
 import com.alodiga.app.wallet.rechargeWithCard.RechargeWhithCarContactsDrop;
-import com.alodiga.app.wallet.rechargeWithCard.RechargeWithCardStep1Activity;
 import com.alodiga.app.wallet.rechargeWithCard.RechargeWithCardStep2Activity;
 import com.alodiga.app.wallet.utils.Constants;
-import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.Session;
 import com.alodiga.app.wallet.utils.WebService;
-import com.alodiga.app.wallet.validate.ValidateAccountCode3Activity;
-import com.alodiga.app.wallet.validate.ValidateAccountCode4Activity;
-import com.alodiga.app.wallet.validate.ValidateAccountStep5Activity;
 
 import org.ksoap2.serialization.SoapObject;
 

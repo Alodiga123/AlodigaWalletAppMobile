@@ -19,20 +19,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.adapters.SpinAdapterGenericRemittence;
-import com.alodiga.app.wallet.adapters.SpinAdapterPais;
-import com.alodiga.app.wallet.adapters.SpinAdapterTransferMoney;
 import com.alodiga.app.wallet.adapters.SpinAdapterTransferMoneyRemittence;
 import com.alodiga.app.wallet.main.MainActivity;
-import com.alodiga.app.wallet.model.ObjCountry;
-import com.alodiga.app.wallet.model.ObjCurrency;
-import com.alodiga.app.wallet.model.ObjExchangeRate;
-import com.alodiga.app.wallet.model.ObjGenericObject;
-import com.alodiga.app.wallet.model.ObjPaymentNetwork;
-import com.alodiga.app.wallet.model.ObjRatePaymentNetwork;
-import com.alodiga.app.wallet.model.ObjRemittencePay;
-import com.alodiga.app.wallet.model.ObjResumeRemittence;
-import com.alodiga.app.wallet.model.ObjTransferMoney;
-import com.alodiga.app.wallet.model.ObjUserHasProduct;
+import com.alodiga.app.wallet.duallibrary.model.ObjCountry;
+import com.alodiga.app.wallet.duallibrary.model.ObjCurrency;
+import com.alodiga.app.wallet.duallibrary.model.ObjExchangeRate;
+import com.alodiga.app.wallet.duallibrary.model.ObjGenericObject;
+import com.alodiga.app.wallet.duallibrary.model.ObjPaymentNetwork;
+import com.alodiga.app.wallet.duallibrary.model.ObjRatePaymentNetwork;
+import com.alodiga.app.wallet.duallibrary.model.ObjRemittencePay;
+import com.alodiga.app.wallet.duallibrary.model.ObjResumeRemittence;
+import com.alodiga.app.wallet.duallibrary.model.ObjTransferMoney;
+import com.alodiga.app.wallet.duallibrary.model.ObjUserHasProduct;
 import com.alodiga.app.wallet.utils.Constants;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
@@ -41,7 +39,6 @@ import com.alodiga.app.wallet.utils.WebService;
 
 import org.ksoap2.serialization.SoapObject;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class PaymentStep1Activity extends AppCompatActivity {

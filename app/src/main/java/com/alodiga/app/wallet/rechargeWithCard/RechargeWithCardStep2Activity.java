@@ -17,10 +17,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
 import com.alodiga.app.R;
-import com.alodiga.app.wallet.adapters.SpinAdapterPais;
 import com.alodiga.app.wallet.adapters.SpinAdapterTransferMoneyRemittence;
-import com.alodiga.app.wallet.model.ObjGenericObject;
-import com.alodiga.app.wallet.model.ObjTransferMoney;
+import com.alodiga.app.wallet.duallibrary.model.ObjGenericObject;
+import com.alodiga.app.wallet.duallibrary.model.ObjTransferMoney;
 import com.alodiga.app.wallet.utils.Constants;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
@@ -30,7 +29,6 @@ import com.alodiga.app.wallet.utils.WebService;
 
 import org.ksoap2.serialization.SoapObject;
 
-import java.util.Calendar;
 import java.util.HashMap;
 
 

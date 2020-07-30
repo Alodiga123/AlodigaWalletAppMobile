@@ -1,25 +1,14 @@
 package com.alodiga.app.wallet.rechargeWithCard;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.alodiga.app.R;
-import com.alodiga.app.wallet.adapters.AdapterCardContacts;
-import com.alodiga.app.wallet.main.MainActivity;
-import com.alodiga.app.wallet.model.ObjTarjetahabiente;
-import com.alodiga.app.wallet.utils.CustomToast;
-import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
-
-import org.ksoap2.serialization.SoapObject;
-
-import java.util.ArrayList;
+import com.alodiga.app.wallet.duallibrary.model.ObjTarjetahabiente;
 
 
 public class RechargeWhithCarContactsSave extends AppCompatActivity {

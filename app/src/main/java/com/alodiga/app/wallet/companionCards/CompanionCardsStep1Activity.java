@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.adapters.AdapterCardProduct;
 import com.alodiga.app.wallet.main.MainActivity;
-import com.alodiga.app.wallet.model.ObjCompanionCards;
+import com.alodiga.app.wallet.duallibrary.model.ObjCompanionCards;
 import com.alodiga.app.wallet.utils.Constants;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;

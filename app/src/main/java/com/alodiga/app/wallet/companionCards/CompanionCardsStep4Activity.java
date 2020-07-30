@@ -10,9 +10,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.alodiga.app.R;
-import com.alodiga.app.wallet.model.ObjUserHasProduct;
-import com.alodiga.app.wallet.transferenceCardToCard.TransferenceCardToCArdStep6Activity;
-import com.alodiga.app.wallet.transferenceCardToCard.TransferenceCardToCardStep4codeActivity;
+import com.alodiga.app.wallet.duallibrary.model.ObjUserHasProduct;
 import com.alodiga.app.wallet.utils.Constants;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;

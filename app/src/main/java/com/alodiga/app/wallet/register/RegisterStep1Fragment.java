@@ -10,15 +10,14 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.adapters.SpinAdapterCountry;
 import com.alodiga.app.wallet.login.LoginActivity;
-import com.alodiga.app.wallet.model.ObjCountry;
-import com.alodiga.app.wallet.model.ObjGenericObject;
+import com.alodiga.app.wallet.duallibrary.model.ObjCountry;
+import com.alodiga.app.wallet.duallibrary.model.ObjGenericObject;
 import com.alodiga.app.wallet.utils.Constants;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
@@ -28,9 +27,7 @@ import com.alodiga.app.wallet.utils.WebService;
 
 import org.ksoap2.serialization.SoapObject;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class RegisterStep1Fragment extends Fragment implements
         OnClickListener {

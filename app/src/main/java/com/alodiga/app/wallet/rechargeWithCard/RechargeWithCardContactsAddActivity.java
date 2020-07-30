@@ -5,22 +5,19 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
 
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.adapters.SpinAdapterCardType;
 import com.alodiga.app.wallet.adapters.SpinAdapterGeneric;
-import com.alodiga.app.wallet.model.ObjCreditCardTypeId;
-import com.alodiga.app.wallet.model.ObjGenericObject;
-import com.alodiga.app.wallet.model.ObjPaymentInfo;
-import com.alodiga.app.wallet.model.ObjTarjetahabiente;
-import com.alodiga.app.wallet.model.ObjTransferMoney;
+import com.alodiga.app.wallet.duallibrary.model.ObjCreditCardTypeId;
+import com.alodiga.app.wallet.duallibrary.model.ObjGenericObject;
+import com.alodiga.app.wallet.duallibrary.model.ObjPaymentInfo;
+import com.alodiga.app.wallet.duallibrary.model.ObjTarjetahabiente;
+import com.alodiga.app.wallet.duallibrary.model.ObjTransferMoney;
 import com.alodiga.app.wallet.utils.Constants;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
@@ -30,10 +27,7 @@ import com.alodiga.app.wallet.utils.WebService;
 
 import org.ksoap2.serialization.SoapObject;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

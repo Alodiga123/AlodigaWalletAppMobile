@@ -1,6 +1,5 @@
-package com.alodiga.app.wallet.model;
+package com.alodiga.app.wallet.duallibrary.model;
 
-import java.time.LocalDate;
 import java.util.Date;
 
 public class ObjPaymentInfo {

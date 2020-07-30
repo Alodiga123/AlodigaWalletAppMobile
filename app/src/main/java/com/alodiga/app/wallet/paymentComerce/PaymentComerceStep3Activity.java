@@ -7,16 +7,13 @@ import android.text.Selection;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.alodiga.app.R;
-import com.alodiga.app.wallet.main.MainActivity;
-import com.alodiga.app.wallet.model.ObjCountry;
+import com.alodiga.app.wallet.duallibrary.model.ObjCountry;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
 import com.alodiga.app.wallet.utils.Session;

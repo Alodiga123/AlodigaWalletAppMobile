@@ -1,10 +1,7 @@
 package com.alodiga.app.wallet.reloadCard;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -12,21 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.main.MainActivity;
-import com.alodiga.app.wallet.manualRemoval.ManualRemovalStep2WelcomeActivity;
-import com.alodiga.app.wallet.model.ObjUserHasProduct;
-import com.alodiga.app.wallet.utils.Constants;
-import com.alodiga.app.wallet.utils.CustomToast;
+import com.alodiga.app.wallet.duallibrary.model.ObjUserHasProduct;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
-import com.alodiga.app.wallet.utils.Session;
-import com.alodiga.app.wallet.utils.Utils;
-import com.alodiga.app.wallet.utils.WebService;
-
-import org.ksoap2.serialization.SoapObject;
-
-import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
 
 public class ReloadCardStep3Activity extends AppCompatActivity {
     private static TextView amountValue, conceptValue;

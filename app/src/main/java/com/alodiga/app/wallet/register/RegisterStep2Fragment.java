@@ -9,13 +9,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.login.LoginActivity;
-import com.alodiga.app.wallet.model.ObjCountry;
+import com.alodiga.app.wallet.duallibrary.model.ObjCountry;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
 import com.alodiga.app.wallet.utils.Session;

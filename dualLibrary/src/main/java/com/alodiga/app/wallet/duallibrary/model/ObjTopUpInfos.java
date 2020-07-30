@@ -1,29 +1,29 @@
-package com.alodiga.app.wallet.model;
+package com.alodiga.app.wallet.duallibrary.model;
 
-public class ObjtopUpInfos_IsOpenRange {
+public class ObjTopUpInfos {
 
     String commissionPercent;
     String country;
     String coutryId;
+    String denomination;
+    String denominationReceiver;
+    String denominationSale;
     String destinationCurrency;
-    String increment;
     String isOpenRange;
-    String maximumAmount;
-    String minimumAmount;
     String operatorid;
     String opertador;
     String skuid;
     String wholesalePrice;
 
-    public ObjtopUpInfos_IsOpenRange(String commissionPercent, String country, String coutryId, String destinationCurrency, String increment, String isOpenRange, String maximumAmount, String minimumAmount, String operatorid, String opertador, String skuid, String wholesalePrice) {
+    public ObjTopUpInfos(String commissionPercent, String country, String coutryId, String denomination, String denominationReceiver, String denominationSale, String destinationCurrency, String isOpenRange, String operatorid, String opertador, String skuid, String wholesalePrice) {
         this.commissionPercent = commissionPercent;
         this.country = country;
         this.coutryId = coutryId;
+        this.denomination = denomination;
+        this.denominationReceiver = denominationReceiver;
+        this.denominationSale = denominationSale;
         this.destinationCurrency = destinationCurrency;
-        this.increment = increment;
         this.isOpenRange = isOpenRange;
-        this.maximumAmount = maximumAmount;
-        this.minimumAmount = minimumAmount;
         this.operatorid = operatorid;
         this.opertador = opertador;
         this.skuid = skuid;
@@ -54,6 +54,30 @@ public class ObjtopUpInfos_IsOpenRange {
         this.coutryId = coutryId;
     }
 
+    public String getDenomination() {
+        return denomination;
+    }
+
+    public void setDenomination(String denomination) {
+        this.denomination = denomination;
+    }
+
+    public String getDenominationReceiver() {
+        return denominationReceiver;
+    }
+
+    public void setDenominationReceiver(String denominationReceiver) {
+        this.denominationReceiver = denominationReceiver;
+    }
+
+    public String getDenominationSale() {
+        return denominationSale;
+    }
+
+    public void setDenominationSale(String denominationSale) {
+        this.denominationSale = denominationSale;
+    }
+
     public String getDestinationCurrency() {
         return destinationCurrency;
     }
@@ -62,36 +86,12 @@ public class ObjtopUpInfos_IsOpenRange {
         this.destinationCurrency = destinationCurrency;
     }
 
-    public String getIncrement() {
-        return increment;
-    }
-
-    public void setIncrement(String increment) {
-        this.increment = increment;
-    }
-
     public String getIsOpenRange() {
         return isOpenRange;
     }
 
     public void setIsOpenRange(String isOpenRange) {
         this.isOpenRange = isOpenRange;
-    }
-
-    public String getMaximumAmount() {
-        return maximumAmount;
-    }
-
-    public void setMaximumAmount(String maximumAmount) {
-        this.maximumAmount = maximumAmount;
-    }
-
-    public String getMinimumAmount() {
-        return minimumAmount;
-    }
-
-    public void setMinimumAmount(String minimumAmount) {
-        this.minimumAmount = minimumAmount;
     }
 
     public String getOperatorid() {

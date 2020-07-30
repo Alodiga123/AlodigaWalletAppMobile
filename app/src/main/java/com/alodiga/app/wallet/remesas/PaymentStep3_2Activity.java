@@ -13,19 +13,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.adapters.SpinAdapterBank;
-import com.alodiga.app.wallet.model.ObjGenericObject;
-import com.alodiga.app.wallet.model.ObjRemittencePerson;
+import com.alodiga.app.wallet.duallibrary.model.ObjGenericObject;
+import com.alodiga.app.wallet.duallibrary.model.ObjRemittencePerson;
 import com.alodiga.app.wallet.utils.Constants;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.Session;
-import com.alodiga.app.wallet.utils.Utils;
 import com.alodiga.app.wallet.utils.WebService;
 
 import org.ksoap2.serialization.SoapObject;
 
 import java.util.HashMap;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class PaymentStep3_2Activity extends AppCompatActivity {
     private static Button next, backToLoginBtn;
