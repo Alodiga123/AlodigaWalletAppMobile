@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.Spinner;
 import android.widget.Switch;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,25 +13,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.activeCard.ActiveCardStep3Activity;
 import com.alodiga.app.wallet.deactivateCard.DeactiveCardStep3Activity;
-import com.alodiga.app.wallet.main.MainActivity;
+import com.alodiga.app.wallet.duallibrary.activateDesativateCard.activateDesativateCardController;
 import com.alodiga.app.wallet.duallibrary.utils.Constants;
+import com.alodiga.app.wallet.duallibrary.utils.Session;
+import com.alodiga.app.wallet.main.MainActivity;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
-import com.alodiga.app.wallet.duallibrary.utils.Session;
-import com.alodiga.app.wallet.duallibrary.utils.Utils;
-import com.alodiga.app.wallet.duallibrary.utils.WebService;
 
 import org.ksoap2.serialization.SoapObject;
-
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.TimeZone;
 
 
 public class ActivateDeactivateCardStep1Activity extends AppCompatActivity {
 
-    private static Spinner spinnerProduct;
-    private Button step1_next_button, backToLoginBtn;
+    private Button backToLoginBtn;
     private String responsetxt = "";
     private boolean serviceStatus;
     private ProgressDialogAlodiga progressDialogAlodiga;
@@ -41,9 +34,7 @@ public class ActivateDeactivateCardStep1Activity extends AppCompatActivity {
     UserGetProcessActive mAuthTask_A;
     UserGetProcessStatus mAuthTask_S;
     boolean isChec = false;
-
     Switch simpleSwitch;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +42,6 @@ public class ActivateDeactivateCardStep1Activity extends AppCompatActivity {
         setContentView(R.layout.activecard_deactivate_step1_layout);
         backToLoginBtn = findViewById(R.id.backToLoginBtn);
         simpleSwitch = findViewById(R.id.simpleSwitch);
-        //Session.setCardSelectActiveDeactive("zzTQTPW8sjZ1rXOFtcBmIM7+exK1iSVr4sWp1Avyjh6HqBr1Jlr7pWktVpSQAxziAaLbCmZ3P0GuJgMSBFhrOf/KiQq1YEO2MLhXrhRBtEqgPvt/5TE2++K+Dr//OcjFCArBr+MmpadvpIh4qT4zhau87w5IsFDaZkpzVikB7uM=");
 
         Status();
 
@@ -67,10 +57,8 @@ public class ActivateDeactivateCardStep1Activity extends AppCompatActivity {
                         Desactivar();
                     }
                 }
-
             }
         });
-
 
         backToLoginBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -81,42 +69,6 @@ public class ActivateDeactivateCardStep1Activity extends AppCompatActivity {
         });
 
     }
-
-   /*@Override
-    protected void onStart() {
-
-        super.onStart();
-        Status();
-        //isChec= true;
-    }*/
-
-   /* @Override
-    protected void onResume() {
-        super.onResume();
-        simpleSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
-
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
-
-                if(!isChec){
-                    isChecked=true;
-                }
-               if(isChecked){
-                    Activar();
-                }else{
-                    Desactivar();
-                }
-                //}else{
-
-                //}
-                //isChec= false;
-
-
-
-            }
-        });
-    }*/
-
 
     @Override
     public void onBackPressed() {
@@ -155,28 +107,8 @@ public class ActivateDeactivateCardStep1Activity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
 
-            WebService webService = new WebService();
-            Utils utils = new Utils();
-
-            try {
-                String responseCode;
-                String responseMessage = "";
-
-
-                Calendar cal = Calendar.getInstance();
-                TimeZone tz = cal.getTimeZone();
-
-                HashMap<String, String> map = new HashMap<String, String>();
-                map.put("userId", Session.getUserId());
-                map.put("card",Session.getCardSelectActiveDeactive());
-                //Utils.aloEncrpter(Session.getCardSelectActiveDeactive());
-                map.put("timeZone", tz.getID());
-                map.put("status", Constants.ACTIVE_STATUS_DEACTIVE);
-
-                response_ = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_DEACTIVE_PROCESS, Constants.ALODIGA);
-                responseCode = response_.getProperty("codigoRespuesta").toString();
-                responseMessage = response_.getProperty("mensajeRespuesta").toString();
-
+                response_ = activateDesativateCardController.desactiveCard();
+                String responseCode = response_.getProperty("codigoRespuesta").toString();
 
                 if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
                     responsetxt = getString(R.string.web_services_response_00);
@@ -245,20 +177,7 @@ public class ActivateDeactivateCardStep1Activity extends AppCompatActivity {
                     responsetxt = getString(R.string.web_services_response_99);
                     serviceStatus = false;
                 }
-                //progressDialogAlodiga.dismiss();
-            } catch (IllegalArgumentException e) {
-                responsetxt = getString(R.string.web_services_response_99);
-                serviceStatus = false;
-                e.printStackTrace();
-                System.err.println(e);
-                return false;
-            } catch (Exception e) {
-                responsetxt = getString(R.string.web_services_response_99);
-                serviceStatus = false;
-                e.printStackTrace();
-                System.err.println(e);
-                return false;
-            }
+
             return serviceStatus;
 
         }
@@ -266,18 +185,10 @@ public class ActivateDeactivateCardStep1Activity extends AppCompatActivity {
         @Override
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
-            //showProgress(false);
             if (success) {
-                //Session.setOperationExchange(response_.getProperty("idTransaction").toString());
-                //Session.setObjUserHasProducts(getListProductGeneric(response_));
-
-
                 Intent i = new Intent(ActivateDeactivateCardStep1Activity.this, DeactiveCardStep3Activity.class);
                 startActivity(i);
                 finish();
-
-
-
             } else {
                 new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                         responsetxt);
@@ -299,29 +210,8 @@ public class ActivateDeactivateCardStep1Activity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
 
-            WebService webService = new WebService();
-            Utils utils = new Utils();
-
-            try {
-                String responseCode;
-                String responseMessage = "";
-
-
-                Calendar cal = Calendar.getInstance();
-                TimeZone tz = cal.getTimeZone();
-
-                HashMap<String, String> map = new HashMap<String, String>();
-                map.put("userId", Session.getUserId());
-                map.put("card", Utils.aloDesencript(Session.getCardSelectActiveDeactive().trim()));
-                map.put("timeZone", tz.getID());
-                map.put("status", Constants.ACTIVE_STATUS_ACTIVE);
-
-
-
-                response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_ACTIVE_PROCESS, Constants.ALODIGA);
-                responseCode = response.getProperty("codigoRespuesta").toString();
-                responseMessage = response.getProperty("mensajeRespuesta").toString();
-
+                response = activateDesativateCardController.activarCard();
+                String  responseCode = response.getProperty("codigoRespuesta").toString();
 
                 if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
                     responsetxt = getString(R.string.web_services_response_00);
@@ -387,20 +277,7 @@ public class ActivateDeactivateCardStep1Activity extends AppCompatActivity {
                     responsetxt = getString(R.string.web_services_response_99);
                     serviceStatus = false;
                 }
-                //progressDialogAlodiga.dismiss();
-            } catch (IllegalArgumentException e) {
-                responsetxt = getString(R.string.web_services_response_99);
-                serviceStatus = false;
-                e.printStackTrace();
-                System.err.println(e);
-                return false;
-            } catch (Exception e) {
-                responsetxt = getString(R.string.web_services_response_99);
-                serviceStatus = false;
-                e.printStackTrace();
-                System.err.println(e);
-                return false;
-            }
+
             return serviceStatus;
 
         }
@@ -408,17 +285,10 @@ public class ActivateDeactivateCardStep1Activity extends AppCompatActivity {
         @Override
         protected void onPostExecute(final Boolean success) {
             mAuthTask_A = null;
-            //showProgress(false);
             if (success) {
-                //Session.setOperationExchange(response_.getProperty("idTransaction").toString());
-                //Session.setObjUserHasProducts(getListProductGeneric(response_));
-
-
                 Intent i = new Intent(ActivateDeactivateCardStep1Activity.this, ActiveCardStep3Activity.class);
                 startActivity(i);
                 finish();
-
-
 
             } else {
                 new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
@@ -442,25 +312,8 @@ public class ActivateDeactivateCardStep1Activity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
 
-            WebService webService = new WebService();
-            Utils utils = new Utils();
-
-            try {
-                String responseCode;
-                String responseMessage = "";
-
-
-                Calendar cal = Calendar.getInstance();
-                TimeZone tz = cal.getTimeZone();
-
-                HashMap<String, String> map = new HashMap<String, String>();
-                map.put("userId", Session.getUserId());
-                map.put("card", Utils.aloDesencript(Session.getCardSelectActiveDeactive().trim()));
-                map.put("timeZone", tz.getID());
-
-                response_1 = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_ACTIVE_DEACTIVE_STATUS, Constants.ALODIGA);
-                responseCode = response_1.getProperty("codigoRespuesta").toString();
-
+                response_1 = activateDesativateCardController.getStatusCard();
+                String responseCode = response_1.getProperty("codigoRespuesta").toString();
 
                 if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
                     responsetxt = getString(R.string.web_services_response_00);
@@ -529,20 +382,6 @@ public class ActivateDeactivateCardStep1Activity extends AppCompatActivity {
                     responsetxt = getString(R.string.web_services_response_99);
                     serviceStatus = false;
                 }
-                //progressDialogAlodiga.dismiss();
-            } catch (IllegalArgumentException e) {
-                responsetxt = getString(R.string.web_services_response_99);
-                serviceStatus = false;
-                e.printStackTrace();
-                System.err.println(e);
-                return false;
-            } catch (Exception e) {
-                responsetxt = getString(R.string.web_services_response_99);
-                serviceStatus = false;
-                e.printStackTrace();
-                System.err.println(e);
-                return false;
-            }
             return serviceStatus;
 
         }
@@ -550,7 +389,6 @@ public class ActivateDeactivateCardStep1Activity extends AppCompatActivity {
         @Override
         protected void onPostExecute(final Boolean success) {
             mAuthTask_S = null;
-            //showProgress(false);
             if (success) {
                 SoapObject res_ = (SoapObject) response_1.getProperty(3);
 
