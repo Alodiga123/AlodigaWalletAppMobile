@@ -37,12 +37,12 @@ import com.alodiga.app.wallet.duallibrary.model.ObjDireccion;
 import com.alodiga.app.wallet.duallibrary.model.ObjUserHasProduct;
 import com.alodiga.app.wallet.register.RegisterStep1Fragment;
 import com.alodiga.app.wallet.securityQuestion.SecurityQuestionStep1Fragment;
-import com.alodiga.app.wallet.utils.Constants;
+import com.alodiga.app.wallet.duallibrary.utils.Constants;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
-import com.alodiga.app.wallet.utils.Session;
-import com.alodiga.app.wallet.utils.Utils;
-import com.alodiga.app.wallet.utils.WebService;
+import com.alodiga.app.wallet.duallibrary.utils.Session;
+import com.alodiga.app.wallet.duallibrary.utils.Utils;
+import com.alodiga.app.wallet.duallibrary.utils.WebService;
 
 import org.ksoap2.serialization.SoapObject;
 
@@ -173,7 +173,7 @@ public class LoginFragment extends Fragment implements OnClickListener {
         //password.setText("Alo#1234");
 
         emailid.setText("kerwin2821@gmail.com");
-        password.setText("Alodi12-");
+        password.setText("123456");
 
         //emailid.setText("kerwin2821@gmail.com");
         //password.setText("Alo#1234");

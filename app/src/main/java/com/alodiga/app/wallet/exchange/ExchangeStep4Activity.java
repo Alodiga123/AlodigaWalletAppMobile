@@ -1,19 +1,16 @@
 package com.alodiga.app.wallet.exchange;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.alodiga.app.R;
-import com.alodiga.app.wallet.login.LoginActivity;
 import com.alodiga.app.wallet.main.MainActivity;
-import com.alodiga.app.wallet.utils.Session;
+import com.alodiga.app.wallet.duallibrary.utils.Session;
 
 import java.sql.Timestamp;
 import java.util.Date;

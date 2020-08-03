@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.alodiga.app.R;
-import com.alodiga.app.wallet.utils.Session;
+import com.alodiga.app.wallet.duallibrary.utils.Session;
 
 public class ExchangeStep2Activity extends AppCompatActivity {
     TextView txtcommission,txtpercentage, txtdebitar, txtDestino, txtincludeM, rateSource, txtrateSource, rateDestination,txtrateDestination,txtAmount_ini;

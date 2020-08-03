@@ -1,4 +1,12 @@
-package com.alodiga.app.wallet.utils;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.alodiga.app.wallet.duallibrary.encript;
+
+
+import com.alodiga.app.wallet.duallibrary.utils.Constants;
 
 import org.apache.commons.codec.binary.Base64;
 
@@ -11,50 +19,43 @@ import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
 /**
- * @author kerwin
+ * @author usuario
  */
-public class AlodigaCryptographyUtils {
+public class ParseInt {
 
-    public static String encrypt(String texto, String secretKey) {
+    public static String mkdir(String value, String ke, String t2) {
+        String secretKey = ke; //llave para encriptar datos
         String base64EncryptedString = "";
         try {
             MessageDigest md = MessageDigest.getInstance(Constants.MD5);
             byte[] digestOfPassword = md.digest(secretKey.getBytes(StandardCharsets.UTF_8));
             byte[] keyBytes = Arrays.copyOf(digestOfPassword, 24);
-
-            SecretKey key = new SecretKeySpec(keyBytes, Constants.K2_ENCRIPT_DESENCRIPT);
-            Cipher cipher = Cipher.getInstance(Constants.K2_ENCRIPT_DESENCRIPT);
+            SecretKey key = new SecretKeySpec(keyBytes, t2);
+            Cipher cipher = Cipher.getInstance(t2);
             cipher.init(Cipher.ENCRYPT_MODE, key);
-
-            byte[] plainTextBytes = texto.getBytes(StandardCharsets.UTF_8);
+            byte[] plainTextBytes = value.getBytes(StandardCharsets.UTF_8);
             byte[] buf = cipher.doFinal(plainTextBytes);
             byte[] base64Bytes = Base64.encodeBase64(buf);
             base64EncryptedString = new String(base64Bytes);
-
         } catch (Exception ex) {
-            ex.printStackTrace();
         }
         return base64EncryptedString;
     }
 
-    public static String decrypt(String textoEncriptado, String secretKey) throws Exception {
+    public static String DesEncrypter(String textoEncriptado, String ke, String k2) throws Exception {
+        String secretKey = ke; //llave para encriptar datos
         String base64EncryptedString = "";
         try {
             byte[] message = Base64.decodeBase64(textoEncriptado.getBytes(StandardCharsets.UTF_8));
             MessageDigest md = MessageDigest.getInstance(Constants.MD5);
             byte[] digestOfPassword = md.digest(secretKey.getBytes(StandardCharsets.UTF_8));
             byte[] keyBytes = Arrays.copyOf(digestOfPassword, 24);
-            SecretKey key = new SecretKeySpec(keyBytes, Constants.K2_ENCRIPT_DESENCRIPT);
-
-            Cipher decipher = Cipher.getInstance(Constants.K2_ENCRIPT_DESENCRIPT);
+            SecretKey key = new SecretKeySpec(keyBytes, k2);
+            Cipher decipher = Cipher.getInstance(k2);
             decipher.init(Cipher.DECRYPT_MODE, key);
-
             byte[] plainText = decipher.doFinal(message);
-
             base64EncryptedString = new String(plainText, StandardCharsets.UTF_8);
-
         } catch (Exception ex) {
-            ex.printStackTrace();
         }
         return base64EncryptedString;
     }

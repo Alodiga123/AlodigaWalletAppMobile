@@ -30,12 +30,11 @@ import com.alodiga.app.wallet.duallibrary.model.ObjRatePaymentNetwork;
 import com.alodiga.app.wallet.duallibrary.model.ObjRemittencePay;
 import com.alodiga.app.wallet.duallibrary.model.ObjResumeRemittence;
 import com.alodiga.app.wallet.duallibrary.model.ObjTransferMoney;
-import com.alodiga.app.wallet.duallibrary.model.ObjUserHasProduct;
-import com.alodiga.app.wallet.utils.Constants;
+import com.alodiga.app.wallet.duallibrary.utils.Constants;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
-import com.alodiga.app.wallet.utils.Session;
-import com.alodiga.app.wallet.utils.WebService;
+import com.alodiga.app.wallet.duallibrary.utils.Session;
+import com.alodiga.app.wallet.duallibrary.utils.WebService;
 
 import org.ksoap2.serialization.SoapObject;
 

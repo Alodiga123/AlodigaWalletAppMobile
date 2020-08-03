@@ -1,24 +1,17 @@
 package com.alodiga.app.wallet.forgotPassword;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.login.LoginActivity;
-import com.alodiga.app.wallet.login.LoginFragment;
-import com.alodiga.app.wallet.main.MainActivity;
-import com.alodiga.app.wallet.register.RegisterStep1Fragment;
-import com.alodiga.app.wallet.utils.Utils;
 
 
 public class ForgotPasswordStep4Activity extends AppCompatActivity {

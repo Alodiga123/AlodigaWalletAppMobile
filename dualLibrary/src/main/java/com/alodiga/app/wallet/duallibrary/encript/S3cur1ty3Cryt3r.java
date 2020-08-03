@@ -1,4 +1,4 @@
-package com.alodiga.app.wallet.encript;
+package com.alodiga.app.wallet.duallibrary.encript;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -6,7 +6,8 @@ package com.alodiga.app.wallet.encript;
  * and open the template in the editor.
  */
 
-import com.alodiga.app.wallet.utils.Constants;
+
+import com.alodiga.app.wallet.duallibrary.utils.Constants;
 
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -17,8 +18,8 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 
-import static com.alodiga.app.wallet.encript.ParseLong.desencryptMD5;
-import static com.alodiga.app.wallet.encript.ParseLong.ncr1pt;
+import static com.alodiga.app.wallet.duallibrary.encript.ParseLong.desencryptMD5;
+import static com.alodiga.app.wallet.duallibrary.encript.ParseLong.ncr1pt;
 
 
 /**

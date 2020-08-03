@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.main.MainActivity;
-import com.alodiga.app.wallet.utils.Session;
+import com.alodiga.app.wallet.duallibrary.utils.Session;
 
 import java.sql.Timestamp;
 import java.util.Date;

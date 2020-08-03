@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.alodiga.app.wallet.encript;
+package com.alodiga.app.wallet.duallibrary.encript;
 
-import com.alodiga.app.wallet.utils.Constants;
+
+import com.alodiga.app.wallet.duallibrary.utils.Constants;
 
 import org.apache.commons.codec.binary.Base64;
 
@@ -17,35 +18,38 @@ import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
+
 /**
  * @author usuario
  */
-public class ParseInt {
+public class ParseLong {
 
-    public static String mkdir(String value, String ke, String t2) {
-        String secretKey = ke; //llave para encriptar datos
+    public static String ncr1pt(String baseCode, String keys, String k2) {
+        String secretKey = keys; //llave para encriptar datos
         String base64EncryptedString = "";
         try {
             MessageDigest md = MessageDigest.getInstance(Constants.MD5);
             byte[] digestOfPassword = md.digest(secretKey.getBytes(StandardCharsets.UTF_8));
             byte[] keyBytes = Arrays.copyOf(digestOfPassword, 24);
-            SecretKey key = new SecretKeySpec(keyBytes, t2);
-            Cipher cipher = Cipher.getInstance(t2);
+            SecretKey key = new SecretKeySpec(keyBytes, k2);
+            Cipher cipher = Cipher.getInstance(k2);
             cipher.init(Cipher.ENCRYPT_MODE, key);
-            byte[] plainTextBytes = value.getBytes(StandardCharsets.UTF_8);
+            byte[] plainTextBytes = baseCode.getBytes(StandardCharsets.UTF_8);
             byte[] buf = cipher.doFinal(plainTextBytes);
             byte[] base64Bytes = Base64.encodeBase64(buf);
             base64EncryptedString = new String(base64Bytes);
         } catch (Exception ex) {
+            ex.printStackTrace();
         }
         return base64EncryptedString;
     }
 
-    public static String DesEncrypter(String textoEncriptado, String ke, String k2) throws Exception {
-        String secretKey = ke; //llave para encriptar datos
+    public static String desencryptMD5(String baseCode, String keys, String k2) {
+        String secretKey = keys;
+        //llave para desenciptar datos
         String base64EncryptedString = "";
         try {
-            byte[] message = Base64.decodeBase64(textoEncriptado.getBytes(StandardCharsets.UTF_8));
+            byte[] message = Base64.decodeBase64(baseCode.getBytes(StandardCharsets.UTF_8));
             MessageDigest md = MessageDigest.getInstance(Constants.MD5);
             byte[] digestOfPassword = md.digest(secretKey.getBytes(StandardCharsets.UTF_8));
             byte[] keyBytes = Arrays.copyOf(digestOfPassword, 24);
@@ -58,5 +62,4 @@ public class ParseInt {
         }
         return base64EncryptedString;
     }
-
 }

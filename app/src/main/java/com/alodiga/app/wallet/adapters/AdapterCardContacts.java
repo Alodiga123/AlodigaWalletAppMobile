@@ -16,14 +16,13 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alodiga.app.R;
-import com.alodiga.app.wallet.duallibrary.model.ObjCompanionCards;
 import com.alodiga.app.wallet.duallibrary.model.ObjPaymentInfo;
 import com.alodiga.app.wallet.duallibrary.model.ObjTarjetahabiente;
 import com.alodiga.app.wallet.rechargeWithCard.RechargeWhithCarContactsDrop;
 import com.alodiga.app.wallet.rechargeWithCard.RechargeWithCardStep2Activity;
-import com.alodiga.app.wallet.utils.Constants;
-import com.alodiga.app.wallet.utils.Session;
-import com.alodiga.app.wallet.utils.WebService;
+import com.alodiga.app.wallet.duallibrary.utils.Constants;
+import com.alodiga.app.wallet.duallibrary.utils.Session;
+import com.alodiga.app.wallet.duallibrary.utils.WebService;
 
 import org.ksoap2.serialization.SoapObject;
 

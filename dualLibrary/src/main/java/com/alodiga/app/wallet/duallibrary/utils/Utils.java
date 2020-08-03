@@ -1,5 +1,5 @@
-package com.alodiga.app.wallet.utils;
-
+package com.alodiga.app.wallet.duallibrary.utils;
+/*
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -13,13 +13,12 @@ import android.view.Gravity;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.Toast;*/
 
-import androidx.annotation.NonNull;
+import android.util.Base64;
 
-import com.alodiga.app.R;
-import com.alodiga.app.wallet.encript.KeyLongException;
-import com.alodiga.app.wallet.encript.S3cur1ty3Cryt3r;
+import com.alodiga.app.wallet.duallibrary.encript.KeyLongException;
+import com.alodiga.app.wallet.duallibrary.encript.S3cur1ty3Cryt3r;
 
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.SoapObject;
@@ -27,7 +26,6 @@ import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 
 import java.io.ByteArrayOutputStream;
-import java.io.UnsupportedEncodingException;
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
@@ -130,6 +128,7 @@ public class Utils {
         return base64EncryptedString;
     }
 
+    /*
 
     public static void createToast(@NonNull Context context, @NonNull int text) {
         LinearLayout layoutToast = new LinearLayout(context);
@@ -163,7 +162,7 @@ public class Utils {
         toast.setDuration(Toast.LENGTH_LONG);
         toast.show();
     }
-
+*/
     /*public static String getUrl(){
         return Constants.CONSTANT_IS_PRODUCTION ?  Constants.CONSTANT_SECURE_URL : Constants.CONSTANT_URL_PROD ;
     }*/
@@ -265,12 +264,12 @@ public class Utils {
         return numberPhone;
     }
 
-
+/*
     public static String getAndroidId(Context c) {
         return Settings.Secure.getString(c.getContentResolver(),
                 Settings.Secure.ANDROID_ID);
     }
-
+*/
 
     public static String aloDesencript(String clave) {
         try {
@@ -398,8 +397,10 @@ public class Utils {
         }
     }
 
-    public static int validatePassword(@NonNull String newPassword, @NonNull String confirmPassword)
+
+    public static int validatePassword(String newPassword, String confirmPassword)
     {
+
         Pattern capitalLetter = Pattern.compile(CAPITAL_LETTER);
         Matcher capLet = capitalLetter.matcher(newPassword);
         Pattern lowerLetter = Pattern.compile(LOWERCASE_LETTER);
@@ -413,26 +414,32 @@ public class Utils {
 
         if(!capLet.lookingAt())
         {
-            return R.string.validate_password_change_capital_letter;
+            return 1;
+            // return R.string.validate_password_change_capital_letter;
         }else if(!lowLet.lookingAt())
         {
-            return R.string.validate_password_change_lowercase_letter;
+            return 2;
+            // return R.string.validate_password_change_lowercase_letter;
         }else if(!nb.lookingAt())
         {
-            return R.string.validate_password_change_number;
+            return 3;
+            // return R.string.validate_password_change_number;
         }else if(!spChar.lookingAt())
         {
-            return R.string.validate_password_change_special_character;
+            return 4;
+            //  return R.string.validate_password_change_special_character;
         }else if(!nmbChar.lookingAt())
         {
-            return R.string.validate_password_change_number_characters;
+            return 5;
+            // return R.string.validate_password_change_number_characters;
         }else if(!newPassword.equals(confirmPassword))
         {
-            return R.string.toast_different_passwords;
+            return 6;
+            // return R.string.toast_different_passwords;
         }
         return 0;
     }
-
+    /*
     public static int validateCard(@NonNull String type, @NonNull String cvv, @NonNull String card)
     {
         Pattern digi_cvv = Pattern.compile(CVV_DIG);
@@ -462,7 +469,7 @@ public class Utils {
 
 
         return 0;
-    }
+    }*/
 
 
     public static boolean isNumeric(String cadena){
@@ -478,7 +485,7 @@ public class Utils {
         return (str.matches("[+]?\\d*") && str.equals("")==false);
     }
 
-
+/*
     public static boolean updateResources(Context context, String language) {
         //Locale locale;//= Locale.getDefault();
 
@@ -496,18 +503,9 @@ public class Utils {
 
         return true;
     }
+*/
 
-    //convertir a base 64
-    public static String encodeImage(Bitmap bm) {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bm.compress(Bitmap.CompressFormat.JPEG,100,baos);
-        byte[] b = baos.toByteArray();
-        String imgDecodableString = Base64.encodeToString(b, Base64.DEFAULT);
-
-        return imgDecodableString;
-    }
-
-
+/*
     public static Bitmap rotarBitmap(String Url, Bitmap bitmap) {
         try {
             ExifInterface exifInterface = new ExifInterface(Url);
@@ -529,7 +527,7 @@ public class Utils {
             // TODO:
         }
         return bitmap;
-    }
+    }*/
 
     public static String mask_card(String card){
         card= card.substring(0,4) + "*********" +  card.substring( card.length()-4, card.length());

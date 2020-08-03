@@ -10,9 +10,8 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 
 import com.alodiga.app.R;
-import com.alodiga.app.wallet.duallibrary.model.ObjGenericObject;
 import com.alodiga.app.wallet.duallibrary.model.ObjTopUpInfos;
-import com.alodiga.app.wallet.utils.Constants;
+import com.alodiga.app.wallet.duallibrary.utils.Constants;
 
 public class SpinAdapterProductTopup extends ArrayAdapter<ObjTopUpInfos> {
 

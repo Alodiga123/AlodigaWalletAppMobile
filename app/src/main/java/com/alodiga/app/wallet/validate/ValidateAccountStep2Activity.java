@@ -1,20 +1,16 @@
 package com.alodiga.app.wallet.validate;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,12 +18,9 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.alodiga.app.R;
-import com.alodiga.app.wallet.main.MainActivity;
-import com.alodiga.app.wallet.utils.CustomToast;
-import com.alodiga.app.wallet.utils.Session;
+import com.alodiga.app.wallet.utils.BipmapUtils;
 
 import java.io.IOException;
-import java.io.InputStream;
 
 
 public class ValidateAccountStep2Activity extends AppCompatActivity {
@@ -119,7 +112,7 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (data.getExtras()!= null) {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
-            Session.setSelectedImageSelfie(imageBitmap);
+            BipmapUtils.setSelectedImageSelfie(imageBitmap);
         } else {
             Uri selectedimg = data.getData();
             try {
@@ -133,7 +126,7 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
                 Matrix matrix = new Matrix();
                 matrix.postScale(scaleWidth, scaleHeight);
                 Bitmap bit_ = Bitmap.createBitmap(mBitmap, 0, 0, width, height, matrix, false);
-                Session.setSelectedImageSelfie(bit_);
+                BipmapUtils.setSelectedImageSelfie(bit_);
 
             } catch (IOException e) {
                 e.printStackTrace();

@@ -12,18 +12,16 @@ import androidx.fragment.app.FragmentManager;
 
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.main.MainActivity;
-import com.alodiga.app.wallet.utils.Constants;
+import com.alodiga.app.wallet.duallibrary.utils.Constants;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
-import com.alodiga.app.wallet.utils.Session;
-import com.alodiga.app.wallet.utils.Utils;
-import com.alodiga.app.wallet.utils.WebService;
+import com.alodiga.app.wallet.duallibrary.utils.Session;
+import com.alodiga.app.wallet.duallibrary.utils.Utils;
+import com.alodiga.app.wallet.duallibrary.utils.WebService;
 
 import org.ksoap2.serialization.SoapObject;
 
-import java.util.Calendar;
 import java.util.HashMap;
-import java.util.TimeZone;
 
 public class ActiveCardActivity extends AppCompatActivity {
     private static FragmentManager fragmentManager;

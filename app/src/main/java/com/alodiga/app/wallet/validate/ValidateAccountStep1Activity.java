@@ -1,25 +1,17 @@
 package com.alodiga.app.wallet.validate;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.alodiga.app.R;
-import com.alodiga.app.wallet.main.MainActivity;
-import com.alodiga.app.wallet.utils.Session;
-
-import java.io.InputStream;
+import com.alodiga.app.wallet.utils.BipmapUtils;
 
 
 public class ValidateAccountStep1Activity extends AppCompatActivity {
@@ -36,7 +28,7 @@ public class ValidateAccountStep1Activity extends AppCompatActivity {
         imgCamare = findViewById(R.id.imgCamare);
 
         //imageView2= (ImageView) findViewById(R.id.imageView2);
-        Bitmap prueba= Session.getSelectedImage();
+        Bitmap prueba= BipmapUtils.getSelectedImage();
         imgCamare.setImageBitmap(prueba);
         next.setOnClickListener(new View.OnClickListener() {
             @Override

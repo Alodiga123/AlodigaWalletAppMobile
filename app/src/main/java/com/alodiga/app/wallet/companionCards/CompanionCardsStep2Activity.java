@@ -1,7 +1,6 @@
 package com.alodiga.app.wallet.companionCards;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.Selection;
@@ -15,18 +14,11 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.alodiga.app.R;
-import com.alodiga.app.wallet.transferenceCardToCard.TransferenceCardToCardStep1Activity;
-import com.alodiga.app.wallet.transferenceCardToCard.TransferenceCardToCardStep4codeActivity;
-import com.alodiga.app.wallet.utils.Constants;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
-import com.alodiga.app.wallet.utils.Session;
-import com.alodiga.app.wallet.utils.Utils;
-import com.alodiga.app.wallet.utils.WebService;
+import com.alodiga.app.wallet.duallibrary.utils.Session;
 
 import org.ksoap2.serialization.SoapObject;
-
-import java.util.HashMap;
 
 public class CompanionCardsStep2Activity extends AppCompatActivity {
     static ProgressDialogAlodiga progressDialogAlodiga;

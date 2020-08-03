@@ -1,25 +1,23 @@
 package com.alodiga.app.wallet.validate;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.alodiga.app.R;
-import com.alodiga.app.wallet.utils.Constants;
+import com.alodiga.app.wallet.duallibrary.utils.Constants;
+import com.alodiga.app.wallet.utils.BipmapUtils;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
-import com.alodiga.app.wallet.utils.Session;
-import com.alodiga.app.wallet.utils.Utils;
-import com.alodiga.app.wallet.utils.WebService;
+import com.alodiga.app.wallet.duallibrary.utils.Session;
+import com.alodiga.app.wallet.duallibrary.utils.Utils;
+import com.alodiga.app.wallet.duallibrary.utils.WebService;
 
 import org.ksoap2.serialization.SoapObject;
 
@@ -142,8 +140,8 @@ public class ValidateAccountStep4Activity extends AppCompatActivity {
                     map.put("ciudad", getedtcity_);
                     map.put("zipCode", getedtcode_);
                     map.put("addres1", getedtAv_);
-                    map.put("imgDocument", Utils.encodeImage(Session.getSelectedImage()));
-                    map.put("imgProfile", Utils.encodeImage(Session.getSelectedImageSelfie()));
+                    map.put("imgDocument", BipmapUtils.encodeImage(BipmapUtils.getSelectedImage()));
+                    map.put("imgProfile", BipmapUtils.encodeImage(BipmapUtils.getSelectedImageSelfie()));
 
 
 

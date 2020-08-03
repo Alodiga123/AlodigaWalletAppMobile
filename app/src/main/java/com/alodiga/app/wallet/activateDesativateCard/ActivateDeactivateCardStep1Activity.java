@@ -10,22 +10,18 @@ import android.widget.Spinner;
 import android.widget.Switch;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
 import com.alodiga.app.R;
-import com.alodiga.app.wallet.activeCard.ActiveCardStep2codeActivity;
 import com.alodiga.app.wallet.activeCard.ActiveCardStep3Activity;
-import com.alodiga.app.wallet.deactivateCard.DeactiveCardStep2codeActivity;
 import com.alodiga.app.wallet.deactivateCard.DeactiveCardStep3Activity;
 import com.alodiga.app.wallet.main.MainActivity;
-import com.alodiga.app.wallet.utils.Constants;
+import com.alodiga.app.wallet.duallibrary.utils.Constants;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
-import com.alodiga.app.wallet.utils.Session;
-import com.alodiga.app.wallet.utils.Utils;
-import com.alodiga.app.wallet.utils.WebService;
+import com.alodiga.app.wallet.duallibrary.utils.Session;
+import com.alodiga.app.wallet.duallibrary.utils.Utils;
+import com.alodiga.app.wallet.duallibrary.utils.WebService;
 
-import org.kobjects.util.Util;
 import org.ksoap2.serialization.SoapObject;
 
 import java.util.Calendar;

@@ -45,9 +45,9 @@ import com.alodiga.app.wallet.rechargeWithCard.RechargeWhithCardContactsActivity
 import com.alodiga.app.wallet.remesas.PaymentStep1Activity;
 import com.alodiga.app.wallet.topup.TopupStep1Activity;
 import com.alodiga.app.wallet.transference.TransferenceStep1Activity;
-import com.alodiga.app.wallet.utils.Constants;
+import com.alodiga.app.wallet.duallibrary.utils.Constants;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
-import com.alodiga.app.wallet.utils.Session;
+import com.alodiga.app.wallet.duallibrary.utils.Session;
 import com.alodiga.app.wallet.validate.ValidateAccountActivity;
 import com.alodiga.app.wallet.validate.ValidateAccountCode2Activity;
 import com.alodiga.app.wallet.validate.ValidateAccountCode3Activity;

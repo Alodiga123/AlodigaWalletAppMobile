@@ -1,4 +1,4 @@
-package com.alodiga.app.wallet.utils;
+package com.alodiga.app.wallet.duallibrary.utils;
 
 /**
  * Created by Kerwin on 18/09/17.

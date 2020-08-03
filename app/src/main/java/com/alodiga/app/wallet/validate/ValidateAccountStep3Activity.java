@@ -9,10 +9,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.alodiga.app.R;
-import com.alodiga.app.wallet.utils.Session;
+import com.alodiga.app.wallet.utils.BipmapUtils;
 
 
 public class ValidateAccountStep3Activity extends Activity {
@@ -29,7 +28,7 @@ public class ValidateAccountStep3Activity extends Activity {
         imgCamare = findViewById(R.id.imgCamare);
 
         //imageView2= (ImageView) findViewById(R.id.imageView2);
-        Bitmap prueba_= Session.getSelectedImageSelfie();
+        Bitmap prueba_= BipmapUtils.getSelectedImageSelfie();
         imgCamare.setImageBitmap(prueba_);
         next.setOnClickListener(new View.OnClickListener() {
             @Override

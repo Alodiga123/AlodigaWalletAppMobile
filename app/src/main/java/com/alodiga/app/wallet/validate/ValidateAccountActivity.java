@@ -24,13 +24,13 @@ import androidx.core.content.ContextCompat;
 
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.main.MainActivity;
-import com.alodiga.app.wallet.duallibrary.model.ObjGenericObject;
-import com.alodiga.app.wallet.utils.Constants;
+import com.alodiga.app.wallet.duallibrary.utils.Constants;
+import com.alodiga.app.wallet.utils.BipmapUtils;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
-import com.alodiga.app.wallet.utils.Session;
-import com.alodiga.app.wallet.utils.Utils;
-import com.alodiga.app.wallet.utils.WebService;
+import com.alodiga.app.wallet.duallibrary.utils.Session;
+import com.alodiga.app.wallet.duallibrary.utils.Utils;
+import com.alodiga.app.wallet.duallibrary.utils.WebService;
 
 import org.ksoap2.serialization.SoapObject;
 
@@ -103,7 +103,7 @@ public class ValidateAccountActivity extends AppCompatActivity {
             if (data.getExtras()!= null) {
                 Bundle extras = data.getExtras();
                 Bitmap imageBitmap = (Bitmap) extras.get("data");
-                Session.setSelectedImage(imageBitmap);
+                BipmapUtils.setSelectedImage(imageBitmap);
             } else {
                 Uri selectedimg = data.getData();
                 try {
@@ -115,7 +115,7 @@ public class ValidateAccountActivity extends AppCompatActivity {
                     Matrix matrix = new Matrix();
                     matrix.postScale(scaleWidth, scaleHeight);
                     Bitmap bit = Bitmap.createBitmap(mBitmap, 0, 0, width, height, matrix, false);
-                    Session.setSelectedImage(bit);
+                    BipmapUtils.setSelectedImage(bit);
 
                 } catch (IOException e) {
                     e.printStackTrace();

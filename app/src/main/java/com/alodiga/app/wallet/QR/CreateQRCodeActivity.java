@@ -5,17 +5,15 @@ import android.media.MediaScannerConnection;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.alodiga.app.R;
-import com.alodiga.app.wallet.utils.AlodigaCryptographyUtils;
-import com.alodiga.app.wallet.utils.Constants;
-import com.alodiga.app.wallet.utils.Session;
+import com.alodiga.app.wallet.duallibrary.utils.AlodigaCryptographyUtils;
+import com.alodiga.app.wallet.duallibrary.utils.Constants;
+import com.alodiga.app.wallet.duallibrary.utils.Session;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;

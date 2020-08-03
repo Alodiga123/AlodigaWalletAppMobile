@@ -1,4 +1,4 @@
-package com.alodiga.app.wallet.encript;
+package com.alodiga.app.wallet.duallibrary.encript;
 
 
 public class KeyLongException extends Exception {

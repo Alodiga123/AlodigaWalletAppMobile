@@ -1,6 +1,6 @@
-package com.alodiga.app.wallet.utils;
+package com.alodiga.app.wallet.duallibrary.utils;
 
-import android.graphics.Bitmap;
+//import android.graphics.Bitmap;
 
 import com.alodiga.app.wallet.duallibrary.model.ObjDireccion;
 import com.alodiga.app.wallet.duallibrary.model.ObjExchange;
@@ -59,8 +59,8 @@ public class Session {
     private static ObjExchange exchange;
     private static String operationExchange;
     private static String forgotData;
-    private static Bitmap selectedImage;
-    private static Bitmap selectedImageSelfie;
+    //private static Bitmap selectedImage;
+    //private static Bitmap selectedImageSelfie;
     private static String cumplimient;
     private static String cardActive;
     private static String cardDeactive;
@@ -531,7 +531,7 @@ public class Session {
         Session.operationTransference = operationTransference;
     }
 
-    public static Bitmap getSelectedImage() {
+   /* public static Bitmap getSelectedImage() {
         return selectedImage;
     }
 
@@ -545,7 +545,7 @@ public class Session {
 
     public static void setSelectedImageSelfie(Bitmap selectedImageSelfie) {
         Session.selectedImageSelfie = selectedImageSelfie;
-    }
+    }*/
 
     public static String getCumplimient() {
         return cumplimient;
@@ -670,8 +670,8 @@ public class Session {
         Session.operationExchange = null;
         Session.operationPaymentComerce=null;
         Session.operationTransference=null;
-        Session.selectedImage= null;
-        Session.selectedImageSelfie= null;
+        //Session.selectedImage= null;
+        //Session.selectedImageSelfie= null;
         Session.cumplimient= null;
         Session.cardActive= null;
         Session.cardDeactive= null;

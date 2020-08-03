@@ -17,9 +17,9 @@ import com.alodiga.app.wallet.login.LoginActivity;
 import com.alodiga.app.wallet.duallibrary.model.ObjCountry;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
-import com.alodiga.app.wallet.utils.Session;
+import com.alodiga.app.wallet.duallibrary.utils.Session;
 import com.alodiga.app.wallet.utils.SmsReceiver;
-import com.alodiga.app.wallet.utils.Utils;
+import com.alodiga.app.wallet.duallibrary.utils.Utils;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

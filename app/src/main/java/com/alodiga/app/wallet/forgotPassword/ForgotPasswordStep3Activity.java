@@ -14,15 +14,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
 import com.alodiga.app.R;
-import com.alodiga.app.wallet.changePassword.ChangePasswordStep2Activity;
-import com.alodiga.app.wallet.login.LoginFragment;
-import com.alodiga.app.wallet.main.MainActivity;
-import com.alodiga.app.wallet.utils.Constants;
+import com.alodiga.app.wallet.duallibrary.utils.Constants;
+import com.alodiga.app.wallet.duallibrary.utils.Utils;
+import com.alodiga.app.wallet.duallibrary.utils.WebService;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
-import com.alodiga.app.wallet.utils.Session;
-import com.alodiga.app.wallet.utils.Utils;
-import com.alodiga.app.wallet.utils.WebService;
+import com.alodiga.app.wallet.duallibrary.utils.Session;
 
 import org.ksoap2.serialization.SoapObject;
 
@@ -109,11 +106,30 @@ public class ForgotPasswordStep3Activity extends AppCompatActivity {
         if(!newPassword.trim().equals("") && !confirmPassword.trim().equals(""))
         {
             messageForToast= Utils.validatePassword(newPassword, confirmPassword);
-
+            int msj = 0;
             if(messageForToast != 0)
             {
+                switch (messageForToast){
+                    case 1:
+                        msj= R.string.validate_password_change_capital_letter;
+                        break;
+                    case 2:
+                        msj= R.string.validate_password_change_lowercase_letter;
+                        break;
+                    case 3:
+                        msj= R.string.validate_password_change_number;
+                        break;
+                    case 4:
+                        msj= R.string.validate_password_change_special_character;
+                        break;
+                    case 5:
+                        msj= R.string.validate_password_change_number_characters;
+                    case 6:
+                        msj= R.string.toast_different_passwords;
+                }
+
                 new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
-                        getString(messageForToast));
+                        getString(msj));
             }else
             {
                 entrar(Utils.aloDesencript(newPassword.trim()));

@@ -1,4 +1,4 @@
-package com.alodiga.app.wallet.utils;
+package com.alodiga.app.wallet.duallibrary.utils;
 
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.PropertyInfo;

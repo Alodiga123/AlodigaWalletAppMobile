@@ -23,12 +23,12 @@ import com.alodiga.app.wallet.adapters.AdapterCustomList;
 import com.alodiga.app.wallet.main.MainActivity;
 import com.alodiga.app.wallet.duallibrary.model.ObjNewsItem;
 import com.alodiga.app.wallet.duallibrary.model.ObjTransaction;
-import com.alodiga.app.wallet.utils.Constants;
+import com.alodiga.app.wallet.duallibrary.utils.Constants;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
-import com.alodiga.app.wallet.utils.Session;
-import com.alodiga.app.wallet.utils.Utils;
-import com.alodiga.app.wallet.utils.WebService;
+import com.alodiga.app.wallet.duallibrary.utils.Session;
+import com.alodiga.app.wallet.duallibrary.utils.Utils;
+import com.alodiga.app.wallet.duallibrary.utils.WebService;
 
 import org.ksoap2.serialization.SoapObject;
 

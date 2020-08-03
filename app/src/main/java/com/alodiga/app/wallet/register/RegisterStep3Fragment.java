@@ -14,13 +14,13 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.alodiga.app.R;
+import com.alodiga.app.wallet.duallibrary.utils.Constants;
+import com.alodiga.app.wallet.duallibrary.utils.Utils;
+import com.alodiga.app.wallet.duallibrary.utils.WebService;
 import com.alodiga.app.wallet.login.LoginActivity;
-import com.alodiga.app.wallet.utils.Constants;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
-import com.alodiga.app.wallet.utils.Session;
-import com.alodiga.app.wallet.utils.Utils;
-import com.alodiga.app.wallet.utils.WebService;
+import com.alodiga.app.wallet.duallibrary.utils.Session;
 
 import org.ksoap2.serialization.SoapObject;
 
@@ -199,10 +199,31 @@ public class RegisterStep3Fragment extends Fragment implements OnClickListener {
        // else if (!validation_Password(getPassword)) {
          //   new CustomToast().Show_Toast(getActivity(), view, getContext().getResources().getString(R.string.password_secure));
        // }
+
         else if(!getPassword.trim().equals("") && !getConfirmPassword.trim().equals("") && messageForToast!= 0)
         {
-                          new CustomToast().Show_Toast(getActivity(), view,
-                        getString(messageForToast));
+            int msj= 0;
+            switch (messageForToast){
+                case 1:
+                    msj= R.string.validate_password_change_capital_letter;
+                    break;
+                case 2:
+                    msj= R.string.validate_password_change_lowercase_letter;
+                    break;
+                case 3:
+                    msj= R.string.validate_password_change_number;
+                    break;
+                case 4:
+                    msj= R.string.validate_password_change_special_character;
+                    break;
+                case 5:
+                    msj= R.string.validate_password_change_number_characters;
+                case 6:
+                    msj= R.string.toast_different_passwords;
+            }
+
+            new CustomToast().Show_Toast(getActivity(), view,
+                        getString(msj));
 
         }
 

@@ -8,7 +8,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.register.RegisterStep1Fragment;
-import com.alodiga.app.wallet.utils.Utils;
+import com.alodiga.app.wallet.duallibrary.utils.Utils;
 
 public class LoginActivity extends AppCompatActivity {
     private static FragmentManager fragmentManager;

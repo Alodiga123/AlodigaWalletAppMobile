@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.alodiga.app.wallet.encript;
+package com.alodiga.app.wallet.duallibrary.encript;
 
-import com.alodiga.app.wallet.utils.Constants;
+
+import com.alodiga.app.wallet.duallibrary.utils.Constants;
 
 import org.apache.commons.codec.binary.Base64;
 
@@ -14,8 +15,6 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 import static org.apache.commons.codec.binary.Base64.encodeBase64;
-
-import android.util.Base64.*;
 
 
 /**

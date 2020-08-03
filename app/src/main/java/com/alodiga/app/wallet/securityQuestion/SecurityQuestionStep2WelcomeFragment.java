@@ -6,14 +6,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.login.LoginActivity;
 import com.alodiga.app.wallet.main.MainActivity;
-import com.alodiga.app.wallet.utils.Session;
+import com.alodiga.app.wallet.duallibrary.utils.Session;
 
 public class SecurityQuestionStep2WelcomeFragment extends Fragment implements
         View.OnClickListener {

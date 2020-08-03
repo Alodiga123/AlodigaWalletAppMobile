@@ -16,7 +16,7 @@ import com.alodiga.app.wallet.main.MainActivity;
 import com.alodiga.app.wallet.duallibrary.model.ObjCountry;
 import com.alodiga.app.wallet.duallibrary.model.ObjUserHasProduct;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
-import com.alodiga.app.wallet.utils.Session;
+import com.alodiga.app.wallet.duallibrary.utils.Session;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
