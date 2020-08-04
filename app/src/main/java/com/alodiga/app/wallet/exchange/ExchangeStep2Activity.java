@@ -48,8 +48,6 @@ public class ExchangeStep2Activity extends AppCompatActivity {
                         Intent i = new Intent(ExchangeStep2Activity.this, ExchangeStep3codeActivity.class);
                         startActivity(i);
                          finish();
-
-
             }
         });
 
@@ -59,8 +57,6 @@ public class ExchangeStep2Activity extends AppCompatActivity {
                 finish();
                 Intent i = new Intent(ExchangeStep2Activity.this, ExchangeStep1Activity.class);
                 startActivity(i);
-
-
             }
         });
 

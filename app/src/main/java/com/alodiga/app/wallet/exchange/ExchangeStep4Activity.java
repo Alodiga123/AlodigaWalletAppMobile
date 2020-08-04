@@ -64,7 +64,6 @@ public class ExchangeStep4Activity extends AppCompatActivity {
 
         btnShareInformation.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //updateProduct();
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
                 intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.confirmation_title_successfull_Alodiga) +"\n"+
@@ -83,14 +82,11 @@ public class ExchangeStep4Activity extends AppCompatActivity {
 
             }
         });
-
-
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent pasIntent = getIntent();
         Intent i = new Intent(ExchangeStep4Activity.this, MainActivity.class);
         startActivity(i);
         finish();

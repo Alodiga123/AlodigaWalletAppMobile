@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.duallibrary.activeCard.ActiveCardController;
 import com.alodiga.app.wallet.duallibrary.model.ObjUserHasProduct;
+import com.alodiga.app.wallet.duallibrary.utils.CommonController;
 import com.alodiga.app.wallet.duallibrary.utils.Constants;
 import com.alodiga.app.wallet.duallibrary.utils.Session;
 import com.alodiga.app.wallet.duallibrary.utils.Utils;
@@ -104,7 +105,7 @@ public class ActiveCardStep2codeActivity extends AppCompatActivity {
         protected Boolean doInBackground(Void... params) {
 
                 String responseCode;
-                SoapObject response = ActiveCardController.getCode(clave);
+                SoapObject response = CommonController.getCode(clave);
                 responseCode = response.getProperty("codigoRespuesta").toString();
 
                 if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
