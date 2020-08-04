@@ -21,22 +21,7 @@ public class ExchangeController {
         return WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_NAME_GET_PRODUCT_EXCHANGE, Constants.ALODIGA);
     }
 
-    public static StringBuilder setDecimal(CharSequence s){
 
-            String userInput = "" + s.toString().replaceAll("[^\\d]", "");
-            StringBuilder cashAmountBuilder = new StringBuilder(userInput);
-
-            while (cashAmountBuilder.length() > 3 && cashAmountBuilder.charAt(0) == '0') {
-                cashAmountBuilder.deleteCharAt(0);
-            }
-            while (cashAmountBuilder.length() < 3) {
-                cashAmountBuilder.insert(0, '0');
-            }
-            cashAmountBuilder.insert(cashAmountBuilder.length() - 2, '.');
-            cashAmountBuilder.insert(0, ' ');
-
-            return cashAmountBuilder;
-    }
 
 
     public static ObjTransferMoney[] getListProduct(SoapObject response) {

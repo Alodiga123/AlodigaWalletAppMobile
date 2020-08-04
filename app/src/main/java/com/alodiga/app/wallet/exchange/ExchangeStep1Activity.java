@@ -20,6 +20,7 @@ import com.alodiga.app.wallet.adapters.SpinAdapterProduct;
 import com.alodiga.app.wallet.duallibrary.exchange.ExchangeController;
 import com.alodiga.app.wallet.duallibrary.model.ObjExchange;
 import com.alodiga.app.wallet.duallibrary.model.ObjTransferMoney;
+import com.alodiga.app.wallet.duallibrary.utils.CommonController;
 import com.alodiga.app.wallet.duallibrary.utils.Constants;
 import com.alodiga.app.wallet.duallibrary.utils.Session;
 import com.alodiga.app.wallet.main.MainActivity;
@@ -58,7 +59,7 @@ public class ExchangeStep1Activity extends AppCompatActivity {
             SoapObject response2;
 
             public void run() {
-                try {
+
 
                     response2 = ExchangeController.getProductExchange();
                     String responseCode = response2.getProperty("codigoRespuesta").toString();
@@ -78,9 +79,7 @@ public class ExchangeStep1Activity extends AppCompatActivity {
                         new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                                 responsetxt);
                     }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+
             }
         }).start();
 
@@ -118,7 +117,7 @@ public class ExchangeStep1Activity extends AppCompatActivity {
 
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (!s.toString().matches("^\\ (\\d{1,3}(\\,\\d{3})*|(\\d+))(\\.\\d{2})?$")) {
-                    StringBuilder getDecimal = ExchangeController.setDecimal(s);
+                    StringBuilder getDecimal = CommonController.setDecimal(s);
                     edtAmount.setText(getDecimal.toString());
                     Selection.setSelection(edtAmount.getText(), getDecimal.toString().length());
                 }

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -26,18 +25,13 @@ public class ManualRechargeStep2WelcomeActivity extends AppCompatActivity {
                 show = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(show);
                 finish();
-
-
             }
         });
-
-
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent pasIntent = getIntent();
         Intent i = new Intent(ManualRechargeStep2WelcomeActivity.this, MainActivity.class);
         startActivity(i);
         finish();
