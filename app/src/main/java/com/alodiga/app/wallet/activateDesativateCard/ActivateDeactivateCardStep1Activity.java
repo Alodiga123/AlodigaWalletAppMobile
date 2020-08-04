@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.activeCard.ActiveCardStep3Activity;
 import com.alodiga.app.wallet.deactivateCard.DeactiveCardStep3Activity;
-import com.alodiga.app.wallet.duallibrary.activateDesativateCard.activateDesativateCardController;
+import com.alodiga.app.wallet.duallibrary.activateDesativateCard.ActivateDesativateCardController;
 import com.alodiga.app.wallet.duallibrary.utils.Constants;
 import com.alodiga.app.wallet.duallibrary.utils.Session;
 import com.alodiga.app.wallet.main.MainActivity;
@@ -107,7 +107,7 @@ public class ActivateDeactivateCardStep1Activity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
 
-                response_ = activateDesativateCardController.desactiveCard();
+                response_ = ActivateDesativateCardController.desactiveCard();
                 String responseCode = response_.getProperty("codigoRespuesta").toString();
 
                 if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
@@ -210,7 +210,7 @@ public class ActivateDeactivateCardStep1Activity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
 
-                response = activateDesativateCardController.activarCard();
+                response = ActivateDesativateCardController.activarCard();
                 String  responseCode = response.getProperty("codigoRespuesta").toString();
 
                 if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
@@ -312,7 +312,7 @@ public class ActivateDeactivateCardStep1Activity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
 
-                response_1 = activateDesativateCardController.getStatusCard();
+                response_1 = ActivateDesativateCardController.getStatusCard();
                 String responseCode = response_1.getProperty("codigoRespuesta").toString();
 
                 if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {

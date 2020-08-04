@@ -10,21 +10,18 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.alodiga.app.R;
+import com.alodiga.app.wallet.duallibrary.activeCard.ActiveCardController;
 import com.alodiga.app.wallet.duallibrary.model.ObjUserHasProduct;
 import com.alodiga.app.wallet.duallibrary.utils.Constants;
+import com.alodiga.app.wallet.duallibrary.utils.Session;
+import com.alodiga.app.wallet.duallibrary.utils.Utils;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.FailCodeOperationActivity;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
-import com.alodiga.app.wallet.duallibrary.utils.Session;
-import com.alodiga.app.wallet.duallibrary.utils.Utils;
-import com.alodiga.app.wallet.duallibrary.utils.WebService;
 
 import org.ksoap2.serialization.SoapObject;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.TimeZone;
 
 public class ActiveCardStep2codeActivity extends AppCompatActivity {
     static int cout = 1;
@@ -38,7 +35,6 @@ public class ActiveCardStep2codeActivity extends AppCompatActivity {
     private boolean serviceStatus;
     private ProgressDialogAlodiga progressDialogAlodiga;
     private SoapObject response_;
-    Boolean isProcess=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,11 +58,8 @@ public class ActiveCardStep2codeActivity extends AppCompatActivity {
                     finish();
                     startActivity(i);
                 } else {
-
                    Thread1(getCode);
-
                 }
-
             }
         });
 
@@ -88,16 +81,9 @@ public class ActiveCardStep2codeActivity extends AppCompatActivity {
     }
 
     public void Thread2(){
-        //progressDialogAlodiga = new ProgressDialogAlodiga(this, getString(R.string.loading));
-        //progressDialogAlodiga.show();
+
         mAuthTask_ = new UserGetProcessActive();
         mAuthTask_.execute((Void) null);
-        //progressDialogAlodiga.dismiss();
-
-        /*Intent i = new Intent(ActiveCardStep2codeActivity.this, ActiveCardStep3Activity.class);
-        startActivity(i);
-        finish();*/
-
     }
 
     @Override
@@ -105,15 +91,11 @@ public class ActiveCardStep2codeActivity extends AppCompatActivity {
         Intent i = new Intent(ActiveCardStep2codeActivity.this, ActiveCardActivity.class);
         startActivity(i);
         finish();
-
     }
-
 
     public class UserGetCodeTask extends AsyncTask<Void, Void, Boolean> {
 
         private final String clave;
-
-
         public UserGetCodeTask(String clave) {
             this.clave = clave;
         }
@@ -121,25 +103,9 @@ public class ActiveCardStep2codeActivity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
 
-            WebService webService = new WebService();
-            Utils utils = new Utils();
-            SoapObject response;
-            try {
                 String responseCode;
-                String responseMessage = "";
-
-
-                HashMap<String, String> map = new HashMap<String, String>();
-                map.put("usuarioApi", Constants.WEB_SERVICES_USUARIOWS);
-                map.put("passwordApi", Constants.WEB_SERVICES_PASSWORDWS);
-                map.put("usuarioId", Session.getUserId());
-                map.put("pin", clave);
-
-
-                response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_NAME_VALID_CODE, Constants.REGISTRO_UNIFICADO);
+                SoapObject response = ActiveCardController.getCode(clave);
                 responseCode = response.getProperty("codigoRespuesta").toString();
-                responseMessage = response.getProperty("mensajeRespuesta").toString();
-
 
                 if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
                     responsetxt = getString(R.string.web_services_response_00);
@@ -187,28 +153,13 @@ public class ActiveCardStep2codeActivity extends AppCompatActivity {
                     responsetxt = getString(R.string.web_services_response_99);
                     serviceStatus = false;
                 }
-                //progressDialogAlodiga.dismiss();
-            } catch (IllegalArgumentException e) {
-                responsetxt = getString(R.string.web_services_response_99);
-                serviceStatus = false;
-                e.printStackTrace();
-                System.err.println(e);
-                return false;
-            } catch (Exception e) {
-                responsetxt = getString(R.string.web_services_response_99);
-                serviceStatus = false;
-                e.printStackTrace();
-                System.err.println(e);
-                return false;
-            }
-            return serviceStatus;
 
+            return serviceStatus;
         }
 
         @Override
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
-            //showProgress(false);
             if (success) {
 
                 if (cout <= 3) {
@@ -218,9 +169,7 @@ public class ActiveCardStep2codeActivity extends AppCompatActivity {
                     Intent i = new Intent(ActiveCardStep2codeActivity.this, FailCodeOperationActivity.class);
                     startActivity(i);
                     finish();
-
                 }
-
 
             } else {
                 edtMobileCode.setText("");
@@ -248,29 +197,8 @@ public class ActiveCardStep2codeActivity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
 
-            WebService webService = new WebService();
-            Utils utils = new Utils();
-
-            try {
-                String responseCode;
-                String responseMessage = "";
-
-
-                Calendar cal = Calendar.getInstance();
-                TimeZone tz = cal.getTimeZone();
-
-                HashMap<String, String> map = new HashMap<String, String>();
-                map.put("userId", Session.getUserId());
-                map.put("card", Utils.aloDesencript(Session.getCardActive().trim()));
-                map.put("timeZone", tz.getID());
-                map.put("status", Constants.ACTIVE_STATUS_ACTIVE);
-
-
-
-                response_ = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_ACTIVE_PROCESS, Constants.ALODIGA);
-                responseCode = response_.getProperty("codigoRespuesta").toString();
-                responseMessage = response_.getProperty("mensajeRespuesta").toString();
-
+                response_ = ActiveCardController.activateCard();
+                String  responseCode = response_.getProperty("codigoRespuesta").toString();
 
                 if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
                     responsetxt = getString(R.string.web_services_response_00);
@@ -330,20 +258,7 @@ public class ActiveCardStep2codeActivity extends AppCompatActivity {
                     responsetxt = getString(R.string.web_services_response_99);
                     serviceStatus = false;
                 }
-                //progressDialogAlodiga.dismiss();
-            } catch (IllegalArgumentException e) {
-                responsetxt = getString(R.string.web_services_response_99);
-                serviceStatus = false;
-                e.printStackTrace();
-                System.err.println(e);
-                return false;
-            } catch (Exception e) {
-                responsetxt = getString(R.string.web_services_response_99);
-                serviceStatus = false;
-                e.printStackTrace();
-                System.err.println(e);
-                return false;
-            }
+
             return serviceStatus;
 
         }
@@ -351,7 +266,6 @@ public class ActiveCardStep2codeActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
-            //showProgress(false);
             if (success) {
                 String numberCard = response_.getProperty("numberCard").toString();
                 Session.setNumberCard(numberCard);
@@ -361,8 +275,6 @@ public class ActiveCardStep2codeActivity extends AppCompatActivity {
                 Intent i = new Intent(ActiveCardStep2codeActivity.this, ActiveCardStep3Activity.class);
                 startActivity(i);
                 finish();
-
-
 
             } else {
                 new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
@@ -379,8 +291,7 @@ public class ActiveCardStep2codeActivity extends AppCompatActivity {
 
 
     protected ArrayList<ObjUserHasProduct> getListProductGeneric(SoapObject response) {
-        //ObjUserHasProduct[] obj2_aux= new ObjUserHasProduct[response.getPropertyCount()-3];
-        //ObjUserHasProduct[] obj2 = new ObjUserHasProduct[response.getPropertyCount()-3];
+
         ArrayList<ObjUserHasProduct> obj2 = new ArrayList<>();
         for (int i = 4; i < response.getPropertyCount()-1; i++) {
             SoapObject obj = (SoapObject) response.getProperty(i);
@@ -395,7 +306,6 @@ public class ActiveCardStep2codeActivity extends AppCompatActivity {
                 object.setNumberCard(Session.getAccountNumber());
             }
             obj2.add(object);
-            //obj2[i-3] = object;
         }
 
         return obj2;

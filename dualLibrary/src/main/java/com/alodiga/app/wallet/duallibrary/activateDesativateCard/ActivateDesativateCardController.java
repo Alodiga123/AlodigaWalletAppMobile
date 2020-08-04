@@ -11,7 +11,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.TimeZone;
 
-public class activateDesativateCardController {
+public class ActivateDesativateCardController {
 
 
      public static SoapObject getStatusCard() {
