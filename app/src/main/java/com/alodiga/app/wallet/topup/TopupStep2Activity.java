@@ -19,28 +19,22 @@ import com.alodiga.app.wallet.adapters.SpinAdapterProductTopup;
 import com.alodiga.app.wallet.adapters.SpinAdapterTransferMoney;
 import com.alodiga.app.wallet.duallibrary.model.ObjTopUpInfos;
 import com.alodiga.app.wallet.duallibrary.model.ObjTransferMoney;
-import com.alodiga.app.wallet.duallibrary.model.ObjUserHasProduct;
+import com.alodiga.app.wallet.duallibrary.topup.TopupController;
+import com.alodiga.app.wallet.duallibrary.utils.CommonController;
 import com.alodiga.app.wallet.duallibrary.utils.Constants;
+import com.alodiga.app.wallet.duallibrary.utils.Session;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
-import com.alodiga.app.wallet.duallibrary.utils.Session;
-import com.alodiga.app.wallet.duallibrary.utils.Utils;
-import com.alodiga.app.wallet.duallibrary.utils.WebService;
 
 import org.ksoap2.serialization.SoapObject;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 
 
 public class TopupStep2Activity extends AppCompatActivity {
 
     static SoapObject response;
     static ProgressDialogAlodiga progressDialogAlodiga;
-    private static String stringResponse = "";
     private static Spinner spinnerProduct, spinnerProductPago;
     String datosRespuesta = "";
-    //private ObjCountry objCountry;
     TextView range, product, operator;
     EditText number;
     ObjTopUpInfos objTopUpInfosSelect;
@@ -48,7 +42,6 @@ public class TopupStep2Activity extends AppCompatActivity {
     private boolean serviceStatus;
     private ProcessTopup2 mAuthTask = null;
     private Button next, backToLoginBtn;
-    //String tipo="1";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,22 +64,17 @@ public class TopupStep2Activity extends AppCompatActivity {
         //Spinner producto a debitar
         new Thread(new Runnable() {
             public void run() {
-                try {
-                    String responseCode = null;
-                    WebService webService = new WebService();
-                    HashMap<String, String> map = new HashMap<String, String>();
-                    map.put("userId", Session.getUserId());
-                    response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_NAME_GET_PRODUCT_TOPUP, Constants.ALODIGA);
-                    stringResponse = response.toString();
-                    responseCode = response.getProperty("codigoRespuesta").toString();
-                    datosRespuesta = response.getProperty("mensajeRespuesta").toString();
+
+                try{
+                    response = TopupController.getProductDeb();
+                    String responseCode = response.getProperty("codigoRespuesta").toString();
                     serviceAnswer(responseCode);
 
                     if (serviceStatus) {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                ObjTransferMoney[] listSpinner_product = getListProduct(response);
+                                ObjTransferMoney[] listSpinner_product = TopupController.getListProduct(response);
                                 SpinAdapterTransferMoney spinAdapterProduct;
                                 spinAdapterProduct = new SpinAdapterTransferMoney(getApplicationContext(), android.R.layout.simple_spinner_item, listSpinner_product);
                                 spinnerProductPago.setAdapter(spinAdapterProduct);
@@ -136,22 +124,9 @@ public class TopupStep2Activity extends AppCompatActivity {
 
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
                     if (!s.toString().matches("^\\ (\\d{1,3}(\\,\\d{3})*|(\\d+))(\\.\\d{2})?$")) {
-                        String userInput = "" + s.toString().replaceAll("[^\\d]", "");
-                        StringBuilder cashAmountBuilder = new StringBuilder(userInput);
-
-                        while (cashAmountBuilder.length() > 3 && cashAmountBuilder.charAt(0) == '0') {
-                            cashAmountBuilder.deleteCharAt(0);
-                        }
-                        while (cashAmountBuilder.length() < 3) {
-                            cashAmountBuilder.insert(0, '0');
-                        }
-                        cashAmountBuilder.insert(cashAmountBuilder.length() - 2, '.');
-                        cashAmountBuilder.insert(0, ' ');
-
-                        number.setText(cashAmountBuilder.toString());
-                        // keeps the cursor always to the right
-                        Selection.setSelection(number.getText(), cashAmountBuilder.toString().length());
-
+                        StringBuilder getDecimal = CommonController.setDecimal(s);
+                        number.setText(getDecimal.toString());
+                        Selection.setSelection(number.getText(), getDecimal.toString().length());
                     }
 
                 }
@@ -236,12 +211,10 @@ public class TopupStep2Activity extends AppCompatActivity {
         if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
             responsetxt = getString(R.string.web_services_response_00);
             serviceStatus = true;
-            //return serviceStatus;
 
         } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_DATOS_INVALIDOS)) {
             responsetxt = getString(R.string.web_services_response_01);
             serviceStatus = false;
-
         } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CONTRASENIA_EXPIRADA)) {
             responsetxt = getString(R.string.web_services_response_03);
             serviceStatus = false;
@@ -263,16 +236,12 @@ public class TopupStep2Activity extends AppCompatActivity {
         } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_TRANSACTION_AMOUNT_LIMIT)) {
             responsetxt = getString(R.string.web_services_response_30);
             serviceStatus = false;
-
         } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_TRANSACTION_MAX_NUMBER_BY_ACCOUNT)) {
             responsetxt = getString(R.string.web_services_response_31);
             serviceStatus = false;
-
-
         } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_TRANSACTION_MAX_NUMBER_BY_CUSTOMER)) {
             responsetxt = getString(R.string.web_services_response_32);
             serviceStatus = false;
-
 
         } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USER_HAS_NOT_BALANCE)) {
             responsetxt = getString(R.string.web_services_response_33);
@@ -312,39 +281,6 @@ public class TopupStep2Activity extends AppCompatActivity {
 
     }
 
-    protected ObjTransferMoney[] getListProduct(SoapObject response) {
-        ObjTransferMoney[] obj2 = new ObjTransferMoney[response.getPropertyCount() - 3];
-        for (int i = 3; i < response.getPropertyCount(); i++) {
-            SoapObject obj = (SoapObject) response.getProperty(i);
-            ObjTransferMoney object = new ObjTransferMoney(obj.getProperty("id").toString(), obj.getProperty("name").toString() + " - " + obj.getProperty("currentBalance").toString(), obj.getProperty("currentBalance").toString());
-            obj2[i - 3] = object;
-        }
-
-        return obj2;
-    }
-
-    protected ArrayList<ObjUserHasProduct> getListProductGeneric(SoapObject response) {
-        //ObjUserHasProduct[] obj2_aux= new ObjUserHasProduct[response.getPropertyCount()-3];
-        //ObjUserHasProduct[] obj2 = new ObjUserHasProduct[response.getPropertyCount()-3];
-        ArrayList<ObjUserHasProduct> obj2 = new ArrayList<>();
-        for (int i = 3; i < response.getPropertyCount(); i++) {
-            SoapObject obj = (SoapObject) response.getProperty(i);
-            String propiedad = response.getProperty(i).toString();
-            ObjUserHasProduct object = new ObjUserHasProduct(obj.getProperty("id").toString(), obj.getProperty("name").toString(), obj.getProperty("currentBalance").toString(), obj.getProperty("symbol").toString(),obj.getProperty("isPayTopUp").toString());
-            if (object.getName().equals("Tarjeta Prepagada") || object.getName().equals("Prepaid Card") ){
-                Session.setAffiliatedCard(Boolean.parseBoolean(Session.getPrepayCardAsociate()));
-                object.setNumberCard(Session.getNumberCard());
-            }else{
-                object.setNumberCard(Session.getAccountNumber());
-            }
-
-            obj2.add(object);
-            //obj2[i-3] = object;
-        }
-
-        return obj2;
-    }
-
     public class ProcessTopup2 extends AsyncTask<Void, Void, Boolean> {
 
 
@@ -361,38 +297,14 @@ public class TopupStep2Activity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
 
-            WebService webService = new WebService();
-            Utils utils = new Utils();
-
-            try {
-
                 boolean availableBalance = true;
                 String responseCode;
-                String responseMessage = "";
 
-
+                try{
                 if (availableBalance) {
-                    HashMap<String, String> map = new HashMap<String, String>();
-                    map.put("emailUser", Session.getEmail());
-                    map.put("productId", productid);
-                    map.put("cryptogramUser", "1");
-                    map.put("destinationNumber", Utils.processPhone(Session.getNumberDestinationTopup()));
-                    map.put("senderNumber", Utils.processPhone(Session.getPhonenumberTopup()));
 
-                    if (isOR) {
-                        map.put("skudId", Session.getObjIsOpenRangeTopup().getSkuid());
-                        map.put("amountRecharge", Session.getDestinationAmountTopup());
-                        map.put("amountPayment", Session.getDestinationAmountTopup());
-                    } else {
-                        map.put("skudId", objTopUpInfosS.getSkuid());
-                        map.put("amountRecharge", objTopUpInfosS.getDenomination());
-                        map.put("amountPayment", objTopUpInfosS.getDenomination());
-                    }
-
-                    response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_NAME_SAVE_TOPUP, Constants.ALODIGA);
+                    response = TopupController.saveTopup(isOR,productid,objTopUpInfosS);
                     responseCode = response.getProperty("codigoRespuesta").toString();
-                    responseMessage = response.getProperty("mensajeRespuesta").toString();
-
 
                     if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
 
@@ -471,7 +383,6 @@ public class TopupStep2Activity extends AppCompatActivity {
                     responsetxt = getString(R.string.insuficient_balance);
                     serviceStatus = false;
                 }
-                //progressDialogAlodiga.dismiss();
             } catch (IllegalArgumentException e) {
                 responsetxt = getString(R.string.web_services_response_99);
                 serviceStatus = false;
@@ -500,8 +411,7 @@ public class TopupStep2Activity extends AppCompatActivity {
             if (success) {
 
                 Session.setOperationTopup(response.getProperty("idTransaction").toString());
-                Session.setObjUserHasProducts(getListProductGeneric(response));
-
+                Session.setObjUserHasProducts(TopupController.getListProductGeneric(response));
 
                 Intent show;
                 show = new Intent(getApplicationContext(), TopupStep3Activity.class);

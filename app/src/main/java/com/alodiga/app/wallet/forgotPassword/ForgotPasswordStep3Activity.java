@@ -16,14 +16,12 @@ import androidx.fragment.app.FragmentManager;
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.duallibrary.utils.Constants;
 import com.alodiga.app.wallet.duallibrary.utils.Utils;
-import com.alodiga.app.wallet.duallibrary.utils.WebService;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
-import com.alodiga.app.wallet.duallibrary.utils.Session;
 
 import org.ksoap2.serialization.SoapObject;
 
-import java.util.HashMap;
+import static com.alodiga.app.wallet.duallibrary.forgotPassword.ForgotPasswordController.changePasswordForgot;
 
 public class ForgotPasswordStep3Activity extends AppCompatActivity {
     private ProgressBar progressBar;
@@ -84,17 +82,6 @@ public class ForgotPasswordStep3Activity extends AppCompatActivity {
             }
         });
     }
-
-
-    /*public void onBackPressed() {
-        super.onBackPressed();
-        fragmentManager
-                .beginTransaction()
-                .setCustomAnimations(R.anim.left_enter, R.anim.right_out)
-                .replace(R.id.frameContainer, new ForgotPasswordStep2Fragment(),
-                        Utils.ForgotPasswordStep2_Fragment).commit();
-    }*/
-
 
     public void evchangePassword()
     {
@@ -161,26 +148,14 @@ public class ForgotPasswordStep3Activity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
 
-            WebService webService = new WebService();
-            Utils utils = new Utils();
-
-            try {
-
                 boolean availableBalance = true;
-                String responseCode;
-                String responseMessage = "";
 
-
+                try{
                 if (availableBalance) {
-                    HashMap<String, String> map = new HashMap<String, String>();
-                    map.put("usuarioApi", Constants.WEB_SERVICES_USUARIOWS);
-                    map.put("passwordApi", Constants.WEB_SERVICES_PASSWORDWS);
-                    map.put("phoneOrEmail", Session.getForgotData());
-                    map.put("credencial", key);
 
-                    response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_CHANGE_PASSWORD_FORGOT, Constants.REGISTRO_UNIFICADO);
-                    responseCode = response.getProperty("codigoRespuesta").toString();
-                    responseMessage = response.getProperty("mensajeRespuesta").toString();
+                    response = changePasswordForgot(key);
+                    String responseCode = response.getProperty("codigoRespuesta").toString();
+                    String responseMessage = response.getProperty("mensajeRespuesta").toString();
 
                     if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
 
@@ -277,14 +252,11 @@ public class ForgotPasswordStep3Activity extends AppCompatActivity {
             mAuthTask = null;
             if (success) {
 
-
                 Intent i = new Intent(ForgotPasswordStep3Activity.this, ForgotPasswordStep4Activity.class);
                 startActivity(i);
                 finish();
 
-
             } else {
-
 
                 new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                         responsetxt);

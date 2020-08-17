@@ -60,7 +60,6 @@ public class RechargeWithCardStep5Activity extends AppCompatActivity {
         });
 
 
-
         btnShareInformation.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 //updateProduct();

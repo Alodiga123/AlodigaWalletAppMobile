@@ -31,25 +31,28 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.alodiga.app.R;
-import com.alodiga.app.wallet.forgotPassword.ForgotPasswordStep1Fragment;
-import com.alodiga.app.wallet.main.MainActivity;
+import com.alodiga.app.wallet.duallibrary.login.LoginController;
 import com.alodiga.app.wallet.duallibrary.model.ObjDireccion;
 import com.alodiga.app.wallet.duallibrary.model.ObjUserHasProduct;
-import com.alodiga.app.wallet.register.RegisterStep1Fragment;
-import com.alodiga.app.wallet.securityQuestion.SecurityQuestionStep1Fragment;
 import com.alodiga.app.wallet.duallibrary.utils.Constants;
-import com.alodiga.app.wallet.utils.CustomToast;
-import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
 import com.alodiga.app.wallet.duallibrary.utils.Session;
 import com.alodiga.app.wallet.duallibrary.utils.Utils;
 import com.alodiga.app.wallet.duallibrary.utils.WebService;
+import com.alodiga.app.wallet.forgotPassword.ForgotPasswordStep1Fragment;
+import com.alodiga.app.wallet.main.MainActivity;
+import com.alodiga.app.wallet.register.RegisterStep1Fragment;
+import com.alodiga.app.wallet.securityQuestion.SecurityQuestionStep1Fragment;
+import com.alodiga.app.wallet.utils.CustomToast;
+import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
 
 import org.ksoap2.serialization.SoapObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static com.alodiga.app.wallet.duallibrary.login.LoginController.getValueFromResponseJson;
+import static com.alodiga.app.wallet.duallibrary.login.LoginController.setElementInitialSession;
 
 public class LoginFragment extends Fragment implements OnClickListener {
     static ProgressDialogAlodiga progressDialogAlodiga;
@@ -65,7 +68,6 @@ public class LoginFragment extends Fragment implements OnClickListener {
     String nameSession = "";
     String name;
     String lastName;
-    String lastNameSession = "";
     String phoneNumberSession = "";
     String emailSession = "";
     String alodigaBalanceSession = "";
@@ -99,9 +101,7 @@ public class LoginFragment extends Fragment implements OnClickListener {
         String litaProd = "respuestaListadoProductos=";
         String isTopup = "isPayTopUP=";
 
-
-
-        for (int i = 1; i < getLenghtFromResponseJson(litaProd, response); i++) {
+        for (int i = 1; i < LoginController.getLenghtFromResponseJson(litaProd, response); i++) {
             ObjUserHasProduct objUserHasProduct = new ObjUserHasProduct(response.split(elementgetId)[i].split(";")[0], response.split(elementGetName)[i].split(";")[0], response.split(elementGetCurrentBalance)[i].split(";")[0], response.split(elementGetSymbol)[i].split(";")[0],response.split(isTopup)[i].split(";")[0]);
 
             if (objUserHasProduct.getName().equals("Tarjeta Prepagada") || objUserHasProduct.getName().equals("Prepaid Card") ){
@@ -117,14 +117,6 @@ public class LoginFragment extends Fragment implements OnClickListener {
         return objUserHasProducts;
     }
 
-    private static String getValueFromResponseJson(String v, String response) {
-        return (response.split(v + "=")[1].split(";")[0]);
-    }
-
-    private static Integer getLenghtFromResponseJson(String v, String response) {
-        return (response.split(v).length);
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.login_layout, container, false);
@@ -134,7 +126,6 @@ public class LoginFragment extends Fragment implements OnClickListener {
         return view;
     }
 
-    // Initiate Views
     private void initViews() {
         fragmentManager = getActivity().getSupportFragmentManager();
         emailid = view.findViewById(R.id.login_emailid);
@@ -159,34 +150,8 @@ public class LoginFragment extends Fragment implements OnClickListener {
             signUp.setTextColor(csl);
         } catch (Exception e) {
         }
-
-        /*emailid.setText("antonioarcangelgomez@gmail.com");
-		password.setText("Kg0m3z$11");*/
-		/*emailid.setText("kerwin2821@gmail.com");
-		password.setText("Kg0m3z$11");*/
-        //emailid.setText("adira0411@gmail.com");
-
-        //password.setText("123456");
-        //password.setText("Alo$1234");
-
-        //emailid.setText("jcalderaso@gmail.com");
-        //password.setText("Alo#1234");
-
         emailid.setText("kerwin2821@gmail.com");
         password.setText("123456");
-
-        //emailid.setText("kerwin2821@gmail.com");
-        //password.setText("Alo#1234");
-
-        //emailid.setText("gomezvadriana@gmail.com");
-        //password.setText("Alo#1234");
-
-        //emailid.setText("dalonso@alodiga.com");
-        //password.setText("Alo#1234");
-
-        //emailid.setText("elmoi_88@hotmail.com");
-        //password.setText("Alo$1234");
-
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
@@ -331,7 +296,6 @@ public class LoginFragment extends Fragment implements OnClickListener {
 
     public void entrar() {
 
-
         progressDialogAlodiga = new ProgressDialogAlodiga(getContext(), getString(R.string.loading_session));
         progressDialogAlodiga.show();
         mAuthTask = new UserLoginTask(getEmailId, getPassword);
@@ -357,18 +321,8 @@ public class LoginFragment extends Fragment implements OnClickListener {
             SoapObject response;
             try {
 
-               String responseCode;
-                String responseMessage = "";
-
-                HashMap<String, String> map = new HashMap<String, String>();
-                map.put("usuarioApi", Constants.WEB_SERVICES_USUARIOWS);
-                map.put("passwordApi", Constants.WEB_SERVICES_PASSWORDWS);
-                map.put("email", mEmail);
-                map.put("credencial", mPassword);
-                map.put("ip", "192.168.3.20");
-                response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_NAME_LOGIN_APP_MOBILE, Constants.REGISTRO_UNIFICADO);
-                responseCode = response.getProperty("codigoRespuesta").toString();
-                responseMessage = response.getProperty("mensajeRespuesta").toString();
+                response = LoginController.login(mEmail,mPassword);
+                String responseCode = response.getProperty("codigoRespuesta").toString();
 
                 if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO) || responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_PRIMER_INGRESO)) {
                     String res = response.getProperty("datosRespuesta").toString();
@@ -415,12 +369,9 @@ public class LoginFragment extends Fragment implements OnClickListener {
                         }
                     }
 
-
-
                     Session.setAccountNumber(accountNumberSession);
                     Session.setAccountNumber_aux(accountNumberSession);
                     Session.setPrepayCardAsociate(prepayCardAsociate);
-
 
                     userHasProducts = getElementsProduct("", res);
 
@@ -469,7 +420,6 @@ public class LoginFragment extends Fragment implements OnClickListener {
                     responsetxt = getString(R.string.web_services_response_99);
                     serviceStatus = false;
                 }
-                //progressDialogAlodiga.dismiss();
             } catch (IllegalArgumentException e) {
                 responsetxt = getString(R.string.web_services_response_99);
                 serviceStatus = false;
@@ -484,19 +434,14 @@ public class LoginFragment extends Fragment implements OnClickListener {
                 return false;
             }
             return serviceStatus;
-         //return true;
-
         }
 
         @Override
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
-            //showProgress(false);
             if (success) {
                 emailid.setText("");
                 password.setText("");
-
-                //setElementInitialSession("prueba", "0414", "adi123", "0.0", "00", "000", "379", "000", userHasProducts, "0", "00", "00", "0000");
 
                 setElementInitialSession(nameSession, phoneNumberSession, emailSession, alodigaBalanceSession, accountNumberSession, alocoinsBalanceSesssion, userId, healthCareCoinsBalanceSession, userHasProducts, cumplimient, prepayCard, prepayCardAsociate, numberCard);
                 Intent intent = new Intent(getActivity(), MainActivity.class);
@@ -521,25 +466,6 @@ public class LoginFragment extends Fragment implements OnClickListener {
             showProgress(false);
         }
 
-
-        private void setElementInitialSession(String nameSession, String phoneNumberSession, String emailSession, String alodigaBalanceSession, String accountNumberSession, String alocoinsBalanceSesssion, String userId, String healthCareCoinsBalanceSession, ArrayList<ObjUserHasProduct> objUserHasProducts, String cumplimient, String prepayCard, String prepayCardAsociate, String numberCard) {
-
-            Session.setObjUserHasProducts(objUserHasProducts);
-            Session.setUsername(nameSession);
-            Session.setPhoneNumber(phoneNumberSession);
-            Session.setEmail(emailSession);
-            Session.setAlodigaBalance(alodigaBalanceSession);
-            Session.setAccountNumber(accountNumberSession);
-            Session.setAlocoinsBalance(alocoinsBalanceSesssion);
-            Session.setUserId(userId);
-            Session.setHealthCareCoinsBalance(healthCareCoinsBalanceSession);
-            Session.setCumplimient(cumplimient);
-            Session.setPrepayCard(prepayCard);
-            Session.setPrepayCardAsociate(prepayCardAsociate);
-            Session.setNumberCard(numberCard);
-            Session.setNumberCard_aux(numberCard);
-        }
     }
-
 
 }

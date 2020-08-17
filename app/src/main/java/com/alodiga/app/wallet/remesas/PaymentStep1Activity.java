@@ -20,7 +20,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.adapters.SpinAdapterGenericRemittence;
 import com.alodiga.app.wallet.adapters.SpinAdapterTransferMoneyRemittence;
-import com.alodiga.app.wallet.main.MainActivity;
 import com.alodiga.app.wallet.duallibrary.model.ObjCountry;
 import com.alodiga.app.wallet.duallibrary.model.ObjCurrency;
 import com.alodiga.app.wallet.duallibrary.model.ObjExchangeRate;
@@ -30,15 +29,27 @@ import com.alodiga.app.wallet.duallibrary.model.ObjRatePaymentNetwork;
 import com.alodiga.app.wallet.duallibrary.model.ObjRemittencePay;
 import com.alodiga.app.wallet.duallibrary.model.ObjResumeRemittence;
 import com.alodiga.app.wallet.duallibrary.model.ObjTransferMoney;
+import com.alodiga.app.wallet.duallibrary.remesas.PaymentController;
+import com.alodiga.app.wallet.duallibrary.utils.CommonController;
 import com.alodiga.app.wallet.duallibrary.utils.Constants;
-import com.alodiga.app.wallet.utils.CustomToast;
-import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
 import com.alodiga.app.wallet.duallibrary.utils.Session;
 import com.alodiga.app.wallet.duallibrary.utils.WebService;
+import com.alodiga.app.wallet.main.MainActivity;
+import com.alodiga.app.wallet.utils.CustomToast;
+import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
 
 import org.ksoap2.serialization.SoapObject;
 
 import java.util.HashMap;
+
+import static com.alodiga.app.wallet.duallibrary.remesas.PaymentController.getContryToken;
+import static com.alodiga.app.wallet.duallibrary.remesas.PaymentController.getCorrespondent;
+import static com.alodiga.app.wallet.duallibrary.remesas.PaymentController.getCountry;
+import static com.alodiga.app.wallet.duallibrary.remesas.PaymentController.getDelivery;
+import static com.alodiga.app.wallet.duallibrary.remesas.PaymentController.getProductRemmettence;
+import static com.alodiga.app.wallet.duallibrary.remesas.PaymentController.getRemmittenceResume;
+import static com.alodiga.app.wallet.duallibrary.remesas.PaymentController.getTokenLo;
+import static com.alodiga.app.wallet.duallibrary.remesas.PaymentController.gettoken;
 
 public class PaymentStep1Activity extends AppCompatActivity {
     private static Button next, quote;
@@ -58,19 +69,12 @@ public class PaymentStep1Activity extends AppCompatActivity {
     static String token;
     ObjRemittencePay pay= new ObjRemittencePay();
     ObjResumeRemittence  ObjResume= new ObjResumeRemittence();
-
     ProgressDialogAlodiga progressDialogAlodiga;
-
-
     taskResume mAuthTask;
     taskToken mAuthTask_;
 
-
-
-
     String datosRespuesta = "";
     private static String stringResponse = "";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,15 +108,8 @@ public class PaymentStep1Activity extends AppCompatActivity {
             public void run() {
                 try {
 
-
-
-                    String responseCode = null;
-                    WebService webService = new WebService();
-                    HashMap<String, String> map = new HashMap<String, String>();
-                    map.put("userId", Session.getUserId());
-                    response_reloadcard_source = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_GETPRODUCTSREMETTENCEBYUSER, Constants.ALODIGA);
-                    //stringResponse = response_reloadcard_source.toString();
-                    responseCode = response_reloadcard_source.getProperty("codigoRespuesta").toString();
+                    response_reloadcard_source = getProductRemmettence();
+                    String responseCode = response_reloadcard_source.getProperty("codigoRespuesta").toString();
                     datosRespuesta = response_reloadcard_source.getProperty("mensajeRespuesta").toString();
                     serviceAnswer(responseCode);
 
@@ -120,7 +117,7 @@ public class PaymentStep1Activity extends AppCompatActivity {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                listSpinner_reloadcard_source = getListProduct(response_reloadcard_source);
+                                listSpinner_reloadcard_source = PaymentController.getListProduct(response_reloadcard_source);
                                 SpinAdapterTransferMoneyRemittence spinAdapterProduct;
                                 spinAdapterProduct = new SpinAdapterTransferMoneyRemittence(getApplicationContext(), android.R.layout.simple_spinner_item, listSpinner_reloadcard_source);
                                 reloadcard_source.setAdapter(spinAdapterProduct);
@@ -130,7 +127,6 @@ public class PaymentStep1Activity extends AppCompatActivity {
                         new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                                 responsetxt);
                     }
-
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -145,24 +141,15 @@ public class PaymentStep1Activity extends AppCompatActivity {
         new Thread(new Runnable() {
             public void run() {
                 try {
-                    String responseCode = null;
-                    WebService webService = new WebService();
-                    HashMap<String, String> map = new HashMap<String, String>();
-                    map.put("login", Constants.USUARIO);
-                    map.put("password", Constants.PASSWORD);
-                    response_destination_country = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_LOGIN,Constants.REMITTANCE, Constants.CONSTANT_WSREMITTENCEMOBILE);
-                    //stringResponse = response_destination_country.toString();
-                    responseCode = response_destination_country.getProperty("code").toString();
+
+                    response_destination_country = getCountry();
+                    String responseCode = response_destination_country.getProperty("code").toString();
                     serviceAnswer(responseCode);
 
                     if(serviceStatus){
                         token= response_destination_country.getProperty("token").toString();
 
-                        HashMap<String, String> map_ = new HashMap<String, String>();
-                        map_.put("token", token);
-
-                        response_destination_country = WebService.invokeGetAutoConfigString(map_, Constants.WEB_SERVICES_METHOD_COUNTRIES, Constants.REMITTANCE,Constants.CONSTANT_WSREMITTENCEMOBILE);
-                        //stringResponse = response_destination_country.toString();
+                        response_destination_country =  getContryToken( token);
                         responseCode = response_destination_country.getProperty("code").toString();
                         serviceAnswer(responseCode);
 
@@ -170,7 +157,7 @@ public class PaymentStep1Activity extends AppCompatActivity {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    listSpinner_destination_country = getListGeneric_contry(response_destination_country);
+                                    listSpinner_destination_country = PaymentController.getListGeneric_contry(response_destination_country);
                                     SpinAdapterGenericRemittence spinAdapter;
                                     spinAdapter = new SpinAdapterGenericRemittence(getApplicationContext(), android.R.layout.simple_spinner_item, listSpinner_destination_country);
                                     destination_country.setAdapter(spinAdapter);
@@ -204,24 +191,14 @@ public class PaymentStep1Activity extends AppCompatActivity {
 
                 progressDialogAlodigaRemmetenceCountry.show();
 
-
-
                 final ObjGenericObject pais = (ObjGenericObject) destination_country.getSelectedItem();
-                //Toast.makeText(getApplicationContext(),"id" + pais.getId() ,Toast.LENGTH_SHORT).show();
 
                 //Correspondent
                 new Thread(new Runnable() {
                     public void run() {
                         try {
-                            String responseCode = null;
-                            WebService webService = new WebService();
-                            HashMap<String, String> map = new HashMap<String, String>();
-                            map.put("login", Constants.USUARIO);
-                            map.put("password", Constants.PASSWORD);
-
-                            response_Correspondent = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_LOGIN, Constants.REMITTANCE,Constants.CONSTANT_WSREMITTENCEMOBILE);
-                            //stringResponse = response_Correspondent.toString();
-                            responseCode = response_Correspondent.getProperty("code").toString();
+                            response_Correspondent = getCorrespondent();
+                            String responseCode = response_Correspondent.getProperty("code").toString();
                             serviceAnswer(responseCode);
 
                             if(serviceStatus){
@@ -231,7 +208,6 @@ public class PaymentStep1Activity extends AppCompatActivity {
                                 map_c.put("token", token);
                                 map_c.put("countryId", pais.getId());
                                 response_Correspondent = WebService.invokeGetAutoConfigString(map_c, Constants.WEB_SERVICES_METHOD_PAYMENTBYCONTRY, Constants.REMITTANCE, Constants.CONSTANT_WSREMITTENCEMOBILE);
-                                //stringResponse = response_Correspondent.toString();
                                 responseCode = response_Correspondent.getProperty("code").toString();
 
                                 serviceAnswer(responseCode);
@@ -240,7 +216,7 @@ public class PaymentStep1Activity extends AppCompatActivity {
                                     runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
-                                            listSpinner_Correspondent = getListGeneric_contry(response_Correspondent);
+                                            listSpinner_Correspondent = PaymentController.getListGeneric_contry(response_Correspondent);
                                             SpinAdapterGenericRemittence spinAdapter;
                                             spinAdapter = new SpinAdapterGenericRemittence(getApplicationContext(), android.R.layout.simple_spinner_item, listSpinner_Correspondent);
                                             Correspondent.setAdapter(spinAdapter);
@@ -275,31 +251,19 @@ public class PaymentStep1Activity extends AppCompatActivity {
                 delivery_method.setEnabled(true);
 
                 final ObjGenericObject correspondent = (ObjGenericObject) Correspondent.getSelectedItem();
-                //Toast.makeText(getApplicationContext(),"id" + pais.getId() ,Toast.LENGTH_SHORT).show();
 
                 //Correspondent
                 new Thread(new Runnable() {
                     public void run() {
                         try {
-                            String responseCode = null;
-                            WebService webService = new WebService();
-                            HashMap<String, String> map = new HashMap<String, String>();
-                            map.put("login", Constants.USUARIO);
-                            map.put("password", Constants.PASSWORD);
 
-                            response_delivery_method = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_LOGIN, Constants.REMITTANCE,Constants.CONSTANT_WSREMITTENCEMOBILE);
-                            //stringResponse = response_delivery_method.toString();
-                            responseCode = response_delivery_method.getProperty("code").toString();
+                            response_delivery_method = gettoken();
+                            String responseCode = response_delivery_method.getProperty("code").toString();
                             serviceAnswer(responseCode);
 
                             if(serviceStatus){
                                 token= response_delivery_method.getProperty("token").toString();
-
-                                HashMap<String, String> map_c = new HashMap<String, String>();
-                                map_c.put("token", token);
-                                map_c.put("paymentNetworkId", correspondent.getId());
-                                response_delivery_method = WebService.invokeGetAutoConfigString(map_c, Constants.WEB_SERVICES_METHOD_LOADDELIVERYFORMBYPAYMENTNETWORK, Constants.REMITTANCE, Constants.CONSTANT_WSREMITTENCEMOBILE);
-                                //stringResponse = response_delivery_method.toString();
+                                response_delivery_method = getDelivery( token,  correspondent);
                                 responseCode = response_delivery_method.getProperty("code").toString();
 
                                 serviceAnswer(responseCode);
@@ -308,7 +272,7 @@ public class PaymentStep1Activity extends AppCompatActivity {
                                     runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
-                                            listSpinner_delivery_method = getListGeneric_contry(response_delivery_method);
+                                            listSpinner_delivery_method = PaymentController.getListGeneric_contry(response_delivery_method);
                                             SpinAdapterGenericRemittence spinAdapter;
                                             spinAdapter = new SpinAdapterGenericRemittence(getApplicationContext(), android.R.layout.simple_spinner_item, listSpinner_delivery_method);
                                             delivery_method.setAdapter(spinAdapter);
@@ -349,22 +313,9 @@ public class PaymentStep1Activity extends AppCompatActivity {
 
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (!s.toString().matches("^\\ (\\d{1,3}(\\,\\d{3})*|(\\d+))(\\.\\d{2})?$")) {
-                    String userInput = "" + s.toString().replaceAll("[^\\d]", "");
-                    StringBuilder cashAmountBuilder = new StringBuilder(userInput);
-
-                    while (cashAmountBuilder.length() > 3 && cashAmountBuilder.charAt(0) == '0') {
-                        cashAmountBuilder.deleteCharAt(0);
-                    }
-                    while (cashAmountBuilder.length() < 3) {
-                        cashAmountBuilder.insert(0, '0');
-                    }
-                    cashAmountBuilder.insert(cashAmountBuilder.length() - 2, '.');
-                    cashAmountBuilder.insert(0, ' ');
-
-                    amount.setText(cashAmountBuilder.toString());
-                    // keeps the cursor always to the right
-                    Selection.setSelection(amount.getText(), cashAmountBuilder.toString().length());
-
+                    StringBuilder getDecimal = CommonController.setDecimal(s);
+                    amount.setText(getDecimal.toString());
+                    Selection.setSelection(amount.getText(), getDecimal.toString().length());
                 }
 
             }
@@ -374,11 +325,7 @@ public class PaymentStep1Activity extends AppCompatActivity {
             public void onClick(View v) {
 
                 ObjTransferMoney reloadcard = (ObjTransferMoney) reloadcard_source.getSelectedItem();
-                //float realoadcard_amount=  ;
-
                 String amount_= amount.getText().toString();
-                //float amount_float =  ;
-
 
                 if (amount_.equals("") || amount_.length() == 0) {
                     new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
@@ -423,8 +370,6 @@ public class PaymentStep1Activity extends AppCompatActivity {
         txtTableLayout.setVisibility(View.INVISIBLE);
         next.setVisibility(View.INVISIBLE);
 
-
-
         progressDialogAlodiga = new ProgressDialogAlodiga(this, getString(R.string.loading));
         progressDialogAlodiga.show();
         mAuthTask_ = new taskToken();
@@ -434,11 +379,6 @@ public class PaymentStep1Activity extends AppCompatActivity {
 
 
     public void Thread2(String token){
-        //progressDialogAlodiga = new ProgressDialogAlodiga(this, getString(R.string.loading));
-        //progressDialogAlodiga.show();
-
-
-
         mAuthTask = new taskResume(token);
         mAuthTask.execute((Void) null);
     }
@@ -456,7 +396,6 @@ public class PaymentStep1Activity extends AppCompatActivity {
         if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO_) || responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
             responsetxt = getString(R.string.web_services_response_00);
             serviceStatus = true;
-            //return serviceStatus;
 
         } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_AUTHENTICATION_FAILED)) {
             responsetxt = getString(R.string.web_services_response_01_Remittence);
@@ -483,56 +422,15 @@ public class PaymentStep1Activity extends AppCompatActivity {
         }
     }
 
-    protected ObjGenericObject[] getListGeneric(SoapObject response) {
-
-        ObjGenericObject[] obj2 = new ObjGenericObject[response.getPropertyCount() - 3];
-
-        for (int i = 3; i < response.getPropertyCount(); i++) {
-            SoapObject obj = (SoapObject) response.getProperty(i);
-            String propiedad = response.getProperty(i).toString();
-            ObjGenericObject object = new ObjGenericObject(obj.getProperty("name").toString(), obj.getProperty("id").toString());
-            obj2[i - 3] = object;
-        }
-
-        return obj2;
-    }
-
-    protected ObjGenericObject[] getListGeneric_contry(SoapObject response) {
-
-        ObjGenericObject[] obj2 = new ObjGenericObject[response.getPropertyCount() - 2];
-
-        for (int i = 2; i < response.getPropertyCount(); i++) {
-            SoapObject obj = (SoapObject) response.getProperty(i);
-            String propiedad = response.getProperty(i).toString();
-            ObjGenericObject object = new ObjGenericObject(obj.getProperty("name").toString(), obj.getProperty("id").toString());
-            obj2[i - 2] = object;
-        }
-
-        return obj2;
-    }
-
-
-
     public class taskToken extends AsyncTask<Void, Void, Boolean> {
 
         @Override
         protected Boolean doInBackground(Void... params) {
 
-            WebService webService = new WebService();
-
-            try {
-                String responseCode;
-                String responseMessage = "";
-
-                HashMap<String, String> map = new HashMap<String, String>();
-                map.put("login", Constants.USUARIO);
-                map.put("password", Constants.PASSWORD);
-
-                response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_LOGIN, Constants.REMITTANCE, Constants.CONSTANT_WSREMITTENCEMOBILE);
+            try{
+                response = getTokenLo();
                 stringResponse = response.toString();
-                responseCode = response.getProperty("code").toString();
-                //serviceAnswer(responseCode);
-
+                String responseCode = response.getProperty("code").toString();
 
                 if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO_) || responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
                     responsetxt = getString(R.string.web_services_response_00);
@@ -605,9 +503,6 @@ public class PaymentStep1Activity extends AppCompatActivity {
     }
 
 
-
-
-
     public class taskResume extends AsyncTask<Void, Void, Boolean> {
 
         private final String token;
@@ -619,34 +514,15 @@ public class PaymentStep1Activity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
 
-
-            WebService webService = new WebService();
-
             pay.setDestination_country((ObjGenericObject) destination_country.getSelectedItem());
             pay.setCorrespondent((ObjGenericObject) Correspondent.getSelectedItem());
             pay.setDelivery_method((ObjGenericObject) delivery_method.getSelectedItem());
             pay.setAmount_(amount.getText().toString());
             pay.setReloadcard_source((ObjTransferMoney) reloadcard_source.getSelectedItem());
 
-
-            try {
-                String responseCode;
-                String responseMessage = "";
-
-                HashMap<String, String> map = new HashMap<String, String>();
-                map.put("token", token);
-                map.put("countrySourceId", Session.getDireccionUsuario().getPaisId());
-                map.put("countryId", pay.getDestination_country().getId());
-                map.put("ratePaymentNetworkId", pay.getDelivery_method().getId());
-                map.put("realAmountToSend", pay.getAmount_());
-                map.put("isIncludeRate", String.valueOf(pay.getRate_included()));
-
-
-                response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_REMETTENCE_SUMARY, Constants.REMITTANCE, Constants.CONSTANT_WSREMITTENCEMOBILE);
-                responseCode = response.getProperty("code").toString();
-                //responseMessage = response.getProperty("message").toString();
-
-
+            try{
+                response = getRemmittenceResume( token,  pay);
+                String responseCode = response.getProperty("code").toString();
 
                 if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO_) || responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
                     responsetxt = getString(R.string.web_services_response_00);
@@ -833,15 +709,6 @@ public class PaymentStep1Activity extends AppCompatActivity {
     }
 
 
-    protected ObjTransferMoney[] getListProduct(SoapObject response) {
-        ObjTransferMoney[] obj2 = new ObjTransferMoney[response.getPropertyCount() - 3];
-        for (int i = 3; i < response.getPropertyCount(); i++) {
-            SoapObject obj = (SoapObject) response.getProperty(i);
-            ObjTransferMoney object = new ObjTransferMoney(obj.getProperty("id").toString(), obj.getProperty("name").toString() + " - " + obj.getProperty("currentBalance").toString(), obj.getProperty("currentBalance").toString());
-            obj2[i - 3] = object;
-        }
 
-        return obj2;
-    }
 
 }

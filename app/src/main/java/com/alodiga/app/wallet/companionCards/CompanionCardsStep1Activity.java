@@ -13,20 +13,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.adapters.AdapterCardProduct;
-import com.alodiga.app.wallet.main.MainActivity;
 import com.alodiga.app.wallet.duallibrary.model.ObjCompanionCards;
 import com.alodiga.app.wallet.duallibrary.utils.Constants;
-import com.alodiga.app.wallet.utils.CustomToast;
-import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
 import com.alodiga.app.wallet.duallibrary.utils.Session;
 import com.alodiga.app.wallet.duallibrary.utils.Utils;
-import com.alodiga.app.wallet.duallibrary.utils.WebService;
+import com.alodiga.app.wallet.main.MainActivity;
+import com.alodiga.app.wallet.utils.CustomToast;
+import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
 
 import org.ksoap2.serialization.SoapObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
+
+import static com.alodiga.app.wallet.duallibrary.companionCards.CompanionCardsController.getListCompanionCards;
 
 
 public class CompanionCardsStep1Activity extends AppCompatActivity {
@@ -58,12 +58,7 @@ public class CompanionCardsStep1Activity extends AppCompatActivity {
             }
         });
 
-
-
-
-
         getList();
-        //set adapter to recyclerview
 
     }
 
@@ -86,20 +81,9 @@ public class CompanionCardsStep1Activity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
 
-            WebService webService = new WebService();
-            Utils utils = new Utils();
-
-            try {
-                String responseCode;
-                String responseMessage = "";
-
-                HashMap<String, String> map = new HashMap<String, String>();
-                map.put("userId", Session.getUserId());
-
-
-                response_ = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_LIST_COMPANION_CARDS, Constants.ALODIGA);
-                responseCode = response_.getProperty("codigoRespuesta").toString();
-
+            try{
+                response_ = getListCompanionCards();
+                String responseCode = response_.getProperty("codigoRespuesta").toString();
 
                 if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
                     responsetxt = getString(R.string.web_services_response_00);
@@ -193,11 +177,9 @@ public class CompanionCardsStep1Activity extends AppCompatActivity {
         @Override
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
-            //showProgress(false);
             if (success) {
 
                 mRecyclerView = findViewById(R.id.idRecyclerView);
-                //mRecyclerView.setHasFixedSize(true);
                 mRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                 mProductList = new ArrayList<ObjCompanionCards>();
                 int resID = getResources().getIdentifier(Session.getSymbolCompanionCards().toLowerCase() , "drawable", getPackageName());

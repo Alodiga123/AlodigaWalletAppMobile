@@ -4,10 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.main.MainActivity;
 
@@ -26,8 +23,6 @@ public class ManualRemovalStep2WelcomeActivity extends AppCompatActivity {
                 show = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(show);
                 finish();
-
-
             }
         });
 
@@ -37,7 +32,6 @@ public class ManualRemovalStep2WelcomeActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent pasIntent = getIntent();
         Intent i = new Intent(ManualRemovalStep2WelcomeActivity.this, MainActivity.class);
         startActivity(i);
         finish();

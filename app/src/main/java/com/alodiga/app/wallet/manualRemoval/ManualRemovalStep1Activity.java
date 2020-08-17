@@ -11,27 +11,20 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.adapters.SpinAdapterBank;
 import com.alodiga.app.wallet.adapters.SpinAdapterPais;
 import com.alodiga.app.wallet.adapters.SpinAdapterProduct;
-import com.alodiga.app.wallet.main.MainActivity;
+import com.alodiga.app.wallet.duallibrary.manualRemoval.ManualRemovalController;
 import com.alodiga.app.wallet.duallibrary.model.ObjGenericObject;
 import com.alodiga.app.wallet.duallibrary.model.ObjTransferMoney;
+import com.alodiga.app.wallet.duallibrary.utils.CommonController;
 import com.alodiga.app.wallet.duallibrary.utils.Constants;
+import com.alodiga.app.wallet.main.MainActivity;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
-import com.alodiga.app.wallet.duallibrary.utils.Session;
-import com.alodiga.app.wallet.duallibrary.utils.Utils;
-import com.alodiga.app.wallet.duallibrary.utils.WebService;
-
 import org.ksoap2.serialization.SoapObject;
-
-import java.util.HashMap;
 
 public class ManualRemovalStep1Activity extends AppCompatActivity {
     static SoapObject response;
@@ -39,8 +32,6 @@ public class ManualRemovalStep1Activity extends AppCompatActivity {
     static ObjTransferMoney[] listSpinner_producto = new ObjTransferMoney[0];
     static ObjGenericObject[] listSpinner_banco = new ObjGenericObject[0];
     static ProgressDialogAlodiga progressDialogAlodiga;
-    private static FragmentManager fragmentManager;
-    private static String stringResponse = "";
     String datosRespuesta = "";
     UserRemovalTask mAuthTask;
     ObjGenericObject getbank;
@@ -76,14 +67,8 @@ public class ManualRemovalStep1Activity extends AppCompatActivity {
         new Thread(new Runnable() {
             public void run() {
                 try {
-                    String responseCode = null;
-                    WebService webService = new WebService();
-                    HashMap<String, String> map = new HashMap<String, String>();
-                    map.put("userId", Session.getUserId());
-                    response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_NAME_GET_COUNTRIES, Constants.ALODIGA);
-                    stringResponse = response.toString();
-                    responseCode = response.getProperty("codigoRespuesta").toString();
-                    datosRespuesta = response.getProperty("mensajeRespuesta").toString();
+                    response = ManualRemovalController.getCountry();
+                    String responseCode = response.getProperty("codigoRespuesta").toString();
                     serviceAnswer(responseCode);
 
                     if (serviceStatus) {
@@ -91,7 +76,7 @@ public class ManualRemovalStep1Activity extends AppCompatActivity {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                listSpinner_pais = getListGeneric(response);
+                                listSpinner_pais = ManualRemovalController.getListGeneric(response);
                                 SpinAdapterPais spinAdapterPais;
                                 spinAdapterPais = new SpinAdapterPais(getApplicationContext(), android.R.layout.simple_spinner_item, listSpinner_pais);
                                 spinner_pais.setAdapter(spinAdapterPais);
@@ -120,27 +105,20 @@ public class ManualRemovalStep1Activity extends AppCompatActivity {
                 spinnerproducto.setAdapter(null);
 
                 final ObjGenericObject pais = (ObjGenericObject) spinner_pais.getSelectedItem();
-                //Toast.makeText(getApplicationContext(),"id" + pais.getId() ,Toast.LENGTH_SHORT).show();
 
                 new Thread(new Runnable() {
                     public void run() {
                         try {
 
-                            String responseCode = null;
-                            WebService webService = new WebService();
-                            HashMap<String, String> map = new HashMap<String, String>();
-                            map.put("countryId", pais.getId());
-                            response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_NAME_GET_BANK, Constants.ALODIGA);
-                            stringResponse = response.toString();
-                            responseCode = response.getProperty("codigoRespuesta").toString();
-                            datosRespuesta = response.getProperty("mensajeRespuesta").toString();
+                            response = ManualRemovalController.getBank(pais);
+                            String responseCode = response.getProperty("codigoRespuesta").toString();
                             serviceAnswer(responseCode);
 
                             if (serviceStatus) {
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        listSpinner_banco = getListGeneric(response);
+                                        listSpinner_banco = ManualRemovalController.getListGeneric(response);
                                         SpinAdapterBank spinAdapterBank;
                                         spinAdapterBank = new SpinAdapterBank(getApplicationContext(), android.R.layout.simple_spinner_item, listSpinner_banco);
                                         spinnerbank.setAdapter(spinAdapterBank);
@@ -171,21 +149,13 @@ public class ManualRemovalStep1Activity extends AppCompatActivity {
 
                 spinnerproducto.setEnabled(true);
                 final ObjGenericObject bank = (ObjGenericObject) spinnerbank.getSelectedItem();
-                //Toast.makeText(getApplicationContext(),"id" + bank.getId() ,Toast.LENGTH_SHORT).show();
 
                 new Thread(new Runnable() {
                     public void run() {
                         try {
 
-                            String responseCode = null;
-                            WebService webService = new WebService();
-                            HashMap<String, String> map = new HashMap<String, String>();
-                            map.put("bankId", bank.getId().trim());
-                            map.put("userId", Session.getUserId().trim());
-                            response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_NAME_GET_PRODUCT, Constants.ALODIGA);
-                            stringResponse = response.toString();
-                            responseCode = response.getProperty("codigoRespuesta").toString();
-                            datosRespuesta = response.getProperty("mensajeRespuesta").toString();
+                            response = ManualRemovalController.getProduct(bank);
+                            String responseCode = response.getProperty("codigoRespuesta").toString();
                             serviceAnswer(responseCode);
 
                             if (serviceStatus) {
@@ -194,7 +164,7 @@ public class ManualRemovalStep1Activity extends AppCompatActivity {
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        listSpinner_producto = getListProduct(response);
+                                        listSpinner_producto = ManualRemovalController.getListProduct(response);
                                         SpinAdapterProduct spinAdapterProduct;
                                         spinAdapterProduct = new SpinAdapterProduct(getApplicationContext(), android.R.layout.simple_spinner_item, listSpinner_producto);
                                         spinnerproducto.setAdapter(spinAdapterProduct);
@@ -231,24 +201,10 @@ public class ManualRemovalStep1Activity extends AppCompatActivity {
 
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (!s.toString().matches("^\\ (\\d{1,3}(\\,\\d{3})*|(\\d+))(\\.\\d{2})?$")) {
-                    String userInput = "" + s.toString().replaceAll("[^\\d]", "");
-                    StringBuilder cashAmountBuilder = new StringBuilder(userInput);
-
-                    while (cashAmountBuilder.length() > 3 && cashAmountBuilder.charAt(0) == '0') {
-                        cashAmountBuilder.deleteCharAt(0);
-                    }
-                    while (cashAmountBuilder.length() < 3) {
-                        cashAmountBuilder.insert(0, '0');
-                    }
-                    cashAmountBuilder.insert(cashAmountBuilder.length() - 2, '.');
-                    cashAmountBuilder.insert(0, ' ');
-
-                    edtAmount.setText(cashAmountBuilder.toString());
-                    // keeps the cursor always to the right
-                    Selection.setSelection(edtAmount.getText(), cashAmountBuilder.toString().length());
-
+                    StringBuilder getDecimal = CommonController.setDecimal(s);
+                    edtAmount.setText(getDecimal.toString());
+                    Selection.setSelection(edtAmount.getText(), getDecimal.toString().length());
                 }
-
             }
         });
 
@@ -264,9 +220,6 @@ public class ManualRemovalStep1Activity extends AppCompatActivity {
                 if (getcuenta.equals("") || getcuenta.length() == 0) {
                     new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                             getString(R.string.recharge_id_invalid));
-                /*} /*else if (getcuenta.length() != 20) {
-                        new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
-                                getString(R.string.recharge_id_invalid_long));*/
                 } else if (getmonto.equals("") || getmonto.length() == 0) {
                     new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                             getString(R.string.amount_info_invalid));
@@ -297,41 +250,12 @@ public class ManualRemovalStep1Activity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent pasIntent = getIntent();
         Intent i = new Intent(ManualRemovalStep1Activity.this, MainActivity.class);
         startActivity(i);
         finish();
     }
 
-    protected ObjGenericObject[] getListGeneric(SoapObject response) {
 
-        ObjGenericObject[] obj2 = new ObjGenericObject[response.getPropertyCount() - 3];
-
-        for (int i = 3; i < response.getPropertyCount(); i++) {
-            SoapObject obj = (SoapObject) response.getProperty(i);
-            String propiedad = response.getProperty(i).toString();
-            ObjGenericObject object = new ObjGenericObject(obj.getProperty("name").toString(), obj.getProperty("id").toString());
-
-            obj2[i - 3] = object;
-        }
-
-        return obj2;
-    }
-
-    protected ObjTransferMoney[] getListProduct(SoapObject response) {
-
-        ObjTransferMoney[] obj2 = new ObjTransferMoney[response.getPropertyCount() - 3];
-
-        for (int i = 3; i < response.getPropertyCount(); i++) {
-            SoapObject obj = (SoapObject) response.getProperty(i);
-            String propiedad = response.getProperty(i).toString();
-            ObjTransferMoney object = new ObjTransferMoney(obj.getProperty("id").toString(), obj.getProperty("name").toString() + " " + obj.getProperty("symbol").toString() + " - " + obj.getProperty("currentBalance").toString(), obj.getProperty("currentBalance").toString());
-
-            obj2[i - 3] = object;
-        }
-
-        return obj2;
-    }
 
     public void RemovalTask() {
         progressDialogAlodiga = new ProgressDialogAlodiga(this, getString(R.string.loading));
@@ -393,33 +317,15 @@ public class ManualRemovalStep1Activity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
 
-            WebService webService = new WebService();
-            Utils utils = new Utils();
-            SoapObject response;
-
             getbank = (ObjGenericObject) spinnerbank.getSelectedItem();
             getproduct = (ObjTransferMoney) spinnerproducto.getSelectedItem();
             getaccountBank = edtCOD.getText().toString();
             getDescrip = edtdescript.getText().toString();
             getAmountRecharge = edtAmount.getText().toString();
 
-            try {
-                String responseCode;
-                String responseMessage = "";
-
-                HashMap<String, String> map = new HashMap<String, String>();
-                map.put("bankId", getbank.getId());
-                map.put("emailUser", Session.getEmail());
-                map.put("accountBank", getaccountBank);
-                map.put("amountWithdrawal", getAmountRecharge);
-                map.put("productId", getproduct.getId());
-                map.put("conceptTransaction", getDescrip);
-
-
-                response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_NAME_REMOVAL_MANUAL, Constants.ALODIGA);
-                responseCode = response.getProperty("codigoRespuesta").toString();
-                responseMessage = response.getProperty("mensajeRespuesta").toString();
-
+            try{
+                SoapObject response = ManualRemovalController.removalAction(getbank, getproduct, getaccountBank,getDescrip,getAmountRecharge);
+                String responseCode = response.getProperty("codigoRespuesta").toString();
 
                 if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
 
@@ -501,14 +407,11 @@ public class ManualRemovalStep1Activity extends AppCompatActivity {
         @Override
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
-            //showProgress(false);
             if (success) {
                 Intent show;
                 show = new Intent(getApplicationContext(), ManualRemovalStep2WelcomeActivity.class);
                 startActivity(show);
                 finish();
-
-
             } else {
                 new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                         responsetxt);

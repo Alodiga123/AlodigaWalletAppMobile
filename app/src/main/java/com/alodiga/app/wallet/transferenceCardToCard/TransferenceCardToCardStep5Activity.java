@@ -10,18 +10,15 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.alodiga.app.R;
-import com.alodiga.app.wallet.duallibrary.model.ObjUserHasProduct;
 import com.alodiga.app.wallet.duallibrary.utils.Constants;
+import com.alodiga.app.wallet.duallibrary.utils.Session;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
-import com.alodiga.app.wallet.duallibrary.utils.Session;
-import com.alodiga.app.wallet.duallibrary.utils.Utils;
-import com.alodiga.app.wallet.duallibrary.utils.WebService;
 
 import org.ksoap2.serialization.SoapObject;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import static com.alodiga.app.wallet.duallibrary.transferenceCardToCard.TransferenceCardToCardController.getListProduct;
+import static com.alodiga.app.wallet.duallibrary.transferenceCardToCard.TransferenceCardToCardController.transferenceCardToCard;
 
 public class TransferenceCardToCardStep5Activity extends AppCompatActivity {
     private static View view;
@@ -98,27 +95,6 @@ public class TransferenceCardToCardStep5Activity extends AppCompatActivity {
 
     }
 
-    protected ArrayList<ObjUserHasProduct> getListProduct(SoapObject response) {
-        //ObjUserHasProduct[] obj2_aux= new ObjUserHasProduct[response.getPropertyCount()-3];
-        //ObjUserHasProduct[] obj2 = new ObjUserHasProduct[response.getPropertyCount()-3];
-        ArrayList<ObjUserHasProduct> obj2 = new ArrayList<>();
-        for (int i = 5; i < response.getPropertyCount(); i++) {
-            SoapObject obj = (SoapObject) response.getProperty(i);
-            String propiedad = response.getProperty(i).toString();
-            ObjUserHasProduct object = new ObjUserHasProduct(obj.getProperty("id").toString(), obj.getProperty("name").toString(), obj.getProperty("currentBalance").toString(), obj.getProperty("symbol").toString(), obj.getProperty("isPayTopUp").toString());
-            if (object.getName().equals("Tarjeta Prepagada") || object.getName().equals("Prepaid Card") ){
-                Session.setAffiliatedCard(Boolean.parseBoolean(Session.getPrepayCardAsociate()));
-                object.setNumberCard(Session.getNumberCard());
-            }else{
-                object.setNumberCard(Session.getAccountNumber());
-            }
-            obj2.add(object);
-            //obj2[i-3] = object;
-        }
-
-        return obj2;
-    }
-
     public class ProcessOperationTransferenceTask extends AsyncTask<Void, Void, Boolean> {
 
 
@@ -134,30 +110,13 @@ public class TransferenceCardToCardStep5Activity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
 
-            WebService webService = new WebService();
-            Utils utils = new Utils();
-
-            try {
-
                 boolean availableBalance = true;
-                String responseCode;
-                String responseMessage = "";
 
-
+                try{
                 if (availableBalance) {
-                    HashMap<String, String> map = new HashMap<String, String>();
-                    map.put("userId", Session.getUserId());
-                    map.put("idUserDestination", idUserDestination);
-                    map.put("numberCardOrigin", Utils.aloDesencript(Session.getTranferenceCardToCard()));
-                    map.put("numberCardDestinate",Utils.aloDesencript(Session.getTranferenceCardToCardDest()));
-                    map.put("balance", amountPayment);
-                    map.put("conceptTransaction", conceptTransaction);
 
-
-
-                    response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_TRANSFERENCE_CARD_TO_CARD, Constants.ALODIGA);
-                    responseCode = response.getProperty("codigoRespuesta").toString();
-                    responseMessage = response.getProperty("mensajeRespuesta").toString();
+                    response = transferenceCardToCard(idUserDestination, amountPayment,conceptTransaction );
+                    String responseCode = response.getProperty("codigoRespuesta").toString();
 
                     if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
 
@@ -347,7 +306,6 @@ public class TransferenceCardToCardStep5Activity extends AppCompatActivity {
                     responsetxt = getString(R.string.insuficient_balance);
                     serviceStatus = false;
                 }
-                //progressDialogAlodiga.dismiss();
             } catch (IllegalArgumentException e) {
                 responsetxt = getString(R.string.web_services_response_99);
                 serviceStatus = false;

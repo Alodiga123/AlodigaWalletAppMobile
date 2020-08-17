@@ -77,6 +77,7 @@ public class ActiveCardActivity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
 
+            try {
                 String responseCode;
 
                 SoapObject response = ActiveCardController.generateCode();
@@ -129,6 +130,20 @@ public class ActiveCardActivity extends AppCompatActivity {
                     responsetxt = getString(R.string.web_services_response_99);
                     serviceStatus = false;
                 }
+                //progressDialogAlodiga.dismiss();
+            } catch (IllegalArgumentException e)
+            {
+                responsetxt = getString(R.string.web_services_response_99);
+                e.printStackTrace();
+                System.err.println(e);
+                return false;
+            } catch (Exception e)
+            {
+                responsetxt = getString(R.string.web_services_response_99);
+                e.printStackTrace();
+                System.err.println(e);
+                return false;
+            }
             return serviceStatus;
 
         }

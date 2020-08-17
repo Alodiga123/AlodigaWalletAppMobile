@@ -13,16 +13,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.adapters.AdapterCardContacts;
-import com.alodiga.app.wallet.main.MainActivity;
 import com.alodiga.app.wallet.duallibrary.model.ObjCreditCardTypeId;
 import com.alodiga.app.wallet.duallibrary.model.ObjPaymentInfo;
 import com.alodiga.app.wallet.duallibrary.model.ObjTarjetahabiente;
 import com.alodiga.app.wallet.duallibrary.utils.Constants;
-import com.alodiga.app.wallet.utils.CustomToast;
-import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
 import com.alodiga.app.wallet.duallibrary.utils.Session;
 import com.alodiga.app.wallet.duallibrary.utils.Utils;
-import com.alodiga.app.wallet.duallibrary.utils.WebService;
+import com.alodiga.app.wallet.main.MainActivity;
+import com.alodiga.app.wallet.utils.CustomToast;
+import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
 
 import org.ksoap2.serialization.SoapObject;
 
@@ -30,8 +29,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
+
+import static com.alodiga.app.wallet.duallibrary.rechargeWithCard.RechargeWhithCardController.getInfo;
 
 
 public class RechargeWhithCardContactsActivity extends AppCompatActivity {
@@ -71,7 +71,6 @@ public class RechargeWhithCardContactsActivity extends AppCompatActivity {
 
         add.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(), "Prueba exitosa");
                 Intent show;
                 show = new Intent(getApplicationContext(), RechargeWithCardContactsAddActivity.class);
                 startActivity(show);
@@ -100,15 +99,8 @@ public class RechargeWhithCardContactsActivity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
 
-            try {
-
-                HashMap<String, String> map = new HashMap<String, String>();
-                map.put("userApi", Constants.WEB_SERVICES_USUARIOWS_);
-                map.put("passwordApi", Constants.WEB_SERVICES_PASSWORDWS);
-                map.put("userId", Session.getUserId());
-
-
-                response_ = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_GETPAYMENTINFO, Constants.ALODIGA);
+            try{
+                response_ = getInfo();
                 responseCode = response_.getProperty("codigoRespuesta").toString();
 
 
@@ -249,8 +241,6 @@ public class RechargeWhithCardContactsActivity extends AppCompatActivity {
             }
 
         }
-
-
 
         @Override
         protected void onCancelled() {

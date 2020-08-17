@@ -12,14 +12,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.duallibrary.model.ObjProccessRemittence;
 import com.alodiga.app.wallet.duallibrary.utils.Constants;
+import com.alodiga.app.wallet.duallibrary.utils.Session;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
-import com.alodiga.app.wallet.duallibrary.utils.Session;
-import com.alodiga.app.wallet.duallibrary.utils.WebService;
 
 import org.ksoap2.serialization.SoapObject;
 
-import java.util.HashMap;
+import static com.alodiga.app.wallet.duallibrary.remesas.PaymentController.proccesRemittence;
 
 public class PaymentStep4Activity extends AppCompatActivity {
     private static Button process, backToLoginBtn;
@@ -96,10 +95,7 @@ public class PaymentStep4Activity extends AppCompatActivity {
 
         process.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-               /* Intent pasIntent = getIntent();
-                Intent i = new Intent(PaymentStep4Activity.this, PaymentStep5Activity.class);
-                startActivity(i);
-                finish();*/
+
                 procesar();
             }
         });
@@ -107,7 +103,6 @@ public class PaymentStep4Activity extends AppCompatActivity {
 
 
     }
-
 
     public void procesar(){
 
@@ -122,7 +117,6 @@ public class PaymentStep4Activity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent pasIntent = getIntent();
         Intent i = new Intent(PaymentStep4Activity.this, PaymentStep3Activity.class);
         startActivity(i);
         finish();
@@ -133,68 +127,10 @@ public class PaymentStep4Activity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
 
-            WebService webService = new WebService();
-
-            try {
-                String responseCode;
-                String responseMessage = "";
-
-                HashMap<String, String> map = new HashMap<String, String>();
-                map.put("userId", Session.getUserId());
-                map.put("amountOrigin", Session.getObjResumeRemittence().getRealAmountToSend());
-                map.put("totalAmount", Session.getObjResumeRemittence().getAmountToSendRemettence());
-                map.put("amountDestiny", Session.getObjResumeRemittence().getReceiverAmount());
-                //map.put("correspondentId", Session.getPay().getCorrespondent().getId());
-                map.put("exchangeRateId",Session.getObjResumeRemittence().getExchangeRateSource().getId());
-                map.put("ratePaymentNetworkId", Session.getObjResumeRemittence().getRatePaymentNetwork().getId());
-                map.put("originCurrentId", Session.getObjResumeRemittence().getExchangeRateSource().getCurrency().getId());
-                map.put("destinyCurrentId", Session.getObjResumeRemittence().getExchangeRateDestiny().getCurrency().getId());
-                map.put("paymentNetworkId", Session.getObjResumeRemittence().getRatePaymentNetwork().getPaymentNetwork().getId());
-                map.put("deliveryFormId", Session.getPay().getDelivery_method().getId());
-
-
-                map.put("addressId", Session.getRemettencesDireccionId());
-
-                if(Session.getRemettencesDireccionId().equals(Constants.REMITTENCE_ID)){
-                    map.put("remittentCountryId", Session.getRemittenceRemitente().getLocation().getId());
-                    map.put("remittentStateId", Session.getRemittenceRemitente().getState().getId());
-                    map.put("remittentStateName", Session.getRemittenceRemitente().getState().getName());
-                    map.put("remittentCityName", Session.getRemittenceRemitente().getCity().getName());
-                    map.put("remittentCityId", Session.getRemittenceRemitente().getCity().getId());
-                    map.put("remittentAddress", Session.getRemittenceRemitente().getAv());
-                    map.put("remittentZipCode", Session.getRemittenceRemitente().getCodeZip());
-                }else{
-                    map.put("remittentCountryId", "");
-                    map.put("remittentStateId",  "");
-                    map.put("remittentStateName", "");
-                    map.put("remittentCityName", "");
-                    map.put("remittentCityId",  "");
-                    map.put("remittentAddress",  "");
-                    map.put("remittentZipCode",  "");
-                }
-
-
-
-                map.put("receiverFirstName", Session.getRemittenceDestinatario().getName());
-                map.put("receiverMiddleName", Session.getRemittenceDestinatario().getSecondname());
-                map.put("receiverLastName", Session.getRemittenceDestinatario().getLastName());
-                map.put("receiverSecondSurname", Session.getRemittenceDestinatario().getSecondSurmane());
-                map.put("receiverPhoneNumber", Session.getRemittenceDestinatario().getTelephone());
-                map.put("receiverEmail", Session.getRemittenceDestinatario().getEmail());
-                map.put("receiverCountryId", Session.getRemittenceDestinatario().getLocation().getId());
-                map.put("receiverCityId", Session.getRemittenceDestinatario().getCity().getId());
-                map.put("receiverCityName", Session.getRemittenceDestinatario().getCity().getName());
-                map.put("receiverStateId", Session.getRemittenceDestinatario().getState().getId());
-                map.put("receiverStateName", Session.getRemittenceDestinatario().getState().getName());
-                map.put("receiverAddress", Session.getRemittenceDestinatario().getAv());
-                map.put("receiverZipCode", Session.getRemittenceDestinatario().getCodeZip());
-
-
-                response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_PROCESSREMETTENCEACCOUNT, Constants.ALODIGA);
+            try{
+                response = proccesRemittence();
                 stringResponse = response.toString();
-                responseCode = response.getProperty("codigoRespuesta").toString();
-                //serviceAnswer(responseCode);
-
+                String responseCode = response.getProperty("codigoRespuesta").toString();
 
                 if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO_) || responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
                     responsetxt = getString(R.string.web_services_response_00);
@@ -247,7 +183,6 @@ public class PaymentStep4Activity extends AppCompatActivity {
         @Override
         protected void onPostExecute(final Boolean success) {
             mAuthTask_ = null;
-            //showProgress(false);
             if (success) {
 
                 ObjProccessRemittence processRemittence= new ObjProccessRemittence();

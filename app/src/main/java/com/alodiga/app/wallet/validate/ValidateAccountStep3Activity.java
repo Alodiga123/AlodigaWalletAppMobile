@@ -27,7 +27,6 @@ public class ValidateAccountStep3Activity extends Activity {
         back= findViewById(R.id.backToLoginBtn);
         imgCamare = findViewById(R.id.imgCamare);
 
-        //imageView2= (ImageView) findViewById(R.id.imageView2);
         Bitmap prueba_= BipmapUtils.getSelectedImageSelfie();
         imgCamare.setImageBitmap(prueba_);
         next.setOnClickListener(new View.OnClickListener() {

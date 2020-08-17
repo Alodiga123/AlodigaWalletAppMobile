@@ -11,19 +11,16 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.alodiga.app.R;
-import com.alodiga.app.wallet.main.MainActivity;
 import com.alodiga.app.wallet.duallibrary.utils.Constants;
+import com.alodiga.app.wallet.duallibrary.utils.Session;
+import com.alodiga.app.wallet.main.MainActivity;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
-import com.alodiga.app.wallet.duallibrary.utils.Session;
-import com.alodiga.app.wallet.duallibrary.utils.Utils;
-import com.alodiga.app.wallet.duallibrary.utils.WebService;
 
 import org.ksoap2.serialization.SoapObject;
 
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.TimeZone;
+import static com.alodiga.app.wallet.duallibrary.balance.BalanceController.activeDesactiveStatus;
+import static com.alodiga.app.wallet.duallibrary.balance.BalanceController.getBalance;
 
 
 public class BalanceStep1Activity extends AppCompatActivity {
@@ -37,8 +34,6 @@ public class BalanceStep1Activity extends AppCompatActivity {
     UserGetProcessStatus mAuthTask_S;
     UserGetCheckBalance mAuthTask;
     TextView cardnumber, account, balance;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,15 +49,11 @@ public class BalanceStep1Activity extends AppCompatActivity {
 
         backToLoginBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(), "Prueba exitosa");
                 Intent show;
                 show = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(show);
             }
         });
-
-
-
 
     }
 
@@ -81,32 +72,15 @@ public class BalanceStep1Activity extends AppCompatActivity {
         mAuthTask_S.execute((Void) null);
     }
 
-
-
     public class UserGetProcessStatus extends AsyncTask<Void, Void, Boolean> {
 
         @Override
         protected Boolean doInBackground(Void... params) {
 
-            WebService webService = new WebService();
-            Utils utils = new Utils();
-
             try {
-                String responseCode;
-                String responseMessage = "";
 
-
-                Calendar cal = Calendar.getInstance();
-                TimeZone tz = cal.getTimeZone();
-
-                HashMap<String, String> map = new HashMap<String, String>();
-                map.put("userId", Session.getUserId());
-                map.put("card", Utils.aloDesencript(Session.getCardBalance().trim()));
-                map.put("timeZone", tz.getID());
-
-                response_ = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_ACTIVE_DEACTIVE_STATUS, Constants.ALODIGA);
-                responseCode = response_.getProperty("codigoRespuesta").toString();
-
+                response_ = activeDesactiveStatus();
+                String responseCode = response_.getProperty("codigoRespuesta").toString();
 
                 if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
                     responsetxt = getString(R.string.web_services_response_00);
@@ -211,7 +185,6 @@ public class BalanceStep1Activity extends AppCompatActivity {
                 finish();
             }
 
-
         }
 
 
@@ -229,26 +202,8 @@ public class BalanceStep1Activity extends AppCompatActivity {
 
         protected Boolean doInBackground(Void... params) {
 
-            WebService webService = new WebService();
-            Utils utils = new Utils();
-
-            try {
-                String responseCode;
-                String responseMessage = "";
-
-
-                Calendar cal = Calendar.getInstance();
-                TimeZone tz = cal.getTimeZone();
-
-                HashMap<String, String> map = new HashMap<String, String>();
-                map.put("userId", Session.getUserId());
-                map.put("card", Utils.aloDesencript(Session.getCardBalance().trim()));
-                String card = Session.getCardBalance();
-                map.put("timeZone", tz.getID());
-
-                response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_CHECK_BALANCE, Constants.ALODIGA);
-                responseCode = response.getProperty("codigoRespuesta").toString();
-
+                response = getBalance();
+                String responseCode = response.getProperty("codigoRespuesta").toString();
 
                 if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
                     responsetxt = getString(R.string.web_services_response_00);
@@ -314,20 +269,7 @@ public class BalanceStep1Activity extends AppCompatActivity {
                     responsetxt = getString(R.string.web_services_response_99);
                     serviceStatus = false;
                 }
-                //progressDialogAlodiga.dismiss();
-            } catch (IllegalArgumentException e) {
-                responsetxt = getString(R.string.web_services_response_99);
-                serviceStatus = false;
-                e.printStackTrace();
-                System.err.println(e);
-                return false;
-            } catch (Exception e) {
-                responsetxt = getString(R.string.web_services_response_99);
-                serviceStatus = false;
-                e.printStackTrace();
-                System.err.println(e);
-                return false;
-            }
+
             return serviceStatus;
 
         }
@@ -335,16 +277,10 @@ public class BalanceStep1Activity extends AppCompatActivity {
         @Override
         protected void onPostExecute(final Boolean success) {
             mAuthTask_S = null;
-            //showProgress(false);
             if (success) {
-                //String res = response.getProperty("checkStatusCredentialAccount").toString();
                 SoapObject res_ = (SoapObject) response.getProperty(3);
-                //String balance_ = getValueFromResponseJson("balance", res);
-                //String accountNumber = getValueFromResponseJson("accountNumber", res);
                 String balance_ = res_.getProperty("availablePurchases").toString();
                 String accountNumber = res_.getProperty("accountNumber").toString();
-
-
 
                 cardnumber.setText(Session.getCardBalance().substring(0,4) + "*********" +Session.getCardBalance().substring(Session.getCardBalance().length()-4,Session.getCardBalance().length()));
                 account.setText(accountNumber.substring(0,3)+"***"+accountNumber.substring(accountNumber.length()-3,accountNumber.length()));
@@ -358,13 +294,10 @@ public class BalanceStep1Activity extends AppCompatActivity {
             progressDialogAlodiga.dismiss();
         }
 
-
         @Override
         protected void onCancelled() {
             mAuthTask_S = null;
         }
     }
-    private static String getValueFromResponseJson(String v, String response) {
-        return (response.split(v + "=")[1].split(";")[0]);
-    }
+
 }

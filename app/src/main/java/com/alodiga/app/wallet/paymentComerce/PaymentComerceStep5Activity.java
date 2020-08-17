@@ -10,18 +10,15 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.alodiga.app.R;
-import com.alodiga.app.wallet.duallibrary.model.ObjUserHasProduct;
 import com.alodiga.app.wallet.duallibrary.utils.Constants;
+import com.alodiga.app.wallet.duallibrary.utils.Session;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
-import com.alodiga.app.wallet.duallibrary.utils.Session;
-import com.alodiga.app.wallet.duallibrary.utils.Utils;
-import com.alodiga.app.wallet.duallibrary.utils.WebService;
 
 import org.ksoap2.serialization.SoapObject;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import static com.alodiga.app.wallet.duallibrary.paymentComerce.PaymentComerceController.getListProduct;
+import static com.alodiga.app.wallet.duallibrary.paymentComerce.PaymentComerceController.paymentComerce;
 
 public class PaymentComerceStep5Activity extends AppCompatActivity {
     private static View view;
@@ -97,27 +94,6 @@ public class PaymentComerceStep5Activity extends AppCompatActivity {
 
     }
 
-    protected ArrayList<ObjUserHasProduct> getListProduct(SoapObject response) {
-        //ObjUserHasProduct[] obj2_aux= new ObjUserHasProduct[response.getPropertyCount()-3];
-        //ObjUserHasProduct[] obj2 = new ObjUserHasProduct[response.getPropertyCount()-3];
-        ArrayList<ObjUserHasProduct> obj2 = new ArrayList<>();
-        for (int i = 4; i < response.getPropertyCount(); i++) {
-            SoapObject obj = (SoapObject) response.getProperty(i);
-            String propiedad = response.getProperty(i).toString();
-            ObjUserHasProduct object = new ObjUserHasProduct(obj.getProperty("id").toString(), obj.getProperty("name").toString(), obj.getProperty("currentBalance").toString(), obj.getProperty("symbol").toString(), obj.getProperty("isPayTopUp").toString());
-            if (object.getName().equals("Tarjeta Prepagada") || object.getName().equals("Prepaid Card") ){
-                Session.setAffiliatedCard(Boolean.parseBoolean(Session.getPrepayCardAsociate()));
-                object.setNumberCard(Session.getNumberCard());
-            }else{
-                object.setNumberCard(Session.getAccountNumber());
-            }
-            obj2.add(object);
-            //obj2[i-3] = object;
-        }
-
-        return obj2;
-    }
-
 
     public class ProcessOperationTransferenceTask extends AsyncTask<Void, Void, Boolean> {
 
@@ -138,29 +114,12 @@ public class PaymentComerceStep5Activity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
 
-            WebService webService = new WebService();
-            Utils utils = new Utils();
-
-            try {
-
                 boolean availableBalance = true;
-                String responseCode;
-                String responseMessage = "";
-
-
+                try{
                 if (availableBalance) {
-                    HashMap<String, String> map = new HashMap<String, String>();
-                    map.put("cryptogramShop", cryptogramShop);
-                    map.put("emailUser", emailUser);
-                    map.put("productId", productId);
-                    map.put("amountPayment", amountPayment);
-                    map.put("conceptTransaction", conceptTransaction);
-                    map.put("cryptogramUser", cryptogramUser);
-                    map.put("idUserDestination", idUserDestination);
 
-                    response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_NAME_PAYMENT_COMERCE, Constants.ALODIGA);
-                    responseCode = response.getProperty("codigoRespuesta").toString();
-                    responseMessage = response.getProperty("mensajeRespuesta").toString();
+                    response = paymentComerce(  cryptogramShop,  emailUser,   productId,  amountPayment,  conceptTransaction,  cryptogramUser,  idUserDestination );
+                    String responseCode = response.getProperty("codigoRespuesta").toString();
 
                     if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
 

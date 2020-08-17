@@ -18,18 +18,19 @@ import com.alodiga.app.wallet.duallibrary.model.ObjGenericObject;
 import com.alodiga.app.wallet.duallibrary.model.ObjPaymentInfo;
 import com.alodiga.app.wallet.duallibrary.model.ObjTarjetahabiente;
 import com.alodiga.app.wallet.duallibrary.utils.Constants;
+import com.alodiga.app.wallet.duallibrary.utils.Session;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
-import com.alodiga.app.wallet.duallibrary.utils.Session;
-import com.alodiga.app.wallet.duallibrary.utils.Utils;
-import com.alodiga.app.wallet.duallibrary.utils.WebService;
 
 import org.ksoap2.serialization.SoapObject;
 
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static com.alodiga.app.wallet.duallibrary.rechargeWithCard.RechargeWhithCardController.getCredit;
+import static com.alodiga.app.wallet.duallibrary.rechargeWithCard.RechargeWhithCardController.getListCardType;
+import static com.alodiga.app.wallet.duallibrary.rechargeWithCard.RechargeWhithCardController.saveInfo;
 
 
 public class RechargeWithCardContactsAddActivity extends AppCompatActivity {
@@ -222,20 +223,6 @@ public class RechargeWithCardContactsAddActivity extends AppCompatActivity {
     }
 
 
-    protected ObjGenericObject[] getListGeneric(SoapObject response) {
-
-        ObjGenericObject[] obj2 = new ObjGenericObject[response.getPropertyCount() - 3];
-
-        for (int i = 3; i < response.getPropertyCount(); i++) {
-            SoapObject obj = (SoapObject) response.getProperty(i);
-            String propiedad = response.getProperty(i).toString();
-            ObjGenericObject object = new ObjGenericObject(obj.getProperty("name").toString(), obj.getProperty("id").toString());
-            obj2[i - 3] = object;
-        }
-
-        return obj2;
-    }
-
 
     public void AddTask() {
         progressDialogAlodiga = new ProgressDialogAlodiga(this, getString(R.string.loading));
@@ -251,30 +238,9 @@ public class RechargeWithCardContactsAddActivity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
 
-            SoapObject response;
-
-            try {
-                String responseCode;
-
-                HashMap<String, String> map = new HashMap<String, String>();
-                map.put("userApi", Constants.WEB_SERVICES_USUARIOWS_);
-                map.put("passwordApi", Constants.WEB_SERVICES_PASSWORDWS);
-                map.put("userId", Session.getUserId());
-                map.put("estado", "");
-                map.put("ciudad", "");
-                map.put("zipCode", "");
-                map.put("addres1", "");
-                map.put("paymentPatnerId", "2");
-                map.put("paymentTypeId", "1");
-                map.put("creditCardTypeId", Session.getTarjetahabienteSelect().getCardInfo().getCreditCardTypeId().getId());
-                map.put("creditCardName", Session.getTarjetahabienteSelect().getCardInfo().getCreditCardName());
-                map.put("creditCardNumber", Utils.aloDesencript(Session.getTarjetahabienteSelect().getCardInfo().getCreditCardNumber()));
-                map.put("creditCardCVV", getCcv);
-                map.put("creditCardDate", getYear.getName()+"-"+getMonth.getName());
-
-
-                response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_SAVEPAYMENTINFO, Constants.ALODIGA);
-                responseCode = response.getProperty("codigoRespuesta").toString();
+            try{
+                SoapObject response = saveInfo( getCcv, getYear, getMonth);
+                String responseCode = response.getProperty("codigoRespuesta").toString();
 
 
                 if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
@@ -358,7 +324,6 @@ public class RechargeWithCardContactsAddActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
-            //showProgress(false);
             if (success) {
                 Intent show;
                 show = new Intent(getApplicationContext(), RechargeWhithCarContactsSave.class);
@@ -392,16 +357,9 @@ public class RechargeWithCardContactsAddActivity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
 
-            try {
-                String responseCode;
-
-                HashMap<String, String> map = new HashMap<String, String>();
-                map.put("userApi", Constants.WEB_SERVICES_USUARIOWS_);
-                map.put("passwordApi", Constants.WEB_SERVICES_PASSWORDWS);
-
-
-                response_ = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_GET_CREDIT_CARD_TYPE, Constants.ALODIGA);
-                responseCode = response_.getProperty("codigoRespuesta").toString();
+            try{
+                response_ = getCredit();
+                String responseCode = response_.getProperty("codigoRespuesta").toString();
 
 
                 if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
@@ -526,18 +484,4 @@ public class RechargeWithCardContactsAddActivity extends AppCompatActivity {
     }
 
 
-    protected ObjCreditCardTypeId[] getListCardType(SoapObject response) {
-        ObjCreditCardTypeId[] obj2 = new ObjCreditCardTypeId[response.getPropertyCount() - 3];
-
-        int aux= 0;
-        for (int i = 3; i < response.getPropertyCount(); i++) {
-
-            SoapObject obj = (SoapObject) response.getProperty(i);
-            ObjCreditCardTypeId object = new ObjCreditCardTypeId(obj.getProperty("enabled").toString(), obj.getProperty("id").toString(),obj.getProperty("lengh").toString(), obj.getProperty("name").toString());
-            obj2[aux] = object;
-            aux++;
-        }
-
-        return obj2;
-    }
 }

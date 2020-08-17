@@ -12,16 +12,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.duallibrary.utils.Constants;
+import com.alodiga.app.wallet.duallibrary.utils.Session;
+import com.alodiga.app.wallet.duallibrary.utils.Utils;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.FailCodeOperationActivity;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
-import com.alodiga.app.wallet.duallibrary.utils.Session;
-import com.alodiga.app.wallet.duallibrary.utils.Utils;
-import com.alodiga.app.wallet.duallibrary.utils.WebService;
 
 import org.ksoap2.serialization.SoapObject;
 
-import java.util.HashMap;
+import static com.alodiga.app.wallet.duallibrary.paymentComerce.PaymentComerceController.getCode;
 
 public class PaymentComerceStep4codeActivity extends AppCompatActivity {
     static int cout = 1;
@@ -94,24 +93,10 @@ public class PaymentComerceStep4codeActivity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
 
-            WebService webService = new WebService();
-            Utils utils = new Utils();
-            SoapObject response;
-            try {
-                String responseCode;
-                String responseMessage = "";
+            try{
 
-
-                HashMap<String, String> map = new HashMap<String, String>();
-                map.put("usuarioApi", Constants.WEB_SERVICES_USUARIOWS);
-                map.put("passwordApi", Constants.WEB_SERVICES_PASSWORDWS);
-                map.put("usuarioId", Session.getUserId());
-                map.put("pin", clave);
-
-
-                response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_NAME_VALID_CODE, Constants.REGISTRO_UNIFICADO);
-                responseCode = response.getProperty("codigoRespuesta").toString();
-                responseMessage = response.getProperty("mensajeRespuesta").toString();
+                SoapObject response = getCode(clave);
+                String responseCode = response.getProperty("codigoRespuesta").toString();
 
 
                 if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
@@ -181,7 +166,6 @@ public class PaymentComerceStep4codeActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
-            //showProgress(false);
             if (success) {
 
                 if (cout <= 3) {

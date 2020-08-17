@@ -14,19 +14,19 @@ import android.widget.EditText;
 import androidx.fragment.app.Fragment;
 
 import com.alodiga.app.R;
-import com.alodiga.app.wallet.login.LoginActivity;
 import com.alodiga.app.wallet.duallibrary.utils.Constants;
-import com.alodiga.app.wallet.utils.CustomToast;
-import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
 import com.alodiga.app.wallet.duallibrary.utils.Session;
 import com.alodiga.app.wallet.duallibrary.utils.Utils;
-import com.alodiga.app.wallet.duallibrary.utils.WebService;
+import com.alodiga.app.wallet.login.LoginActivity;
+import com.alodiga.app.wallet.utils.CustomToast;
+import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
 
 import org.ksoap2.serialization.SoapObject;
 
-import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static com.alodiga.app.wallet.duallibrary.forgotPassword.ForgotPasswordController.getCodeSms;
 
 public class ForgotPasswordStep1Fragment extends Fragment implements
         OnClickListener {
@@ -66,9 +66,6 @@ public class ForgotPasswordStep1Fragment extends Fragment implements
         try {
             ColorStateList csl = ColorStateList.createFromXml(getResources(),
                     xrp);
-
-           // back.setTextColor(csl);
-           // submit.setTextColor(csl);
 
         } catch (Exception e) {
         }
@@ -113,10 +110,8 @@ public class ForgotPasswordStep1Fragment extends Fragment implements
             new CustomToast().Show_Toast(getActivity(), view, getString(R.string.invalid_all_question));
         }else if (m.find()) {
             sendSmsSecurityCode(getEmailId,true);
-           // new CustomToast().Show_Toast(getActivity(), view, "es correo");
 
         }else if(Utils.isNumeric_(getEmailId)){
-           // new CustomToast().Show_Toast(getActivity(), view, "es numero");
 
             sendSmsSecurityCode(getEmailId, false);
 
@@ -146,28 +141,9 @@ public class ForgotPasswordStep1Fragment extends Fragment implements
         @Override
         protected Boolean doInBackground(Void... params) {
 
-            WebService webService = new WebService();
-            Utils utils = new Utils();
-            SoapObject response;
-            try {
-                String responseCode;
-                String responseMessage = "";
-
-                HashMap<String, String> map = new HashMap<String, String>();
-                map.put("usuarioApi", Constants.WEB_SERVICES_USUARIOWS);
-                map.put("passwordApi", Constants.WEB_SERVICES_PASSWORDWS);
-                if (isEmail) {
-                    map.put("movil", " ");
-                    map.put("email", data);
-
-                }else {
-                    map.put("movil", Utils.processPhone(data));
-                }
-
-                response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_NAME_SEND_CODE_SMS_MOVIL, Constants.REGISTRO_UNIFICADO);
-                responseCode = response.getProperty("codigoRespuesta").toString();
-                responseMessage = response.getProperty("mensajeRespuesta").toString();
-
+            try{
+                SoapObject response = getCodeSms(isEmail, data);
+                String responseCode = response.getProperty("codigoRespuesta").toString();
 
                 if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
 
@@ -247,18 +223,12 @@ public class ForgotPasswordStep1Fragment extends Fragment implements
                     Session.setForgotData(Utils.processPhone(data));
 
                 }
-                //Session.setPhoneNumber(getMobileNumber);
                 getFragmentManager()
                         .beginTransaction()
                         .setCustomAnimations(R.anim.left_enter, R.anim.right_out)
-                        //.replace(R.id.frameContainer, new RegisterStep4WelcomeFragment(),
                         .replace(R.id.frameContainer, new ForgotPasswordStep2Fragment(),
 
-                                //Utils.RegisterStep4WelcomeFragment).commit();
                                 Utils.ForgotPasswordStep2_Fragment).commit();
-
-                //new CustomToast().Show_Toast(getActivity(), view,
-                //		responsetxt);
 
             } else {
                 new CustomToast().Show_Toast(getActivity(), view,

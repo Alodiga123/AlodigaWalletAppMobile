@@ -20,16 +20,16 @@ import com.alodiga.app.R;
 import com.alodiga.app.wallet.adapters.SpinAdapterTransferMoneyRemittence;
 import com.alodiga.app.wallet.duallibrary.model.ObjGenericObject;
 import com.alodiga.app.wallet.duallibrary.model.ObjTransferMoney;
+import com.alodiga.app.wallet.duallibrary.utils.CommonController;
 import com.alodiga.app.wallet.duallibrary.utils.Constants;
+import com.alodiga.app.wallet.duallibrary.utils.Session;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
-import com.alodiga.app.wallet.duallibrary.utils.Session;
-import com.alodiga.app.wallet.duallibrary.utils.Utils;
-import com.alodiga.app.wallet.duallibrary.utils.WebService;
 
 import org.ksoap2.serialization.SoapObject;
 
-import java.util.HashMap;
+import static com.alodiga.app.wallet.duallibrary.rechargeWithCard.RechargeWhithCardController.getListProduct1;
+import static com.alodiga.app.wallet.duallibrary.rechargeWithCard.RechargeWhithCardController.getProductRecharge;
 
 
 public class RechargeWithCardStep2Activity extends AppCompatActivity {
@@ -75,7 +75,6 @@ public class RechargeWithCardStep2Activity extends AppCompatActivity {
 
         cargar();
 
-
         backToLoginBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
@@ -85,7 +84,6 @@ public class RechargeWithCardStep2Activity extends AppCompatActivity {
                     show = new Intent(getApplicationContext(), RechargeWithCardStep1Activity.class);
                     startActivity(show);
                     finish();
-
 
                 }else{
 
@@ -109,22 +107,9 @@ public class RechargeWithCardStep2Activity extends AppCompatActivity {
 
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (!s.toString().matches("^\\ (\\d{1,3}(\\,\\d{3})*|(\\d+))(\\.\\d{2})?$")) {
-                    String userInput = "" + s.toString().replaceAll("[^\\d]", "");
-                    StringBuilder cashAmountBuilder = new StringBuilder(userInput);
-
-                    while (cashAmountBuilder.length() > 3 && cashAmountBuilder.charAt(0) == '0') {
-                        cashAmountBuilder.deleteCharAt(0);
-                    }
-                    while (cashAmountBuilder.length() < 3) {
-                        cashAmountBuilder.insert(0, '0');
-                    }
-                    cashAmountBuilder.insert(cashAmountBuilder.length() - 2, '.');
-                    cashAmountBuilder.insert(0, ' ');
-
-                    edtAmount.setText(cashAmountBuilder.toString());
-                    // keeps the cursor always to the right
-                    Selection.setSelection(edtAmount.getText(), cashAmountBuilder.toString().length());
-
+                    StringBuilder getDecimal = CommonController.setDecimal(s);
+                    edtAmount.setText(getDecimal.toString());
+                    Selection.setSelection(edtAmount.getText(), getDecimal.toString().length());
                 }
 
             }
@@ -152,9 +137,6 @@ public class RechargeWithCardStep2Activity extends AppCompatActivity {
         }else if(Float.valueOf(getEdtAmount) == 0 ){
             new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                     getString(R.string.web_services_response_134));
-        /*}else if (Float.valueOf(getEdtAmount) > Float.valueOf(getSpinnerproducto.getCurrency() )){
-            new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
-                    getString(R.string.web_services_response_33));*/
         } else{
 
             Session.getTarjetahabienteSelect().setAmount(getEdtAmount);
@@ -166,21 +148,6 @@ public class RechargeWithCardStep2Activity extends AppCompatActivity {
             finish();
         }
     }
-
-
-    protected ObjTransferMoney[] getListProduct1(SoapObject response) {
-        ObjTransferMoney[] obj2 = new ObjTransferMoney[response.getPropertyCount() - 3];
-        int aux= 0;
-        for (int i = 3; i < response.getPropertyCount(); i++) {
-                SoapObject obj = (SoapObject) response.getProperty(i);
-                ObjTransferMoney object = new ObjTransferMoney(obj.getProperty("id").toString(), obj.getProperty("name").toString() + " - " + obj.getProperty("currentBalance").toString(), obj.getProperty("currentBalance").toString());
-            obj2[aux] = object;
-            aux++;
-        }
-
-        return obj2;
-    }
-   
 
     @Override
     public void onBackPressed() {
@@ -213,16 +180,9 @@ public class RechargeWithCardStep2Activity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
 
-            WebService webService = new WebService();
-            Utils utils = new Utils();
-
-            try {
-                String responseCode;
-
-                HashMap<String, String> map = new HashMap<String, String>();
-                map.put("userId", Session.getUserId());
-                response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_GETPRODUCTS_RECHARGE_PAYMENT_BY_USERID, Constants.ALODIGA);
-                responseCode = response.getProperty("codigoRespuesta").toString();
+            try{
+                response = getProductRecharge();
+                String responseCode = response.getProperty("codigoRespuesta").toString();
 
 
                 if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
@@ -317,7 +277,6 @@ public class RechargeWithCardStep2Activity extends AppCompatActivity {
         @Override
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
-            //showProgress(false);
             if (success) {
 
                 listSpinner_producto = getListProduct1(response);

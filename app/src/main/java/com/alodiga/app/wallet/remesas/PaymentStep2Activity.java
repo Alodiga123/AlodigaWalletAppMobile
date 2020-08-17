@@ -16,14 +16,16 @@ import com.alodiga.app.wallet.adapters.SpinAdapterBank;
 import com.alodiga.app.wallet.adapters.SpinAdapterPais;
 import com.alodiga.app.wallet.duallibrary.model.ObjGenericObject;
 import com.alodiga.app.wallet.duallibrary.model.ObjRemittencePerson;
+import com.alodiga.app.wallet.duallibrary.remesas.PaymentController;
 import com.alodiga.app.wallet.duallibrary.utils.Constants;
-import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.duallibrary.utils.Session;
-import com.alodiga.app.wallet.duallibrary.utils.WebService;
+import com.alodiga.app.wallet.utils.CustomToast;
 
 import org.ksoap2.serialization.SoapObject;
 
-import java.util.HashMap;
+import static com.alodiga.app.wallet.duallibrary.remesas.PaymentController.getCiudad;
+import static com.alodiga.app.wallet.duallibrary.remesas.PaymentController.getPais;
+import static com.alodiga.app.wallet.duallibrary.remesas.PaymentController.getState;
 
 public class PaymentStep2Activity extends AppCompatActivity {
     private static Button next, backToLoginBtn;
@@ -40,8 +42,6 @@ public class PaymentStep2Activity extends AppCompatActivity {
     static ObjGenericObject[] listSpinner_ciudad = new ObjGenericObject[0];
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +51,6 @@ public class PaymentStep2Activity extends AppCompatActivity {
 
         info_ciudad= findViewById(R.id.info_ciudad);
         info_estado  = findViewById(R.id.info_estado) ;
-
 
         edtstate=findViewById(R.id.edtstate);
         edtcity=findViewById(R.id.edtcity);
@@ -80,13 +79,8 @@ public class PaymentStep2Activity extends AppCompatActivity {
                     spinner_estado.setVisibility(View.INVISIBLE);
                     spinner_ciudad.setVisibility(View.INVISIBLE);
 
-                    String responseCode = null;
-                    WebService webService = new WebService();
-                    HashMap<String, String> map = new HashMap<String, String>();
-                    map.put("userId", Session.getUserId());
-                    response_pais = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_NAME_GET_COUNTRIES_, Constants.REMITTANCE, Constants.CONSTANT_WSREMITTENCEMOBILE);
-                    stringResponse = response_pais.toString();
-                    responseCode = response_pais.getProperty("code").toString();
+                    response_pais =getPais();
+                    String  responseCode = response_pais.getProperty("code").toString();
                     serviceAnswer(responseCode);
 
                     if (serviceStatus) {
@@ -94,7 +88,7 @@ public class PaymentStep2Activity extends AppCompatActivity {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                listSpinner_pais = getListGeneric(response_pais);
+                                listSpinner_pais = PaymentController.getListGeneric(response_pais);
                                 SpinAdapterPais spinAdapterPais;
                                 spinAdapterPais = new SpinAdapterPais(getApplicationContext(), android.R.layout.simple_spinner_item, listSpinner_pais);
                                 spinner_pais.setAdapter(spinAdapterPais);
@@ -136,15 +130,10 @@ public class PaymentStep2Activity extends AppCompatActivity {
                     public void run() {
                         try {
 
-                            String responseCode = null;
-                            WebService webService = new WebService();
-                            HashMap<String, String> map = new HashMap<String, String>();
-                            map.put("countryCode", pais.getId());
-                            response_estado = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_GETSTATESBYCOUNTRY, Constants.REMITTANCE, Constants.CONSTANT_WSREMITTENCEMOBILE);
-                            responseCode = response_estado.getProperty("code").toString();
+                            response_estado = getState( pais);
+                            String responseCode = response_estado.getProperty("code").toString();
 
                             serviceAnswer(responseCode);
-
 
                             if (serviceStatus) {
                                 runOnUiThread(new Runnable() {
@@ -156,7 +145,7 @@ public class PaymentStep2Activity extends AppCompatActivity {
                                         edtstate.setVisibility(View.INVISIBLE);
                                         edtcity.setVisibility(View.INVISIBLE);
 
-                                        listSpinner_estado = getListGeneric(response_estado);
+                                        listSpinner_estado = PaymentController.getListGeneric(response_estado);
                                         SpinAdapterBank spinAdapterBank;
                                         spinAdapterBank = new SpinAdapterBank(getApplicationContext(), android.R.layout.simple_spinner_item, listSpinner_estado);
                                         spinner_estado.setAdapter(spinAdapterBank);
@@ -208,21 +197,14 @@ public class PaymentStep2Activity extends AppCompatActivity {
                 spinner_ciudad.setVisibility(View.INVISIBLE);
 
                 final ObjGenericObject estado = (ObjGenericObject) spinner_estado.getSelectedItem();
-                //Toast.makeText(getApplicationContext(),"id" + pais.getId() ,Toast.LENGTH_SHORT).show();
 
                 new Thread(new Runnable() {
                     public void run() {
                         try {
 
-                            String responseCode = null;
-                            WebService webService = new WebService();
-                            HashMap<String, String> map = new HashMap<String, String>();
-                            map.put("stateCode", estado.getId());
-                            response_ciudad = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_GETCITIESBYSTATE, Constants.REMITTANCE, Constants.CONSTANT_WSREMITTENCEMOBILE);
-                            stringResponse = response_ciudad.toString();
-                            responseCode = response_ciudad.getProperty("code").toString();
+                            response_ciudad = getCiudad( estado);
+                            String responseCode = response_ciudad.getProperty("code").toString();
                             serviceAnswer(responseCode);
-
 
                             if (serviceStatus) {
                                 runOnUiThread(new Runnable() {
@@ -234,7 +216,7 @@ public class PaymentStep2Activity extends AppCompatActivity {
                                         edtcity.setVisibility(View.INVISIBLE);
                                         spinner_ciudad.setVisibility(View.VISIBLE);
 
-                                        listSpinner_ciudad = getListGeneric(response_ciudad);
+                                        listSpinner_ciudad = PaymentController.getListGeneric(response_ciudad);
                                         SpinAdapterBank spinAdapterBank;
                                         spinAdapterBank = new SpinAdapterBank(getApplicationContext(), android.R.layout.simple_spinner_item, listSpinner_ciudad);
                                         spinner_ciudad.setAdapter(spinAdapterBank);
@@ -275,15 +257,11 @@ public class PaymentStep2Activity extends AppCompatActivity {
             }
         });
 
-
-
         next.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 validate();
             }
         });
-
-
 
         backToLoginBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -297,20 +275,6 @@ public class PaymentStep2Activity extends AppCompatActivity {
 
     }
 
-    protected ObjGenericObject[] getListGeneric(SoapObject response) {
-
-        ObjGenericObject[] obj2 = new ObjGenericObject[response.getPropertyCount() - 2];
-
-        for (int i = 2; i < response.getPropertyCount(); i++) {
-            SoapObject obj = (SoapObject) response.getProperty(i);
-            String propiedad = response.getProperty(i).toString();
-            ObjGenericObject object = new ObjGenericObject(obj.getProperty("name").toString(), obj.getProperty("id").toString());
-
-            obj2[i - 2] = object;
-        }
-
-        return obj2;
-    }
 
     public void serviceAnswer(String responseCode) {
         if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO_) || responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {

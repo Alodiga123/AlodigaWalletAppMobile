@@ -81,9 +81,6 @@ public class PaymentStep5Activity extends AppCompatActivity {
         av.setText(Session.getRemittenceDestinatario().getAv());
 
 
-
-
-
         btnShareInformation.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 //updateProduct();
@@ -132,14 +129,11 @@ public class PaymentStep5Activity extends AppCompatActivity {
             }
         });
 
-
-
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent pasIntent = getIntent();
         Intent i = new Intent(PaymentStep5Activity.this, PaymentStep3Activity.class);
         startActivity(i);
         finish();

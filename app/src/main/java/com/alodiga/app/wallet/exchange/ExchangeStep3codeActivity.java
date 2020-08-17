@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.duallibrary.exchange.ExchangeController;
-import com.alodiga.app.wallet.duallibrary.model.ObjUserHasProduct;
 import com.alodiga.app.wallet.duallibrary.utils.CommonController;
 import com.alodiga.app.wallet.duallibrary.utils.Constants;
 import com.alodiga.app.wallet.duallibrary.utils.Session;
@@ -21,8 +20,6 @@ import com.alodiga.app.wallet.utils.FailCodeOperationActivity;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
 
 import org.ksoap2.serialization.SoapObject;
-
-import java.util.ArrayList;
 
 public class ExchangeStep3codeActivity extends AppCompatActivity {
     static int cout = 1;
@@ -112,7 +109,7 @@ public class ExchangeStep3codeActivity extends AppCompatActivity {
 
         @Override
         protected Boolean doInBackground(Void... params) {
-
+            try{
                 SoapObject response = CommonController.getCode(clave);
                 String responseCode = response.getProperty("codigoRespuesta").toString();
 
@@ -162,7 +159,19 @@ public class ExchangeStep3codeActivity extends AppCompatActivity {
                     responsetxt = getString(R.string.web_services_response_99);
                     serviceStatus = false;
                 }
-
+            } catch (IllegalArgumentException e)
+            {
+                responsetxt = getString(R.string.web_services_response_99);
+                e.printStackTrace();
+                System.err.println(e);
+                return false;
+            } catch (Exception e)
+            {
+                responsetxt = getString(R.string.web_services_response_99);
+                e.printStackTrace();
+                System.err.println(e);
+                return false;
+            }
             return serviceStatus;
 
         }
@@ -211,6 +220,7 @@ public class ExchangeStep3codeActivity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
 
+            try{
                 response_ = ExchangeController.getExchange();
                 String responseCode = response_.getProperty("codigoRespuesta").toString();
 
@@ -260,7 +270,19 @@ public class ExchangeStep3codeActivity extends AppCompatActivity {
                     responsetxt = getString(R.string.web_services_response_99);
                     serviceStatus = false;
                 }
-
+            } catch (IllegalArgumentException e)
+            {
+                responsetxt = getString(R.string.web_services_response_99);
+                e.printStackTrace();
+                System.err.println(e);
+                return false;
+            } catch (Exception e)
+            {
+                responsetxt = getString(R.string.web_services_response_99);
+                e.printStackTrace();
+                System.err.println(e);
+                return false;
+            }
             return serviceStatus;
 
         }

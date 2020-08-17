@@ -10,19 +10,17 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.alodiga.app.R;
-import com.alodiga.app.wallet.main.MainActivity;
-import com.alodiga.app.wallet.duallibrary.model.ObjUserHasProduct;
+import com.alodiga.app.wallet.duallibrary.rechargeWithCard.RechargeWhithCardController;
 import com.alodiga.app.wallet.duallibrary.utils.Constants;
+import com.alodiga.app.wallet.duallibrary.utils.Session;
+import com.alodiga.app.wallet.main.MainActivity;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
-import com.alodiga.app.wallet.duallibrary.utils.Session;
-import com.alodiga.app.wallet.duallibrary.utils.Utils;
-import com.alodiga.app.wallet.duallibrary.utils.WebService;
 
 import org.ksoap2.serialization.SoapObject;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import static com.alodiga.app.wallet.duallibrary.rechargeWithCard.RechargeWhithCardController.rechargeAfinitas;
+import static com.alodiga.app.wallet.duallibrary.rechargeWithCard.RechargeWhithCardController.saveStateInfo;
 
 
 public class RechargeWithCardStep4Activity extends AppCompatActivity {
@@ -97,8 +95,7 @@ public class RechargeWithCardStep4Activity extends AppCompatActivity {
 
 
     public void cargar(){
-        //progressDialogAlodiga = new ProgressDialogAlodiga(this, getString(R.string.loading));
-        //progressDialogAlodiga.show();
+
         mAuthTask = new processRecharge();
         mAuthTask.execute((Void) null);
     }
@@ -109,28 +106,9 @@ public class RechargeWithCardStep4Activity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
 
-
-            try {
-                String responseCode;
-
-                HashMap<String, String> map = new HashMap<String, String>();
-                map.put("userId", Session.getUserId());
-                map.put("amountRecharge", Session.getTarjetahabienteSelect().getAmount());
-                map.put("currency", Constants.CURRENCY_INFO_PAYMENT);
-
-                if (Session.getIsConstantsEmpty()){
-                    map.put("cardNumber", Utils.aloDesencript(Session.getTarjetahabienteSelect().getCardInfo().getCreditCardNumber()));
-                    map.put("expirationYear", Session.getTarjetahabienteSelect().getCardInfo().getYear());
-                    map.put("expirationMonth", Session.getTarjetahabienteSelect().getCardInfo().getMonth());
-                    map.put("cvv", Session.getTarjetahabienteSelect().getCardInfo().getCreditCardCVV());
-                    map.put("cardHolderName", Session.getTarjetahabienteSelect().getCardInfo().getCreditCardName());
-                }else{
-                    map.put("paymentInfoId", Session.getTarjetahabienteSelect().getCardInfo().getId());
-                }
-
-
-                response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_SAVE_RECHARGE_AFINITAS, Constants.ALODIGA);
-                responseCode = response.getProperty("codigoRespuesta").toString();
+            try{
+                response = rechargeAfinitas();
+                String responseCode = response.getProperty("codigoRespuesta").toString();
 
 
                 if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
@@ -315,25 +293,20 @@ public class RechargeWithCardStep4Activity extends AppCompatActivity {
         @Override
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
-            //showProgress(false);
 
             if (success) {
-                Session.setObjUserHasProducts(getListProduct(response));
+                Session.setObjUserHasProducts(RechargeWhithCardController.getListProduct(response));
                 Session.setRechargeWhitCardIdTransaccion(response.getProperty("idTransaction").toString());
 
                 Intent show;
                 show = new Intent(RechargeWithCardStep4Activity.this, RechargeWithCardStep5Activity.class);
                 startActivity(show);
 
-
-
             } else {
 
                 new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                         responsetxt);
             }
-
-            //progressDialogAlodiga.dismiss();
         }
 
 
@@ -344,8 +317,7 @@ public class RechargeWithCardStep4Activity extends AppCompatActivity {
     }
 
     public void addTask() {
-        //progressDialogAlodiga = new ProgressDialogAlodiga(this, getString(R.string.loading));
-        //progressDialogAlodiga.show();
+
         mAuthTask_ = new AddContactTask();
         mAuthTask_.execute((Void) null);
 
@@ -357,32 +329,9 @@ public class RechargeWithCardStep4Activity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
 
-            String prueba= Session.getNumberCard();
-            String pr= Session.getAccountNumber();
-
-            try {
-                String responseCode;
-
-                HashMap<String, String> map = new HashMap<String, String>();
-                map.put("userApi", Constants.WEB_SERVICES_USUARIOWS_);
-                map.put("passwordApi", Constants.WEB_SERVICES_PASSWORDWS);
-                map.put("userId", Session.getUserId());
-                map.put("estado", "");
-                map.put("ciudad", "");
-                map.put("zipCode", "");
-                map.put("addres1", "");
-                map.put("paymentPatnerId", "2");
-                map.put("paymentTypeId", "1");
-                map.put("creditCardTypeId", Session.getTarjetahabienteSelect().getCardInfo().getCreditCardTypeId().getId());
-                map.put("creditCardName", Session.getTarjetahabienteSelect().getCardInfo().getCreditCardName());
-                map.put("creditCardNumber", Utils.aloDesencript(Session.getTarjetahabienteSelect().getCardInfo().getCreditCardNumber()));
-                map.put("creditCardCVV", Session.getTarjetahabienteSelect().getCardInfo().getCreditCardCVV());
-                map.put("creditCardDate", Session.getTarjetahabienteSelect().getCardInfo().getYear()+"-"+Session.getTarjetahabienteSelect().getCardInfo().getMonth());
-
-
-                response_ = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_SAVEPAYMENTINFO, Constants.ALODIGA);
-                responseCode = response_.getProperty("codigoRespuesta").toString();
-
+            try{
+                response_ = saveStateInfo();
+                String responseCode = response_.getProperty("codigoRespuesta").toString();
 
                 if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
                     responsetxt = getString(R.string.web_services_response_00);
@@ -465,7 +414,6 @@ public class RechargeWithCardStep4Activity extends AppCompatActivity {
         @Override
         protected void onPostExecute(final Boolean success) {
             mAuthTask_ = null;
-            //showProgress(false);
             if (success) {
                 new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                         getString(R.string.payment_method_save_succefull));;
@@ -475,7 +423,6 @@ public class RechargeWithCardStep4Activity extends AppCompatActivity {
                 new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                         responsetxt);
             }
-            //progressDialogAlodiga.dismiss();
         }
 
         @Override
@@ -483,26 +430,7 @@ public class RechargeWithCardStep4Activity extends AppCompatActivity {
             mAuthTask_ = null;
         }
     }
-    protected ArrayList<ObjUserHasProduct> getListProduct(SoapObject response) {
-        //ObjUserHasProduct[] obj2_aux= new ObjUserHasProduct[response.getPropertyCount()-3];
-        //ObjUserHasProduct[] obj2 = new ObjUserHasProduct[response.getPropertyCount()-3];
-        ArrayList<ObjUserHasProduct> obj2 = new ArrayList<>();
-        for (int i = 4; i < response.getPropertyCount()-1; i++) {
-            SoapObject obj = (SoapObject) response.getProperty(i);
-            String propiedad = response.getProperty(i).toString();
-            ObjUserHasProduct object = new ObjUserHasProduct(obj.getProperty("id").toString(), obj.getProperty("name").toString(), obj.getProperty("currentBalance").toString(), obj.getProperty("symbol").toString(), obj.getProperty("isPayTopUp").toString());
-            if (object.getName().equals("Tarjeta Prepagada") || object.getName().equals("Prepaid Card") ){
-                Session.setAffiliatedCard(Boolean.parseBoolean(Session.getPrepayCardAsociate()));
-                object.setNumberCard(Session.getNumberCard_aux());
-            }else{
-                object.setNumberCard(Session.getAccountNumber_aux());
-            }
-            obj2.add(object);
-            //obj2[i-3] = object;
-        }
 
-        return obj2;
-    }
 
 
 }

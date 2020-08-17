@@ -27,7 +27,6 @@ public class ValidateAccountStep1Activity extends AppCompatActivity {
         back= findViewById(R.id.backToLoginBtn);
         imgCamare = findViewById(R.id.imgCamare);
 
-        //imageView2= (ImageView) findViewById(R.id.imageView2);
         Bitmap prueba= BipmapUtils.getSelectedImage();
         imgCamare.setImageBitmap(prueba);
         next.setOnClickListener(new View.OnClickListener() {
@@ -47,7 +46,6 @@ public class ValidateAccountStep1Activity extends AppCompatActivity {
                 finish();
             }
         });
-
     }
 
     @Override

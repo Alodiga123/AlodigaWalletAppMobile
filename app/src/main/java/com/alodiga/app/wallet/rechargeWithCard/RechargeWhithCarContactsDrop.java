@@ -12,12 +12,10 @@ import com.alodiga.app.R;
 import com.alodiga.app.wallet.duallibrary.utils.Constants;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
-import com.alodiga.app.wallet.duallibrary.utils.Session;
-import com.alodiga.app.wallet.duallibrary.utils.WebService;
 
 import org.ksoap2.serialization.SoapObject;
 
-import java.util.HashMap;
+import static com.alodiga.app.wallet.duallibrary.rechargeWithCard.RechargeWhithCardController.getStatusRecharge;
 
 
 public class RechargeWhithCarContactsDrop extends AppCompatActivity {
@@ -67,19 +65,9 @@ public class RechargeWhithCarContactsDrop extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
 
-            try {
-                String responseCode;
-                String responseMessage = "";
-
-                HashMap<String, String> map = new HashMap<String, String>();
-                map.put("userApi", Constants.WEB_SERVICES_USUARIOWS_);
-                map.put("passwordApi", Constants.WEB_SERVICES_PASSWORDWS);
-                map.put("userId", Session.getUserId());
-                map.put("paymentInfoId", Session.getTarjetahabienteSelect().getCardInfo().getId());
-                map.put("status", "false");
-
-                response_ = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_CHANGE_STATUS_PAYMENT_INFO, Constants.ALODIGA);
-                responseCode = response_.getProperty("codigoRespuesta").toString();
+            try{
+                response_ = getStatusRecharge();
+                String responseCode = response_.getProperty("codigoRespuesta").toString();
 
 
                 if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
@@ -173,7 +161,7 @@ public class RechargeWhithCarContactsDrop extends AppCompatActivity {
         @Override
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
-            //showProgress(false);
+
             if (success) {
 
                 Intent show;
@@ -193,7 +181,6 @@ public class RechargeWhithCarContactsDrop extends AppCompatActivity {
 
 
         }
-
 
         @Override
         protected void onCancelled() {

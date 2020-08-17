@@ -12,21 +12,20 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.alodiga.app.R;
-import com.alodiga.app.wallet.main.MainActivity;
+import com.alodiga.app.wallet.duallibrary.paymentComerce.PaymentComerceController;
 import com.alodiga.app.wallet.duallibrary.utils.AlodigaCryptographyUtils;
 import com.alodiga.app.wallet.duallibrary.utils.Constants;
+import com.alodiga.app.wallet.duallibrary.utils.Session;
+import com.alodiga.app.wallet.main.MainActivity;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
-import com.alodiga.app.wallet.duallibrary.utils.Session;
-import com.alodiga.app.wallet.duallibrary.utils.Utils;
-import com.alodiga.app.wallet.duallibrary.utils.WebService;
 import com.google.zxing.Result;
 
 import org.ksoap2.serialization.SoapObject;
 
-import java.util.HashMap;
-
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
+
+import static com.alodiga.app.wallet.duallibrary.paymentComerce.PaymentComerceController.getValueFromResponseJson;
 
 
 public class PaymentComerceStep2QrActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
@@ -39,19 +38,11 @@ public class PaymentComerceStep2QrActivity extends AppCompatActivity implements 
     private String destinationLastNameValue = "";
     private String destinationNameValue = "";
     private String selectedMoney = "";
-
-
     private String destinationIdValue = "";
-
-
-    private Integer caseFind = 0;
     private String responsetxt = "";
     private boolean serviceStatus;
     private PaymentComerceStep2QrActivity.FindUserTask mAuthTask = null;
 
-    private static String getValueFromResponseJson(String v, String response) {
-        return (response.split(v + "=")[1].split(";")[0]);
-    }
 
     @Override
     public void onCreate(Bundle state) {
@@ -86,24 +77,15 @@ public class PaymentComerceStep2QrActivity extends AppCompatActivity implements 
 
     @Override
     public void handleResult(Result rawResult) {
-        //  Toast.makeText( getApplicationContext(), "Escaneo Exitoso",Toast.LENGTH_LONG).show();
         mScannerView.stopCamera();
-        //   Intent i = new Intent(PagarActivity.this, CustomerConfirmActivity.class);
-        //  startActivity(i);
-        // finish();
-        // Toast.makeText( getApplicationContext(), "Escaneo Exitoso",Toast.LENGTH_LONG).show();
+
         Log.i("QRCode", rawResult.getText());
-        //String text="";
         AlodigaCryptographyUtils obj = new AlodigaCryptographyUtils();
 
         try {
 
             String text = AlodigaCryptographyUtils.decrypt(rawResult.getText().trim(), Constants.KEY_ENCRIPT_DESENCRIPT_QR);
-            //Toast.makeText( getApplicationContext(), text,Toast.LENGTH_SHORT).show();
             mScannerView.resumeCameraPreview(this);
-            //Toast.makeText( getApplicationContext(), text.split(";")[0],Toast.LENGTH_LONG).show();
-
-            //mAuthTask = new PaymentComerceStep2QrActivity.FindUserTask(rawResult.getText().toString());
 
             //Validar que no se pueda pagar a si mismo.
             String emailFind = text.split(";")[0];
@@ -112,7 +94,6 @@ public class PaymentComerceStep2QrActivity extends AppCompatActivity implements 
                 Intent i = new Intent(PaymentComerceStep2QrActivity.this, PaymentComerceStep1Activity.class);
                 startActivity(i);
                 finish();
-                // Toast.makeText( getApplicationContext(), getString(R.string.app_operation_not_permited),Toast.LENGTH_LONG).show();
                 new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                         getString(R.string.app_operation_not_permited));
             } else {
@@ -122,7 +103,6 @@ public class PaymentComerceStep2QrActivity extends AppCompatActivity implements 
 
 
         } catch (Exception e) {
-            //Toast.makeText( getApplicationContext(), getString(R.string.app_error_general),Toast.LENGTH_LONG).show();
             new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                     getString(R.string.app_error_general));
             Intent i = new Intent(PaymentComerceStep2QrActivity.this, MainActivity.class);
@@ -133,8 +113,6 @@ public class PaymentComerceStep2QrActivity extends AppCompatActivity implements 
 
 
     }
-
-
 
     @Override
     public void onBackPressed() {
@@ -158,21 +136,10 @@ public class PaymentComerceStep2QrActivity extends AppCompatActivity implements 
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            WebService webService = new WebService();
-            Utils utils = new Utils();
-            SoapObject response;
-            try {
-                String responseCode;
-                String responseMessage = "";
-                HashMap<String, String> map = new HashMap<String, String>();
-                map.put("usuarioApi", Constants.WEB_SERVICES_USUARIOWS);
-                map.put("passwordApi", Constants.WEB_SERVICES_PASSWORDWS);
-                map.put("email", phoneOrEmail);
-                String methodName = "getUsuarioporemail";
 
-                response = WebService.invokeGetAutoConfigString(map, methodName, Constants.REGISTRO_UNIFICADO);
-                responseCode = response.getProperty("codigoRespuesta").toString();
-                //Activar las preguntas de seguridad
+            try{
+                SoapObject response = PaymentComerceController.getUsuarioEmail(phoneOrEmail);
+                String responseCode = response.getProperty("codigoRespuesta").toString();
 
                 if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
                     String res = response.getProperty("datosRespuesta").toString();
@@ -249,8 +216,7 @@ public class PaymentComerceStep2QrActivity extends AppCompatActivity implements 
             mAuthTask = null;
 
             if (success) {
-                //llama activities
-                //llama activities
+
                 selectedMoney = Session.getMoneySelected().getId();
                 Session.setDestinationAccountNumber(destinationAccountNumber);
                 Session.setDestinationLastNameValue(destinationLastNameValue);

@@ -13,23 +13,21 @@ import android.widget.ProgressBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.alodiga.app.R;
-import com.alodiga.app.wallet.main.MainActivity;
 import com.alodiga.app.wallet.duallibrary.utils.Constants;
+import com.alodiga.app.wallet.duallibrary.utils.Utils;
+import com.alodiga.app.wallet.main.MainActivity;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
-import com.alodiga.app.wallet.duallibrary.utils.Session;
-import com.alodiga.app.wallet.duallibrary.utils.Utils;
-import com.alodiga.app.wallet.duallibrary.utils.WebService;
 
 import org.ksoap2.serialization.SoapObject;
 
-import java.util.HashMap;
+import static com.alodiga.app.wallet.duallibrary.changePassword.ChangePasswordController.changePassword;
 
 public class ChangePasswordStep1Activity extends AppCompatActivity {
     private ProgressBar progressBar;
-    EditText edtNewPassword, edtCurrentPassword, edtConfirmPassword;
+    EditText edtNewPassword,  edtConfirmPassword;
     private int forwardIndicator;
-    String currentPassword, newPassword, confirmPassword;
+    String  newPassword, confirmPassword;
     private static int messageForToast;
     Button change, backToLoginBtn;
     private String responsetxt = "";
@@ -37,8 +35,6 @@ public class ChangePasswordStep1Activity extends AppCompatActivity {
     SoapObject response;
     static ProgressDialogAlodiga progressDialogAlodiga;
     ProcessTask mAuthTask;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +81,6 @@ public class ChangePasswordStep1Activity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent pasIntent = getIntent();
         Intent i = new Intent(ChangePasswordStep1Activity.this, MainActivity.class);
         startActivity(i);
         finish();
@@ -137,27 +132,17 @@ public class ChangePasswordStep1Activity extends AppCompatActivity {
 
         @Override
         protected Boolean doInBackground(Void... params) {
-
-            WebService webService = new WebService();
-            Utils utils = new Utils();
-
-            try {
-
                 boolean availableBalance = true;
-                String responseCode;
-                String responseMessage = "";
+
+                try {
 
 
                 if (availableBalance) {
-                    HashMap<String, String> map = new HashMap<String, String>();
-                    map.put("usuarioApi", Constants.WEB_SERVICES_USUARIOWS);
-                    map.put("passwordApi", Constants.WEB_SERVICES_PASSWORDWS);
-                    map.put("usuarioId", Session.getUserId());
-                    map.put("credencial", key);
 
-                    response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_CHANGE_PASSWORD, Constants.REGISTRO_UNIFICADO);
-                    responseCode = response.getProperty("codigoRespuesta").toString();
-                    responseMessage = response.getProperty("mensajeRespuesta").toString();
+
+                    response = changePassword(key);
+                    String responseCode = response.getProperty("codigoRespuesta").toString();
+                    String responseMessage = response.getProperty("mensajeRespuesta").toString();
 
                     if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
 

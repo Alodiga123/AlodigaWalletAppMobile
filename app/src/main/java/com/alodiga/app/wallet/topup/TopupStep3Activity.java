@@ -47,7 +47,6 @@ public class TopupStep3Activity extends AppCompatActivity {
 
         btnProcess.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(), "Prueba exitosa");
                 Intent show;
                 show = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(show);

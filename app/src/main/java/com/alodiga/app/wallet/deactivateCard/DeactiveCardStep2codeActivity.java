@@ -10,21 +10,16 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.alodiga.app.R;
-import com.alodiga.app.wallet.duallibrary.model.ObjUserHasProduct;
+import com.alodiga.app.wallet.duallibrary.deactivateCard.DeactiveCardController;
 import com.alodiga.app.wallet.duallibrary.utils.Constants;
+import com.alodiga.app.wallet.duallibrary.utils.Utils;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.FailCodeOperationActivity;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
-import com.alodiga.app.wallet.duallibrary.utils.Session;
-import com.alodiga.app.wallet.duallibrary.utils.Utils;
-import com.alodiga.app.wallet.duallibrary.utils.WebService;
 
 import org.ksoap2.serialization.SoapObject;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.TimeZone;
+import static com.alodiga.app.wallet.duallibrary.deactivateCard.DeactiveCardController.deactiveCard;
 
 public class DeactiveCardStep2codeActivity extends AppCompatActivity {
     static int cout = 1;
@@ -88,16 +83,8 @@ public class DeactiveCardStep2codeActivity extends AppCompatActivity {
     }
 
     public void Thread2(){
-        //progressDialogAlodiga = new ProgressDialogAlodiga(this, getString(R.string.loading));
-        //progressDialogAlodiga.show();
         mAuthTask_ = new UserGetProcessActive();
         mAuthTask_.execute((Void) null);
-        //progressDialogAlodiga.dismiss();
-
-        /*Intent i = new Intent(ActiveCardStep2codeActivity.this, ActiveCardStep3Activity.class);
-        startActivity(i);
-        finish();*/
-
     }
 
     @Override
@@ -107,7 +94,6 @@ public class DeactiveCardStep2codeActivity extends AppCompatActivity {
         finish();
 
     }
-
 
     public class UserGetCodeTask extends AsyncTask<Void, Void, Boolean> {
 
@@ -121,25 +107,9 @@ public class DeactiveCardStep2codeActivity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
 
-            WebService webService = new WebService();
-            Utils utils = new Utils();
-            SoapObject response;
-            try {
-                String responseCode;
-                String responseMessage = "";
-
-
-                HashMap<String, String> map = new HashMap<String, String>();
-                map.put("usuarioApi", Constants.WEB_SERVICES_USUARIOWS);
-                map.put("passwordApi", Constants.WEB_SERVICES_PASSWORDWS);
-                map.put("usuarioId", Session.getUserId());
-                map.put("pin", clave);
-
-
-                response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_NAME_VALID_CODE, Constants.REGISTRO_UNIFICADO);
-                responseCode = response.getProperty("codigoRespuesta").toString();
-                responseMessage = response.getProperty("mensajeRespuesta").toString();
-
+            try{
+                SoapObject response = DeactiveCardController.getCode(clave);
+                String responseCode = response.getProperty("codigoRespuesta").toString();
 
                 if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
                     responsetxt = getString(R.string.web_services_response_00);
@@ -208,7 +178,6 @@ public class DeactiveCardStep2codeActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
-            //showProgress(false);
             if (success) {
 
                 if (cout <= 3) {
@@ -248,29 +217,9 @@ public class DeactiveCardStep2codeActivity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
 
-            WebService webService = new WebService();
-            Utils utils = new Utils();
-
-            try {
-                String responseCode;
-                String responseMessage = "";
-
-
-                Calendar cal = Calendar.getInstance();
-                TimeZone tz = cal.getTimeZone();
-
-                HashMap<String, String> map = new HashMap<String, String>();
-                map.put("userId", Session.getUserId());
-                map.put("card", Utils.aloDesencript(Session.getCardDeactive().trim()));
-                map.put("timeZone", tz.getID());
-                map.put("status", Constants.ACTIVE_STATUS_DEACTIVE);
-
-
-
-                response_ = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_DEACTIVE_PROCESS, Constants.ALODIGA);
-                responseCode = response_.getProperty("codigoRespuesta").toString();
-                responseMessage = response_.getProperty("mensajeRespuesta").toString();
-
+            try{
+                response_ =  deactiveCard();
+                String responseCode = response_.getProperty("codigoRespuesta").toString();
 
                 if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
                     responsetxt = getString(R.string.web_services_response_00);
@@ -351,17 +300,11 @@ public class DeactiveCardStep2codeActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
-            //showProgress(false);
             if (success) {
-                //Session.setOperationExchange(response_.getProperty("idTransaction").toString());
-                //Session.setObjUserHasProducts(getListProductGeneric(response_));
-
 
                 Intent i = new Intent(DeactiveCardStep2codeActivity.this, DeactiveCardStep3Activity.class);
                 startActivity(i);
                 finish();
-
-
 
             } else {
                 new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
@@ -374,22 +317,6 @@ public class DeactiveCardStep2codeActivity extends AppCompatActivity {
         protected void onCancelled() {
             mAuthTask = null;
         }
-    }
-
-
-    protected ArrayList<ObjUserHasProduct> getListProductGeneric(SoapObject response) {
-        //ObjUserHasProduct[] obj2_aux= new ObjUserHasProduct[response.getPropertyCount()-3];
-        //ObjUserHasProduct[] obj2 = new ObjUserHasProduct[response.getPropertyCount()-3];
-        ArrayList<ObjUserHasProduct> obj2 = new ArrayList<>();
-        for (int i = 4; i < response.getPropertyCount(); i++) {
-            SoapObject obj = (SoapObject) response.getProperty(i);
-            String propiedad = response.getProperty(i).toString();
-            ObjUserHasProduct object = new ObjUserHasProduct(obj.getProperty("id").toString(), obj.getProperty("name").toString(), obj.getProperty("currentBalance").toString(), obj.getProperty("symbol").toString(), obj.getProperty("isPayTopUp").toString());
-            obj2.add(object);
-            //obj2[i-3] = object;
-        }
-
-        return obj2;
     }
 
 }

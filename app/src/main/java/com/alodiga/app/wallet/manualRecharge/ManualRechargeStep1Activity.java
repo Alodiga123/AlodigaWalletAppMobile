@@ -106,6 +106,7 @@ public class ManualRechargeStep1Activity extends AppCompatActivity {
                 new Thread(new Runnable() {
                     public void run() {
 
+                        try{
                             response = ManualRechargeController.getBank(pais);
                             String responseCode = response.getProperty("codigoRespuesta").toString();
                             serviceAnswer(responseCode);
@@ -125,6 +126,12 @@ public class ManualRechargeStep1Activity extends AppCompatActivity {
                                 new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                                         responsetxt);
                             }
+                        } catch (Exception e)
+                        {
+                            responsetxt = getString(R.string.web_services_response_99);
+                            e.printStackTrace();
+                            System.err.println(e);
+                        }
 
                     }
                 }).start();
@@ -144,6 +151,7 @@ public class ManualRechargeStep1Activity extends AppCompatActivity {
 
                 new Thread(new Runnable() {
                     public void run() {
+                        try{
                             response = ManualRechargeController.getProduct(bank);
                             String responseCode = response.getProperty("codigoRespuesta").toString();
                             serviceAnswer(responseCode);
@@ -162,6 +170,12 @@ public class ManualRechargeStep1Activity extends AppCompatActivity {
                                 new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                                         responsetxt);
                             }
+                        }catch (Exception e)
+                        {
+                            responsetxt = getString(R.string.web_services_response_99);
+                            e.printStackTrace();
+                            System.err.println(e);
+                        }
                     }
                 }).start();
             }
@@ -294,6 +308,7 @@ public class ManualRechargeStep1Activity extends AppCompatActivity {
             getproduct = (ObjTransferMoney) spinnerproducto.getSelectedItem();
             getTrans = edttrans.getText().toString();
 
+            try{
                 SoapObject response = ManualRechargeController.rechargeManual(getbank,getNumberOperation, getAmountRecharge,getproduct,getTrans);
                 String responseCode = response.getProperty("codigoRespuesta").toString();
 
@@ -354,7 +369,19 @@ public class ManualRechargeStep1Activity extends AppCompatActivity {
                     responsetxt = getString(R.string.web_services_response_99);
                     serviceStatus = false;
                 }
-
+            } catch (IllegalArgumentException e)
+            {
+                responsetxt = getString(R.string.web_services_response_99);
+                e.printStackTrace();
+                System.err.println(e);
+                return false;
+            } catch (Exception e)
+            {
+                responsetxt = getString(R.string.web_services_response_99);
+                e.printStackTrace();
+                System.err.println(e);
+                return false;
+            }
             return serviceStatus;
         }
 

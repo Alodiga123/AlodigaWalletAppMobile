@@ -15,16 +15,15 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.alodiga.app.R;
+import com.alodiga.app.wallet.duallibrary.utils.CommonController;
 import com.alodiga.app.wallet.duallibrary.utils.Constants;
+import com.alodiga.app.wallet.duallibrary.utils.Session;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
-import com.alodiga.app.wallet.duallibrary.utils.Session;
-import com.alodiga.app.wallet.duallibrary.utils.Utils;
-import com.alodiga.app.wallet.duallibrary.utils.WebService;
 
 import org.ksoap2.serialization.SoapObject;
 
-import java.util.HashMap;
+import static com.alodiga.app.wallet.duallibrary.transferenceCardToCard.TransferenceCardToCardController.transferenceGetCard;
 
 public class TransferenceCardToCardStep3Activity extends AppCompatActivity {
     static ProgressDialogAlodiga progressDialogAlodiga;
@@ -35,8 +34,6 @@ public class TransferenceCardToCardStep3Activity extends AppCompatActivity {
     private boolean serviceStatus;
     private getCardTask mAuthTask;
     SoapObject response;
-
-
 
     public TransferenceCardToCardStep3Activity() {
 
@@ -108,24 +105,10 @@ public class TransferenceCardToCardStep3Activity extends AppCompatActivity {
 
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (!s.toString().matches("^\\ (\\d{1,3}(\\,\\d{3})*|(\\d+))(\\.\\d{2})?$")) {
-                    String userInput = "" + s.toString().replaceAll("[^\\d]", "");
-                    StringBuilder cashAmountBuilder = new StringBuilder(userInput);
-
-                    while (cashAmountBuilder.length() > 3 && cashAmountBuilder.charAt(0) == '0') {
-                        cashAmountBuilder.deleteCharAt(0);
-                    }
-                    while (cashAmountBuilder.length() < 3) {
-                        cashAmountBuilder.insert(0, '0');
-                    }
-                    cashAmountBuilder.insert(cashAmountBuilder.length() - 2, '.');
-                    cashAmountBuilder.insert(0, ' ');
-
-                    amountValue.setText(cashAmountBuilder.toString());
-                    // keeps the cursor always to the right
-                    Selection.setSelection(amountValue.getText(), cashAmountBuilder.toString().length());
-
+                    StringBuilder getDecimal = CommonController.setDecimal(s);
+                    amountValue.setText(getDecimal.toString());
+                    Selection.setSelection(amountValue.getText(), getDecimal.toString().length());
                 }
-
             }
         });
     }
@@ -139,7 +122,6 @@ public class TransferenceCardToCardStep3Activity extends AppCompatActivity {
 
 
     private boolean checkValidation() {
-        // Check if all strings are null or not
         if (conceptValue.getText().toString().equals("")) {
             new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                     getString(R.string.concept_req));
@@ -175,21 +157,9 @@ public class TransferenceCardToCardStep3Activity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
 
-            WebService webService = new WebService();
-            Utils utils = new Utils();
-
-            try {
-                String responseCode;
-                String responseMessage = "";
-
-                HashMap<String, String> map = new HashMap<String, String>();
-                map.put("userId", Session.getUsuarioDestionId());
-
-
-                response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_TRANSFERENCE_GET_CARD, Constants.ALODIGA);
-                responseCode = response.getProperty("codigoRespuesta").toString();
-                responseMessage = response.getProperty("mensajeRespuesta").toString();
-
+            try{
+                response = transferenceGetCard();
+                String responseCode = response.getProperty("codigoRespuesta").toString();
 
                 if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
 
@@ -268,8 +238,6 @@ public class TransferenceCardToCardStep3Activity extends AppCompatActivity {
                 Session.setTranferenceCardToCardEncripDest(numberCard.substring(0,4) + "*********" + numberCard.substring(numberCard.length()-4,numberCard.length()));
                 Session.setTranferenceCardToCardDest(numberCard);
                 txtAccountdesValue.setText(Session.getTranferenceCardToCardEncripDest());
-
-
             } else {
                 new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                         responsetxt);
@@ -287,7 +255,5 @@ public class TransferenceCardToCardStep3Activity extends AppCompatActivity {
             mAuthTask = null;
         }
     }
-
-
 
 }

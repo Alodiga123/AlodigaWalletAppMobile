@@ -20,20 +20,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.adapters.AdapterCustomList;
-import com.alodiga.app.wallet.main.MainActivity;
 import com.alodiga.app.wallet.duallibrary.model.ObjNewsItem;
 import com.alodiga.app.wallet.duallibrary.model.ObjTransaction;
 import com.alodiga.app.wallet.duallibrary.utils.Constants;
+import com.alodiga.app.wallet.main.MainActivity;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
-import com.alodiga.app.wallet.duallibrary.utils.Session;
-import com.alodiga.app.wallet.duallibrary.utils.Utils;
-import com.alodiga.app.wallet.duallibrary.utils.WebService;
 
 import org.ksoap2.serialization.SoapObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+
+import static com.alodiga.app.wallet.duallibrary.listRemittence.ListRemittenceController.getParseResponse;
+import static com.alodiga.app.wallet.duallibrary.listRemittence.ListRemittenceController.getRemittenceList;
 
 
 public class ListRemittenceActivity extends AppCompatActivity implements OnItemSelectedListener {
@@ -97,24 +96,10 @@ public class ListRemittenceActivity extends AppCompatActivity implements OnItemS
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            WebService webService = new WebService();
-            Utils utils = new Utils();
-            SoapObject response;
-            try {
-                String responseCode;
-                String datosRespuesta = "";
 
-
-                HashMap<String, String> map = new HashMap<String, String>();
-                //map.put("usuarioApi",Constants.WEB_SERVICES_USUARIOWS);
-                //map.put("passwordApi",Constants.WEB_SERVICES_PASSWORDWS);
-                map.put("userId", Session.getUserId());
-                map.put("maxResult", Constants.MAX_RESULT_BY_TRANSACTION_OPERATION.toString());
-
-                response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_NAME_GET_TRANSACTION_LIST, Constants.ALODIGA);
-                stringResponse = response.toString();
-                responseCode = response.getProperty("codigoRespuesta").toString();
-                // datosRespuesta = response.getProperty("transactions").toString();
+            try{
+                SoapObject response =getRemittenceList();
+                String responseCode = response.getProperty("codigoRespuesta").toString();
 
                 if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
                     responsetxt = "";
@@ -196,7 +181,6 @@ public class ListRemittenceActivity extends AppCompatActivity implements OnItemS
 
         @Override
         protected void onPreExecute() {
-//            progressDialogAlodiga.show();
         }
 
         @Override
@@ -253,7 +237,6 @@ public class ListRemittenceActivity extends AppCompatActivity implements OnItemS
 
                         String transactionType = "";
 
-
                         AlertDialog alertDialog = new AlertDialog.Builder(context,R.style.yourDialog).create();
                         alertDialog.setTitle(Html.fromHtml("Detalle Transaccion"));
                         showAlert = "Monto: " + ((ObjTransaction) newsData.getObject()).getAmount()
@@ -297,54 +280,12 @@ public class ListRemittenceActivity extends AppCompatActivity implements OnItemS
             } else {
                 new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                         responsetxt);
-                //Toast.makeText(context, responsetxt, Toast.LENGTH_LONG).show();
                 Intent i = new Intent(this.context, MainActivity.class);
                 startActivity(i);
                 finish();
             }
         }
 
-        private ArrayList<ObjTransaction> getParseResponse(String response) {
-
-            ArrayList<ObjTransaction> transactions = new ArrayList<ObjTransaction>();
-            for (int i = 1; i < getLenghtFromResponseJson(response); i++) {
-
-                ObjTransaction objTransaction = new ObjTransaction();
-                objTransaction.setAmount(response.split("amount=")[i].split(";")[0]);
-                objTransaction.setTransactionType(response.split("transactionType=")[i].split(";")[0]);
-                objTransaction.setCreateionDate(response.split("creationDate=")[i].split(";")[0]);
-                objTransaction.setUserDestination(response.split("destinationUser=")[i].split(";")[0]);
-                objTransaction.setConcept(response.split("concept=")[i].split(";")[0]);
-                objTransaction.setTransactionId(response.split("id=")[i].split(";")[0]);
-                // objTransaction.setTax(response.split("totalTax=")[i].split(";")[0]);
-                transactions.add(objTransaction);
-            }
-            return transactions;
-        }
-
-
-        private int getLenghtFromResponseJson(String v) {
-            return (v.split("transactions=anyType").length);
-        }
-
-        private ArrayList<ObjNewsItem> getListData(String[] var) {
-            ArrayList<ObjNewsItem> results = new ArrayList<ObjNewsItem>();
-            for (int i = 0; i < var.length; i++) {
-                String[] register = var[i].split("/");
-                ObjNewsItem newsData = new ObjNewsItem();
-                if (register[0].equals("-")) {
-                    newsData.setNegative(true);
-                    newsData.setReporterName("-" + register[4]);
-                } else {
-                    newsData.setNegative(false);
-                    newsData.setReporterName(register[4]);
-                }
-                newsData.setHeadline(register[3]);
-                newsData.setDate(register[2]);
-                results.add(newsData);
-            }
-            return results;
-        }
     }
 }
 

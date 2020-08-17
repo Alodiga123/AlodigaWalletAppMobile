@@ -58,11 +58,6 @@ public class ForgotPasswordStep2Fragment extends Fragment implements
             @Override
             public void messageReceived(String messageText) {
 
-                //From the received text string you may do string operations to get the required OTP
-                //It depends on your SMS format
-
-                // If your OTP is six digits number, you may use the below code
-
                 Pattern pattern = Pattern.compile(OTP_REGEX);
                 Matcher matcher = pattern.matcher(messageText);
                 String otp = "";
@@ -158,7 +153,6 @@ public class ForgotPasswordStep2Fragment extends Fragment implements
                 startActivity(show);
 
             }
-            //checkSecurityCode();
         }
     }
 

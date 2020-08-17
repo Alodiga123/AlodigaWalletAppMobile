@@ -15,22 +15,23 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.adapters.SpinAdapterHowToTransfer;
-import com.alodiga.app.wallet.main.MainActivity;
 import com.alodiga.app.wallet.duallibrary.model.ObjHowToTranssfer;
 import com.alodiga.app.wallet.duallibrary.model.ObjUserHasProduct;
+import com.alodiga.app.wallet.duallibrary.transferenceCardToCard.TransferenceCardToCardController;
 import com.alodiga.app.wallet.duallibrary.utils.Constants;
-import com.alodiga.app.wallet.utils.CustomToast;
-import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
 import com.alodiga.app.wallet.duallibrary.utils.Session;
 import com.alodiga.app.wallet.duallibrary.utils.Utils;
-import com.alodiga.app.wallet.duallibrary.utils.WebService;
+import com.alodiga.app.wallet.main.MainActivity;
+import com.alodiga.app.wallet.utils.CustomToast;
+import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
 
 import org.ksoap2.serialization.SoapObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static com.alodiga.app.wallet.duallibrary.transferenceCardToCard.TransferenceCardToCardController.getValueFromResponseJson;
 
 public class TransferenceCardToCardStep1Activity extends AppCompatActivity {
 
@@ -52,10 +53,6 @@ public class TransferenceCardToCardStep1Activity extends AppCompatActivity {
     private ObjUserHasProduct currencySelected;
     private ArrayList<ObjUserHasProduct> list_product;
 
-    private static String getValueFromResponseJson(String v, String response) {
-        return (response.split(v + "=")[1].split(";")[0]);
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,13 +67,6 @@ public class TransferenceCardToCardStep1Activity extends AppCompatActivity {
         backToLoginBtn=findViewById(R.id.backToLoginBtn);
 
         card1.setText(Session.getTranferenceCardToCardEncrip());
-
-        /*String[] optionsID = {"Alocoin","Saldo Alodiga", "HealthCareCoin"};
-        String[] optionsBank = {" ","Provincial","Mercantil", "Banesco", "Bicentenario", "Banco de Venezuela", "Banco del Tesoro", "Banco Caroní","Banco Sofitasa", "Banpro", "Banco Fondo Común", "Banfoandes", "Banco Occidental de Descuento", "Banco Venezolano de Crédito", "Banco Exterior", "Banco Plaza", "Citibank", "Banplus"};
-        String[] optionsTelephone = {" ","0416", "0426", "0412","0414", "0424"};*/
-
-        //Llena como quiere busca usuarios
-
 
         ObjHowToTranssfer[] objHowToTranssfers = new ObjHowToTranssfer[3];
         objHowToTranssfers[0] = new ObjHowToTranssfer("0", getString(R.string.forEmail));
@@ -134,7 +124,6 @@ public class TransferenceCardToCardStep1Activity extends AppCompatActivity {
                         Intent i = new Intent(TransferenceCardToCardStep1Activity.this, TransferenceCardToCardStep2QrActivity.class);
                         startActivity(i);
                         finish();
-
 
                     } else {
 
@@ -218,34 +207,10 @@ public class TransferenceCardToCardStep1Activity extends AppCompatActivity {
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            WebService webService = new WebService();
-            Utils utils = new Utils();
-            SoapObject response;
-            try {
-                String responseCode;
-                String responseMessage = "";
-                HashMap<String, String> map = new HashMap<String, String>();
-                map.put("usuarioApi", Constants.WEB_SERVICES_USUARIOWS);
-                map.put("passwordApi", Constants.WEB_SERVICES_PASSWORDWS);
-                String methodName = "";
-                switch (caseFind) {
 
-                    case 0:
-                        map.put("email", phoneOrEmail);
-                        methodName = "getUsuarioporemail";
-                        break;
-
-                    case 1:
-                        map.put("movil", phoneOrEmail);
-                        methodName = "getUsuariopormovil";
-                        break;
-
-                    default:
-
-                        break;
-                }
-                response = WebService.invokeGetAutoConfigString(map, methodName, Constants.REGISTRO_UNIFICADO);
-                responseCode = response.getProperty("codigoRespuesta").toString();
+        try{
+                SoapObject response = TransferenceCardToCardController.getUsuario(caseFind,phoneOrEmail);
+                String responseCode = response.getProperty("codigoRespuesta").toString();
                 //Activar las preguntas de seguridad
 
                 if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
@@ -300,7 +265,6 @@ public class TransferenceCardToCardStep1Activity extends AppCompatActivity {
                     responsetxt = getString(R.string.web_services_response_99);
                     serviceStatus = false;
                 }
-                //progressDialogAlodiga.dismiss();
             } catch (IllegalArgumentException e) {
                 responsetxt = getString(R.string.web_services_response_99);
                 serviceStatus = false;
@@ -323,10 +287,6 @@ public class TransferenceCardToCardStep1Activity extends AppCompatActivity {
             mAuthTask = null;
 
             if (success) {
-
-                //llama activities
-
-                //llama activities
                 Session.setMoneySelected(currencySelected);
                 Session.setDestinationAccountNumber(destinationAccountNumber);
                 Session.setDestinationLastNameValue(destinationLastNameValue);

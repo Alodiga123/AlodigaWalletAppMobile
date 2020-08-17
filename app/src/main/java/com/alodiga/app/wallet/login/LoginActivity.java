@@ -19,7 +19,6 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         fragmentManager = getSupportFragmentManager();
 
-        // If savedinstnacestate is null then replace login fragment
         if (savedInstanceState == null) {
             fragmentManager
                     .beginTransaction()
@@ -30,7 +29,6 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    // Replace Login Fragment with animation
     public void replaceLoginFragment() {
         fragmentManager
                 .beginTransaction()
@@ -47,7 +45,6 @@ public class LoginActivity extends AppCompatActivity {
                         Utils.register_step1_Fragment).commit();
     }
 
-
     @Override
     public void onBackPressed() {
 
@@ -56,10 +53,6 @@ public class LoginActivity extends AppCompatActivity {
                 .findFragmentByTag(Utils.SignUp_Fragment);
         Fragment ForgotPassword_Fragment = fragmentManager
                 .findFragmentByTag(Utils.ForgotPassword_Fragment);
-
-        // Check if both are null or not
-        // If both are not null then replace login fragment else do backpressed
-        // task
 
         if (SignUp_Fragment != null)
             replaceLoginFragment();

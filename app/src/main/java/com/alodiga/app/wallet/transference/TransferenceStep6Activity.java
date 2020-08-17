@@ -1,7 +1,6 @@
 package com.alodiga.app.wallet.transference;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -11,22 +10,12 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.alodiga.app.R;
-import com.alodiga.app.wallet.main.MainActivity;
-import com.alodiga.app.wallet.manualRemoval.ManualRemovalStep2WelcomeActivity;
-import com.alodiga.app.wallet.duallibrary.model.ObjUserHasProduct;
-import com.alodiga.app.wallet.duallibrary.utils.Constants;
-import com.alodiga.app.wallet.utils.CustomToast;
-import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
 import com.alodiga.app.wallet.duallibrary.utils.Session;
-import com.alodiga.app.wallet.duallibrary.utils.Utils;
-import com.alodiga.app.wallet.duallibrary.utils.WebService;
-
-import org.ksoap2.serialization.SoapObject;
+import com.alodiga.app.wallet.main.MainActivity;
+import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 
 public class TransferenceStep6Activity extends AppCompatActivity {
     private static TextView amountValue, conceptValue;
@@ -36,7 +25,6 @@ public class TransferenceStep6Activity extends AppCompatActivity {
     private ProgressDialogAlodiga progressDialogAlodiga;
     private String responsetxt = "";
     private boolean serviceStatus;
-    private UserProductTask mAuthTask = null;
 
 
     public TransferenceStep6Activity() {
@@ -103,7 +91,6 @@ public class TransferenceStep6Activity extends AppCompatActivity {
         progressDialogAlodiga = new ProgressDialogAlodiga(this, getString(R.string.loading));
         btnProcessFinisTransference.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
-                //updateProduct();
                 Intent i = new Intent(TransferenceStep6Activity.this, MainActivity.class);
                 i.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 startActivity(i);
@@ -115,170 +102,6 @@ public class TransferenceStep6Activity extends AppCompatActivity {
     }
 
 
-    public void updateProduct() {
-
-        progressDialogAlodiga = new ProgressDialogAlodiga(this, getString(R.string.loading));
-        progressDialogAlodiga.show();
-        mAuthTask = new UserProductTask();
-        mAuthTask.execute((Void) null);
-
-    }
-
-    private ArrayList<ObjUserHasProduct> getElementsProduct(String elementGet, String response) {
-        ArrayList<ObjUserHasProduct> objUserHasProducts = new ArrayList<ObjUserHasProduct>();
-        String elementgetId = "id=";
-        String elementGetName = "nombreProducto=";
-        String elementGetCurrentBalance = "saldoActual=";
-        String elementGetSymbol = "simbolo=";
-        String litaProd = "respuestaListadoProductos=";
-
-        for (int i = 1; i < getLenghtFromResponseJson(litaProd, response); i++) {
-            ObjUserHasProduct objUserHasProduct = new ObjUserHasProduct(response.split(elementgetId)[i].split(";")[0], response.split(elementGetName)[i].split(";")[0], response.split(elementGetCurrentBalance)[i].split(";")[0], response.split(elementGetSymbol)[i].split(";")[0]);
-            objUserHasProducts.add(objUserHasProduct);
-        }
-
-        return objUserHasProducts;
-    }
-
-    private String getValueFromResponseJson(String v, String response) {
-        return (response.split(v + "=")[1].split(";")[0]);
-    }
-
-    private Integer getLenghtFromResponseJson(String v, String response) {
-        return (response.split(v).length);
-    }
-
-    public class UserProductTask extends AsyncTask<Void, Void, Boolean> {
-
-        @Override
-        protected Boolean doInBackground(Void... params) {
-
-            WebService webService = new WebService();
-            Utils utils = new Utils();
-            SoapObject response;
 
 
-            try {
-                String responseCode;
-                String responseMessage = "";
-
-                HashMap<String, String> map = new HashMap<String, String>();
-                map.put("usuarioApi", Constants.WEB_SERVICES_USUARIOWS);
-                map.put("passwordApi", Constants.WEB_SERVICES_PASSWORDWS);
-                map.put("usuarioId", Session.getUserId());
-
-
-                response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_NAME_UPDATE_PRODUCT, Constants.REGISTRO_UNIFICADO);
-                responseCode = response.getProperty("codigoRespuesta").toString();
-                responseMessage = response.getProperty("mensajeRespuesta").toString();
-
-
-                if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
-
-                    responsetxt = getString(R.string.web_services_response_00);
-                    serviceStatus = true;
-                    return serviceStatus;
-
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_DATOS_INVALIDOS)) {
-                    responsetxt = getString(R.string.web_services_response_01);
-                    serviceStatus = false;
-
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CONTRASENIA_EXPIRADA)) {
-                    responsetxt = getString(R.string.web_services_response_03);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_IP_NO_CONFIANZA)) {
-                    responsetxt = getString(R.string.web_services_response_04);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CREDENCIALES_INVALIDAS)) {
-                    responsetxt = getString(R.string.web_services_response_05);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_BLOQUEADO)) {
-                    responsetxt = getString(R.string.web_services_response_06);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_NUMERO_TELEFONO_YA_EXISTE)) {
-                    responsetxt = getString(R.string.web_services_response_08);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_PRIMER_INGRESO)) {
-                    responsetxt = getString(R.string.web_services_response_12);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_TRANSACTION_AMOUNT_LIMIT)) {
-                    responsetxt = getString(R.string.web_services_response_30);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_TRANSACTION_MAX_NUMBER_BY_ACCOUNT)) {
-                    responsetxt = getString(R.string.web_services_response_31);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_TRANSACTION_MAX_NUMBER_BY_CUSTOMER)) {
-                    responsetxt = getString(R.string.web_services_response_32);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USER_HAS_NOT_BALANCE)) {
-                    responsetxt = getString(R.string.web_services_response_33);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_SOSPECHOSO)) {
-                    responsetxt = getString(R.string.web_services_response_95);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_PENDIENTE)) {
-                    responsetxt = getString(R.string.web_services_response_96);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_NO_EXISTE)) {
-                    responsetxt = getString(R.string.web_services_response_97);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_CREDENCIALES)) {
-                    responsetxt = getString(R.string.web_services_response_98);
-                    serviceStatus = false;
-                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_INTERNO)) {
-                    responsetxt = getString(R.string.web_services_response_99);
-                    serviceStatus = false;
-                } else {
-                    responsetxt = responseMessage;
-                    serviceStatus = false;
-                }
-                //progressDialogAlodiga.dismiss();
-            } catch (IllegalArgumentException e) {
-                responsetxt = getString(R.string.web_services_response_99);
-                serviceStatus = false;
-                e.printStackTrace();
-                System.err.println(e);
-                return false;
-            } catch (Exception e) {
-                responsetxt = getString(R.string.web_services_response_99);
-                serviceStatus = false;
-                e.printStackTrace();
-                System.err.println(e);
-                return false;
-            }
-            return serviceStatus;
-
-        }
-
-        @Override
-        protected void onPostExecute(final Boolean success) {
-            mAuthTask = null;
-            //showProgress(false);
-            if (success) {
-                Intent show;
-                show = new Intent(getApplicationContext(), ManualRemovalStep2WelcomeActivity.class);
-                startActivity(show);
-                finish();
-
-
-            } else {
-                new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
-                        responsetxt);
-            }
-            progressDialogAlodiga.dismiss();
-        }
-
-        @Override
-        protected void onCancelled() {
-            mAuthTask = null;
-        }
-    }
-
-    @Override
-    public void onBackPressed() {
-        Intent show = new Intent(TransferenceStep6Activity.this, MainActivity.class);
-        finish();
-        startActivity(show);
-
-    }
 }

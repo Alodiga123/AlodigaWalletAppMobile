@@ -72,43 +72,11 @@ public class ValidateAccountStep2Activity extends AppCompatActivity {
         startActivityForResult(galleryIntent, RESULT_LOAD_IMG);
     }
 
-/*
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        try {
-            if (requestCode == RESULT_LOAD_IMG && resultCode == RESULT_OK) {
-                final Uri imageUri = data.getData();
-                final InputStream imageStream = getContentResolver().openInputStream(imageUri);
-                final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
-                Session.setSelectedImageSelfie(selectedImage);
 
-                Bitmap prueba= Session.getSelectedImageSelfie();
-
-                //imgDecodableString = encodeImage(selectedImage);
-                //ImageView imgView = (ImageView) findViewById(R.id.imgCreateBit);
-
-                //imgView.setImageBitmap(selectedImage);
-                Intent show = new Intent(ValidateAccountStep2Activity.this, ValidateAccountStep3Activity.class);
-                startActivity(show);
-                finish();
-
-
-            } else {
-                new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(), getString(R.string.kyc_text_image));
-
-            }
-        } catch (Exception e) {
-            new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(), getString(R.string.web_services_response_99));
-
-        }
-    }*/
 @Override
 protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     if (requestCode == RESULT_LOAD_IMG && resultCode == RESULT_OK) {
-        //Bundle extras = data.getExtras();
-        //Bitmap imageBitmap = (Bitmap) extras.get("data");
-        //addPhoto.setImageBitmap(imageBitmap);
+
         if (data.getExtras()!= null) {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");

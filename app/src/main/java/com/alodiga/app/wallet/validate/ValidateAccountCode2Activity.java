@@ -29,23 +29,11 @@ public class ValidateAccountCode2Activity extends AppCompatActivity {
                 startActivity(i);
                 finish();            }
         });
-
-       /* next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(ValidateAccountCode2Activity.this, ValidateAccountActivity.class);
-                startActivity(i);
-                finish();            }
-        });*/
-
-
-
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent pasIntent = getIntent();
         Intent i = new Intent(ValidateAccountCode2Activity.this, MainActivity.class);
         startActivity(i);
         finish();

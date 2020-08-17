@@ -14,20 +14,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.adapters.SpinAdapterGeneric;
 import com.alodiga.app.wallet.adapters.SpinAdapterPais;
-import com.alodiga.app.wallet.main.MainActivity;
 import com.alodiga.app.wallet.duallibrary.model.ObjGenericObject;
-import com.alodiga.app.wallet.duallibrary.model.ObjTopUpInfos;
 import com.alodiga.app.wallet.duallibrary.model.ObjtopUpInfos_IsOpenRange;
+import com.alodiga.app.wallet.duallibrary.topup.TopupController;
 import com.alodiga.app.wallet.duallibrary.utils.Constants;
+import com.alodiga.app.wallet.duallibrary.utils.Session;
+import com.alodiga.app.wallet.main.MainActivity;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
-import com.alodiga.app.wallet.duallibrary.utils.Session;
-import com.alodiga.app.wallet.duallibrary.utils.Utils;
-import com.alodiga.app.wallet.duallibrary.utils.WebService;
 
 import org.ksoap2.serialization.SoapObject;
 
-import java.util.HashMap;
+import static com.alodiga.app.wallet.duallibrary.topup.TopupController.getDatosDenominacionFija;
+import static com.alodiga.app.wallet.duallibrary.topup.TopupController.getListGeneric;
 
 
 public class TopupStep1Activity extends AppCompatActivity {
@@ -59,21 +58,14 @@ public class TopupStep1Activity extends AppCompatActivity {
         mobileNumberRegister = findViewById(R.id.mobileNumberRegister);
         mobileNumberRegisterR = findViewById(R.id.mobileNumberRegisterR);
 
-
         //Spinner Country
         new Thread(new Runnable() {
             SoapObject response1;
 
             public void run() {
-                try {
-                    String responseCode = null;
-                    WebService webService = new WebService();
-                    HashMap<String, String> map = new HashMap<String, String>();
-                    //map.put("userId", Session.getUserId());
-                    response1 = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_NAME_GET_COUNTRIES_TOPUP, Constants.ALODIGA);
-                    stringResponse = response1.toString();
-                    responseCode = response1.getProperty("codigoRespuesta").toString();
-                    datosRespuesta = response1.getProperty("mensajeRespuesta").toString();
+                try{
+                    response1 = TopupController.getCountry();
+                    String responseCode = response1.getProperty("codigoRespuesta").toString();
                     serviceAnswer(responseCode);
 
                     if (serviceStatus) {
@@ -102,16 +94,7 @@ public class TopupStep1Activity extends AppCompatActivity {
                 ObjGenericObject obj = (ObjGenericObject) spinnerCountry.getSelectedItem();
                 mobileNumberRegister.setText("+" + obj.getId());
                 mobileNumberRegisterR.setText("+" + obj.getId());
-
-
-                //openrange
-                //mobileNumberRegister.setText("+5353693280");
-                //mobileNumberRegisterR.setText("+93789113612");
-
-                //denominacion fija
-                //mobileNumberRegister.setText("+542612594080");
-                //mobileNumberRegisterR.setText("+3054444441");
-            }
+                }
 
             public void onNothingSelected(AdapterView<?> adapterView) {
                 return;
@@ -124,15 +107,9 @@ public class TopupStep1Activity extends AppCompatActivity {
             SoapObject response2;
 
             public void run() {
-                try {
-                    String responseCode = null;
-                    WebService webService = new WebService();
-                    HashMap<String, String> map = new HashMap<String, String>();
-                    map.put("userId", Session.getUserId());
-                    response2 = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_NAME_GET_LANGUAJE_TOPUP, Constants.ALODIGA);
-                    stringResponse = response2.toString();
-                    responseCode = response2.getProperty("codigoRespuesta").toString();
-                    datosRespuesta = response2.getProperty("mensajeRespuesta").toString();
+                try{
+                    response2 = TopupController.getLanguaje();
+                    String responseCode = response2.getProperty("codigoRespuesta").toString();
                     serviceAnswer(responseCode);
 
                     if (serviceStatus) {
@@ -157,7 +134,6 @@ public class TopupStep1Activity extends AppCompatActivity {
 
         next.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(), "Prueba exitosa");
                 getmobileNumberRegister = mobileNumberRegister.getText().toString();
                 getmobileNumberRegisterR = mobileNumberRegisterR.getText().toString();
                 getcountry = (ObjGenericObject) spinnerCountry.getSelectedItem();
@@ -167,7 +143,6 @@ public class TopupStep1Activity extends AppCompatActivity {
                 if (getmobileNumberRegister.length() == 0 || getmobileNumberRegister.equals("") || getmobileNumberRegister.equals("+" + obj.getId())
                         || getmobileNumberRegisterR.length() == 0 || getmobileNumberRegisterR.equals("") || getmobileNumberRegisterR.equals("+" + obj.getId())) {
 
-
                     new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                             getString(R.string.invalid_all_question));
                 } else {
@@ -175,7 +150,6 @@ public class TopupStep1Activity extends AppCompatActivity {
                     Session.setNumberDestinationTopup(getmobileNumberRegister);
                     Session.setLanguajeTopup(getlanguaje.getId());
                     Session.setCountryTopup(getcountry.getName());
-
                     entrar();
                 }
 
@@ -213,7 +187,6 @@ public class TopupStep1Activity extends AppCompatActivity {
         if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
             responsetxt = getString(R.string.web_services_response_00);
             serviceStatus = true;
-            //return serviceStatus;
 
         } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_DATOS_INVALIDOS)) {
             responsetxt = getString(R.string.web_services_response_01);
@@ -256,49 +229,6 @@ public class TopupStep1Activity extends AppCompatActivity {
 
     }
 
-    protected ObjGenericObject[] getListGeneric(SoapObject response, boolean isContry) {
-
-        ObjGenericObject[] obj2 = new ObjGenericObject[response.getPropertyCount() - 3];
-        ObjGenericObject object;
-        for (int i = 3; i < response.getPropertyCount(); i++) {
-            SoapObject obj = (SoapObject) response.getProperty(i);
-            if (isContry) {
-                object = new ObjGenericObject(obj.getProperty("name").toString(), obj.getProperty("code").toString());
-            } else {
-                object = new ObjGenericObject(obj.getProperty("description").toString(), obj.getProperty("id").toString());
-            }
-            obj2[i - 3] = object;
-        }
-
-        return obj2;
-    }
-
-    private ObjTopUpInfos[] getDatosDenominacionFija(SoapObject response) {
-        ObjTopUpInfos[] obj2 = new ObjTopUpInfos[response.getPropertyCount() - 3];
-        ObjTopUpInfos object;
-        for (int i = 3; i < response.getPropertyCount(); i++) {
-            SoapObject obj = (SoapObject) response.getProperty(i);
-
-            object = new ObjTopUpInfos(
-                    obj.getProperty("commissionPercent").toString(),
-                    obj.getProperty("country").toString(),
-                    obj.getProperty("coutryId").toString(),
-                    obj.getProperty("denomination").toString(),
-                    obj.getProperty("denominationReceiver").toString(),
-                    obj.getProperty("denominationSale").toString(),
-                    obj.getProperty("destinationCurrency").toString(),
-                    obj.getProperty("isOpenRange").toString(),
-                    obj.getProperty("operatorid").toString(),
-                    obj.getProperty("opertador").toString(),
-                    obj.getProperty("skuid").toString(),
-                    obj.getProperty("wholesalePrice").toString());
-
-            obj2[i - 3] = object;
-        }
-
-        return obj2;
-
-    }
 
     public class ProcessTopup extends AsyncTask<Void, Void, Boolean> {
 
@@ -313,22 +243,14 @@ public class TopupStep1Activity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
 
-            WebService webService = new WebService();
-            Utils utils = new Utils();
-
-            try {
 
                 boolean availableBalance = true;
                 String responseCode;
                 String responseMessage = "";
 
-
+                try{
                 if (availableBalance) {
-                    HashMap<String, String> map = new HashMap<String, String>();
-                    map.put("phoneNumber", Utils.processPhone(Phone));
-                    map.put("receiverNumber", Utils.processPhone(receiverNumber));
-
-                    response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_NAME_GET_LIST_TOPUP, Constants.ALODIGA);
+                    response = TopupController.getListTopup(Phone,receiverNumber);
                     responseCode = response.getProperty("codigoRespuesta").toString();
                     responseMessage = response.getProperty("mensajeRespuesta").toString();
 
@@ -397,7 +319,6 @@ public class TopupStep1Activity extends AppCompatActivity {
                     responsetxt = getString(R.string.insuficient_balance);
                     serviceStatus = false;
                 }
-                //progressDialogAlodiga.dismiss();
             } catch (IllegalArgumentException e) {
                 responsetxt = getString(R.string.web_services_response_99);
                 serviceStatus = false;
@@ -424,7 +345,6 @@ public class TopupStep1Activity extends AppCompatActivity {
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
             if (success) {
-
 
                 SoapObject obj_isOpenRange = (SoapObject) response.getProperty(3);
                 String isOpenRange = obj_isOpenRange.getProperty("isOpenRange").toString();

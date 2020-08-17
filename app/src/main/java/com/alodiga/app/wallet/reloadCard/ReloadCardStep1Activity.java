@@ -11,16 +11,13 @@ import androidx.fragment.app.FragmentManager;
 
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.activeCard.ActiveCardStep3Activity;
-import com.alodiga.app.wallet.main.MainActivity;
+import com.alodiga.app.wallet.duallibrary.reloadCard.ReloadCardController;
 import com.alodiga.app.wallet.duallibrary.utils.Constants;
+import com.alodiga.app.wallet.main.MainActivity;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
-import com.alodiga.app.wallet.duallibrary.utils.Utils;
-import com.alodiga.app.wallet.duallibrary.utils.WebService;
 
 import org.ksoap2.serialization.SoapObject;
-
-import java.util.HashMap;
 
 public class ReloadCardStep1Activity extends AppCompatActivity {
     private static FragmentManager fragmentManager;
@@ -54,12 +51,6 @@ public class ReloadCardStep1Activity extends AppCompatActivity {
     }
 
     private void entrar() {
-        /*progressDialogAlodiga = new ProgressDialogAlodiga(getApplicationContext(), getString(R.string.loading));
-        progressDialogAlodiga.show();
-        mAuthTask = new activeCardTask();
-        mAuthTask.execute((Void) null);*/
-
-
         Intent show;
         show = new Intent(getApplicationContext(), ReloadCardStep2codeActivity.class);
         startActivity(show);
@@ -82,21 +73,9 @@ public class ReloadCardStep1Activity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
 
-            WebService webService = new WebService();
-            Utils utils = new Utils();
-            SoapObject response;
-            try {
-                String responseCode;
-                String responseMessage = "";
-
-                HashMap<String, String> map = new HashMap<String, String>();
-                map.put("usuarioApi", Constants.WEB_SERVICES_USUARIOWS);
-
-
-                response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_NAME_SEND_CODE_SMS_MOVIL, Constants.REGISTRO_UNIFICADO);
-                responseCode = response.getProperty("codigoRespuesta").toString();
-                responseMessage = response.getProperty("mensajeRespuesta").toString();
-
+            try{
+                SoapObject response = ReloadCardController.getCode();
+                String responseCode = response.getProperty("codigoRespuesta").toString();
 
                 if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
 
@@ -166,7 +145,6 @@ public class ReloadCardStep1Activity extends AppCompatActivity {
         @Override
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
-            //showProgress(false);
             if (success) {
                 Intent show;
                 show = new Intent(getApplicationContext(), ActiveCardStep3Activity.class);
@@ -185,9 +163,5 @@ public class ReloadCardStep1Activity extends AppCompatActivity {
             mAuthTask = null;
         }
     }
-
-
-
-
 }
 

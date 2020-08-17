@@ -23,7 +23,6 @@ public class ChangePasswordStep2Activity extends Activity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = getIntent();
                 Intent newFormsi2 = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(newFormsi2);
                 finish();
@@ -35,7 +34,6 @@ public class ChangePasswordStep2Activity extends Activity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent pasIntent = getIntent();
         Intent i = new Intent(ChangePasswordStep2Activity.this, MainActivity.class);
         startActivity(i);
         finish();

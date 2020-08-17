@@ -121,27 +121,5 @@ public class PaymentComerceStep6Activity extends AppCompatActivity {
         finish();
     }
 
-    private ArrayList<ObjUserHasProduct> getElementsProduct(String elementGet, String response) {
-        ArrayList<ObjUserHasProduct> objUserHasProducts = new ArrayList<ObjUserHasProduct>();
-        String elementgetId = "id=";
-        String elementGetName = "nombreProducto=";
-        String elementGetCurrentBalance = "saldoActual=";
-        String elementGetSymbol = "simbolo=";
-        String litaProd = "respuestaListadoProductos=";
 
-        for (int i = 1; i < getLenghtFromResponseJson(litaProd, response); i++) {
-            ObjUserHasProduct objUserHasProduct = new ObjUserHasProduct(response.split(elementgetId)[i].split(";")[0], response.split(elementGetName)[i].split(";")[0], response.split(elementGetCurrentBalance)[i].split(";")[0], response.split(elementGetSymbol)[i].split(";")[0]);
-            objUserHasProducts.add(objUserHasProduct);
-        }
-
-        return objUserHasProducts;
-    }
-
-    private String getValueFromResponseJson(String v, String response) {
-        return (response.split(v + "=")[1].split(";")[0]);
-    }
-
-    private Integer getLenghtFromResponseJson(String v, String response) {
-        return (response.split(v).length);
-    }
 }

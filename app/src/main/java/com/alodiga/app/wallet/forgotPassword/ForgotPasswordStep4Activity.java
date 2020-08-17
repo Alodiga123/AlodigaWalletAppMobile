@@ -24,16 +24,6 @@ public class ForgotPasswordStep4Activity extends AppCompatActivity {
          next = (Button) findViewById(R.id.step1_next_button);
         fragmentManager = getSupportFragmentManager();
 
-       /* next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                fragmentManager
-                        .beginTransaction()
-                        .setCustomAnimations(R.anim.left_enter, R.anim.right_out)
-                        .replace(R.id.frameContainer, new RegisterStep1Fragment(),
-                                Utils.register_step1_Fragment).commit();
-            }
-        });*/
 
         next.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

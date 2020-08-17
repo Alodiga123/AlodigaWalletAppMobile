@@ -15,18 +15,18 @@ import androidx.fragment.app.Fragment;
 
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.duallibrary.utils.Constants;
+import com.alodiga.app.wallet.duallibrary.utils.Session;
 import com.alodiga.app.wallet.duallibrary.utils.Utils;
-import com.alodiga.app.wallet.duallibrary.utils.WebService;
 import com.alodiga.app.wallet.login.LoginActivity;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
-import com.alodiga.app.wallet.duallibrary.utils.Session;
 
 import org.ksoap2.serialization.SoapObject;
 
-import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static com.alodiga.app.wallet.duallibrary.register.RegisterController.saveUser;
 
 public class RegisterStep3Fragment extends Fragment implements OnClickListener {
     static ProgressDialogAlodiga progressDialogAlodiga;
@@ -50,45 +50,6 @@ public class RegisterStep3Fragment extends Fragment implements OnClickListener {
     public RegisterStep3Fragment() {
     }
 
-    private static boolean validation_Password(final String PASSWORD_Arg) {
-        boolean result = false;
-        try {
-            if (PASSWORD_Arg != null) {
-                //_________________________
-                //Parameteres
-                final String MIN_LENGHT = "8";
-                final String MAX_LENGHT = "20";
-                final boolean SPECIAL_CHAR_NEEDED = true;
-
-                //_________________________
-                //Modules
-                final String ONE_DIGIT = "(?=.*[0-9])";  //(?=.*[0-9]) a digit must occur at least once
-                final String LOWER_CASE = "(?=.*[a-z])";  //(?=.*[a-z]) a lower case letter must occur at least once
-                final String UPPER_CASE = "(?=.*[A-Z])";  //(?=.*[A-Z]) an upper case letter must occur at least once
-                final String NO_SPACE = "(?=\\S+$)";  //(?=\\S+$) no whitespace allowed in the entire string
-                //final String MIN_CHAR = ".{" + MIN_LENGHT + ",}";  //.{8,} at least 8 characters
-                final String MIN_MAX_CHAR = ".{" + MIN_LENGHT + "," + MAX_LENGHT + "}";  //.{5,10} represents minimum of 5 characters and maximum of 10 characters
-
-                final String SPECIAL_CHAR;
-                if (SPECIAL_CHAR_NEEDED == true)
-                    SPECIAL_CHAR = "(?=.*[@#$%^&+=])"; //(?=.*[@#$%^&+=]) a special character must occur at least once
-                else SPECIAL_CHAR = "";
-                //_________________________
-                //Pattern
-                //String pattern = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}";
-                final String PATTERN = ONE_DIGIT + LOWER_CASE + UPPER_CASE + SPECIAL_CHAR + NO_SPACE + MIN_MAX_CHAR;
-                //_________________________
-                result = PASSWORD_Arg.matches(PATTERN);
-                //_________________________
-            }
-
-        } catch (Exception ex) {
-            result = false;
-        }
-
-        return result;
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -105,15 +66,11 @@ public class RegisterStep3Fragment extends Fragment implements OnClickListener {
         lastName = view.findViewById(R.id.lastName);
         emailId = view.findViewById(R.id.userEmailId);
         password = view.findViewById(R.id.password);
-
-
         pinNumber = view.findViewById(R.id.edtPin);
         confirmPassword = view.findViewById(R.id.confirmPassword);
         signUpButton = view.findViewById(R.id.signUpBtn);
         login = view.findViewById(R.id.already_user);
         terms_conditions = view.findViewById(R.id.terms_conditions);
-
-
     }
 
     // Set Listeners
@@ -175,30 +132,14 @@ public class RegisterStep3Fragment extends Fragment implements OnClickListener {
             new CustomToast().Show_Toast(getActivity(), view,
                     getString(R.string.email_invalid));
 
-            // Check if both password should be equal
-       // else if (!getConfirmPassword.equals(getPassword))
-        //    new CustomToast().Show_Toast(getActivity(), view,
-        //            getString(R.string.password_eq));
-
-            // Make sure user should check Terms and Conditions checkbox
         else if (!terms_conditions.isChecked())
             new CustomToast().Show_Toast(getActivity(), view,
                     getString(R.string.acept_ter));
-            // Validate Country
 
 
         else if (getPinNumber.length() < 4)
             new CustomToast().Show_Toast(getActivity(), view,
                     getString(R.string.pin_invalid));
-
-
-            ////////////Validaciones Especiales de Password//////////////////
-            // Check for a valid password, if the user entered one.
-
-
-       // else if (!validation_Password(getPassword)) {
-         //   new CustomToast().Show_Toast(getActivity(), view, getContext().getResources().getString(R.string.password_secure));
-       // }
 
         else if(!getPassword.trim().equals("") && !getConfirmPassword.trim().equals("") && messageForToast!= 0)
         {
@@ -237,7 +178,6 @@ public class RegisterStep3Fragment extends Fragment implements OnClickListener {
         progressDialogAlodiga = new ProgressDialogAlodiga(getContext(), getString(R.string.loading));
         progressDialogAlodiga.show();
 
-        //cifrando pin y credencial
         getPassword = Utils.aloDesencript(getPassword);
         getPinNumber = Utils.aloDesencript(getPinNumber);
 
@@ -273,42 +213,9 @@ public class RegisterStep3Fragment extends Fragment implements OnClickListener {
         @Override
         protected Boolean doInBackground(Void... params) {
 
-            WebService webService = new WebService();
-            Utils utils = new Utils();
-            SoapObject response;
-            try {
-
-                String responseCode;
-                String responseMessage = "";
-
-                HashMap<String, String> map = new HashMap<String, String>();
-                map.put("usuarioApi", Constants.WEB_SERVICES_USUARIOWS);
-                map.put("passwordApi", Constants.WEB_SERVICES_PASSWORDWS);
-                map.put("usuarioId", "");
-                map.put("nombre", name);
-                map.put("apellido", lastName);
-                map.put("credencial", password);
-                map.put("email", email);
-                map.put("movil", phoneNumber.replace("+", ""));
-                map.put("fechaNacimiento", "21-07-1988");
-                map.put("direccion", "APP_MOBILE");
-                map.put("paisId", "1");
-                map.put("estadoId", "1");
-                map.put("ciudadId", "1");
-                map.put("codigoValidacionMovil", mobileCodeValidation);
-                map.put("condadoId", "1");
-                map.put("codigoPostal", "1006");
-                map.put("nombreImagen", "AloCash App Android");
-                map.put("imagenBytes", "null");
-                map.put("link", "AloCash App Android");
-                map.put("pin", pin);
-
-                response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_NAME_SAVE_USER, Constants.REGISTRO_UNIFICADO);
-                responseCode = response.getProperty("codigoRespuesta").toString();
-                responseMessage = response.getProperty("mensajeRespuesta").toString();
-
-                //Activar las preguntas de seguridad
-
+            try{
+                SoapObject response = saveUser( name,  lastName,  password,  email,  phoneNumber,  mobileCodeValidation,  pin);
+                String responseCode = response.getProperty("codigoRespuesta").toString();
 
                 if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
                     responsetxt = getString(R.string.web_services_response_00);
@@ -380,16 +287,12 @@ public class RegisterStep3Fragment extends Fragment implements OnClickListener {
         @Override
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
-            //showProgress(false);
             if (success) {
                 getFragmentManager()
                         .beginTransaction()
                         .setCustomAnimations(R.anim.left_enter, R.anim.right_out)
                         .replace(R.id.frameContainer, new RegisterStep4WelcomeFragment(),
                                 Utils.Welcome_Fragment).commit();
-                //new CustomToast().Show_Toast(getActivity(), view,
-                //        responsetxt);
-
             } else {
                 new CustomToast().Show_Toast(getActivity(), view,
                         responsetxt);

@@ -14,24 +14,24 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.adapters.SpinAdapterHowToTransfer;
 import com.alodiga.app.wallet.adapters.SpinAdapterTransferMoney;
-import com.alodiga.app.wallet.main.MainActivity;
 import com.alodiga.app.wallet.duallibrary.model.ObjHowToTranssfer;
 import com.alodiga.app.wallet.duallibrary.model.ObjTransferMoney;
 import com.alodiga.app.wallet.duallibrary.model.ObjUserHasProduct;
 import com.alodiga.app.wallet.duallibrary.utils.Constants;
-import com.alodiga.app.wallet.utils.CustomToast;
-import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
 import com.alodiga.app.wallet.duallibrary.utils.Session;
 import com.alodiga.app.wallet.duallibrary.utils.Utils;
-import com.alodiga.app.wallet.duallibrary.utils.WebService;
+import com.alodiga.app.wallet.main.MainActivity;
+import com.alodiga.app.wallet.utils.CustomToast;
+import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
 
 import org.ksoap2.serialization.SoapObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static com.alodiga.app.wallet.duallibrary.paymentComerce.PaymentComerceController.getUsuarioMovil;
 
 public class PaymentComerceStep1Activity extends AppCompatActivity {
 
@@ -68,11 +68,6 @@ public class PaymentComerceStep1Activity extends AppCompatActivity {
         signFind = findViewById(R.id.signFind);
         backToLoginBtn= findViewById(R.id.backToLoginBtn);
 
-
-        String[] optionsID = {"Alocoin", "Saldo Alodiga", "HealthCareCoin"};
-        String[] optionsBank = {" ", "Provincial", "Mercantil", "Banesco", "Bicentenario", "Banco de Venezuela", "Banco del Tesoro", "Banco Caroní", "Banco Sofitasa", "Banpro", "Banco Fondo Común", "Banfoandes", "Banco Occidental de Descuento", "Banco Venezolano de Crédito", "Banco Exterior", "Banco Plaza", "Citibank", "Banplus"};
-        String[] optionsTelephone = {" ", "0416", "0426", "0412", "0414", "0424"};
-
         list_product = Session.getObjUserHasProducts();
         final ObjTransferMoney[] objTransferMoney = new ObjTransferMoney[list_product.size()];
         for (int i = 0; i < list_product.size(); i++) {
@@ -80,10 +75,6 @@ public class PaymentComerceStep1Activity extends AppCompatActivity {
         }
         //Llena tipos de cuenta
         List<ObjTransferMoney> countries = new ArrayList<ObjTransferMoney>();
-        /*ObjTransferMoney[] objTransferMoney = new ObjTransferMoney[3];
-        objTransferMoney[0] = new ObjTransferMoney("0","Saldo Alodiga USD "+ Session.getAlodigaBalance());
-        objTransferMoney[1] = new ObjTransferMoney("1","Saldo Alocoins ALC "+ Session.getAlocoinsBalance());
-        objTransferMoney[2] = new ObjTransferMoney("2","Saldo Tarjeta Prepagada CC "+Session.getHealthCareCoinsBalance());*/
         SpinAdapterTransferMoney spinAdapterTransferMoney;
         spinAdapterTransferMoney = new SpinAdapterTransferMoney(this.getApplicationContext(), android.R.layout.simple_spinner_item, objTransferMoney);
         spinnerIdentification.setAdapter(spinAdapterTransferMoney);
@@ -95,13 +86,7 @@ public class PaymentComerceStep1Activity extends AppCompatActivity {
 
                 currencySelected = new ObjUserHasProduct(objTransferMoney1.getId(), objTransferMoney1.getName(), objTransferMoney1.getCurrency());
                 Session.setMoneySelected(currencySelected);
-                /*if(objTransferMoney1.getId().equals("0")){
-                    currencySelected = 0;
-                }else if (objTransferMoney1.getId().equals("1")){
-                    currencySelected = 1;
-                }else if (objTransferMoney1.getId().equals("2")){
-                    currencySelected = 2;
-                }*/
+
             }
 
             @Override
@@ -209,35 +194,10 @@ public class PaymentComerceStep1Activity extends AppCompatActivity {
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            WebService webService = new WebService();
-            Utils utils = new Utils();
-            SoapObject response;
-            try {
-                String responseCode;
-                String responseMessage = "";
-                HashMap<String, String> map = new HashMap<String, String>();
-                map.put("usuarioApi", Constants.WEB_SERVICES_USUARIOWS);
-                map.put("passwordApi", Constants.WEB_SERVICES_PASSWORDWS);
-                String methodName = "";
-                switch (caseFind) {
 
-                    case 0:
-                        map.put("email", phoneOrEmail);
-                        methodName = "getUsuarioporemail";
-                        break;
-
-                    case 1:
-                        map.put("movil", phoneOrEmail);
-                        methodName = "getUsuariopormovil";
-                        break;
-
-                    default:
-
-                        break;
-                }
-                response = WebService.invokeGetAutoConfigString(map, methodName, Constants.REGISTRO_UNIFICADO);
-                responseCode = response.getProperty("codigoRespuesta").toString();
-                //Activar las preguntas de seguridad
+            try{
+                SoapObject response = getUsuarioMovil(caseFind, phoneOrEmail);
+                String responseCode = response.getProperty("codigoRespuesta").toString();
 
                 if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
                     String res = response.getProperty("datosRespuesta").toString();
@@ -314,9 +274,6 @@ public class PaymentComerceStep1Activity extends AppCompatActivity {
             mAuthTask = null;
 
             if (success) {
-
-                //llama activities
-
                 //llama activities
                 Session.setMoneySelected(currencySelected);
                 Session.setDestinationAccountNumber(destinationAccountNumber);

@@ -80,7 +80,6 @@ public class CreateQRCodeActivity extends AppCompatActivity {
         myBitmap.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
         File wallpaperDirectory = new File(
                 Environment.getExternalStorageDirectory() + Constants.IMAGE_DIRECTORY);
-        // have the object build the directory structure, if needed.
 
         if (!wallpaperDirectory.exists()) {
             Log.d(Constants.DIR, "" + wallpaperDirectory.mkdirs());

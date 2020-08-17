@@ -12,17 +12,15 @@ import androidx.fragment.app.FragmentManager;
 
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.activeCard.ActiveCardStep3Activity;
-import com.alodiga.app.wallet.main.MainActivity;
 import com.alodiga.app.wallet.duallibrary.utils.Constants;
+import com.alodiga.app.wallet.duallibrary.utils.Session;
+import com.alodiga.app.wallet.main.MainActivity;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
-import com.alodiga.app.wallet.duallibrary.utils.Session;
-import com.alodiga.app.wallet.duallibrary.utils.Utils;
-import com.alodiga.app.wallet.duallibrary.utils.WebService;
 
 import org.ksoap2.serialization.SoapObject;
 
-import java.util.HashMap;
+import static com.alodiga.app.wallet.duallibrary.deactivateCard.DeactiveCardController.smsSend;
 
 public class DeactiveCardActivity extends AppCompatActivity {
     private static FragmentManager fragmentManager;
@@ -42,7 +40,6 @@ public class DeactiveCardActivity extends AppCompatActivity {
         process= findViewById(R.id.process);
         card = findViewById(R.id.card);
 
-        //card.setText("zzTQTPW8sjZ1rXOFtcBmIM7+exK1iSVr4sWp1Avyjh6HqBr1Jlr7pWktVpSQAxziAaLbCmZ3P0GuJgMSBFhrOf/KiQq1YEO2MLhXrhRBtEqgPvt/5TE2++K+Dr//OcjFCArBr+MmpadvpIh4qT4zhau87w5IsFDaZkpzVikB7uM=");
         card.setText(Session.getCardSelectActiveDeactive());
 
         back.setOnClickListener(new View.OnClickListener() {
@@ -62,10 +59,7 @@ public class DeactiveCardActivity extends AppCompatActivity {
     }
 
     private void entrar() {
-        /*progressDialogAlodiga = new ProgressDialogAlodiga(getApplicationContext(), getString(R.string.loading));
-        progressDialogAlodiga.show();
-        mAuthTask = new activeCardTask();
-        mAuthTask.execute((Void) null);*/
+
         String getCard= card.getText().toString();
         if (getCard.equals("") || getCard.length() == 0){
             new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(), getString(R.string.invalid_all_question));
@@ -78,12 +72,7 @@ public class DeactiveCardActivity extends AppCompatActivity {
             finish();
         }
 
-        /*Intent show;
-        show = new Intent(getApplicationContext(), DeactiveCardStep2codeActivity.class);
-        startActivity(show);
-        finish();*/
     }
-
 
     @Override
     public void onBackPressed() {
@@ -92,29 +81,15 @@ public class DeactiveCardActivity extends AppCompatActivity {
         finish();
     }
 
-
-
     public class activeCardTask extends AsyncTask<Void, Void, Boolean> {
 
 
         @Override
         protected Boolean doInBackground(Void... params) {
 
-            WebService webService = new WebService();
-            Utils utils = new Utils();
-            SoapObject response;
-            try {
-                String responseCode;
-                String responseMessage = "";
-
-                HashMap<String, String> map = new HashMap<String, String>();
-                map.put("usuarioApi", Constants.WEB_SERVICES_USUARIOWS);
-
-
-                response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_NAME_SEND_CODE_SMS_MOVIL, Constants.REGISTRO_UNIFICADO);
-                responseCode = response.getProperty("codigoRespuesta").toString();
-                responseMessage = response.getProperty("mensajeRespuesta").toString();
-
+            try{
+                SoapObject response = smsSend();
+                String responseCode = response.getProperty("codigoRespuesta").toString();
 
                 if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
 
@@ -184,7 +159,6 @@ public class DeactiveCardActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
-            //showProgress(false);
             if (success) {
                 Intent show;
                 show = new Intent(getApplicationContext(), ActiveCardStep3Activity.class);
@@ -203,9 +177,6 @@ public class DeactiveCardActivity extends AppCompatActivity {
             mAuthTask = null;
         }
     }
-
-
-
 
 }
 

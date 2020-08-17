@@ -14,6 +14,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.alodiga.app.R;
+import com.alodiga.app.wallet.duallibrary.utils.CommonController;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
 import com.alodiga.app.wallet.duallibrary.utils.Session;
@@ -28,8 +29,6 @@ public class CompanionCardsStep2Activity extends AppCompatActivity {
     private String responsetxt = "";
     private boolean serviceStatus;
     SoapObject response;
-
-
 
     public CompanionCardsStep2Activity() {
 
@@ -97,22 +96,9 @@ public class CompanionCardsStep2Activity extends AppCompatActivity {
 
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (!s.toString().matches("^\\ (\\d{1,3}(\\,\\d{3})*|(\\d+))(\\.\\d{2})?$")) {
-                    String userInput = "" + s.toString().replaceAll("[^\\d]", "");
-                    StringBuilder cashAmountBuilder = new StringBuilder(userInput);
-
-                    while (cashAmountBuilder.length() > 3 && cashAmountBuilder.charAt(0) == '0') {
-                        cashAmountBuilder.deleteCharAt(0);
-                    }
-                    while (cashAmountBuilder.length() < 3) {
-                        cashAmountBuilder.insert(0, '0');
-                    }
-                    cashAmountBuilder.insert(cashAmountBuilder.length() - 2, '.');
-                    cashAmountBuilder.insert(0, ' ');
-
-                    amountValue.setText(cashAmountBuilder.toString());
-                    // keeps the cursor always to the right
-                    Selection.setSelection(amountValue.getText(), cashAmountBuilder.toString().length());
-
+                    StringBuilder getDecimal = CommonController.setDecimal(s);
+                    amountValue.setText(getDecimal.toString());
+                    Selection.setSelection(amountValue.getText(), getDecimal.toString().length());
                 }
 
             }
@@ -121,7 +107,6 @@ public class CompanionCardsStep2Activity extends AppCompatActivity {
 
 
     private boolean checkValidation() {
-        // Check if all strings are null or not
         if (conceptValue.getText().toString().equals("")) {
             new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                     getString(R.string.concept_req));

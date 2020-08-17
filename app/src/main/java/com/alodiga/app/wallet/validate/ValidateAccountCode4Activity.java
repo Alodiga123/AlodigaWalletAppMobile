@@ -38,14 +38,11 @@ public class ValidateAccountCode4Activity extends AppCompatActivity {
                 finish();            }
         });
 
-
-
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent pasIntent = getIntent();
         Intent i = new Intent(ValidateAccountCode4Activity.this, MainActivity.class);
         startActivity(i);
         finish();

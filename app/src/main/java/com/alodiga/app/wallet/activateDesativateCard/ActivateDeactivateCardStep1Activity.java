@@ -107,6 +107,7 @@ public class ActivateDeactivateCardStep1Activity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
 
+            try {
                 response_ = ActivateDesativateCardController.desactiveCard();
                 String responseCode = response_.getProperty("codigoRespuesta").toString();
 
@@ -177,7 +178,19 @@ public class ActivateDeactivateCardStep1Activity extends AppCompatActivity {
                     responsetxt = getString(R.string.web_services_response_99);
                     serviceStatus = false;
                 }
-
+            } catch (IllegalArgumentException e)
+            {
+                responsetxt = getString(R.string.web_services_response_99);
+                e.printStackTrace();
+                System.err.println(e);
+                return false;
+            } catch (Exception e)
+            {
+                responsetxt = getString(R.string.web_services_response_99);
+                e.printStackTrace();
+                System.err.println(e);
+                return false;
+            }
             return serviceStatus;
 
         }
@@ -210,6 +223,7 @@ public class ActivateDeactivateCardStep1Activity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
 
+            try{
                 response = ActivateDesativateCardController.activarCard();
                 String  responseCode = response.getProperty("codigoRespuesta").toString();
 
@@ -277,6 +291,19 @@ public class ActivateDeactivateCardStep1Activity extends AppCompatActivity {
                     responsetxt = getString(R.string.web_services_response_99);
                     serviceStatus = false;
                 }
+            } catch (IllegalArgumentException e)
+            {
+                responsetxt = getString(R.string.web_services_response_99);
+                e.printStackTrace();
+                System.err.println(e);
+                return false;
+            } catch (Exception e)
+            {
+                responsetxt = getString(R.string.web_services_response_99);
+                e.printStackTrace();
+                System.err.println(e);
+                return false;
+            }
 
             return serviceStatus;
 
@@ -311,6 +338,8 @@ public class ActivateDeactivateCardStep1Activity extends AppCompatActivity {
 
         @Override
         protected Boolean doInBackground(Void... params) {
+
+            try {
 
                 response_1 = ActivateDesativateCardController.getStatusCard();
                 String responseCode = response_1.getProperty("codigoRespuesta").toString();
@@ -382,6 +411,19 @@ public class ActivateDeactivateCardStep1Activity extends AppCompatActivity {
                     responsetxt = getString(R.string.web_services_response_99);
                     serviceStatus = false;
                 }
+            } catch (IllegalArgumentException e)
+            {
+                responsetxt = getString(R.string.web_services_response_99);
+                e.printStackTrace();
+                System.err.println(e);
+                return false;
+            } catch (Exception e)
+            {
+                responsetxt = getString(R.string.web_services_response_99);
+                e.printStackTrace();
+                System.err.println(e);
+                return false;
+            }
             return serviceStatus;
 
         }

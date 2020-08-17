@@ -57,11 +57,6 @@ public class RegisterStep2Fragment extends Fragment implements
             @Override
             public void messageReceived(String messageText) {
 
-                //From the received text string you may do string operations to get the required OTP
-                //It depends on your SMS format
-
-                // If your OTP is six digits number, you may use the below code
-
                 Pattern pattern = Pattern.compile(OTP_REGEX);
                 Matcher matcher = pattern.matcher(messageText);
                 String otp = "";
@@ -114,7 +109,6 @@ public class RegisterStep2Fragment extends Fragment implements
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.backToLoginBtn:
-                // Replace Login Fragment on Back Presses
                 new LoginActivity().replaceLoginFragment_step1();
                 break;
 
@@ -148,15 +142,12 @@ public class RegisterStep2Fragment extends Fragment implements
                 getFragmentManager()
                         .beginTransaction()
                         .setCustomAnimations(R.anim.left_enter, R.anim.right_out)
-                        //.replace(R.id.frameContainer, new RegisterStep4WelcomeFragment(),
                         .replace(R.id.frameContainer, new RegisterStep3Fragment(),
 
-                                //Utils.RegisterStep4WelcomeFragment).commit();
                                 Utils.register_step3_Fragment).commit();
 
 
             }
-            //checkSecurityCode();
         }
     }
 

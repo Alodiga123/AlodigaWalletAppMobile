@@ -11,22 +11,19 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.alodiga.app.R;
+import com.alodiga.app.wallet.duallibrary.utils.Constants;
+import com.alodiga.app.wallet.duallibrary.utils.Session;
 import com.alodiga.app.wallet.main.MainActivity;
 import com.alodiga.app.wallet.manualRemoval.ManualRemovalStep2WelcomeActivity;
-import com.alodiga.app.wallet.duallibrary.model.ObjUserHasProduct;
-import com.alodiga.app.wallet.duallibrary.utils.Constants;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
-import com.alodiga.app.wallet.duallibrary.utils.Session;
-import com.alodiga.app.wallet.duallibrary.utils.Utils;
-import com.alodiga.app.wallet.duallibrary.utils.WebService;
 
 import org.ksoap2.serialization.SoapObject;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
+
+import static com.alodiga.app.wallet.duallibrary.transferenceCardToCard.TransferenceCardToCardController.updtaeProduct;
 
 public class TransferenceCardToCArdStep6Activity extends AppCompatActivity {
     private static TextView amountValue, conceptValue;
@@ -124,54 +121,17 @@ public class TransferenceCardToCArdStep6Activity extends AppCompatActivity {
 
     }
 
-    private ArrayList<ObjUserHasProduct> getElementsProduct(String elementGet, String response) {
-        ArrayList<ObjUserHasProduct> objUserHasProducts = new ArrayList<ObjUserHasProduct>();
-        String elementgetId = "id=";
-        String elementGetName = "nombreProducto=";
-        String elementGetCurrentBalance = "saldoActual=";
-        String elementGetSymbol = "simbolo=";
-        String litaProd = "respuestaListadoProductos=";
 
-        for (int i = 1; i < getLenghtFromResponseJson(litaProd, response); i++) {
-            ObjUserHasProduct objUserHasProduct = new ObjUserHasProduct(response.split(elementgetId)[i].split(";")[0], response.split(elementGetName)[i].split(";")[0], response.split(elementGetCurrentBalance)[i].split(";")[0], response.split(elementGetSymbol)[i].split(";")[0]);
-            objUserHasProducts.add(objUserHasProduct);
-        }
-
-        return objUserHasProducts;
-    }
-
-    private String getValueFromResponseJson(String v, String response) {
-        return (response.split(v + "=")[1].split(";")[0]);
-    }
-
-    private Integer getLenghtFromResponseJson(String v, String response) {
-        return (response.split(v).length);
-    }
 
     public class UserProductTask extends AsyncTask<Void, Void, Boolean> {
 
         @Override
         protected Boolean doInBackground(Void... params) {
 
-            WebService webService = new WebService();
-            Utils utils = new Utils();
-            SoapObject response;
-
-
-            try {
-                String responseCode;
-                String responseMessage = "";
-
-                HashMap<String, String> map = new HashMap<String, String>();
-                map.put("usuarioApi", Constants.WEB_SERVICES_USUARIOWS);
-                map.put("passwordApi", Constants.WEB_SERVICES_PASSWORDWS);
-                map.put("usuarioId", Session.getUserId());
-
-
-                response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_NAME_UPDATE_PRODUCT, Constants.REGISTRO_UNIFICADO);
-                responseCode = response.getProperty("codigoRespuesta").toString();
-                responseMessage = response.getProperty("mensajeRespuesta").toString();
-
+            try{
+                SoapObject response = updtaeProduct();
+                String responseCode = response.getProperty("codigoRespuesta").toString();
+                String responseMessage = response.getProperty("mensajeRespuesta").toString();
 
                 if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
 
@@ -232,7 +192,6 @@ public class TransferenceCardToCArdStep6Activity extends AppCompatActivity {
                     responsetxt = responseMessage;
                     serviceStatus = false;
                 }
-                //progressDialogAlodiga.dismiss();
             } catch (IllegalArgumentException e) {
                 responsetxt = getString(R.string.web_services_response_99);
                 serviceStatus = false;
@@ -253,7 +212,6 @@ public class TransferenceCardToCArdStep6Activity extends AppCompatActivity {
         @Override
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
-            //showProgress(false);
             if (success) {
                 Intent show;
                 show = new Intent(getApplicationContext(), ManualRemovalStep2WelcomeActivity.class);

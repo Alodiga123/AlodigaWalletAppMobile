@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
@@ -17,7 +16,6 @@ import com.alodiga.app.wallet.login.LoginActivity;
 public class RegisterStep4WelcomeFragment extends Fragment implements OnClickListener {
     private static View view;
 
-    private static TextView TextWelcome;
     private static Button login;
 
     @Override
@@ -44,7 +42,6 @@ public class RegisterStep4WelcomeFragment extends Fragment implements OnClickLis
         login = view.findViewById(R.id.already_user_);
         login.setOnClickListener(this);
     }
-
 
     @Override
     public void onClick(View v) {

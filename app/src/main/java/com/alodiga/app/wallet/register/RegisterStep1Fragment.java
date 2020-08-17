@@ -15,18 +15,19 @@ import androidx.fragment.app.Fragment;
 
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.adapters.SpinAdapterCountry;
-import com.alodiga.app.wallet.login.LoginActivity;
 import com.alodiga.app.wallet.duallibrary.model.ObjCountry;
+import com.alodiga.app.wallet.duallibrary.register.RegisterController;
 import com.alodiga.app.wallet.duallibrary.utils.Constants;
-import com.alodiga.app.wallet.utils.CustomToast;
-import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
 import com.alodiga.app.wallet.duallibrary.utils.Session;
 import com.alodiga.app.wallet.duallibrary.utils.Utils;
-import com.alodiga.app.wallet.duallibrary.utils.WebService;
+import com.alodiga.app.wallet.login.LoginActivity;
+import com.alodiga.app.wallet.utils.CustomToast;
+import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
 
 import org.ksoap2.serialization.SoapObject;
 
-import java.util.HashMap;
+import static com.alodiga.app.wallet.duallibrary.register.RegisterController.getListCountry;
+import static com.alodiga.app.wallet.duallibrary.register.RegisterController.sendCode;
 
 public class RegisterStep1Fragment extends Fragment implements
         OnClickListener {
@@ -150,16 +151,6 @@ public class RegisterStep1Fragment extends Fragment implements
 
     }
 
-    /**
-     * @param phone
-     * @return
-     */
-    public String processPhone(String phone) {
-        if (phone != null && phone.charAt(0) == '+')
-            phone = phone.substring(1);
-        return phone;
-    }
-
     public class UserSendSmsTask extends AsyncTask<Void, Void, Boolean> {
 
         private final String phone;
@@ -174,24 +165,9 @@ public class RegisterStep1Fragment extends Fragment implements
         @Override
         protected Boolean doInBackground(Void... params) {
 
-            WebService webService = new WebService();
-            Utils utils = new Utils();
-
-            try {
-                String responseCode;
-                String responseMessage = "";
-
-
-                HashMap<String, String> map = new HashMap<String, String>();
-                map.put("usuarioApi", Constants.WEB_SERVICES_USUARIOWS);
-                map.put("passwordApi", Constants.WEB_SERVICES_PASSWORDWS);
-                map.put("movil", processPhone(phone));
-
-
-                response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_NAME_SEND_CODE_SMS, Constants.REGISTRO_UNIFICADO);
-                responseCode = response.getProperty("codigoRespuesta").toString();
-                responseMessage = response.getProperty("mensajeRespuesta").toString();
-
+            try{
+                response = sendCode( phone);
+                String responseCode = response.getProperty("codigoRespuesta").toString();
 
                 if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
 
@@ -241,7 +217,6 @@ public class RegisterStep1Fragment extends Fragment implements
                     responsetxt = getString(R.string.web_services_response_99);
                     serviceStatus = false;
                 }
-                //progressDialogAlodiga.dismiss();
             } catch (IllegalArgumentException e) {
                 responsetxt = getString(R.string.web_services_response_99);
                 serviceStatus = false;
@@ -262,21 +237,15 @@ public class RegisterStep1Fragment extends Fragment implements
         @Override
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
-            //showProgress(false);
             if (success) {
                 Session.setMobileCodeSms(movilCode);
                 Session.setPhoneNumber(getMobileNumber);
                 getFragmentManager()
                         .beginTransaction()
                         .setCustomAnimations(R.anim.left_enter, R.anim.right_out)
-                        //.replace(R.id.frameContainer, new RegisterStep4WelcomeFragment(),
                         .replace(R.id.frameContainer, new RegisterStep2Fragment(),
 
-                                //Utils.RegisterStep4WelcomeFragment).commit();
                                 Utils.register_step2_Fragment).commit();
-
-                //new CustomToast().Show_Toast(getActivity(), view,
-                //		responsetxt);
 
             } else {
                 new CustomToast().Show_Toast(getActivity(), view,
@@ -297,23 +266,11 @@ public class RegisterStep1Fragment extends Fragment implements
         @Override
         protected Boolean doInBackground(Void... params) {
 
-            WebService webService = new WebService();
-            Utils utils = new Utils();
-            try {
-                String responseCode;
-                String responseMessage = "";
-
-
-                HashMap<String, String> map = new HashMap<String, String>();
-
-                response2 = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_NAME_GET_COUNTRIES_, Constants.ALODIGA);
-                responseCode = response2.getProperty("codigoRespuesta").toString();
-                responseMessage = response2.getProperty("mensajeRespuesta").toString();
-
+            try{
+                response2 = RegisterController.getCountries();
+                String responseCode = response2.getProperty("codigoRespuesta").toString();
 
                 if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
-
-                    //movilCode = response2.getProperty("datosRespuesta").toString();
                     responsetxt = getString(R.string.web_services_response_00);
                     serviceStatus = true;
                     return serviceStatus;
@@ -359,7 +316,6 @@ public class RegisterStep1Fragment extends Fragment implements
                     responsetxt = getString(R.string.web_services_response_99);
                     serviceStatus = false;
                 }
-                //progressDialogAlodiga.dismiss();
             } catch (IllegalArgumentException e) {
                 responsetxt = getString(R.string.web_services_response_99);
                 serviceStatus = false;
@@ -380,7 +336,6 @@ public class RegisterStep1Fragment extends Fragment implements
         @Override
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
-            //showProgress(false);
             if (success) {
 
                 ObjCountry[] objCountry= getListCountry(response2);
@@ -403,17 +358,4 @@ public class RegisterStep1Fragment extends Fragment implements
     }
 
 
-    protected ObjCountry[] getListCountry(SoapObject response) {
-
-        ObjCountry[] obj2 = new ObjCountry[response.getPropertyCount() - 3];
-
-        for (int i = 3; i < response.getPropertyCount(); i++) {
-            SoapObject obj = (SoapObject) response.getProperty(i);
-            String propiedad = response.getProperty(i).toString();
-            ObjCountry object = new ObjCountry(obj.getProperty("code").toString(),obj.getProperty("name").toString());
-            obj2[i - 3] = object;
-        }
-
-        return obj2;
-    }
 }

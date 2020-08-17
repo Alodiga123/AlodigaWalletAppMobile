@@ -14,23 +14,24 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.adapters.SpinAdapterCardType;
 import com.alodiga.app.wallet.adapters.SpinAdapterGeneric;
-import com.alodiga.app.wallet.main.MainActivity;
 import com.alodiga.app.wallet.duallibrary.model.ObjCreditCardTypeId;
 import com.alodiga.app.wallet.duallibrary.model.ObjGenericObject;
 import com.alodiga.app.wallet.duallibrary.model.ObjPaymentInfo;
 import com.alodiga.app.wallet.duallibrary.model.ObjTarjetahabiente;
 import com.alodiga.app.wallet.duallibrary.utils.Constants;
+import com.alodiga.app.wallet.duallibrary.utils.Session;
+import com.alodiga.app.wallet.main.MainActivity;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
-import com.alodiga.app.wallet.duallibrary.utils.Session;
-import com.alodiga.app.wallet.duallibrary.utils.WebService;
 
 import org.ksoap2.serialization.SoapObject;
 
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static com.alodiga.app.wallet.duallibrary.rechargeWithCard.RechargeWhithCardController.getCredit;
+import static com.alodiga.app.wallet.duallibrary.rechargeWithCard.RechargeWhithCardController.getListCardType;
 
 
 public class RechargeWithCardStep1Activity extends AppCompatActivity {
@@ -242,18 +243,9 @@ public class RechargeWithCardStep1Activity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
 
-            try {
-                String responseCode;
-                String responseMessage = "";
-
-                HashMap<String, String> map = new HashMap<String, String>();
-                map.put("userApi", Constants.WEB_SERVICES_USUARIOWS_);
-                map.put("passwordApi", Constants.WEB_SERVICES_PASSWORDWS);
-
-
-                response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_GET_CREDIT_CARD_TYPE, Constants.ALODIGA);
-                responseCode = response.getProperty("codigoRespuesta").toString();
-
+            try{
+                response = getCredit();
+                String responseCode = response.getProperty("codigoRespuesta").toString();
 
                 if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
                     responsetxt = getString(R.string.web_services_response_00);
@@ -347,7 +339,6 @@ public class RechargeWithCardStep1Activity extends AppCompatActivity {
         @Override
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
-            //showProgress(false);
             if (success) {
 
                 listSpinner_Type= getListCardType(response);
@@ -377,18 +368,4 @@ public class RechargeWithCardStep1Activity extends AppCompatActivity {
     }
 
 
-    protected ObjCreditCardTypeId[] getListCardType(SoapObject response) {
-        ObjCreditCardTypeId[] obj2 = new ObjCreditCardTypeId[response.getPropertyCount() - 3];
-
-        int aux= 0;
-        for (int i = 3; i < response.getPropertyCount(); i++) {
-
-            SoapObject obj = (SoapObject) response.getProperty(i);
-            ObjCreditCardTypeId object = new ObjCreditCardTypeId(obj.getProperty("enabled").toString(), obj.getProperty("id").toString(),obj.getProperty("lengh").toString(), obj.getProperty("name").toString());
-            obj2[aux] = object;
-            aux++;
-        }
-
-        return obj2;
-    }
 }

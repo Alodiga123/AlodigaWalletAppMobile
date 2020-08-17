@@ -13,21 +13,19 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.alodiga.app.R;
-import com.alodiga.app.wallet.main.MainActivity;
 import com.alodiga.app.wallet.duallibrary.utils.AlodigaCryptographyUtils;
 import com.alodiga.app.wallet.duallibrary.utils.Constants;
+import com.alodiga.app.wallet.duallibrary.utils.Session;
+import com.alodiga.app.wallet.main.MainActivity;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
-import com.alodiga.app.wallet.duallibrary.utils.Session;
-import com.alodiga.app.wallet.duallibrary.utils.Utils;
-import com.alodiga.app.wallet.duallibrary.utils.WebService;
 import com.google.zxing.Result;
 
 import org.ksoap2.serialization.SoapObject;
 
-import java.util.HashMap;
-
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
+
+import static com.alodiga.app.wallet.duallibrary.transferenceCardToCard.TransferenceCardToCardController.getUsuarioEmail;
 
 
 public class TransferenceCardToCardStep2QrActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
@@ -90,13 +88,7 @@ public class TransferenceCardToCardStep2QrActivity extends AppCompatActivity imp
         Toast.makeText(getApplicationContext(), getString(R.string.scan_fine), Toast.LENGTH_LONG).show();
         mScannerView.stopCamera();
 
-
-        //   Intent i = new Intent(PagarActivity.this, CustomerConfirmActivity.class);
-        //  startActivity(i);
-        // finish();
-        // Toast.makeText( getApplicationContext(), "Escaneo Exitoso",Toast.LENGTH_LONG).show();
         Log.i("QRCode", rawResult.getText());
-        //String text="";
         AlodigaCryptographyUtils obj = new AlodigaCryptographyUtils();
         try {
             String text = AlodigaCryptographyUtils.decrypt(rawResult.getText().trim(), Constants.KEY_ENCRIPT_DESENCRIPT_QR);
@@ -109,7 +101,6 @@ public class TransferenceCardToCardStep2QrActivity extends AppCompatActivity imp
                 Intent i = new Intent(TransferenceCardToCardStep2QrActivity.this, TransferenceCardToCardStep1Activity.class);
                 startActivity(i);
                 finish();
-                //Toast.makeText( getApplicationContext(), getString(R.string.app_operation_not_permited),Toast.LENGTH_LONG).show();
                 new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                         getString(R.string.app_operation_not_permited));
             } else {
@@ -118,7 +109,6 @@ public class TransferenceCardToCardStep2QrActivity extends AppCompatActivity imp
             }
 
         } catch (Exception e) {
-            //Toast.makeText( getApplicationContext(), getString(R.string.app_error_general),Toast.LENGTH_LONG).show();
             new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                     getString(R.string.app_error_general));
             Intent i = new Intent(TransferenceCardToCardStep2QrActivity.this, MainActivity.class);
@@ -126,7 +116,6 @@ public class TransferenceCardToCardStep2QrActivity extends AppCompatActivity imp
             finish();
             e.printStackTrace();
         }
-
 
     }
 
@@ -145,21 +134,10 @@ public class TransferenceCardToCardStep2QrActivity extends AppCompatActivity imp
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            WebService webService = new WebService();
-            Utils utils = new Utils();
-            SoapObject response;
-            try {
-                String responseCode;
-                String responseMessage = "";
-                HashMap<String, String> map = new HashMap<String, String>();
-                map.put("usuarioApi", Constants.WEB_SERVICES_USUARIOWS);
-                map.put("passwordApi", Constants.WEB_SERVICES_PASSWORDWS);
-                map.put("email", phoneOrEmail);
-                String methodName = "getUsuarioporemail";
 
-                response = WebService.invokeGetAutoConfigString(map, methodName, Constants.REGISTRO_UNIFICADO);
-                responseCode = response.getProperty("codigoRespuesta").toString();
-                //Activar las preguntas de seguridad
+            try{
+                SoapObject response = getUsuarioEmail(phoneOrEmail);
+                String responseCode = response.getProperty("codigoRespuesta").toString();
 
                 if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
                     String res = response.getProperty("datosRespuesta").toString();
@@ -213,7 +191,6 @@ public class TransferenceCardToCardStep2QrActivity extends AppCompatActivity imp
                     responsetxt = getString(R.string.web_services_response_99);
                     serviceStatus = false;
                 }
-                //progressDialogAlodiga.dismiss();
             } catch (IllegalArgumentException e) {
                 responsetxt = getString(R.string.web_services_response_99);
                 serviceStatus = false;
@@ -236,9 +213,6 @@ public class TransferenceCardToCardStep2QrActivity extends AppCompatActivity imp
             mAuthTask = null;
 
             if (success) {
-                //llama activities
-                //llama activities
-                //selectedMoney = Session.getMoneySelected().getId();
                 Session.setDestinationAccountNumber(destinationAccountNumber);
                 Session.setDestinationLastNameValue(destinationLastNameValue);
                 Session.setDestinationPhoneValue(destinationPhoneValue);

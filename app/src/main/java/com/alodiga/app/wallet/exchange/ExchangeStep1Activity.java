@@ -221,6 +221,7 @@ public class ExchangeStep1Activity extends AppCompatActivity {
 
                 boolean availableBalance = true;
 
+                try{
                 if (availableBalance) {
                     response = ExchangeController.processPreviewExchange(exchange_aux, amountExchange);
                     String responseCode = response.getProperty("codigoRespuesta").toString();
@@ -291,7 +292,19 @@ public class ExchangeStep1Activity extends AppCompatActivity {
                     responsetxt = getString(R.string.insuficient_balance);
                     serviceStatus = false;
                 }
-
+                } catch (IllegalArgumentException e)
+                {
+                    responsetxt = getString(R.string.web_services_response_99);
+                    e.printStackTrace();
+                    System.err.println(e);
+                    return false;
+                } catch (Exception e)
+                {
+                    responsetxt = getString(R.string.web_services_response_99);
+                    e.printStackTrace();
+                    System.err.println(e);
+                    return false;
+                }
             return serviceStatus;
 
         }

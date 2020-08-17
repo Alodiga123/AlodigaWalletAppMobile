@@ -38,14 +38,11 @@ public class ValidateAccountCode3Activity extends AppCompatActivity {
                 finish();            }
         });
 
-
-
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent pasIntent = getIntent();
         Intent i = new Intent(ValidateAccountCode3Activity.this, MainActivity.class);
         startActivity(i);
         finish();

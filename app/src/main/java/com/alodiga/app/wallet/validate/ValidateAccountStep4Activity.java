@@ -12,16 +12,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.duallibrary.utils.Constants;
+import com.alodiga.app.wallet.duallibrary.utils.Session;
 import com.alodiga.app.wallet.utils.BipmapUtils;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
-import com.alodiga.app.wallet.duallibrary.utils.Session;
-import com.alodiga.app.wallet.duallibrary.utils.Utils;
-import com.alodiga.app.wallet.duallibrary.utils.WebService;
 
 import org.ksoap2.serialization.SoapObject;
 
-import java.util.HashMap;
+import static com.alodiga.app.wallet.duallibrary.validate.ValidateAccountController.KYCProcess;
 
 
 public class ValidateAccountStep4Activity extends AppCompatActivity {
@@ -124,30 +122,19 @@ public class ValidateAccountStep4Activity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
 
-            WebService webService = new WebService();
-            Utils utils = new Utils();
-
-            try {
 
                 boolean availableBalance = true;
-                String responseCode;
-                String responseMessage = "";
 
+
+                try{
+                String imagen= BipmapUtils.encodeImage(BipmapUtils.getSelectedImage());
+                String imagen2=BipmapUtils.encodeImage(BipmapUtils.getSelectedImageSelfie());
                 if (availableBalance) {
-                    HashMap<String, String> map = new HashMap<String, String>();
-                    map.put("userId", Session.getUserId());
-                    map.put("estado", getedtstate_);
-                    map.put("ciudad", getedtcity_);
-                    map.put("zipCode", getedtcode_);
-                    map.put("addres1", getedtAv_);
-                    map.put("imgDocument", BipmapUtils.encodeImage(BipmapUtils.getSelectedImage()));
-                    map.put("imgProfile", BipmapUtils.encodeImage(BipmapUtils.getSelectedImageSelfie()));
 
 
-
-                    response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_KYC_PROCESS, Constants.ALODIGA);
-                    responseCode = response.getProperty("codigoRespuesta").toString();
-                    responseMessage = response.getProperty("mensajeRespuesta").toString();
+                    response =  KYCProcess( getedtstate_,  getedtcity_,  getedtcode_, getedtAv_,  imagen,  imagen2);
+                    String responseCode = response.getProperty("codigoRespuesta").toString();
+                    String responseMessage = response.getProperty("mensajeRespuesta").toString();
 
                     if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
 

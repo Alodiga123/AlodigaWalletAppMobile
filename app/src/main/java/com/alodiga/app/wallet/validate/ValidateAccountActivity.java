@@ -23,20 +23,18 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.alodiga.app.R;
-import com.alodiga.app.wallet.main.MainActivity;
 import com.alodiga.app.wallet.duallibrary.utils.Constants;
+import com.alodiga.app.wallet.main.MainActivity;
 import com.alodiga.app.wallet.utils.BipmapUtils;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
-import com.alodiga.app.wallet.duallibrary.utils.Session;
-import com.alodiga.app.wallet.duallibrary.utils.Utils;
-import com.alodiga.app.wallet.duallibrary.utils.WebService;
 
 import org.ksoap2.serialization.SoapObject;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Locale;
+
+import static com.alodiga.app.wallet.duallibrary.validate.ValidateAccountController.getKYC;
 
 
 public class ValidateAccountActivity extends AppCompatActivity {
@@ -180,26 +178,16 @@ public class ValidateAccountActivity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
 
-            WebService webService = new WebService();
-            Utils utils = new Utils();
-
             try {
 
                 boolean availableBalance = true;
-                String responseCode;
-                String responseMessage = "";
+
                 final String idioma = Locale.getDefault().getLanguage();
 
                 if (availableBalance) {
-                    HashMap<String, String> map = new HashMap<String, String>();
-                    map.put("userId", Session.getUserId());
-                    map.put("language",idioma);
-
-
-
-                    response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_KYC_COLLECTION, Constants.ALODIGA);
-                    responseCode = response.getProperty("codigoRespuesta").toString();
-                    responseMessage = response.getProperty("mensajeRespuesta").toString();
+                    response = getKYC(idioma);
+                    String responseCode = response.getProperty("codigoRespuesta").toString();
+                    String responseMessage = response.getProperty("mensajeRespuesta").toString();
 
                     if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
 
@@ -301,8 +289,6 @@ public class ValidateAccountActivity extends AppCompatActivity {
                     for (int i = 3; i < response.getPropertyCount(); i++) {
                         SoapObject obj = (SoapObject) response.getProperty(i);
                         String propiedad = response.getProperty(i).toString();
-                        //ObjGenericObject object = new ObjGenericObject(obj.getProperty("name").toString(), obj.getProperty("status").toString());
-                        //obj2[i-3] = object;
 
                         final TextView textView = new TextView(getApplicationContext());
                         int curTextViewId = prevTextViewId + 1;
