@@ -101,9 +101,9 @@
 
     <string name="login">Inicio</string>
     <string name="submit">ENVIAR</string>
-    <string name="next">SIGUIENTE</string>
+    <string name="next">Continuar</string>
     <string name="Finalize">FINALIZAR</string>
-    <string name="back">ATRAS</string>
+    <string name="back">Atras</string>
     <string name="signUp">REGÍSTRATE</string>
     <string name="topup_title">RECARGAS DE MOVILES NACIONALES E INTERNACIONALES</string>
     <string name="exchange_title">CONVERTIR</string>

@@ -16,7 +16,7 @@
     <string name="answer">"Security Question "</string>
     <string name="app_error_general">Error reading the QR code</string>
     <string name="app_operation_not_permited">Operation not allowed. The target user must be different from the current user</string>
-    <string name="back">BACK</string>
+    <string name="back">Back</string>
     <string name="bank">Bank</string>
     <string name="bank_info">"Select the bank: "</string>
     <string name="BS">Bs</string>
@@ -148,7 +148,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="newUser">"Not a member yet? Sign up here. "</string>
     <string name="new_password">"New Password "</string>
-    <string name="next">NEXT</string>
+    <string name="next">Next</string>
     <string name="no">Not</string>
     <string name="number_trans">"Transaction number: "</string>
     <string name="operator_text">"Operator: "</string>
