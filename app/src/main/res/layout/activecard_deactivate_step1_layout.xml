@@ -89,7 +89,6 @@
         android:textOn="                        "
         android:thumb="@drawable/activo"
         android:thumbTextPadding="5dp"
-        android:thumbTint="@color/white"
         android:track="@drawable/inactivo2" />
 
     <View
