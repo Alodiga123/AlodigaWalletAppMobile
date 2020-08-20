@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:background="@color/cardview_light_background"
             android:orientation="horizontal"
-            android:padding="10dp">
+            android:padding="5dp">
 
             <!-- Product Image -->
 

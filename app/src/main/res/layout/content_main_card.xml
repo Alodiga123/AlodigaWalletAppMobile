@@ -5,68 +5,83 @@
     android:fillViewport="true"
     android:overScrollMode="never"
     android:scrollbars="none" >
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/side_nav_bar">
-
-    <TextView
-        android:id="@+id/title"
+    <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="118dp"
-        android:gravity="top|center"
-        android:padding="10dp"
-        android:text="@string/card_tile"
-        android:textColor="@color/background_color"
-        android:textSize="25sp"
-        android:textStyle="bold" />
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:background="@drawable/fondo_960x750"
+        android:padding="15dp" >
+
 
     <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="fill_parent"
-        android:layout_height="310dp"
-        android:layout_marginTop="110dp"
-        android:background="@drawable/bgheader4"
+        android:id="@+id/linearLayout"
+        android:layout_width="396dp"
+        android:layout_height="481dp"
+        android:background="@drawable/radius_fondo"
+        android:elevation="1dp"
+        android:orientation="vertical"
+        android:padding="15dp"
+
         >
 
-
-        <androidx.recyclerview.widget.RecyclerView
-
-            android:id="@+id/idRecyclerView"
+    <View
+        android:id="@+id/space1"
+        android:layout_width="60dp"
+        android:layout_height="5dp"
+        android:layout_gravity="center"
+        android:background="@color/white_greyish" />
+        <TextView
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_below="@+id/title"
-            android:clipToPadding="false"
-            android:scrollbars="vertical" />
+            android:layout_height="83dp"
+            android:gravity="top|center"
+            android:text="@string/card_tile"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            android:textStyle="bold" />
 
-    </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/linearLayout3"
-        android:padding="10dp"
-        >
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="fill_parent"
+            android:layout_height="254dp"
+            >
+
+
+            <androidx.recyclerview.widget.RecyclerView
+
+                android:id="@+id/idRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="315dp"
+                android:layout_below="@+id/title"
+                android:clipToPadding="false"
+                android:scrollbars="vertical" />
+
+        </LinearLayout>
+
+
         <Button
             android:id="@+id/backToLoginBtn"
-            android:layout_width="fill_parent"
+            android:layout_width="275dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="26dp"
             android:background="@drawable/loginbutton_selector"
-            android:padding="12dp"
+            android:layout_gravity="center"
             android:gravity="center"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
             android:text="@string/Finalize"
-            android:textColor="@color/background_color"
+            android:textColor="@color/white"
             android:textSize="14sp"
             android:textStyle="bold" />
 
+
     </LinearLayout>
-
-
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="376dp"
+        android:layout_below="@+id/linearLayout"
+        android:layout_marginTop="-25dip"
+        android:background="@drawable/fondo_960x750"
+        android:orientation="vertical"
+        android:paddingBottom="0dp"></LinearLayout>
 
 
 
