@@ -11,8 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.model.ObjUserHasProduct;
-import com.alodiga.app.wallet.reloadCard.ReloadCardStep1Activity;
-import com.alodiga.app.wallet.reloadCard.ReloadCardStep3Activity;
 import com.alodiga.app.wallet.utils.Constants;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.FailCodeOperationActivity;
@@ -45,7 +43,7 @@ public class DeactiveCardStep2codeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activecard_step2_code_layout);
+        setContentView(R.layout.deactivecard_step2_code_layout);
         step1_next_button = findViewById(R.id.step1_next_button);
         backToLoginBtn = findViewById(R.id.backToLoginBtn);
         edtMobileCode = findViewById(R.id.edtMobileCode);
