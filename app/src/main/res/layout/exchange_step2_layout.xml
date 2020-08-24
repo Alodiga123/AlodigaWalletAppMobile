@@ -6,12 +6,29 @@
     android:overScrollMode="never"
     android:scrollbars="none" >
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    android:background="@drawable/side_nav_bar"
+    android:background="@drawable/fondo_960x750"
     android:padding="15dp" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:background="@drawable/radius_fondo"
+        android:padding="20dp"
+        android:id="@+id/linearLayout"
+        android:elevation="1dp">
+
+    <View
+        android:id="@+id/space1"
+        android:layout_width="60dp"
+        android:layout_height="5dp"
+        android:layout_gravity="center"
+        android:layout_below="@+id/simpleSwitch"
+        android:background="@color/white_greyish" />
 
 
     <TextView
@@ -21,7 +38,7 @@
         android:gravity="top|center"
         android:padding="10dp"
         android:text="@string/exchange_title"
-        android:textColor="@color/background_color"
+        android:textColor="@color/white"
         android:textSize="25sp"
         android:textStyle="bold" />
 
@@ -43,7 +60,7 @@
                 android:textStyle="bold"
                 android:padding="2dip"
                 android:singleLine="true"
-                android:textColor="@color/background_color"
+                android:textColor="@color/white"
                 android:textSize="15sp"
                 android:text="@string/table_title_exchange"/>
 
@@ -199,7 +216,7 @@
                 android:textStyle="bold"
                 android:padding="2dip"
                 android:singleLine="true"
-                android:textColor="@color/background_color"
+                android:textColor="@color/white"
                 android:textSize="15sp"
                 android:text="@string/table_title_exchange_rate"/>
 
@@ -259,28 +276,39 @@
 
     <Button
         android:id="@+id/next"
-        android:layout_width="fill_parent"
+        android:layout_width="275dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:background="@drawable/loginbutton_selector"
         android:padding="3dp"
         android:text="@string/next"
-        android:textColor="@color/background_color"
+        android:layout_gravity="center"
+        android:textColor="@color/white"
         android:textSize="17sp"
         android:textStyle="bold" />
 
     <Button
         android:id="@+id/backToLoginBtn"
-        android:layout_width="fill_parent"
+        android:layout_width="275dp"
+        android:layout_gravity="center"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:background="@drawable/loginbutton_selector"
+        android:background="@drawable/loginbutton_selector_2"
         android:padding="3dp"
         android:text="@string/back"
-        android:textColor="@color/background_color"
+        android:textColor="@color/white"
         android:textSize="17sp"
         android:textStyle="bold" />
-
-</LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="396dp"
+        android:layout_height="309dp"
+        android:layout_below="@+id/linearLayout"
+        android:layout_marginTop="-35dip"
+        android:background="@drawable/fondo_960x750"
+        android:orientation="vertical"
+        android:paddingBottom="0dp"
+        ></LinearLayout>
+</RelativeLayout>
 
 </ScrollView>
