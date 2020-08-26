@@ -100,6 +100,8 @@
 
 
     <string name="login">Inicio</string>
+    <string name="login_text">INICIAR SESION</string>
+
     <string name="submit">ENVIAR</string>
     <string name="next">Continuar</string>
     <string name="Finalize">FINALIZAR</string>
@@ -149,7 +151,8 @@
     <string name="show_pwd">Ver Contraseña</string>
     <string name="hide_pwd">Esconder Contraseña</string>
     <string name="forgot">Olvidó su contraseña?</string>
-    <string name="newUser">¿No eres miembro todavía? Registrate aquí.</string>
+    <string name="newUser">¿No eres miembro todavía? </string>
+    <string name="newUser_2">Registrate aquí.</string>
     <string name="password_recent">Contraseña Reciente</string>
     <string name="password_new">Contraseña Nueva</string>
     <string name="password_confirm">Confirmar Contraseña</string>

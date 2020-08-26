@@ -154,9 +154,9 @@ public class LoginFragment extends Fragment implements OnClickListener {
             ColorStateList csl = ColorStateList.createFromXml(getResources(),
                     xrp);
 
-            forgotPassword.setTextColor(csl);
-            show_hide_password.setTextColor(csl);
-            signUp.setTextColor(csl);
+            //forgotPassword.setTextColor(csl);
+            //show_hide_password.setTextColor(csl);
+            //signUp.setTextColor(csl);
         } catch (Exception e) {
         }
 
@@ -241,7 +241,7 @@ public class LoginFragment extends Fragment implements OnClickListener {
                         // password
                         if (isChecked) {
 
-                            show_hide_password.setText(R.string.hide_pwd);// change
+                            //show_hide_password.setText(R.string.hide_pwd);// change
                             // checkbox
                             // text
 
@@ -249,7 +249,7 @@ public class LoginFragment extends Fragment implements OnClickListener {
                             password.setTransformationMethod(HideReturnsTransformationMethod
                                     .getInstance());// show password
                         } else {
-                            show_hide_password.setText(R.string.show_pwd);// change
+                            //show_hide_password.setText(R.string.show_pwd);// change
                             // checkbox
                             // text
 
@@ -283,6 +283,15 @@ public class LoginFragment extends Fragment implements OnClickListener {
                                 Utils.ForgotPassword_Fragment).commit();
                 break;
             case R.id.createAccount:
+
+                fragmentManager
+                        .beginTransaction()
+                        .setCustomAnimations(R.anim.right_enter, R.anim.left_out)
+                        .replace(R.id.frameContainer, new RegisterStep1Fragment(),
+                                Utils.Register_step_1).commit();
+
+                break;
+            case R.id.createAccount_:
 
                 fragmentManager
                         .beginTransaction()

@@ -106,16 +106,17 @@
                 android:layout_height="1px"
                 android:background="@color/white_greyish" />
 
-          <LinearLayout
+          <RelativeLayout
               android:layout_width="fill_parent"
               android:layout_height="wrap_content"
-              android:layout_gravity="center">
+              android:layout_gravity="center"
+              >
 
               <EditText
 
                   android:id="@+id/login_password"
-                  android:layout_width="305dp"
-                  android:layout_height="wrap_content"
+                  android:layout_width="fill_parent"
+                  android:layout_height="55dp"
                   android:background="@android:color/transparent"
                   android:drawableLeft="@drawable/lock_24"
                   android:drawablePadding="8dp"
@@ -130,16 +131,17 @@
 
               <CheckBox
                   android:id="@+id/show_hide_password"
-                  android:layout_weight="5"
                   android:layout_width="wrap_content"
+                  android:layout_height="55dp"
+                  android:layout_alignParentEnd="true"
                   android:layout_gravity="center|right"
-                  android:gravity="right"
-                  android:layout_height="wrap_content"
+
                   android:button="@drawable/selector"
                   android:buttonTint="@color/button_selectorcolor"
                   android:textColor="@color/button_selectorcolor"
                   android:textSize="14sp" />
-          </LinearLayout>
+
+          </RelativeLayout>
 
             <View
                 android:layout_width="fill_parent"

@@ -146,7 +146,7 @@
     <string name="nav_header_title">Android Studio</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="newUser">"Not a member yet? Sign up here. "</string>
+    <string name="newUser">"Not a member yet? "</string>
     <string name="new_password">"New Password "</string>
     <string name="next">Next</string>
     <string name="no">Not</string>
@@ -519,5 +519,7 @@
     <string name="web_services_response_220">" It does not have associated payment methods, please enter the requested data"</string>
     <string name="payment_method_drop_title">" Delete Payment Method"</string>
     <string name="payment_method_drop_question">" Are you sure you want to delete the payment method:"</string>
+    <string name="newUser_2">"Sign up here. "</string>
+    <string name="login_text">"LOGIN "</string>
 
 </resources>
