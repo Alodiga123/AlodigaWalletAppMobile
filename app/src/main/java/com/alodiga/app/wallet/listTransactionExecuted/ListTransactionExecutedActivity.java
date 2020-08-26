@@ -12,9 +12,9 @@ import android.text.Html;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,7 +25,6 @@ import com.alodiga.app.wallet.main.MainActivity;
 import com.alodiga.app.wallet.model.ObjNewsItem;
 import com.alodiga.app.wallet.model.ObjTransaction;
 import com.alodiga.app.wallet.utils.Constants;
-import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
 import com.alodiga.app.wallet.utils.Session;
 import com.alodiga.app.wallet.utils.Utils;
@@ -57,6 +56,8 @@ public class ListTransactionExecutedActivity extends AppCompatActivity implement
     private String stringResponse = "";
     private String destinationUser = "";
     private boolean ActivityTransactionExcecuteIsCounting = true;
+    private Button backToLoginBtn;
+
 
 
     @Override
@@ -70,6 +71,18 @@ public class ListTransactionExecutedActivity extends AppCompatActivity implement
         ActivityTransactionExcecuteIsCounting = true;
         TransferOfFunds transferOfFunds = new TransferOfFunds(this);
         transferOfFunds.execute();
+        backToLoginBtn= findViewById(R.id.backToLoginBtn);
+
+
+        backToLoginBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                //new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(), "Prueba exitosa");
+                Intent show;
+                show = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(show);
+            }
+        });
+
     }
 
     @Override
@@ -296,12 +309,14 @@ public class ListTransactionExecutedActivity extends AppCompatActivity implement
 
 
             } else {
-                new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
+                lv1.setVisibility(View.INVISIBLE);
+                progressDialogAlodiga.dismiss();
+                /*new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                         responsetxt);
                 //Toast.makeText(context, responsetxt, Toast.LENGTH_LONG).show();
                 Intent i = new Intent(this.context, MainActivity.class);
                 startActivity(i);
-                finish();
+                finish();*/
             }
         }
 

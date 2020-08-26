@@ -1,43 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:fillViewport="true"
-    android:overScrollMode="never"
-    android:scrollbars="none" >
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
+
+<RelativeLayout android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    android:background="@drawable/side_nav_bar"
-    android:padding="15dp" >
+    android:background="@drawable/fondo_960x750"
+    android:padding="15dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="10dp"
-        android:text="@string/last_operation_title"
-        android:textColor="@color/background_color"
-        android:textSize="25sp"
-        android:textStyle="bold"/>
 
-    <ListView
-        android:id="@+id/custom_list"
-        android:layout_width="fill_parent"
-        android:paddingTop="50dp"
-        android:layout_alignParentLeft="true"
-        android:layout_height="wrap_content"
-        android:dividerHeight="1dp"/>
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="445dp"
+        android:background="@drawable/radius_fondo"
+        android:elevation="1dp"
+        android:orientation="vertical"
+        android:padding="15dp">
 
-    <TextView
-        android:id="@+id/textViewEmpty"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:layout_gravity="center_vertical"
-        android:text="No hay transacciones disponibles"
-        />
-</LinearLayout>
-</ScrollView>
+        <TextView
+            android:id="@+id/space1"
+            android:layout_width="60dp"
+            android:layout_height="5dp"
+            android:layout_below="@+id/simpleSwitch"
+            android:layout_gravity="center"
+            android:background="@color/white"
+            android:gravity="center" />
+
+        <RelativeLayout
+            android:id="@+id/content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <ListView
+                android:id="@+id/custom_list"
+                android:layout_width="fill_parent"
+                android:layout_height="250dp"
+                android:layout_below="@+id/title"
+                android:dividerHeight="1dp"
+                android:paddingBottom="10dp"></ListView>
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="87dp"
+                android:gravity="top|center"
+                android:padding="10dp"
+                android:text="@string/last_operation_title"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textViewEmpty"
+                android:layout_width="351dp"
+                android:layout_height="240dp"
+                android:layout_below="@+id/title"
+                android:layout_marginTop="13dp"
+                android:gravity="center"
+                android:text="No hay transacciones disponibles"
+                android:textColor="@color/white" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="5dp"
+            android:layout_marginTop="13dp"
+            android:gravity="center"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/backToLoginBtn"
+            android:layout_width="275dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/content"
+            android:layout_gravity="center"
+            android:background="@drawable/loginbutton_selector"
+            android:gravity="center"
+            android:text="@string/Finalize"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="376dp"
+        android:layout_below="@+id/linearLayout"
+        android:layout_marginTop="-27dp"
+        android:background="@drawable/fondo_960x750"
+        android:orientation="vertical"
+        android:paddingBottom="0dp">
+
+    </LinearLayout>
+
+
+</RelativeLayout>
