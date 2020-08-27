@@ -6,28 +6,44 @@
     android:overScrollMode="never"
     android:scrollbars="none" >
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:padding="20dp"
-        android:background="@drawable/side_nav_bar"
+        android:padding="15dp"
+        android:background="@drawable/fondo_960x750"
         >
-
-        <TextView
-            android:id="@+id/textbox"
+        <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="64dp"
-            android:layout_weight="1"
-            android:gravity="top|center"
-            android:hint="Type to text"
-            android:text="@string/recharge_title"
-            android:textColor="@color/background_color"
-            android:textSize="25sp"
-            android:textStyle="bold"/>
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:background="@drawable/radius_fondo"
+            android:padding="20dp"
+            android:id="@+id/linearLayout"
+            android:elevation="1dp">
+
+        <View
+            android:id="@+id/space1"
+            android:layout_width="60dp"
+            android:layout_height="5dp"
+            android:layout_gravity="center"
+            android:layout_below="@+id/simpleSwitch"
+            android:background="@color/white_greyish" />
+
+            <TextView
+                android:id="@+id/textbox"
+                android:layout_width="fill_parent"
+                android:layout_height="44dp"
+                android:layout_weight="1"
+                android:gravity="top|center"
+                android:hint="Type to text"
+                android:text="@string/recharge_title"
+                android:textColor="@color/background_color"
+                android:textSize="25sp"
+                android:textStyle="bold" />
 
         <LinearLayout
             android:id="@+id/login_layout"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textbox"
             android:layout_alignParentBottom="true"
@@ -197,30 +213,43 @@
 
         <Button
             android:id="@+id/signFind"
-            android:layout_width="match_parent"
+            android:layout_width="275dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:background="@drawable/loginbutton_selector"
             android:padding="12dp"
             android:text="@string/buttonProcessRecharge"
-            android:textColor="@color/background_color"
+            android:textColor="@color/white"
             android:textSize="14sp"
             android:textStyle="bold" />
 
             <Button
                 android:id="@+id/backToLoginBtn"
-                android:layout_width="match_parent"
+                android:layout_width="275dp"
+                android:layout_gravity="center"
+                android:gravity="center"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/loginbutton_selector"
+                android:background="@drawable/loginbutton_selector_2"
                 android:padding="12dp"
                 android:text="@string/back"
-                android:textColor="@color/background_color"
+                android:textColor="@color/white"
                 android:textSize="14sp"
                 android:textStyle="bold" />
     </LinearLayout>
 
+        </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="396dp"
+            android:layout_height="309dp"
+            android:layout_below="@+id/linearLayout"
+            android:layout_marginTop="-35dip"
+            android:background="@drawable/fondo_960x750"
+            android:orientation="vertical"
+            android:paddingBottom="0dp"
+            ></LinearLayout>
 
 </RelativeLayout>
     </ScrollView>
