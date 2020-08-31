@@ -10,8 +10,16 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    android:background="@drawable/side_nav_bar"
+    android:background="@color/background_g"
     android:padding="15dp" >
+    <View
+        android:id="@+id/space1"
+        android:layout_width="60dp"
+        android:layout_height="5dp"
+        android:layout_below="@+id/simpleSwitch"
+        android:layout_gravity="center"
+        android:layout_centerHorizontal="true"
+        android:background="@color/white_greyish" />
 
     <TextView
         android:id="@+id/title"
@@ -21,10 +29,15 @@
         android:padding="10dp"
         android:text="@string/payment_comerce_title"
         android:textColor="@color/background_color"
-        android:textSize="25sp"
+        android:textSize="16sp"
         android:textStyle="bold" />
 
 
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_gravity="center_horizontal">
 
     <TableLayout
         android:id="@+id/txtTableLayout"
@@ -42,7 +55,7 @@
             android:textStyle="bold"
 
             android:text="@string/destination_information"
-            android:textColor="@color/white_greyish"
+            android:textColor="@color/yellow"
             android:textSize="19sp" />
 
 
@@ -184,7 +197,7 @@
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:text="@string/destination_information_comple"
-        android:textColor="@color/white_greyish"
+        android:textColor="@color/yellow"
         android:gravity="center_vertical"
         android:textSize="19sp" />
 
@@ -197,7 +210,6 @@
         android:layout_marginTop="5dp"
         android:paddingTop="20dp"
         android:background="@android:color/transparent"
-        android:drawableLeft="@drawable/moneyicon"
         android:drawablePadding="8dp"
         android:gravity="center_vertical"
         android:inputType="numberDecimal"
@@ -215,7 +227,6 @@
         android:background="@android:color/transparent"
         android:drawablePadding="8dp"
         android:gravity="center_vertical"
-        android:drawableLeft="@drawable/email"
         android:hint="@string/destination_concept"
         android:inputType="text"
         android:padding="10dp"
@@ -225,21 +236,23 @@
         android:textSize="16sp" />
     <Button
         android:id="@+id/btnProcessConfirmation1"
-        android:layout_width="fill_parent"
+        android:layout_width="275dp"
+        android:layout_gravity="center_horizontal"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:background="@drawable/loginbutton_selector"
         android:padding="3dp"
         android:text="@string/next"
-        android:textColor="@color/background_color"
+        android:textColor="@color/white"
         android:textSize="17sp"
         android:textStyle="bold" />
     <Button
         android:id="@+id/backToLoginBtn"
-        android:layout_width="fill_parent"
+        android:layout_width="275dp"
+        android:layout_gravity="center_horizontal"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:background="@drawable/loginbutton_selector"
+        android:background="@drawable/loginbutton_selector_2"
         android:padding="3dp"
         android:text="@string/back"
         android:textColor="@color/background_color"
@@ -249,4 +262,5 @@
 
 </LinearLayout>
 
+</LinearLayout>
 </ScrollView>
