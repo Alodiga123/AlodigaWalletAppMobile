@@ -8,7 +8,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -52,6 +52,7 @@ public class PaymentComerceStep1Activity extends AppCompatActivity {
     private String destinationIdValue = "";
     private ObjUserHasProduct currencySelected;
     private ArrayList<ObjUserHasProduct> list_product;
+    private TextView nameuser, phoneuser, emailuser;
 
     private static String getValueFromResponseJson(String v, String response) {
         return (response.split(v + "=")[1].split(";")[0]);
@@ -68,7 +69,12 @@ public class PaymentComerceStep1Activity extends AppCompatActivity {
         viewQ = findViewById(R.id.viewQ);
         signFind = findViewById(R.id.signFind);
         backToLoginBtn= findViewById(R.id.backToLoginBtn);
-
+        nameuser= findViewById(R.id.nameuser);
+        phoneuser= findViewById(R.id.phoneuser);
+        emailuser= findViewById(R.id.emailuser);
+        nameuser.setText(Session.getUsername());
+        phoneuser.setText(Session.getPhoneNumber());
+        emailuser.setText(Session.getEmail());
 
         String[] optionsID = {"Alocoin", "Saldo Alodiga", "HealthCareCoin"};
         String[] optionsBank = {" ", "Provincial", "Mercantil", "Banesco", "Bicentenario", "Banco de Venezuela", "Banco del Tesoro", "Banco Caroní", "Banco Sofitasa", "Banpro", "Banco Fondo Común", "Banfoandes", "Banco Occidental de Descuento", "Banco Venezolano de Crédito", "Banco Exterior", "Banco Plaza", "Citibank", "Banplus"};
