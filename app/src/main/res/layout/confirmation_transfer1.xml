@@ -28,7 +28,7 @@
         android:gravity="center"
         android:padding="10dp"
         android:text="@string/payment_comerce_title"
-        android:textColor="@color/background_color"
+        android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold" />
 
