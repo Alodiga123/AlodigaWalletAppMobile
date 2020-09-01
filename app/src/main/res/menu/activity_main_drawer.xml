@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
+    <group android:checkableBehavior="single"
+        >
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/menu_qr"
-            android:title="@string/menu_qr" />
+            android:title="@string/menu_qr"
+            />
         <item
             android:id="@+id/nav_recharge"
             android:icon="@drawable/menu_recargue_wallet"
@@ -36,8 +39,8 @@
 
     </group>
 
-    <item android:title="@string/menu_remesas" android:id="@+id/remittence">
-        <menu>
+    <item android:title="@string/menu_remesas" android:id="@+id/remittence"  >
+        <menu >
 
             <item
                 android:id="@+id/nav_remesas"
@@ -60,14 +63,15 @@
                 android:title="@string/menu_request_card" />
             <item
                 android:id="@+id/nav_active_card"
-                android:icon="@drawable/ic_menu_slideshow"
+                android:icon="@drawable/ic_menu_slideshow_2"
                 android:title="@string/activate_card" />
 
         </menu>
     </item>
 
-    <item android:title="@string/Additional">
-        <menu>
+    <item android:title="@string/Additional" android:iconTint="@color/white">
+
+        <menu >
 
             <item
                 android:id="@+id/nav_pay_qr"
@@ -83,8 +87,9 @@
     </item>
 
 
-    <item android:title="@string/Security">
-        <menu>
+    <item android:title="@string/Security"  >
+
+        <menu >
 
             <item
                 android:id="@+id/nav_change_password"
