@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.graphics.Color;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,24 +13,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alodiga.app.R;
-import com.alodiga.app.wallet.activateDesativateCard.ActivateDeactivateCardStep1Activity;
 import com.alodiga.app.wallet.balance.BalanceStep1Activity;
-import com.alodiga.app.wallet.companionCards.CompanionCardsStep1Activity;
 import com.alodiga.app.wallet.companionCards.CompanionCardsStep2Activity;
-import com.alodiga.app.wallet.exchange.ExchangeStep1Activity;
-import com.alodiga.app.wallet.manualRecharge.ManualRechargeStep1Activity;
-import com.alodiga.app.wallet.manualRemoval.ManualRemovalStep1Activity;
 import com.alodiga.app.wallet.model.ObjCompanionCards;
-import com.alodiga.app.wallet.model.ObjMoney;
-import com.alodiga.app.wallet.paymentComerce.PaymentComerceStep1Activity;
-import com.alodiga.app.wallet.reloadCard.ReloadCardStep1Activity;
-import com.alodiga.app.wallet.topup.TopupStep1Activity;
-import com.alodiga.app.wallet.transference.TransferenceStep1Activity;
 import com.alodiga.app.wallet.utils.Session;
 import com.alodiga.app.wallet.validate.ValidateAccountCode3Activity;
 import com.alodiga.app.wallet.validate.ValidateAccountCode4Activity;
@@ -98,14 +86,14 @@ public class AdapterCardProduct extends RecyclerView.Adapter<AdapterCardProduct.
                     ADBuilder2.setTitle(Html.fromHtml("Operations" ));
 
                         //R.string.menu_recharge
-                    arrayAdapter.add("    Check balance");
-                    arrayAdapter.add("    Recharge from main");
+                    arrayAdapter.add("Check balance");
+                    arrayAdapter.add("Recharge from main");
                 } else {
                     ADBuilder2.setTitle(Html.fromHtml("Operaciones" ));
 
                         //R.string.menu_recharge
-                    arrayAdapter.add("    Consultar Saldo");
-                    arrayAdapter.add("    Recargar desde Principal");
+                    arrayAdapter.add("Consultar Saldo");
+                    arrayAdapter.add("Recargar desde Principal");
 
                 }
 
@@ -124,13 +112,13 @@ public class AdapterCardProduct extends RecyclerView.Adapter<AdapterCardProduct.
                     public void onClick(DialogInterface dialog, int _item) {
 
                         //Creamos un toast para mostrar el elemento selecionado
-                        if (arrayAdapter.getItem(_item).toString() == "    Check balance" || arrayAdapter.getItem(_item).toString() == "    Consultar Saldo") {
+                        if (arrayAdapter.getItem(_item).toString() == "Check balance" || arrayAdapter.getItem(_item).toString() == "Consultar Saldo") {
                             Session.setCardBalance(grocderyItemList.get(position).getNumberCard());
                             Intent show = new Intent(context, BalanceStep1Activity.class);
                             context.startActivity(show);
                         }
 
-                        if (arrayAdapter.getItem(_item).toString() == "    Recharge from main" || arrayAdapter.getItem(_item).toString() == "    Recargar desde Principal") {
+                        if (arrayAdapter.getItem(_item).toString() == "Recharge from main" || arrayAdapter.getItem(_item).toString() == "Recargar desde Principal") {
                                Session.setTranferenceCardToCardDest(grocderyItemList.get(position).getNumberCard());
                                Session.setTranferenceCardToCardEncripDest(grocderyItemList.get(position).getNumberCardEncrip());
                                Session.setDestinationNameValue(grocderyItemList.get(position).getNameCard());
