@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SATIM</string>
+    <string name="app_name">Alodiga</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -23,6 +23,7 @@
     <string name="menu_recharge_with_credit_card">Recargar Billetera</string>
     <string name="menu_recharge">Recarga Manual</string>
     <string name="menu_aoutMoney">Retiro Manual</string>
+    <string name="aoutMoney">Retirar</string>
 
     <string name="menu_transfer">Transferir</string>
     <string name="menu_recharge_n_i">TopUp</string>
@@ -498,6 +499,7 @@
     <string name="session_answer_en">¿Esta Seguro que desea cambiar su idioma a Ingles?</string>
     <string name="confirm">Confirmar</string>
     <string name="cancel">Cancelar</string>
+    <string name="send">Enviar Dinero</string>
     <string name="invalid_phone">La longitud del teléfono en invalida"</string>
     <string name="forEmail">Por email</string>
     <string name="forPhone">Por número Teléfono</string>
@@ -514,6 +516,7 @@
     <string name="Security">Seguridad</string>
     <string name="activate_card">Activar/Desactivar Tarjeta</string>
     <string name="reload_card">Recargar Tarjeta</string>
+    <string name="reload">Recargar</string>
     <string name="activate_card_title">ACTIVAR TARJETA</string>
     <string name="dactivate_card_title">DESACTIVAR TARJETA</string>
     <string name="activate_process">ACTIVAR</string>

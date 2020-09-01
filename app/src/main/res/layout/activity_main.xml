@@ -6,7 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:openDrawer="start">
+    tools:openDrawer="start"
+    android:background="@color/Gray"
+    >
+
 
     <include
         layout="@layout/app_bar_main"
@@ -19,7 +22,14 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
+        android:background="@color/Gray"
         app:headerLayout="@layout/nav_header_main"
-        app:menu="@menu/activity_main_drawer" />
+        app:menu="@menu/activity_main_drawer"
+        app:itemBackground="@drawable/selector_menu"
+        app:itemTextColor="@color/white"
+        app:itemIconTint="@color/white"
+        android:theme="@style/appBarTheme"
+        />
+
 
 </androidx.drawerlayout.widget.DrawerLayout>

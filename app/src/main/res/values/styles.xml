@@ -5,7 +5,7 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/yellow</item>
         <item name="fontFamily">@font/sf_compact</item>
     </style>
 
@@ -19,11 +19,22 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="yourDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
-
-        <item name="android:colorAccent">@color/background_color</item>
-        <item name="android:colorPrimary">@color/background_color</item>
-
+        <item name="android:colorAccent">@color/yellow</item>
+        <item name="android:colorPrimary">@color/yellow</item>
+        <item name="android:background">@color/Gray</item>
+        <item name="android:textColor">@color/white_greyish</item>
+        <item name="android:centerMedium">@android:color/white</item>
+        <item name="android:textColorHint">@color/white_greyish</item>
+        <item name="android:textColorPrimary">@color/white_greyish</item>
     </style>
 
-
+    <style name="DialogCustom" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="colorAccent">@color/yellow</item>
+        <item name="android:textColor">@color/white_greyish</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:background">@color/Gray</item>
+    </style>
+    <style name="appBarTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:textColorPrimary">@color/white</item>
+    </style>
 </resources>

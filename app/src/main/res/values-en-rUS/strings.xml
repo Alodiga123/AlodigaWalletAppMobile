@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">SATIM</string>
+    <string name="app_name">Alodiga</string>
     <string name="action_reintent">Try again</string>
     <string name="action_settings">Sign off</string>
     <string name="action_settings_en">"English "</string>
@@ -521,5 +521,8 @@
     <string name="payment_method_drop_question">" Are you sure you want to delete the payment method:"</string>
     <string name="newUser_2">"Sign up here. "</string>
     <string name="login_text">"LOGIN "</string>
+    <string name="send">" Send Money"</string>
+    <string name="aoutMoney">Remove</string>
+    <string name="reload">Reload</string>
 
 </resources>

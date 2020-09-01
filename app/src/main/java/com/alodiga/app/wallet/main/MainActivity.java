@@ -8,7 +8,6 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
@@ -19,7 +18,6 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
@@ -34,18 +32,16 @@ import com.alodiga.app.R;
 import com.alodiga.app.wallet.QR.CreateQRCodeActivity;
 import com.alodiga.app.wallet.activeCard.ActiveCardActivity;
 import com.alodiga.app.wallet.adapters.AdapterMoneyProduct;
+import com.alodiga.app.wallet.changePassword.ChangePasswordStep1Activity;
 import com.alodiga.app.wallet.exchange.ExchangeStep1Activity;
-import com.alodiga.app.wallet.listRemittence.ListRemittenceActivity;
 import com.alodiga.app.wallet.listTransactionExecuted.ListTransactionExecutedActivity;
 import com.alodiga.app.wallet.login.LoginActivity;
 import com.alodiga.app.wallet.manualRecharge.ManualRechargeStep1Activity;
 import com.alodiga.app.wallet.manualRemoval.ManualRemovalStep1Activity;
 import com.alodiga.app.wallet.model.ObjMoney;
 import com.alodiga.app.wallet.model.ObjUserHasProduct;
-import com.alodiga.app.wallet.changePassword.ChangePasswordStep1Activity;
 import com.alodiga.app.wallet.paymentComerce.PaymentComerceStep1Activity;
 import com.alodiga.app.wallet.rechargeWithCard.RechargeWhithCardContactsActivity;
-import com.alodiga.app.wallet.rechargeWithCard.RechargeWithCardStep1Activity;
 import com.alodiga.app.wallet.remesas.PaymentStep1Activity;
 import com.alodiga.app.wallet.topup.TopupStep1Activity;
 import com.alodiga.app.wallet.transference.TransferenceStep1Activity;
@@ -57,22 +53,11 @@ import com.alodiga.app.wallet.validate.ValidateAccountCode2Activity;
 import com.alodiga.app.wallet.validate.ValidateAccountCode3Activity;
 import com.alodiga.app.wallet.validate.ValidateAccountCode4Activity;
 import com.alodiga.app.wallet.validate.ValidateAccountStep5Activity;
-
-
-import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.highlight.Highlight;
-import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
-import com.github.mikephil.charting.utils.ColorTemplate;
-import com.google.android.material.navigation.NavigationView;
-
 import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.formatter.PercentFormatter;
-import com.github.mikephil.charting.utils.ColorTemplate;
+import com.github.mikephil.charting.data.PieEntry;
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -83,13 +68,15 @@ public class MainActivity extends AppCompatActivity
 
     Animation atg, atgtwo, atgthree;
     ImageView imageView3;
-    TextView nameuser, phoneuser, pagetitle, pagesubtitle;
+    TextView nameuser, phoneuser,emailuser, pagetitle, pagesubtitle;
     private Button btnPaymet;
     private Button btnViewTransaction;
     private Button btnChangePassword;
     private RecyclerView mRecyclerView;
     private AdapterMoneyProduct mAdapter;
     private List<ObjMoney> mProductList;
+    private ImageView img_enviar, img_recargar, img_transferir, img_retirar, icoQr;
+    private TextView txt_enviar, txt_recargar, txt_transferir, txt_retirar;
     private ProgressDialogAlodiga progressDialogAlodiga;
     PieChart pieChart;
 
@@ -111,19 +98,29 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        PieChart pieChart = findViewById(R.id.piechart);
+       // PieChart pieChart = findViewById(R.id.piechart);
 
-        pieChart.setDescription("");
+        //pieChart.setDescription("");
         getEntries();
-        pieDataSet = new PieDataSet(pieEntries, "");
+        //pieDataSet = new PieDataSet(pieEntries, "");
 
-        pieData = new PieData(pieDataSet);
-        pieChart.setData(pieData);
-        pieDataSet.setColors(COLORFUL_COLORS_THIS);
-        pieDataSet.setValueTextColor(Color.WHITE);
-        pieDataSet.setValueTextSize(8f);
-        pieChart.setHoleRadius(15f);
-        pieChart.getLegend().setEnabled(false);
+        //pieData = new PieData(pieDataSet);
+        //pieChart.setData(pieData);
+        //pieDataSet.setColors(COLORFUL_COLORS_THIS);
+        //pieDataSet.setValueTextColor(Color.WHITE);
+        //pieDataSet.setValueTextSize(8f);
+        //pieChart.setHoleRadius(15f);
+        //pieChart.getLegend().setEnabled(false);
+
+        img_enviar= findViewById(R.id.img_enviar);
+        txt_enviar= findViewById(R.id.txt_enviar);
+        img_recargar= findViewById(R.id.img_recargar);
+        txt_recargar= findViewById(R.id.txt_recargar);
+        img_transferir= findViewById(R.id.img_transferir);
+        txt_transferir= findViewById(R.id.txt_transferir);
+        img_retirar= findViewById(R.id.img_retirar);
+        txt_retirar= findViewById(R.id.txt_retirar);
+        icoQr= findViewById(R.id.icoQr);
 
         progressDialogAlodiga = new ProgressDialogAlodiga(this, getString(R.string.loading));
         progressDialogAlodiga.show();
@@ -167,12 +164,14 @@ public class MainActivity extends AppCompatActivity
 
         nameuser = findViewById(R.id.nameuser);
         phoneuser = findViewById(R.id.phoneuser);
+        emailuser= findViewById(R.id.emailuser);
 
 
         //insertValueSession
 
         nameuser.setText(Session.getUsername());
         phoneuser.setText(Session.getPhoneNumber());
+        emailuser.setText(Session.getEmail());
 
 
         imageView3 = findViewById(R.id.imageView2);
@@ -213,6 +212,82 @@ public class MainActivity extends AppCompatActivity
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.RECEIVE_SMS) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(new String[]{Manifest.permission.RECEIVE_SMS}, 1000);
         }
+
+        //Enviar - Remesas
+        img_enviar.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent show = new Intent(MainActivity.this, PaymentStep1Activity.class);
+                startActivity(show);
+                finish();
+            }
+        });
+        txt_enviar.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent show = new Intent(MainActivity.this, PaymentStep1Activity.class);
+                startActivity(show);
+                finish();
+            }
+        });
+
+        //Recargar - Recarga manual
+        img_recargar.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent show = new Intent(MainActivity.this, ManualRechargeStep1Activity.class);
+                startActivity(show);
+                finish();
+            }
+        });
+
+        txt_recargar.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent show = new Intent(MainActivity.this, ManualRechargeStep1Activity.class);
+                startActivity(show);
+                finish();
+            }
+        });
+
+        //Transferir - transferencia
+        img_transferir.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent show = new Intent(MainActivity.this, TransferenceStep1Activity.class);
+                startActivity(show);
+                finish();
+            }
+        });
+
+        txt_transferir.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent show = new Intent(MainActivity.this, TransferenceStep1Activity.class);
+                startActivity(show);
+                finish();
+            }
+        });
+
+        //Retirar - Retiro manual
+        img_retirar.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent show = new Intent(MainActivity.this, ManualRemovalStep1Activity.class);
+                startActivity(show);
+                finish();
+            }
+        });
+
+        txt_retirar.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent show = new Intent(MainActivity.this, ManualRemovalStep1Activity.class);
+                startActivity(show);
+                finish();
+            }
+        });
+
+        //pago comercio
+        icoQr.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent show = new Intent(MainActivity.this, PaymentComerceStep1Activity.class);
+                startActivity(show);
+                finish();
+            }
+        });
         progressDialogAlodiga.dismiss();
     }
 

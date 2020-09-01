@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#636366</color>
-    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorPrimaryDark">#AEAEB2</color>
     <color name="colorAccent">#E72E33</color>
     <color name="background_color">#FFFFFF</color>
     <color name="background_color_botton">#454d3e</color>
@@ -12,13 +12,16 @@
     <color name="white">#AEAEB2</color>
     <color name="black">#535151</color>
     <color name="white_greyish">#AEAEB2</color>
-    <color name="white_greyish_old">#535151</color>
+    <color name="white_greyish_old">#FFFFFF</color>
 
     <color name="powerby">#E72E33</color>
     <color name="button_selectorcolor">#636366</color>
     <color name="selected">#535151</color>
     <color name="color_spinner">#E72E33</color>
     <color name="yellow">#FF9800</color>
+    <color name="verde">#8BC34A</color>
+    <color name="amarillo">#FFEB3B</color>
+    <color name="violeta">#EB9C27B0</color>
 
 
 </resources>
