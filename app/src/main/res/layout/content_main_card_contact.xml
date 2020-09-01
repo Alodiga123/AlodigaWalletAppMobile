@@ -1,23 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:fillViewport="true"
     android:overScrollMode="never"
     android:scrollbars="none" >
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/side_nav_bar">
-
+    android:background="@color/background_g"
+    android:padding="15dp">
 
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingTop="20dp"
+        android:id="@+id/linearLayout"
+        android:elevation="1dp">
+
+        <View
+            android:id="@+id/space1"
+            android:layout_width="60dp"
+            android:layout_height="5dp"
+            android:layout_gravity="center"
+            android:layout_below="@+id/simpleSwitch"
+            android:background="@color/white_greyish" />
 
 
         <TextView
@@ -26,7 +37,7 @@
             android:layout_height="47dp"
             android:gravity="top|center"
             android:text="@string/recharge_whih_card_title"
-            android:textColor="@color/background_color"
+            android:textColor="@color/white"
             android:textSize="25sp"
             android:textStyle="bold" />
 
@@ -45,17 +56,17 @@
         <LinearLayout
             android:id="@+id/linearLayout3"
             android:layout_width="fill_parent"
-            android:layout_height="365dp"
+            android:layout_height="276dp"
             android:layout_marginTop="10dp"
-
             >
 
 
             <androidx.recyclerview.widget.RecyclerView
 
                 android:id="@+id/idRecyclerView"
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="fill_parent"
+                android:layout_gravity="center_horizontal"
                 android:layout_below="@+id/title"
                 android:layout_alignStart="@+id/linearLayout3"
                 android:clipToPadding="false"
@@ -65,32 +76,30 @@
         </LinearLayout>
 
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/linearLayout3"
-            android:padding="10dp"
             >
 
 
             <Button
                 android:id="@+id/add"
-                android:layout_width="fill_parent"
+                android:layout_width="275dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="7dp"
+                android:layout_centerHorizontal="true"
                 android:background="@drawable/loginbutton_selector"
-                android:padding="12dp"
                 android:gravity="center"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
                 android:text="@string/add_contact"
-                android:textColor="@color/background_color"
+                android:textColor="@color/white"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 android:drawableLeft="@drawable/ic_person_add_azul"/>
 
-        </LinearLayout>
-        <LinearLayout
+        </RelativeLayout>
+        <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/linearLayout3"
@@ -100,26 +109,21 @@
 
             <Button
                 android:id="@+id/backToLoginBtn"
-                android:layout_width="fill_parent"
+                android:layout_width="275dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/loginbutton_selector"
-                android:padding="12dp"
+                android:background="@drawable/loginbutton_selector_2"
+                android:layout_centerHorizontal="true"
                 android:gravity="center"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
                 android:text="@string/back"
-                android:textColor="@color/background_color"
+                android:textColor="@color/white"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
-        </LinearLayout>
+        </RelativeLayout>
 
 
 
     </LinearLayout>
-
-
-
 
 
 </RelativeLayout>
