@@ -9,11 +9,17 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    android:background="@drawable/side_nav_bar"
+    android:background="@color/background_g"
     android:padding="15dp" >
 
-
-
+    <View
+        android:id="@+id/space1"
+        android:layout_width="60dp"
+        android:layout_height="5dp"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_below="@+id/simpleSwitch"
+        android:background="@color/white_greyish" />
 
     <TextView
         android:id="@+id/remesas_title"
@@ -22,7 +28,7 @@
         android:gravity="center"
         android:padding="10dp"
         android:text="@string/remesas_title"
-        android:textColor="@color/background_color"
+        android:textColor="@color/white"
         android:textSize="25sp"
         android:textStyle="bold" />
 
@@ -39,7 +45,7 @@
         android:layout_height="34dp"
         android:text="@string/Rates_and_Payment_Points"
         android:layout_gravity="center"
-        android:textColor="@color/white_greyish"
+        android:textColor="@color/yellow"
         android:textSize="18sp"
         android:textStyle="bold" />
 
@@ -167,9 +173,9 @@
             android:textOn="@string/yes"
             android:thumb="@drawable/cuadrado"
             android:thumbTextPadding="10dp"
-            android:thumbTint="@color/background_color"
+            android:thumbTint="@color/yellow"
             android:track="@drawable/cuadrito"
-            android:trackTint="@color/white" />
+            android:trackTint="@color/yellow" />
 
 
         <TextView
@@ -205,12 +211,13 @@
 
     <Button
         android:id="@+id/quote"
-        android:layout_width="fill_parent"
+        android:layout_width="275dp"
+        android:layout_gravity="center_horizontal"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:background="@drawable/loginbutton_selector"
         android:text="@string/quote"
-        android:textColor="@color/background_color"
+        android:textColor="@color/white"
         android:textSize="17sp"
         android:textStyle="bold" />
 
@@ -348,13 +355,14 @@
 
     <Button
         android:id="@+id/next"
-        android:layout_width="fill_parent"
+        android:layout_width="275dp"
+        android:layout_gravity="center_horizontal"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:background="@drawable/loginbutton_selector"
+        android:background="@drawable/loginbutton_selector_2"
         android:padding="3dp"
         android:text="@string/next"
-        android:textColor="@color/background_color"
+        android:textColor="@color/white"
         android:textSize="17sp"
         android:textStyle="bold" />
 

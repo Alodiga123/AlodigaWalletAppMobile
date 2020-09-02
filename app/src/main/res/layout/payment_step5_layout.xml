@@ -11,9 +11,16 @@
     android:layout_height="fill_parent"
     android:orientation="vertical"
     android:padding="15dp"
-    android:background="@drawable/side_nav_bar">
+    android:background="@color/background_g">
 
-
+    <View
+        android:id="@+id/space1"
+        android:layout_width="60dp"
+        android:layout_height="5dp"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_below="@+id/simpleSwitch"
+        android:background="@color/white_greyish" />
 
     <TextView
         android:layout_width="fill_parent"
@@ -21,7 +28,7 @@
         android:gravity="center"
         android:padding="10dp"
         android:text="@string/confirmation_title_successfull"
-        android:textColor="@color/background_color"
+        android:textColor="@color/white"
         android:textSize="25sp"
         android:textStyle="bold" />
 
@@ -42,11 +49,11 @@
     <TextView
         android:id="@+id/select1"
         android:layout_width="wrap_content"
-        android:layout_height="34dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@string/destination_operatión_resum"
-        android:textColor="@color/white_greyish"
-        android:textSize="18sp"
+        android:textColor="@color/yellow"
+        android:textSize="16sp"
         android:textStyle="bold" />
 
     <GridLayout
@@ -132,9 +139,9 @@
     <TextView
         android:id="@+id/select12"
         android:layout_width="wrap_content"
-        android:layout_height="37dp"
+        android:layout_height="wrap_content"
         android:text="@string/datasender"
-        android:textColor="@color/white_greyish"
+        android:textColor="@color/yellow"
         android:textSize="18sp"
         android:textStyle="bold"
         android:paddingTop="10dp"/>
@@ -338,10 +345,10 @@
     <TextView
         android:id="@+id/select2_"
         android:layout_width="wrap_content"
-        android:layout_height="36dp"
+        android:layout_height="wrap_content"
         android:paddingTop="10dp"
         android:text="@string/addresseeRem"
-        android:textColor="@color/white_greyish"
+        android:textColor="@color/yellow"
         android:textSize="18sp"
         android:textStyle="bold" />
     <View
@@ -424,10 +431,10 @@
     <TextView
         android:id="@+id/select2"
         android:layout_width="wrap_content"
-        android:layout_height="36dp"
+        android:layout_height="wrap_content"
         android:paddingTop="10dp"
         android:text="@string/addressee"
-        android:textColor="@color/white_greyish"
+        android:textColor="@color/yellow"
         android:textSize="18sp"
         android:textStyle="bold" />
     <View
@@ -677,25 +684,27 @@
 
     <Button
         android:id="@+id/btnProcessFinish"
-        android:layout_width="fill_parent"
+        android:layout_width="275dp"
+        android:layout_gravity="center_horizontal"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:background="@drawable/loginbutton_selector"
         android:padding="3dp"
         android:text="@string/process_finished"
-        android:textColor="@color/background_color"
+        android:textColor="@color/white"
         android:textSize="17sp"
         android:textStyle="bold" />
 
     <Button
         android:id="@+id/btnShareInformation"
-        android:layout_width="fill_parent"
+        android:layout_width="275dp"
+        android:layout_gravity="center_horizontal"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:background="@drawable/loginbutton_selector"
+        android:background="@drawable/loginbutton_selector_2"
         android:padding="3dp"
         android:text="@string/process_finished_share"
-        android:textColor="@color/background_color"
+        android:textColor="@color/white"
         android:textSize="17sp"
         android:textStyle="bold" />
 

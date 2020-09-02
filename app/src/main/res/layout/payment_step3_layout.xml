@@ -11,7 +11,15 @@
     android:layout_height="fill_parent"
     android:orientation="vertical"
     android:padding="20dp"
-    android:background="@drawable/side_nav_bar">
+    android:background="@color/background_g">
+    <View
+        android:id="@+id/space1"
+        android:layout_width="60dp"
+        android:layout_height="5dp"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_below="@+id/simpleSwitch"
+        android:background="@color/white_greyish" />
 
     <TextView
         android:layout_width="fill_parent"
@@ -29,8 +37,8 @@
         android:layout_height="35dp"
         android:text="@string/addressee"
         android:layout_gravity="center"
-        android:textColor="@color/white_greyish"
-        android:textSize="18sp"
+        android:textColor="@color/yellow"
+        android:textSize="16sp"
         android:textStyle="bold" />
     <View
         android:layout_width="fill_parent"
@@ -42,7 +50,7 @@
     <TextView
         android:id="@+id/already_use_1"
         android:layout_width="wrap_content"
-        android:layout_height="35dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:padding="5dp"
         android:text="@string/name1"
@@ -73,7 +81,7 @@
     <TextView
         android:id="@+id/already_use_1_"
         android:layout_width="wrap_content"
-        android:layout_height="35dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:padding="5dp"
         android:text="@string/name2"
@@ -101,7 +109,7 @@
             android:background="@color/white_greyish" />
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="35dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:padding="5dp"
         android:text="@string/Recipient_lastname"
@@ -130,7 +138,7 @@
         android:background="@color/white_greyish" />
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="35dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:padding="5dp"
         android:text="@string/lastname2"
@@ -158,7 +166,7 @@
         android:background="@color/white_greyish" />
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="35dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:padding="5dp"
         android:text="@string/register_phone_number_message"
@@ -189,7 +197,7 @@
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="35dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:padding="5dp"
         android:text="@string/email"
@@ -221,25 +229,27 @@
 
     <Button
         android:id="@+id/next"
-        android:layout_width="fill_parent"
+        android:layout_width="275dp"
+        android:layout_gravity="center_horizontal"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:background="@drawable/loginbutton_selector"
         android:padding="3dp"
         android:text="@string/next"
-        android:textColor="@color/background_color"
+        android:textColor="@color/white"
         android:textSize="17sp"
         android:textStyle="bold" />
 
     <Button
         android:id="@+id/backToLoginBtn"
-        android:layout_width="fill_parent"
+        android:layout_width="275dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="15dp"
-        android:background="@drawable/loginbutton_selector"
+        android:background="@drawable/loginbutton_selector_2"
         android:padding="3dp"
         android:text="@string/back"
-        android:textColor="@color/background_color"
+        android:textColor="@color/white"
         android:textSize="17sp"
         android:textStyle="bold" />
 
