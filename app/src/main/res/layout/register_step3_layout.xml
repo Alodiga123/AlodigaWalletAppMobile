@@ -6,20 +6,36 @@
     android:fillViewport="true"
     android:overScrollMode="never"
     android:scrollbars="none" >
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
     android:padding="15dp"
-    android:background="@drawable/side_nav_bar">
+    android:background="@drawable/fondo_960x750">
 
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:background="@drawable/radius_fondo"
+        android:padding="20dp"
+        android:id="@+id/linearLayout"
+        android:elevation="1dp">
+
+    <View
+        android:id="@+id/space1"
+        android:layout_width="60dp"
+        android:layout_height="5dp"
+        android:layout_gravity="center"
+        android:layout_below="@+id/simpleSwitch"
+        android:background="@color/white_greyish" />
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="10dp"
         android:text="@string/signUp"
-        android:textColor="@color/background_color"
+        android:textColor="@color/white"
         android:textSize="25sp"
         android:textStyle="bold" />
 
@@ -29,12 +45,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@android:color/transparent"
-        android:drawablePadding="8dp"
         android:gravity="center_vertical"
-        android:drawableLeft="@drawable/email"
         android:hint="@string/name"
         android:inputType="textCapWords"
-        android:padding="10dp"
+        android:padding="8dp"
         android:singleLine="true"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
@@ -49,14 +63,13 @@
         android:id="@+id/lastName"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:background="@android:color/transparent"
         android:drawablePadding="8dp"
-        android:drawableLeft="@drawable/email"
         android:gravity="center_vertical"
         android:hint="@string/lastName"
+        android:layout_marginTop="5dp"
         android:inputType="textCapWords"
-        android:padding="10dp"
+        android:padding="8dp"
         android:singleLine="true"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
@@ -73,12 +86,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:background="@android:color/transparent"
-        android:drawableLeft="@drawable/email"
         android:drawablePadding="8dp"
         android:gravity="center_vertical"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
-        android:padding="10dp"
+        android:padding="8dp"
         android:singleLine="true"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
@@ -95,12 +107,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:background="@android:color/transparent"
-        android:drawableLeft="@drawable/confirm_password"
         android:drawablePadding="8dp"
         android:gravity="center_vertical"
         android:hint="@string/passowrd"
         android:inputType="textPassword"
-        android:padding="10dp"
+        android:padding="8dp"
         android:singleLine="true"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
@@ -118,12 +129,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:background="@android:color/transparent"
-        android:drawableLeft="@drawable/confirm_password"
         android:drawablePadding="8dp"
         android:gravity="center_vertical"
         android:hint="@string/confirmPassword"
         android:inputType="textPassword"
-        android:padding="10dp"
+        android:padding="8dp"
         android:singleLine="true"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
@@ -136,10 +146,10 @@
         android:background="@color/white_greyish" />
     <TextView
         android:id="@+id/pin_info"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:padding="10dp"
+        android:padding="8dp"
         android:text="@string/pin_text"
         android:textColor="@color/white_greyish"
         android:textSize="15sp" />
@@ -155,12 +165,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:background="@android:color/transparent"
-        android:drawableLeft="@drawable/password"
         android:drawablePadding="8dp"
         android:gravity="center_vertical"
         android:hint="@string/pin"
         android:inputType="numberPassword"
-        android:padding="10dp"
+        android:padding="8dp"
         android:maxLength="4"
         android:singleLine="true"
         android:textColor="@color/white"
@@ -170,26 +179,27 @@
         android:layout_width="fill_parent"
         android:layout_height="1px"
         android:background="@color/white_greyish" />
-    <CheckBox
-        android:id="@+id/terms_conditions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:text="@string/terms_conditions"
-        android:textColor="@color/white"
-        android:textSize="14sp"
-        android:buttonTint="@color/white"
-        />
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/close_password_recommendation"
+        android:textColor="@color/yellow"
+        android:justificationMode="inter_word"
+        android:textSize="12sp"
+        />
     <Button
         android:id="@+id/signUpBtn"
-        android:layout_width="fill_parent"
+        android:layout_width="275dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center_horizontal"
         android:background="@drawable/loginbutton_selector"
         android:padding="3dp"
         android:text="@string/signUp"
-        android:textColor="@color/background_color"
+        android:textColor="@color/white"
         android:textSize="17sp"
         android:textStyle="bold" />
 
@@ -200,10 +210,31 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="5dp"
         android:gravity="center"
-        android:padding="10dp"
+        android:padding="5dp"
         android:text="@string/already_user"
-        android:textColor="@color/white_greyish"
+        android:textColor="@color/yellow"
         android:textSize="15sp" />
 
-</LinearLayout>
+    <CheckBox
+        android:id="@+id/terms_conditions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:text="@string/terms_conditions"
+        android:textColor="@color/yellow"
+        android:textSize="12sp"
+        android:buttonTint="@color/yellow"
+        />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="396dp"
+        android:layout_height="309dp"
+        android:layout_below="@+id/linearLayout"
+        android:layout_marginTop="-35dip"
+        android:background="@drawable/fondo_960x750"
+        android:orientation="vertical"
+        android:paddingBottom="0dp"
+        ></LinearLayout>
+</RelativeLayout>
 </ScrollView>
