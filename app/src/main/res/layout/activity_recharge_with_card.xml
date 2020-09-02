@@ -10,7 +10,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:padding="20dp"
-        android:background="@drawable/side_nav_bar"
+        android:background="@color/background_g"
         >
 
 
@@ -18,6 +18,13 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="vertical">
+            <View
+                android:id="@+id/space1"
+                android:layout_width="60dp"
+                android:layout_height="5dp"
+                android:layout_gravity="center"
+                android:layout_below="@+id/simpleSwitch"
+                android:background="@color/white_greyish" />
 
             <TextView
                 android:id="@+id/textbox"
@@ -25,8 +32,9 @@
                 android:layout_height="49dp"
                 android:gravity="top|center"
                 android:hint="Type to text"
+                android:paddingTop="10dp"
                 android:text="@string/recharge_whih_card_title"
-                android:textColor="@color/background_color"
+                android:textColor="@color/white"
                 android:textSize="25sp"
                 android:textStyle="bold" />
 
@@ -36,7 +44,7 @@
 
             <LinearLayout
                 android:id="@+id/login_layout"
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
@@ -48,8 +56,8 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/payment_method_information"
-                    android:textColor="@color/white_greyish"
-                    android:textSize="19sp"
+                    android:textColor="@color/yellow"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
 
@@ -275,10 +283,10 @@
                         android:layout_width="218dp"
                         android:layout_height="match_parent"
                         android:layout_gravity="center_horizontal"
-                        android:buttonTint="@color/white"
+                        android:buttonTint="@color/yellow"
                         android:gravity="center"
                         android:text="@string/save_payment_method"
-                        android:textColor="@color/white"
+                        android:textColor="@color/yellow"
                         android:textSize="14sp" />
                 </LinearLayout>
 
@@ -292,25 +300,27 @@
 
                 <Button
                     android:id="@+id/signFind"
-                    android:layout_width="match_parent"
+                    android:layout_width="275dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="15dp"
                     android:background="@drawable/loginbutton_selector"
                     android:padding="12dp"
+                    android:layout_gravity="center_horizontal"
                     android:text="@string/next"
-                    android:textColor="@color/background_color"
+                    android:textColor="@color/white"
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
                 <Button
                     android:id="@+id/backToLoginBtn"
-                    android:layout_width="match_parent"
+                    android:layout_width="275dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/loginbutton_selector"
+                    android:background="@drawable/loginbutton_selector_2"
                     android:padding="12dp"
+                    android:layout_gravity="center_horizontal"
                     android:text="@string/back"
-                    android:textColor="@color/background_color"
+                    android:textColor="@color/white"
                     android:textSize="14sp"
                     android:textStyle="bold" />
             </LinearLayout>
