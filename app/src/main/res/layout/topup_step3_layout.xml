@@ -10,8 +10,15 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    android:background="@drawable/side_nav_bar"
+    android:background="@color/background_g"
     android:padding="15dp" >
+    <View
+        android:id="@+id/space1"
+        android:layout_width="60dp"
+        android:layout_height="5dp"
+        android:layout_below="@+id/simpleSwitch"
+        android:layout_gravity="center"
+        android:background="@color/white_greyish" />
 
 
     <TextView
@@ -21,7 +28,7 @@
         android:gravity="top|center"
         android:padding="10dp"
         android:text="@string/topup_title"
-        android:textColor="@color/background_color"
+        android:textColor="@color/white"
         android:textSize="25sp"
         android:textStyle="bold" />
 
@@ -225,25 +232,27 @@
 
     <Button
         android:id="@+id/btnProcess"
-        android:layout_width="fill_parent"
+        android:layout_width="275dp"
+        android:layout_gravity="center_horizontal"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:background="@drawable/loginbutton_selector"
         android:padding="3dp"
         android:text="@string/process_finished"
-        android:textColor="@color/background_color"
+        android:textColor="@color/white"
         android:textSize="17sp"
         android:textStyle="bold" />
 
     <Button
         android:id="@+id/btnShareInformation"
-        android:layout_width="fill_parent"
+        android:layout_width="275dp"
+        android:layout_gravity="center_horizontal"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:background="@drawable/loginbutton_selector"
+        android:background="@drawable/loginbutton_selector_2"
         android:padding="3dp"
         android:text="@string/process_finished_share"
-        android:textColor="@color/background_color"
+        android:textColor="@color/white"
         android:textSize="17sp"
         android:textStyle="bold" />
 

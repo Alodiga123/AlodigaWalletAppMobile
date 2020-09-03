@@ -12,7 +12,7 @@
     android:layout_alignParentBottom="true"
     android:layout_centerHorizontal="true"
     android:orientation="vertical"
-    android:background="@drawable/side_nav_bar"
+    android:background="@color/background_g"
    >
 
 
@@ -25,13 +25,20 @@
         android:orientation="vertical"
         android:padding="15dp"
        >
+        <View
+            android:id="@+id/space1"
+            android:layout_width="60dp"
+            android:layout_height="5dp"
+            android:layout_below="@+id/simpleSwitch"
+            android:layout_gravity="center"
+            android:background="@color/white_greyish" />
 
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="top|center"
             android:text="@string/topup_title"
-            android:textColor="@color/background_color"
+            android:textColor="@color/white"
             android:textSize="25sp"
             android:textStyle="bold" />
 
@@ -82,7 +89,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:background="@android:color/transparent"
-            android:drawableLeft="@drawable/phone"
+            android:drawableLeft="@drawable/phone_gray"
             android:drawablePadding="8dp"
             android:gravity="center_vertical"
             android:hint="@string/mobileNumber"
@@ -114,7 +121,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:background="@android:color/transparent"
-            android:drawableLeft="@drawable/phone"
+            android:drawableLeft="@drawable/phone_gray"
             android:drawablePadding="8dp"
             android:hint="@string/mobileNumber"
             android:inputType="phone"
@@ -164,24 +171,26 @@
 
             <Button
                 android:id="@+id/next"
-                android:layout_width="fill_parent"
+                android:layout_width="275dp"
+                android:layout_gravity="center_horizontal"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/loginbutton_selector"
                 android:padding="10dp"
                 android:text="@string/find"
-                android:textColor="@color/background_color"
+                android:textColor="@color/white"
                 android:textSize="17sp"
                 android:textStyle="bold" />
                 <Button
                     android:id="@+id/backToLoginBtn"
-                    android:layout_width="fill_parent"
+                    android:layout_width="275dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/loginbutton_selector"
+                    android:background="@drawable/loginbutton_selector_2"
                     android:padding="10dp"
                     android:text="@string/back"
-                    android:textColor="@color/background_color"
+                    android:textColor="@color/white"
                     android:textSize="17sp"
                     android:textStyle="bold" />
 
