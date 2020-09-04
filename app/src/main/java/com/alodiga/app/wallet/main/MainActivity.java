@@ -344,7 +344,7 @@ public class MainActivity extends AppCompatActivity
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
 
-       if(Session.isAffiliatedCard() && Boolean.valueOf(Session.getPrepayCard()))
+        if(Session.isAffiliatedCard() && Boolean.valueOf(Session.getPrepayCard()))
         {
             NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
             Menu nav_menu =  navigationView.getMenu();

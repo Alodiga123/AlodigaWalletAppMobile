@@ -17,7 +17,17 @@ android:layout_height="fill_parent"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical"
+        android:paddingTop="20dp"
         android:weightSum="1">
+
+        <View
+            android:id="@+id/space1"
+            android:layout_width="60dp"
+            android:layout_height="5dp"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_below="@+id/simpleSwitch"
+            android:background="@color/white_greyish" />
 
         <ImageView
             android:id="@+id/imageView5"

@@ -10,7 +10,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    android:background="@drawable/side_nav_bar"
+    android:background="@color/background_g"
     android:padding="15dp" >
 
 
@@ -21,7 +21,7 @@
         android:gravity="top|center"
         android:padding="10dp"
         android:text="@string/kyc_info"
-        android:textColor="@color/background_color"
+        android:textColor="@color/white"
         android:textSize="25sp"
         android:textStyle="bold" />
 
@@ -29,7 +29,7 @@
         android:id="@+id/tvintentos"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/white_greyish"
+        android:textColor="@color/yellow"
         android:textSize="17sp"
         android:gravity="left"
         android:paddingLeft="12dp"
@@ -82,39 +82,41 @@
         android:paddingBottom="20dp"
         android:text="@string/kyc_text_step1_3"/>
 
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="@color/white_greyish" />
 
 
 
     <Button
         android:id="@+id/take_photogaraphy"
-        android:layout_width="fill_parent"
+        android:layout_width="275dp"
+        android:layout_gravity="center_horizontal"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:background="@drawable/loginbutton_selector"
         android:padding="3dp"
         android:text="@string/kyc_take_step1"
-        android:textColor="@color/background_color"
+        android:textColor="@color/white"
         android:textSize="17sp"
         android:textStyle="bold"
-        android:drawableLeft="@drawable/camera"/>
+        />
 
     <Button
         android:id="@+id/attach"
-        android:layout_width="fill_parent"
+        android:layout_width="275dp"
+        android:layout_gravity="center_horizontal"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:background="@drawable/loginbutton_selector"
+        android:background="@drawable/loginbutton_selector_2"
         android:padding="3dp"
         android:text="@string/back"
-        android:textColor="@color/background_color"
+        android:textColor="@color/white"
         android:textSize="17sp"
         android:textStyle="bold" />
 
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1px"
-        android:background="@color/white_greyish" />
 
 </LinearLayout>
 

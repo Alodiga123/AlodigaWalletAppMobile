@@ -6,11 +6,11 @@
     android:overScrollMode="never"
     android:scrollbars="none" >
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    android:background="@drawable/side_nav_bar"
+    android:background="@drawable/fondo_960x750"
     android:padding="15dp" >
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -30,18 +30,25 @@
         android:background="@color/white_greyish" />
 
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="fill_parent"
-        android:layout_height="118dp"
-        android:gravity="top|center"
-        android:padding="10dp"
-        android:text="@string/activate_card_title"
-        android:textColor="@color/white"
-        android:textSize="25sp"
-        android:textStyle="bold" />
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="fill_parent"
+            android:layout_height="83dp"
+            android:gravity="top|center"
+            android:padding="10dp"
+            android:text="@string/activate_card_title"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            android:textStyle="bold" />
 
-
+        <TextView
+            android:id="@+id/tvintentos"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:textColor="@color/yellow"
+            android:textSize="17sp"
+            android:gravity="center"/>
         <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -56,7 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:background="@android:color/transparent"
-        android:drawableLeft="@drawable/password"
+        android:drawableLeft="@drawable/lock_24"
         android:drawablePadding="8dp"
         android:gravity="center_vertical"
         android:hint="@string/pin"

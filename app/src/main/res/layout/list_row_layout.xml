@@ -5,12 +5,28 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:padding="1dp" >
+    <androidx.cardview.widget.CardView
+        android:id="@+id/idCardView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:elevation="7dp"
+        android:layout_margin="7dp"
+        app:cardCornerRadius="6dp"
+        app:cardPreventCornerOverlap="false">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/cardview_light_background"
+            android:orientation="horizontal"
+            android:padding="2dp">
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
-        android:textColor="@color/white_greyish"
+        android:textColor="@color/white"
         android:textSize="25sp"
         android:textStyle="bold"
         android:typeface="sans" />
@@ -18,7 +34,7 @@
         android:id="@+id/reporter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/white_greyish"
+        android:textColor="@color/white"
         android:layout_below="@id/title"
         android:layout_marginTop="5dip"
         android:text=""
@@ -27,10 +43,12 @@
         android:id="@+id/date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/white_greyish"
+        android:textColor="@color/white"
         android:layout_alignBaseline="@+id/reporter"
         android:layout_alignBottom="@+id/reporter"
         android:layout_alignParentRight="true"
         android:text=""
         android:textSize="12sp" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
 </RelativeLayout>

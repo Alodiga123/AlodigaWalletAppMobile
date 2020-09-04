@@ -1,6 +1,5 @@
 package com.alodiga.app.wallet.validate;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -13,7 +12,7 @@ import com.alodiga.app.R;
 import com.alodiga.app.wallet.main.MainActivity;
 
 
-public class ValidateAccountStep5Activity extends AppCompatActivity {
+public class  ValidateAccountStep5Activity extends AppCompatActivity {
 
     private Button finalize;
 

@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:gravity = "center_vertical|center_horizontal"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/background_g">
 
 
         <ImageView
@@ -14,7 +15,7 @@
             android:layout_alignParentBottom = "true"
             android:layout_centerHorizontal = "true"
             android:padding = "10dp"
-            android:src="@drawable/satin_logo_segundo"
+            android:src="@drawable/img_app_logo"
             />
     </LinearLayout>
 

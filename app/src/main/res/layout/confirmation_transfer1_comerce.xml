@@ -202,7 +202,7 @@
         android:background="@android:color/transparent"
         android:drawablePadding="8dp"
         android:gravity="center_vertical"
-        android:drawableLeft="@drawable/email"
+        android:drawableLeft="@drawable/email_gray"
         android:hint="@string/destination_concept"
         android:inputType="text"
         android:padding="10dp"

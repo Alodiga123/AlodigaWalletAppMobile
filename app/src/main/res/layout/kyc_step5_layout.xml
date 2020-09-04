@@ -10,8 +10,16 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:padding="15dp"
-    android:background="@drawable/side_nav_bar"
+    android:background="@color/background_g"
    >
+    <View
+        android:id="@+id/space1"
+        android:layout_width="60dp"
+        android:layout_height="5dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/simpleSwitch"
+        android:layout_gravity="center"
+        android:background="@color/white_greyish" />
 
     <LinearLayout
         android:id="@+id/login_layout"
@@ -36,7 +44,7 @@
             android:gravity="center"
             android:padding="10dp"
             android:text="@string/kyc_text_step5"
-            android:textColor="@color/white_greyish"
+            android:textColor="@color/yellow"
             android:textSize="15sp" />
 
         <TextView
@@ -115,7 +123,8 @@
 
             <Button
                 android:id="@+id/finalize"
-                android:layout_width="fill_parent"
+                android:layout_width="275dp"
+                android:layout_centerHorizontal="true"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="20dp"
@@ -123,7 +132,7 @@
                 android:background="@drawable/loginbutton_selector"
                 android:padding="10dp"
                 android:text="@string/Finalize"
-                android:textColor="@color/background_color"
+                android:textColor="@color/white"
                 android:textSize="17sp"
                 android:textStyle="bold" />
 

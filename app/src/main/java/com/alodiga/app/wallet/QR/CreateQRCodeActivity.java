@@ -5,10 +5,9 @@ import android.media.MediaScannerConnection;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -32,6 +31,7 @@ public class CreateQRCodeActivity extends AppCompatActivity {
 
 
     private ImageView iv;
+    private TextView nameuser, phoneuser, emailuser;
 
 
     @Override
@@ -39,6 +39,12 @@ public class CreateQRCodeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_generate_qr_code);
         iv = findViewById(R.id.iv);
+        nameuser= findViewById(R.id.nameuser);
+        phoneuser= findViewById(R.id.phoneuser);
+        emailuser= findViewById(R.id.emailuser);
+        nameuser.setText(Session.getUsername());
+        phoneuser.setText(Session.getPhoneNumber());
+        emailuser.setText(Session.getEmail());
         try {
             AlodigaCryptographyUtils obj = new AlodigaCryptographyUtils();
             Bitmap bitmap = encodeAsBitmap(AlodigaCryptographyUtils.encrypt(Session.getEmail() + ";" + Session.getPhoneNumber() + ";" + Session.getUserId(), Constants.KEY_ENCRIPT_DESENCRIPT_QR));
