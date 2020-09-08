@@ -57,6 +57,7 @@ import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
@@ -75,10 +76,12 @@ public class MainActivity extends AppCompatActivity
     private RecyclerView mRecyclerView;
     private AdapterMoneyProduct mAdapter;
     private List<ObjMoney> mProductList;
-    private ImageView img_enviar, img_recargar, img_transferir, img_retirar, icoQr;
+    private ImageView img_enviar, img_recargar, img_transferir, img_retirar;
     private TextView txt_enviar, txt_recargar, txt_transferir, txt_retirar;
     private ProgressDialogAlodiga progressDialogAlodiga;
     PieChart pieChart;
+    //ImageButton icoQr;
+    FloatingActionButton icoQr;
 
     PieData pieData;
     PieDataSet pieDataSet;
@@ -120,7 +123,7 @@ public class MainActivity extends AppCompatActivity
         txt_transferir= findViewById(R.id.txt_transferir);
         img_retirar= findViewById(R.id.img_retirar);
         txt_retirar= findViewById(R.id.txt_retirar);
-        icoQr= findViewById(R.id.icoQr);
+        icoQr= findViewById(R.id.icon_qr);
 
         progressDialogAlodiga = new ProgressDialogAlodiga(this, getString(R.string.loading));
         progressDialogAlodiga.show();

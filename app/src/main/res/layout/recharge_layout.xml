@@ -73,10 +73,6 @@
             android:textSize="17sp"
             android:textStyle="bold" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:background="@color/white_greyish" />
 
     </LinearLayout>
 

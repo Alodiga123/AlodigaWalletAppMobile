@@ -74,11 +74,12 @@ public class CreateQRCodeActivity extends AppCompatActivity {
         for (int y = 0; y < height; y++) {
             int offset = y * width;
             for (int x = 0; x < width; x++) {
-                pixels[offset + x] = result.get(x, y) ? Constants.BLACK : Constants.WHITE;
+                pixels[offset + x] = result.get(x, y) ? getResources().getColor(R.color.white) : android.R.color.transparent;
             }
         }
 
         Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        bitmap.eraseColor(getResources().getColor(android.R.color.transparent));
         bitmap.setPixels(pixels, 0, width, 0, 0, width, height);
         return bitmap;
     }
