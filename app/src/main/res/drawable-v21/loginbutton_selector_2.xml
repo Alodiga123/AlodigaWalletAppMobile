@@ -6,8 +6,8 @@
         <gradient android:startColor="#FFFFFF"
             android:endColor="#00FF00"
             android:angle="270" />
-        <corners android:radius="20dp" />
-        <stroke android:width="4px" android:color="@color/background_color_botton" />
+        <corners android:radius="35dp" />
+        <stroke android:width="5px" android:color="@color/background_color_botton" />
 
         </shape></item>
 
@@ -17,8 +17,8 @@
     <!-- By default the background will be this item -->
     <item>
         <shape android:layout_width="wrap_content" android:layout_height="wrap_content" android:shape="rectangle" android:padding="16dp">
-            <corners android:radius="20dp" />
-            <stroke android:width="4dp" android:color="@color/background_color_botton" />
+            <corners android:radius="35dp" />
+            <stroke android:width="5dp" android:color="@color/background_color_botton" />
         </shape></item>
 
 </selector>

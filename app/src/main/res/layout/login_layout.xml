@@ -34,8 +34,8 @@
 
 
             <ImageView
-                android:layout_width="300dp"
-                android:layout_height="145dp"
+                android:layout_width="283dp"
+                android:layout_height="102dp"
                 android:layout_gravity="top"
                 android:gravity="center"
                 android:scaleType="fitCenter"
@@ -43,17 +43,17 @@
         </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/image"
-        android:layout_width="match_parent"
-        android:layout_height="254dp"
-        android:layout_below="@+id/logo"
-        android:layout_marginTop="-120dip"
-        android:background="@drawable/inicio_960x750"
-        android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="186dp"
+            android:layout_below="@+id/logo"
+            android:layout_marginTop="-150dip"
+            android:background="@drawable/inicio_960x750"
+            android:orientation="vertical">
 
 
-    </LinearLayout>
+        </LinearLayout>
 
     </LinearLayout>
 
