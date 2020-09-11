@@ -16,7 +16,7 @@ public class ProgressDialogAlodiga extends ProgressDialog {
 
     public ProgressDialogAlodiga(Context context, String message) {
         super(context, R.style.DialogCustom);
-        this.getWindow().setBackgroundDrawableResource(R.color.Gray);
+        this.getWindow().setBackgroundDrawableResource(R.color.background_g);
         this.setMessage(message);
         this.setProgressStyle(STYLE_SPINNER);
         this.setCancelable(false);

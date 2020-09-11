@@ -15,7 +15,7 @@
             android:layout_alignParentBottom = "true"
             android:layout_centerHorizontal = "true"
             android:padding = "10dp"
-            android:src="@drawable/img_app_logo"
+            android:src="@drawable/logoalodiga"
             />
     </LinearLayout>
 

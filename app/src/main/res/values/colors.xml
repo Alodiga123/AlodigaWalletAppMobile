@@ -5,7 +5,7 @@
     <color name="colorAccent">#E72E33</color>
     <color name="background_color">#FFFFFF</color>
     <color name="background_color_botton">#454d3e</color>
-    <color name="background_g">#1C1C1E</color>
+    <color name="background_g">#FFFFFF</color>
 
 
     <color name="Gray">#535151</color>
@@ -18,7 +18,8 @@
     <color name="button_selectorcolor">#636366</color>
     <color name="selected">#535151</color>
     <color name="color_spinner">#E72E33</color>
-    <color name="yellow">#FF9800</color>
+    <color name="yellow">#0a84ff</color>
+    <color name="blue">#FF9800</color>
     <color name="verde">#8BC34A</color>
     <color name="amarillo">#FFEB3B</color>
     <color name="violeta">#EB9C27B0</color>

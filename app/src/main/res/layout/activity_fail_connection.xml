@@ -39,7 +39,7 @@ android:layout_height="fill_parent"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="98dp"
             android:padding="20dp"
-            android:src="@drawable/error_yellow"
+            android:src="@drawable/error_blue"
             android:textStyle="bold" />
 
         <TextView
@@ -50,7 +50,7 @@ android:layout_height="fill_parent"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="50dp"
-            android:background="@color/Gray"
+            android:background="@color/background_g"
             android:gravity="center"
             android:padding="10dp"
             android:paddingLeft="30dp"

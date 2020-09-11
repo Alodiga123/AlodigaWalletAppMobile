@@ -74,7 +74,7 @@ public class CreateQRCodeActivity extends AppCompatActivity {
         for (int y = 0; y < height; y++) {
             int offset = y * width;
             for (int x = 0; x < width; x++) {
-                pixels[offset + x] = result.get(x, y) ? getResources().getColor(R.color.white) : android.R.color.transparent;
+                pixels[offset + x] = result.get(x, y) ? getResources().getColor(android.R.color.black) : android.R.color.transparent;
             }
         }
 
