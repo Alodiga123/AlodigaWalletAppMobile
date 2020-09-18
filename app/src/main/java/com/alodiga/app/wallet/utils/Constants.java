@@ -14,6 +14,7 @@ public class Constants {
 
     //LOCAL moises
     public static String IPDAT = "192.168.3.20";
+    public static String IPDATALODIGA = "34.219.9.177";
     //LOCAL QA
     //public static String IPDAT = "192.168.3.140";
 
@@ -300,8 +301,8 @@ public class Constants {
     public static final String CONSTANT_SECURE_URL = "http://" + IPDAT + ":8080/RegistroUnificado/APIRegistroUnificadoService";
     //Alodiga Eallet
     //public static final String  CONSTANT_URL_PROD_ALODIGA_WALLET = "http://192.168.3.20:8080/AlodigaWallet/APIAlodigaWalletService";
-    public static final String CONSTANT_URL_PROD_ALODIGA_WALLET = "http://" + IPDAT + ":8080/AlodigaWallet/APIAlodigaWalletService";
-    public static final String CONSTANT_SECURE_URL_ALODIGA_WALLET = "http://" + IPDAT + ":8080/AlodigaWallet/APIAlodigaWalletService";
+    public static final String CONSTANT_URL_PROD_ALODIGA_WALLET = "http://" + IPDATALODIGA + ":8080/AlodigaWallet/APIAlodigaWalletService";
+    public static final String CONSTANT_SECURE_URL_ALODIGA_WALLET = "http://" + IPDATALODIGA + ":8080/AlodigaWallet/APIAlodigaWalletService";
     /**
      * Data de QA
      */
@@ -317,7 +318,7 @@ public class Constants {
      *
      */
     //public static final String CONSTANT_URL_QA_ALODIGA = "http://192.168.3.20:8080/AlodigaWallet/APIAlodigaWalletService";
-    public static final String CONSTANT_URL_QA_ALODIGA = "http://" + IPDAT + ":8080/AlodigaWallet/APIAlodigaWalletService";
+    public static final String CONSTANT_URL_QA_ALODIGA = "http://" + IPDATALODIGA + ":8080/AlodigaWallet/APIAlodigaWalletService";
     //public static final String CONSTANT_URL_QA_ALODIGA_AW = "http://ec2-35-164-98-136.us-west-2.compute.amazonaws.com:8080/AlodigaWallet/APIAlodigaWalletService?wsdl";
     public static final String CONSTANT_URL_QA_ALODIGA_AW ="http://54.70.31.158:8080/AlodigaWallet/APIAlodigaWalletService?wsdl";
 
@@ -327,7 +328,7 @@ public class Constants {
      * Alodiga WAllet
      */
     //public static final String CONSTANT_URL_QA_ALODIGA_WALLET  = "http://192.168.3.20:8080/AlodigaWallet/APIAlodigaWalletService";
-    public static final String CONSTANT_URL_QA_ALODIGA_WALLET = "http://" + IPDAT + ":8080/AlodigaWallet/APIAlodigaWalletService";
+    public static final String CONSTANT_URL_QA_ALODIGA_WALLET = "http://" + IPDATALODIGA + ":8080/AlodigaWallet/APIAlodigaWalletService";
 
     public static final String CONSTANT_URL_REMITTENCE = "http://" + IPDAT + ":8080/WSRemittenceService/WSRemittence";
     public static final String CONSTANT_URL_REMITTENCE_PAYMENT_NETWORK = "http://" + IPDAT + ":8080/WSPaymentNetworkMethodService/WSPaymentNetworkMethod";
