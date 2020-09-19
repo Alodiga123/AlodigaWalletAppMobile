@@ -18,7 +18,7 @@ public class Constants {
     //public static String IPDAT = "192.168.3.140";
 
     //public static String LINK = "http://192.168.3.140:8080/ultima-1.0.6/formData.xhtml";
-    public static String LINK = "http://18.237.99.116:8080/CardRequestWeb/";
+    public static String LINK = "http://18.237.99.116:8080/NuestraVision/";
 
 
     public static final String RESUM_OPERATION_PHONE = "getResumOperationByPhoneNumberSender";
@@ -319,7 +319,7 @@ public class Constants {
     //public static final String CONSTANT_URL_QA_ALODIGA = "http://192.168.3.20:8080/AlodigaWallet/APIAlodigaWalletService";
     public static final String CONSTANT_URL_QA_ALODIGA = "http://" + IPDAT + ":8080/AlodigaWallet/APIAlodigaWalletService";
     //public static final String CONSTANT_URL_QA_ALODIGA_AW = "http://ec2-35-164-98-136.us-west-2.compute.amazonaws.com:8080/AlodigaWallet/APIAlodigaWalletService?wsdl";
-    public static final String CONSTANT_URL_QA_ALODIGA_AW ="http://54.70.31.158:8080/AlodigaWallet/APIAlodigaWalletService?wsdl";
+    public static final String CONSTANT_URL_QA_ALODIGA_AW ="http://34.219.9.177:8080/AlodigaWallet/APIAlodigaWalletService?wsdl";
 
 
 

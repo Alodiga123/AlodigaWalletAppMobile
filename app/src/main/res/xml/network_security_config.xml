@@ -2,11 +2,11 @@
 <network-security-config>
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="false">54.70.31.158</domain>
+        <domain includeSubdomains="false">34.219.9.177</domain>
         <domain includeSubdomains="false">52.42.63.64</domain>
         <domain includeSubdomains="false">35.162.209.241</domain>
         <domain includeSubdomains="false">ec2-52-42-63-64.us-west-2.compute.amazonaws.com</domain>
         <domain includeSubdomains="false">ec2-35-162-209-241.us-west-2.compute.amazonaws.com</domain>
-
     </domain-config>
 </network-security-config>
 
