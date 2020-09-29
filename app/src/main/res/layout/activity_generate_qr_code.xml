@@ -48,7 +48,7 @@
                 android:layout_height="59dp"
                 android:layout_marginStart="2dp"
                 android:layout_marginLeft="5dp"
-                android:src="@drawable/img_app_logo" />
+                android:src="@drawable/ic_logo_alodiga_vector_2" />
 
             <LinearLayout
                 android:layout_width="200dp"

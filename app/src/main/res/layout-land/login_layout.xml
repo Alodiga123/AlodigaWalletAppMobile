@@ -38,7 +38,7 @@
                     android:layout_gravity="top"
                     android:gravity="center"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/logoalodiga"></ImageView>
+                    android:src="@drawable/ic_logo_alodiga_vector"></ImageView>
             </LinearLayout>
         </LinearLayout>
 
@@ -107,7 +107,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
-                android:drawableLeft="@drawable/sobre"
+                android:drawableLeft="@drawable/ic_email"
                 android:layout_gravity="center"
                 android:drawablePadding="8dp"
                 android:gravity="center_vertical"
@@ -135,7 +135,7 @@
                   android:layout_width="fill_parent"
                   android:layout_height="55dp"
                   android:background="@android:color/transparent"
-                  android:drawableLeft="@drawable/lock_24"
+                  android:drawableLeft="@drawable/ic_password"
                   android:drawablePadding="8dp"
                   android:gravity="center_vertical"
                   android:hint="@string/passowrd"

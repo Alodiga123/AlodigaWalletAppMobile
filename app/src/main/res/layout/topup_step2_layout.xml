@@ -155,7 +155,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:background="@android:color/transparent"
-                android:drawableLeft="@drawable/moneyicon"
                 android:drawablePadding="8dp"
                 android:gravity="center_vertical"
                 android:inputType="numberDecimal"

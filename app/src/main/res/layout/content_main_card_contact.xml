@@ -96,7 +96,7 @@
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                android:drawableLeft="@drawable/ic_person_add_azul"/>
+               />
 
         </RelativeLayout>
         <RelativeLayout

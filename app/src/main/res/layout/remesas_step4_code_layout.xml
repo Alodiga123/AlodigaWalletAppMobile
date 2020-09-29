@@ -9,7 +9,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    android:background="@drawable/side_nav_bar"
+    android:background="@color/background_g"
     android:padding="15dp" >
 
 
@@ -48,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:background="@android:color/transparent"
-        android:drawableLeft="@drawable/password_gray"
+        android:drawableLeft="@drawable/ic_password"
         android:drawablePadding="8dp"
         android:gravity="center_vertical"
         android:hint="@string/pin"

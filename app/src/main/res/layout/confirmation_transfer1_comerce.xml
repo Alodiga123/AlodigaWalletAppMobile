@@ -3,7 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    android:background="@drawable/side_nav_bar"
+    android:background="@color/background_g"
     android:padding="15dp" >
 
     <TextView
@@ -184,7 +184,6 @@
         android:layout_marginTop="5dp"
         android:paddingTop="20dp"
         android:background="@android:color/transparent"
-        android:drawableLeft="@drawable/moneyicon"
         android:drawablePadding="8dp"
         android:gravity="center_vertical"
         android:inputType="numberDecimal"
@@ -202,7 +201,6 @@
         android:background="@android:color/transparent"
         android:drawablePadding="8dp"
         android:gravity="center_vertical"
-        android:drawableLeft="@drawable/email_gray"
         android:hint="@string/destination_concept"
         android:inputType="text"
         android:padding="10dp"
