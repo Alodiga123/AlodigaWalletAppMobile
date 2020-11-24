@@ -319,7 +319,7 @@ public class Constants {
     //public static final String CONSTANT_URL_QA_ALODIGA = "http://192.168.3.20:8080/AlodigaWallet/APIAlodigaWalletService";
     public static final String CONSTANT_URL_QA_ALODIGA = "http://" + IPDAT + ":8080/AlodigaWallet/APIAlodigaWalletService";
     //public static final String CONSTANT_URL_QA_ALODIGA_AW = "http://ec2-35-164-98-136.us-west-2.compute.amazonaws.com:8080/AlodigaWallet/APIAlodigaWalletService?wsdl";
-    public static final String CONSTANT_URL_QA_ALODIGA_AW ="http://34.219.9.177:8080/AlodigaWallet/APIAlodigaWalletService?wsdl";
+    public static final String CONSTANT_URL_QA_ALODIGA_AW ="http://34.211.97.207:8080/AlodigaWallet/APIAlodigaWalletService?wsdl";
 
 
 
