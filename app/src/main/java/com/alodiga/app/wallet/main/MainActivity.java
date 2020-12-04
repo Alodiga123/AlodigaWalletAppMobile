@@ -34,6 +34,7 @@ import com.alodiga.app.R;
 import com.alodiga.app.wallet.QR.CreateQRCodeActivity;
 import com.alodiga.app.wallet.activeCard.ActiveCardActivity;
 import com.alodiga.app.wallet.adapters.AdapterMoneyProduct;
+import com.alodiga.app.wallet.bank.AddBankActivity;
 import com.alodiga.app.wallet.exchange.ExchangeStep1Activity;
 import com.alodiga.app.wallet.listRemittence.ListRemittenceActivity;
 import com.alodiga.app.wallet.listTransactionExecuted.ListTransactionExecutedActivity;
@@ -44,6 +45,7 @@ import com.alodiga.app.wallet.model.ObjMoney;
 import com.alodiga.app.wallet.model.ObjUserHasProduct;
 import com.alodiga.app.wallet.changePassword.ChangePasswordStep1Activity;
 import com.alodiga.app.wallet.paymentComerce.PaymentComerceStep1Activity;
+import com.alodiga.app.wallet.rechargeMyCard.RechargeMyCardStep1Activity;
 import com.alodiga.app.wallet.rechargeWithCard.RechargeWhithCardContactsActivity;
 import com.alodiga.app.wallet.rechargeWithCard.RechargeWithCardStep1Activity;
 import com.alodiga.app.wallet.remesas.PaymentStep1Activity;
@@ -59,6 +61,7 @@ import com.alodiga.app.wallet.validate.ValidateAccountCode4Activity;
 import com.alodiga.app.wallet.validate.ValidateAccountStep5Activity;
 
 
+import com.alodiga.app.wallet.withdrawMyCard.WithdrawMyCardStep1Activity;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.highlight.Highlight;
@@ -324,11 +327,11 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
        if (id == R.id.nav_recharge || id == R.id.nav_Withdrawal || id == R.id.nav_transfer
-               || id == R.id.nav_last_activity || id == R.id.nav_pay_qr
-               || id == R.id.nav_topup || id == R.id.nav_convert || id == R.id.nav_active_card
+               || id == R.id.nav_last_activity || id == R.id.nav_pay_qr|| id == R.id.nav_add_bank
+               || id == R.id.nav_topup || id == R.id.nav_convert || id == R.id.nav_active_card || id == R.id.nav_recarge_card
                || id == R.id.nav_remesas
-               || id == R.id.nav_recharge_with_card
-           /*|| id == R.id.nav_remesas_status|| id == R.id.nav_reload_Card*/){
+               || id == R.id.nav_witdraw_card
+               || id == R.id.nav_recharge_with_card){
            Intent show;
            switch(Session.getCumplimient()) {
                case "1":
@@ -366,14 +369,27 @@ public class MainActivity extends AppCompatActivity
                    } else if (id == R.id.nav_pay_qr) {
                        show = new Intent(MainActivity.this, PaymentComerceStep1Activity.class);
                        startActivity(show);
-                   } else if (id == R.id.nav_topup) {
+                       startActivity(show);
+                   } else if (id == R.id.nav_add_bank) {
+                       show = new Intent(MainActivity.this, AddBankActivity.class);
+                       startActivity(show);
+                   }
+                    else if (id == R.id.nav_topup) {
                        show = new Intent(MainActivity.this, TopupStep1Activity.class);
                        startActivity(show);
 
                    }else if (id == R.id.nav_convert) {
                        show = new Intent(MainActivity.this, ExchangeStep1Activity.class);
                        startActivity(show);
-                   }else if (id == R.id.nav_active_card) {
+                   } else if (id == R.id.nav_recarge_card) {
+                       show = new Intent(MainActivity.this, RechargeMyCardStep1Activity.class);
+                       startActivity(show);
+                   }
+                   else if (id == R.id.nav_witdraw_card) {
+                       show = new Intent(MainActivity.this, WithdrawMyCardStep1Activity.class);
+                       startActivity(show);
+                   }
+                    else if (id == R.id.nav_active_card) {
                            show = new Intent(MainActivity.this, ActiveCardActivity.class);
                            startActivity(show);
 

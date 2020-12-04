@@ -19,8 +19,12 @@
     <string name="back">BACK</string>
     <string name="bank">Bank</string>
     <string name="bank_info">"Select the bank: "</string>
+    <string name="bank__account_type">"Select the account_type: "</string>
+
     <string name="BS">Bs</string>
     <string name="buttonProcesarPago">"Process Payment "</string>
+    <string name="button_recarge_card">Process Recharge</string>
+    <string name="button_withdraw_card">Withdraw Card Balance</string>
     <string name="menu_recharge_with_credit_card">Recharge Wallet</string>
     <string name="buttonProcesarRetiro">"Process Withdrawal "</string>
     <string name="buttonProcessRecharge">"Process Transfer "</string>
@@ -98,6 +102,8 @@
     <string name="forgot_succesfful">"Password Recovery Successful "</string>
     <string name="hide_pwd">"Hide Password "</string>
     <string name="howtofindtransfer">Select the search criteria of the receiving user</string>
+    <string name="amount_recharge_card">Enter the amount you want to recharge</string>
+    <string name="amount_withdraw_card">Enter the amount you want to withdraw from your prepaid card</string>
     <string name="howtofindtransferComerce">Scan the QR code of the store!</string>
     <string name="id_recharge">"Enter the recharge identifier: "</string>
     <string name="id_transfer">"Transfer concept: "</string>
@@ -129,6 +135,7 @@
     <string name="menu_convert">Convert</string>
     <string name="menu_last_activity">"Last movements "</string>
     <string name="menu_pay_comerce">"QR Payment Shops "</string>
+    <string name="menu_add_bank">Add Bank</string>
     <string name="menu_pay_invoice">"Pay bills "</string>
     <string name="menu_qr">"My QR "</string>
     <string name="menu_recharge">"Manual Recharge "</string>
@@ -223,7 +230,9 @@
     <string name="transaction">Operations</string>
     <string name="transaction_concept">"Transfer concept "</string>
     <string name="transference">"Select the currency to transfer "</string>
+    <string name="origin_product">Source product</string>
     <string name="transference_title">TRANSFER</string>
+    <string name="recharge_card_title">RECARGA CARD</string>
     <string name="txtIngrese">"Enter the Beneficiary's information: "</string>
     <string name="validate_password_change_capital_letter">"The password must have at least one capital letter. "</string>
     <string name="validate_password_change_lowercase_letter">"The password must have at least one lowercase letter. "</string>
@@ -270,6 +279,7 @@
     <string name="welcome_register">"Thank you for registering. Your registration is completed successfully "</string>
     <string name="welcome_secure_answer">"Security questions have been registered successfully "</string>
     <string name="welcome_secure_manual_recharge">"The recharge was successful. Once validated you will be notified "</string>
+    <string name="sucessfull_add_bank_message"></string>
     <string name="welcome_secure_manual_removal">"The registration of the withdrawal was successful. Once the service provider makes it effective, he will be notified. "</string>
     <string name="yes">Yes</string>
     <string name="kyc_info">"VALIDATE ACCOUNT "</string>
@@ -303,6 +313,9 @@
     <string name="Prepaid_card">" Prepaid Card"</string>
     <string name="Security">Security</string>
     <string name="activate_card">Unlock / Lock Card</string>
+    <string name="witdraw_my_card">Withdraw From My Card</string>
+    <string name="withdraw_card_title">WITHDRAWAL OF CARD BALANCE</string>
+    <string name="recharge_card_menu">Recharge My Card</string>
     <string name="reload_card">Reload Card</string>
     <string name="activate_card_title">UNLOCK CARD</string>
     <string name="activate_process">ACTIVATE</string>
@@ -519,5 +532,12 @@
     <string name="web_services_response_220">" It does not have associated payment methods, please enter the requested data"</string>
     <string name="payment_method_drop_title">" Delete Payment Method"</string>
     <string name="payment_method_drop_question">" Are you sure you want to delete the payment method:"</string>
+    <string name="add_bank">Add Bank</string>
+    <string name="banck_account_number">Account bank number</string>
+    <string name="label_account_number">enter account number</string>
+    <string name="add_bank_button">ADD BANK</string>
+    <string name="banks_asociated">BANCOS AFILIADOS</string>
+    <string name="debit_card_balane">Debit Card/ Current Balance</string>
+
 
 </resources>

@@ -172,13 +172,10 @@ public class Constants {
     public static final String WEB_SERVICES_RESPONSE_CODE_TOKEN_NOT_FOUND = "50";
     public static final String WEB_SERVICES_RESPONSE_CODE_RECORDS_NOT_FOUND = "28";
     public static final String WEB_SERVICES_RESPONSE_CODE_GENERAL_ERROR = "999";
-
-
     public static final String WEB_SERVICES_RESPONSE_CODE_DESTINATION_NOT_PREPAID = "204";
     public static final String WEB_SERVICES_RESPONSE_CODE_ERROR_TRANSACTION_TOP_UP = "205";
     public static final String WEB_SERVICES_RESPONSE_CODE_DENOMINATION_NOT_AVAILABLE = "301";
     public static final String WEB_SERVICES_RESPONSE_CODE_NOT_ASSOCIATED_PAYMENT_INFO = "220";
-
     public static final String WEB_SERVICES_METHOD_NAME_SAVE_USER = "guardarUsuarioAplicacionMovil";
     public static final String WEB_SERVICES_METHOD_NAME_SEND_CODE_SMS = "generarCodigoMovilSMS";
     public static final String WEB_SERVICES_METHOD_NAME_SEND_CODE_SMS_MOVIL = "generarCodigoMovilSMSAplicacionMovil";
@@ -187,6 +184,7 @@ public class Constants {
     public static final String WEB_SERVICES_METHOD_NAME_GET_TRANSACTION_LIST = "getTransactionsByUserIdApp";
     public static final String WEB_SERVICES_METHOD_NAME_SEND_SECRET_AMSWER = "setPreguntasSecretasUsuarioAplicacionMovil";
     public static final String WEB_SERVICES_METHOD_NAME_GET_BANK = "getBankByCountryApp";
+    public static final String WEB_SERVICES_METHOD_NAME_GET_ACCOUNT_TYPE_BANK = "getAccountTypeBank";
     public static final String WEB_SERVICES_METHOD_NAME_GET_COUNTRIES = "getCountriesHasBank";
     public static final String WEB_SERVICES_METHOD_NAME_GET_COUNTRIES_ = "getCountries";
     public static final String WEB_SERVICES_METHOD_NAME_GET_LANGUAJE_TOPUP = "getLanguage";
@@ -278,10 +276,14 @@ public class Constants {
     public static final String WEB_SERVICES_METHOD_NAME_GET_PRODUCT = "getProductsByBankId";
     public static final String WEB_SERVICES_METHOD_NAME_PAYMENT_COMERCE = "savePaymentShop";
     public static final String WEB_SERVICES_METHOD_NAME_TRANSFERENCE = "saveTransferBetweenAccount";
+    public static final String WEB_SERVICES_METHOD_NAME_DISPERTION = "dispertionTransfer";
+
+
     public static final String WEB_SERVICES_METHOD_NAME_VALID_CODE = "validarPin";
     public static final String WEB_SERVICES_METHOD_NAME_UPDATE_PRODUCT = "listadoProductosPorUsuario";
     public static final String WEB_SERVICES_METHOD_NAME_REMOVAL_MANUAL = "manualWithdrawals";
     public static final String WEB_SERVICES_METHOD_NAME_RECHARGE = "manualRecharge";
+    public static final String WEB_SERVICES_METHOD_NAME_SAVE_ACCOUNT_BANK_USER = "saveAccountBankUser";
     public static final Integer MAX_RESULT_BY_TRANSACTION_OPERATION = 10;
     public static final String CONCEPT_TRANSACTION = "paymentshop";
     public static final String KEY_ENCRIPT_DESENCRIPT = "1nt3r4xt3l3ph0ny";
@@ -335,13 +337,13 @@ public class Constants {
     //public static final String CONSTANT_URL_REMITTENCE_MOBILE_AW = "http://ec2-35-164-98-136.us-west-2.compute.amazonaws.com:8080/WSRemittenceMobileService/WSRemittenceMobile?wsdl";
 
     //QA
-    public static final String CONSTANT_URL_REMITTENCE_MOBILE_AW ="http://ec2-35-162-209-241.us-west-2.compute.amazonaws.com:8080/WSRemittenceMobileService/WSRemittenceMobile?wsdl";
-    public static final String CONSTANT_URL_QA_ALODIGA_AW ="http://34.211.97.207:8080/AlodigaWallet/APIAlodigaWalletService?wsdl";
-    public static final String CONSTANT_URL_QA_REGISTRO_UNIFICADO_AW = "http://ec2-52-42-63-64.us-west-2.compute.amazonaws.com:8080/RegistroUnificado/APIRegistroUnificadoService?wsdl";
+   // public static final String CONSTANT_URL_REMITTENCE_MOBILE_AW ="http://ec2-35-162-209-241.us-west-2.compute.amazonaws.com:8080/WSRemittenceMobileService/WSRemittenceMobile?wsdl";
+   // public static final String CONSTANT_URL_QA_ALODIGA_AW ="http://34.211.97.207:8080/AlodigaWallet/APIAlodigaWalletService?wsdl";
+   // public static final String CONSTANT_URL_QA_REGISTRO_UNIFICADO_AW = "http://ec2-52-42-63-64.us-west-2.compute.amazonaws.com:8080/RegistroUnificado/APIRegistroUnificadoService?wsdl";
     //Desarrollo
-  //  public static final String CONSTANT_URL_REMITTENCE_MOBILE_AW ="http://ec2-35-162-209-241.us-west-2.compute.amazonaws.com:8080/WSRemittenceMobileService/WSRemittenceMobile?wsdl";
-  //  public static final String CONSTANT_URL_QA_ALODIGA_AW ="http://44.235.115.116:8080/AlodigaWallet/APIAlodigaWalletService?wsdl";
-  //  public static final String CONSTANT_URL_QA_REGISTRO_UNIFICADO_AW = "http://44.235.115.116:8080/RegistroUnificado/APIRegistroUnificadoService?wsdl";
+    public static final String CONSTANT_URL_REMITTENCE_MOBILE_AW ="http://ec2-35-162-209-241.us-west-2.compute.amazonaws.com:8080/WSRemittenceMobileService/WSRemittenceMobile?wsdl";
+    public static final String CONSTANT_URL_QA_ALODIGA_AW ="http://44.235.115.116:8080/AlodigaWallet/APIAlodigaWalletService?wsdl";
+    public static final String CONSTANT_URL_QA_REGISTRO_UNIFICADO_AW = "http://44.235.115.116:8080/RegistroUnificado/APIRegistroUnificadoService?wsdl";
 
     public static final String CONSTANT_WSREMITTENCE= "WSRemittence";
     public static final String CONSTANT_WSPAYMENTNETWORK= "WSPaymentNetworkMethod";

@@ -18,6 +18,7 @@
     <string name="menu_answer_security">Preguntas de Seguridad</string>
     <string name="menu_secret_text">Frase Secreta</string>
     <string name="menu_pay_comerce">Pago QR Comercios</string>
+    <string name="menu_add_bank">Agregar Banco</string>
     <string name="menu_send_money">Enviar Dinero</string>
     <string name="menu_convert">Convertir</string>
     <string name="menu_recharge_with_credit_card">Recargar Billetera</string>
@@ -109,6 +110,8 @@
     <string name="exchange_title">CONVERTIR</string>
     <string name="security_question">PREGUNTAS DE SEGURIDAD</string>
     <string name="transference_title">TRANSFERENCIA</string>
+    <string name="recharge_card_title">RECARGA DE TARJETA</string>
+    <string name="withdraw_card_title">RETIRO DE SALDO DE LA TARJETA</string>
     <string name="transferenceCardToCard_title">TRANSFERENCIA TARJETA A TARJETA</string>
     <string name="remesas_title">REMESAS</string>
     <string name="my_qr_title">MI QR</string>
@@ -162,6 +165,8 @@
     <string name="editTextTelephone">N° Teléfono</string>
     <string name="editTextIdentification">N° Cedula o RIF</string>
     <string name="buttonProcesarPago">Procesar Pago</string>
+    <string name="button_recarge_card">Recargar Tarjeta</string>
+    <string name="button_withdraw_card">Retirar Saldo de Tarjeta</string>
     <string name="txtIngrese">Ingrese los datos del Beneficiario: </string>
     <string name="ingrese_monto_en_bs">Monto en Bs.</string>
     <string name="ingrese_n_token">N° Token</string>
@@ -171,6 +176,7 @@
     <string name="security_question_info">Por favor ingrese las preguntas de seguridad</string>
     <string name="invalid_all_question">Todos los campos son requeridos</string>
     <string name="bank_info">Seleccione el banco:</string>
+    <string name="bank__account_type">Seleccione el tipo de cuenta:</string>
     <string name="estado_info">Seleccione el estado:</string>
     <string name="ciudad_info">Seleccione la ciudad:</string>
 
@@ -408,9 +414,13 @@
     <string name="into_">Ingresar</string>
     <string name="welcome_register">¿Gracias por registrarse. Su registro se completo de forma satisfactoria </string>
     <string name="transference">Seleccione la moneda a transferir</string>
+    <string name="origin_product">Producto de origen</string>
     <string name="transferenceCard2">Tarjeta origen</string>
     <string name="transferenceCard">Seleccione tarjeta a transferir</string>
     <string name="howtofindtransfer">Seleccione el criterio de busqueda del usuario receptor</string>
+    <string name="amount_recharge_card">Introduzca el monto que desea transferir a su tarjeta prepagada</string>
+    <string name="amount_withdraw_card">Introduzca el monto que desea retirar de su tarjeta prepagada</string>
+
     <string name="howtofindtransferComerce">Escanee el código QR del comercio!</string>
     <string name="destination_name">Nombre:</string>
     <string name="destination_name_1">Nombre Remitente:</string>
@@ -437,6 +447,7 @@
     <string name="welcome_secure_manual_removal">El registro del retiro se ha realizado satisfactoriamente. Una vez el proveedor de servicios lo haga efectivo sera notificado </string>
     <string name="welcome_payment_comerce">El pago se ha realizado satisfactoriamente. </string>
     <string name="welcome_secure_manual_recharge">La recarga fue realizada satisfactoriamente. Una vez que se valide le sera notificado </string>
+    <string name="sucessfull_add_bank_message">El banco se ha agregado satisfactoriamente</string>
     <string name="ativate_card">Mediante esta funcionalidad podra activar o desactivar su tarjeta de debito prepagada</string>
     <string name="fail_code_info">La Clave de Operaciones ha sido bloqueada temporalmente.</string>
     <string name="ativate_desactivate_card">Desactivar / Activar</string>
@@ -510,6 +521,8 @@
     <string name="Prepaid_card">Tarjeta Prepagada</string>
     <string name="Security">Seguridad</string>
     <string name="activate_card">Activar/Desactivar Tarjeta</string>
+    <string name="witdraw_my_card">Retirar Desde Tarjeta</string>
+    <string name="recharge_card_menu">Recargar Mi Tarjeta</string>
     <string name="reload_card">Recargar Tarjeta</string>
     <string name="activate_card_title">ACTIVAR TARJETA</string>
     <string name="dactivate_card_title">DESACTIVAR TARJETA</string>
@@ -568,4 +581,10 @@
     <string name="payment_method_save_succefull">Metodo de pago guardado satisfactoriamente</string>
     <string name="payment_method_drop_title">Eliminar Metodo de Pago</string>
     <string name="payment_method_drop_question">¿Esta seguro que desea eliminar el metodo de pago?</string>
+    <string name="add_bank">Agregar Banco</string>
+    <string name="banck_account_number">Numero de Cuenta</string>
+    <string name="label_account_number">Ingrese el número de cuenta</string>
+    <string name="add_bank_button">AGREGAR BANCO</string>
+    <string name="banks_asociated">BANCOS AFILIADOS</string>
+    <string name="debit_card_balane">Tarjeta de Debito Prepagada / Saldo Actual</string>
 </resources>

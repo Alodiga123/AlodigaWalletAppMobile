@@ -1,4 +1,4 @@
-package com.alodiga.app.wallet.transference;
+package com.alodiga.app.wallet.rechargeMyCard;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -7,9 +7,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.alodiga.app.R;
+import com.alodiga.app.wallet.transference.TransferenceStep3Activity;
+import com.alodiga.app.wallet.transference.TransferenceStep5Activity;
 import com.alodiga.app.wallet.utils.Constants;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.FailCodeOperationActivity;
@@ -22,7 +22,10 @@ import org.ksoap2.serialization.SoapObject;
 
 import java.util.HashMap;
 
-public class TransferenceStep4codeActivity extends AppCompatActivity {
+import androidx.appcompat.app.AppCompatActivity;
+
+
+public class RechargeMyCardStep2codeActivity extends AppCompatActivity {
     static int cout = 1;
     static int cout_aux = 3;
     UserGetCodeTask mAuthTask;
@@ -35,11 +38,13 @@ public class TransferenceStep4codeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.transference_payment_code_layout);
+        setContentView(R.layout.recharge_my_card_code_layout);
         step1_next_button = findViewById(R.id.step1_next_button);
         backToLoginBtn = findViewById(R.id.backToLoginBtn);
         edtMobileCode = findViewById(R.id.edtMobileCode);
         tvintentos = findViewById(R.id.tvintentos);
+        progressDialogAlodiga = new ProgressDialogAlodiga(getApplicationContext(), getString(R.string.loading));
+
 
         step1_next_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -50,12 +55,11 @@ public class TransferenceStep4codeActivity extends AppCompatActivity {
                     new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                             getString(R.string.pin_text));
                 } else if (cout >= 3) {
-                    Intent i = new Intent(TransferenceStep4codeActivity.this, FailCodeOperationActivity.class);
+                    Intent i = new Intent(RechargeMyCardStep2codeActivity.this, FailCodeOperationActivity.class);
                     finish();
                     startActivity(i);
                 } else {
                     progressDialogAlodiga = new ProgressDialogAlodiga(getApplicationContext(), getString(R.string.loading));
-
                     mAuthTask = new UserGetCodeTask(Utils.aloDesencript(getCode));
                     mAuthTask.execute((Void) null);
                 }
@@ -66,7 +70,7 @@ public class TransferenceStep4codeActivity extends AppCompatActivity {
 
         backToLoginBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent i = new Intent(TransferenceStep4codeActivity.this, TransferenceStep3Activity.class);
+                Intent i = new Intent(RechargeMyCardStep2codeActivity.this, RechargeMyCardStep1Activity.class);
                 finish();
                 startActivity(i);
 
@@ -77,7 +81,7 @@ public class TransferenceStep4codeActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent i = new Intent(TransferenceStep4codeActivity.this, TransferenceStep3Activity.class);
+        Intent i = new Intent(RechargeMyCardStep2codeActivity.this, RechargeMyCardStep1Activity.class);
         finish();
         startActivity(i);
     }
@@ -180,6 +184,11 @@ public class TransferenceStep4codeActivity extends AppCompatActivity {
         }
 
         @Override
+        protected void onPreExecute() {
+
+        }
+
+        @Override
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
             //showProgress(false);
@@ -187,11 +196,11 @@ public class TransferenceStep4codeActivity extends AppCompatActivity {
 
                 if (cout <= 3) {
                     Session.setCodeOperation(edtMobileCode.getText().toString());
-                    Intent i = new Intent(TransferenceStep4codeActivity.this, TransferenceStep5Activity.class);
+                    Intent i = new Intent(RechargeMyCardStep2codeActivity.this, RechargeMyCardStep3Activity.class);
                     startActivity(i);
                     finish();
                 } else {
-                    Intent i = new Intent(TransferenceStep4codeActivity.this, FailCodeOperationActivity.class);
+                    Intent i = new Intent(RechargeMyCardStep2codeActivity.this, FailCodeOperationActivity.class);
                     startActivity(i);
                     finish();
                 }
@@ -204,7 +213,7 @@ public class TransferenceStep4codeActivity extends AppCompatActivity {
                 cout = cout + 1;
 
                 if (cout_aux == 0) {
-                    Intent i = new Intent(TransferenceStep4codeActivity.this, FailCodeOperationActivity.class);
+                    Intent i = new Intent(RechargeMyCardStep2codeActivity.this, FailCodeOperationActivity.class);
                     startActivity(i);
                     finish();
                 }

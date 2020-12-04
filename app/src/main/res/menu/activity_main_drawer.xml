@@ -62,6 +62,14 @@
                 android:id="@+id/nav_active_card"
                 android:icon="@drawable/ic_menu_slideshow"
                 android:title="@string/activate_card" />
+            <item
+                android:id="@+id/nav_recarge_card"
+                android:icon="@drawable/menu_pay_comerce"
+                android:title="@string/recharge_card_menu" />
+            <item
+                android:id="@+id/nav_witdraw_card"
+                android:icon="@drawable/menu_pay_comerce"
+                android:title="@string/witdraw_my_card" />
 
         </menu>
     </item>
@@ -74,6 +82,12 @@
                 android:icon="@drawable/menu_qr"
                 android:title="@string/menu_pay_comerce" />
             <item
+                android:id="@+id/nav_add_bank"
+                android:icon="@drawable/menu_recharge_manual"
+                android:title="@string/menu_add_bank" />
+
+
+            <item
                 android:id="@+id/nav_last_activity"
                 android:icon="@drawable/menu_list_transaction"
                 android:title="@string/menu_last_activity" />
@@ -81,11 +95,8 @@
 
         </menu>
     </item>
-
-
     <item android:title="@string/Security">
         <menu>
-
             <item
                 android:id="@+id/nav_change_password"
                 android:icon="@drawable/menu_change_password"

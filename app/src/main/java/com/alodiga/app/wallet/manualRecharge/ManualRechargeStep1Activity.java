@@ -65,13 +65,10 @@ public class ManualRechargeStep1Activity extends AppCompatActivity {
         backToLoginBtn=findViewById(R.id.backToLoginBtn);
         edtCOD = findViewById(R.id.edtCOD);
         edttrans = findViewById(R.id.edttrans);
-
         spinnerbank.setEnabled(false);
         spinnerproducto.setEnabled(false);
-
         progressDialogAlodiga = new ProgressDialogAlodiga(this, getString(R.string.loading));
         progressDialogAlodiga.show();
-
         //Spinner Country
         new Thread(new Runnable() {
             public void run() {
@@ -85,7 +82,6 @@ public class ManualRechargeStep1Activity extends AppCompatActivity {
                     responseCode = response.getProperty("codigoRespuesta").toString();
                     datosRespuesta = response.getProperty("mensajeRespuesta").toString();
                     serviceAnswer(responseCode);
-
                     if (serviceStatus) {
                         runOnUiThread(new Runnable() {
                             @Override
@@ -105,17 +101,13 @@ public class ManualRechargeStep1Activity extends AppCompatActivity {
                 }
             }
         }).start();
-
-
         //Spinner Bank
         spinner_pais.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 spinnerbank.setEnabled(true);
                 spinnerbank.setAdapter(null);
                 spinnerproducto.setAdapter(null);
-
                 final ObjGenericObject pais = (ObjGenericObject) spinner_pais.getSelectedItem();
-
                 new Thread(new Runnable() {
                     public void run() {
                         try {
