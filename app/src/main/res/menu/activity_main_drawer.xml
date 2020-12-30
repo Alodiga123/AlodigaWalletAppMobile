@@ -68,7 +68,7 @@
                 android:title="@string/recharge_card_menu" />
             <item
                 android:id="@+id/nav_witdraw_card"
-                android:icon="@drawable/menu_pay_comerce"
+                android:icon="@drawable/menu_witdraw_comerce"
                 android:title="@string/witdraw_my_card" />
 
         </menu>

@@ -26,8 +26,6 @@ public class ManualRemovalStep2WelcomeActivity extends AppCompatActivity {
                 show = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(show);
                 finish();
-
-
             }
         });
 

@@ -12,7 +12,8 @@ import com.alodiga.app.R;
 import com.alodiga.app.wallet.main.MainActivity;
 
 
-public class ValidateAccountCode4Activity extends AppCompatActivity {
+public class
+ValidateAccountCode4Activity extends AppCompatActivity {
 
     private Button back, next;
 

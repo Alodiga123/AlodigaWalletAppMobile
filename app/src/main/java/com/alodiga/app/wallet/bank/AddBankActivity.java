@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.adapters.SpinAdapterAccountType;
@@ -55,6 +56,7 @@ public class AddBankActivity extends AppCompatActivity {
     Spinner spinner_pais, spinnerbank,spinner_accountype;
     private EditText edtCOD;
     private Button addBankButton, backToLoginBtn;
+
     private String responsetxt = "";
     private boolean serviceStatus;
 
@@ -65,6 +67,14 @@ public class AddBankActivity extends AppCompatActivity {
         progressDialogAlodiga.show();
 
 
+        try {
+            if(!(this.getIntent().getExtras().getString("value")=="")){
+                new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
+                        getIntent().getExtras().getString("value"));
+            }
+        } catch (NullPointerException e) {
+            //"No viene nada"
+        }
 
         setContentView(R.layout.activity_add_bank);
         spinner_pais = findViewById(R.id.spinner_pais);

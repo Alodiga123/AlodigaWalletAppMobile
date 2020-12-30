@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.Selection;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -55,22 +56,20 @@ public class RechargeMyCardStep3Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recharge_my_card_step_3);
-
         txtAccountSourceValue_2 = findViewById(R.id.txtAccountSourceValue_2);
         txtAmountValue_2 = findViewById(R.id.txtAmountValue_2);
         txtConceptValue_2 = findViewById(R.id.txtConceptValue_2);
-
-
         btnProcessTransaction = findViewById(R.id.btnProcessTransaction);
         backToLoginBtn = findViewById(R.id.backToLoginBtn);
-
         txtAmountValue_2.setText(Session.getGetDestinationAmount() +" $");
         txtAccountSourceValue_2.setText(Session.getMoneySelected().getName());
         txtConceptValue_2.setText(getResources().getString(R.string.recharge_card_title));
-        progressDialogAlodiga = new ProgressDialogAlodiga(this, getString(R.string.loading));
+        progressDialogAlodiga = new ProgressDialogAlodiga(RechargeMyCardStep3Activity.this, getString(R.string.loading));
         btnProcessTransaction.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
-                mAuthTask = new RechargeMyCardStep3Activity.ProcessOperationRechargeWalletTask(Session.getEmail(), Session.getMoneySelected().getId(), Session.getGetDestinationAmount());
+                mAuthTask = new RechargeMyCardStep3Activity.ProcessOperationRechargeWalletTask(Session.getMoneySelected().getId(),Session.getGetDestinationAmount(),Session.getEmail());
+
+
                 mAuthTask.execute((Void) null);
             }
         });
@@ -95,10 +94,16 @@ public class RechargeMyCardStep3Activity extends AppCompatActivity {
         //ObjUserHasProduct[] obj2_aux= new ObjUserHasProduct[response.getPropertyCount()-3];
         //ObjUserHasProduct[] obj2 = new ObjUserHasProduct[response.getPropertyCount()-3];
         ArrayList<ObjUserHasProduct> obj2 = new ArrayList<>();
-        for (int i = 4; i < response.getPropertyCount(); i++) {
+        for (int i = 5; i < response.getPropertyCount(); i++) {
             SoapObject obj = (SoapObject) response.getProperty(i);
             String propiedad = response.getProperty(i).toString();
-            ObjUserHasProduct object = new ObjUserHasProduct(obj.getProperty("id").toString(), obj.getProperty("name").toString(), obj.getProperty("currentBalance").toString(), obj.getProperty("symbol").toString(), obj.getProperty("isPayTopUp").toString());
+            String id = obj.getProperty("id").toString();
+            String name = obj.getProperty("name").toString();
+            String currentBalance = obj.getProperty("currentBalance").toString();
+            String symbol = obj.getProperty("symbol").toString();
+            String isPayTopUp = obj.getProperty("isPayTopUp").toString();
+            String isUsePrepaidCard = obj.getProperty("isUsePrepaidCard").toString();
+            ObjUserHasProduct object = new ObjUserHasProduct(id, name,currentBalance,symbol,isPayTopUp,isUsePrepaidCard);
             if (object.getName().equals("Tarjeta Prepagada") || object.getName().equals("Prepaid Card") ){
                 Session.setAffiliatedCard(Boolean.parseBoolean(Session.getPrepayCardAsociate()));
                 object.setNumberCard(Session.getNumberCard());
@@ -139,22 +144,18 @@ public class RechargeMyCardStep3Activity extends AppCompatActivity {
                 String responseMessage = "";
                 if (availableBalance) {
                 HashMap<String, String> map = new HashMap<String, String>();
-                map.put("email", emailUser);
+                map.put("email", Session.getEmail());
                 map.put("amountRecharge", amountPayment);
-                map.put("productI", productId);
-
-         //       response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_NAME_DISPERTION, Constants.ALODIGA);
-         //       responseCode = response.getProperty("codigoRespuesta").toString();
-         //       responseMessage = response.getProperty("mensajeRespuesta").toString();
-                    responseCode = "00";
-
-
+                map.put("productId", productId);
+                response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_NAME_DISPERTION, Constants.ALODIGA);
+                responseCode = response.getProperty("codigoRespuesta").toString();
+                responseMessage = response.getProperty("mensajeRespuesta").toString();
+                Log.w(response.toString(), response.toString());
                 if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
                     serviceStatus = true;
                 } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_DATOS_INVALIDOS)) {
                     responsetxt = getString(R.string.web_services_response_01);
                     serviceStatus = false;
-
                 } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CONTRASENIA_EXPIRADA)) {
                     responsetxt = getString(R.string.web_services_response_03);
                     serviceStatus = false;
@@ -185,15 +186,12 @@ public class RechargeMyCardStep3Activity extends AppCompatActivity {
                 } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USER_HAS_NOT_BALANCE)) {
                     responsetxt = getString(R.string.web_services_response_33);
                     serviceStatus = false;
-
                 } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_SOSPECHOSO)) {
                     responsetxt = getString(R.string.web_services_response_95);
                     serviceStatus = false;
-
                 } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_PENDIENTE)) {
                     responsetxt = getString(R.string.web_services_response_96);
                     serviceStatus = false;
-
                 } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_NO_EXISTE)) {
                     responsetxt = getString(R.string.web_services_response_97);
                     serviceStatus = false;
@@ -203,7 +201,131 @@ public class RechargeMyCardStep3Activity extends AppCompatActivity {
                 } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_INTERNO)) {
                     responsetxt = getString(R.string.web_services_response_99);
                     serviceStatus = false;
-                } else {
+                }else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_NON_EXISTENT_CARD)) {
+                    responsetxt = getString(R.string.web_services_response_100);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXPIRATION_DATE_DIFFERS)) {
+                    responsetxt = getString(R.string.web_services_response_102);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXPIRED_CARD)) {
+                    responsetxt = getString(R.string.web_services_response_103);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_LOCKED_CARD)) {
+                    responsetxt = getString(R.string.web_services_response_104);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_BLOCKED_ACCOUNT)) {
+                    responsetxt = getString(R.string.web_services_response_105);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_INVALID_ACCOUNT)) {
+                    responsetxt = getString(R.string.web_services_response_106);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_INSUFFICIENT_BALANCE)) {
+                    responsetxt = getString(R.string.web_services_response_107);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_INSUFFICIENT_LIMIT)) {
+                    responsetxt = getString(R.string.web_services_response_108);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CREDIT_LIMIT_0)) {
+                    responsetxt = getString(R.string.web_services_response_109);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CREDIT_LIMIT_0_OF_THE_DESTINATION_ACCOUNT)) {
+                    responsetxt = getString(R.string.web_services_response_110);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_PROCESSING_THE_TRANSACTION)) {
+                    responsetxt = getString(R.string.web_services_response_111);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_INVALID_TRANSACTION)) {
+                    responsetxt = getString(R.string.web_services_response_112);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_VALIDATION_THE_TERMINAL)) {
+                    responsetxt = getString(R.string.web_services_response_113);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_DESTINATION_CARD_LOCKED)) {
+                    responsetxt = getString(R.string.web_services_response_114);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_DESTINATION_ACCOUNT_LOCKED)) {
+                    responsetxt = getString(R.string.web_services_response_115);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_INVALID_DESTINATION_CARD)) {
+                    responsetxt = getString(R.string.web_services_response_116);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_INVALID_DESTINATION_ACCOUNT)) {
+                    responsetxt = getString(R.string.web_services_response_117);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_THE_AMOUNT_MUST_BE_POSITIVE_AND_THE_AMOUNT_IS_REPORTED)) {
+                    responsetxt = getString(R.string.web_services_response_118);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_THE_AMOUNT_MUST_BE_NEGATIVE_AND_THE_AMOUNT_IS_REPORTED)) {
+                    responsetxt = getString(R.string.web_services_response_119);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_INVALID_TRANSACTION_DATE)) {
+                    responsetxt = getString(R.string.web_services_response_120);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_INVALID_TRANSACTION_TIME)) {
+                    responsetxt = getString(R.string.web_services_response_121);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_SOURCE_OR_DESTINATION_ACCOUNT_IS_NOT_COMPATIBLE_WITH_THIS_OPERATION_NN)) {
+                    responsetxt = getString(R.string.web_services_response_122);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_SOURCE_OR_DESTINATION_ACCOUNT_IS_NOT_COMPATIBLE_WITH_THIS_OPERATION_SN)) {
+                    responsetxt = getString(R.string.web_services_response_123);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.SOURCE_OR_DESTINATION_ACCOUNT_IS_NOT_COMPATIBLE_WITH_THIS_OPERATION_NS)) {
+                    responsetxt = getString(R.string.web_services_response_124);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_TRASACTION_BETWEEN_ACCOUNTS_NOT_ALLOWED)) {
+                    responsetxt = getString(R.string.web_services_response_125);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_TRADE_VALIDATON_ERROR)) {
+                    responsetxt = getString(R.string.web_services_response_126);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_DESTINATION_CARD_DOES_NOT_SUPPORT_TRANSACTION)) {
+                    responsetxt = getString(R.string.web_services_response_127);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_OPERATION_NOT_ENABLED_FOR_THE_DESTINATION_CARD)) {
+                    responsetxt = getString(R.string.web_services_response_128);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_BIN_NOT_ALLOWED)) {
+                    responsetxt = getString(R.string.web_services_response_129);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_STOCK_CARD)) {
+                    responsetxt = getString(R.string.web_services_response_130);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_THE_ACCOUNT_EXCEEDS_THE_MONTHLY_LIMIT)) {
+                    responsetxt = getString(R.string.web_services_response_131);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_THE_PAN_FIELD_IS_MANDATORY)) {
+                    responsetxt = getString(R.string.web_services_response_132);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_THE_AMOUNT_TO_BE_RECHARGE_IS_INCORRECT)) {
+                    responsetxt = getString(R.string.web_services_response_133);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_THE_AMOUNT_MUST_BE_GREATER_THAN_0)) {
+                    responsetxt = getString(R.string.web_services_response_134);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_TRANSACTION_ANSWERED)) {
+                    responsetxt = getString(R.string.web_services_response_135);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_VALIDATING_PIN)) {
+                    responsetxt = getString(R.string.web_services_response_137);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_VALIDATING_CVC1)) {
+                    responsetxt = getString(R.string.web_services_response_138);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_VALIDATING_CVC2)) {
+                    responsetxt = getString(R.string.web_services_response_139);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_PIN_CHANGE_ERROR)) {
+                    responsetxt = getString(R.string.web_services_response_140);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_VALIDATING_THE_ITEM)) {
+                    responsetxt = getString(R.string.web_services_response_141);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_INVALID_AMOUNT)) {
+                    responsetxt = getString(R.string.web_services_response_142);
+                    serviceStatus = false;
+
+                }else {
                     responsetxt = getString(R.string.web_services_response_99);
                     serviceStatus = false;
                 }
@@ -238,21 +360,18 @@ public class RechargeMyCardStep3Activity extends AppCompatActivity {
     protected void onPostExecute(final Boolean success) {
         mAuthTask = null;
         if (success) {
-
             Session.setAlocoinsBalance(balanceAlocoins);
             Session.setHealthCareCoinsBalance(balancePrepaidCard);
             Session.setAlodigaBalance(balanceAlodiga);
-           // Session.setObjUserHasProducts(getListProduct(response));
-           // Session.setOperationTransference(response.getProperty("idTransaction").toString());
+            Session.setObjUserHasProducts(getListProduct(response));
+            Session.setOperationTransference(response.getProperty("idTransaction").toString());
             Intent i = new Intent(RechargeMyCardStep3Activity.this, RechargeMyCardStep4Activity.class);
             startActivity(i);
             finish();
         } else {
-            Intent i = new Intent(RechargeMyCardStep3Activity.this, RechargeMyCardStep4Activity.class);
-            startActivity(i);
-            finish();
-         /*   new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
-                    responsetxt);*/
+
+            new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
+                    responsetxt);
         }
         progressDialogAlodiga.dismiss();
     }

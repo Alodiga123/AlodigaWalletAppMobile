@@ -7,19 +7,19 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.alodiga.app.wallet.model.ObjAccountBankComplex;
+import com.alodiga.app.wallet.model.ObjGenericObject;
+import com.alodiga.app.wallet.utils.Constants;
+
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 
-import com.alodiga.app.R;
-import com.alodiga.app.wallet.model.ObjTransferMoney;
-import com.alodiga.app.wallet.utils.Constants;
-
-public class SpinAdapterTransferMoney extends ArrayAdapter<ObjTransferMoney> {
+public class SpinAdapterAccountBank extends ArrayAdapter<ObjAccountBankComplex> {
 
     private Context context;
-    private ObjTransferMoney[] values;
+    private ObjAccountBankComplex[] values;
 
-    public SpinAdapterTransferMoney(@NonNull Context context, @LayoutRes int resource, @NonNull ObjTransferMoney[] values) {
+    public SpinAdapterAccountBank(@NonNull Context context, @LayoutRes int resource, @NonNull ObjAccountBankComplex[] values) {
         super(context, resource, values);
 
         this.context = context;
@@ -30,7 +30,7 @@ public class SpinAdapterTransferMoney extends ArrayAdapter<ObjTransferMoney> {
         return values.length;
     }
 
-    public ObjTransferMoney getItem(int position) {
+    public ObjAccountBankComplex getItem(int position) {
         return values[position];
     }
 
@@ -42,12 +42,13 @@ public class SpinAdapterTransferMoney extends ArrayAdapter<ObjTransferMoney> {
         // I created a dynamic TextView here, but you can reference your own  custom layout for each spinner item
         TextView label = new TextView(context);
         label.setTextColor(Color.WHITE);
-        label.setHint(Constants.MONEY);
+        label.setHint(Constants.LOCATION);
         label.setTextSize(16);
+
         label.setPadding(10, 5, 5, 0);
         // Then you can get the current item using the values array (Users array) and the current position
         // You can NOW reference each method you has created in your bean object (User class)
-        label.setText(values[position].getName());
+        label.setText(values[position].getBankName());
         // And finally return your dynamic (or custom) view for each spinner item
         return label;
     }
@@ -59,11 +60,11 @@ public class SpinAdapterTransferMoney extends ArrayAdapter<ObjTransferMoney> {
         TextView label = new TextView(context);
         label.setTextColor(Color.BLACK);
         label.setPadding(10, 5, 5, 5);
-        label.setHint(Constants.MONEY);
+        label.setHint(Constants.LOCATION);
         //label.setTextSize(15);
         // label.setBackgroundColor(Color.parseColor("#F5F6CE"));
 
-        label.setText(values[position].getName());
+        label.setText(values[position].getBankName());
         return label;
     }
 

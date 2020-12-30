@@ -83,7 +83,11 @@ public class RechargeMyCardStep1Activity extends AppCompatActivity {
         list_product = Session.getObjUserHasProducts();
         final ObjTransferMoney[] objTransferMoney = new ObjTransferMoney[list_product.size()];
         for (int i = 0; i < list_product.size(); i++) {
-            objTransferMoney[i] = new ObjTransferMoney(list_product.get(i).getId(), list_product.get(i).getName().trim() + " " + list_product.get(i).getSymbol().trim() + " - " + list_product.get(i).getCurrentBalance(), list_product.get(i).getCurrentBalance());
+
+            if(Boolean.valueOf(list_product.get(i).getIsUsePrepaidCard())){
+                objTransferMoney[i-i] = new ObjTransferMoney(list_product.get(i).getId(), list_product.get(i).getName().trim() + " " + list_product.get(i).getSymbol().trim() + " - " + list_product.get(i).getCurrentBalance(), list_product.get(i).getCurrentBalance());
+            }
+
         }
         //Llena tipos de cuenta
         //List<ObjTransferMoney> countries = new ArrayList<ObjTransferMoney>();

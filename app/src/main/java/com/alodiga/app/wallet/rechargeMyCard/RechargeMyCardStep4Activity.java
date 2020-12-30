@@ -58,14 +58,10 @@ public class RechargeMyCardStep4Activity extends AppCompatActivity {
         txtDateTimeValue_3 = findViewById(R.id.txtDateTimeValue_3);
         //transaccion
         txtTransactionId_3 = findViewById(R.id.txtTransactionId_3);
-
-
-
         btnProcessFinisTransference = findViewById(R.id.btnProcessFinisTransference);
         btnShareInformation = findViewById(R.id.btnShareInformationTransference);
-
         amountValue.setText(Session.getGetDestinationAmount() +" $");
-        conceptValue.setText(Session.getDestinationConcept());
+        conceptValue.setText(getResources().getString(R.string.reloadcard_title));
         txtAccountSourceValue.setText(Session.getMoneySelected().getName().split("-")[0]);
         txtDateTimeValue_3.setText(new Timestamp(new Date().getTime()).toGMTString());
         txtTransactionId_3.setText(Session.getOperationTransference());

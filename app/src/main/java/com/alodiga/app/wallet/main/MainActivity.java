@@ -61,6 +61,7 @@ import com.alodiga.app.wallet.validate.ValidateAccountCode4Activity;
 import com.alodiga.app.wallet.validate.ValidateAccountStep5Activity;
 
 
+import com.alodiga.app.wallet.validate.ValidateAccountStep8Activity;
 import com.alodiga.app.wallet.withdrawMyCard.WithdrawMyCardStep1Activity;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.PieEntry;
@@ -200,12 +201,8 @@ public class MainActivity extends AppCompatActivity
 
         // pass an animation
         imageView3.startAnimation(atg);
-
-
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
-
-
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -225,7 +222,6 @@ public class MainActivity extends AppCompatActivity
         int i = 0;
 
         for (ObjUserHasProduct objUserHasProduct : Session.getObjUserHasProducts()) {
-
             pieEntries.add(new PieEntry(Float.valueOf(objUserHasProduct.getCurrentBalance()), i));
             i++;
         }
@@ -242,7 +238,6 @@ public class MainActivity extends AppCompatActivity
         dialogo1.setCancelable(false);
         dialogo1.setPositiveButton(getString(R.string.confirm), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialogo1, int id) {
-
                 Intent show = new Intent(MainActivity.this, LoginActivity.class);
                 finish();
                 startActivity(show);
@@ -261,11 +256,7 @@ public class MainActivity extends AppCompatActivity
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         invalidateOptionsMenu(); // Para asegurarse que lo vuelva a crear
-
-
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -281,7 +272,6 @@ public class MainActivity extends AppCompatActivity
             menuItem2.getItem(1).setVisible(false);
             menuItem2.getItem(1).setEnabled(false);
         }
-
         return true;
     }
 
@@ -293,7 +283,6 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-
             AlertDialog.Builder dialogo1 = new AlertDialog.Builder(this, R.style.yourDialog);
             dialogo1.setTitle(R.string.close_session);
             dialogo1.setMessage(R.string.close_session_answer);
@@ -313,9 +302,7 @@ public class MainActivity extends AppCompatActivity
                 }
             });
             dialogo1.show();
-
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -325,7 +312,6 @@ public class MainActivity extends AppCompatActivity
 
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
        if (id == R.id.nav_recharge || id == R.id.nav_Withdrawal || id == R.id.nav_transfer
                || id == R.id.nav_last_activity || id == R.id.nav_pay_qr|| id == R.id.nav_add_bank
                || id == R.id.nav_topup || id == R.id.nav_convert || id == R.id.nav_active_card || id == R.id.nav_recarge_card
@@ -338,14 +324,37 @@ public class MainActivity extends AppCompatActivity
                    show = new Intent(MainActivity.this, ValidateAccountStep5Activity.class);
                    startActivity(show);
                    break;
+               case "2":
+                   show = new Intent(MainActivity.this, ValidateAccountStep5Activity.class);
+                   startActivity(show);
+                   break;
                case "3":
-                   show = new Intent(MainActivity.this, ValidateAccountCode3Activity.class);
+                   show = new Intent(MainActivity.this, ValidateAccountStep5Activity.class);
                    startActivity(show);
                    break;
                case "4":
+                   show = new Intent(MainActivity.this, ValidateAccountStep5Activity.class);
+                   startActivity(show);
+                   break;
+               case "5":
+                   show = new Intent(MainActivity.this, ValidateAccountStep5Activity.class);
+                   startActivity(show);
+                   break;
+               case "6":
+                   show = new Intent(MainActivity.this, ValidateAccountStep5Activity.class);
+                   startActivity(show);
+                   break;
+               case "8":
+                   show = new Intent(MainActivity.this, ValidateAccountStep8Activity.class);
+                   startActivity(show);
+                   break;
+
+               case "0":
                    show = new Intent(MainActivity.this, ValidateAccountCode4Activity.class);
                    startActivity(show);
                    break;
+
+                   //Default es 7 Aprobada
                default:
                    if (id == R.id.nav_recharge_with_card) {
 
@@ -406,8 +415,6 @@ public class MainActivity extends AppCompatActivity
                     startActivity(show);
                      }*/
 
-
-
        }
 
        }else if (id == R.id.nav_home) {
@@ -428,6 +435,30 @@ public class MainActivity extends AppCompatActivity
                    startActivity(show);
                    break;
                case "2":
+                   show = new Intent(MainActivity.this, ValidateAccountStep5Activity.class);
+                   startActivity(show);
+                   break;
+               case "3":
+                   show = new Intent(MainActivity.this, ValidateAccountStep5Activity.class);
+                   startActivity(show);
+                   break;
+               case "4":
+                   show = new Intent(MainActivity.this, ValidateAccountStep5Activity.class);
+                   startActivity(show);
+                   break;
+               case "5":
+                   show = new Intent(MainActivity.this, ValidateAccountStep5Activity.class);
+                   startActivity(show);
+                   break;
+               case "6":
+                   show = new Intent(MainActivity.this, ValidateAccountStep5Activity.class);
+                   startActivity(show);
+                   break;
+               case "8":
+                   show = new Intent(MainActivity.this, ValidateAccountStep5Activity.class);
+                   startActivity(show);
+                   break;
+               case "7":
                    show = new Intent(MainActivity.this, ValidateAccountCode2Activity.class);
                    startActivity(show);
                    break;

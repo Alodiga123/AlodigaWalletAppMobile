@@ -11,6 +11,8 @@
     <string name="already_user">Already have an account? Enter here.</string>
     <string name="amount">Amount</string>
     <string name="amount_info">"Enter the amount: "</string>
+    <string name="aba">aba:</string>
+    <string name="bank__account_type_cort">Account Type:</string>
     <string name="amount_info_invalid">"The amount cannot be empty "</string>
     <string name="amount_req">"The amount is invalid. "</string>
     <string name="answer">"Security Question "</string>
@@ -19,8 +21,11 @@
     <string name="back">BACK</string>
     <string name="bank">Bank</string>
     <string name="bank_info">"Select the bank: "</string>
-    <string name="bank__account_type">"Select the account_type: "</string>
+    <string name="bank_info_selec_account">Select the account bank: :</string>
+    <string name="bank_info_selec_account_witdraw">Select the bank account where you want to withdraw the funds:</string>
 
+    <string name="bank_info_account">Select the Account Bank:</string>
+    <string name="bank__account_type">"Select the account_type: "</string>
     <string name="BS">Bs</string>
     <string name="buttonProcesarPago">"Process Payment "</string>
     <string name="button_recarge_card">Process Recharge</string>
@@ -59,6 +64,7 @@
     <string name="destination_date_time">"Date: "</string>
     <string name="destination_information">"Destination Account Information "</string>
     <string name="destination_information_comple">"Complete the payment information "</string>
+    <string name="destination_information_witdraw">Información del retiro de saldo de la tarjeta</string>
     <string name="destination_lastName">"Last name: "</string>
     <string name="destination_name">"Name: "</string>
     <string name="validate_password_change_special_character">The password must have at least one of the following characters.  # ? ! @ $ % ^ * -</string>
@@ -182,6 +188,7 @@
     <string name="product_spinner">"Enter any amount of "</string>
     <string name="productoPago_info">"Select the product to debit: "</string>
     <string name="producto_info">"Select the product to recharge: "</string>
+    <string name="producto_info_witdraw">Select the product to witdraw:</string>
     <string name="qr_code_title">"MY QR CODE "</string>
     <string name="rechargeCOD">Transfer number</string>
     <string name="recharge_descrip_invalid">"The description cannot be empty "</string>
@@ -267,11 +274,19 @@
     <string name="web_services_response_31">It has no associated companion cards</string>
     <string name="web_services_response_32">"You have exceeded the maximum number of transactions per day "</string>
     <string name="web_services_response_33">"Insufficient balance to complete the transaction "</string>
+    <string name="web_services_response_34">You have exceeded the daily limit amount</string>
+    <string name="web_services_response_35">You have exceeded the monthly limit amount</string>
+    <string name="web_services_response_36">You have exceeded the maximum amount that you can trade for a year</string>
+    <string name="web_services_response_37">You have exceeded the day-to-day transaction limit</string>
+    <string name="web_services_response_38">You have exceeded the maximum number of transactions allowed in a month</string>
+    <string name="web_services_response_39">You have exceeded the maximum transaction amount in the year</string>
+    <string name="web_services_response_41">Transaction disabled</string>
     <string name="web_services_response_94">"Application does not exist "</string>
     <string name="web_services_response_95">"User I suspect "</string>
     <string name="web_services_response_96">"Pending User "</string>
     <string name="web_services_response_97">"Username does not exist "</string>
     <string name="web_services_response_98">"Credential Error "</string>
+    <string name="web_services_response_304">There is no associated bank to make the withdrawal</string>
     <string name="web_services_response_99">"Internal error "</string>
     <string name="welcome">"YOU ARE WELCOME "</string>
     <string name="welcome_payment_comerce">"Payment has been made successfully. "</string>
@@ -305,6 +320,8 @@
     <string name="kyc_text_step5_2">Once validated you can make use of all the features offered by the Alodiga Wallet</string>
     <string name="kyc_text_image">" You have not selected an image"</string>
     <string name="kyc_text_code3">Account validation is expired.</string>
+    <string name="kyc_text_code8_reject">Account validation is reject</string>
+    <string name="kyc_text_code8_reject_info">For more information contact our customer service executives</string>
     <string name="kyc_text_code3_1">In order to enjoy the services provided by the Alodiga wallet, you must validate your account again.</string>
     <string name="kyc_text_code4">" In order to enjoy the services offered by the Alodiga wallet, you must validate your account."</string>
     <string name="kyc_text_code2">"Your account is validated. "</string>
@@ -315,6 +332,8 @@
     <string name="activate_card">Unlock / Lock Card</string>
     <string name="witdraw_my_card">Withdraw From My Card</string>
     <string name="withdraw_card_title">WITHDRAWAL OF CARD BALANCE</string>
+    <string name="withdraw_card_title_single_cut">Withdrawal of balance</string>
+    <string name="withdraw_card_title_single">Withdrawal of balance from the prepaid card</string>
     <string name="recharge_card_menu">Recharge My Card</string>
     <string name="reload_card">Reload Card</string>
     <string name="activate_card_title">UNLOCK CARD</string>
@@ -352,6 +371,7 @@
     <string name="transferenceCard2">"Origin card "</string>
     <string name="destinationCard_dest">Destination Card:</string>
     <string name="destination_information_">"Destination Card Information "</string>
+    <string name="confirmation_eitdraw_from_card">Información del retiro de saldo desde la tarjeta</string>
     <string name="web_services_response_28">" Destination card not found"</string>
     <string name="web_services_response_100">"Card does not exist "</string>
     <string name="web_services_response_102">Expiration date differs</string>

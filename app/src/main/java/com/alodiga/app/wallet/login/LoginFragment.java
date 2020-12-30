@@ -98,11 +98,9 @@ public class LoginFragment extends Fragment implements OnClickListener {
         String elementGetSymbol = "simbolo=";
         String litaProd = "respuestaListadoProductos=";
         String isTopup = "isPayTopUP=";
-
-
-
+        String elemntIsUsePrepaidCard = "isUsePrepaidCard=";
         for (int i = 1; i < getLenghtFromResponseJson(litaProd, response); i++) {
-            ObjUserHasProduct objUserHasProduct = new ObjUserHasProduct(response.split(elementgetId)[i].split(";")[0], response.split(elementGetName)[i].split(";")[0], response.split(elementGetCurrentBalance)[i].split(";")[0], response.split(elementGetSymbol)[i].split(";")[0],response.split(isTopup)[i].split(";")[0]);
+            ObjUserHasProduct objUserHasProduct = new ObjUserHasProduct(response.split(elementgetId)[i].split(";")[0], response.split(elementGetName)[i].split(";")[0], response.split(elementGetCurrentBalance)[i].split(";")[0], response.split(elementGetSymbol)[i].split(";")[0],response.split(isTopup)[i].split(";")[0],response.split(elemntIsUsePrepaidCard)[i].split(";")[0]);
 
             if (objUserHasProduct.getName().equals("Tarjeta Prepagada") || objUserHasProduct.getName().equals("Prepaid Card") ){
                 Session.setAffiliatedCard(Boolean.parseBoolean(Session.getPrepayCardAsociate()));
@@ -487,7 +485,6 @@ public class LoginFragment extends Fragment implements OnClickListener {
             }
             return serviceStatus;
          //return true;
-
         }
 
         @Override
@@ -497,9 +494,7 @@ public class LoginFragment extends Fragment implements OnClickListener {
             if (success) {
                 emailid.setText("");
                 password.setText("");
-
                 //setElementInitialSession("prueba", "0414", "adi123", "0.0", "00", "000", "379", "000", userHasProducts, "0", "00", "00", "0000");
-
                 setElementInitialSession(nameSession, phoneNumberSession, emailSession, alodigaBalanceSession, accountNumberSession, alocoinsBalanceSesssion, userId, healthCareCoinsBalanceSession, userHasProducts, cumplimient, prepayCard, prepayCardAsociate, numberCard);
                 Intent intent = new Intent(getActivity(), MainActivity.class);
                 getActivity().startActivity(intent);

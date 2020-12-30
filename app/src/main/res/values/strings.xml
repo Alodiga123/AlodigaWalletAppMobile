@@ -111,7 +111,9 @@
     <string name="security_question">PREGUNTAS DE SEGURIDAD</string>
     <string name="transference_title">TRANSFERENCIA</string>
     <string name="recharge_card_title">RECARGA DE TARJETA</string>
-    <string name="withdraw_card_title">RETIRO DE SALDO DE LA TARJETA</string>
+    <string name="withdraw_card_title">RETIRO DE SALDO / TARJETA</string>
+    <string name="withdraw_card_title_single_cut">Retiro de Saldo</string>
+    <string name="withdraw_card_title_single">Retiro de saldo de la tarjeta </string>
     <string name="transferenceCardToCard_title">TRANSFERENCIA TARJETA A TARJETA</string>
     <string name="remesas_title">REMESAS</string>
     <string name="my_qr_title">MI QR</string>
@@ -176,12 +178,17 @@
     <string name="security_question_info">Por favor ingrese las preguntas de seguridad</string>
     <string name="invalid_all_question">Todos los campos son requeridos</string>
     <string name="bank_info">Seleccione el banco:</string>
+    <string name="bank_info_selec_account">Seleccione la cuenta bancaria:</string>
+    <string name="bank_info_selec_account_witdraw">Seleccione la cuenta bancaria donde desea retirar los fondos:</string>
+    <string name="bank_info_account">Seleccione la cuenta bancaria</string>
     <string name="bank__account_type">Seleccione el tipo de cuenta:</string>
+    <string name="bank__account_type_cort">Tipo de cuenta:</string>
     <string name="estado_info">Seleccione el estado:</string>
     <string name="ciudad_info">Seleccione la ciudad:</string>
 
     <string name="pais_info">Seleccione el pais:</string>
     <string name="producto_info">Seleccione el producto a recargar:</string>
+    <string name="producto_info_witdraw">Seleccione el producto a retirar:</string>
     <string name="exchange_product_sourse">Seleccione el producto origen:</string>
     <string name="exchange_product_destination">Seleccione el producto destino:</string>
 
@@ -197,6 +204,7 @@
     <string name="rechargeCOD">Numero de transferencia</string>
     <string name="transaction_concept">Concepto de la transferencia</string>
     <string name="amount_info">Ingrese el monto:</string>
+    <string name="aba">aba:</string>
     <string name="amount_info_">Ingrese el monto a recargar:</string>
     <string name="descrip_info">Ingrese la descripción:</string>
     <string name="amount_info_invalid">El monto no puede estar vacio</string>
@@ -238,6 +246,8 @@
     <string name="kyc_text_step5_2">Una vez validado usted podra hacer uso de todas las funcionalidades que le brinda la Billetera Alodiga</string>
     <string name="kyc_text_image">No ha seleccionado una imagen</string>
     <string name="kyc_text_code3">La validación de cuenta se encuentra vencida.</string>
+    <string name="kyc_text_code8_reject">La validación de cuenta se encuentra rechazada.</string>
+    <string name="kyc_text_code8_reject_info">Para Mayor información comuniquese con nuestros ejecutivos de atención al cliente</string>
     <string name="kyc_text_code3_1">Para poder disfrutar de los servicios que brinda la billetera Alodiga debe validar su cuenta nuevamente.</string>
     <string name="kyc_text_code4">Para poder disfrutar de los servicios que brinda la billetera Alodiga debe validar su cuenta.</string>
     <string name="kyc_text_code2">Su cuenta se encuentra validada.</string>
@@ -288,6 +298,14 @@
     <string name="web_services_response_31">Ha excedido el numero maximo de transacciones por producto</string>
     <string name="web_services_response_32">Ha excedido el numero maximo de transacciones por dia</string>
     <string name="web_services_response_33">Saldo insuficiente para completar la transaccion</string>
+    <string name="web_services_response_34">Ha excedido el monto límite diario</string>
+    <string name="web_services_response_35">Ha excedido el monto límite mensual</string>
+    <string name="web_services_response_36">Ha excedido la monto maximo que puede transar durante un año</string>
+    <string name="web_services_response_37">Ha excedido la el limite de transacciones días por día</string>
+    <string name="web_services_response_38">Ha excedido la cantidad maxima de transacciones permitidas en un mes</string>
+    <string name="web_services_response_39">Ha excedido la cantidad maxima de transacción en el año</string>
+    <string name="web_services_response_41">Transacción deshabilitada</string>
+
     <string name="web_services_response_50">Tarjeta ya se encuentra activa</string>
     <string name="web_services_response_50_Remittence">Token no encontrado</string>
     <string name="web_services_response_51">No se puede realizar la activación/desactivación de su tarjeta</string>
@@ -299,6 +317,7 @@
     <string name="web_services_response_96">Usuario pendiente</string>
     <string name="web_services_response_97">El usuario no existe</string>
     <string name="web_services_response_98">Error de credenciales</string>
+    <string name="web_services_response_304">No existe un banco asociado para hacer el retiro</string>
     <string name="web_services_response_99">Error interno</string>
     <string name="web_services_response_00">Bienvenido</string>
     <string name="web_services_response_101">MSISDN de destino fuera de rango</string>
@@ -310,7 +329,7 @@
     <string name="web_services_response_105">Cuenta bloqueada</string>
     <string name="web_services_response_106">Cuenta no válida</string>
     <string name="web_services_response_107">Saldo insuficiente</string>
-    <string name="web_services_response_108">Limite insuficiente</string>
+    <string name="web_services_response_108">Limite insuficiente/ Para realizar esta operación</string>
     <string name="web_services_response_109">Limite de credito agotado</string>
     <string name="web_services_response_110">Limite de crédito de la cuenta de destino agotado</string>
     <string name="web_services_response_111">Error al procesar la transacción</string>
@@ -437,6 +456,8 @@
     <string name="destinationCard_dest">Tarjeta Destino:</string>
     <string name="destination_information">Información de la cuenta destino</string>
     <string name="destination_information_">Información de tarjeta destino</string>
+    <string name="destination_information_witdraw">Información del retiro de saldo</string>
+    <string name="confirmation_eitdraw_from_card">Información del retiro de saldo desde la tarjeta</string>
     <string name="destination_information_comple">Complete la información del pago </string>
     <string name="destination_information_comple_">Complete la información de la transferencia</string>
     <string name="destination_operatión_resum">Resumen de la operación</string>
@@ -446,7 +467,7 @@
     <string name="welcome_qr_code">Utiliza este código QR para realizar los pagos de manera más fácil</string>
     <string name="welcome_secure_manual_removal">El registro del retiro se ha realizado satisfactoriamente. Una vez el proveedor de servicios lo haga efectivo sera notificado </string>
     <string name="welcome_payment_comerce">El pago se ha realizado satisfactoriamente. </string>
-    <string name="welcome_secure_manual_recharge">La recarga fue realizada satisfactoriamente. Una vez que se valide le sera notificado </string>
+    <string name="welcome_secure_manual_recharge">La recarga fue realizada satisfactoriamente. Una vez que nuestros operadores validen la operación sera informado a traves de un email o SMS </string>
     <string name="sucessfull_add_bank_message">El banco se ha agregado satisfactoriamente</string>
     <string name="ativate_card">Mediante esta funcionalidad podra activar o desactivar su tarjeta de debito prepagada</string>
     <string name="fail_code_info">La Clave de Operaciones ha sido bloqueada temporalmente.</string>

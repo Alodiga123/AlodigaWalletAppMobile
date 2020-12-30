@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.adapters.SpinAdapterTransferMoney;
@@ -39,6 +40,7 @@ public class WithdrawMyCardStep1Activity extends AppCompatActivity {
     private Button signFind, backToLoginBtn;
     private String responsetxt = "";
     private boolean serviceStatus;
+    private TextView current_balance;
     private ProgressDialogAlodiga progressDialogAlodiga;
     private WithdrawMyCardStep1Activity.FindUserTask mAuthTask = null;
     private Integer caseFind = 0;
@@ -60,7 +62,7 @@ public class WithdrawMyCardStep1Activity extends AppCompatActivity {
         setContentView(R.layout.activity_withdraw_my_card__es);
 
         txtAmountValue = findViewById(R.id.txtAmountValueRecharge);
-
+        current_balance = findViewById(R.id.current_balance);
         signFind = findViewById(R.id.signFind);
         backToLoginBtn=findViewById(R.id.backToLoginBtn);
 
@@ -72,15 +74,18 @@ public class WithdrawMyCardStep1Activity extends AppCompatActivity {
         list_product = Session.getObjUserHasProducts();
         final ObjTransferMoney[] objTransferMoney = new ObjTransferMoney[list_product.size()];
         for (int i = 0; i < list_product.size(); i++) {
-            objTransferMoney[i] = new ObjTransferMoney(list_product.get(i).getId(), list_product.get(i).getName().trim() + " " + list_product.get(i).getSymbol().trim() + " - " + list_product.get(i).getCurrentBalance(), list_product.get(i).getCurrentBalance());
+            objTransferMoney[i-i] = new ObjTransferMoney(list_product.get(i).getId(), list_product.get(i).getName().trim() + " " + list_product.get(i).getSymbol().trim() + " - " + list_product.get(i).getCurrentBalance(), list_product.get(i).getCurrentBalance());
+            if(Boolean.valueOf(list_product.get(i).getIsUsePrepaidCard())){
+                current_balance.setText(current_balance.getText()+" "+list_product.get(i).getCurrentBalance() + list_product.get(i).getSymbol() );
+            }
+
         }
-        //Llena tipos de cuenta
-        //List<ObjTransferMoney> countries = new ArrayList<ObjTransferMoney>();
-        /*objTransferMoney[0] = new ObjTransferMoney("0","Saldo Alodiga USD "+ Session.getAlodigaBalance());
-        objTransferMoney[1] = new ObjTransferMoney("1","Saldo Alocoins ALC "+ Session.getAlocoinsBalance());
-        objTransferMoney[2] = new ObjTransferMoney("2","Saldo Tarjeta Prepagada CC "+Session.getHealthCareCoinsBalance());*/
+
         SpinAdapterTransferMoney spinAdapterTransferMoney;
         spinAdapterTransferMoney = new SpinAdapterTransferMoney(this.getApplicationContext(), android.R.layout.simple_spinner_item, objTransferMoney);
+
+
+
 
 
         txtAmountValue.addTextChangedListener(new TextWatcher() {

@@ -37,7 +37,7 @@
             android:layout_gravity="center_horizontal"
             android:gravity="center"
             android:padding="10dp"
-            android:text="@string/sucessfull_add_bank_message"
+            android:text="@string/welcome_secure_manual_recharge"
             android:textColor="@color/white_greyish"
             android:textSize="15sp" />
 

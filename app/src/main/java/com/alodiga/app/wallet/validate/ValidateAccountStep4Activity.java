@@ -138,15 +138,12 @@ public class ValidateAccountStep4Activity extends AppCompatActivity {
                 if (availableBalance) {
                     HashMap<String, String> map = new HashMap<String, String>();
                     map.put("userId", Session.getUserId());
-                    map.put("estado", getedtstate_);
-                    map.put("ciudad", getedtcity_);
+                    map.put("countryId", null);
                     map.put("zipCode", getedtcode_);
-                    map.put("addres1", getedtAv_);
-                    map.put("imgDocument", Utils.encodeImage(Session.getSelectedImage()));
+                    map.put("addressLine1", getedtstate_ + "" +getedtcity_);
+                    map.put("addressLine2", getedtAv_);
+                    map.put("imgDocumentIdetification", Utils.encodeImage(Session.getSelectedImage()));
                     map.put("imgProfile", Utils.encodeImage(Session.getSelectedImageSelfie()));
-
-
-
                     response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_KYC_PROCESS, Constants.ALODIGA);
                     responseCode = response.getProperty("codigoRespuesta").toString();
                     responseMessage = response.getProperty("mensajeRespuesta").toString();

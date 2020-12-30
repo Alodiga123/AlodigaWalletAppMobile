@@ -12,6 +12,7 @@ public class ObjUserHasProduct {
     private String currentBalance;
     private String symbol;
     private String isTopUp;
+    private String isUsePrepaidCard;
     private String numberCard;
     private String numberCardEncrip;
 
@@ -38,25 +39,27 @@ public class ObjUserHasProduct {
         this.currentBalance = currentBalance;
     }
 
-    public ObjUserHasProduct(String id, String name, String currentBalance, String symbol, String isTopup) {
+    public ObjUserHasProduct(String id, String name, String currentBalance, String symbol, String isTopup,String isUsePrepaidCard_) {
         this.id = id;
         this.name = name;
         this.symbol = symbol;
         this.currentBalance = currentBalance;
         this.isTopUp= isTopup;
+        this.isUsePrepaidCard = isUsePrepaidCard_;
     }
 
-    public ObjUserHasProduct(String id, String name, String currentBalance, String symbol, String isTopup, String numberCard) {
+    public ObjUserHasProduct(String id, String name, String currentBalance, String symbol, String isTopup, String numberCard, String isUsePrepaidCard_) {
         this.id = id;
         this.name = name;
         this.symbol = symbol;
         this.currentBalance = currentBalance;
         this.isTopUp= isTopup;
         this.numberCard = numberCard;
+        this.isUsePrepaidCard = isUsePrepaidCard_;
     }
 
 
-    public ObjUserHasProduct(String id, String name, String currentBalance, String symbol, String isTopup, String numberCard, String numberCardEncrip) {
+    public ObjUserHasProduct(String id, String name, String currentBalance, String symbol, String isTopup, String numberCard, String numberCardEncrip,String isUsePrepaidCard_) {
         this.id = id;
         this.name = name;
         this.symbol = symbol;
@@ -64,6 +67,7 @@ public class ObjUserHasProduct {
         this.isTopUp= isTopup;
         this.numberCard = numberCard;
         this.numberCardEncrip= numberCardEncrip;
+        this.isUsePrepaidCard = isUsePrepaidCard_;
     }
 
     public String getName() {
@@ -128,5 +132,13 @@ public class ObjUserHasProduct {
 
     public void setNumberCardEncrip(String numberCardEncrip) {
         this.numberCardEncrip = numberCardEncrip;
+    }
+
+    public String getIsUsePrepaidCard() {
+        return isUsePrepaidCard;
+    }
+
+    public void setIsUsePrepaidCard(String isUsePrepaidCard) {
+        this.isUsePrepaidCard = isUsePrepaidCard;
     }
 }

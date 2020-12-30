@@ -78,10 +78,6 @@
                android:theme="@style/AppTheme.NoActionBar">
            </activity>
 
-        <activity
-            android:name="com.alodiga.app.wallet.manualRemoval.ManualRemovalStep1Activity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
 
            <activity
                android:name="com.alodiga.app.wallet.listTransactionExecuted.ListTransactionExecutedActivity"
@@ -92,6 +88,12 @@
                android:name="com.alodiga.app.wallet.manualRemoval.ManualRemovalStep2WelcomeActivity"
                android:theme="@style/AppTheme.NoActionBar">
            </activity>
+        <activity
+            android:name="com.alodiga.app.wallet.manualRemoval.ManualRemovalStep1Activity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
+
         <activity
             android:name="com.alodiga.app.wallet.rechargeMyCard.RechargeMyCardStep1Activity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -225,6 +227,12 @@
             android:name="com.alodiga.app.wallet.validate.ValidateAccountCode4Activity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+
+        <activity
+            android:name="com.alodiga.app.wallet.validate.ValidateAccountStep8Activity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
         <activity
             android:name="com.alodiga.app.wallet.validate.ValidateAccountCode2Activity"
             android:theme="@style/AppTheme.NoActionBar">

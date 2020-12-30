@@ -63,10 +63,9 @@ public class withdrawMyCardStep4Activity extends AppCompatActivity {
 
         btnProcessFinisTransference = findViewById(R.id.btnProcessFinisTransference);
         btnShareInformation = findViewById(R.id.btnShareInformationTransference);
-
         amountValue.setText(Session.getGetDestinationAmount() +" $");
-        conceptValue.setText(Session.getDestinationConcept());
-        txtAccountSourceValue.setText(Session.getMoneySelected().getName().split("-")[0]);
+        conceptValue.setText(getResources().getString(R.string.withdraw_card_title));
+        txtAccountSourceValue.setText(getResources().getString(R.string.Prepaid_card));
         txtDateTimeValue_3.setText(new Timestamp(new Date().getTime()).toGMTString());
         txtTransactionId_3.setText(Session.getOperationTransference());
 

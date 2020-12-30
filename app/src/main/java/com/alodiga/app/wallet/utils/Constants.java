@@ -5,13 +5,10 @@ package com.alodiga.app.wallet.utils;
  */
 
 public class Constants {
-
     //IP PUBLICA
     //public static String IPDAT="200.73.192.179";
-
     /*Data de Produccion*/
     public static final boolean CONSTANT_IS_PRODUCTION = false;
-
     //LOCAL moises
     public static String IPDAT = "192.168.3.20";
     //LOCAL QA
@@ -106,6 +103,13 @@ public class Constants {
     public static final String WEB_SERVICES_RESPONSE_CODE_TRANSACTION_MAX_NUMBER_BY_ACCOUNT = "31";
     public static final String WEB_SERVICES_RESPONSE_CODE_TRANSACTION_MAX_NUMBER_BY_CUSTOMER = "32";
     public static final String WEB_SERVICES_RESPONSE_CODE_USER_HAS_NOT_BALANCE = "33";
+    public static final String WEB_SERVICES_RESPONSE_TRANSACTION_AMOUNT_LIMIT_DIALY = "34";
+    public static final String WEB_SERVICES_RESPONSE_TRANSACTION_AMOUNT_LIMIT_MONTHLY = "35";
+    public static final String WEB_SERVICES_RESPONSE_TRANSACTION_AMOUNT_LIMIT_YEARLY = "36";
+    public static final String WEB_SERVICES_RESPONSE_TRANSACTION_QUANTITY_LIMIT_DIALY = "37";
+    public static final String WEB_SERVICES_RESPONSE_TRANSACTION_QUANTITY_LIMIT_MONTHLY = "38";
+    public static final String WEB_SERVICES_RESPONSE_TRANSACTION_QUANTITY_LIMIT_YEARLY = "39";
+    public static final String WEB_SERVICES_RESPONSE_DISABLED_TRANSACTION = "41";
     public static final String WEB_SERVICES_RESPONSE_CODE_CARD_NUMBER_EXISTS = "50";
     public static final String WEB_SERVICES_RESPONSE_CODE_NOT_ALLOWED_TO_CHANGE_STATE = "51";
     public static final String WEB_SERVICES_RESPONSE_CODE_THERE_IS_NO_SEARCH_RECORD = "52";
@@ -145,6 +149,7 @@ public class Constants {
     public static final String WEB_SERVICES_RESPONSE_CODE_INVALID_TRANSACTION_TIME = "121";
     public static final String WEB_SERVICES_RESPONSE_CODE_SOURCE_OR_DESTINATION_ACCOUNT_IS_NOT_COMPATIBLE_WITH_THIS_OPERATION_NN = "122";
     public static final String WEB_SERVICES_RESPONSE_CODE_SOURCE_OR_DESTINATION_ACCOUNT_IS_NOT_COMPATIBLE_WITH_THIS_OPERATION_SN = "123";
+
     public static final String SOURCE_OR_DESTINATION_ACCOUNT_IS_NOT_COMPATIBLE_WITH_THIS_OPERATION_NS = "124";
     public static final String WEB_SERVICES_RESPONSE_CODE_TRASACTION_BETWEEN_ACCOUNTS_NOT_ALLOWED = "125";
     public static final String WEB_SERVICES_RESPONSE_CODE_TRADE_VALIDATON_ERROR = "126";
@@ -164,6 +169,7 @@ public class Constants {
     public static final String WEB_SERVICES_RESPONSE_CODE_PIN_CHANGE_ERROR = "140";
     public static final String WEB_SERVICES_RESPONSE_CODE_ERROR_VALIDATING_THE_ITEM = "141";
     public static final String WEB_SERVICES_RESPONSE_CODE_INVALID_AMOUNT = "142";
+    public static final String WEB_SERVICES_RESPONSE_CODE_NOT_ACCOUNT_BANK_ASOCIATE = "304";
 
     //resumen remesas
     public static final String WEB_SERVICES_RESPONSE_CODE_AUTHENTICATION_FAILED = "1";
@@ -185,6 +191,7 @@ public class Constants {
     public static final String WEB_SERVICES_METHOD_NAME_SEND_SECRET_AMSWER = "setPreguntasSecretasUsuarioAplicacionMovil";
     public static final String WEB_SERVICES_METHOD_NAME_GET_BANK = "getBankByCountryApp";
     public static final String WEB_SERVICES_METHOD_NAME_GET_ACCOUNT_TYPE_BANK = "getAccountTypeBank";
+    public static final String WEB_SERVICES_METHOD_NAME_GET_ACCOUNT_BANK = "getAccountBankByUser";
     public static final String WEB_SERVICES_METHOD_NAME_GET_COUNTRIES = "getCountriesHasBank";
     public static final String WEB_SERVICES_METHOD_NAME_GET_COUNTRIES_ = "getCountries";
     public static final String WEB_SERVICES_METHOD_NAME_GET_LANGUAJE_TOPUP = "getLanguage";
@@ -198,7 +205,7 @@ public class Constants {
     public static final String WEB_SERVICES_METHOD_CHANGE_PASSWORD = "cambiarCredencialAplicacionMovil";
     public static final String WEB_SERVICES_METHOD_CHANGE_PASSWORD_FORGOT = "cambiarCredencialAplicacionMovilEmailOrPhone";
     public static final String WEB_SERVICES_METHOD_KYC_COLLECTION = "getValidateCollection";
-    public static final String WEB_SERVICES_METHOD_KYC_PROCESS = "saveCumplimient";
+    public static final String WEB_SERVICES_METHOD_KYC_PROCESS = "saveAffiliationRequestUserWallet";
     public static final String WEB_SERVICES_METHOD_ACTIVE_PROCESS = "activateCard";
     public static final String WEB_SERVICES_METHOD_DEACTIVE_PROCESS = "desactivateCard";
     public static final String WEB_SERVICES_METHOD_ACTIVE_DEACTIVE_STATUS = "checkStatusCard";
@@ -209,7 +216,7 @@ public class Constants {
     public static final String WEB_SERVICES_METHOD_LOGIN = "loginWS";
     public static final String WEB_SERVICES_METHOD_COUNTRIES = "getCountries";
     public static final String WEB_SERVICES_METHOD_PAYMENTBYCONTRY = "getPaymentNetworkByCountryId";
-        public static final String WEB_SERVICES_METHOD_REMETTENCE_SUMARY = "getRemettenceSummary";
+    public static final String WEB_SERVICES_METHOD_REMETTENCE_SUMARY = "getRemettenceSummary";
     public static final String WEB_SERVICES_METHOD_GETPRODUCTSREMETTENCEBYUSER = "getProductsRemettenceByUserId";
     public static final String WEB_SERVICES_METHOD_LOADDELIVERYFORMBYPAYMENTNETWORK = "getDeliveryFormByPamentNetwork";
     public static final String WEB_SERVICES_METHOD_GETSTATESBYCOUNTRY = "getStatesByCountry";
@@ -221,7 +228,6 @@ public class Constants {
     public static final String WEB_SERVICES_METHOD_GET_CREDIT_CARD_TYPE = "getCreditCardType";
     public static final String WEB_SERVICES_METHOD_CHANGE_STATUS_PAYMENT_INFO = "ChangeStatusPaymentInfo";
     public static final String WEB_SERVICES_METHOD_SAVE_RECHARGE_AFINITAS = "saveRechargeAfinitas";
-
     public static final String WEB_SERVICES_METHOD_CREDENTIALS_WS_INAVAILABLE="143";
     public static final String WEB_SERVICES_METHOD_CALL_ISSUER="150";
     public static final String WEB_SERVICES_METHOD_NOT_AUTHORIZED="151";
@@ -322,9 +328,6 @@ public class Constants {
     public static final String CONSTANT_URL_QA_ALODIGA = "http://" + IPDAT + ":8080/AlodigaWallet/APIAlodigaWalletService";
     //public static final String CONSTANT_URL_QA_ALODIGA_AW = "http://ec2-35-164-98-136.us-west-2.compute.amazonaws.com:8080/AlodigaWallet/APIAlodigaWalletService?wsdl";
 
-
-
-
     /**
      * Alodiga WAllet
      */
@@ -342,16 +345,13 @@ public class Constants {
    // public static final String CONSTANT_URL_QA_REGISTRO_UNIFICADO_AW = "http://ec2-52-42-63-64.us-west-2.compute.amazonaws.com:8080/RegistroUnificado/APIRegistroUnificadoService?wsdl";
     //Desarrollo
     public static final String CONSTANT_URL_REMITTENCE_MOBILE_AW ="http://ec2-35-162-209-241.us-west-2.compute.amazonaws.com:8080/WSRemittenceMobileService/WSRemittenceMobile?wsdl";
-    public static final String CONSTANT_URL_QA_ALODIGA_AW ="http://44.235.115.116:8080/AlodigaWallet/APIAlodigaWalletService?wsdl";
-    public static final String CONSTANT_URL_QA_REGISTRO_UNIFICADO_AW = "http://44.235.115.116:8080/RegistroUnificado/APIRegistroUnificadoService?wsdl";
+    public static final String CONSTANT_URL_QA_ALODIGA_AW ="http://192.168.3.20:8080/AlodigaWallet/APIAlodigaWalletService?wsdl";
+    public static final String CONSTANT_URL_QA_REGISTRO_UNIFICADO_AW = "http://192.168.3.20:8080/RegistroUnificado/APIRegistroUnificadoService?wsdl";
 
     public static final String CONSTANT_WSREMITTENCE= "WSRemittence";
     public static final String CONSTANT_WSPAYMENTNETWORK= "WSPaymentNetworkMethod";
     public static final String CONSTANT_WSREMITTENCESERVICES= "WSRemittenceServices";
     public static final String CONSTANT_WSREMITTENCEMOBILE= "WSRemittenceMobile";
-
-
-
 
     public static final String MD5 ="MD5";
     public static final String INVALID_KEY_LONG="Longitud de clave invalida";
@@ -383,8 +383,6 @@ public class Constants {
     public final static String ACTIVE_STATUS_ACTIVE = "01";
     public final static String ACTIVE_STATUS_DEACTIVE = "24";
     public final static String REMITTENCE_ID = "0";
-
-
 
     public final static String USUARIO = "alodiga";
     public final static String PASSWORD = "d6f80e647631bb4522392aff53370502";

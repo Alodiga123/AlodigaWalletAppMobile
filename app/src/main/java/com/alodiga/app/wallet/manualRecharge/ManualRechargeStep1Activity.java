@@ -372,10 +372,14 @@ public class ManualRechargeStep1Activity extends AppCompatActivity {
                 HashMap<String, String> map = new HashMap<String, String>();
                 map.put("bankId", getbank.getId());
                 map.put("emailUser", Session.getEmail());
-                map.put("referenceNumberOperation", getNumberOperation);
+                map.put("bankOperationNumber", getNumberOperation);
                 map.put("amountRecharge", getAmountRecharge);
                 map.put("productId", getproduct.getId());
                 map.put("conceptTransaction", getTrans);
+                map.put("productId", getproduct.getId());
+                map.put("documentTypeId", "8");
+                map.put("originApplicationId", "1");
+
 
                 /*
                  @WebParam(name = "bankId") Long bankId,

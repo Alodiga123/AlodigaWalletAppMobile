@@ -10,17 +10,23 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
 import com.alodiga.app.R;
+import com.alodiga.app.wallet.adapters.SpinAdapterAccountBank;
 import com.alodiga.app.wallet.adapters.SpinAdapterBank;
 import com.alodiga.app.wallet.adapters.SpinAdapterPais;
 import com.alodiga.app.wallet.adapters.SpinAdapterProduct;
+import com.alodiga.app.wallet.bank.AddBankActivity;
 import com.alodiga.app.wallet.main.MainActivity;
 import com.alodiga.app.wallet.manualRecharge.ManualRechargeStep1Activity;
+import com.alodiga.app.wallet.model.ObjAccountBank;
+import com.alodiga.app.wallet.model.ObjAccountBankComplex;
 import com.alodiga.app.wallet.model.ObjGenericObject;
 import com.alodiga.app.wallet.model.ObjTransferMoney;
 import com.alodiga.app.wallet.utils.Constants;
@@ -37,169 +43,112 @@ import java.util.HashMap;
 
 public class ManualRemovalStep1Activity extends AppCompatActivity {
     static SoapObject response;
-    static ObjGenericObject[] listSpinner_pais = new ObjGenericObject[0];
+
     static ObjTransferMoney[] listSpinner_producto = new ObjTransferMoney[0];
-    static ObjGenericObject[] listSpinner_banco = new ObjGenericObject[0];
+    static ObjAccountBankComplex[] listSpinner_accountBank = new ObjAccountBankComplex[0];
     static ProgressDialogAlodiga progressDialogAlodiga;
     private static FragmentManager fragmentManager;
     private static String stringResponse = "";
     String datosRespuesta = "";
     UserRemovalTask mAuthTask;
-    ObjGenericObject getbank;
+    ObjAccountBankComplex getbankAccount;
     ObjTransferMoney getproduct;
     String getaccountBank, getDescrip, getAmountRecharge;
-    Spinner spinner_pais, spinnerbank, spinnerproducto;
-    private EditText edtAmount, edtCOD, edtdescript;
+    private LinearLayout infoAccountLayout;
+    Spinner  spinnerAccountBank, spinnerproducto;
+    private EditText edtAmount, edtdescript;
+    private TextView accountNumberLabel,accountNumberLabelValue,accountDescriptionLabelValue,accountDescriptionLabel,accountAbaCode,accountAbaCodeValue;
     private Button signFind, backToLoginBtn;
     private String responsetxt = "";
-    private FloatingActionButton floatingAcctionButton;
     private boolean serviceStatus;
-
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.manual_removal_layout);
-
-        spinner_pais = findViewById(R.id.spinner_pais);
-        spinnerbank = findViewById(R.id.spinnerbank);
+        spinnerAccountBank = findViewById(R.id.spinnerAccountBank);
         spinnerproducto = findViewById(R.id.spinnerproducto);
         edtAmount = findViewById(R.id.edtAmount);
-        floatingAcctionButton = findViewById(R.id.floating_action_button);
         signFind = findViewById(R.id.signFind);
         backToLoginBtn = findViewById(R.id.backToLoginBtn);
-        edtCOD = findViewById(R.id.edtCOD);
         edtdescript = findViewById(R.id.edtdescript);
+        infoAccountLayout = findViewById(R.id.infoAccountLayout);
+        accountNumberLabelValue = findViewById(R.id.accountNumberLabelValue);
+        accountDescriptionLabelValue = findViewById(R.id.accountDescriptionLabelValue);
+        accountAbaCodeValue = findViewById(R.id.accountAbaCodeValue);
         //Descomentar
-        Session.setUserId("379");
-        Session.setEmail("kerwin2821@gmail.com");
-
-        spinnerbank.setEnabled(false);
-        spinnerproducto.setEnabled(false);
-
         progressDialogAlodiga = new ProgressDialogAlodiga(this, getString(R.string.loading));
         progressDialogAlodiga.show();
-
-        //Spinner Pais
+        //Spinner Cuenta Bancaria
         new Thread(new Runnable() {
             public void run() {
                 try {
+                    progressDialogAlodiga.show();
                     String responseCode = null;
                     WebService webService = new WebService();
                     HashMap<String, String> map = new HashMap<String, String>();
                     map.put("userId", Session.getUserId());
-                    response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_NAME_GET_COUNTRIES, Constants.ALODIGA);
+                    response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_NAME_GET_ACCOUNT_BANK, Constants.ALODIGA);
                     stringResponse = response.toString();
                     responseCode = response.getProperty("codigoRespuesta").toString();
                     datosRespuesta = response.getProperty("mensajeRespuesta").toString();
                     serviceAnswer(responseCode);
-
                     if (serviceStatus) {
-
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                listSpinner_pais = getListGeneric(response);
-                                SpinAdapterPais spinAdapterPais;
-                                spinAdapterPais = new SpinAdapterPais(getApplicationContext(), android.R.layout.simple_spinner_item, listSpinner_pais);
-                                spinner_pais.setAdapter(spinAdapterPais);
-
+                                listSpinner_accountBank = getListAccountBank(response);
+                                SpinAdapterAccountBank spinAdapterAccountBank;
+                                spinAdapterAccountBank = new SpinAdapterAccountBank(getApplicationContext(), android.R.layout.simple_spinner_item, listSpinner_accountBank);
+                                spinnerAccountBank.setAdapter(spinAdapterAccountBank);
                             }
                         });
                     } else {
 
+                         if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_NOT_ACCOUNT_BANK_ASOCIATE)) {
+
+                             Bundle bundle = new Bundle();
+                             bundle.putString("value", responsetxt);
+                             startActivity(new Intent(getApplicationContext(), AddBankActivity.class).putExtras(bundle));
+                             finish();
+                         }
+
                         new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                                 responsetxt);
                     }
-
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
             }
         }).start();
 
 
-        //Spinner Bank
-        spinner_pais.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                spinnerbank.setEnabled(true);
-                spinnerbank.setAdapter(null);
-                spinnerproducto.setAdapter(null);
-
-                final ObjGenericObject pais = (ObjGenericObject) spinner_pais.getSelectedItem();
-                //Toast.makeText(getApplicationContext(),"id" + pais.getId() ,Toast.LENGTH_SHORT).show();
-
-                new Thread(new Runnable() {
-                    public void run() {
-                        try {
-
-                            String responseCode = null;
-                            WebService webService = new WebService();
-                            HashMap<String, String> map = new HashMap<String, String>();
-                            map.put("countryId", pais.getId());
-                            response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_NAME_GET_BANK, Constants.ALODIGA);
-                            stringResponse = response.toString();
-                            responseCode = response.getProperty("codigoRespuesta").toString();
-                            datosRespuesta = response.getProperty("mensajeRespuesta").toString();
-                            serviceAnswer(responseCode);
-
-                            if (serviceStatus) {
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        listSpinner_banco = getListGeneric(response);
-                                        SpinAdapterBank spinAdapterBank;
-                                        spinAdapterBank = new SpinAdapterBank(getApplicationContext(), android.R.layout.simple_spinner_item, listSpinner_banco);
-                                        spinnerbank.setAdapter(spinAdapterBank);
-                                    }
-                                });
-
-                            } else {
-                                new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
-                                        responsetxt);
-                            }
-
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-
-                    }
-                }).start();
-            }
-
-            public void onNothingSelected(AdapterView<?> adapterView) {
-                return;
-            }
-        });
-
         //Spinner Producto
-        spinnerbank.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spinnerAccountBank.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
+                progressDialogAlodiga.show();
+                infoAccountLayout.setVisibility(View.VISIBLE);
                 spinnerproducto.setEnabled(true);
-                final ObjGenericObject bank = (ObjGenericObject) spinnerbank.getSelectedItem();
+                final ObjAccountBankComplex accountBank = (ObjAccountBankComplex) spinnerAccountBank.getSelectedItem();
+                accountNumberLabelValue.setText(accountBank.getAccountNumber());
+                accountDescriptionLabelValue.setText(accountBank.getDescription());
+                accountAbaCodeValue.setText(accountBank.getAbaCode());
                 //Toast.makeText(getApplicationContext(),"id" + bank.getId() ,Toast.LENGTH_SHORT).show();
-
-                new Thread(new Runnable() {
+              new Thread(new Runnable() {
                     public void run() {
                         try {
-
                             String responseCode = null;
                             WebService webService = new WebService();
                             HashMap<String, String> map = new HashMap<String, String>();
-                            map.put("bankId", bank.getId().trim());
+                            map.put("bankId", accountBank.getBankId());
                             map.put("userId", Session.getUserId().trim());
                             response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_NAME_GET_PRODUCT, Constants.ALODIGA);
                             stringResponse = response.toString();
                             responseCode = response.getProperty("codigoRespuesta").toString();
                             datosRespuesta = response.getProperty("mensajeRespuesta").toString();
                             serviceAnswer(responseCode);
-
                             if (serviceStatus) {
-
-
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
@@ -213,14 +162,13 @@ public class ManualRemovalStep1Activity extends AppCompatActivity {
                                 new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                                         responsetxt);
                             }
-
-
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
 
                     }
                 }).start();
+                progressDialogAlodiga.dismiss();
             }
 
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -228,7 +176,7 @@ public class ManualRemovalStep1Activity extends AppCompatActivity {
             }
         });
 
-        progressDialogAlodiga.dismiss();
+
 
         //Seteo de decimales al campo de monto
         edtAmount.addTextChangedListener(new TextWatcher() {
@@ -255,38 +203,18 @@ public class ManualRemovalStep1Activity extends AppCompatActivity {
                     edtAmount.setText(cashAmountBuilder.toString());
                     // keeps the cursor always to the right
                     Selection.setSelection(edtAmount.getText(), cashAmountBuilder.toString().length());
-
                 }
-
             }
         });
 
-        floatingAcctionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent show;
-                show = new Intent(getApplicationContext(), ListBankAfiliatedActivity.class);
-                startActivity(show);
-                finish();
-            }
-        });
 
         signFind.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
-                String getcuenta = edtCOD.getText().toString();
                 String getmonto = edtAmount.getText().toString();
                 String getdescrip = edtdescript.getText().toString();
                 getproduct = (ObjTransferMoney) spinnerproducto.getSelectedItem();
 
-
-                if (getcuenta.equals("") || getcuenta.length() == 0) {
-                    new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
-                            getString(R.string.recharge_id_invalid));
-                /*} /*else if (getcuenta.length() != 20) {
-                        new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
-                                getString(R.string.recharge_id_invalid_long));*/
-                } else if (getmonto.equals("") || getmonto.length() == 0) {
+                if (getmonto.equals("") || getmonto.length() == 0) {
                     new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                             getString(R.string.amount_info_invalid));
                 } else if (Float.parseFloat(getproduct.getCurrency().trim()) < Float.parseFloat(getmonto.trim())) {
@@ -298,13 +226,10 @@ public class ManualRemovalStep1Activity extends AppCompatActivity {
                 } else {
                     RemovalTask();
                 }
-
             }
         });
-
         backToLoginBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
                 Intent show;
                 show = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(show);
@@ -330,12 +255,30 @@ public class ManualRemovalStep1Activity extends AppCompatActivity {
             SoapObject obj = (SoapObject) response.getProperty(i);
             String propiedad = response.getProperty(i).toString();
             ObjGenericObject object = new ObjGenericObject(obj.getProperty("name").toString(), obj.getProperty("id").toString());
-
             obj2[i - 3] = object;
         }
 
         return obj2;
     }
+
+
+    protected ObjAccountBankComplex[] getListAccountBank(SoapObject response) {
+        ObjAccountBankComplex[] obj2 = new ObjAccountBankComplex[response.getPropertyCount() - 3];
+        for (int i = 3; i < response.getPropertyCount(); i++) {
+            SoapObject obj = (SoapObject) response.getProperty(i);
+            String propiedad = response.getProperty(i).toString();
+            String id = obj.getProperty("id").toString();
+            String accountNumber = obj.getProperty("accountNumber").toString();;
+            String bankName = ((SoapObject)obj.getProperty("bankId")).getProperty("name").toString();
+            String description = ((SoapObject) obj.getProperty("accountTypeBankId")).getProperty("description").toString();
+            String abaCode = ((SoapObject) obj.getProperty("bankId")).getProperty("abaCode").toString();
+            String bankId = ((SoapObject) obj.getProperty("bankId")).getProperty("id").toString();
+            ObjAccountBankComplex object = new ObjAccountBankComplex(id, bankName,accountNumber,description,abaCode,bankId);
+            obj2[i - 3] = object;
+        }
+        return obj2;
+    }
+
 
     protected ObjTransferMoney[] getListProduct(SoapObject response) {
 
@@ -373,7 +316,8 @@ public class ManualRemovalStep1Activity extends AppCompatActivity {
         } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CONTRASENIA_EXPIRADA)) {
             responsetxt = getString(R.string.web_services_response_03);
             serviceStatus = false;
-        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_IP_NO_CONFIANZA)) {
+
+        }  else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_IP_NO_CONFIANZA)) {
             responsetxt = getString(R.string.web_services_response_04);
             serviceStatus = false;
         } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CREDENCIALES_INVALIDAS)) {
@@ -400,6 +344,46 @@ public class ManualRemovalStep1Activity extends AppCompatActivity {
         } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_CREDENCIALES)) {
             responsetxt = getString(R.string.web_services_response_98);
             serviceStatus = false;
+        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_NOT_ACCOUNT_BANK_ASOCIATE)) {
+            responsetxt = getString(R.string.web_services_response_304);
+            serviceStatus = false;
+//////////////////////////////7transaccional Adicional change (//////////////////////////////////////////////////////////////////////////
+        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_TRANSACTION_AMOUNT_LIMIT_DIALY)) {
+            responsetxt = getString(R.string.web_services_response_34);
+            serviceStatus = false;
+        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_TRANSACTION_QUANTITY_LIMIT_DIALY)) {
+            responsetxt = getString(R.string.web_services_response_37);
+            serviceStatus = false;
+        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_TRANSACTION_AMOUNT_LIMIT_MONTHLY)) {
+            serviceStatus = false;
+            responsetxt = getString(R.string.web_services_response_35);
+        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_TRANSACTION_AMOUNT_LIMIT_YEARLY)) {
+            responsetxt = getString(R.string.web_services_response_36);
+            serviceStatus = false;
+        }  else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_TRANSACTION_QUANTITY_LIMIT_MONTHLY)) {
+            responsetxt = getString(R.string.web_services_response_38);
+            serviceStatus = false;
+        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_TRANSACTION_QUANTITY_LIMIT_YEARLY)) {
+            responsetxt = getString(R.string.web_services_response_39);
+            serviceStatus = false;
+        } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_DISABLED_TRANSACTION)) {
+                responsetxt = getString(R.string.web_services_response_41);
+                serviceStatus = false;
+//////////////////////////////7transaccional(//////////////////////////////////////////////////////////////////////////
+
+            } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_DISABLED_TRANSACTION)) {
+
+            serviceStatus = false;
+
+
+
+
+
+
+
+
+
+
         } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_INTERNO)) {
             responsetxt = getString(R.string.web_services_response_99);
             serviceStatus = false;
@@ -416,9 +400,9 @@ public class ManualRemovalStep1Activity extends AppCompatActivity {
             Utils utils = new Utils();
             SoapObject response;
 
-            getbank = (ObjGenericObject) spinnerbank.getSelectedItem();
+            getbankAccount = (ObjAccountBankComplex) spinnerAccountBank.getSelectedItem();
             getproduct = (ObjTransferMoney) spinnerproducto.getSelectedItem();
-            getaccountBank = edtCOD.getText().toString();
+
             getDescrip = edtdescript.getText().toString();
             getAmountRecharge = edtAmount.getText().toString();
 
@@ -427,14 +411,14 @@ public class ManualRemovalStep1Activity extends AppCompatActivity {
                 String responseMessage = "";
 
                 HashMap<String, String> map = new HashMap<String, String>();
-                map.put("bankId", getbank.getId());
+                map.put("bankId", getbankAccount.getId());
                 map.put("emailUser", Session.getEmail());
                 map.put("accountBank", getaccountBank);
                 map.put("amountWithdrawal", getAmountRecharge);
                 map.put("productId", getproduct.getId());
                 map.put("conceptTransaction", getDescrip);
-
-
+                map.put("documentTypeId", "8");
+                map.put("originApplicationId", "1");
                 response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_NAME_REMOVAL_MANUAL, Constants.ALODIGA);
                 responseCode = response.getProperty("codigoRespuesta").toString();
                 responseMessage = response.getProperty("mensajeRespuesta").toString();
@@ -514,9 +498,7 @@ public class ManualRemovalStep1Activity extends AppCompatActivity {
                 return false;
             }
             return serviceStatus;
-
         }
-
         @Override
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;

@@ -37,7 +37,7 @@ import java.util.regex.Pattern;
 public class TransferenceCardToCardStep1Activity extends AppCompatActivity {
 
     private Spinner spinnerIdentification, spinnerTypeFind;
-    private EditText userEmailIdTransfer, mobileNumberTransfer, getPhoneOrEmail, editTextTelephone;
+    private EditText userEmailIdTransfer;
     private View viewQ;
     private Button signFind, backToLoginBtn;
     private String responsetxt = "";
@@ -73,6 +73,7 @@ public class TransferenceCardToCardStep1Activity extends AppCompatActivity {
 
         card1.setText(Session.getTranferenceCardToCardEncrip());
 
+
         /*String[] optionsID = {"Alocoin","Saldo Alodiga", "HealthCareCoin"};
         String[] optionsBank = {" ","Provincial","Mercantil", "Banesco", "Bicentenario", "Banco de Venezuela", "Banco del Tesoro", "Banco Caroní","Banco Sofitasa", "Banpro", "Banco Fondo Común", "Banfoandes", "Banco Occidental de Descuento", "Banco Venezolano de Crédito", "Banco Exterior", "Banco Plaza", "Citibank", "Banplus"};
         String[] optionsTelephone = {" ","0416", "0426", "0412","0414", "0424"};*/
@@ -82,8 +83,6 @@ public class TransferenceCardToCardStep1Activity extends AppCompatActivity {
 
         ObjHowToTranssfer[] objHowToTranssfers = new ObjHowToTranssfer[3];
         objHowToTranssfers[0] = new ObjHowToTranssfer("0", getString(R.string.forEmail));
-        objHowToTranssfers[1] = new ObjHowToTranssfer("1", getString(R.string.forPhone));
-        objHowToTranssfers[2] = new ObjHowToTranssfer("2", getString(R.string.forQr));
         SpinAdapterHowToTransfer spinAdapterHowToTransfer = new SpinAdapterHowToTransfer(this.getApplicationContext(), android.R.layout.simple_spinner_item, objHowToTranssfers);
         spinnerTypeFind.setAdapter(spinAdapterHowToTransfer);
 
@@ -99,22 +98,8 @@ public class TransferenceCardToCardStep1Activity extends AppCompatActivity {
                     viewQ.setVisibility(View.VISIBLE);
                     userEmailIdTransfer.setVisibility(View.VISIBLE);
                     signFind.setText(getString(R.string.search));
-                    userEmailIdTransfer.setText("");
+                    userEmailIdTransfer.setText("mariaguaalupe@gmail.com");
                     caseFind = 0;
-                } else if (objHowToTranssfer.getId().equals("1")) {
-                    userEmailIdTransfer.setInputType(InputType.TYPE_CLASS_NUMBER);
-                    userEmailIdTransfer.setHint(getString(R.string.mobileNumber));
-                    userEmailIdTransfer.setVisibility(View.VISIBLE);
-                    userEmailIdTransfer.setText("");
-                    caseFind = 1;
-                    viewQ.setVisibility(View.VISIBLE);
-                    signFind.setText(R.string.search);
-                } else if (objHowToTranssfer.getId().equals("2")) {
-                    caseFind = 2;
-                    userEmailIdTransfer.setText("");
-                    userEmailIdTransfer.setVisibility(View.INVISIBLE);
-                    viewQ.setVisibility(View.INVISIBLE);
-                    signFind.setText(getString(R.string.scanQr));
                 }
             }
 
@@ -146,18 +131,13 @@ public class TransferenceCardToCardStep1Activity extends AppCompatActivity {
                                         getString(R.string.app_operation_not_permited));
                                 return;
                             }
-                        } else if (caseFind.equals(1)) {
-                            if (userEmailIdTransfer.getText().toString().trim().equals(Session.getPhoneNumber())) {
-                                new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
-                                        getString(R.string.app_operation_not_permited));
-                                return;
-                            }
 
                         }
                         mAuthTask = new FindUserTask(userEmailIdTransfer.getText().toString());
                         mAuthTask.execute((Void) null);
                     }
                 }
+
             }
         });
 
@@ -168,6 +148,7 @@ public class TransferenceCardToCardStep1Activity extends AppCompatActivity {
                 finish();
             }
         });
+
     }
 
     @Override
@@ -191,13 +172,8 @@ public class TransferenceCardToCardStep1Activity extends AppCompatActivity {
         }
         // Check if email id valid or not
         else if ((caseFind == 0) && (!m.find())) {
-
             new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
                     getString(R.string.email_invalid));
-            return false;
-        } else if ((caseFind == 1) && (userEmailIdTransfer.length() <= 11)) {
-            new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
-                    getString(R.string.invalid_phone));
             return false;
         }
         return true;
@@ -227,28 +203,12 @@ public class TransferenceCardToCardStep1Activity extends AppCompatActivity {
                 String responseCode;
                 String responseMessage = "";
                 HashMap<String, String> map = new HashMap<String, String>();
-                map.put("usuarioApi", Constants.WEB_SERVICES_USUARIOWS);
-                map.put("passwordApi", Constants.WEB_SERVICES_PASSWORDWS);
                 String methodName = "";
-                switch (caseFind) {
+                map.put("email", phoneOrEmail);
+                methodName = "getCardByEmail";
 
-                    case 0:
-                        map.put("email", phoneOrEmail);
-                        methodName = "getUsuarioporemail";
-                        break;
-
-                    case 1:
-                        map.put("movil", phoneOrEmail);
-                        methodName = "getUsuariopormovil";
-                        break;
-
-                    default:
-
-                        break;
-                }
-                response = WebService.invokeGetAutoConfigString(map, methodName, Constants.REGISTRO_UNIFICADO);
+                response = WebService.invokeGetAutoConfigString(map, methodName, Constants.ALODIGA);
                 responseCode = response.getProperty("codigoRespuesta").toString();
-                //Activar las preguntas de seguridad
 
                 if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
                     String res = response.getProperty("datosRespuesta").toString();

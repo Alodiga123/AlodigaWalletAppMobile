@@ -33,7 +33,8 @@ public class RechargeMyCardStep2codeActivity extends AppCompatActivity {
     private EditText edtMobileCode;
     private String responsetxt = "";
     private boolean serviceStatus;
-    private ProgressDialogAlodiga progressDialogAlodiga;
+
+    static ProgressDialogAlodiga progressDialogAlodiga;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +44,7 @@ public class RechargeMyCardStep2codeActivity extends AppCompatActivity {
         backToLoginBtn = findViewById(R.id.backToLoginBtn);
         edtMobileCode = findViewById(R.id.edtMobileCode);
         tvintentos = findViewById(R.id.tvintentos);
-        progressDialogAlodiga = new ProgressDialogAlodiga(getApplicationContext(), getString(R.string.loading));
+        progressDialogAlodiga = new ProgressDialogAlodiga(this, getString(R.string.loading));
 
 
         step1_next_button.setOnClickListener(new View.OnClickListener() {
@@ -59,7 +60,7 @@ public class RechargeMyCardStep2codeActivity extends AppCompatActivity {
                     finish();
                     startActivity(i);
                 } else {
-                    progressDialogAlodiga = new ProgressDialogAlodiga(getApplicationContext(), getString(R.string.loading));
+                   // progressDialogAlodiga = new ProgressDialogAlodiga(getApplicationContext(), getString(R.string.loading));
                     mAuthTask = new UserGetCodeTask(Utils.aloDesencript(getCode));
                     mAuthTask.execute((Void) null);
                 }
@@ -73,7 +74,6 @@ public class RechargeMyCardStep2codeActivity extends AppCompatActivity {
                 Intent i = new Intent(RechargeMyCardStep2codeActivity.this, RechargeMyCardStep1Activity.class);
                 finish();
                 startActivity(i);
-
             }
         });
     }
@@ -185,7 +185,7 @@ public class RechargeMyCardStep2codeActivity extends AppCompatActivity {
 
         @Override
         protected void onPreExecute() {
-
+            progressDialogAlodiga.show();
         }
 
         @Override

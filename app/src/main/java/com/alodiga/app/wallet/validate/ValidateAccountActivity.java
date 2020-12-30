@@ -63,7 +63,7 @@ public class ValidateAccountActivity extends AppCompatActivity {
     private View View;
     SoapObject response;
     static ProgressDialogAlodiga progressDialogAlodiga;
-    ProcessTask mAuthTask;
+
     private String responsetxt = "";
     private boolean serviceStatus;
 
@@ -73,9 +73,6 @@ public class ValidateAccountActivity extends AppCompatActivity {
         setContentView(R.layout.kyc_layout);
         take_photogaraphy= findViewById(R.id.take_photogaraphy);
         attach= findViewById(R.id.attach);
-
-        entrar();
-
         take_photogaraphy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -180,172 +177,8 @@ public class ValidateAccountActivity extends AppCompatActivity {
         }
     }
 
-    public void entrar() {
-
-        progressDialogAlodiga = new ProgressDialogAlodiga(this, getString(R.string.loading));
-        progressDialogAlodiga.show();
-        mAuthTask = new ProcessTask();
-        mAuthTask.execute((Void) null);
-
-    }
-    public class ProcessTask extends AsyncTask<Void, Void, Boolean> {
-
-        @Override
-        protected Boolean doInBackground(Void... params) {
-
-            WebService webService = new WebService();
-            Utils utils = new Utils();
-
-            try {
-
-                boolean availableBalance = true;
-                String responseCode;
-                String responseMessage = "";
-                final String idioma = Locale.getDefault().getLanguage();
-
-                if (availableBalance) {
-                    HashMap<String, String> map = new HashMap<String, String>();
-                    map.put("userId", Session.getUserId());
-                    map.put("language",idioma);
 
 
-
-                    response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_KYC_COLLECTION, Constants.ALODIGA);
-                    responseCode = response.getProperty("codigoRespuesta").toString();
-                    responseMessage = response.getProperty("mensajeRespuesta").toString();
-
-                    if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
-
-                        serviceStatus = true;
-                    } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_DATOS_INVALIDOS)) {
-                        responsetxt = getString(R.string.web_services_response_01);
-                        serviceStatus = false;
-
-                    } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CONTRASENIA_EXPIRADA)) {
-                        responsetxt = getString(R.string.web_services_response_03);
-                        serviceStatus = false;
-                    } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_IP_NO_CONFIANZA)) {
-                        responsetxt = getString(R.string.web_services_response_04);
-                        serviceStatus = false;
-                    } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CREDENCIALES_INVALIDAS)) {
-                        responsetxt = getString(R.string.web_services_response_05);
-                        serviceStatus = false;
-                    } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_BLOQUEADO)) {
-                        responsetxt = getString(R.string.web_services_response_06);
-                        serviceStatus = false;
-                    } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_NUMERO_TELEFONO_YA_EXISTE)) {
-                        responsetxt = getString(R.string.web_services_response_08);
-                        serviceStatus = false;
-                    } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_DATOS_NULOS)) {
-                        responsetxt = getString(R.string.web_services_response_11);
-                        serviceStatus = false;
-                    } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_PRIMER_INGRESO)) {
-                        responsetxt = getString(R.string.web_services_response_12);
-                        serviceStatus = false;
-                    } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_TRANSACTION_AMOUNT_LIMIT)) {
-                        responsetxt = getString(R.string.web_services_response_30);
-                        serviceStatus = false;
-                    } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_TRANSACTION_MAX_NUMBER_BY_ACCOUNT)) {
-                        responsetxt = getString(R.string.web_services_response_31);
-                        serviceStatus = false;
-
-                    } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_TRANSACTION_MAX_NUMBER_BY_CUSTOMER)) {
-                        responsetxt = getString(R.string.web_services_response_32);
-                        serviceStatus = false;
-
-                    } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USER_HAS_NOT_BALANCE)) {
-                        responsetxt = getString(R.string.web_services_response_33);
-                        serviceStatus = false;
-
-                    } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_SOSPECHOSO)) {
-                        responsetxt = getString(R.string.web_services_response_95);
-                        serviceStatus = false;
-
-                    } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_PENDIENTE)) {
-                        responsetxt = getString(R.string.web_services_response_96);
-                        serviceStatus = false;
-
-                    } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_NO_EXISTE)) {
-                        responsetxt = getString(R.string.web_services_response_97);
-                        serviceStatus = false;
-                    } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_CREDENCIALES)) {
-                        responsetxt = getString(R.string.web_services_response_98);
-                        serviceStatus = false;
-                    } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_INTERNO)) {
-                        responsetxt = getString(R.string.web_services_response_99);
-                        serviceStatus = false;
-                    } else {
-                        responsetxt = responseMessage;
-                        serviceStatus = false;
-                    }
-                } else {
-                    responsetxt = getString(R.string.insuficient_balance);
-                    serviceStatus = false;
-                }
-            } catch (IllegalArgumentException e) {
-                responsetxt = getString(R.string.web_services_response_99);
-                serviceStatus = false;
-                e.printStackTrace();
-                System.err.println(e);
-                return false;
-            } catch (Exception e) {
-                responsetxt = getString(R.string.web_services_response_99);
-                serviceStatus = false;
-                e.printStackTrace();
-                System.err.println(e);
-                return false;
-            }
-            return serviceStatus;
-
-        }
-
-        @Override
-        protected void onPreExecute() {
-
-        }
-
-        @Override
-        protected void onPostExecute(final Boolean success) {
-            mAuthTask = null;
-            if (success) {
-
-                LinearLayout ll=(LinearLayout) findViewById(R.id.layout);
-                int prevTextViewId=0;
-                    for (int i = 3; i < response.getPropertyCount(); i++) {
-                        SoapObject obj = (SoapObject) response.getProperty(i);
-                        String propiedad = response.getProperty(i).toString();
-                        //ObjGenericObject object = new ObjGenericObject(obj.getProperty("name").toString(), obj.getProperty("status").toString());
-                        //obj2[i-3] = object;
-
-                        final TextView textView = new TextView(getApplicationContext());
-                        int curTextViewId = prevTextViewId + 1;
-                        textView.setText("- "+ obj.getProperty("name").toString());
-
-                        textView.setId(curTextViewId);
-                        textView.setTextSize(16);
-                        textView.setTypeface(textView.getTypeface(), Typeface.NORMAL);
-                        //textView.setPadding(12,1,1,1);
-                        textView.setTextColor(Color.WHITE);
-                        prevTextViewId = curTextViewId;
-                        ll.addView(textView);
-                    }
-
-
-            } else {
-
-
-                new CustomToast().Show_Toast(getApplicationContext(), getWindow().getDecorView().getRootView(),
-                        responsetxt);
-
-            }
-            progressDialogAlodiga.dismiss();
-        }
-
-        @Override
-        protected void onCancelled() {
-            mAuthTask = null;
-        }
-    }
 
 
     private static String getValueFromResponseJson(String v, String response) {

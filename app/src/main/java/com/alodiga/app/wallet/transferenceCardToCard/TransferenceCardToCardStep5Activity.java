@@ -107,7 +107,7 @@ public class TransferenceCardToCardStep5Activity extends AppCompatActivity {
         for (int i = 5; i < response.getPropertyCount(); i++) {
             SoapObject obj = (SoapObject) response.getProperty(i);
             String propiedad = response.getProperty(i).toString();
-            ObjUserHasProduct object = new ObjUserHasProduct(obj.getProperty("id").toString(), obj.getProperty("name").toString(), obj.getProperty("currentBalance").toString(), obj.getProperty("symbol").toString(), obj.getProperty("isPayTopUp").toString());
+            ObjUserHasProduct object = new ObjUserHasProduct(obj.getProperty("id").toString(), obj.getProperty("name").toString(), obj.getProperty("currentBalance").toString(), obj.getProperty("symbol").toString(), obj.getProperty("isPayTopUp").toString(), obj.getProperty("isUsePrepaidCard").toString());
             if (object.getName().equals("Tarjeta Prepagada") || object.getName().equals("Prepaid Card") ){
                 Session.setAffiliatedCard(Boolean.parseBoolean(Session.getPrepayCardAsociate()));
                 object.setNumberCard(Session.getNumberCard());
