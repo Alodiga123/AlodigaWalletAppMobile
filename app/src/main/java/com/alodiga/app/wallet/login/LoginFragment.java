@@ -398,7 +398,7 @@ public class LoginFragment extends Fragment implements OnClickListener {
 
 
                     if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_PRIMER_INGRESO)){
-                        cumplimient = "4";
+
                         prepayCardAsociate= "false";
                         prepayCard="false";
 
