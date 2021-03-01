@@ -395,7 +395,7 @@ public class LoginFragment extends Fragment implements OnClickListener {
                     Session.setRemettencesDireccionId(getValueFromResponseJson("remettencesDireccionId", res)) ;
                     Session.setName(name);
                     Session.setLastname(lastName);
-
+                    cumplimient = getValueFromResponseJson("cumplimient", res);
 
                     if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_PRIMER_INGRESO)){
 
@@ -404,7 +404,7 @@ public class LoginFragment extends Fragment implements OnClickListener {
 
 
                     }else{
-                        cumplimient = getValueFromResponseJson("cumplimient", res);
+                        //cumplimient = getValueFromResponseJson("cumplimient", res);
                         //prepayCardAsociate = getValueFromResponseJson("prepayCardAsociate", res);
                         prepayCardAsociate = getValueFromResponseJson("prepayCardAsociate", res);
                         prepayCard= getValueFromResponseJson("prepayCard", res);
