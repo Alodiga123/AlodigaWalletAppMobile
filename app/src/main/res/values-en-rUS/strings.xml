@@ -312,7 +312,11 @@
     <string name="kyc_text_step4_code">" Enter zip code:"</string>
     <string name="kyc_text_step4_codezip">zip code</string>
     <string name="kyc_text_step4_av">Street, Av, house</string>
+    <string name="kyc_text_document_number">Document Number</string>
     <string name="kyc_text_step4_av_">Enter your street, Av, house:</string>
+    <string name="kyc_text_into_document_number">Enter your document number:</string>
+
+    <string name="kyc_text_document_type">Select Document Type</string>
     <string name="kyc_text_step4_state_">State</string>
     <string name="kyc_text_step4_city_">City</string>
     <string name="kyc_text_step5">"Your validation is in process. "</string>

@@ -10,7 +10,7 @@ public class Constants {
     /*Data de Produccion*/
     public static final boolean CONSTANT_IS_PRODUCTION = false;
     //LOCAL moises
-    public static String IPDAT = "192.168.3.20";
+    public static String IPDAT = "44.235.115.116";
     //LOCAL QA
     //public static String IPDAT = "192.168.3.140";
 
@@ -194,6 +194,8 @@ public class Constants {
     public static final String WEB_SERVICES_METHOD_NAME_GET_ACCOUNT_BANK = "getAccountBankByUser";
     public static final String WEB_SERVICES_METHOD_NAME_GET_COUNTRIES = "getCountriesHasBank";
     public static final String WEB_SERVICES_METHOD_NAME_GET_COUNTRIES_ = "getCountries";
+    public static final String WEB_SERVICES_METHOD_NAME_GET_DOCUMENT_PERSON_TYPE = "getDocumentPersonTypeByCountry";
+    public static final String WEB_SERVICES_METHOD_NAME_ORGIN_APP = "1";
     public static final String WEB_SERVICES_METHOD_NAME_GET_LANGUAJE_TOPUP = "getLanguage";
     public static final String WEB_SERVICES_METHOD_NAME_GET_PRODUCT_TOPUP = "getProductsPayTopUpByUserId";
     public static final String WEB_SERVICES_METHOD_NAME_GET_COUNTRIES_TOPUP = "getTopUpCountries";
@@ -345,8 +347,8 @@ public class Constants {
    // public static final String CONSTANT_URL_QA_REGISTRO_UNIFICADO_AW = "http://ec2-52-42-63-64.us-west-2.compute.amazonaws.com:8080/RegistroUnificado/APIRegistroUnificadoService?wsdl";
     //Desarrollo
     public static final String CONSTANT_URL_REMITTENCE_MOBILE_AW ="http://ec2-35-162-209-241.us-west-2.compute.amazonaws.com:8080/WSRemittenceMobileService/WSRemittenceMobile?wsdl";
-    public static final String CONSTANT_URL_QA_ALODIGA_AW ="http://192.168.3.20:8080/AlodigaWallet/APIAlodigaWalletService?wsdl";
-    public static final String CONSTANT_URL_QA_REGISTRO_UNIFICADO_AW = "http://192.168.3.20:8080/RegistroUnificado/APIRegistroUnificadoService?wsdl";
+    public static final String CONSTANT_URL_QA_ALODIGA_AW ="http://44.235.115.116:8080/AlodigaWallet/APIAlodigaWalletService?wsdl";
+    public static final String CONSTANT_URL_QA_REGISTRO_UNIFICADO_AW = "http://44.235.115.116:8080/RegistroUnificado/APIRegistroUnificadoService?wsdl";
 
     public static final String CONSTANT_WSREMITTENCE= "WSRemittence";
     public static final String CONSTANT_WSPAYMENTNETWORK= "WSPaymentNetworkMethod";

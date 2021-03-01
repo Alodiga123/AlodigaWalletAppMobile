@@ -9,18 +9,22 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
 import com.alodiga.app.R;
+import com.alodiga.app.wallet.adapters.SpinAdapterDocumentType;
 import com.alodiga.app.wallet.login.LoginActivity;
+import com.alodiga.app.wallet.model.ObjDocumentType;
 import com.alodiga.app.wallet.utils.Constants;
 import com.alodiga.app.wallet.utils.CustomToast;
 import com.alodiga.app.wallet.utils.ProgressDialogAlodiga;
 import com.alodiga.app.wallet.utils.Session;
 import com.alodiga.app.wallet.utils.Utils;
 import com.alodiga.app.wallet.utils.WebService;
+import com.alodiga.app.wallet.validate.ValidateAccountStep4Activity;
 
 import org.ksoap2.serialization.SoapObject;
 
@@ -32,18 +36,25 @@ public class RegisterStep3Fragment extends Fragment implements OnClickListener {
     static ProgressDialogAlodiga progressDialogAlodiga;
     private static View view;
     private static EditText name, lastName, emailId, mobileNumber, location,
-            password, confirmPassword, pinNumber;
+            password, confirmPassword, pinNumber,documentNumber;
     private static TextView login;
     private static Button signUpButton;
     private static CheckBox terms_conditions;
     private String responsetxt = "";
     private boolean serviceStatus;
+    SoapObject response2;
     private String getname = "";
+    private RegisterStep3Fragment.DocumentTypeTask documentTypeTask = null;
     private String getLastName = "";
     private String getEmailId = "";
     private String getPinNumber = "";
+    private EditText edtDocumentNumber;
+    Spinner spinner_document_type;
+
     private String getPassword = "";
     private String getConfirmPassword = "";
+    private String getdocumentNumber = "";
+    private String getDocumentTypeId = "";
 
     private RegisterStep3Fragment.UserRegisterTask mAuthTask = null;
 
@@ -96,6 +107,7 @@ public class RegisterStep3Fragment extends Fragment implements OnClickListener {
         initViews();
 
         setListeners();
+        getDocumentType();
         return view;
     }
 
@@ -105,15 +117,13 @@ public class RegisterStep3Fragment extends Fragment implements OnClickListener {
         lastName = view.findViewById(R.id.lastName);
         emailId = view.findViewById(R.id.userEmailId);
         password = view.findViewById(R.id.password);
-
-
+        edtDocumentNumber = view.findViewById(R.id.edtDocumentNumber);
+        spinner_document_type = view.findViewById(R.id.spinner_document_type);
         pinNumber = view.findViewById(R.id.edtPin);
         confirmPassword = view.findViewById(R.id.confirmPassword);
         signUpButton = view.findViewById(R.id.signUpBtn);
         login = view.findViewById(R.id.already_user);
         terms_conditions = view.findViewById(R.id.terms_conditions);
-
-
     }
 
     // Set Listeners
@@ -147,10 +157,12 @@ public class RegisterStep3Fragment extends Fragment implements OnClickListener {
         getname = name.getText().toString();
         getLastName = lastName.getText().toString();
         getEmailId = emailId.getText().toString();
-
         getPassword = password.getText().toString();
         getConfirmPassword = confirmPassword.getText().toString();
         getPinNumber = pinNumber.getText().toString();
+
+        getdocumentNumber = edtDocumentNumber.getText().toString();
+
 
         // Pattern match for email id
         Pattern p = Pattern.compile(Utils.regEx);
@@ -163,6 +175,7 @@ public class RegisterStep3Fragment extends Fragment implements OnClickListener {
                 || getLastName.equals("") || getLastName.length() == 0
                 || getEmailId.equals("") || getEmailId.length() == 0
                 || getPassword.equals("") || getPassword.length() == 0
+                || getdocumentNumber.equals("") || getdocumentNumber.length() == 0
                 || getPinNumber.equals("") || getPinNumber.length() == 0
                 || getConfirmPassword.equals("")
                 || getConfirmPassword.length() == 0)
@@ -215,16 +228,143 @@ public class RegisterStep3Fragment extends Fragment implements OnClickListener {
     public void registrar() {
         progressDialogAlodiga = new ProgressDialogAlodiga(getContext(), getString(R.string.loading));
         progressDialogAlodiga.show();
-
         //cifrando pin y credencial
         getPassword = Utils.aloDesencript(getPassword);
         getPinNumber = Utils.aloDesencript(getPinNumber);
-
-
-        mAuthTask = new UserRegisterTask(getname, getLastName, getEmailId, Session.getPhoneNumber(), getPassword, getPinNumber, Session.getMobileCodeSms());
+        mAuthTask = new UserRegisterTask(getname, getLastName, getEmailId, Session.getPhoneNumber(), getPassword, getPinNumber, Session.getMobileCodeSms(),getdocumentNumber,((ObjDocumentType) spinner_document_type.getSelectedItem()).getId());
         mAuthTask.execute((Void) null);
 
     }
+
+
+    public void getDocumentType() {
+        progressDialogAlodiga = new ProgressDialogAlodiga(getContext(), getString(R.string.loading));
+//        progressDialogAlodiga.show();
+        documentTypeTask = new RegisterStep3Fragment.DocumentTypeTask();
+        documentTypeTask.execute((Void) null);
+    }
+
+
+    public class DocumentTypeTask extends AsyncTask<Void, Void, Boolean> {
+        @Override
+        protected Boolean doInBackground(Void... params) {
+
+            WebService webService = new WebService();
+            Utils utils = new Utils();
+            try {
+                String responseCode;
+                String responseMessage = "";
+                HashMap<String, String> map = new HashMap<String, String>();
+                map.put("countryId", "1");
+                map.put("originAplicationId",Constants.WEB_SERVICES_METHOD_NAME_ORGIN_APP);
+
+                response2 = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_NAME_GET_DOCUMENT_PERSON_TYPE, Constants.ALODIGA);
+                responseCode = response2.getProperty("codigoRespuesta").toString();
+                responseMessage = response2.getProperty("mensajeRespuesta").toString();
+                if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
+
+                    //movilCode = response2.getProperty("datosRespuesta").toString();
+                    responsetxt = getString(R.string.web_services_response_00);
+                    serviceStatus = true;
+                    return serviceStatus;
+
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_DATOS_INVALIDOS)) {
+                    responsetxt = getString(R.string.web_services_response_01);
+                    serviceStatus = false;
+
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CONTRASENIA_EXPIRADA)) {
+                    responsetxt = getString(R.string.web_services_response_03);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_IP_NO_CONFIANZA)) {
+                    responsetxt = getString(R.string.web_services_response_04);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_CREDENCIALES_INVALIDAS)) {
+                    responsetxt = getString(R.string.web_services_response_05);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_BLOQUEADO)) {
+                    responsetxt = getString(R.string.web_services_response_06);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_NUMERO_TELEFONO_YA_EXISTE)) {
+                    responsetxt = getString(R.string.web_services_response_08);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_PRIMER_INGRESO)) {
+                    responsetxt = getString(R.string.web_services_response_12);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_SOSPECHOSO)) {
+                    responsetxt = getString(R.string.web_services_response_95);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_PENDIENTE)) {
+                    responsetxt = getString(R.string.web_services_response_96);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_NO_EXISTE)) {
+                    responsetxt = getString(R.string.web_services_response_97);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_CREDENCIALES)) {
+                    responsetxt = getString(R.string.web_services_response_98);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_INTERNO)) {
+                    responsetxt = getString(R.string.web_services_response_99);
+                    serviceStatus = false;
+                } else {
+                    responsetxt = getString(R.string.web_services_response_99);
+                    serviceStatus = false;
+                }
+                //progressDialogAlodiga.dismiss();
+            } catch (IllegalArgumentException e) {
+                responsetxt = getString(R.string.web_services_response_99);
+                serviceStatus = false;
+                e.printStackTrace();
+                System.err.println(e);
+                return false;
+            } catch (Exception e) {
+                responsetxt = getString(R.string.web_services_response_99);
+                serviceStatus = false;
+                e.printStackTrace();
+                System.err.println(e);
+                return false;
+            }
+            return serviceStatus;
+
+        }
+
+        @Override
+        protected void onPostExecute(final Boolean success) {
+            mAuthTask = null;
+            //showProgress(false);
+            if (success) {
+
+                ObjDocumentType[] objDocumentTypes = getDocumentType(response2);
+                SpinAdapterDocumentType spinAdapterDocumentType;
+                spinAdapterDocumentType = new SpinAdapterDocumentType(getContext(), android.R.layout.simple_spinner_item, objDocumentTypes);
+                spinner_document_type.setAdapter(spinAdapterDocumentType);
+
+            } else {
+                new CustomToast().Show_Toast(getActivity(), view,
+                        responsetxt);
+            }
+            progressDialogAlodiga.dismiss();
+        }
+
+        protected ObjDocumentType[] getDocumentType(SoapObject response) {
+
+            ObjDocumentType[] obj2 = new ObjDocumentType[response.getPropertyCount() - 3];
+
+            for (int i = 3; i < response.getPropertyCount(); i++) {
+                SoapObject obj = (SoapObject) response.getProperty(i);
+                String propiedad = response.getProperty(i).toString();
+                ObjDocumentType object = new ObjDocumentType(obj.getProperty("id").toString(),obj.getProperty("description").toString(),obj.getProperty("codeIdentification").toString());
+                obj2[i - 3] = object;
+            }
+
+            return obj2;
+        }
+
+        @Override
+        protected void onCancelled() {
+            mAuthTask = null;
+        }
+    }
+
 
     public class UserRegisterTask extends AsyncTask<Void, Void, Boolean> {
 
@@ -232,13 +372,15 @@ public class RegisterStep3Fragment extends Fragment implements OnClickListener {
         private final String lastName;
         private final String email;
 
+        private final String documentTypeId;
+        private final String documentNumber;
         private final String phoneNumber;
         private final String mobileCodeValidation;
         private final String password;
         private final String pin;
 
 
-        UserRegisterTask(String name_, String lastName_, String email_, String phoneNumber_, String password_, String pin_, String mobileCodeValidation_) {
+        UserRegisterTask(String name_, String lastName_, String email_, String phoneNumber_, String password_, String pin_, String mobileCodeValidation_, String documentNumber_,String documentTypeId_) {
             name = name_;
             lastName = lastName_;
             email = email_;
@@ -247,6 +389,8 @@ public class RegisterStep3Fragment extends Fragment implements OnClickListener {
             password = password_;
             pin = pin_;
             mobileCodeValidation = mobileCodeValidation_;
+            documentTypeId = documentTypeId_;
+            documentNumber = documentNumber_;
         }
 
         @Override
@@ -259,7 +403,6 @@ public class RegisterStep3Fragment extends Fragment implements OnClickListener {
 
                 String responseCode;
                 String responseMessage = "";
-
                 HashMap<String, String> map = new HashMap<String, String>();
                 map.put("usuarioApi", Constants.WEB_SERVICES_USUARIOWS);
                 map.put("passwordApi", Constants.WEB_SERVICES_PASSWORDWS);
@@ -281,7 +424,8 @@ public class RegisterStep3Fragment extends Fragment implements OnClickListener {
                 map.put("imagenBytes", "null");
                 map.put("link", "AloCash App Android");
                 map.put("pin", pin);
-
+                map.put("tipoDocumentoId", documentTypeId);
+                map.put("numeroDocumento", documentNumber);
                 response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_NAME_SAVE_USER, Constants.REGISTRO_UNIFICADO);
                 responseCode = response.getProperty("codigoRespuesta").toString();
                 responseMessage = response.getProperty("mensajeRespuesta").toString();

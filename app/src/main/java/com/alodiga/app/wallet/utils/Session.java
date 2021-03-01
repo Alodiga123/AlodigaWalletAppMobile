@@ -32,6 +32,7 @@ public class Session {
     private static String alocoinsBalance = "";
     private static String alodigaBalance = "";
     private static String HealthCareCoinsBalance = "";
+    private static String countrySourceId = "";
 
     private static String destinationAccountNumber = "";
     private static String destinationPhoneValue = "";
@@ -89,6 +90,15 @@ public class Session {
     private static ObjPaymentInfo paymentInfo;
     private static Boolean isConstantsEmpty;
     private static String  rechargeWhitCardIdTransaccion;
+
+
+    public static String getCountrySourceId() {
+        return countrySourceId;
+    }
+
+    public static void setCountrySourceId(String countrySourceId) {
+        Session.countrySourceId = countrySourceId;
+    }
 
     public static String getAccountNumber_aux() {
         return accountNumber_aux;
