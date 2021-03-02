@@ -186,7 +186,7 @@ public class ManualRechargeStep1Activity extends AppCompatActivity {
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
-
+                    progressDialogAlodiga.dismiss();
                     }
                 }).start();
             }
@@ -195,8 +195,6 @@ public class ManualRechargeStep1Activity extends AppCompatActivity {
                 return;
             }
         });
-
-        progressDialogAlodiga.dismiss();
 
         //Formato de decimal al monto
         edtAmount.addTextChangedListener(new TextWatcher() {
@@ -257,6 +255,7 @@ public class ManualRechargeStep1Activity extends AppCompatActivity {
                 finish();
             }
         });
+
     }
 
     @Override
