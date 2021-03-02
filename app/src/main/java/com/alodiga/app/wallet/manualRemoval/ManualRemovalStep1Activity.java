@@ -84,7 +84,6 @@ public class ManualRemovalStep1Activity extends AppCompatActivity {
         new Thread(new Runnable() {
             public void run() {
                 try {
-                    progressDialogAlodiga.show();
                     String responseCode = null;
                     WebService webService = new WebService();
                     HashMap<String, String> map = new HashMap<String, String>();
@@ -127,7 +126,6 @@ public class ManualRemovalStep1Activity extends AppCompatActivity {
         //Spinner Producto
         spinnerAccountBank.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                progressDialogAlodiga.show();
                 infoAccountLayout.setVisibility(View.VISIBLE);
                 spinnerproducto.setEnabled(true);
                 final ObjAccountBankComplex accountBank = (ObjAccountBankComplex) spinnerAccountBank.getSelectedItem();
@@ -165,10 +163,10 @@ public class ManualRemovalStep1Activity extends AppCompatActivity {
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
+                        progressDialogAlodiga.dismiss();
 
                     }
                 }).start();
-                progressDialogAlodiga.dismiss();
             }
 
             public void onNothingSelected(AdapterView<?> adapterView) {
