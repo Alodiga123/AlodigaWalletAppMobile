@@ -16,7 +16,7 @@ public class AddBankSuccessfullActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.recharge_layout);
+        setContentView(R.layout.successfull_bank_layout);
         submit1 = findViewById(R.id.finalizar);
 
         submit1.setOnClickListener(new View.OnClickListener() {
