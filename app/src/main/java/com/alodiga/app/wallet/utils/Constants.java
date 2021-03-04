@@ -169,6 +169,7 @@ public class Constants {
     public static final String WEB_SERVICES_RESPONSE_CODE_PIN_CHANGE_ERROR = "140";
     public static final String WEB_SERVICES_RESPONSE_CODE_ERROR_VALIDATING_THE_ITEM = "141";
     public static final String WEB_SERVICES_RESPONSE_CODE_INVALID_AMOUNT = "142";
+    public static final String WEB_SERVICES_RESPONSE_CODE_ACCOUNT_EXISTENT = "198";
     public static final String WEB_SERVICES_RESPONSE_CODE_NOT_ACCOUNT_BANK_ASOCIATE = "304";
 
     //resumen remesas

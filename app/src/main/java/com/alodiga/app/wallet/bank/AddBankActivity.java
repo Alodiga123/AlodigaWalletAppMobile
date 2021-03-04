@@ -325,6 +325,9 @@ public class AddBankActivity extends AppCompatActivity {
         } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_CREDENCIALES)) {
             responsetxt = getString(R.string.web_services_response_98);
             serviceStatus = false;
+        }  else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ACCOUNT_EXISTENT)) {
+            responsetxt = getString(R.string.web_services_response_198);
+            serviceStatus = false;
         } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_INTERNO)) {
             responsetxt = getString(R.string.web_services_response_99);
             serviceStatus = false;
@@ -412,6 +415,10 @@ public class AddBankActivity extends AppCompatActivity {
                 } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_CREDENCIALES)) {
                     responsetxt = getString(R.string.web_services_response_98);
                     serviceStatus = false;
+                }  else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ACCOUNT_EXISTENT)) {
+                        responsetxt = getString(R.string.web_services_response_198);
+                        serviceStatus = false;
+
                 } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_ERROR_INTERNO)) {
                     responsetxt = getString(R.string.web_services_response_99);
                     serviceStatus = false;

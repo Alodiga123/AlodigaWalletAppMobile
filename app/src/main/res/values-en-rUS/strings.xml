@@ -562,6 +562,7 @@
     <string name="add_bank_button">ADD BANK</string>
     <string name="banks_asociated">BANCOS AFILIADOS</string>
     <string name="debit_card_balane">Debit Card/ Current Balance</string>
+    <string name="web_services_response_198">" The account you are trying to register already exists"</string>
 
 
 </resources>

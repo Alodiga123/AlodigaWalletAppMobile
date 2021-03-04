@@ -418,6 +418,8 @@
     <string name="web_services_response_195">Respuesta no encontrada</string>
     <string name="web_services_response_196">Tiempo excedido para realizar la cancelación</string>
     <string name="web_services_response_144">Servicio no disponible en este momento AF32</string>
+    <string name="web_services_response_198">La cuenta que intenta registrar ya existe</string>
+
 
 
     <string name="web_services_response_204">Destino no es prepago</string>
@@ -611,4 +613,5 @@
     <string name="add_bank_button">AGREGAR BANCO</string>
     <string name="banks_asociated">BANCOS AFILIADOS</string>
     <string name="debit_card_balane">Tarjeta de Debito Prepagada / Saldo Actual</string>
+
 </resources>
