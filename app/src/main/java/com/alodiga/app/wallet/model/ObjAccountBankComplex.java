@@ -9,14 +9,16 @@ public class ObjAccountBankComplex {
     private String description;
     private String abaCode;
     private String bankId;
+    private String shortName;
 
-    public ObjAccountBankComplex(String id, String bankName, String accountNumber, String description, String abaCode,String bankId) {
+    public ObjAccountBankComplex(String id, String bankName, String accountNumber, String description, String abaCode,String bankId, String shortName) {
         this.id = id;
         this.bankName = bankName;
         this.accountNumber = accountNumber;
         this.description = description;
         this.abaCode = abaCode;
         this.bankId = bankId;
+        this.shortName = shortName;
     }
 
     public ObjAccountBankComplex() {
@@ -69,5 +71,13 @@ public class ObjAccountBankComplex {
 
     public void setBankId(String bankId) {
         this.bankId = bankId;
+    }
+
+    public String getShortName() {
+        return shortName;
+    }
+
+    public void setShortName(String shortName) {
+        this.shortName = shortName;
     }
 }

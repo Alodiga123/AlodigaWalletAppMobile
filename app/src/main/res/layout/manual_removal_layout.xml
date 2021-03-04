@@ -42,10 +42,9 @@
 
 
         <TextView
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-            android:padding="30dp"
+            android:layout_marginTop="20dp"
             android:text="@string/bank_info_selec_account_witdraw"
             android:textColor="@color/white_greyish"
             android:textSize="16sp" />
@@ -108,7 +107,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
-                android:text="@string/bank__account_type"
+                android:text="@string/bank__account_type_cort"
                 android:textColor="@color/white_greyish"
                 android:textSize="16sp" />
 
@@ -120,133 +119,151 @@
                 android:text=""
                 android:textColor="@color/white_greyish"
                 android:textSize="16sp" />
+
             <View
                 android:layout_width="fill_parent"
-                android:layout_height="1px"
+                android:layout_height="2px"
                 android:background="@color/white" />
 
-
-            <TextView
-                android:id="@+id/accountAbaCode"
-
-                android:layout_width="fill_parent"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:text="@string/aba"
-                android:textColor="@color/white_greyish"
-                android:textSize="16sp" />
-            <TextView
-                android:id="@+id/accountAbaCodeValue"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:text="@string/amount_info"
-                android:textColor="@color/white_greyish"
-                android:textSize="16sp" />
+                android:orientation="vertical"
+                android:id="@+id/aba"
+                android:visibility="gone">
+                <TextView
+                    android:id="@+id/accountAbaCode"
+
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:text="@string/aba"
+                    android:textColor="@color/white_greyish"
+                    android:textSize="16sp" />
+                <TextView
+                    android:id="@+id/accountAbaCodeValue"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:text="@string/amount_info"
+                    android:textColor="@color/white_greyish"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
             </LinearLayout>
 
 
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1px"
-            android:background="@color/white" />
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/datares">
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:background="@color/white"
+                    android:layout_gravity="bottom"
+                    />
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="@string/producto_info_witdraw"
+                    android:textColor="@color/white_greyish"
+                    android:textSize="16sp" />
 
 
 
-            <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="@string/producto_info_witdraw"
-            android:textColor="@color/white_greyish"
-            android:textSize="16sp" />
+
+                <Spinner
+                    android:id="@+id/spinnerproducto"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_vertical"
+                    android:inputType="phone"
+                    android:padding="8dp"
+                    android:singleLine="true"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white_greyish"
+                    android:textSize="16sp"
+                    android:backgroundTint="@color/white_greyish"/>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:background="@color/white" />
 
 
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:text="@string/amount_info"
+                    android:textColor="@color/white_greyish"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/edtAmount"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@android:color/transparent"
+                    android:drawablePadding="0dp"
+                    android:gravity="center_vertical"
+                    android:hint="@string/amount"
+                    android:inputType="numberDecimal"
+                    android:padding="8dp"
+                    android:singleLine="true"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textSize="16sp" />
 
 
-        <Spinner
-            android:id="@+id/spinnerproducto"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:gravity="center_vertical"
-            android:inputType="phone"
-            android:padding="8dp"
-            android:singleLine="true"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white_greyish"
-            android:textSize="16sp"
-            android:backgroundTint="@color/white_greyish"/>
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:background="@color/white" />
 
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1px"
-            android:background="@color/white" />
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:background="@color/white" />
 
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:text="@string/descrip_info"
+                    android:textColor="@color/white_greyish"
+                    android:textSize="16sp" />
 
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:text="@string/amount_info"
-            android:textColor="@color/white_greyish"
-            android:textSize="16sp" />
+                <EditText
+                    android:id="@+id/edtdescript"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@android:color/transparent"
+                    android:drawablePadding="0dp"
+                    android:gravity="center_vertical"
+                    android:hint="@string/descrip"
+                    android:inputType="textCapWords"
+                    android:padding="8dp"
+                    android:singleLine="true"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textSize="16sp" />
 
-        <EditText
-            android:id="@+id/edtAmount"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:background="@android:color/transparent"
-            android:drawablePadding="0dp"
-            android:gravity="center_vertical"
-            android:hint="@string/amount"
-            android:inputType="numberDecimal"
-            android:padding="8dp"
-            android:singleLine="true"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
-            android:textSize="16sp" />
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="2px"
+                    android:background="@color/white" />
 
+            </LinearLayout>
 
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1px"
-            android:background="@color/white" />
-
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1px"
-            android:background="@color/white" />
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:text="@string/descrip_info"
-            android:textColor="@color/white_greyish"
-            android:textSize="16sp" />
-
-        <EditText
-            android:id="@+id/edtdescript"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:background="@android:color/transparent"
-            android:drawablePadding="0dp"
-            android:gravity="center_vertical"
-            android:hint="@string/descrip"
-            android:inputType="textCapWords"
-            android:padding="8dp"
-            android:singleLine="true"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
-            android:textSize="16sp" />
-
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="2px"
-            android:background="@color/white" />
 
         <Button
             android:id="@+id/signFind"

@@ -61,6 +61,7 @@ public class ManualRemovalStep1Activity extends AppCompatActivity {
     private Button signFind, backToLoginBtn;
     private String responsetxt = "";
     private boolean serviceStatus;
+    private LinearLayout aba, datares;
 
 
     @Override
@@ -77,6 +78,9 @@ public class ManualRemovalStep1Activity extends AppCompatActivity {
         accountNumberLabelValue = findViewById(R.id.accountNumberLabelValue);
         accountDescriptionLabelValue = findViewById(R.id.accountDescriptionLabelValue);
         accountAbaCodeValue = findViewById(R.id.accountAbaCodeValue);
+        accountAbaCode = findViewById(R.id.accountAbaCode);
+        aba= findViewById(R.id.aba);
+        datares = findViewById(R.id.datares);
         //Descomentar
         progressDialogAlodiga = new ProgressDialogAlodiga(this, getString(R.string.loading));
         progressDialogAlodiga.show();
@@ -131,7 +135,13 @@ public class ManualRemovalStep1Activity extends AppCompatActivity {
                 final ObjAccountBankComplex accountBank = (ObjAccountBankComplex) spinnerAccountBank.getSelectedItem();
                 accountNumberLabelValue.setText(accountBank.getAccountNumber());
                 accountDescriptionLabelValue.setText(accountBank.getDescription());
-                accountAbaCodeValue.setText(accountBank.getAbaCode());
+                if (accountBank.getShortName().equalsIgnoreCase("US")){
+                    accountAbaCode.setVisibility(View.VISIBLE);
+                    accountAbaCodeValue.setVisibility(View.VISIBLE);
+                    aba.setVisibility(View.VISIBLE);
+                    accountAbaCodeValue.setText(accountBank.getAbaCode().equals("")?"-":accountBank.getAbaCode());
+                }
+
                 //Toast.makeText(getApplicationContext(),"id" + bank.getId() ,Toast.LENGTH_SHORT).show();
               new Thread(new Runnable() {
                     public void run() {
@@ -269,9 +279,17 @@ public class ManualRemovalStep1Activity extends AppCompatActivity {
             String accountNumber = obj.getProperty("accountNumber").toString();;
             String bankName = ((SoapObject)obj.getProperty("bankId")).getProperty("name").toString();
             String description = ((SoapObject) obj.getProperty("accountTypeBankId")).getProperty("description").toString();
-            String abaCode = ((SoapObject) obj.getProperty("bankId")).getProperty("abaCode").toString();
+            String abaCode =""; //= ((SoapObject) obj.getProperty("bankId")).getProperty("abaCode").toString();
+            //Object abaCode_ = ((SoapObject) obj.getProperty("bankId")).getProperty("abaCode");
+            SoapObject objcountry = (SoapObject) ((SoapObject) obj.getProperty("bankId")).getProperty("countryId");
+            String shortName = objcountry.getProperty("shortName").toString();
+            if (shortName.equalsIgnoreCase("US")){
+                    abaCode = ((SoapObject) obj.getProperty("bankId")).getProperty("abaCode").toString();
+                    abaCode = abaCode.trim().equals("anyType{}")? "": abaCode;
+            }
+
             String bankId = ((SoapObject) obj.getProperty("bankId")).getProperty("id").toString();
-            ObjAccountBankComplex object = new ObjAccountBankComplex(id, bankName,accountNumber,description,abaCode,bankId);
+            ObjAccountBankComplex object = new ObjAccountBankComplex(id, bankName,accountNumber,description,abaCode,bankId,shortName);
             obj2[i - 3] = object;
         }
         return obj2;
