@@ -127,6 +127,7 @@ public class ExchangeStep3codeActivity extends AppCompatActivity {
                 map.put("usuarioId", Session.getUserId());
                 map.put("pin", clave);
 
+                progressDialogAlodiga.dismiss();
 
                 response = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_NAME_VALID_CODE, Constants.REGISTRO_UNIFICADO);
                 responseCode = response.getProperty("codigoRespuesta").toString();
@@ -179,7 +180,7 @@ public class ExchangeStep3codeActivity extends AppCompatActivity {
                     responsetxt = getString(R.string.web_services_response_99);
                     serviceStatus = false;
                 }
-                //progressDialogAlodiga.dismiss();
+
             } catch (IllegalArgumentException e) {
                 responsetxt = getString(R.string.web_services_response_99);
                 serviceStatus = false;
@@ -262,6 +263,7 @@ public class ExchangeStep3codeActivity extends AppCompatActivity {
                 responseCode = response_.getProperty("codigoRespuesta").toString();
                 responseMessage = response_.getProperty("mensajeRespuesta").toString();
 
+                progressDialogAlodiga.dismiss();
 
                 if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_EXITO)) {
                     responsetxt = getString(R.string.web_services_response_00);
@@ -290,8 +292,42 @@ public class ExchangeStep3codeActivity extends AppCompatActivity {
                 } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_PRIMER_INGRESO)) {
                     responsetxt = getString(R.string.web_services_response_12);
                     serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_TRANSACTION_AMOUNT_LIMIT)) {
+                    responsetxt = getString(R.string.web_services_response_30);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_TRANSACTION_MAX_NUMBER_BY_ACCOUNT)) {
+                    responsetxt = getString(R.string.web_services_response_31);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_TRANSACTION_MAX_NUMBER_BY_CUSTOMER)) {
+                    responsetxt = getString(R.string.web_services_response_32);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USER_HAS_NOT_BALANCE)) {
+                    responsetxt = getString(R.string.web_services_response_33);
+                    serviceStatus = false;
                 } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_SOSPECHOSO)) {
                     responsetxt = getString(R.string.web_services_response_95);
+                    serviceStatus = false;
+                    //////////////////////////////7transaccional Adicional change (//////////////////////////////////////////////////////////////////////////
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_TRANSACTION_AMOUNT_LIMIT_DIALY)) {
+                    responsetxt = getString(R.string.web_services_response_34);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_TRANSACTION_QUANTITY_LIMIT_DIALY)) {
+                    responsetxt = getString(R.string.web_services_response_37);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_TRANSACTION_AMOUNT_LIMIT_MONTHLY)) {
+                    serviceStatus = false;
+                    responsetxt = getString(R.string.web_services_response_35);
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_TRANSACTION_AMOUNT_LIMIT_YEARLY)) {
+                    responsetxt = getString(R.string.web_services_response_36);
+                    serviceStatus = false;
+                }  else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_TRANSACTION_QUANTITY_LIMIT_MONTHLY)) {
+                    responsetxt = getString(R.string.web_services_response_38);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_TRANSACTION_QUANTITY_LIMIT_YEARLY)) {
+                    responsetxt = getString(R.string.web_services_response_39);
+                    serviceStatus = false;
+                } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_DISABLED_TRANSACTION)) {
+                    responsetxt = getString(R.string.web_services_response_41);
                     serviceStatus = false;
                 } else if (responseCode.equals(Constants.WEB_SERVICES_RESPONSE_CODE_USUARIO_PENDIENTE)) {
                     responsetxt = getString(R.string.web_services_response_96);
@@ -309,7 +345,7 @@ public class ExchangeStep3codeActivity extends AppCompatActivity {
                     responsetxt = getString(R.string.web_services_response_99);
                     serviceStatus = false;
                 }
-                //progressDialogAlodiga.dismiss();
+
             } catch (IllegalArgumentException e) {
                 responsetxt = getString(R.string.web_services_response_99);
                 serviceStatus = false;
