@@ -171,9 +171,8 @@ public class ActivateDeactivateCardStep1Activity extends AppCompatActivity {
                 TimeZone tz = cal.getTimeZone();
 
                 HashMap<String, String> map = new HashMap<String, String>();
-                map.put("userId", Session.getUserId());
-                map.put("card",Session.getCardSelectActiveDeactive());
-                //Utils.aloEncrpter(Session.getCardSelectActiveDeactive());
+               // map.put("userId", Session.getUserId());
+                map.put("email",Session.getEmail());
                 map.put("timeZone", tz.getID());
                 map.put("status", Constants.ACTIVE_STATUS_DEACTIVE);
 
@@ -315,10 +314,10 @@ public class ActivateDeactivateCardStep1Activity extends AppCompatActivity {
                 TimeZone tz = cal.getTimeZone();
 
                 HashMap<String, String> map = new HashMap<String, String>();
-                map.put("userId", Session.getUserId());
-                map.put("card", Utils.aloDesencript(Session.getCardSelectActiveDeactive().trim()));
+                map.put("email", Session.getEmail());
                 map.put("timeZone", tz.getID());
                 map.put("status", Constants.ACTIVE_STATUS_ACTIVE);
+
 
 
 
@@ -458,8 +457,8 @@ public class ActivateDeactivateCardStep1Activity extends AppCompatActivity {
                 TimeZone tz = cal.getTimeZone();
 
                 HashMap<String, String> map = new HashMap<String, String>();
-                map.put("userId", Session.getUserId());
-                map.put("card", Utils.aloDesencript(Session.getCardSelectActiveDeactive().trim()));
+                //map.put("userId", Session.getUserId());
+                map.put("email", Session.getEmail());
                 map.put("timeZone", tz.getID());
 
                 response_1 = WebService.invokeGetAutoConfigString(map, Constants.WEB_SERVICES_METHOD_ACTIVE_DEACTIVE_STATUS, Constants.ALODIGA);

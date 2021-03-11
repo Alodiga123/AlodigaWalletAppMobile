@@ -32,6 +32,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.alodiga.app.R;
 import com.alodiga.app.wallet.QR.CreateQRCodeActivity;
+import com.alodiga.app.wallet.activateDesativateCard.ActivateDeactivateCardStep1Activity;
 import com.alodiga.app.wallet.activeCard.ActiveCardActivity;
 import com.alodiga.app.wallet.adapters.AdapterMoneyProduct;
 import com.alodiga.app.wallet.bank.AddBankActivity;
@@ -263,7 +264,7 @@ public class MainActivity extends AppCompatActivity
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
 
-       if(Session.isAffiliatedCard() && Boolean.valueOf(Session.getPrepayCard()))
+       /*if(Session.isAffiliatedCard() && Boolean.valueOf(Session.getPrepayCard()))
         {
             NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
             Menu nav_menu =  navigationView.getMenu();
@@ -271,7 +272,7 @@ public class MainActivity extends AppCompatActivity
             SubMenu menuItem2 = menuItem.getSubMenu();
             menuItem2.getItem(1).setVisible(false);
             menuItem2.getItem(1).setEnabled(false);
-        }
+        }*/
         return true;
     }
 
@@ -399,7 +400,7 @@ public class MainActivity extends AppCompatActivity
                        startActivity(show);
                    }
                     else if (id == R.id.nav_active_card) {
-                           show = new Intent(MainActivity.this, ActiveCardActivity.class);
+                           show = new Intent(MainActivity.this, ActivateDeactivateCardStep1Activity.class);
                            startActivity(show);
 
                    }else if (id == R.id.nav_remesas) {
